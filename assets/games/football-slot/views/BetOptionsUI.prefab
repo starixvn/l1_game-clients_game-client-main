@@ -4396,8 +4396,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.75,
+        0.75,
         1
       ]
     },
@@ -4494,8 +4494,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 39,
-      "height": 25
+      "width": 68.48,
+      "height": 52.48
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4506,8 +4506,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0.394,
-        -22.041,
+        5.394,
+        -9.041,
         0,
         0,
         0,
@@ -4546,7 +4546,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "item_idle",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -4562,7 +4562,9 @@
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
-    "_N$skeletonData": null,
+    "_N$skeletonData": {
+      "__uuid__": "ad0b0719-c10d-482b-87ba-9a33075f662e"
+    },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
     "_N$debugBones": false,
@@ -4593,6 +4595,9 @@
     "animSkeleton": [
       {
         "__id__": 117
+      },
+      {
+        "__id__": 120
       }
     ],
     "winSymbolHighlight": {
@@ -14201,8 +14206,8 @@
         0,
         0,
         1,
-        0.75,
-        0.75,
+        1,
+        1,
         1
       ]
     },
@@ -14280,7 +14285,7 @@
       "__id__": 385
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 393

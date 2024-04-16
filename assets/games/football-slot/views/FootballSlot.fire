@@ -1037,8 +1037,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 238,
-      "height": 44
+      "width": 248,
+      "height": 33
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1050,7 +1050,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -6.861,
+        -4.2,
         0,
         0,
         0,
@@ -1094,34 +1094,46 @@
     "_id": "a8Cg/wQhxBHpVaUgdWb1Sh"
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "sp.Skeleton",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 22
     },
     "_enabled": true,
-    "_materials": [],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "519191c5-7573-4d00-ac01-e6c6d5b649a4"
+    "_materials": [
+      {
+        "__uuid__": "7afd064b-113f-480e-b793-8817d19f63c3"
+      }
+    ],
+    "paused": false,
+    "defaultSkin": "default",
+    "defaultAnimation": "item",
+    "_preCacheMode": 0,
+    "_cacheMode": 0,
+    "loop": true,
+    "premultipliedAlpha": true,
+    "timeScale": 1,
+    "_accTime": 0,
+    "_playCount": 0,
+    "_frameCache": null,
+    "_curFrame": null,
+    "_skeletonCache": null,
+    "_animationName": "item",
+    "_animationQueue": [],
+    "_headAniInfo": null,
+    "_playTimes": 0,
+    "_isAniComplete": true,
+    "_N$skeletonData": {
+      "__uuid__": "8c22d860-abb1-4e51-ba9e-f3dff5fa54a7"
     },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "e8e4678f-3fbe-4879-af4f-ea2676f05501"
-    },
-    "_id": "8dkZiZmEdLwap6w7kkErvc"
+    "_N$_defaultCacheMode": 0,
+    "_N$debugSlots": false,
+    "_N$debugBones": false,
+    "_N$debugMesh": false,
+    "_N$useTint": false,
+    "_N$enableBatch": false,
+    "_id": "b5AQwO5OdJ3L9qETwkp6c2"
   },
   {
     "__type__": "cc.Node",
@@ -1160,7 +1172,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -28.325,
+        -27.325,
         -7.471,
         0,
         0,
@@ -1200,7 +1212,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "item",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -1264,7 +1276,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        22.47,
+        24.47,
         -7.685,
         0,
         0,
@@ -1432,7 +1444,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        16,
+        18,
         -11,
         0,
         0,
@@ -1756,7 +1768,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        29.809,
+        32.809,
         -10.399,
         0,
         0,

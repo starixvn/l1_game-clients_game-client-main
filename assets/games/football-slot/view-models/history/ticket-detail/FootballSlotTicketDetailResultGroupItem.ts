@@ -33,12 +33,12 @@ export default class FootballSlotTicketDetailResultGroupItem extends cc.Componen
             this.updateFirstRowContent(bigSmallValue);
         } else {
             this.node.getChildByName("bigSmall").active = false;
-            this.spin.string = i18n.t("fruitSlot.extraSpin");
+            this.spin.string = i18n.t("footballSlot.extraSpin");
         }
     }
 
     private updateFirstRowContent(bigSmallValue: number) {
-        this.spin.string = i18n.t("fruitSlot.spinResult");
+        this.spin.string = i18n.t("footballSlot.spinResult");
 
         this.bigSmallValueLabel.string = bigSmallValue.toString();
         const isBigSymbol = bigSmallValue > 7;

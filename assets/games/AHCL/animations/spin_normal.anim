@@ -1,0 +1,214 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "spin_normal",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 12,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "light": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 255
+            },
+            {
+              "frame": 0.5,
+              "value": 0
+            },
+            {
+              "frame": 1,
+              "value": 255
+            },
+            {
+              "frame": 4.033333333333333,
+              "value": 255
+            },
+            {
+              "frame": 4.5,
+              "value": 0
+            },
+            {
+              "frame": 4.966666666666667,
+              "value": 255
+            },
+            {
+              "frame": 8,
+              "value": 255
+            },
+            {
+              "frame": 8.466666666666667,
+              "value": 0
+            },
+            {
+              "frame": 8.933333333333334,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "icon_spin": {
+        "comps": {},
+        "props": {
+          "angle": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 3.966666666666667,
+              "value": -360
+            },
+            {
+              "frame": 8,
+              "value": -720
+            },
+            {
+              "frame": 12,
+              "value": -1080
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "spin_red": {
+        "comps": {},
+        "props": {
+          "angle": [
+            {
+              "frame": 0,
+              "value": -720
+            },
+            {
+              "frame": 6,
+              "value": -360
+            },
+            {
+              "frame": 12,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "bg": {
+        "comps": {},
+        "props": {
+          "angle": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 6,
+              "value": -360
+            },
+            {
+              "frame": 12,
+              "value": -720
+            }
+          ]
+        }
+      },
+      "text_spin": {
+        "comps": {},
+        "props": {
+          "scale": [
+            {
+              "frame": 0,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 1,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.9,
+                "y": 0.9
+              }
+            },
+            {
+              "frame": 2.033333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 4.033333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 5,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.9,
+                "y": 0.9
+              }
+            },
+            {
+              "frame": 6,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 8,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 8.966666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.9,
+                "y": 0.9
+              }
+            },
+            {
+              "frame": 9.966666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ]
+        }
+      },
+      "icon_spin_quick": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

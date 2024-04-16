@@ -1,0 +1,13 @@
+dj-club-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/dj-club,./assets/games/_slotgame_base
+        TEST_PATHS: ./__tests__/games/_slotgame_base
+        PROJECT_NAME: dj_club_client
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/_slotgame_base/**/*
+              - assets/games/dj-club/**/*
+              - __tests__/games/_slotgame_base/**/*
+        - when: never

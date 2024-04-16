@@ -1,0 +1,470 @@
+html {
+    -ms-touch-action: none;
+    /* height: 100%; */
+}
+
+body,
+canvas,
+div {
+    display: block;
+    outline: none;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+}
+
+/* Remove spin of input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+iframe {
+    overflow-x: hidden;
+}
+
+iframe.microsite-iframe {
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background: url(./background.jpg);
+    background-size: auto 100vh;
+
+    cursor: default;
+    color: #888;
+
+    text-align: center;
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+
+    /* fix bug: https://github.com/cocos-creator/2d-tasks/issues/791 */
+    /* overflow cannot be applied in Cocos2dGameContainer,
+  otherwise child elements will be hidden when Cocos2dGameContainer rotated 90 deg */
+    overflow: hidden;
+}
+
+.container-themes {
+    position: relative;
+    top: 5.22vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-themes {
+    background-size: auto 89.56vh;
+    width: auto;
+    height: 89.56vh;
+}
+
+#Cocos2dGameContainer {
+    position: absolute;
+    margin: 0;
+    left: 0px;
+    top: 0px;
+
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    width: 100%;
+    z-index: 1;
+    height: 100vh !important;
+    height: calc(var(--vh, 1vh) * 100) !important;
+}
+
+#Cocos2dGameContainer > div[style*="overflow-x"] {
+    overflow-x: hidden !important;
+}
+
+#buttonFullAndroid {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+a:link,
+a:visited {
+    color: #666;
+}
+
+a:active,
+a:hover {
+    color: #666;
+}
+
+p.header {
+    font-size: small;
+}
+
+p.footer {
+    font-size: x-small;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1024px) and (orientation: portrait) {
+    body {
+        background: url(./background_90.jpg) repeat-y;
+        background-size: 100vh auto;
+    }
+
+    .splash-container {
+        height: 100vw;
+        width: 100vh;
+        transform: rotate(90deg);
+    }
+
+    .instruction {
+        height: 100vh !important;
+        transform: rotate(90deg);
+    }
+
+    .container-themes {
+        position: fixed;
+        height: calc(89.56vw - 70px);
+        -ms-transform: translateY(-89.56vw) rotate(90deg);
+        -o-transform: translateY(-89.56vw) rotate(90deg);
+        -ms-transform: translateY(-89.56vw) rotate(90deg);
+        -o-transform: translateY(-89.56vw) rotate(90deg);
+        transform: translateY(-89.56vw) rotate(90deg);
+        -webkit-transform-origin: left bottom;
+        -moz-transform-origin: left bottom;
+        top: unset;
+        bottom: unset;
+        right: unset;
+        left: 5.22vw;
+    }
+
+    .img-themes {
+        background-size: auto 50.36vh;
+        width: auto;
+        height: 50.36vh;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    .splash-container {
+        transform: rotate(0deg);
+    }
+}
+
+.splash-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.splash {
+    position: relative;
+    top: 36.25vh;
+    background: url(./logo_saba.png) no-repeat center;
+    background-size: auto 17.81vh;
+    width: auto;
+    height: 17.81vh;
+}
+
+.splash_text {
+    position: relative;
+    top: 37.3vh;
+    background: no-repeat center;
+    background-size: auto 4.7vh;
+    width: auto;
+    height: 4.7vh;
+}
+
+.splash_Vgaming {
+    position: relative;
+    top: 23vh;
+    background: url(./logo_vgaming.png) no-repeat center;
+    background-size: auto 37.65vh;
+    width: auto;
+    height: 37.66vh;
+}
+
+.splash_text_Vgaming {
+    position: absolute;
+    top: 65vh;
+    background: no-repeat center;
+    background-size: auto 3.4vh;
+    width: 100%;
+    height: 3.4vh;
+}
+
+.splash_sabaplay {
+    position: relative;
+    top: 26.7vh;
+    background: url(./logo_sabaplay.png) no-repeat center;
+    background-size: auto 27.2vh;
+    width: auto;
+    height: 30vh;
+}
+
+.splash_text_sabaplay {
+    position: relative;
+    top: 33.8vh;
+    background: no-repeat center;
+    background-size: auto 3.4vh;
+    width: 100%;
+    height: 3.4vh;
+}
+
+.splash_other_sc2 {
+    position: relative;
+    top: 23vh;
+    background-size: auto 37.65vh;
+    width: auto;
+    height: 37.66vh;
+}
+
+.splash_text_other_sc2 {
+    position: absolute;
+    top: 65vh;
+    background: no-repeat center;
+    background-size: auto 3.4vh;
+    width: 100%;
+    height: 3.4vh;
+}
+
+.splash_other_sc1 {
+    position: relative;
+    top: 36.25vh;
+    background-size: auto 17.81vh;
+    width: auto;
+    height: 17.81vh;
+}
+
+.splash_text_other_sc1 {
+    position: relative;
+    top: 37.3vh;
+    background: no-repeat center;
+    background-size: auto 4.7vh;
+    width: auto;
+    height: 4.7vh;
+}
+
+.splash_text_sc1_vi {
+    background-image: url("splash_text_sc1_vi.png");
+}
+
+.splash_text_sc1_en {
+    background-image: url("splash_text_sc1_en.png");
+}
+
+.splash_text_sc1_th {
+    background-image: url("splash_text_sc1_th.png");
+}
+
+.splash_text_sc1_id {
+    background-image: url("splash_text_sc1_id.png");
+}
+
+.splash_text_sc1_zh_cn {
+    background-image: url("splash_text_sc1_zh_cn.png");
+}
+
+.splash_text_sc1_zh_tw {
+    background-image: url("splash_text_sc1_zh_tw.png");
+}
+
+.splash_text_sc2_vi {
+    background-image: url("splash_text_sc2_vi.png");
+}
+
+.splash_text_sc2_en {
+    background-image: url("splash_text_sc2_en.png");
+}
+
+.splash_text_sc2_th {
+    background-image: url("splash_text_sc2_th.png");
+}
+
+.splash_text_sc2_id {
+    background-image: url("splash_text_sc2_id.png");
+}
+
+.splash_text_sc2_zh_cn {
+    background-image: url("splash_text_sc2_zh_cn.png");
+}
+
+.splash_text_sc2_zh_tw {
+    background-image: url("splash_text_sc2_zh_tw.png");
+}
+
+.conner-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+    .light {
+        background-size: 31.47vw 8.79vw;
+        width: 31.47vw;
+        height: 8.79vw;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+    .splash {
+        top: 33vh;
+        background-size: auto 9.3vh;
+    }
+
+    .splash_text {
+        top: 28vh;
+        background-size: auto 2.8vh;
+    }
+
+    .splash_Vgaming {
+        top: 21.5vh;
+        background-size: auto 19.6vh;
+    }
+
+    .splash_text_Vgaming {
+        top: 51vh;
+        background-size: auto 2.5vh;
+    }
+
+    .splash_sabaplay {
+        top: 23.4vh;
+        background-size: auto 13.5vh;
+    }
+
+    .splash_text_sabaplay {
+        top: 18.2vh;
+        background-size: auto 1.7vh;
+    }
+
+    .splash_other {
+        top: 21.5vh;
+        background-size: auto 19.6vh;
+    }
+
+    .splash_text_other {
+        top: 51vh;
+        background-size: auto 2.5vh;
+    }
+    /* .conner-container {
+        position: fixed;
+        width: calc(100vh - 70);
+        height: 100vw;
+        -ms-transform: translateY(-100vw) rotate(90deg);
+        -o-transform: translateY(-100vw) rotate(90deg);
+        -ms-transform: translateY(-100vw) rotate(90deg);
+        -o-transform: translateY(-100vw) rotate(90deg);
+        transform: translateY(-100vw) rotate(90deg);
+        -webkit-transform-origin: left bottom;
+        -moz-transform-origin: left bottom;
+        top: unset;
+        bottom: unset;
+        right: unset;
+    }  */
+}
+
+.text {
+    margin-bottom: 36px;
+    text-transform: capitalize;
+    background: linear-gradient(to bottom, #ffe28e 0%, #f9a71a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.8em;
+    font-family: Arial;
+}
+
+.progress-bar {
+    background-color: transparent;
+    display: none;
+    position: absolute;
+    left: 25%;
+    height: 30px;
+    padding: 0px;
+    width: 50%;
+    border-radius: 3px;
+}
+
+.instructionAndroid {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    height: 110vh;
+    width: 100%;
+    padding-top: 10vh;
+    background: rgba(0, 0, 0, 1);
+}
+
+.instruction {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    height: 170vh;
+    width: 100%;
+    padding-top: 10vh;
+    background: rgba(0, 0, 0, 1);
+}
+
+.ldBar {
+    display: none;
+    top: 50%;
+    position: absolute;
+    color: #f9a71a;
+    font-size: 18pt;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .ldBar {
+        top: 40%;
+        height: 52px !important;
+        font-size: 16px;
+    }
+}
+
+.ldBar path.mainline {
+    stroke-width: 10;
+    stroke: #f9a71a;
+    stroke-linecap: round;
+}
+
+.ldBar path.baseline {
+    stroke-width: 10;
+    stroke: #444;
+    stroke-linecap: round;
+}
+
+@keyframes animate-stripes {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 0;
+    }
+}

@@ -1,0 +1,124 @@
+{
+"skeleton": { "hash": "MQBzsy2xtb8UXZAPPi6Uj/lUyFk", "spine": "3.8.99", "x": -325, "y": -201.25, "width": 650, "height": 402.5 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "transition", "parent": "root" },
+	{ "name": "cloud-2", "parent": "transition" },
+	{ "name": "cloud-3", "parent": "transition" },
+	{ "name": "cloud-4", "parent": "transition" },
+	{ "name": "cloud-5", "parent": "transition" }
+],
+"slots": [
+	{ "name": "cloud-2", "bone": "cloud-2", "attachment": "cloud-2" },
+	{ "name": "cloud-3", "bone": "cloud-3", "attachment": "cloud-2" },
+	{ "name": "cloud-4", "bone": "cloud-4", "attachment": "cloud-2" },
+	{ "name": "cloud-5", "bone": "cloud-5", "attachment": "cloud-2" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"cloud-2": {
+				"cloud-2": { "scaleX": 2.5, "scaleY": 2.5, "width": 260, "height": 161 }
+			},
+			"cloud-3": {
+				"cloud-2": { "scaleX": 2.5, "scaleY": 2.5, "width": 260, "height": 161 }
+			},
+			"cloud-4": {
+				"cloud-2": { "scaleX": 2.5, "scaleY": 2.5, "width": 260, "height": 161 }
+			},
+			"cloud-5": {
+				"cloud-2": { "scaleX": 2.5, "scaleY": 2.5, "width": 260, "height": 161 }
+			}
+		}
+	}
+],
+"animations": {
+	"transition": {
+		"slots": {
+			"cloud-2": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "color": "ffffff00" }
+				]
+			},
+			"cloud-3": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.0667, "color": "ffffff00" }
+				]
+			},
+			"cloud-4": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1333, "color": "ffffff00" }
+				]
+			},
+			"cloud-5": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"cloud-2": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "x": 1178.5, "y": 754.01 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "x": 2.301, "y": 2 }
+				]
+			},
+			"cloud-3": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.0667, "x": -1603.5, "y": 403.28 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.0667, "x": 2.301, "y": 2 }
+				]
+			},
+			"cloud-4": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1333, "x": -1082.33, "y": -891.42 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1333, "x": 2.301, "y": 2 }
+				]
+			},
+			"cloud-5": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2, "x": 1128.52, "y": -820.1 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2, "x": 2.301, "y": 2 }
+				]
+			},
+			"transition": {
+				"translate": [
+					{ "y": -160.28, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "y": 15.02, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2, "y": -160.28 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6, "x": 1.3, "y": 1.3, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2 }
+				]
+			}
+		}
+	}
+}
+}

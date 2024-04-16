@@ -1,0 +1,83 @@
+{
+"skeleton": { "hash": "qyy1GbsdzGMmcWh3QHVgGC4vUro", "spine": "3.8.99" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "vfx-plasma", "parent": "root", "scaleX": 5, "scaleY": 5 },
+	{ "name": "light", "parent": "root", "y": 1.51 }
+],
+"slots": [
+	{ "name": "HUD-2", "bone": "root" },
+	{ "name": "bg", "bone": "root" },
+	{ "name": "plasma-fx0", "bone": "vfx-plasma", "blend": "additive" },
+	{ "name": "light", "bone": "light", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"plasma-fx0": {
+				"glitch/03_00008": { "width": 280, "height": 154 },
+				"glitch/03_00009": { "width": 280, "height": 154 },
+				"glitch/03_00013": { "width": 280, "height": 154 },
+				"glitch/03_00014": { "width": 280, "height": 154 },
+				"glitch/03_00015": { "width": 280, "height": 154 },
+				"glitch/03_00016": { "width": 280, "height": 154 },
+				"glitch/03_00017": { "width": 280, "height": 154 },
+				"glitch/03_00018": { "width": 280, "height": 154 },
+				"glitch/03_00020": { "width": 280, "height": 154 },
+				"glitch/03_00021": { "width": 280, "height": 154 }
+			}
+		}
+	}
+],
+"animations": {
+	"transition": {
+		"slots": {
+			"bg": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "time": 0.5333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "color": "007eff00" }
+				]
+			},
+			"plasma-fx0": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.386, "c2": 0.33, "c3": 0.715, "c4": 0.66 },
+					{ "time": 0.1333, "color": "ffffffd0", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.0667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0.0667, "name": "glitch/03_00008" },
+					{ "time": 0.1333, "name": "glitch/03_00009" },
+					{ "time": 0.2, "name": "glitch/03_00013" },
+					{ "time": 0.2667, "name": "glitch/03_00014" },
+					{ "time": 0.3333, "name": "glitch/03_00015" },
+					{ "time": 0.4, "name": "glitch/03_00016" },
+					{ "time": 0.4667, "name": "glitch/03_00017" },
+					{ "time": 0.5333, "name": "glitch/03_00018" },
+					{ "time": 0.6, "name": "glitch/03_00020" },
+					{ "time": 0.6667, "name": "glitch/03_00021" },
+					{ "time": 0.7333, "name": null },
+					{ "time": 1.2, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"light": {
+				"scale": [
+					{ "x": 4, "y": 4, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1333, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5333, "x": 2, "y": 2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "x": 10, "y": 8 }
+				]
+			}
+		}
+	}
+}
+}

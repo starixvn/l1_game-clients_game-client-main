@@ -1,0 +1,55 @@
+
+exportAtlas.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 355, 227
+  size: 154, 157
+  orig: 154, 157
+  offset: 0, 0
+  index: -1
+bird_leg
+  rotate: true
+  xy: 2, 238
+  size: 52, 9
+  orig: 52, 9
+  offset: 0, 0
+  index: -1
+body-bird
+  rotate: false
+  xy: 889, 381
+  size: 124, 86
+  orig: 124, 86
+  offset: 0, 0
+  index: -1
+cloud1
+  rotate: false
+  xy: 7, 158
+  size: 271, 859
+  orig: 271, 859
+  offset: 0, 0
+  index: -1
+cloud2
+  rotate: false
+  xy: 791, 257
+  size: 102, 37
+  orig: 102, 37
+  offset: 0, 0
+  index: -1
+wing-bottom
+  rotate: false
+  xy: 680, 780
+  size: 67, 66
+  orig: 67, 66
+  offset: 0, 0
+  index: -1
+wing-top
+  rotate: true
+  xy: 901, 350
+  size: 94, 79
+  orig: 94, 79
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,74 @@
+{
+    "skeleton": {
+        "hash": "CIABhVRWLMwlZjwLnDsy/L1igqE",
+        "spine": "3.8.99",
+        "images": "./images/",
+        "audio": "D:/Project/Sabaclub/Happyfish/Spine/events-popup"
+    },
+    "bones": [{ "name": "root" }, { "name": "bone", "parent": "root" }, { "name": "vfx", "parent": "bone" }],
+    "slots": [{ "name": "vfx", "bone": "vfx", "blend": "screen" }],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "vfx": {
+                    "00052": { "y": 0.5, "width": 699, "height": 393 },
+                    "00054": { "y": 0.5, "width": 699, "height": 393 },
+                    "00056": { "y": 0.5, "width": 699, "height": 393 },
+                    "00058": { "y": 0.5, "width": 699, "height": 393 },
+                    "00060": { "y": 0.5, "width": 699, "height": 393 },
+                    "00062": { "y": 0.5, "width": 699, "height": 393 },
+                    "00064": { "y": 0.5, "width": 699, "height": 393 },
+                    "00066": { "y": 0.5, "width": 699, "height": 393 },
+                    "00068": { "y": 0.5, "width": 699, "height": 393 },
+                    "00070": { "y": 0.5, "width": 699, "height": 393 },
+                    "00072": { "y": 0.5, "width": 699, "height": 393 },
+                    "00074": { "y": 0.5, "width": 699, "height": 393 },
+                    "00076": { "y": 0.5, "width": 699, "height": 393 },
+                    "00078": { "y": 0.5, "width": 699, "height": 393 },
+                    "00080": { "y": 0.5, "width": 699, "height": 393 },
+                    "00082": { "y": 0.5, "width": 699, "height": 393 },
+                    "00084": { "y": 0.5, "width": 699, "height": 393 },
+                    "00086": { "y": 0.5, "width": 699, "height": 393 },
+                    "00088": { "y": 0.5, "width": 699, "height": 393 },
+                    "00090": { "y": 0.5, "width": 699, "height": 393 }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "transition": {
+            "slots": {
+                "vfx": {
+                    "color": [
+                        { "time": 0.5667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+                        { "time": 0.7, "color": "ffffff00" }
+                    ],
+                    "attachment": [
+                        { "time": 0.0667, "name": "00052" },
+                        { "time": 0.1, "name": "00054" },
+                        { "time": 0.1333, "name": "00056" },
+                        { "time": 0.1667, "name": "00058" },
+                        { "time": 0.2, "name": "00060" },
+                        { "time": 0.2333, "name": "00062" },
+                        { "time": 0.2667, "name": "00064" },
+                        { "time": 0.3, "name": "00066" },
+                        { "time": 0.3333, "name": "00068" },
+                        { "time": 0.3667, "name": "00070" },
+                        { "time": 0.4, "name": "00072" },
+                        { "time": 0.4333, "name": "00074" },
+                        { "time": 0.4667, "name": "00076" },
+                        { "time": 0.5, "name": "00078" },
+                        { "time": 0.5333, "name": "00080" },
+                        { "time": 0.5667, "name": "00082" },
+                        { "time": 0.6, "name": "00084" },
+                        { "time": 0.6333, "name": "00086" },
+                        { "time": 0.6667, "name": "00088" },
+                        { "time": 0.7, "name": "00090" }
+                    ]
+                }
+            },
+            "bones": { "vfx": { "scale": [{ "time": 0.0667, "x": 2, "y": 2 }] } }
+        }
+    }
+}

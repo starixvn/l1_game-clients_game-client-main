@@ -1,0 +1,13 @@
+treasure-island2-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/treasure-island2,./assets/games/cascading-slot
+        TEST_PATHS: ./__tests__/games/cascading-slot
+        PROJECT_NAME: treasure_island2_client
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/cascading-slot/**/*
+              - assets/games/treasure-island2/**/*
+              - __tests__/games/cascading-slot/**/*
+        - when: never

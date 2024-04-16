@@ -1,0 +1,456 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "guide5",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 10,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "container/verified/btnCopyDisable": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 255
+            },
+            {
+              "frame": 4.75,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "container/verified/label": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 255
+            },
+            {
+              "frame": 4.75,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "container/verified/value": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 0
+            },
+            {
+              "frame": 4.75,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/serialNumber/value": {
+        "comps": {},
+        "props": {
+          "color": [
+            {
+              "frame": 3.9166666666666665,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 166,
+                "g": 194,
+                "b": 249,
+                "a": 255
+              }
+            },
+            {
+              "frame": 4.75,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 89,
+                "g": 196,
+                "b": 103,
+                "a": 255
+              }
+            }
+          ]
+        }
+      },
+      "container/verified/hover": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 0
+            },
+            {
+              "frame": 4.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 4.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 5.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 5.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 6.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 6.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 7.416666666666667,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/serialNumber/hover": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 0
+            },
+            {
+              "frame": 4.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 4.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 5.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 5.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 6.416666666666667,
+              "value": 255
+            },
+            {
+              "frame": 6.916666666666667,
+              "value": 0
+            },
+            {
+              "frame": 7.416666666666667,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/btnVerify": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 255
+            },
+            {
+              "frame": 4.75,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "container/compare": {
+        "comps": {},
+        "props": {
+          "scale": [
+            {
+              "frame": 3.9166666666666665,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "frame": 4.25,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 150
+            },
+            {
+              "frame": 4.25,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/btnVerifySuccess": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.9166666666666665,
+              "value": 0
+            },
+            {
+              "frame": 4.75,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/point": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 1.0166666666666666,
+              "value": 0
+            },
+            {
+              "frame": 1.35,
+              "value": 255
+            },
+            {
+              "frame": 1.6833333333333333,
+              "value": 100
+            },
+            {
+              "frame": 2.0166666666666666,
+              "value": 255
+            },
+            {
+              "frame": 2.35,
+              "value": 100
+            },
+            {
+              "frame": 2.683333333333333,
+              "value": 255
+            },
+            {
+              "frame": 3.0166666666666666,
+              "value": 100
+            },
+            {
+              "frame": 3.35,
+              "value": 255
+            },
+            {
+              "frame": 3.683333333333333,
+              "value": 0
+            }
+          ],
+          "scale": [
+            {
+              "frame": 1.0166666666666666,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0,
+                "y": 0
+              }
+            },
+            {
+              "frame": 1.35,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 1.6833333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 2,
+                "y": 2
+              }
+            },
+            {
+              "frame": 2.0166666666666666,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 2.35,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 2,
+                "y": 2
+              }
+            },
+            {
+              "frame": 2.683333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 3.0166666666666666,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 2,
+                "y": 2
+              }
+            },
+            {
+              "frame": 3.35,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 3.683333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0,
+                "y": 0
+              }
+            }
+          ]
+        }
+      },
+      "container/hand": {
+        "props": {
+          "position": [
+            {
+              "frame": 2.5166666666666666,
+              "value": [
+                274.7,
+                44.1
+              ]
+            },
+            {
+              "frame": 3.2666666666666666,
+              "value": [
+                132.6,
+                -2.9
+              ]
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 2.35,
+              "value": 0
+            },
+            {
+              "frame": 2.683333333333333,
+              "value": 255
+            },
+            {
+              "frame": 3.8333333333333335,
+              "value": 255
+            },
+            {
+              "frame": 4.166666666666667,
+              "value": 0
+            }
+          ],
+          "scale": [
+            {
+              "frame": 3.2,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 3.3333333333333335,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1.2,
+                "y": 1.2
+              }
+            },
+            {
+              "frame": 3.683333333333333,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ]
+        }
+      },
+      "container/stamp": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 6.333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 6.666666666666667,
+              "value": 255
+            },
+            {
+              "frame": 10,
+              "value": 255
+            }
+          ],
+          "scale": [
+            {
+              "frame": 6.5,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1.8,
+                "y": 1.8
+              }
+            },
+            {
+              "frame": 6.666666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

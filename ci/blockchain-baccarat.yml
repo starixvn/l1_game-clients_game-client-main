@@ -1,0 +1,12 @@
+blockchain-baccarat-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/blockchain-baccarat
+        TEST_PATHS: ./__tests__/games/blockchain-baccarat
+        PROJECT_NAME: blockchain_baccarat_client
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/blockchain-baccarat/**/*
+              - __tests__/games/blockchain-baccarat/**/*
+        - when: never

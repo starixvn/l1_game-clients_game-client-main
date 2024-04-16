@@ -1,0 +1,243 @@
+{
+"skeleton": { "hash": "LxEzhbrZziJto0QxEWvjDQoX02o", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "icon-game", "parent": "root" },
+	{ "name": "zoom-cards", "parent": "icon-game" },
+	{ "name": "cards", "parent": "zoom-cards", "rotation": 104.04, "x": 48.17, "y": -63.09 },
+	{
+		"name": "A",
+		"parent": "cards",
+		"length": 99.13,
+		"rotation": -8.43,
+		"x": -9.71,
+		"y": -9.82,
+		"scaleX": 1.0664,
+		"scaleY": 1.0181
+	},
+	{ "name": "3", "parent": "cards", "length": 95.45, "rotation": 7.2, "x": -6.25, "y": 10.79 },
+	{ "name": "4", "parent": "cards", "length": 102.29, "rotation": 11.03, "x": -10.12, "y": 2.28 },
+	{ "name": "2", "parent": "cards", "length": 68.9, "rotation": 24.44, "x": -3.69, "y": 12.41 },
+	{ "name": "7", "parent": "cards", "length": 71.75, "rotation": 12.69, "x": 2.12, "y": 73.68 },
+	{ "name": "chip-adtitive", "parent": "icon-game" },
+	{
+		"name": "light",
+		"parent": "root",
+		"rotation": 35.81,
+		"x": -76.03,
+		"y": -67.62,
+		"scaleX": 3.3406,
+		"scaleY": 0.7996
+	}
+],
+"slots": [
+	{ "name": "bg", "bone": "icon-game", "attachment": "bg" },
+	{ "name": "layer-3d", "bone": "icon-game", "attachment": "layer-3d" },
+	{ "name": "maskforbg", "bone": "icon-game", "color": "ff0000ff", "attachment": "maskforbg" },
+	{ "name": "light", "bone": "light", "color": "ffffff51", "attachment": "light", "blend": "additive" },
+	{ "name": "7", "bone": "7", "attachment": "7" },
+	{ "name": "2", "bone": "2", "attachment": "2" },
+	{ "name": "4", "bone": "4", "attachment": "4" },
+	{ "name": "3", "bone": "3", "attachment": "3" },
+	{ "name": "A", "bone": "A", "attachment": "A" },
+	{ "name": "chip", "bone": "icon-game", "attachment": "chip" },
+	{ "name": "chip2", "bone": "chip-adtitive", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"2": {
+				"2": { "x": 98.2, "y": 8.3, "rotation": -128.48, "width": 113, "height": 134 }
+			},
+			"3": {
+				"3": { "x": 78.86, "y": -16.14, "rotation": -111.24, "width": 131, "height": 166 }
+			},
+			"4": {
+				"4": { "x": 81.46, "y": 13.22, "rotation": -115.06, "width": 119, "height": 157 }
+			},
+			"7": {
+				"7": { "x": 56.93, "y": -9.3, "rotation": -116.73, "width": 126, "height": 134 }
+			},
+			"A": {
+				"A": { "x": 76.85, "y": 15.13, "rotation": -95.6, "width": 135, "height": 169 }
+			},
+			"bg": {
+				"bg": { "width": 202, "height": 202 }
+			},
+			"chip": {
+				"chip": { "x": 0.85, "y": -50.17, "width": 196, "height": 94 }
+			},
+			"chip2": {
+				"chip": { "y": -50.17, "width": 196, "height": 94 }
+			},
+			"layer-3d": {
+				"layer-3d": { "x": 0.09, "y": 62.24, "width": 199, "height": 75 }
+			},
+			"light": {
+				"light": { "x": 0.16, "y": -5.93, "scaleX": 1.3828, "scaleY": 2.6348, "width": 32, "height": 131 }
+			},
+			"maskforbg": {
+				"maskforbg": {
+					"type": "clipping",
+					"end": "A",
+					"vertexCount": 24,
+					"vertices": [ -97.37, 86.75, -95.37, 91.27, -93.22, 93.76, -89.98, 96.5, -86.83, 98.07, -83.91, 99.37, 87.18, 98.59, 91.97, 96.72, 95.26, 93.26, 98.2, 88.76, 98.72, 83.05, 99.11, -84.76, 97.99, -87.92, 95.76, -90.99, 92.97, -93.88, 89.43, -96.57, 86.83, -97.32, -87.14, -97.08, -88.6, -96.02, -90.7, -94.49, -92.84, -92.81, -95.05, -90.1, -96.59, -87.42, -97.22, -85.58 ]
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"show": {
+		"slots": {
+			"chip2": {
+				"color": [
+					{ "color": "ffffff09", "curve": 0.313, "c2": 0.32, "c3": 0.643, "c4": 0.65 },
+					{ "time": 0.0667, "color": "ffffff00", "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.9, "color": "ffffff34", "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 1.7333, "color": "ffffff00", "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 2.4, "color": "ffffff34", "curve": 0.623, "c2": 0.24, "c3": 0.75, "c4": 0.5 },
+					{ "time": 3, "color": "ffffff09" }
+				],
+				"attachment": [
+					{ "name": "chip" }
+				]
+			},
+			"light": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": "light" }
+				]
+			}
+		},
+		"bones": {
+			"A": {
+				"rotate": [
+					{ "angle": 36.13, "curve": 0.386, "c2": 0.33, "c3": 0.715, "c4": 0.66 },
+					{ "time": 0.1667, "angle": 38.67, "curve": 0.5, "c2": 0.27, "c3": 0.755, "c4": 0.57 },
+					{ "time": 1.0667, "angle": -4.76, "curve": 0.33, "c2": 0.31, "c3": 0.657, "c4": 0.64 },
+					{ "time": 1.2333, "angle": -1.78 }
+				],
+				"translate": [
+					{ "x": 4.97, "y": 11.81, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1667, "x": 6.59, "y": 4.88, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "x": 4.65, "y": 17.32, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1, "x": 8.71, "y": 7.41, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2667, "x": 3.17, "y": 8.13, "curve": "stepped" },
+					{ "time": 2.9333, "x": 3.17, "y": 8.13, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3, "x": 4.97, "y": 11.81 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.8, "curve": 0.505, "c2": 0.3, "c3": 0.787, "c4": 0.6 },
+					{
+						"time": 0.1667,
+						"x": 0.879,
+						"y": 0.815,
+						"curve": 0.362,
+						"c2": 0.25,
+						"c3": 0.608,
+						"c4": 0.57
+					},
+					{ "time": 0.3333, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 1.2333, "x": 0.938, "y": 0.982 }
+				]
+			},
+			"3": {
+				"rotate": [
+					{ "angle": 30.08, "curve": 0.397, "c2": 0.32, "c3": 0.724, "c4": 0.65 },
+					{ "time": 0.1667, "angle": 29.69, "curve": 0.52, "c2": 0.23, "c3": 0.657, "c4": 0.51 },
+					{ "time": 1, "angle": -1.24 }
+				],
+				"translate": [
+					{ "x": 1.53, "y": 1.16, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "x": -3.4, "y": 12.68 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.731, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "y": 0.797, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 1 }
+				]
+			},
+			"4": {
+				"rotate": [
+					{ "angle": 20.65, "curve": 0.414, "c2": 0.32, "c3": 0.737, "c4": 0.65 },
+					{ "time": 0.1667, "angle": 20.29, "curve": 0.49, "c2": 0.23, "c3": 0.646, "c4": 0.52 },
+					{ "time": 0.8333, "angle": -1.78 }
+				],
+				"translate": [
+					{ "x": 8.41, "y": 5.19, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "x": 3.41, "y": 14.92 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.751, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "y": 0.934, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.8333 }
+				]
+			},
+			"2": {
+				"rotate": [
+					{ "angle": 10.31, "curve": 0.444, "c2": 0.31, "c3": 0.757, "c4": 0.63 },
+					{ "time": 0.1667, "angle": 10.86, "curve": 0.443, "c2": 0.24, "c3": 0.629, "c4": 0.53 },
+					{ "time": 0.6667, "angle": 1.11 }
+				],
+				"translate": [
+					{ "x": 3.13, "y": 2.17, "curve": 0.505, "c2": 0.3, "c3": 0.787, "c4": 0.6 },
+					{
+						"time": 0.1667,
+						"x": 3.48,
+						"y": 1.91,
+						"curve": 0.362,
+						"c2": 0.25,
+						"c3": 0.608,
+						"c4": 0.57
+					},
+					{ "time": 0.3333, "x": -0.54, "y": 8.2 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.736, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "y": 0.935, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.6667 }
+				]
+			},
+			"7": {
+				"rotate": [
+					{ "angle": -3.21, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "angle": 4.48 }
+				],
+				"translate": [
+					{ "x": 7.16, "y": 1.65 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.612, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333 }
+				]
+			},
+			"cards": {
+				"rotate": [
+					{ "angle": 6.38, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.1667, "angle": 4.38, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.3333, "angle": -4.05 }
+				],
+				"scale": [
+					{ "x": 0.812, "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },
+					{ "time": 0.0667 }
+				]
+			},
+			"zoom-cards": {
+				"scale": [
+					{ "time": 1.4 },
+					{ "time": 1.5333, "x": 1.2, "y": 1.2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.7333 }
+				]
+			},
+			"light": {
+				"translate": [
+					{ "time": 0.6667, "x": -52.87, "y": -25.81, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.6667, "x": 227.56, "y": 204.57 }
+				]
+			}
+		}
+	}
+}
+}

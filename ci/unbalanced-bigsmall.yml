@@ -1,0 +1,14 @@
+unbalanced-bigsmall-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/multiplay-bigsmall,./assets/games/multiplay
+        TEST_PATHS: ./__tests__/games/multiplay-bigsmall,./__tests__/games/multiplay
+        PROJECT_NAME: big_small_multiplay
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/multiplay/**/*
+              - assets/games/multiplay-bigsmall/**/*
+              - __tests__/games/multiplay/**/*
+              - __tests__/games/multiplay-bigsmall/**/*
+        - when: never

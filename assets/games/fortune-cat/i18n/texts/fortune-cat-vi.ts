@@ -1,0 +1,12 @@
+import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
+
+export const phrases = {
+    gameNames: {
+        62: "Mèo Tài Lộc"
+    },
+    lobbyNames: {
+        62: "Mèo Tài Lộc"
+    }
+};
+
+reloadLanguageData("vi", phrases);

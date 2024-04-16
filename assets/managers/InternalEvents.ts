@@ -1,0 +1,43 @@
+export enum InternalEvents {
+    LOAD_OTHER_ICONS_AND_BANNERS = "lobby= load other icons and banners",
+    OPEN_GAME_MINI = "lobby= open game mini",
+    CLICK_LINE_SELECTION_BUTTON = "slot= click on the line selection button",
+    CLICK_AUTO_SPIN_BUTTON = "slot= click on the auto spin button",
+    CLICK_SPIN_BUTTON = "slot= click on the spin button",
+    CLICK_HAMBURGER_MENU = "slot= click on the hamburger menu",
+    CLICK_OUTSIDE_REEL_AREA = "slot= click outside reeel area",
+    LOADED_PROMOTION_ANNOUNCEMENT = "load promotion announcement",
+    SLOT_PLAY_SOUND = "play sound slot",
+    CASCADING_SLOT_PLAY_SOUND = "play sound cascading slot",
+    CASCADING_CLICK_CHANGE_MODE = "cascading change mode play",
+    CASCADING_CLOSE_MENU = "cascading collapse menu",
+    CASCADING_CLICK_TOTAL_BET = "cascading click total bet",
+
+    NOT_PERMITTED_TO_PLAY = "NOT_PERMITTED_TO_PLAY",
+    USER_STAKE_LEVEL_UPDATED = "USER_STAKE_LEVEL_UPDATED",
+    SSO_FAILED = "SSO_FAILED",
+    SSO_ERROR = "SSO_ERROR",
+    GAME_IS_UM = "GAME_IS_UM",
+    SIGN_OUT = "sign-out",
+    LOADING_GAME = "loading-game",
+    NOTICE = "notice-popup",
+
+    RECEIVED_JACKPOT_WINNER = "Received jackpot winner data",
+    RECEIVED_JACKPOT_WINNERS = "Received jackpot top winners data",
+    RECEIVED_RAW_JACKPOT_POOLS = "Received raw jackpot pools data",
+    RECEIVED_JACKPOT_POOLS = "Received jackpot pools data and filter pool type",
+    RECEIVED_JACKPOT_POOLS_ON_GAME = "Received jackpot pools data on game",
+    RECEIVED_JACKPOT_POOLS_IN_GAME = "Received jackpot pools data in game",
+    HIDE_JACKPOT_POOLS_ON_GAME = "hide jackpot pools on game",
+
+    CHANGE_CATEGORY = "change category",
+    SCROLL_NESTED_SCROLLVIEW = "scroll in nested scrollview",
+
+    MICROSITE_BACK_TO_LOBBY = "MICROSITE_BACK_TO_LOBBY",
+    LOST_CONNECTION = "lost-connection",
+    MICROSITE_OPEN_GAME_BACK_FROM_LOBBY = "MICROSITE_OPEN_GAME_BACK_FROM_LOBBY",
+
+    RECEIVED_ROUND_TIMER = "received round timer",
+    HIDE_POPUP_MINI_GAMES = "hide popup mini game",
+    SHOW_POPUP_MINI_GAMES = "show popup mini game"
+}

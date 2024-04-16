@@ -1,0 +1,133 @@
+{
+"skeleton": {
+	"hash": "MqvGmOSzspdpDq7J/3/PSwSyFR8",
+	"spine": "3.8.99",
+	"x": -175,
+	"y": -79.49,
+	"width": 350,
+	"height": 162,
+	"images": "./images/",
+	"audio": "D:/L5/DJClub/Graphic/replace-assets/resources/spine/transition"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "vfx-plasma", "parent": "root" },
+	{ "name": "light", "parent": "root", "y": 1.51 }
+],
+"slots": [
+	{ "name": "HUD-2", "bone": "root" },
+	{ "name": "bg", "bone": "root" },
+	{ "name": "plasma-fx0", "bone": "vfx-plasma", "attachment": "glitch/plasma-fx9", "blend": "additive" },
+	{ "name": "light", "bone": "light", "attachment": "fx_bloom", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"light": {
+				"fx_bloom": { "width": 322, "height": 162 }
+			},
+			"plasma-fx0": {
+				"glitch/plasma-fx0": { "width": 350, "height": 26 },
+				"glitch/plasma-fx1": { "width": 350, "height": 26 },
+				"glitch/plasma-fx2": { "width": 350, "height": 26 },
+				"glitch/plasma-fx3": { "width": 350, "height": 26 },
+				"glitch/plasma-fx4": { "width": 350, "height": 26 },
+				"glitch/plasma-fx5": { "width": 350, "height": 26 },
+				"glitch/plasma-fx6": { "width": 350, "height": 26 },
+				"glitch/plasma-fx7": { "width": 350, "height": 26 },
+				"glitch/plasma-fx8": { "width": 350, "height": 26 },
+				"glitch/plasma-fx9": { "width": 350, "height": 26 },
+				"glitch/plasma-fx10": { "width": 350, "height": 26 },
+				"glitch/plasma-fx11": { "width": 350, "height": 26 },
+				"glitch/plasma-fx12": { "width": 350, "height": 26 },
+				"glitch/plasma-fx13": { "width": 350, "height": 26 },
+				"glitch/plasma-fx14": { "width": 350, "height": 26 },
+				"glitch/plasma-fx15": { "width": 350, "height": 26 },
+				"glitch/plasma-fx16": { "width": 350, "height": 26 },
+				"glitch/plasma-fx17": { "width": 350, "height": 26 },
+				"glitch/plasma-fx18": { "width": 350, "height": 26 },
+				"glitch/plasma-fx19": { "width": 350, "height": 26 },
+				"glitch/plasma-fx20": { "width": 350, "height": 26 },
+				"glitch/plasma-fx21": { "width": 350, "height": 26 },
+				"glitch/plasma-fx22": { "width": 350, "height": 26 },
+				"glitch/plasma-fx23": { "width": 350, "height": 26 },
+				"glitch/plasma-fx24": { "width": 350, "height": 26 }
+			}
+		}
+	}
+],
+"animations": {
+	"transition": {
+		"slots": {
+			"bg": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "time": 0.5333, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "color": "ffffff00" }
+				]
+			},
+			"plasma-fx0": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.386, "c2": 0.33, "c3": 0.715, "c4": 0.66 },
+					{ "time": 0.1667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "glitch/plasma-fx0" },
+					{ "time": 0.0667, "name": "glitch/plasma-fx1" },
+					{ "time": 0.1, "name": "glitch/plasma-fx2" },
+					{ "time": 0.1333, "name": "glitch/plasma-fx3" },
+					{ "time": 0.2, "name": "glitch/plasma-fx4" },
+					{ "time": 0.2333, "name": "glitch/plasma-fx5" },
+					{ "time": 0.2667, "name": "glitch/plasma-fx6" },
+					{ "time": 0.3, "name": "glitch/plasma-fx7" },
+					{ "time": 0.3333, "name": "glitch/plasma-fx8" },
+					{ "time": 0.3667, "name": "glitch/plasma-fx9" },
+					{ "time": 0.4, "name": "glitch/plasma-fx10" },
+					{ "time": 0.4333, "name": "glitch/plasma-fx11" },
+					{ "time": 0.4667, "name": "glitch/plasma-fx12" },
+					{ "time": 0.5, "name": "glitch/plasma-fx13" },
+					{ "time": 0.5333, "name": "glitch/plasma-fx14" },
+					{ "time": 0.5667, "name": "glitch/plasma-fx15" },
+					{ "time": 0.6, "name": "glitch/plasma-fx16" },
+					{ "time": 0.6333, "name": "glitch/plasma-fx17" },
+					{ "time": 0.6667, "name": "glitch/plasma-fx18" },
+					{ "time": 0.7, "name": "glitch/plasma-fx19" },
+					{ "time": 0.7333, "name": "glitch/plasma-fx1" },
+					{ "time": 0.7667, "name": "glitch/plasma-fx21" },
+					{ "time": 0.8, "name": "glitch/plasma-fx9" },
+					{ "time": 0.8333, "name": "glitch/plasma-fx23" },
+					{ "time": 0.8667, "name": "glitch/plasma-fx24" },
+					{ "time": 0.9, "name": null },
+					{ "time": 1.2, "name": null }
+				]
+			}
+		},
+		"bones": {
+			"vfx-plasma": {
+				"scale": [
+					{ "x": 4.8, "y": 4.4, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4667, "x": 438, "y": 4.4, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5333, "x": 4.8, "y": 3.6, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 30, "y": 31.387, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "x": 4.8, "y": 31.387 }
+				]
+			},
+			"light": {
+				"scale": [
+					{ "x": 2, "y": 2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1333, "x": 4.4, "y": 1.4, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": 4.4, "y": 2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5333, "x": 30, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "x": 4.4 }
+				]
+			}
+		}
+	}
+}
+}

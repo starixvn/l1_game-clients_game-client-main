@@ -1,0 +1,227 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "hungoc",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.65,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "light2": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0.3,
+              "value": 255
+            },
+            {
+              "frame": 0.6,
+              "value": 0
+            },
+            {
+              "frame": 0.9166666666666666,
+              "value": 255
+            },
+            {
+              "frame": 1.2333333333333334,
+              "value": 0
+            },
+            {
+              "frame": 1.65,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "light3": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0.13333333333333333,
+              "value": 255
+            },
+            {
+              "frame": 0.43333333333333335,
+              "value": 0
+            },
+            {
+              "frame": 0.75,
+              "value": 255
+            },
+            {
+              "frame": 1.0666666666666667,
+              "value": 0
+            },
+            {
+              "frame": 1.4333333333333333,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "light5": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 255
+            },
+            {
+              "frame": 0.3,
+              "value": 0
+            },
+            {
+              "frame": 0.6166666666666667,
+              "value": 255
+            },
+            {
+              "frame": 0.9333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 1.2,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "light": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 255
+            },
+            {
+              "frame": 0.3,
+              "value": 0
+            },
+            {
+              "frame": 0.6166666666666667,
+              "value": 255
+            },
+            {
+              "frame": 0.9333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 1.3666666666666667,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "light4": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0.43333333333333335,
+              "value": 255
+            },
+            {
+              "frame": 0.7333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 1.05,
+              "value": 255
+            },
+            {
+              "frame": 1.3666666666666667,
+              "value": 0
+            },
+            {
+              "frame": 1.65,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "light6": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0.13333333333333333,
+              "value": 255
+            },
+            {
+              "frame": 0.43333333333333335,
+              "value": 0
+            },
+            {
+              "frame": 0.75,
+              "value": 255
+            },
+            {
+              "frame": 1.0666666666666667,
+              "value": 0
+            },
+            {
+              "frame": 1.4166666666666667,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "hungoc": {
+        "props": {
+          "color": [
+            {
+              "frame": 0,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              }
+            },
+            {
+              "frame": 0.4,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 248,
+                "g": 227,
+                "b": 114,
+                "a": 255
+              }
+            },
+            {
+              "frame": 0.7666666666666667,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              }
+            },
+            {
+              "frame": 1.25,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 248,
+                "g": 227,
+                "b": 114,
+                "a": 255
+              }
+            },
+            {
+              "frame": 1.65,
+              "value": {
+                "__type__": "cc.Color",
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

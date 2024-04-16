@@ -1,0 +1,137 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "guide1",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "container/title": {
+        "comps": {},
+        "props": {
+          "y": [
+            {
+              "frame": 0.3333333333333333,
+              "value": 282
+            },
+            {
+              "frame": 0.8333333333333334,
+              "value": 252
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 0.3333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 0.8333333333333334,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/header/arrow": {
+        "comps": {},
+        "props": {
+          "x": [],
+          "opacity": []
+        }
+      },
+      "container/header/header1": {
+        "comps": {},
+        "props": {
+          "y": [
+            {
+              "frame": 0.6666666666666666,
+              "value": 256
+            },
+            {
+              "frame": 1.1666666666666667,
+              "value": 226
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 0.6666666666666666,
+              "value": 0
+            },
+            {
+              "frame": 1.1666666666666667,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/header/header2": {
+        "comps": {},
+        "props": {
+          "y": [
+            {
+              "frame": 1,
+              "value": 176.5
+            },
+            {
+              "frame": 1.5,
+              "value": 156.5
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 1,
+              "value": 0
+            },
+            {
+              "frame": 1.5,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/img": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 1.5,
+              "value": 0
+            },
+            {
+              "frame": 2,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "container/content": {
+        "comps": {},
+        "props": {
+          "opacity": [
+            {
+              "frame": 1.5,
+              "value": 0
+            },
+            {
+              "frame": 2,
+              "value": 255
+            }
+          ],
+          "y": [
+            {
+              "frame": 1.5,
+              "value": 93.5
+            },
+            {
+              "frame": 2,
+              "value": 63.5
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

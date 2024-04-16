@@ -1,0 +1,161 @@
+import * as i18n from "i18n/runtime-scripts/LanguageData";
+
+import { StorageManager } from "../../managers/StorageManager";
+
+declare global {
+    export interface Window {
+        i18n?: {
+            languages?: any;
+            curLang?: string;
+        };
+    }
+}
+export interface Session {
+    username: string;
+    language: string;
+    ss: string;
+    time: Date;
+    isAuthenticated: boolean;
+    system: number;
+}
+
+const sessionIdStorageName = "scss";
+const micrositeGameIdKey = "microsite_game_id";
+const clearStorageMicroSiteKey = "clear_storage_microsite";
+
+export function getSessionKey() {
+    if (window.location && window.location.hostname) {
+        return `${window.location.hostname}.${sessionIdStorageName}`;
+    }
+
+    return sessionIdStorageName;
+}
+
+export function removeSession() {
+    StorageManager.remove(getSessionKey());
+}
+
+export function getSession(): Session {
+    return StorageManager.get(getSessionKey()) ?? {};
+}
+
+export function storeSessionData(data) {
+    updateLanguage(data);
+    StorageManager.set(getSessionKey(), data);
+}
+
+export function getLanguage(locale) {
+    const dict = {
+        "vi-VN": "vi",
+        "en-US": "en",
+        "en-UK": "en",
+        "th-TH": "th",
+        "id-ID": "id",
+        "zh-CN": "zh_cn",
+        "zh-TW": "zh_tw"
+    };
+    return dict[locale] || "en";
+}
+
+export function getLocale() {
+    const data = getSession();
+    return data.language;
+}
+
+export function updateLanguage(data) {
+    const locale = data.language;
+    const language = getLanguage(locale);
+    setLanguage(language);
+}
+
+export function setLanguage(language: string) {
+    i18n.init(language);
+    StorageManager.set(`current_language`, language);
+}
+
+export function getCacheLanguage(): string {
+    return StorageManager.get(`current_language`) ?? "vi";
+}
+
+function getInRoomGameIdKey() {
+    return "current_game_room_id";
+}
+
+function getInRoomGameIdStorage() {
+    return StorageManager.get(getInRoomGameIdKey()) ?? {};
+}
+
+export function storeInRoomGameId(gameId) {
+    const session = getSession();
+    const ss = session.ss;
+    if (ss) {
+        const data = { ss, gameId };
+        StorageManager.set(getInRoomGameIdKey(), data);
+    }
+}
+
+export function getInRoomGameId() {
+    const data = getInRoomGameIdStorage();
+    const session = getSession();
+    if (data.ss && session.ss && data.ss === session.ss) {
+        return data.gameId;
+    }
+    return 0;
+}
+
+export function removeInRoomGameId() {
+    StorageManager.remove(getInRoomGameIdKey());
+}
+
+export function getDirectMode() {
+    return StorageManager.get("direct_mode");
+}
+
+export function storeDirectMode(data) {
+    StorageManager.set("direct_mode", data);
+}
+
+export function removeDirectMode() {
+    StorageManager.remove("direct_mode");
+}
+
+export function getMicrositeGameId() {
+    return StorageManager.get(micrositeGameIdKey) ?? 0;
+}
+
+export function storeMicrositeGameId(gameId) {
+    StorageManager.set(micrositeGameIdKey, gameId);
+}
+
+export function removeMicrositeGameId() {
+    StorageManager.remove(micrositeGameIdKey);
+}
+
+export function getClearStorageMicroSite(): boolean {
+    return StorageManager.get(clearStorageMicroSiteKey) ?? false;
+}
+
+export function clearStorageMicroSite(isClear: boolean) {
+    StorageManager.set(clearStorageMicroSiteKey, isClear);
+}
+
+export function getOperator() {
+    return StorageManager.get("current_operator");
+}
+
+export function storeOperator(data) {
+    StorageManager.set("current_operator", data);
+}
+
+export function removeOperator() {
+    StorageManager.remove("current_operator");
+}
+
+
+declare global {
+    export interface Window {
+        authData: Session;
+        openGameId: string;
+        isSSO: boolean;
+    }
+}

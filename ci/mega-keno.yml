@@ -1,0 +1,13 @@
+mega-keno-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/multiplay-keno,./assets/games/multiplay
+        TEST_PATHS: ./__tests__/games/multiplay-keno
+        PROJECT_NAME: mega_keno_client
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/multiplay/**/*
+              - assets/games/multiplay-keno/**/*
+              - __tests__/games/multiplay-keno/**/*
+        - when: never

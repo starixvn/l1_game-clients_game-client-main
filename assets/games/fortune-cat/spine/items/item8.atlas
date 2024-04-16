@@ -1,0 +1,27 @@
+
+exportAtlas.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+item/item-freespin/item-freespin-bg
+  rotate: false
+  xy: 6, 166
+  size: 150, 121
+  orig: 150, 121
+  offset: 0, 0
+  index: -1
+item/item-freespin/item-freespin-gold
+  rotate: false
+  xy: 158, 175
+  size: 145, 112
+  orig: 145, 112
+  offset: 0, 0
+  index: -1
+item/item-freespin/item-freespin-text
+  rotate: true
+  xy: 370, 363
+  size: 110, 89
+  orig: 110, 89
+  offset: 0, 0
+  index: -1

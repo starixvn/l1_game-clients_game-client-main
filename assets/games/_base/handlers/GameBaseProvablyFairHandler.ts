@@ -1,0 +1,20 @@
+import GameBase from "../GameBase";
+import DataHandler from "./DataHandler";
+
+export default class GameBaseProvablyFairHandler implements DataHandler {
+    constructor(protected readonly main: GameBase) {}
+
+    handle(data: any) {
+        if (data.resultHash) {
+            this.main.provablyFairComponent?.handleReceiveServerSeed(data.resultHash);
+        }
+
+        if (data.clientSeed) {
+            this.main.provablyFairComponent?.updateClientSeed(data?.clientSeed);
+        }
+
+        if (data.provablyFair) {
+            this.main.handleProvablyFairVerifyData(data.provablyFair);
+        }
+    }
+}

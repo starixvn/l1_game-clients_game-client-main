@@ -1,0 +1,54 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "spinbutton",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 4,
+  "sample": 60,
+  "speed": 0.4,
+  "wrapMode": 2,
+  "curveData": {
+    "paths": {
+      "spin-circle": {
+        "props": {
+          "angle": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 4,
+              "value": -1415
+            }
+          ]
+        }
+      },
+      "spin-button-response": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 1.5,
+              "value": 0
+            },
+            {
+              "frame": 1.5833333333333333,
+              "value": 255
+            },
+            {
+              "frame": 1.6666666666666667,
+              "value": 255
+            },
+            {
+              "frame": 1.75,
+              "value": 0
+            }
+          ]
+        }
+      }
+    },
+    "props": {
+      "opacity": []
+    }
+  },
+  "events": []
+}

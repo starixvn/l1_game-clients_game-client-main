@@ -1,0 +1,12 @@
+fantan-test:
+    extends: .game-test
+    variables:
+        SOURCE_PATHS: ./assets/games/fantan
+        TEST_PATHS: ./__tests__/games/fantan
+        PROJECT_NAME: fantan_client
+    rules:
+        - if: $CI_MERGE_REQUEST_IID
+          changes:
+              - assets/games/fantan/**/*
+              - __tests__/games/fantan/**/*
+        - when: never

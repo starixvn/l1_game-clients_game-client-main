@@ -1,0 +1,27 @@
+
+decor-light.png
+size: 192,68
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blink
+  rotate: false
+  xy: 2, 2
+  size: 64, 63
+  orig: 64, 63
+  offset: 0, 0
+  index: -1
+flare
+  rotate: false
+  xy: 68, 6
+  size: 59, 59
+  orig: 99, 98
+  offset: 20, 19
+  index: -1
+flare-light
+  rotate: false
+  xy: 129, 6
+  size: 59, 59
+  orig: 73, 72
+  offset: 7, 6
+  index: -1

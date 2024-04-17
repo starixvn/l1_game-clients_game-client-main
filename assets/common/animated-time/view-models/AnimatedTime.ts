@@ -14,7 +14,7 @@ export default class AnimatedTime extends cc.Component {
     @property
     effectLastTime = false;
 
-    protected timeToChangeColor = 3;
+    protected timeToChangeColor = 5;
     protected changedColor: cc.Color = cc.Color.RED;
     protected normalColor: cc.Color = cc.Color.WHITE;
     public animatedYTop = 70;

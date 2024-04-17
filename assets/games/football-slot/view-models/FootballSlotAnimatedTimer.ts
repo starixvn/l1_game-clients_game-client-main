@@ -21,6 +21,7 @@ export default class FootballSlotAnimatedTimer extends AnimatedTime {
         this.node.active = true;
         const firstTimeChar = time.toString().slice(0, 1);
         const secondTimeChar = time.toString().slice(1, 2);
+        this.setRedTime(3);
 
         if (this.firstChar.string !== firstTimeChar) {
             this.handleBetTimeAnimation(this.firstChar.node);

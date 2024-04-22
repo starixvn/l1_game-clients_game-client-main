@@ -49,7 +49,7 @@ export default class FootballSlotStatistic extends cc.Component {
         cup: ["cup", "cup50", "cup25"],
         mascot: ["mascot", "mascot3"],
         ball: ["ball", "ball3"],
-        tickets: ["tickets", "tickets"],
+        tickets: ["tickets", "tickets3"],
         hostCountry: ["hostCountry", "hostCountry3"],
         englandShirt: ["englandShirt", "englandShirt3"],
         franceShirt: ["franceShirt", "franceShirt3"],

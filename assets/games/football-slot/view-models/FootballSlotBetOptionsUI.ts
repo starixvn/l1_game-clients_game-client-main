@@ -24,6 +24,9 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     @property(cc.Node)
     bigSmallResultBackground: cc.Node = null;
 
+    @property(cc.Label)
+    bigSmallBg: cc.Label = null;
+
     @property(cc.Node)
     bgLockSpin: cc.Node = null;
 
@@ -60,6 +63,7 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
 
     updateBigSmallResultBackground(opacity: number) {
         this.bigSmallResultBackground.opacity = opacity;
+        this.bigSmallBg.string = opacity === 0 ? "00" : "";
     }
 
     resetUIBettingZone() {
@@ -91,5 +95,5 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
         if (this.winAudio) {
             AudioManager.getInstance().playSFX(this.winAudio.clip);
         }
-    }    
+    }
 }

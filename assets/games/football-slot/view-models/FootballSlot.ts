@@ -2,6 +2,7 @@ import GameUtils from "../../../common/GameUtils";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import { Settlement } from "../../_base_new/models/Settlement";
 import NewGameRoomBase from "../../_new/_base/NewGameRoomBase";
+import SlotGameSongs from "../../_slotgame_base/SlotGameSongs";
 import { CountdownAnimationType } from "../FootballSlotType";
 import { FootballSlotFinishModel, handleAfterSettlementResult, handleShowResult } from "../actions/FootballSlotFinishActions";
 import { FootballSlotBetHandler } from "../event-handlers/FootballSlotBetHandler";
@@ -15,7 +16,6 @@ import { FootballSlotConfig } from "./FootballSlotConfig";
 import FootballSlotMiniRoundHistory from "./FootballSlotMiniRoundHistory";
 import FootballSlotSpinItem from "./FootballSlotSpinItem";
 import FootballSlotStatistic from "./FootballSlotStatistic";
-
 
 const { ccclass, property } = cc._decorator;
 export const FootballSlotGameId = 79;
@@ -52,6 +52,9 @@ export default class FootballSlot extends NewGameRoomBase {
     @property(cc.Node)
     countdownLight: cc.Node = null;
 
+    @property(SlotGameSongs)
+    gameSongList: SlotGameSongs = null;
+
     public gameData: FootballSlotGameData = null;
     public config: FootballSlotConfig;
     public betOptionsUI: FootballSlotBetOptionsUI = null;
@@ -69,6 +72,11 @@ export default class FootballSlot extends NewGameRoomBase {
     showResultDuration = 3;
 
     previousRoundBetChoices: any = {};
+
+    songListConfig = {
+        SC1: ["BGm1", "BGm2", "BGm3"],
+        SC2: ["BGm1", "BGm2", "BGm3"]
+    };
     constructor() {
         super();
         this.gameId = FootballSlotGameId;
@@ -81,6 +89,23 @@ export default class FootballSlot extends NewGameRoomBase {
         this.initStatistic();
         this.registerRoundHistoryEvents();
         this.registerSettlementEvents();
+        this.initGameSongList();
+    }
+
+    protected initGameSongList() {
+        if (this.gameSongList) {
+            this.gameSongList.gameId = this.gameId;
+            this.songListConfig && this.gameSongList.setListSongs(this.songListConfig);
+        }
+    }
+
+    async playInvidiualMusic() {
+        this.gameSongList ? await this.gameSongList?.play() : await super.playInvidiualMusic();
+    }
+
+    stopInvidiualMusic() {
+        this.gameSongList?.stop();
+        super.stopInvidiualMusic();
     }
 
     resetDataAndUI() {

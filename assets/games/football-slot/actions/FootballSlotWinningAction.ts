@@ -194,7 +194,7 @@ export const spinItemAnimation = (game: FootballSlot) => async (finish: any, tim
         } else {
             await executeAnim(firstSpinTimeDuration, 0, steps, numberOfSymbols, game.betOptionsUI.spinItems);
             game.betOptionsUI?.spinItems?.[firstPosition].playSpineSymbolAnimation();
-            game.betOptionsUI?.playWinSound();
+            game.betOptionsUI?.playWinLuckySound();
 
             for (let i = 0; i < symbolPositions.length - 1; i++) {
                 const totalSteps = (symbolPositions[i + 1] - symbolPositions[i] + numberOfSymbols) % numberOfSymbols;

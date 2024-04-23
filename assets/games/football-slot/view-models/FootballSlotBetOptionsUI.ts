@@ -45,6 +45,9 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     @property(cc.AudioSource)
     winAudio: cc.AudioSource = null;
 
+    @property(cc.AudioSource)
+    winLuckyAudio: cc.AudioSource = null;
+
     initBetOptions(main: FootballSlot) {
         this.main = main;
         main.betItems = this.betItems;
@@ -94,6 +97,12 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     playWinSound() {
         if (this.winAudio) {
             AudioManager.getInstance().playSFX(this.winAudio.clip);
+        }
+    }
+
+    playWinLuckySound() {
+        if (this.winLuckyAudio) {
+            AudioManager.getInstance().playSFX(this.winLuckyAudio.clip);
         }
     }
 }

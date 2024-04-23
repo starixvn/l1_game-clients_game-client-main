@@ -25,6 +25,7 @@ export default class FootballSlotTimeHandler extends GameBaseTimeHandler {
     handleWaitTime() {
         super.handleWaitTime();
         this.main.timeAnimShowResult(!this.main.finishShowResult);
+        this.main.betOptionsUI.updateBigSmallResultBackground(255);
         setBgVisibility(this.main.betOptionsUI.bgLockSpin, false);
         if (this.main.gameData.roundHistory.roundHistory?.length === 0) {
             return;

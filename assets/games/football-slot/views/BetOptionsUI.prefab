@@ -6920,8 +6920,14 @@
       "__id__": 180
     },
     "_enabled": true,
-    "animSkeleton": [],
-    "winSymbolHighlight": null,
+    "animSkeleton": [
+      {
+        "__id__": 185
+      }
+    ],
+    "winSymbolHighlight": {
+      "__id__": 181
+    },
     "_id": ""
   },
   {
@@ -15819,7 +15825,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -16977,7 +16983,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -18370,7 +18376,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -19548,7 +19554,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -20706,7 +20712,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -21864,7 +21870,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -23022,7 +23028,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -24415,7 +24421,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -25593,7 +25599,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -26751,7 +26757,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "",
+    "defaultAnimation": "nextround_normal",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": false,
@@ -27098,8 +27104,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 77,
-      "height": 43
+      "width": 81,
+      "height": 47
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -27271,14 +27277,14 @@
     "_opacity": 50,
     "_color": {
       "__type__": "cc.Color",
-      "r": 68,
-      "g": 78,
-      "b": 120,
+      "r": 139,
+      "g": 146,
+      "b": 187,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50,
+      "width": 51.3,
       "height": 21
     },
     "_anchorPoint": {
@@ -27332,14 +27338,14 @@
     "_dstBlendFactor": 771,
     "_string": "00",
     "_N$string": "00",
-    "_fontSize": 27,
+    "_fontSize": 25,
     "_lineHeight": 21,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "f9e6fc03-5f0a-44b9-9031-c3a36afb8334"
     },
     "_isSystemFontUsed": false,
-    "_spacingX": 0,
+    "_spacingX": 5,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
     "_underlineHeight": 0,
@@ -27381,9 +27387,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 4,
-      "g": 15,
-      "b": 2,
+      "r": 231,
+      "g": 243,
+      "b": 229,
       "a": 255
     },
     "_contentSize": {
@@ -27442,14 +27448,14 @@
     "_dstBlendFactor": 771,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 27,
+    "_fontSize": 25,
     "_lineHeight": 21,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "f9e6fc03-5f0a-44b9-9031-c3a36afb8334"
+      "__uuid__": "70910cc8-ef58-41d4-a3d2-e6b675091ae0"
     },
     "_isSystemFontUsed": false,
-    "_spacingX": 0,
+    "_spacingX": 5,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
     "_underlineHeight": 0,

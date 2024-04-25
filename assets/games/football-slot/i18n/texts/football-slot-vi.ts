@@ -5,7 +5,7 @@ export const phrases = {
         79: "Xèng Bóng Đá"
     },
     lobbyNames: {
-        79: "Xèng Bóng Đá"
+        79: "Xèng\n Bóng Đá"
     },
     footballSlot: {
         spinResult: "Kết Quả Quay",

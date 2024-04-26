@@ -2,8 +2,13 @@ import { payChips } from "../../_base/action/PayChipsAction";
 import FootballSlotChoices from "../event-models/FootballSlotChoices";
 import { FootballSlotResult, FootballSlotSettlementResult } from "../FootballSlotType";
 import FootballSlot from "../view-models/FootballSlot";
-import { formatBigSmallResult, highlightBigSmallWinning, playLedLightAnimation, randomNumberAnimation, spinItemAnimation } from "./FootballSlotWinningAction";
-
+import {
+    formatBigSmallResult,
+    highlightBigSmallWinning,
+    playLedLightAnimation,
+    randomNumberAnimation,
+    spinItemAnimation
+} from "./FootballSlotWinningAction";
 
 export type FootballSlotFinishModel = {
     result: FootballSlotResult;
@@ -31,8 +36,8 @@ export const handleShowResult = (game: FootballSlot) => (finish: FootballSlotFin
         .delay(delaySpinAnim)
         .call(() => {
             highlightBigSmallWinning(game.betOptionsUI)(finish);
-            if (game.betOptionsUI && game.betOptionsUI?.bigSmallResult) {
-                game.betOptionsUI.bigSmallResult.string = formatBigSmallResult(finish.result.bigSmall.value);
+            if (game.betOptionsUI) {
+                game.betOptionsUI.setBigSmallResult(formatBigSmallResult(finish.result.bigSmall.value));
             }
         })
         .start();

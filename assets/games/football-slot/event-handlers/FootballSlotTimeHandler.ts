@@ -71,8 +71,7 @@ export default class FootballSlotTimeHandler extends GameBaseTimeHandler {
         const listSymbolWin = resultData.symbols;
         const bigSmallWin = resultData.number > 7 ? "big" : "small";
         highlightWinningSymbol(this.main.betOptionsUI)(bigSmallWin, isAnimated);
-        this.main.betOptionsUI.bigSmallResult.string = formatBigSmallResult(resultData.number);
-
+        this.main.betOptionsUI.setBigSmallResult(formatBigSmallResult(resultData.number))
         for (let i = 0; i <= listSymbolWin.length; i++) {
             const winSymbol = getWinningOption(listSymbolWin[i]);
             highlightWinningSymbol(this.main.betOptionsUI)(winSymbol, isAnimated);

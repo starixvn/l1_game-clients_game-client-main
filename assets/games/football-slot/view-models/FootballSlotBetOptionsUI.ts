@@ -19,7 +19,10 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     bettingAnimation: cc.Animation = null;
 
     @property(cc.Label)
-    bigSmallResult: cc.Label = null;
+    bigSmallResultFirst: cc.Label = null;
+
+    @property(cc.Label)
+    bigSmallResultSecond: cc.Label = null;
 
     @property(cc.Node)
     bigSmallResultBackground: cc.Node = null;
@@ -70,7 +73,7 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     }
 
     resetUIBettingZone() {
-        this.bigSmallResult.string = "";
+        this.setBigSmallResult("");
         this.updateBigSmallResultBackground(0);
         this.playBettingAnim(true);
         this.betItems?.forEach((item) => {
@@ -103,6 +106,13 @@ export default class FootballSlotBetOptionsUI extends cc.Component {
     playWinLuckySound() {
         if (this.winLuckyAudio) {
             AudioManager.getInstance().playSFX(this.winLuckyAudio.clip);
+        }
+    }
+
+    setBigSmallResult(value: string) {
+        if (this.bigSmallResultFirst && this.bigSmallResultSecond) {
+            this.bigSmallResultFirst.string = value[0] || "";
+            this.bigSmallResultSecond.string = value[value.length - 1] || "";
         }
     }
 }

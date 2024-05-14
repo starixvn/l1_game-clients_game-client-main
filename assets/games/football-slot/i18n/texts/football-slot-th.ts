@@ -1,10 +1,10 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 export const phrases = {
     gameNames: {
-        79: "ฟุตบอลสล็อต"
+        79: "Football Spin"
     },
     lobbyNames: {
-        79: "ฟุตบอลสล็อต"
+        79: "Football Spin"
     },
     footballSlot: {
         spinResult: "ผลสปิน",

@@ -2,10 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     gameNames: {
-        59: "Xèng Hoa Quả"
+        59: "Xèng Hoa Quả 77"
     },
     lobbyNames: {
-        59: "Xèng\nHoa Quả"
+        59: "Xèng\nHoa Quả 77"
     },
     fruitSlot: {
         spinResult: "Kết Quả Quay",

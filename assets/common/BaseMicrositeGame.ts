@@ -213,6 +213,7 @@ export default class BaseMicrositeGame extends cc.Component {
         } else {
             cc.director.loadScene("Lobby", () => {
                 console.log("Frome Microsite => Open Game ", gameId);
+                this.setCanvasVisibilty(true);
                 GameUtils.openGame(joinGameHelper.getGameId(gameId), appManager.miniPanel);
             });
         }

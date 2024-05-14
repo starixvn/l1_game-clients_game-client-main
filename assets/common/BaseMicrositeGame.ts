@@ -76,6 +76,12 @@ export default class BaseMicrositeGame extends cc.Component {
         );
     }
 
+    setCanvasVisibilty(active: boolean) {
+        const gameContainer = document.getElementById("Cocos2dGameContainer");
+        const canvas = gameContainer.childNodes.item(0);
+        canvas.style.display = active ? "block" : "none";
+    }
+
     protected onDestroy(): void {
         window.microsite = {};
         window.removeEventListener("message", this.handleEvent);
@@ -100,6 +106,7 @@ export default class BaseMicrositeGame extends cc.Component {
             window.location.replace(data.replaceUrl);
         }
         if (data.splashEnabled) {
+            this.setCanvasVisibilty(false);
             this.handleUserGesturePage();
             this.handleClearStorage();
             const className = "microsite-iframe";

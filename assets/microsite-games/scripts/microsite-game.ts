@@ -56,6 +56,7 @@ export default class MicrositeGame extends BaseMicrositeGame {
     protected loadLobbyScene() {
         cc.director.loadScene("Lobby", async () => {
             console.log("Frome Microsite => Open Lobby");
+            this.setCanvasVisibilty(true);
             await appManager.microSiteLaunchedInit();
             !userManager.disableJackpotGames && jackpotManager.requestAllJackpotPools();
         });

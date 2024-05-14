@@ -84,9 +84,9 @@ function showIntruction() {
 var timeoutDelayEnableScroll;
 
 function showInstructionAndScroll(isShow = true) {
+    clearTimeout(timeoutDelayEnableScroll);
     if (isShow) {
         instruction.style.visibility = "visible";
-        clearTimeout(timeoutDelayEnableScroll);
         timeoutDelayEnableScroll = setTimeout(() => {
             document.body.style.overflowY = "scroll";
         }, 100);

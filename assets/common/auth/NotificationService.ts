@@ -147,6 +147,6 @@ export default class NotificationService {
     }
 
     removeDataObserver(dataType: string, observerKey: string) {
-        delete this.dataObservers[dataType][observerKey];
+        this.dataObservers[dataType] && delete this.dataObservers[dataType][observerKey];
     }
 }

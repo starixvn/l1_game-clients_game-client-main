@@ -64,7 +64,7 @@ class AppManager {
 
     clearPromotionObservers() {
         Promotions.getInstance().removeDataObserver();
-        PromotionNotificationsHandler.getInstance().addDataObserver();
+        PromotionNotificationsHandler.getInstance().removeDataObserver();
     }
 
     initPromotions() {

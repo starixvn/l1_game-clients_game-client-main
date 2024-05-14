@@ -37,7 +37,7 @@ const data = {
         47: "Đảo Châu Báu",
         52: "Mega Keno",
         53: "Mega Keno 2",
-        59: "Xèng Hoa Quả",
+        59: "Xèng Hoa Quả 77",
         61: "Trác Kim Hoa"
     },
     messages: {

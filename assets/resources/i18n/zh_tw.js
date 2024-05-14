@@ -36,7 +36,7 @@ const data = {
         46: "Nightclub Lady",
         52: "Mega Keno",
         53: "Mega Keno 2",
-        59: "水果機",
+        59: "水果機77",
         61: "贏三張"
     },
     messages: {

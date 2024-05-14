@@ -46,8 +46,16 @@ export default class JackpotManager {
     }
 
     initEvents() {
+        this.clearObservers();
+
         this.jackpotDataKey.forEach((key) => {
             this.addDataObserver(key, key);
+        });
+    }
+
+    clearObservers() {
+        this.jackpotDataKey.forEach((key) => {
+            this.removeDataObserver(key, key);
         });
     }
 

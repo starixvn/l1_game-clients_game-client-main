@@ -62,7 +62,14 @@ class AppManager {
         this.initPromotions();
     }
 
+    clearPromotionObservers() {
+        Promotions.getInstance().removeDataObserver();
+        PromotionNotificationsHandler.getInstance().addDataObserver();
+    }
+
     initPromotions() {
+        this.clearPromotionObservers();
+
         Promotions.getInstance().addDataObserver();
         PromotionNotificationsHandler.getInstance().addDataObserver();
         NotificationService.getInstance().emitEvent("promotionNotifications", {});

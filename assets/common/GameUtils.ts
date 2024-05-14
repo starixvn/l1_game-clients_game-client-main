@@ -1114,4 +1114,10 @@ export default class GameUtils {
         node.color = cc.Color.WHITE.fromHEX(color);
         node.opacity = cc.Color.WHITE.fromHEX(color).getA();
     }
+
+    public static setCanvasVisibilty(active: boolean) {
+        const gameContainer = document.getElementById("Cocos2dGameContainer");
+        const canvas = gameContainer.childNodes.item(0);
+        canvas.style.visibility = active ? "visible" : "hidden";
+    }
 }

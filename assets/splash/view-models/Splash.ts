@@ -71,6 +71,7 @@ export default class Splash extends cc.Component {
     }
 
     private enableMainSplashScreen() {
+        GameUtils.setCanvasVisibilty(true);
         this.background.active = true;
         this.nodeMainSplash.active = true;
         this.nodeMicrositeGame.destroyAllChildren();

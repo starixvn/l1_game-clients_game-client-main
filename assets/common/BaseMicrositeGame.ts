@@ -77,9 +77,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     setCanvasVisibilty(active: boolean) {
-        const gameContainer = document.getElementById("Cocos2dGameContainer");
-        const canvas = gameContainer.childNodes.item(0);
-        canvas.style.visibility = active ? "visible" : "hidden";
+        GameUtils.setCanvasVisibilty(active);
     }
 
     protected onDestroy(): void {

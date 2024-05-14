@@ -38,6 +38,8 @@ class AppManager {
 
     _PFF = false;
 
+    registeredShowHideAppEvent = false;
+
     private init() {
         sentryLogger.start();
         this.initLanguage();
@@ -245,6 +247,9 @@ class AppManager {
     }
 
     private initShowHideAppEvent() {
+        if (this.registeredShowHideAppEvent) {
+            return;
+        }
         const hiddenPropName = ["hidden", "mozHidden", "msHidden", "webkitHidden"].find((key) => typeof document[key] !== "undefined");
         this.GAME_IS_SHOWED = !document[hiddenPropName];
         cc.game.on(cc.game.EVENT_HIDE, () => {
@@ -255,6 +260,7 @@ class AppManager {
             this.GAME_IS_SHOWED = true;
             UserService.getBalance();
         });
+        this.registeredShowHideAppEvent = true;
     }
 }
 export const appManager = new AppManager();

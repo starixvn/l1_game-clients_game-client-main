@@ -268,6 +268,33 @@ p.footer {
     height: 4.7vh;
 }
 
+.splash_tip88 {
+    position: relative;
+    top: 22.6vh;
+    background: url(./logo_soibet.png) no-repeat center;
+    background-size: auto 40.6vh;
+    width: auto;
+    height: 40.6vh;
+}
+
+.splash_text_tip88 {
+    position: absolute;
+    top: 65.6vh;
+    background: no-repeat center;
+    background-size: auto 3.4vh;
+    width: 100%;
+    height: 3.4vh;
+}
+
+.splash_powered {
+    position: relative;
+    top: 48.6vh;
+    background: no-repeat center;
+    background-size: auto 4.7vh;
+    width: auto;
+    height: 4.7vh;
+}
+
 .splash_text_sc1_vi {
     background-image: url("splash_text_sc1_vi.png");
 }
@@ -316,6 +343,30 @@ p.footer {
     background-image: url("splash_text_sc2_zh_tw.png");
 }
 
+.splash_powered_sc2_vi {
+    background-image: url("powered_by_sc2_vi.png");
+}
+
+.splash_powered_sc2_en {
+    background-image: url("powered_by_sc2_en.png");
+}
+
+.splash_powered_sc2_th {
+    background-image: url("powered_by_sc2_th.png");
+}
+
+.splash_powered_sc2_id {
+    background-image: url("powered_by_sc2_id.png");
+}
+
+.splash_powered_sc2_zh_cn {
+    background-image: url("powered_by_sc2_zh_cn.png");
+}
+
+.splash_powered_sc2_zh_tw {
+    background-image: url("powered_by_sc2_zh_tw.png");
+}
+
 .conner-container {
     position: fixed;
     top: 0;
@@ -361,6 +412,21 @@ p.footer {
     .splash_text_sabaplay {
         top: 18.2vh;
         background-size: auto 1.7vh;
+    }
+
+    .splash_tip88 {
+        top: 20.8vh;
+        background-size: auto 23.6vh;
+    }
+
+    .splash_text_tip88 {
+        top: 53vh;
+        background-size: auto 2vh;
+    }
+
+    .splash_powered {
+        top: 26.8vh;
+        background-size: auto 2.5vh;
     }
 
     .splash_other {

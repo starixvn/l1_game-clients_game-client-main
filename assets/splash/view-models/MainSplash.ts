@@ -46,6 +46,9 @@ export default class MainSplash extends cc.Component {
     sloganOtherSG: cc.Node = null;
 
     @property(cc.Node)
+    sloganTip88: cc.Node = null;
+
+    @property(cc.Node)
     noticeContainer: cc.Node = null;
 
     @property(cc.Prefab)
@@ -62,35 +65,59 @@ export default class MainSplash extends cc.Component {
     protected onLoad(): void {
         this.initUIListeners();
         this.requestSSO();
+        this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
+        this.activateSlogan();
+    }
+
+    private setPositionProgressBarAndMessage() {
         const operator = sessionManager.getOperator()?.toUpperCase();
-        switch (operator) {
-            case OperatorAlias.SG:
-                this.sloganSC1.active = true;
-                break;
-            case OperatorAlias.VG:
-                this.sloganSC2.active = true;
-                break;
-            case OperatorAlias.SP:
-                this.sloganSabaPlay.active = true;
-                break;
-            default:
-                this.activateOtherSlogans();
-                break;
-        }
+        const spPosition =
+            operator === OperatorAlias.TIP88
+                ? { progressBar: cc.v2(-200, -230), messageComp: cc.v2(0, -260) }
+                : { progressBar: cc.v2(-200, -307), messageComp: cc.v2(0, -331) };
+
+        this.progressBar.node.setPosition(spPosition.progressBar);
+        this.messageComp.node.setPosition(spPosition.messageComp);
     }
 
     private deactivateAllSlogans(): void {
-        this.sloganSC1.active = false;
-        this.sloganSC2.active = false;
-        this.sloganSabaPlay.active = false;
-        this.sloganOtherVG.active = false;
-        this.sloganOtherSG.active = false;
+        const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88"];
+
+        for (const slogan of slogans) {
+            this.setSloganActiveState(slogan, false);
+        }
+    }
+
+    private activateSlogan(): void {
+        const operator = sessionManager.getOperator()?.toUpperCase();
+        if (!operator) {
+            this.activateOtherSlogans();
+            return;
+        }
+
+        const sloganMapping: { [key: string]: string } = {
+            [OperatorAlias.SG]: "sloganSC1",
+            [OperatorAlias.VG]: "sloganSC2",
+            [OperatorAlias.SP]: "sloganSabaPlay",
+            [OperatorAlias.TIP88]: "sloganTip88"
+        };
+
+        const slogan = sloganMapping[operator];
+        if (slogan) {
+            this.setSloganActiveState(slogan, true);
+        } else {
+            this.activateOtherSlogans();
+        }
     }
 
     private activateOtherSlogans(): void {
-        this.sloganOtherVG.active = !splashConfig.enabledSC1;
-        this.sloganOtherSG.active = splashConfig.enabledSC1;
+        this.setSloganActiveState("sloganOtherVG", !splashConfig.enabledSC1);
+        this.setSloganActiveState("sloganOtherSG", splashConfig.enabledSC1);
+    }
+
+    private setSloganActiveState(slogan: string, isActive: boolean): void {
+        this[slogan].active = isActive;
     }
 
     private initUIListeners() {

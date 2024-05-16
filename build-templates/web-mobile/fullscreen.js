@@ -343,7 +343,8 @@ function updateLocalizedImages() {
     const OperatorAlias = {
         SP: "SP",
         VG: "VG",
-        SG: "SG"
+        SG: "SG",
+        TIP88: "TIP88"
     };
 
     let title, favicon;
@@ -360,6 +361,10 @@ function updateLocalizedImages() {
             title = language === "vi" ? "Cổng Game SABA" : "SABA.games";
             favicon = "favicon.ico?v=4";
             break;
+        case OperatorAlias.TIP88:
+            title = "Tip88";
+            favicon = "favicon_tip88.ico?v=4";
+            break;
         default:
             title = "Default Title";
             favicon = "default_favicon.ico";
@@ -368,6 +373,7 @@ function updateLocalizedImages() {
 
     setTitleAndFavicon(title, favicon);
     setSplashTextClass(language);
+    setSplashPoweredByClass(language);
 }
 
 function setTitleAndFavicon(title, favicon) {
@@ -384,6 +390,14 @@ function setSplashTextClass(language) {
     splashText.className += ` ${className}`;
 }
 
+function setSplashPoweredByClass(language) {
+    const splashText = document.getElementById("splash_powered");
+    const operator = getOperator().toUpperCase();
+    const suffixSite = operator === "TIP88" ? "_sc2" : "_sc1";
+    const className = `splash_powered${suffixSite}_${language}`;
+    splashText.className += ` ${className}`;
+}
+
 function updateSplashLogo() {
     const operator = getOperator().toUpperCase();
     const splash = document.getElementById("splash_logo");
@@ -395,10 +409,12 @@ function updateSplashLogo() {
 
 function getCSSClassName(operator) {
     const operators = {
+        TIP88: "_tip88",
         SP: "_sabaplay",
         VG: "_Vgaming",
         SG: ""
     };
+
     if (operators.hasOwnProperty(operator)) {
         return operators[operator];
     } else {

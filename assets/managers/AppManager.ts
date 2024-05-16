@@ -43,7 +43,7 @@ class AppManager {
     private init() {
         sentryLogger.start();
         this.initLanguage();
-        this.initOperator();
+        this.storeOperator();
     }
 
     async microSiteLaunchedInit() {
@@ -244,7 +244,7 @@ class AppManager {
         setLanguage(language);
     }
 
-    initOperator() {
+    storeOperator() {
         let operator = sessionManager.getOperator();
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has("op")) {

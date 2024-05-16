@@ -10,5 +10,6 @@ export enum SystemType {
 export enum OperatorAlias {
     SP = "SP",
     VG = "VG",
-    SG = "SG"
+    SG = "SG",
+    TIP88 = "TIP88"
 }

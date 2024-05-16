@@ -36,7 +36,6 @@ const data = {
         46: "Nightclub Lady",
         52: "Mega Keno",
         53: "Mega Keno 2",
-        59: "Fruit 77",
         61: "Win Three Cards"
     },
     messages: {

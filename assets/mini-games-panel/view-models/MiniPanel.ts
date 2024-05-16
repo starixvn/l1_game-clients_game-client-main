@@ -23,13 +23,13 @@ import { Promotions, PromotionsEvent } from "../../lobby/promotions/Promotions";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import { UrlInfo } from "../../managers/UrlInfo";
 import * as authManager from "./../../common/auth/AuthManager";
 import { showMessageForExpiredToken } from "./../../common/auth/AuthManager";
 import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
-import { UrlInfo } from "../../managers/UrlInfo";
 
 type NewLayerCallback = () => void;
 
@@ -275,6 +275,7 @@ export default class MiniPanel extends BaseComponent {
 
     onForceReload(showNotice = true, message = i18n.t("messages.newUpdateAvailable")) {
         let forceReload = () => {
+            console.log("reload in onForceReload MiniPanel");
             location.reload();
         };
         if (appManager.isDirectMode && appManager.urlInfo[UrlInfo.ReturnUrl]) {

@@ -386,6 +386,7 @@ export default class GameUtils {
                 },
                 (error) => {
                     if (error) {
+                        console.log(`error when load scene ${sceneName}`, error);
                         this.onForceReload();
                     } else {
                         cc.director.loadScene(sceneName, resolve);
@@ -397,6 +398,7 @@ export default class GameUtils {
 
     private static onForceReload(showNotice = true, message = i18n.t("messages.newUpdateAvailable")) {
         const forceReload = () => {
+            console.log("reload in onForceReload");
             location.reload();
         };
 

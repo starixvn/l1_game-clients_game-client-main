@@ -238,7 +238,10 @@ let WebViewImpl = cc.Class({
         let iframe = this._iframe;
         if (iframe) {
             let win = iframe.contentWindow;
-            if (win && win.location) win.location.reload();
+            if (win && win.location) {
+                console.trace("impl call reload");
+                win.location.reload();
+            }
         }
     },
 

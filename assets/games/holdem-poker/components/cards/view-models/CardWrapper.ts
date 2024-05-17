@@ -1,8 +1,8 @@
 import { convertOldRank } from "../../../../../common/new-card/view-models/NewCard";
-import HoldemPokerCards from "./HoldemPokerCards";
+import SwapCards from "../../../../_casino/SwapCards";
 import { HoldemPokerAfterDealModel } from "../../../event-models/HoldemPokerAfterDealModel";
 import HoldemPokerHoldModel from "../../../event-models/HoldemPokerHoldModel";
-import SwapCards from "../../../../_casino/SwapCards";
+import HoldemPokerCards from "./HoldemPokerCards";
 
 export const convertCard = (cards) => {
     return cards.map((e) => {
@@ -154,12 +154,10 @@ export const rawCardWhenRejoin = (pokerCardsNote: HoldemPokerCards, cardsData: a
     pokerCardsNote.hideAllIndicator();
 
     for (const card of playerCards) {
-        console.log("drawingRejoinPlayerCards", card, !hasSwappedOrHold);
         pokerCardsNote.drawingRejoinPlayerCards(card, !hasSwappedOrHold);
     }
 
     for (const card of communityCards) {
-        console.log("drawingRejoinMiddleCards", card);
         pokerCardsNote.drawingRejoinMiddleCards(card, false);
     }
 

@@ -210,7 +210,6 @@ export default class BaseMicrositeGame extends cc.Component {
             await joinGameHelper.joinGameIsNotMiniGame(gameId, this.socketIOControler);
         } else {
             cc.director.loadScene("Lobby", () => {
-                console.log("Frome Microsite => Open Game ", gameId);
                 this.setCanvasVisibilty(true);
                 GameUtils.openGame(joinGameHelper.getGameId(gameId), appManager.miniPanel);
             });

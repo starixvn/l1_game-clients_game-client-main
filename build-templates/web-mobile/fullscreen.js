@@ -246,7 +246,6 @@ function initGA() {
 
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${gaCode}`).then(
         () => {
-            console.log("Init GA");
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
@@ -267,7 +266,6 @@ function addGATrackingButton() {
     const gaCode = "G-W13X2FGNGN";
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${gaCode}`).then(
         () => {
-            console.log("Init GA");
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);

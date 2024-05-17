@@ -86,7 +86,6 @@ export const outRoomGame = (game: any) => () => {
 
 export const closeGame = (game: any) => () => {
     if (game.closingGameRoom || !game.node.activeInHierarchy) {
-        console.log("Closing game room, please wait...");
         return;
     }
     game.closingGameRoom = true;

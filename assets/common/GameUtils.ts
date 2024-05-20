@@ -606,7 +606,9 @@ export default class GameUtils {
 
     public static async loadRemoteLocalization(gameId: number) {
         if (!this.remoteLocalization[gameId]) {
-            const localization = await this.loadRemoteGameResource<cc.JsonAsset>(gameId, "localization.json");
+            const versions = await GameUtils.getRemoteVersion(gameId);
+            const localizationVersion = versions?.localization ?? 1;
+            const localization = await this.loadRemoteGameResource<cc.JsonAsset>(gameId, `localization.json?v=${localizationVersion}`);
             this.remoteLocalization[gameId] = localization.json;
         }
     }

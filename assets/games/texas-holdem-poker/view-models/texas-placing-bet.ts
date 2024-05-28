@@ -61,7 +61,7 @@ export default class TexasPlacingBet {
     }
 
     sendBetData(data) {
-        data["clientSendTime"] = new Date();
+        data["clientSentTime"] = new Date();
         this.getConnection().emit(events.bet, data);
     }
 

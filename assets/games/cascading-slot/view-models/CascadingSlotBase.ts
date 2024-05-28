@@ -234,7 +234,7 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
         const connection = this.isTrialMode ? this.trialConnection : this.connection;
         connection.emit(events.bet, {
             ...this.gameData.placeBetModel.data,
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         });
         success = true;
         return success;

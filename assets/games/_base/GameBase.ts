@@ -859,7 +859,7 @@ export default class GameBase extends GameViewBase {
             amount: bet,
             betChoice: choice,
             username: userManager.userName,
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         };
 
         this.sendSocketData("bet", betData);

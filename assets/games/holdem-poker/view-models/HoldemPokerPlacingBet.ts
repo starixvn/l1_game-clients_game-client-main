@@ -52,7 +52,7 @@ export default class HoldemPokerPlacingBet {
     }
 
     sendBetData(data) {
-        data["clientSendTime"] = new Date();
+        data["clientSentTime"] = new Date();
         this.getConnection().emit(events.bet, data);
     }
 

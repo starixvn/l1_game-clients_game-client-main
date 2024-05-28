@@ -675,7 +675,7 @@ export default class Roulette extends SocketIOTableGameBase {
         this.socket.emit("bet", {
             roundId: this.roundId,
             betChoices: this.tempBetChoices,
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         });
     }
 

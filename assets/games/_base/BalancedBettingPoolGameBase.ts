@@ -202,7 +202,7 @@ export default abstract class BalancedBettingPoolGameBase extends SocketIOMiniGa
         const betData = {
             amount: amount,
             betChoice: choice,
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         };
         this.sendSocketData("bet", betData);
     }

@@ -678,7 +678,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             betChoice: this.betChoices,
             amount: this.stake,
             freeSpin: isFreeSpin,
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         };
 
         this.waitingSpinResult = true;

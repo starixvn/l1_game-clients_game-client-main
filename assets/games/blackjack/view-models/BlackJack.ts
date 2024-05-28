@@ -598,7 +598,7 @@ export default class BlackJack extends SocketIOTableGameBase {
     }
 
     sendBetData(data) {
-        data["clientSendTime"] = new Date();
+        data["clientSentTime"] = new Date();
         this.socketSendData("bet", data);
     }
 

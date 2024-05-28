@@ -345,7 +345,7 @@ export default class HoldemPoker extends CasinoGame {
         this.lockBet();
         this.connection.emit(events.bet, {
             fold: {},
-            clientSendTime: new Date()
+            clientSentTime: new Date()
         });
         this.gameData.isProcessingBet = true;
     }

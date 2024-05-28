@@ -677,7 +677,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         const data = {
             betChoice: this.betChoices,
             amount: this.stake,
-            freeSpin: isFreeSpin
+            freeSpin: isFreeSpin,
+            clientSendTime: new Date()
         };
 
         this.waitingSpinResult = true;

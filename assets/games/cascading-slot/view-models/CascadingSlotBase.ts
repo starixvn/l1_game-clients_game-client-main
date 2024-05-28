@@ -232,7 +232,10 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
         }
         this.gameData.placeBetModel.updateFreeSpin(isFreeSpin);
         const connection = this.isTrialMode ? this.trialConnection : this.connection;
-        connection.emit(events.bet, this.gameData.placeBetModel.data);
+        connection.emit(events.bet, {
+            ...this.gameData.placeBetModel.data,
+            clientSendTime: new Date()
+        });
         success = true;
         return success;
     }

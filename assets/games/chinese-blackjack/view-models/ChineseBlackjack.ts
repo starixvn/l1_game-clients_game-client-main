@@ -132,7 +132,7 @@ export default class ChineseBlackjack extends BlackJack {
                 clientSeed: this.provablyFairComponent.currentClientSeed
             }
         };
-        this.socketSendData("bet", data);
+        this.sendBetData(data);
     }
 
     onDealClick(): void {

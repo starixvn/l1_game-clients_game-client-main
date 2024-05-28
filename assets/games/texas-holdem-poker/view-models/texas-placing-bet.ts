@@ -1,9 +1,9 @@
 import GameBase from "../../../games/_base/GameBase";
 import Connection from "../../_new/connection/Connection";
 import { events } from "../../_new/connection/SocketIOConnection";
-import { TexasChoicesType, TexasState } from "../texas-type";
-import { TexasChoicesConst, BetAction } from "../texas-constants";
 import TexasGameDataModel from "../event-models/texas-game-data-model";
+import { BetAction, TexasChoicesConst } from "../texas-constants";
+import { TexasChoicesType, TexasState } from "../texas-type";
 import { validateAccountBalance, validateAccountBalanceForFullRound, validateBet } from "./texas-validate-placing-bet";
 
 export default class TexasPlacingBet {
@@ -60,13 +60,18 @@ export default class TexasPlacingBet {
         this.getConnection().emit("bet", { action: "settle" });
     }
 
+    sendBetData(data) {
+        data["clientSendTime"] = new Date();
+        this.getConnection().emit(events.bet, data);
+    }
+
     handleClickButton(betChoice: string, betAmount: number, betAction: string, payload?: any) {
         if (this.validateBetting(betAmount, betChoice)) {
             this.gameData.isProcessingBet = true;
             const stateUI = {};
             stateUI[betAction] = { amount: betAmount };
             this.gameData.receiveUIData(stateUI);
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 action: betAction,
                 ...payload
             });
@@ -87,7 +92,7 @@ export default class TexasPlacingBet {
                 deal: {}
             });
             this.gameBase.lockBet();
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 action: BetAction.deal,
                 anteBet: this.gameData.placeBetModel.choices.anteBet
             });
@@ -102,7 +107,7 @@ export default class TexasPlacingBet {
         const stateUI = {};
         stateUI[betChoice] = {};
         this.gameData.receiveUIData(stateUI);
-        this.getConnection().emit(events.bet, {
+        this.sendBetData({
             action: betChoice
         });
     }
@@ -112,7 +117,7 @@ export default class TexasPlacingBet {
         const stateUI = {};
         stateUI[betAction] = {};
         this.gameData.receiveUIData(stateUI);
-        this.getConnection().emit(events.bet, {
+        this.sendBetData({
             action: betAction,
             ...payload
         });
@@ -136,7 +141,7 @@ export default class TexasPlacingBet {
                 rebetAndDeal: { amount: currentTotal }
             });
             this.gameBase.lockBet();
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 action: BetAction.deal,
                 ...this.gameData.placeBetModel.choices
             });

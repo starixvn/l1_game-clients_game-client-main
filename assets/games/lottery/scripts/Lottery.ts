@@ -250,7 +250,8 @@ export default class Lottery extends SocketIOTableGameBase {
         } else {
             this.lockBet();
             const betData = {
-                betChoice: this.createBetChoice(this.currentTypeIndex, [name], this.currentBet)
+                betChoice: this.createBetChoice(this.currentTypeIndex, [name], this.currentBet),
+                clientSendTime: new Date()
             };
             this.sendSocketData("bet", betData);
             const currentBoard = this.getCurrentBoard();

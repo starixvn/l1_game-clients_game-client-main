@@ -51,12 +51,17 @@ export default class HoldemPokerPlacingBet {
         }
     }
 
+    sendBetData(data) {
+        data["clientSendTime"] = new Date();
+        this.getConnection().emit(events.bet, data);
+    }
+
     doubleAndCallBet(betChoice: string, betAmount: number) {
         if (this.validateBet(betChoice, betAmount) && this.validateAccountBalance(betAmount)) {
             this.gameData.isProcessingBet = true;
             this.gameData.receiveUIData({ doubleAndCall: { amount: betAmount } });
             this.gameBase.lockBet();
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 doubleCall: {}
             });
         }
@@ -76,7 +81,7 @@ export default class HoldemPokerPlacingBet {
                 rebetAndDeal: { amount: currentTotal }
             });
             this.gameBase.lockBet();
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 deal: this.gameData.placeBetModel.choices
             });
         } else {
@@ -93,7 +98,7 @@ export default class HoldemPokerPlacingBet {
                 deal: {}
             });
             this.gameBase.lockBet();
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 deal: this.gameData.placeBetModel.choices
             });
         }
@@ -105,7 +110,7 @@ export default class HoldemPokerPlacingBet {
             this.gameData.receiveUIData({
                 swap: {}
             });
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 swap: {}
             });
         }
@@ -117,7 +122,7 @@ export default class HoldemPokerPlacingBet {
             this.gameData.receiveUIData({
                 hold: {}
             });
-            this.getConnection().emit(events.bet, {
+            this.sendBetData({
                 hold: {}
             });
         }

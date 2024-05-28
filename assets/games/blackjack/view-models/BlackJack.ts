@@ -594,6 +594,11 @@ export default class BlackJack extends SocketIOTableGameBase {
                 hands: this.lastHandBets
             }
         };
+        this.sendBetData(data);
+    }
+
+    sendBetData(data) {
+        data["clientSendTime"] = new Date();
         this.socketSendData("bet", data);
     }
 
@@ -607,7 +612,7 @@ export default class BlackJack extends SocketIOTableGameBase {
                 id: this.activeHand.idValue
             }
         };
-        this.socketSendData("bet", data);
+        this.sendBetData(data);
     }
 
     onDoubleClick() {
@@ -620,7 +625,7 @@ export default class BlackJack extends SocketIOTableGameBase {
                 id: this.activeHand.idValue
             }
         };
-        this.socketSendData("bet", data);
+        this.sendBetData(data);
     }
 
     onStandClick() {
@@ -634,7 +639,7 @@ export default class BlackJack extends SocketIOTableGameBase {
                 id: this.activeHand.idValue
             }
         };
-        this.socketSendData("bet", data);
+        this.sendBetData(data);
     }
 
     onHitClick() {
@@ -648,7 +653,7 @@ export default class BlackJack extends SocketIOTableGameBase {
                 id: this.activeHand.idValue
             }
         };
-        this.socketSendData("bet", data);
+        this.sendBetData(data);
     }
 
     onNewBetClick() {

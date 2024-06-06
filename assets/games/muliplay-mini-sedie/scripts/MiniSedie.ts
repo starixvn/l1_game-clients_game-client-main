@@ -48,6 +48,7 @@ export default class MiniSedie extends MultiplayGameSingle {
     openPlatePos = cc.v2(15, 30);
     startRoundDuration = 2;
     protected delayPayoutDuration = 1;
+    override usingNewSettlement = true;
 
     constructor() {
         super();
@@ -199,6 +200,7 @@ export default class MiniSedie extends MultiplayGameSingle {
         const doLaterPayOut = () => {
             this.highlightAndPayout(settlement);
             !animated && this.gameData.settlement.showStatus();
+            this.inSettlementSequence = false;
         };
 
         if (animated) {

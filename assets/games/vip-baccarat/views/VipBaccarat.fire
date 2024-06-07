@@ -656,7 +656,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Dealer",
+    "_name": "dealer-vip",
     "_objFlags": 0,
     "_parent": {
       "__id__": 9
@@ -679,8 +679,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 153,
-      "height": 184
+      "width": 175.47,
+      "height": 231.24
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -691,15 +691,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        331,
+        -0.902000000000001,
+        333.735,
         0,
         0,
         0,
         0,
         1,
-        0.98,
-        0.98,
+        0.85,
+        0.85,
         1
       ]
     },
@@ -712,12 +712,12 @@
     "_skewX": 0,
     "_skewY": 0,
     "_is3DNode": false,
-    "_groupIndex": 1,
-    "groupIndex": 1,
-    "_id": "06DV087FtMULhHPjbkas1l"
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "17PqDou8tJjbfmvK+LWz+Q"
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "sp.Skeleton",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -726,29 +726,37 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+        "__uuid__": "7afd064b-113f-480e-b793-8817d19f63c3"
       }
     ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "80fba976-cb18-40e8-84fe-42bde0a5b16a"
+    "paused": false,
+    "defaultSkin": "default",
+    "defaultAnimation": "breath",
+    "_preCacheMode": 0,
+    "_cacheMode": 0,
+    "loop": true,
+    "premultipliedAlpha": true,
+    "timeScale": 1,
+    "_accTime": 0,
+    "_playCount": 0,
+    "_frameCache": null,
+    "_curFrame": null,
+    "_skeletonCache": null,
+    "_animationName": "breath",
+    "_animationQueue": [],
+    "_headAniInfo": null,
+    "_playTimes": 0,
+    "_isAniComplete": true,
+    "_N$skeletonData": {
+      "__uuid__": "f1b86365-a9f5-488a-a584-feebf5a8840b"
     },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "102afb53-e744-4188-b305-81eb3c25ecd4"
-    },
-    "_id": "d6+p2WU99BWrC0wj68k5xx"
+    "_N$_defaultCacheMode": 0,
+    "_N$debugSlots": false,
+    "_N$debugBones": false,
+    "_N$debugMesh": false,
+    "_N$useTint": false,
+    "_N$enableBatch": false,
+    "_id": "801bjj1AxBP4/qBQU+55Tp"
   },
   {
     "__type__": "cc.Node",
@@ -30312,7 +30320,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        260.442,
+        250.203,
         0,
         0,
         0,
@@ -30349,7 +30357,7 @@
     "_alignFlags": 1,
     "_left": 0,
     "_right": 0,
-    "_top": 79.5,
+    "_top": 89.739,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -31107,6 +31115,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "dei7UclIBB44cokXCFgCuN"
   },
   {
@@ -31996,6 +32005,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "31s4M7l5VPba33QIBoQweM"
   },
   {
@@ -32883,6 +32893,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "0bG+FAvxVPmKfYsD5VwSeo"
   },
   {
@@ -33770,6 +33781,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "6duID3iitNk4P2K8TI21Tp"
   },
   {
@@ -34657,6 +34669,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "b9W3RW8wBI/Z1tM4/ihQk8"
   },
   {
@@ -35544,6 +35557,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "907Z3D4e9NZZO50UXI+Tye"
   },
   {
@@ -36502,6 +36516,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "a39bQLCMhPRITTzX8wLZB8"
   },
   {
@@ -36770,6 +36785,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "0dZ/3h3eRPeYHE+9hPxqLm"
   },
   {
@@ -36881,6 +36897,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "84+i9GDCZKCK0sFMMZIdOC"
   },
   {
@@ -36992,6 +37009,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "34nmvhko9H57UpcaPPsuiA"
   },
   {
@@ -37103,6 +37121,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "29kFjjg4NJl6i3Gpf3Nsuk"
   },
   {
@@ -37214,6 +37233,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "3ahqeKw8VFxZrNhkEkmkUs"
   },
   {
@@ -37325,6 +37345,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "57uGbVZu1NwIMpgV7Ec+m6"
   },
   {
@@ -37436,6 +37457,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": "bcJU8ZLsBL4ZKW3GHeLAGL"
   },
   {
@@ -37795,6 +37817,7 @@
       "__id__": 679
     },
     "md5Component": null,
+    "provablyFairComponent": null,
     "gameRound": {
       "__id__": 686
     },

@@ -463,7 +463,7 @@ export default class GameUtils {
         loading.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameConfiguration?.isMicrosite) {
+        if (gameConfiguration?.isMicrosite && !gameConfiguration.mini) {
             this.openGameMicrosite(gameId, loading);
             return;
         }

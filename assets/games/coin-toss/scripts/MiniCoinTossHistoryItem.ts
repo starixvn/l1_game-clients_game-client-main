@@ -1,10 +1,10 @@
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
-import MultiplayGameHistoryItem from "../../multiplay/scripts/MultiplayGameHistoryItem";
+import SocketIOHistoryItemBase from "../../_base/view-models/SocketIOHistoryItemBase";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class MiniSedieHistoryItem extends MultiplayGameHistoryItem {
+export default class MiniCoinTossHistoryItem extends SocketIOHistoryItemBase {
     @property(cc.Sprite)
     kqSprite: cc.Sprite = null;
 
@@ -36,8 +36,6 @@ export default class MiniSedieHistoryItem extends MultiplayGameHistoryItem {
     iconWhite: cc.SpriteFrame = null;
 
     setData(betLog: any, index: number) {
-        super.setData(betLog, index);
-
         const { settlementResult, result } = betLog;
 
         let number = 0;

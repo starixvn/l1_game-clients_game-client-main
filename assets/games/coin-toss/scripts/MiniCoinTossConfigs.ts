@@ -1,4 +1,4 @@
-export const coinTossGameConfigs = {
+export const coinTossConfigs = {
     minBetTime: 1,
     fullTime: 29,
     betTime: 20,

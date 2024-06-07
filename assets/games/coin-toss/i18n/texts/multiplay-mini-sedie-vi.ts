@@ -2,13 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     gameNames: {
-        9: "Xóc Đĩa Mini",
-        56: "Xóc Đĩa Mini 2",
-        57: "Xóc Đĩa Mini 3",
-        58: "Xóc Đĩa Mini 4"
+        80: "Coin Toss"
     },
     lobbyNames: {
-        9: "Xóc Đĩa Mini"
+        80: "CoinToss"
     },
     miniSedie: {
         hotFeature: "Chơi nhiều bàn đồng thời...",

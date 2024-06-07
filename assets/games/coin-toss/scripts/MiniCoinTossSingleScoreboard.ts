@@ -1,12 +1,12 @@
-import SingleScoreBoard from "../../multiplay/scripts/SingleScoreBoard";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
+import SingleScoreBoard from "../../multiplay/scripts/SingleScoreBoard";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class MiniSedieSingleScoreBoard extends SingleScoreBoard {
+export default class MiniCoinTossSingleScoreboard extends SingleScoreBoard {
     override choices = ["even", "odd"];
     override generalExtraInfo(history) {
         let count = 0;

@@ -1,11 +1,12 @@
 import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import SedieRoundHistory from "../../../common/round-history/sedie/SedieRoundHistory";
 import { appManager } from "../../../managers/AppManager";
+import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import { handlePlacingBet, handleShakeDish } from "./actions/MegaSedieCustomActions";
-import { coinTossGameConfigs, CoinTossId } from "./MiniCoinTossConfigs";
+import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
 
 const { ccclass, property } = cc._decorator;
 
@@ -48,9 +49,10 @@ export default class MiniCoinToss extends MiniGameBase {
         this.animatedTime.setAnimatedY(30, -5);
     }
 
-    setGameId(gameId: number) {
-        this.gameId = gameId;
-        this.config = coinTossGameConfigs;
+    initMiniPanel(miniPanel: MiniPanel) {
+        super.initMiniPanel(miniPanel);
+        this.gameId = CoinTossId;
+        this.setConfig(coinTossConfigs);
     }
 
     initGameDataEvents() {

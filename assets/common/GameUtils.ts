@@ -167,7 +167,9 @@ export default class GameUtils {
         let prefab: cc.Prefab;
         if (!!gameConfiguration?.remoteBundle) {
             const directory = systemPath === "" ? "icons" : `icons/${systemPath}`;
-            const path = `${gameConfiguration?.isMicrosite ? gameId + "/" : ""}${directory}/${gameSetting?.bigSize ? "Big" : "Small"}`;
+            const path = `${GameUtils.isMicroSite(gameConfiguration) ? gameId + "/" : ""}${directory}/${
+                gameSetting?.bigSize ? "Big" : "Small"
+            }`;
             prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
                 bundleId: gameId.toString(),
                 path: path,
@@ -332,7 +334,7 @@ export default class GameUtils {
 
     public static async openGameDirect(gameId: number, socketIOController: SocketIOController) {
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameConfiguration?.isMicrosite) {
+        if (GameUtils.isMicroSite(gameConfiguration)) {
             await this.openGameMicrosite(gameId);
             return;
         }
@@ -463,7 +465,7 @@ export default class GameUtils {
         loading.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameConfiguration?.isMicrosite && !gameConfiguration.mini) {
+        if (GameUtils.isMicroSite(gameConfiguration)) {
             this.openGameMicrosite(gameId, loading);
             return;
         }
@@ -652,7 +654,7 @@ export default class GameUtils {
 
     public static async getDisplayGameName(gameId, breakline = false): Promise<string> {
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameConfiguration.isMicrosite) {
+        if (GameUtils.isMicroSite(gameConfiguration)) {
             return this.getRemoteDisplayGameName(gameId, breakline);
         }
         const lobbyGameNameKey = `lobbyNames.${+gameId}`;
@@ -889,7 +891,7 @@ export default class GameUtils {
 
     public static async getAnimationBanner(id: number, systemPath = "") {
         const gameConfiguration = getGameConfiguration(id);
-        if (gameConfiguration.isMicrosite) {
+        if (GameUtils.isMicroSite(gameConfiguration)) {
             return this.getSpineRemoteBanner(id);
         }
 
@@ -960,7 +962,7 @@ export default class GameUtils {
 
     public static async getStaticBanner(id: number, systemPath = "") {
         const gameConfiguration = getGameConfiguration(id);
-        if (gameConfiguration.isMicrosite) {
+        if (GameUtils.isMicroSite(gameConfiguration)) {
             return this.getRemoteBanner(id);
         }
 
@@ -1134,7 +1136,11 @@ export default class GameUtils {
 
     public static setCanvasVisibilty(active: boolean) {
         const gameContainer = document.getElementById("Cocos2dGameContainer");
-        const canvas = gameContainer.childNodes.item(0);
+        const canvas = gameContainer.childNodes.item(0) as any;
         canvas.style.visibility = active ? "visible" : "hidden";
     }
+
+    public static readonly isMicroSite = (gameConfiguration: GameConfiguration) => {
+        return gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
+    };
 }

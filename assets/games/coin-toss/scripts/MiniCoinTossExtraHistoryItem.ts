@@ -3,7 +3,7 @@ import ExtraDataHistoryItem from "../../_base/view-models/ExtraDataHistoryItem";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class MiniSedieExtraHistoryItem extends ExtraDataHistoryItem {
+export default class MiniCoinTossExtraHistoryItem extends ExtraDataHistoryItem {
     choiceSpriteName = {
         0: "chip_trang",
         1: "chip_do"

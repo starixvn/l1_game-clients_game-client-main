@@ -18,7 +18,7 @@ const defaultConfig = {
     subGuideDomain: "l1-guide-1",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false
-    //clientSubDomain: "l1-client"
+    //clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
 };
 
 const domainMapper = window.envConfig ? undefined : defaultConfig.serverDomainMapper;

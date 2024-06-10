@@ -1,6 +1,6 @@
 
 dealer-vip.png
-size: 729,269
+size: 762,269
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -13,7 +13,7 @@ arm-L
   index: -1
 arm-R
   rotate: true
-  xy: 439, 54
+  xy: 509, 54
   size: 67, 130
   orig: 73, 138
   offset: 2, 4
@@ -27,21 +27,21 @@ body
   index: -1
 bracelet L
   rotate: false
-  xy: 662, 205
+  xy: 463, 24
   size: 21, 24
   orig: 21, 26
   offset: 0, 1
   index: -1
 bracelet R
-  rotate: false
-  xy: 708, 93
+  rotate: true
+  xy: 680, 67
   size: 19, 26
   orig: 21, 26
   offset: 0, 0
   index: -1
 earring-L
   rotate: true
-  xy: 632, 125
+  xy: 632, 127
   size: 11, 27
   orig: 11, 27
   offset: 0, 0
@@ -55,7 +55,7 @@ earring-R
   index: -1
 eye-close
   rotate: true
-  xy: 571, 58
+  xy: 625, 203
   size: 64, 18
   orig: 66, 21
   offset: 1, 1
@@ -124,123 +124,137 @@ hair-side-R-3
   offset: 0, 0
   index: -1
 hair-top-1
-  rotate: true
-  xy: 661, 177
+  rotate: false
+  xy: 686, 9
   size: 26, 56
   orig: 26, 56
   offset: 0, 0
   index: -1
 hair-top-2
   rotate: false
-  xy: 653, 2
+  xy: 661, 147
   size: 31, 58
   orig: 31, 58
   offset: 0, 0
   index: -1
 hair-top-3
-  rotate: false
-  xy: 686, 5
+  rotate: true
+  xy: 431, 2
   size: 20, 56
   orig: 21, 56
   offset: 0, 0
   index: -1
 hair-top-4
   rotate: false
-  xy: 627, 62
+  xy: 645, 207
   size: 33, 60
   orig: 33, 60
   offset: 0, 0
   index: -1
 hair-top-5
   rotate: true
-  xy: 538, 7
+  xy: 489, 3
   size: 45, 67
   orig: 45, 67
   offset: 0, 0
   index: -1
 hair-top-6
   rotate: false
-  xy: 686, 121
+  xy: 714, 32
   size: 37, 54
   orig: 37, 54
   offset: 0, 0
   index: -1
 hair-top-7
-  rotate: true
-  xy: 393, 4
+  rotate: false
+  xy: 715, 97
   size: 38, 53
   orig: 38, 53
   offset: 0, 0
   index: -1
 hand L 1
   rotate: true
-  xy: 393, 44
+  xy: 463, 50
   size: 71, 44
   orig: 71, 62
   offset: 0, 5
   index: -1
 hand L 10
   rotate: false
-  xy: 504, 2
+  xy: 614, 2
   size: 32, 50
   orig: 71, 62
   offset: 33, 5
   index: -1
 hand L 2
   rotate: true
-  xy: 591, 61
+  xy: 625, 140
   size: 61, 34
   orig: 71, 62
   offset: 7, 16
   index: -1
 hand L 3
-  rotate: false
-  xy: 625, 231
+  rotate: true
+  xy: 648, 5
   size: 59, 36
   orig: 71, 62
   offset: 8, 15
   index: -1
 hand L 4
   rotate: true
-  xy: 625, 173
+  xy: 726, 211
   size: 56, 34
   orig: 71, 62
   offset: 10, 16
   index: -1
 hand L 5
-  rotate: false
-  xy: 625, 138
+  rotate: true
+  xy: 680, 88
   size: 57, 33
   orig: 71, 62
   offset: 11, 16
   index: -1
 hand L 6
   rotate: true
-  xy: 686, 208
+  xy: 641, 66
   size: 59, 37
   orig: 71, 62
   offset: 8, 14
   index: -1
 hand L 7
   rotate: true
-  xy: 607, 2
+  xy: 680, 210
   size: 57, 44
   orig: 71, 62
   offset: 9, 11
   index: -1
 hand L 8
   rotate: false
-  xy: 448, 2
+  xy: 558, 2
   size: 54, 50
   orig: 71, 62
   offset: 13, 7
   index: -1
 hand L 9
   rotate: false
-  xy: 662, 63
+  xy: 694, 152
   size: 44, 56
   orig: 71, 62
   offset: 17, 3
+  index: -1
+hand L drop shadow
+  rotate: true
+  xy: 431, 24
+  size: 97, 30
+  orig: 103, 34
+  offset: 3, 1
+  index: -1
+hand R drop shadow
+  rotate: true
+  xy: 393, 3
+  size: 112, 36
+  orig: 119, 39
+  offset: 2, 0
   index: -1
 hand-L
   rotate: true

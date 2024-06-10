@@ -196,16 +196,17 @@ p.footer {
     top: 0;
     background: url(./top-middle.png) no-repeat center;
     background-size: auto 16.8vh;
-    width: auto;
+    width: 100%;
     height: 16.8vh
+    
 }
 
 .bottom-middle{
     position: absolute;
     bottom: 0;
     background: url(./bottom-middle.png) no-repeat bottom center;
-    background-size: auto 54.3vh;
-    width: auto;
+    background-size: auto 53.8vh;
+    width: 100%;
     height: 54.3vh
 }
 

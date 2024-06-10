@@ -1,17 +1,24 @@
-import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
+import _ = require("lodash");
 import SedieRoundHistory from "../../../common/round-history/sedie/SedieRoundHistory";
+import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
+import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import { handlePlacingBet, handleShakeDish } from "./actions/MegaSedieCustomActions";
 import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
+import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
+import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MiniCoinToss extends MiniGameBase {
+    @property({ type: MiniCoinTossBetItem, override: true })
+    betItems: MiniCoinTossBetItem[] = [];
+
     @property(cc.Animation)
     animation: cc.Animation = null;
 
@@ -24,8 +31,11 @@ export default class MiniCoinToss extends MiniGameBase {
     @property(cc.Node)
     miniRoundHistoryContainer: cc.Node = null;
 
+    @property({ type: ProvablyFairComponent, visible: false, override: true })
+    provablyFairComponent: ProvablyFairComponent = null;
+
     public statisticHistory: SedieRoundHistory = null;
-    public miniRoundHistory: MiniRoundHistory = null;
+    public miniRoundHistory: MiniCoinTossLedLight = null;
     openPlateDuration = 0.5;
     openPlatePos = cc.v2(15, 30);
     startRoundDuration = 2;
@@ -61,6 +71,11 @@ export default class MiniCoinToss extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
     }
 
+    clearRoundHistory() {
+        this.currentDataLogs = [];
+        //this.gameData.roundHistory.clearData();
+    }
+
     public highlightLastResult() {
         if (this.currentTimeRemaining <= this.config.stopBetTime) {
             return;
@@ -80,22 +95,8 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     public updateRoundHistory() {
-        const miniHistoryData = this.currentDataLogs.map((d) => {
-            let count = 0;
-            const list = ["red1", "red2", "red3", "red4"];
-            list.forEach((i) => {
-                if (d.result[i]) {
-                    count++;
-                }
-            });
-            return {
-                roundId: d.roundId || d.id,
-                red: count
-            };
-        });
-
-        this.statisticHistory && this.statisticHistory.setData(miniHistoryData.map((d) => d.red));
-        this.miniRoundHistory.setData(miniHistoryData);
+        //this.statisticHistory && this.statisticHistory.setData(miniHistoryData.map((d) => d.red));
+        this.miniRoundHistory.setData(this.currentDataLogs);
     }
 
     shakeThePlate() {
@@ -144,7 +145,7 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     initMiniRoundHistory(node: cc.Node) {
-        this.miniRoundHistory = node.getComponent(MiniRoundHistory);
+        this.miniRoundHistory = node.getComponent(MiniCoinTossLedLight);
         this.miniRoundHistory.managedByParent = true;
 
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
@@ -176,5 +177,17 @@ export default class MiniCoinToss extends MiniGameBase {
 
     checkCircleCountDown() {
         //checkCircleCountDown
+    }
+
+    public sendBetAtChoice(choice: string, bet: number) {
+        const betData = {
+            clientSeed: _.random(1000, 9999).toString(),
+            amount: bet,
+            betChoice: choice,
+            username: userManager.userName,
+            clientSentTime: new Date()
+        };
+
+        this.sendSocketData("bet", betData);
     }
 }

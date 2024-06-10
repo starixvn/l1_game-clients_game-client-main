@@ -1,4 +1,5 @@
-import MiniSedie from "../MiniSedie";
+import MiniSedie from "../../../muliplay-mini-sedie/scripts/MiniSedie";
+
 
 export const handlePlacingBet = (game: MiniSedie) => () => {
     game.highlightLastResult();

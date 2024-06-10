@@ -199,7 +199,7 @@ export default class MiniSedie extends MultiplayGameSingle {
 
         const doLaterPayOut = () => {
             this.highlightAndPayout(settlement);
-            !animated && this.gameData.settlement.showStatus();
+            this.gameData.settlement.showStatus();
             this.inSettlementSequence = false;
         };
 

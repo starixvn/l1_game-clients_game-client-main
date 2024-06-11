@@ -7,10 +7,13 @@ import ProvablyFairComponent from "../../_base/view-models/provably-fair/Provabl
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { handlePlacingBet, handleShakeDish } from "./actions/MegaSedieCustomActions";
+import { handleBeginStarting, handlePlacingBet } from "./actions/MiniCoinTossCustomActions";
 import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
 import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
 import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
+import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
+import { HighlightResult } from "./HighLightResult";
+import { FlipCoin } from "./FlipCoin";
 
 const { ccclass, property } = cc._decorator;
 
@@ -34,6 +37,19 @@ export default class MiniCoinToss extends MiniGameBase {
     @property({ type: ProvablyFairComponent, visible: false, override: true })
     provablyFairComponent: ProvablyFairComponent = null;
 
+    @property({ type: cc.Node })
+    winningResultNode: cc.Node = null;
+
+    @property({ type: cc.Node })
+    flipCoinNode: cc.Node = null;
+
+    @property({ type: cc.Node })
+    highlightResultNode: cc.Node = null;
+
+    private winningResult: MiniCoinTossWinningResult = null;
+    private flipCoin: FlipCoin = null;
+    private highlightResult: HighlightResult = null;
+
     public statisticHistory: SedieRoundHistory = null;
     public miniRoundHistory: MiniCoinTossLedLight = null;
     openPlateDuration = 0.5;
@@ -56,7 +72,16 @@ export default class MiniCoinToss extends MiniGameBase {
 
     onLoad() {
         super.onLoad();
+        this.fetchComponents();
+        this.winningResult.hideQuickly();
+        this.flipCoin.init();
         this.animatedTime.setAnimatedY(30, -5);
+    }
+
+    fetchComponents() {
+        this.winningResult = this.winningResultNode.getComponent(MiniCoinTossWinningResult);
+        this.flipCoin = this.flipCoinNode.getComponent(FlipCoin);
+        this.highlightResult = this.highlightResultNode.getComponent(HighlightResult);
     }
 
     initMiniPanel(miniPanel: MiniPanel) {
@@ -67,7 +92,7 @@ export default class MiniCoinToss extends MiniGameBase {
 
     initGameDataEvents() {
         super.initGameDataEvents();
-        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleShakeDish);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
     }
 
@@ -99,8 +124,10 @@ export default class MiniCoinToss extends MiniGameBase {
         this.miniRoundHistory.setData(this.currentDataLogs);
     }
 
-    shakeThePlate() {
-        //shakeThePlate
+    handleStartNewRound() {
+        this.winningResult.hideQuickly();
+        this.flipCoin.playAnim();
+        this.highlightResult.hide();
     }
 
     handleRoundHistory() {
@@ -109,13 +136,25 @@ export default class MiniCoinToss extends MiniGameBase {
 
     showSettlementResult(settlement: any) {
         this.gameAudios && this.gameAudios.playEndGameAudio();
+        this.flipCoin.setStatusNode(false);
+        this.winningResult.setResult(settlement?.result);
         if (appManager.GAME_IS_SHOWED) {
             this.handleAnimResult();
         }
     }
 
     handleAnimResult() {
-        //handleAnimResult
+        this.tween(this.winningResultNode)
+            .call(() => {
+                this.winningResult.show();
+            })
+            .delay(this.showResultDuration)
+            .call(() => {
+                if (this.gameData?.settlement?.settlement) {
+                    this.highlightResult.show(this.gameData?.settlement?.settlement?.result);
+                }
+            })
+            .start();
     }
 
     handleAfterSettlementResult(settlement: any, animated: boolean) {
@@ -167,18 +206,6 @@ export default class MiniCoinToss extends MiniGameBase {
         });
     }
 
-    openPlate(animated: boolean) {
-        // openPlate
-    }
-
-    closePlate(animated = true) {
-        //closePlate
-    }
-
-    checkCircleCountDown() {
-        //checkCircleCountDown
-    }
-
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {
             clientSeed: _.random(1000, 9999).toString(),
@@ -189,5 +216,9 @@ export default class MiniCoinToss extends MiniGameBase {
         };
 
         this.sendSocketData("bet", betData);
+    }
+
+    hideFlipCoinNode() {
+        //this.flipCoin.setStatusNode(false);
     }
 }

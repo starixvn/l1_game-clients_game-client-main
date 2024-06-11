@@ -585,6 +585,15 @@ const data = {
         reachMaxWin: "You reached the Max Win",
         warningTrialMode: "Play Real,\nWin Real",
         multiplier_preview_odds: "Multiplier Bonus will apply for Tumble Win."
+    },
+    toolbarGuide: {
+        fullscreen: "FULLSCREEN EXPERIENCE",
+        buttonClose: "Close",
+        buttonDoNotShow: "Don't Show Again",
+        toolbarGuide1: "Tap",
+        toolbarGuide2: "in address bar",
+        toolbarGuide3: `Tap "Hide Toolbar" in menu`,
+        toolbarGuide4: "Hide Toolbar"
     }
 };
 

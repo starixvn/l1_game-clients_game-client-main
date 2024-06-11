@@ -566,6 +566,15 @@ const data = {
         reachMaxWin: "您達到了最大勝利",
         warningTrialMode: "真玩，\n贏真錢",
         multiplier_preview_odds: "乘數獎金將適用於翻滾獲勝。"
+    },
+    toolbarGuide: {
+        fullscreen: "全屏體驗",
+        buttonClose: "關閉",
+        buttonDoNotShow: "不再顯示",
+        toolbarGuide1: "點選",
+        toolbarGuide2: "網址欄",
+        toolbarGuide3: `點擊“隱藏工具列” 在選單中`,
+        toolbarGuide4: "隱藏工具欄"
     }
 };
 

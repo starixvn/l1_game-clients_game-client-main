@@ -566,6 +566,15 @@ const data = {
         reachMaxWin: "您达到了最大胜利",
         warningTrialMode: "真玩，\n赢真钱",
         multiplier_preview_odds: "乘数奖金将适用于翻滚获胜。"
+    },
+    toolbarGuide: {
+        fullscreen: "全屏体验",
+        buttonClose: "关闭",
+        buttonDoNotShow: "不再显示",
+        toolbarGuide1: "点击",
+        toolbarGuide2: "地址栏",
+        toolbarGuide3: `点击“隐藏工具栏” 在选单中`,
+        toolbarGuide4: "隐藏工具栏"
     }
 };
 

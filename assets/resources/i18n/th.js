@@ -592,6 +592,15 @@ const data = {
         reachMaxWin: "คุณถึงยอดชนะสูงสุด",
         warningTrialMode: "เล่นจริง\nชนะจริง",
         multiplier_preview_odds: " โบนัสตัวคูณจะใช้\nสำหรับ Tumble Win"
+    },
+    toolbarGuide: {
+        fullscreen: "โหมดเต็มหน้าจอ",
+        buttonClose: "ปิด",
+        buttonDoNotShow: "ไม่ต้องแสดงอีก",
+        toolbarGuide1: "แตะ",
+        toolbarGuide2: "ในแถบที่อยู่",
+        toolbarGuide3: `แตะ "ซ่อนแถบเครื่องมือ" ในเมนู`,
+        toolbarGuide4: "ซ่อนแถบเครื่องมือ"
     }
 };
 

@@ -602,6 +602,15 @@ const data = {
         reachMaxWin: "Anda mencapai Maksimal Menang",
         warningTrialMode: "Main Nyata,\nMenang Nyata",
         multiplier_preview_odds: "Bonus Pengganda akan berlaku untuk Kemenangan Tumble."
+    },
+    toolbarGuide: {
+        fullscreen: "PENGALAMAN LAYAR PENUH",
+        buttonClose: "Tutup",
+        buttonDoNotShow: "Jangan tampilkan lagi",
+        toolbarGuide1: "Ketuk",
+        toolbarGuide2: "di baris alamat",
+        toolbarGuide3: `Ketuk "Sembunyikan Toolbar" di menu`,
+        toolbarGuide4: "Sembunyikan Baris Toolbar"
     }
 };
 

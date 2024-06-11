@@ -49,7 +49,6 @@ export default class MiniCoinToss extends MiniGameBase {
     private winningResult: MiniCoinTossWinningResult = null;
     private flipCoin: FlipCoin = null;
     private highlightResult: HighlightResult = null;
-
     public statisticHistory: SedieRoundHistory = null;
     public miniRoundHistory: MiniCoinTossLedLight = null;
     openPlateDuration = 0.5;
@@ -116,6 +115,7 @@ export default class MiniCoinToss extends MiniGameBase {
     private highlightWonItems(settlementResult: any, isAnimated = true) {
         this.betItems.forEach((betItem) => {
             betItem.setHighlight(settlementResult[betItem.node.name], isAnimated);
+            betItem.handleHighlightAnim(!settlementResult[betItem.node.name] && isAnimated);
         });
     }
 
@@ -152,6 +152,8 @@ export default class MiniCoinToss extends MiniGameBase {
             .call(() => {
                 if (this.gameData?.settlement?.settlement) {
                     this.highlightResult.show(this.gameData?.settlement?.settlement?.result);
+                    this.highlightWonItems(this.gameData?.settlement?.settlement?.settlementResult);
+                    this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
                 }
             })
             .start();

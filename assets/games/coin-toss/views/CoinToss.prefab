@@ -1692,7 +1692,7 @@
     },
     "_enabled": true,
     "prefab": {
-      "__uuid__": "46863375-378f-40bc-ae06-3e3cdcfb3ec1"
+      "__uuid__": "922053ec-317c-4d64-91b4-da67a16d5844"
     },
     "initializationEventHandlers": [
       {
@@ -3372,12 +3372,8 @@
     "enabledHighlightOdds": false,
     "highlightOddsBackground": null,
     "opacityOdds": 255,
-    "normalIcon": {
-      "__id__": 50
-    },
-    "loseIcon": {
-      "__id__": 79
-    },
+    "normalIcon": null,
+    "loseIcon": null,
     "_id": ""
   },
   {
@@ -4988,12 +4984,8 @@
     "enabledHighlightOdds": false,
     "highlightOddsBackground": null,
     "opacityOdds": 255,
-    "normalIcon": {
-      "__id__": 93
-    },
-    "loseIcon": {
-      "__id__": 121
-    },
+    "normalIcon": null,
+    "loseIcon": null,
     "_id": ""
   },
   {
@@ -7102,8 +7094,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -190,
+        -5,
         0,
         0,
         0,
@@ -7135,7 +7127,7 @@
       "__id__": 189
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 191
@@ -7154,8 +7146,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1909.84,
-      "height": 975.62
+      "width": 810,
+      "height": 496
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7166,7 +7158,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -210,
+        0,
         0,
         0,
         0,
@@ -7207,10 +7199,10 @@
     "paused": false,
     "defaultSkin": "default",
     "defaultAnimation": "confetti",
-    "_preCacheMode": 1,
-    "_cacheMode": 1,
-    "loop": true,
-    "premultipliedAlpha": true,
+    "_preCacheMode": 0,
+    "_cacheMode": 0,
+    "loop": false,
+    "premultipliedAlpha": false,
     "timeScale": 1,
     "_accTime": 0,
     "_playCount": 0,
@@ -7220,12 +7212,10 @@
     "_animationName": "confetti",
     "_animationQueue": [],
     "_headAniInfo": null,
-    "_playTimes": 0,
+    "_playTimes": 1,
     "_isAniComplete": true,
-    "_N$skeletonData": {
-      "__uuid__": "8c5ee001-15fa-441d-9788-ea8198acdd07"
-    },
-    "_N$_defaultCacheMode": 1,
+    "_N$skeletonData": null,
+    "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
     "_N$debugBones": false,
     "_N$debugMesh": false,
@@ -7283,8 +7273,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -196,
-        -17,
+        0,
+        0,
         0,
         0,
         0,
@@ -7414,8 +7404,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        227,
+        23,
         0,
         0,
         0,
@@ -7447,7 +7437,7 @@
       "__id__": 197
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 199
@@ -7466,8 +7456,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1909.84,
-      "height": 975.62
+      "width": 810,
+      "height": 496
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7478,7 +7468,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        214,
+        0,
         0,
         0,
         0,
@@ -7519,10 +7509,10 @@
     "paused": false,
     "defaultSkin": "default",
     "defaultAnimation": "confetti",
-    "_preCacheMode": 1,
-    "_cacheMode": 1,
-    "loop": true,
-    "premultipliedAlpha": true,
+    "_preCacheMode": 0,
+    "_cacheMode": 0,
+    "loop": false,
+    "premultipliedAlpha": false,
     "timeScale": 1,
     "_accTime": 0,
     "_playCount": 0,
@@ -7532,12 +7522,10 @@
     "_animationName": "confetti",
     "_animationQueue": [],
     "_headAniInfo": null,
-    "_playTimes": 0,
+    "_playTimes": 1,
     "_isAniComplete": true,
-    "_N$skeletonData": {
-      "__uuid__": "8c5ee001-15fa-441d-9788-ea8198acdd07"
-    },
-    "_N$_defaultCacheMode": 1,
+    "_N$skeletonData": null,
+    "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
     "_N$debugBones": false,
     "_N$debugMesh": false,
@@ -7595,8 +7583,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        192,
-        22,
+        0,
+        0,
         0,
         0,
         0,
@@ -8530,7 +8518,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -1,
+        0,
         0,
         0,
         0,
@@ -8575,7 +8563,7 @@
     "_lineHeight": 44,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
+      "__uuid__": "0763b17c-4af5-4b06-aaf9-9ab41eb64775"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,

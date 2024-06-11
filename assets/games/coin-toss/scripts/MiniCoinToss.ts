@@ -1,25 +1,29 @@
 import _ = require("lodash");
-import SedieRoundHistory from "../../../common/round-history/sedie/SedieRoundHistory";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
+import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
+import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
-import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
-import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
-import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
-import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
-import { HighlightResult } from "./HighLightResult";
 import { FlipCoin } from "./FlipCoin";
-import { BetModel } from "../../_base_new/models/BetModel";
+import { HighlightResult } from "./HighLightResult";
+import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
+import { CoinTossId, coinTossConfigs } from "./MiniCoinTossConfigs";
+import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
+import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
+import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
+import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MiniCoinToss extends MiniGameBase {
+    @property({ type: MD5Component, visible: false })
+    md5Component: MD5Component = null;
+
     @property({ type: MiniCoinTossBetItem, override: true })
     betItems: MiniCoinTossBetItem[] = [];
 
@@ -59,7 +63,7 @@ export default class MiniCoinToss extends MiniGameBase {
     private winningResult: MiniCoinTossWinningResult = null;
     private flipCoin: FlipCoin = null;
     private highlightResult: HighlightResult = null;
-    public statisticHistory: SedieRoundHistory = null;
+    public statisticHistory: MiniCoinTossRoundHistory = null;
     public miniRoundHistory: MiniCoinTossLedLight = null;
     openPlateDuration = 0.5;
     openPlatePos = cc.v2(15, 30);
@@ -131,7 +135,13 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     public updateRoundHistory() {
-        //this.statisticHistory && this.statisticHistory.setData(miniHistoryData.map((d) => d.red));
+        const miniHistoryData = this.currentDataLogs.map((d) => {
+            return {
+                head: d.result.head
+            };
+        });
+
+        this.statisticHistory && this.statisticHistory.setData(miniHistoryData);
         this.miniRoundHistory.setData(this.currentDataLogs);
     }
 
@@ -209,7 +219,7 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     initRoundHistory(node: cc.Node) {
-        this.statisticHistory = node.getComponent(SedieRoundHistory);
+        this.statisticHistory = node.getComponent(MiniCoinTossRoundHistory);
         this.statisticHistory.logControl.managedByParent = true;
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
             this.statisticHistory.logControl.nextItemActive = false;
@@ -217,6 +227,7 @@ export default class MiniCoinToss extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
             this.statisticHistory.logControl.nextItemActive = true;
         });
+        this.statisticHistory.init(this);
     }
 
     public sendBetAtChoice(choice: string, bet: number) {

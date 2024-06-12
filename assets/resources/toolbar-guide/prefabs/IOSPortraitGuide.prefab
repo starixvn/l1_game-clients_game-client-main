@@ -22,22 +22,19 @@
       },
       {
         "__id__": 7
-      },
-      {
-        "__id__": 70
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 73
+        "__id__": 70
       },
       {
-        "__id__": 74
+        "__id__": 71
       }
     ],
     "_prefab": {
-      "__id__": 75
+      "__id__": 72
     },
     "_opacity": 255,
     "_color": {
@@ -428,7 +425,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 543.08,
+      "width": 551.3,
       "height": 90.72
     },
     "_anchorPoint": {
@@ -492,8 +489,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "PENGALAMAN LAYAR PENUH",
-    "_N$string": "PENGALAMAN LAYAR PENUH",
+    "_string": "TOOLBARGUIDE.FULLSCREEN",
+    "_N$string": "TOOLBARGUIDE.FULLSCREEN",
     "_fontSize": 36,
     "_lineHeight": 72,
     "_enableWrapText": true,
@@ -619,7 +616,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "28a99034-30d6-48db-8c9f-c1087d939f49"
+      "__uuid__": "fffe4c43-571c-4083-839c-3280b37c1ef5"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -874,8 +871,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Sembunyikan Baris Toolbar",
-    "_N$string": "Sembunyikan Baris Toolbar",
+    "_string": "toolbarGuide.toolbarGuide4",
+    "_N$string": "toolbarGuide.toolbarGuide4",
     "_fontSize": 26,
     "_lineHeight": 52,
     "_enableWrapText": true,
@@ -1706,9 +1703,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "c0ad5c18-fb6c-4528-9de5-6d74fd02fe08"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -2026,9 +2020,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "b7bebaab-bbf7-4382-98d0-03e88ccc85a7"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -2213,113 +2204,6 @@
       "__uuid__": "55aac91f-26d7-4c45-b234-f9ec2f78c846"
     },
     "fileId": "bfJBvixqREZKOnlobSjaZT",
-    "sync": false
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "Guide-Hide Toolbar",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 1
-    },
-    "_children": [],
-    "_active": false,
-    "_components": [
-      {
-        "__id__": 71
-      }
-    ],
-    "_prefab": {
-      "__id__": 72
-    },
-    "_opacity": 110,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 750,
-      "height": 1624
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_trs": {
-      "__type__": "TypedArray",
-      "ctor": "Float64Array",
-      "array": [
-        -1,
-        -49,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0.6,
-        0.6,
-        1
-      ]
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 70
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "967d7e8b-8d91-424e-b334-138d44e277e0"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 1
-    },
-    "asset": {
-      "__uuid__": "55aac91f-26d7-4c45-b234-f9ec2f78c846"
-    },
-    "fileId": "56gq/LrlNB1rfIg0LXTxvj",
     "sync": false
   },
   {

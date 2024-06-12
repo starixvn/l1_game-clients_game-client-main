@@ -7,13 +7,14 @@ import ProvablyFairComponent from "../../_base/view-models/provably-fair/Provabl
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { handleBeginStarting, handlePlacingBet } from "./actions/MiniCoinTossCustomActions";
+import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
 import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
 import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { HighlightResult } from "./HighLightResult";
 import { FlipCoin } from "./FlipCoin";
+import { BetModel } from "../../_base_new/models/BetModel";
 
 const { ccclass, property } = cc._decorator;
 
@@ -45,6 +46,15 @@ export default class MiniCoinToss extends MiniGameBase {
 
     @property({ type: cc.Node })
     highlightResultNode: cc.Node = null;
+
+    @property(cc.Node)
+    headPercentage: cc.Node = null;
+
+    @property(cc.Node)
+    tailPercentage: cc.Node = null;
+
+    @property(cc.Node)
+    nodePercentageLayout: cc.Node = null;
 
     private winningResult: MiniCoinTossWinningResult = null;
     private flipCoin: FlipCoin = null;
@@ -93,6 +103,7 @@ export default class MiniCoinToss extends MiniGameBase {
         super.initGameDataEvents();
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
+        this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
     }
 
     clearRoundHistory() {
@@ -220,7 +231,15 @@ export default class MiniCoinToss extends MiniGameBase {
         this.sendSocketData("bet", betData);
     }
 
-    hideFlipCoinNode() {
-        //this.flipCoin.setStatusNode(false);
+    updateProgressBarBetPercentage(progress: number, isShowProgressDefault: boolean) {
+        this.nodePercentageLayout.active = !isShowProgressDefault;
+        const widthDefault = this.nodePercentageLayout.width;
+        if (this.nodePercentageLayout) {
+            const [headNode, tailNode] = this.nodePercentageLayout.children;
+            if (headNode && tailNode) {
+                headNode.width = progress * (widthDefault / 100);
+                tailNode.width = widthDefault - headNode.width;
+            }
+        }
     }
 }

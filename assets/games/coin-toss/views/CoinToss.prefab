@@ -6724,8 +6724,8 @@
     "paused": false,
     "defaultSkin": "default",
     "defaultAnimation": "settle",
-    "_preCacheMode": 0,
-    "_cacheMode": 0,
+    "_preCacheMode": 2,
+    "_cacheMode": 2,
     "loop": true,
     "premultipliedAlpha": false,
     "timeScale": 1,
@@ -6742,7 +6742,7 @@
     "_N$skeletonData": {
       "__uuid__": "05d1f2c8-4207-4855-aedf-e8a0dcf6f751"
     },
-    "_N$_defaultCacheMode": 0,
+    "_N$_defaultCacheMode": 2,
     "_N$debugSlots": false,
     "_N$debugBones": false,
     "_N$debugMesh": false,
@@ -9446,6 +9446,15 @@
     },
     "highlightResultNode": {
       "__id__": 188
+    },
+    "headPercentage": {
+      "__id__": 27
+    },
+    "tailPercentage": {
+      "__id__": 30
+    },
+    "nodePercentageLayout": {
+      "__id__": 26
     },
     "_id": ""
   },

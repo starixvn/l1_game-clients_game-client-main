@@ -30,7 +30,7 @@
                 <key>spriteSourceSize</key>
                 <string>{389,128}</string>
                 <key>textureRect</key>
-                <string>{{3,267},{389,128}}</string>
+                <string>{{3,127},{389,128}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -45,7 +45,7 @@
                 <key>spriteSourceSize</key>
                 <string>{66,74}</string>
                 <key>textureRect</key>
-                <string>{{394,267},{64,68}}</string>
+                <string>{{794,127},{64,68}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -75,7 +75,7 @@
                 <key>spriteSourceSize</key>
                 <string>{390,62}</string>
                 <key>textureRect</key>
-                <string>{{3,73},{390,62}}</string>
+                <string>{{145,3},{390,62}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -90,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{96,68}</string>
                 <key>textureRect</key>
-                <string>{{395,73},{96,68}}</string>
+                <string>{{537,3},{96,68}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +105,22 @@
                 <key>spriteSourceSize</key>
                 <string>{132,132}</string>
                 <key>textureRect</key>
-                <string>{{3,143},{122,122}}</string>
+                <string>{{635,3},{122,122}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>phone_mask.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{398,690}</string>
+                <key>spriteSourceSize</key>
+                <string>{398,690}</string>
+                <key>textureRect</key>
+                <string>{{394,127},{398,690}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -121,9 +136,9 @@
             <key>realTextureFileName</key>
             <string>toolbar-guide.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:af174cae3cb5fd63096b81ddab5d4d94:008eabbc7736ff8178ed54a5232bdbcc:7effe943ec7dab0b3476b6c29cb6db9e$</string>
+            <string>$TexturePacker:SmartUpdate:3a4284a019245a4a45479138e43de409:82ecc4ae78c5d50a2810515361d2cfe2:7effe943ec7dab0b3476b6c29cb6db9e$</string>
             <key>textureFileName</key>
             <string>toolbar-guide.png</string>
         </dict>

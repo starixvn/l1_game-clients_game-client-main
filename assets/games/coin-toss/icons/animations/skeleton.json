@@ -1,0 +1,339 @@
+{
+"skeleton": {
+	"hash": "a3RcY6RTzIBu7/Djnr3cozSo5YA=",
+	"spine": "3.8.75",
+	"x": -107.5,
+	"y": -107.5,
+	"width": 215,
+	"height": 215,
+	"images": "./anim/icon_lobby/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "flag", "parent": "root", "rotation": 0.38, "x": -0.78, "y": 32.67 },
+	{ "name": "biden", "parent": "root", "x": -50.92, "y": -21.72, "scaleX": 0.9, "scaleY": 0.9 },
+	{ "name": "trump", "parent": "root", "x": 38.88, "y": -23.47, "scaleX": 0.9, "scaleY": 0.9 },
+	{ "name": "bone", "parent": "root", "y": -29.83 },
+	{ "name": "bone2", "parent": "root" },
+	{ "name": "vs", "parent": "root", "y": 35.04, "scaleX": 0.64, "scaleY": 0.64 },
+	{ "name": "coin2", "parent": "root", "x": -0.46, "y": -100.1 }
+],
+"slots": [
+	{ "name": "bg", "bone": "root", "attachment": "bg" },
+	{ "name": "bg1", "bone": "root", "attachment": "bg1" },
+	{ "name": "mask", "bone": "root", "attachment": "mask" },
+	{ "name": "flag/1", "bone": "flag", "color": "ffffff00", "attachment": "flag/9" },
+	{ "name": "vs", "bone": "vs", "attachment": "vs" },
+	{ "name": "anh sang 3D", "bone": "root", "attachment": "anh sang 3D" },
+	{ "name": "confetti/confetti1", "bone": "bone", "attachment": "confetti/confetti9", "blend": "screen" },
+	{ "name": "BIDEN", "bone": "biden", "attachment": "BIDEN" },
+	{ "name": "trump", "bone": "trump", "attachment": "trump" },
+	{ "name": "coin/coin1", "bone": "coin2", "attachment": "coin/coin0030" },
+	{ "name": "BG_text", "bone": "root", "attachment": "BG_text" },
+	{ "name": "text", "bone": "root", "attachment": "text" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"coin/coin1": {
+				"coin/coin0001": { "width": 100, "height": 100 },
+				"coin/coin0002": { "width": 100, "height": 100 },
+				"coin/coin0003": { "width": 100, "height": 100 },
+				"coin/coin0004": { "width": 100, "height": 100 },
+				"coin/coin0005": { "width": 100, "height": 100 },
+				"coin/coin0006": { "width": 100, "height": 100 },
+				"coin/coin0007": { "width": 100, "height": 100 },
+				"coin/coin0008": { "width": 100, "height": 100 },
+				"coin/coin0009": { "width": 100, "height": 100 },
+				"coin/coin0010": { "width": 100, "height": 100 },
+				"coin/coin0011": { "width": 100, "height": 100 },
+				"coin/coin0012": { "width": 100, "height": 100 },
+				"coin/coin0013": { "width": 100, "height": 100 },
+				"coin/coin0014": { "width": 100, "height": 100 },
+				"coin/coin0015": { "width": 100, "height": 100 },
+				"coin/coin0016": { "width": 100, "height": 100 },
+				"coin/coin0017": { "width": 100, "height": 100 },
+				"coin/coin0018": { "width": 100, "height": 100 },
+				"coin/coin0019": { "width": 100, "height": 100 },
+				"coin/coin0020": { "width": 100, "height": 100 },
+				"coin/coin0021": { "width": 100, "height": 100 },
+				"coin/coin0022": { "width": 100, "height": 100 },
+				"coin/coin0023": { "width": 100, "height": 100 },
+				"coin/coin0024": { "width": 100, "height": 100 },
+				"coin/coin0025": { "width": 100, "height": 100 },
+				"coin/coin0026": { "width": 100, "height": 100 },
+				"coin/coin0027": { "width": 100, "height": 100 },
+				"coin/coin0028": { "width": 100, "height": 100 },
+				"coin/coin0029": { "width": 100, "height": 100 },
+				"coin/coin0030": { "width": 100, "height": 100 }
+			},
+			"bg": {
+				"bg": { "width": 215, "height": 215 }
+			},
+			"BIDEN": {
+				"BIDEN": { "x": 4.62, "y": -5.57, "width": 113, "height": 261 }
+			},
+			"bg1": {
+				"bg1": { "y": 1.6, "width": 196, "height": 196 }
+			},
+			"flag/1": {
+				"flag/1": { "width": 200, "height": 114 },
+				"flag/2": { "width": 200, "height": 114 },
+				"flag/3": { "width": 200, "height": 114 },
+				"flag/4": { "width": 200, "height": 114 },
+				"flag/5": { "width": 200, "height": 114 },
+				"flag/6": { "width": 200, "height": 114 },
+				"flag/7": { "width": 200, "height": 114 },
+				"flag/8": { "width": 200, "height": 114 },
+				"flag/9": { "width": 200, "height": 114 },
+				"flag/10": { "width": 200, "height": 114 },
+				"flag/11": { "width": 200, "height": 114 },
+				"flag/12": { "width": 200, "height": 114 }
+			},
+			"trump": {
+				"trump": { "x": 0.23, "y": -0.46, "width": 78, "height": 246 }
+			},
+			"confetti/confetti1": {
+				"confetti/confetti1": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti2": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti3": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti4": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti5": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti6": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti7": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti8": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti9": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti10": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti11": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti12": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti13": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti14": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti15": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti16": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti17": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti19": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti20": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti21": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti22": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti23": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti24": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti25": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti26": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti27": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti28": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti29": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti30": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti31": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti32": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti33": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti35": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti36": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti37": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti38": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti39": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 },
+				"confetti/confetti40": { "x": 0.5, "y": 0.5, "width": 209, "height": 257 }
+			},
+			"anh sang 3D": {
+				"anh sang 3D": { "y": 61, "width": 195, "height": 75 }
+			},
+			"BG_text": {
+				"BG_text": { "y": -80.82, "width": 212, "height": 47 }
+			},
+			"mask": {
+				"mask": {
+					"type": "clipping",
+					"end": "mask",
+					"vertexCount": 26,
+					"vertices": [ -99.66, 83.43, -99.2, 89.2, -97.96, 92.02, -94.8, 94.39, -92.2, 96.99, -86.32, 100.16, -78.07, 100.04, -64.74, 99.93, 41.93, 100.93, 90.23, 100.7, 94.13, 98.19, 96.78, 94.73, 99.63, 90.85, 100.25, 84.12, 100.65, 74.94, 98.05, -82.8, 96.97, -87.65, 95.54, -90.62, 93.98, -92.97, 91.32, -95.57, 87.54, -97.34, -84.26, -97.56, -89.17, -95.49, -91.96, -93.54, -94.75, -90.56, -99.4, -85.16 ],
+					"color": "ce3a3aff"
+				}
+			},
+			"text": {
+				"text": { "x": 4.64, "y": -76.24, "width": 88, "height": 14 }
+			},
+			"vs": {
+				"vs": { "x": -0.42, "y": -7.26, "width": 171, "height": 176 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"slots": {
+			"flag/1": {
+				"attachment": [
+					{ "name": "flag/1" },
+					{ "time": 0.1667, "name": "flag/2" },
+					{ "time": 0.3667, "name": "flag/3" },
+					{ "time": 0.5333, "name": "flag/4" },
+					{ "time": 0.7333, "name": "flag/5" },
+					{ "time": 0.9, "name": "flag/6" },
+					{ "time": 1.1, "name": "flag/7" },
+					{ "time": 1.2667, "name": "flag/8" },
+					{ "time": 1.4667, "name": "flag/9" },
+					{ "time": 1.6333, "name": "flag/10" },
+					{ "time": 1.8333, "name": "flag/11" },
+					{ "time": 2, "name": "flag/12" }
+				]
+			},
+			"coin/coin1": {
+				"color": [
+					{ "time": 1.8333, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "coin/coin0001" },
+					{ "time": 0.0333, "name": "coin/coin0002" },
+					{ "time": 0.0667, "name": "coin/coin0003" },
+					{ "time": 0.1, "name": "coin/coin0004" },
+					{ "time": 0.1333, "name": "coin/coin0005" },
+					{ "time": 0.1667, "name": "coin/coin0006" },
+					{ "time": 0.2, "name": "coin/coin0007" },
+					{ "time": 0.2333, "name": "coin/coin0008" },
+					{ "time": 0.2667, "name": "coin/coin0009" },
+					{ "time": 0.3, "name": "coin/coin0010" },
+					{ "time": 0.3333, "name": "coin/coin0011" },
+					{ "time": 0.3667, "name": "coin/coin0012" },
+					{ "time": 0.4, "name": "coin/coin0013" },
+					{ "time": 0.4333, "name": "coin/coin0014" },
+					{ "time": 0.4667, "name": "coin/coin0015" },
+					{ "time": 0.5, "name": "coin/coin0016" },
+					{ "time": 0.5333, "name": "coin/coin0021" },
+					{ "time": 0.5667, "name": "coin/coin0022" },
+					{ "time": 0.6, "name": "coin/coin0023" },
+					{ "time": 0.6333, "name": "coin/coin0024" },
+					{ "time": 0.6667, "name": "coin/coin0025" },
+					{ "time": 0.7, "name": "coin/coin0026" },
+					{ "time": 0.7333, "name": "coin/coin0027" },
+					{ "time": 0.7667, "name": "coin/coin0028" },
+					{ "time": 0.8, "name": "coin/coin0029" },
+					{ "time": 0.8333, "name": "coin/coin0030" },
+					{ "time": 0.8667, "name": "coin/coin0001" },
+					{ "time": 0.9333, "name": "coin/coin0002" },
+					{ "time": 0.9667, "name": "coin/coin0003" },
+					{ "time": 1, "name": "coin/coin0004" },
+					{ "time": 1.0333, "name": "coin/coin0005" },
+					{ "time": 1.0667, "name": "coin/coin0006" },
+					{ "time": 1.1, "name": "coin/coin0007" },
+					{ "time": 1.1333, "name": "coin/coin0008" },
+					{ "time": 1.1667, "name": "coin/coin0009" },
+					{ "time": 1.2, "name": "coin/coin0010" },
+					{ "time": 1.2333, "name": "coin/coin0011" },
+					{ "time": 1.2667, "name": "coin/coin0012" },
+					{ "time": 1.3, "name": "coin/coin0013" },
+					{ "time": 1.3333, "name": "coin/coin0014" },
+					{ "time": 1.3667, "name": "coin/coin0015" },
+					{ "time": 1.4, "name": "coin/coin0024" },
+					{ "time": 1.4333, "name": "coin/coin0025" },
+					{ "time": 1.4667, "name": "coin/coin0026" },
+					{ "time": 1.5, "name": "coin/coin0027" },
+					{ "time": 1.5333, "name": "coin/coin0028" },
+					{ "time": 1.5667, "name": "coin/coin0029" },
+					{ "time": 1.6, "name": "coin/coin0030" },
+					{ "time": 1.6333, "name": "coin/coin0001" },
+					{ "time": 1.7, "name": "coin/coin0002" },
+					{ "time": 1.7333, "name": "coin/coin0003" },
+					{ "time": 1.7667, "name": "coin/coin0004" },
+					{ "time": 1.8, "name": "coin/coin0005" },
+					{ "time": 1.8333, "name": "coin/coin0006" },
+					{ "time": 1.8667, "name": "coin/coin0007" },
+					{ "time": 1.9, "name": "coin/coin0008" },
+					{ "time": 1.9333, "name": "coin/coin0009" },
+					{ "time": 1.9667, "name": "coin/coin0010" },
+					{ "time": 2, "name": "coin/coin0011" }
+				]
+			},
+			"confetti/confetti1": {
+				"color": [
+					{ "time": 0.8, "color": "ffffffff" },
+					{ "time": 1.2667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "confetti/confetti1" },
+					{ "time": 0.0333, "name": "confetti/confetti2" },
+					{ "time": 0.0667, "name": "confetti/confetti3" },
+					{ "time": 0.1, "name": "confetti/confetti4" },
+					{ "time": 0.1333, "name": "confetti/confetti5" },
+					{ "time": 0.1667, "name": "confetti/confetti6" },
+					{ "time": 0.2, "name": "confetti/confetti7" },
+					{ "time": 0.2333, "name": "confetti/confetti8" },
+					{ "time": 0.2667, "name": "confetti/confetti9" },
+					{ "time": 0.3, "name": "confetti/confetti10" },
+					{ "time": 0.3333, "name": "confetti/confetti11" },
+					{ "time": 0.3667, "name": "confetti/confetti12" },
+					{ "time": 0.4, "name": "confetti/confetti13" },
+					{ "time": 0.4333, "name": "confetti/confetti14" },
+					{ "time": 0.4667, "name": "confetti/confetti15" },
+					{ "time": 0.5, "name": "confetti/confetti16" },
+					{ "time": 0.5333, "name": "confetti/confetti17" },
+					{ "time": 0.5667, "name": "confetti/confetti19" },
+					{ "time": 0.6, "name": "confetti/confetti20" },
+					{ "time": 0.6333, "name": "confetti/confetti21" },
+					{ "time": 0.6667, "name": "confetti/confetti22" },
+					{ "time": 0.7, "name": "confetti/confetti23" },
+					{ "time": 0.7333, "name": "confetti/confetti24" },
+					{ "time": 0.7667, "name": "confetti/confetti25" },
+					{ "time": 0.8, "name": "confetti/confetti26" },
+					{ "time": 0.8333, "name": "confetti/confetti27" },
+					{ "time": 0.8667, "name": "confetti/confetti28" },
+					{ "time": 0.9, "name": "confetti/confetti29" },
+					{ "time": 0.9333, "name": "confetti/confetti30" },
+					{ "time": 0.9667, "name": "confetti/confetti31" },
+					{ "time": 1, "name": "confetti/confetti32" },
+					{ "time": 1.0333, "name": "confetti/confetti33" },
+					{ "time": 1.0667, "name": "confetti/confetti35" },
+					{ "time": 1.1, "name": "confetti/confetti36" },
+					{ "time": 1.1333, "name": "confetti/confetti37" },
+					{ "time": 1.1667, "name": "confetti/confetti38" },
+					{ "time": 1.2, "name": "confetti/confetti39" },
+					{ "time": 1.2333, "name": "confetti/confetti40" }
+				]
+			}
+		},
+		"bones": {
+			"vs": {
+				"scale": [
+					{},
+					{ "time": 0.1667, "x": 1.25, "y": 1.25 },
+					{ "time": 0.3333 },
+					{ "time": 0.5, "x": 1.25, "y": 1.25 },
+					{ "time": 0.6667 },
+					{ "time": 0.8333, "x": 1.25, "y": 1.25 },
+					{ "time": 1 },
+					{ "time": 1.1667, "x": 1.25, "y": 1.25 },
+					{ "time": 1.3333 }
+				]
+			},
+			"coin2": {
+				"translate": [
+					{},
+					{ "time": 1.3333, "y": 102.83 },
+					{ "time": 2, "y": -12.28 }
+				]
+			},
+			"biden": {
+				"translate": [
+					{ "time": 0.1667 },
+					{ "time": 0.4, "y": -1.82 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.8333 },
+					{ "time": 1, "y": 3.64 },
+					{ "time": 1.1667 }
+				]
+			},
+			"trump": {
+				"translate": [
+					{ "time": 0.1667 },
+					{ "time": 0.4, "y": 2.27 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 0.8333 },
+					{ "time": 1, "y": -3.19 },
+					{ "time": 1.1667 }
+				]
+			}
+		}
+	}
+}
+}

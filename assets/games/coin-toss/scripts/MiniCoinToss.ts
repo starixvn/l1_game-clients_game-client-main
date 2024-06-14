@@ -1,4 +1,4 @@
-import _ = require("lodash");
+import { lodash } from "../../../ClientModules";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
@@ -242,7 +242,7 @@ export default class MiniCoinToss extends MiniPFGameBase {
 
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {
-            clientSeed: _.random(1000, 9999).toString(),
+            clientSeed: lodash.random(1000, 9999).toString(),
             amount: bet,
             betChoice: choice,
             username: userManager.userName,

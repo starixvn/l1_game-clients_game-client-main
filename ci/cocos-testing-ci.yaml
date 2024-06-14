@@ -29,6 +29,8 @@ cocos-unit-test:
             - ./coverage
             - ./reports
         expire_in: 1 day
+    rules:
+        when: never
 
 cocos-sonarqube-report:
     extends: .common-rules

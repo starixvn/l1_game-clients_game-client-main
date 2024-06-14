@@ -31,7 +31,9 @@ bundle-verification:
           when: on_success
         - when: never
     allow_failure: false
-
-".ci_rules":
-    test_cocos:
-        - when: never
+unit_test_js:
+    rules:
+        - if: $CI_COMMIT_BRANCH != "disable-test"
+sonar_js:
+    needs:
+    dependencies:

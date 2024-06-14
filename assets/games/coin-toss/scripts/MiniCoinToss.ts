@@ -6,7 +6,7 @@ import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
-import MiniPFGameBase from "../../_base_new/view-models/MiniPFGameBase";
+import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import { FlipCoin } from "./FlipCoin";
 import { HighlightResult } from "./HighLightResult";
@@ -20,7 +20,7 @@ import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class MiniCoinToss extends MiniPFGameBase {
+export default class MiniCoinToss extends MiniGameBase {
     @property({ type: MD5Component, visible: false })
     md5Component: MD5Component = null;
 

@@ -2,6 +2,12 @@ window.envConfig = {
     systemType: "SC1",
     ssl: true,
     subDomain: "proxy",
+    serverDomainMapper: {
+        "www.sabagame.com": "sabagame.net",
+        "www.gamesaba.com": "sabagame.net",
+        "sabagame.com": "sabagame.net",
+        "gamesaba.com": "sabagame.net"
+    },
     env: "",
     sentry: {
         url: "https://19b3909c434341f0b13eb3a8529e5862@sentry.sabagame.com/9",
@@ -15,6 +21,5 @@ window.envConfig = {
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "connect",
-    AppDownloadSubDomain: "https://www.taisaba.com",
-    clientSubDomain: "client"
+    AppDownloadSubDomain: "https://www.taisaba.com"
 };

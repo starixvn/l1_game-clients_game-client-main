@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "a3RcY6RTzIBu7/Djnr3cozSo5YA=",
+	"hash": "JrUv2gFnb8rbWOEGJkIU9xKX0Kw=",
 	"spine": "3.8.75",
 	"x": -107.5,
 	"y": -107.5,
@@ -30,8 +30,7 @@
 	{ "name": "BIDEN", "bone": "biden", "attachment": "BIDEN" },
 	{ "name": "trump", "bone": "trump", "attachment": "trump" },
 	{ "name": "coin/coin1", "bone": "coin2", "attachment": "coin/coin0030" },
-	{ "name": "BG_text", "bone": "root", "attachment": "BG_text" },
-	{ "name": "text", "bone": "root", "attachment": "text" }
+	{ "name": "BG_text", "bone": "root", "attachment": "BG_text" }
 ],
 "skins": [
 	{
@@ -150,9 +149,6 @@
 					"color": "ce3a3aff"
 				}
 			},
-			"text": {
-				"text": { "x": 4.64, "y": -76.24, "width": 88, "height": 14 }
-			},
 			"vs": {
 				"vs": { "x": -0.42, "y": -7.26, "width": 171, "height": 176 }
 			}
@@ -162,22 +158,6 @@
 "animations": {
 	"animation": {
 		"slots": {
-			"flag/1": {
-				"attachment": [
-					{ "name": "flag/1" },
-					{ "time": 0.1667, "name": "flag/2" },
-					{ "time": 0.3667, "name": "flag/3" },
-					{ "time": 0.5333, "name": "flag/4" },
-					{ "time": 0.7333, "name": "flag/5" },
-					{ "time": 0.9, "name": "flag/6" },
-					{ "time": 1.1, "name": "flag/7" },
-					{ "time": 1.2667, "name": "flag/8" },
-					{ "time": 1.4667, "name": "flag/9" },
-					{ "time": 1.6333, "name": "flag/10" },
-					{ "time": 1.8333, "name": "flag/11" },
-					{ "time": 2, "name": "flag/12" }
-				]
-			},
 			"coin/coin1": {
 				"color": [
 					{ "time": 1.8333, "color": "ffffffff" },
@@ -243,6 +223,22 @@
 					{ "time": 1.9333, "name": "coin/coin0009" },
 					{ "time": 1.9667, "name": "coin/coin0010" },
 					{ "time": 2, "name": "coin/coin0011" }
+				]
+			},
+			"flag/1": {
+				"attachment": [
+					{ "name": "flag/1" },
+					{ "time": 0.1667, "name": "flag/2" },
+					{ "time": 0.3667, "name": "flag/3" },
+					{ "time": 0.5333, "name": "flag/4" },
+					{ "time": 0.7333, "name": "flag/5" },
+					{ "time": 0.9, "name": "flag/6" },
+					{ "time": 1.1, "name": "flag/7" },
+					{ "time": 1.2667, "name": "flag/8" },
+					{ "time": 1.4667, "name": "flag/9" },
+					{ "time": 1.6333, "name": "flag/10" },
+					{ "time": 1.8333, "name": "flag/11" },
+					{ "time": 2, "name": "flag/12" }
 				]
 			},
 			"confetti/confetti1": {

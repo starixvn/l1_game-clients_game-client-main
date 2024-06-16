@@ -119,6 +119,7 @@ export default class Lobby extends cc.Component {
     onLoad() {
         document.cookie = "redT=1702;path=/";
         appManager.currentScene = this;
+        uiManager.isPauseLoadingIcons = false;
         this.initMiniPanel();
         this.checkToShowSignName();
         this.loadCategory();
@@ -177,9 +178,9 @@ export default class Lobby extends cc.Component {
     }
 
     loadOtherIconsAndBanners() {
-        if (this.loadedOtherIconsAndBanners) {
-            return;
-        }
+        // if (this.loadedOtherIconsAndBanners) {
+        //     return;
+        // }
         this.loadedOtherIconsAndBanners = true;
         this.lobbyMenu.loadHiddenIcons();
         this.banner.loadBanner(true);

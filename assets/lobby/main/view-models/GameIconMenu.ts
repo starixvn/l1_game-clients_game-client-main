@@ -1,6 +1,7 @@
 import BaseComponent from "../../../common/BaseComponent";
 import GameUtils from "../../../common/GameUtils";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
+import SkeletonIcon from "./SkeletonIcon";
 
 const { ccclass, property } = cc._decorator;
 
@@ -12,7 +13,7 @@ export default abstract class GameIconMenu extends BaseComponent {
     public miniPanel: MiniPanel;
     private initialized = false;
     private loadingGameIds: number[];
-    protected listIconObscure = [];
+    protected listIconObscure: Array<SkeletonIcon> = [];
     protected readonly durationAutoHideSkeleton = 5;
 
     onLoad() {

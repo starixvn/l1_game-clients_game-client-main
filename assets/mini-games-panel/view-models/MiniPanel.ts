@@ -321,6 +321,7 @@ export default class MiniPanel extends BaseComponent {
             Object.values(this.chartsWebView).forEach((chartWebView: LoadWebView) => {
                 chartWebView?.hideWebView();
             });
+            uiManager.isPauseLoadingIcons = false;
         });
     }
 
@@ -538,6 +539,7 @@ export default class MiniPanel extends BaseComponent {
     unCacheAndHideGameLoading(loadingComp: Loading, gameId: number) {
         loadingComp?.setLoadingVisibility(false);
         uiManager.unCacheIconLoading(gameId);
+        //uiManager.isPauseLoadingIcons = false;
     }
 
     getGameLoadingComp(gameId: number): Loading {

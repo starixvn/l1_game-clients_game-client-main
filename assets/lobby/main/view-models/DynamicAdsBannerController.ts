@@ -1,5 +1,6 @@
 import { lazyInject } from "../../../Application";
 import GameUtils, { BannerType } from "../../../common/GameUtils";
+import { uiManager } from "../../../managers/GameUIManager";
 import BannerController from "./BannerController";
 import BannerItem from "./BannerItem";
 import LobbyMenuConfig from "./LobbyMenuConfig";
@@ -21,6 +22,10 @@ export default class DynamicAdsBannerController extends BannerController {
 
     async setGameAds(games: number[]) {
         for (const gameId of games) {
+            if (uiManager.isPauseLoadingIcons) {
+                return;
+            }
+
             await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
         }
     }

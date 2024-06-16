@@ -162,11 +162,25 @@ export default class LobbyMenu extends GameIconMenu {
         return iconNode;
     }
 
-    handleLoadHiddenIcons() {
-        this.listIconObscure.forEach((icon) => {
+    async handleLoadHiddenIcons() {
+        for (const icon of this.listIconObscure) {
+            if (uiManager.isPauseLoadingIcons) {
+                break;
+            }
+
             const idGame = +icon.node.name;
-            icon.loadAnimation(idGame);
-        });
+            try {
+                await icon.loadAnimation(idGame);
+                console.log(`Loaded game icon: ${idGame}`);
+            } catch (e) {
+                console.log(`Cannot load game ${idGame}`, e);
+            }
+        }
+
+        // this.listIconObscure.forEach((iconNeedToLoad) => {
+        //     const idGame = +iconNeedToLoad.icon.node.name;
+        //     iconNeedToLoad.icon.loadAnimation(idGame);
+        // });
     }
 
     async lateUpdateGameName(icon: SkeletonIcon, gameId: number) {

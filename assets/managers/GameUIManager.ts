@@ -22,6 +22,7 @@ export default class GameUIManager {
     private currentGameId;
     public emitterStorages: EmitterStorageType[] = [];
     public emitter: EventEmitterBase;
+    public isPauseLoadingIcons = false;
 
     public static getInstance(): GameUIManager {
         if (!this.instance) {

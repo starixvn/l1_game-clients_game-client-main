@@ -443,6 +443,7 @@ export default class GameUtils {
             // handle
         }
     ) {
+        uiManager.isPauseLoadingIcons = true;
         uiManager.setCurrentGameId(gameId);
         const loading = miniPanel.getGameLoadingComp(gameId);
         loading.setDefaultPercent();

@@ -4,6 +4,7 @@ import GameUtils from "../../../common/GameUtils";
 import { truncateFixedDecimals } from "../../../common/helpers/NumberHelper";
 import UserProfile from "../../../common/user-profile/UserProfile";
 import { appManager } from "../../../managers/AppManager";
+import { uiManager } from "../../../managers/GameUIManager";
 
 export const loadMiniPanel = (game: any) => () => {
     if (!game.miniPanelPrefab) {
@@ -106,6 +107,7 @@ export const closeGame = (game: any) => () => {
                 cc.director.loadScene("Splash");
             }
         } else {
+            uiManager.isPauseLoadingIcons = false;
             cc.director.loadScene("Lobby");
         }
     });

@@ -434,4 +434,15 @@ export default class MiniGameBase extends NewMiniGameBase {
     isStartingRound() {
         return this.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND);
     }
+
+    initProvablyFair(node: cc.Node): void {
+        super.initProvablyFair(node);
+        const pfContainer = new cc.Node();
+        pfContainer.width = 1398;
+        pfContainer.height = 786;
+        const pfContainerWidget = pfContainer.addComponent(cc.Widget);
+        pfContainerWidget.top = pfContainerWidget.bottom = pfContainerWidget.left = pfContainerWidget.right = 0;
+        this.currentMiniPanel.node.addChild(pfContainer);
+        this.provablyFairComponent.node.parent.parent = pfContainer;
+    }
 }

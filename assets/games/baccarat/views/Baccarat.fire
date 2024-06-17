@@ -529,7 +529,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Dealer",
+    "_name": "dealer",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -552,8 +552,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 194,
-      "height": 202
+      "width": 180.68,
+      "height": 257.88
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -564,15 +564,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -1.478,
-        298.44,
+        -0.902,
+        276.893,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.85,
+        0.85,
         1
       ]
     },
@@ -587,10 +587,10 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "06DV087FtMULhHPjbkas1l"
+    "_id": "18nUxZfZVNPJBJo4HdqirR"
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "sp.Skeleton",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -599,29 +599,37 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+        "__uuid__": "7afd064b-113f-480e-b793-8817d19f63c3"
       }
     ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "ff53288b-4136-4af4-8bf7-c4f39c451b6c"
+    "paused": false,
+    "defaultSkin": "default",
+    "defaultAnimation": "breath",
+    "_preCacheMode": 0,
+    "_cacheMode": 0,
+    "loop": true,
+    "premultipliedAlpha": true,
+    "timeScale": 1,
+    "_accTime": 0,
+    "_playCount": 0,
+    "_frameCache": null,
+    "_curFrame": null,
+    "_skeletonCache": null,
+    "_animationName": "breath",
+    "_animationQueue": [],
+    "_headAniInfo": null,
+    "_playTimes": 0,
+    "_isAniComplete": true,
+    "_N$skeletonData": {
+      "__uuid__": "da719cc4-041a-4f69-a56d-137685d818fa"
     },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "5d6697f4-ebf6-4e48-a5fd-2c942f86d595"
-    },
-    "_id": "d6+p2WU99BWrC0wj68k5xx"
+    "_N$_defaultCacheMode": 0,
+    "_N$debugSlots": false,
+    "_N$debugBones": false,
+    "_N$debugMesh": false,
+    "_N$useTint": false,
+    "_N$enableBatch": false,
+    "_id": "4ckubeDbJGT4WnfVhGGCkB"
   },
   {
     "__type__": "cc.Node",
@@ -29936,7 +29944,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        211.442,
+        204.699,
         0,
         0,
         0,
@@ -29973,7 +29981,7 @@
     "_alignFlags": 1,
     "_left": 0,
     "_right": 0,
-    "_top": 79.5,
+    "_top": 86.243,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -37462,6 +37470,7 @@
       "__id__": 677
     },
     "md5Component": null,
+    "provablyFairComponent": null,
     "gameRound": {
       "__id__": 684
     },

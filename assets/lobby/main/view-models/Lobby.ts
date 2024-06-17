@@ -231,6 +231,8 @@ export default class Lobby extends cc.Component {
             itemCategory.Index = index;
             itemCategory.enabledCategorySeparator(categoryLength);
             itemCategory.onCategoryChanged = (category) => {
+                uiManager.isPauseLoadingIcons = false;
+                uiManager.emitter.emit(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS);
                 this.onCategoryChanged(category);
             };
             this.categoryContainer?.addChild(categoryNode);

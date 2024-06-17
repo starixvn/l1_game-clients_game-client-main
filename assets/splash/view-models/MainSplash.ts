@@ -241,7 +241,7 @@ export default class MainSplash extends cc.Component {
 
     private async preLoadGameIcons() {
         try {
-            const preLoadGameCount = 10;
+            const preLoadGameCount = 6;
 
             const preLoadGameIds =
                 this.lobbyMenuConfig.firstCategoryList?.length >= preLoadGameCount

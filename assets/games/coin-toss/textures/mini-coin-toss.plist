@@ -409,6 +409,36 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>result-head.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{68,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{70,70}</string>
+                <key>textureRect</key>
+                <string>{{57,1833},{68,68}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>result-tail.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{70,68}</string>
+                <key>spriteSourceSize</key>
+                <string>{70,70}</string>
+                <key>textureRect</key>
+                <string>{{57,1761},{70,68}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
             <key>scoreboard-bg.png</key>
             <dict>
                 <key>aliases</key>
@@ -558,7 +588,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:30eb06c259405e7adc790852e00ec882:3bd542fc9a09cfbaa4a8a93527617e9b:b2207dac39b18f5526a9de3d4cc4e4c3$</string>
+            <string>$TexturePacker:SmartUpdate:60cfdb80d71c0f860f0ce42b7e3dffb8:a78f6a8aa1ca17db5adb51907953e807:b2207dac39b18f5526a9de3d4cc4e4c3$</string>
             <key>textureFileName</key>
             <string>mini-coin-toss.png</string>
         </dict>

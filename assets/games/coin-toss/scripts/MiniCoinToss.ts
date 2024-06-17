@@ -16,6 +16,8 @@ import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
 import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
+import AudioManager from "../../../common/audio/AudioManager";
+import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
 
 const { ccclass, property } = cc._decorator;
 
@@ -65,6 +67,8 @@ export default class MiniCoinToss extends MiniGameBase {
     private highlightResult: HighlightResult = null;
     public statisticHistory: MiniCoinTossRoundHistory = null;
     public miniRoundHistory: MiniCoinTossLedLight = null;
+
+    protected betHistory: MiniCoinTossBetHistory;
     openPlateDuration = 0.5;
     openPlatePos = cc.v2(15, 30);
     startRoundDuration = 2;
@@ -90,15 +94,6 @@ export default class MiniCoinToss extends MiniGameBase {
         this.flipCoin.init();
         this.animatedTime.setAnimatedY(30, -5);
         this.animatedTime.setRedTime(3);
-    }
-
-    onEnable(): void {
-        super.onEnable();
-        this.statisticHistory.node.active = true;
-    }
-
-    public toggleShowStatistic() {
-        this.statisticHistory.node.active = !this.statisticHistory.node.active;
     }
 
     fetchComponents() {
@@ -262,5 +257,15 @@ export default class MiniCoinToss extends MiniGameBase {
                 tailNode.width = widthDefault - headNode.width;
             }
         }
+    }
+
+
+    public openHistory() {
+        AudioManager.getInstance().playClick();
+
+        const dialog = cc.instantiate(this.historyPrefab);
+        this.historyComponent = dialog.getComponent(MiniCoinTossBetHistory);
+        this.historyComponent.init(this.socket);
+        this.currentMiniPanel.addDialog(dialog);
     }
 }

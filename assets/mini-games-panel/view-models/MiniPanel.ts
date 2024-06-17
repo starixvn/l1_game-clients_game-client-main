@@ -229,6 +229,7 @@ export default class MiniPanel extends BaseComponent {
     }
 
     handleWhenNotJoinRoomGame(gameId) {
+        uiManager.isPauseLoadingIcons = false;
         uiManager.emitter.emit(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS);
     }
 

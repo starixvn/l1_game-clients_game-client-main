@@ -168,6 +168,7 @@ export default class SocketIOController {
 
                 await this.waitGameSignedIn(gameId);
             } catch (err) {
+                uiManager.isPauseLoadingIcons = false;
                 this.socketsState[gameId] !== SocketState.DISABLED_GAME && onGameConnectionError();
                 reject(err);
             }
@@ -185,6 +186,7 @@ export default class SocketIOController {
             console.log(error);
             sentryLogger.logError(error);
             socket.disconnect();
+            uiManager.isPauseLoadingIcons = false;
         });
         socket.on("disconnect", (reason, detail: any) => {
             if (reason === "ping timeout" || reason === "transport error") {
@@ -202,6 +204,7 @@ export default class SocketIOController {
             if (data.um) {
                 if (data.um_message) {
                     this.socketsState[gameId] = SocketState.DISABLED_GAME;
+                    uiManager.isPauseLoadingIcons = false;
                     uiManager.emitter.emit(InternalEvents.GAME_IS_UM, { umMessage: data.um_message, gameId });
                 }
             }
@@ -220,6 +223,7 @@ export default class SocketIOController {
 
             if (data.notPermittedToPlay) {
                 uiManager.emitter.emit(InternalEvents.NOT_PERMITTED_TO_PLAY, { gameId });
+                uiManager.isPauseLoadingIcons = false;
             }
         });
     }
@@ -290,6 +294,7 @@ export default class SocketIOController {
             if (needCallCallback) {
                 onConnectFailed(name, gameId, isGameRoom);
             }
+            uiManager.isPauseLoadingIcons = false;
         });
 
         socket.on("disconnect", (reason, detail: any) => {

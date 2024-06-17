@@ -127,6 +127,7 @@ export default class MainSplash extends cc.Component {
             () => {
                 this.messageComp.reset();
                 this.messageComp.setMessage(i18n.t("ui.login_failed"));
+                uiManager.isPauseLoadingIcons = false;
             },
             this
         );
@@ -135,6 +136,7 @@ export default class MainSplash extends cc.Component {
             () => {
                 this.messageComp.reset();
                 this.messageComp.setMessage(i18n.t("ui.connection_lost"));
+                uiManager.isPauseLoadingIcons = false;
             },
             this
         );
@@ -154,6 +156,7 @@ export default class MainSplash extends cc.Component {
                         onClose: () => appManager.backToOperatorLobby()
                     });
                 }
+                uiManager.isPauseLoadingIcons = false;
             },
             this
         );
@@ -173,6 +176,7 @@ export default class MainSplash extends cc.Component {
                     onConfirm: null,
                     onClose: () => appManager.backToOperatorLobby()
                 });
+                uiManager.isPauseLoadingIcons = false;
             },
             this
         );

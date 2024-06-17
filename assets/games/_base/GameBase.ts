@@ -434,6 +434,7 @@ export default class GameBase extends GameViewBase {
             this.closeGameByClick = true;
             this.onCloseGame();
         });
+        uiManager.isPauseLoadingIcons = false;
     }
 
     showNotice(noticeData: NoticeData, onClickOk: () => void, onClose: () => void) {

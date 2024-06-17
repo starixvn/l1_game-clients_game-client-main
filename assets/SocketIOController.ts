@@ -168,6 +168,7 @@ export default class SocketIOController {
 
                 await this.waitGameSignedIn(gameId);
             } catch (err) {
+                uiManager.emitter.emit(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS);
                 uiManager.isPauseLoadingIcons = false;
                 this.socketsState[gameId] !== SocketState.DISABLED_GAME && onGameConnectionError();
                 reject(err);

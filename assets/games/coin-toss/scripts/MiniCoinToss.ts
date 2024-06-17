@@ -96,6 +96,15 @@ export default class MiniCoinToss extends MiniGameBase {
         this.animatedTime.setRedTime(3);
     }
 
+    onEnable(): void {
+        super.onEnable();
+        this.statisticHistory.node.active = true;
+    }
+
+    public toggleShowStatistic() {
+        this.statisticHistory.node.active = !this.statisticHistory.node.active;
+    }
+
     fetchComponents() {
         this.winningResult = this.winningResultNode.getComponent(MiniCoinTossWinningResult);
         this.flipCoin = this.flipCoinNode.getComponent(FlipCoin);

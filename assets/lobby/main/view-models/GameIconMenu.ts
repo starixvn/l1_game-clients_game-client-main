@@ -14,7 +14,7 @@ export default abstract class GameIconMenu extends BaseComponent {
     private initialized = false;
     private loadingGameIds: number[];
     protected listIconObscure: Array<SkeletonIcon> = [];
-    protected readonly durationAutoHideSkeleton = 5;
+    protected readonly durationAutoHideSkeleton = 1;
 
     onLoad() {
         if (this.content) {

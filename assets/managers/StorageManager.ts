@@ -23,7 +23,6 @@ class LocalStorage implements Storage {
             }
             return storage ? JSON.parse(storage) : null;
         } catch (error) {
-            console.warn(`LocalStorage ${name} can not parse`);
             return storage ?? null;
         }
     }
@@ -100,3 +99,4 @@ class StorageManager {
 }
 
 export { StorageManager };
+

@@ -15,12 +15,72 @@ include:
 variables:
     COCOS_VERSION: 2.4.6
 
+build_cocos_env:
+  stage: build-cocos-web
+  script:
+  - echo "====== Build Cocos Web Mobile ======"
+  - |
+    if [[ -d "./build/web-mobile" ]]; then
+      echo "Using cache with key $CI_COMMIT_SHA"
+      echo "SKIP_BUILD=true" >> variables.env
+      exit 0
+    fi
+  - echo $DEPLOY_ENV
+  - echo $STACK_NAME
+  - echo $CI_COMMIT_BRANCH
+  - echo $CI_COMMIT_REF_NAME
+  - |
+    if [ ! -d "node_modules" ]; then
+      npm set registry $NPM_LUMI_HOST
+      yarn install
+    fi
+  - if [ "$COCOS_VERSION" == "" ]; then export COCOS_VERSION="2.4.0"; else export
+    COCOS_VERSION=$COCOS_VERSION; fi
+  - if [ "$COCOS_VERSION" == "2.2.2" ]; then /Applications/CocosCreator.app/Contents/MacOS/CocosCreator
+    --path ./ --build "platform=web-mobile;inlineSpriteFrames=true;webOrientation=landscape;md5Cache=true";
+    else /Applications/CocosCreator/Creator/$COCOS_VERSION/CocosCreator.app/Contents/MacOS/CocosCreator
+    --path ./ --build "platform=web-mobile;inlineSpriteFrames=true;webOrientation=landscape;md5Cache=true";
+    fi
+  tags:
+  - cocos
+  artifacts:
+    paths:
+    - "./build/web-mobile"
+    reports:
+      dotenv: variables.env
+    expire_in: 1 day
+  cache:
+  - key:
+      files:
+      - package.json
+      - yarn.lock
+    paths:
+    - node_modules
+  - key: "$CI_COMMIT_SHORT_SHA"
+    paths:
+    - build
+  environment:
+    name: "$ENV_NAME$DEPLOY_VERSION"
+  extends:
+  - ".base_build_cocos"
+  - ".env"
+  needs:
+  - prepare_vars
+  rules:
+  - - if: $BUILD_COCOS != "true"
+      when: never
+  - - if: $BUILD_PLATFORM != "linux"
+      when: never
+  - - - if: $CI_COMMIT_TAG =~ /^deploy-/ && $DEPLOY_BY == "rocketor"
+        when: on_success
+
 bundle-verification:
     stage: build
     image: hub.lumigame.com/docker-hub/library/node:18.14-alpine
     tags:
         - docker
     before_script:
+        - echo $SKIP_BUILD
         - npm set registry http://npm.lumigame.com
         - yarn global add fs-extra
         - yarn install

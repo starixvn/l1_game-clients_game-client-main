@@ -8,6 +8,7 @@ import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 import GameNotification from "./GameNotification";
 import LobbyMenuConfig from "./LobbyMenuConfig";
+import { TotalPreloadGameIcon } from "../../../constants";
 
 const { ccclass, property } = cc._decorator;
 
@@ -67,10 +68,8 @@ export default class SkeletonIcon extends cc.Component {
     }
     static listGameWithoutHide = [];
 
-    private readonly timeGap = 0.125;
-
-    async setGameContent(id: number, batchIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
-        if (!uiManager.prefabCache.lobbyIcons[id] && batchIndex !== 0) {
+    async setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
+        if (!uiManager.prefabCache.lobbyIcons[id] && gameIconIndex + 1 >= TotalPreloadGameIcon) {
             addListIconObscure(this);
         } else {
             this.loadAnimation(id, categoryIndex);

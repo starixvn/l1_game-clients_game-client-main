@@ -30,8 +30,7 @@ export default class LobbyMenu extends GameIconMenu {
         //override super
     }
 
-    async loadHiddenIcons() {
-        await GameUtils.asyncExecute(this?.node, GameUtils.delayTime(this.durationAutoHideSkeleton));
+    loadHiddenIcons() {
         this.handleLoadHiddenIcons();
     }
 
@@ -148,7 +147,8 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     private createIconNode(gameId: number, prefab: cc.Prefab) {
-        const batchIndex = Math.abs(Math.floor(this.getList().findIndex((id) => id === gameId) / 10));
+        const gameIconIndex = this.getList().findIndex((id) => id === gameId);
+
         const iconNode = cc.instantiate(prefab);
         const skeletonIconComponent = iconNode.getComponent(SkeletonIcon);
 
@@ -157,7 +157,7 @@ export default class LobbyMenu extends GameIconMenu {
             this.listIconObscure.push(icon);
         };
 
-        skeletonIconComponent.setGameContent(gameId, batchIndex, this.currentCategory, addListIconObscure);
+        skeletonIconComponent.setGameContent(gameId, gameIconIndex, this.currentCategory, addListIconObscure);
 
         return iconNode;
     }

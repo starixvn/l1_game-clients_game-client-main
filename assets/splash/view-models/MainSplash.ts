@@ -8,6 +8,7 @@ import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameConfiguration } from "../../configs/GameConfigurations";
+import { TotalPreloadGameIcon } from "../../constants";
 import LobbyMenuConfig from "../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -241,7 +242,7 @@ export default class MainSplash extends cc.Component {
 
     private async preLoadGameIcons() {
         try {
-            const preLoadGameCount = 6;
+            const preLoadGameCount = TotalPreloadGameIcon;
 
             const preLoadGameIds =
                 this.lobbyMenuConfig.firstCategoryList?.length >= preLoadGameCount
@@ -249,16 +250,18 @@ export default class MainSplash extends cc.Component {
                     : this.lobbyMenuConfig.firstCategoryList;
             const preLoadGameAwaiters = preLoadGameIds.map((gameId) => GameUtils.loadGameIcon(gameId));
 
-            const preLoadGameBySystemAwaiters = preLoadGameIds
-                .filter((gameId) => this.lobbyMenuConfig.customGameIconBySystem.includes(gameId))
-                .map((gameId) => GameUtils.loadGameIcon(gameId, splashConfig.customPath));
+            const preLoadGameBySystemIds = preLoadGameIds.filter((gameId) => this.lobbyMenuConfig.customGameIconBySystem.includes(gameId));
+
+            const preLoadGameBySystemAwaiters = preLoadGameBySystemIds.map((gameId) =>
+                GameUtils.loadGameIcon(gameId, splashConfig.customPath)
+            );
 
             const preloadRemoteGameIds = preLoadGameIds.filter((id) => getGameConfiguration(id).isMicrosite);
-            for (const gameId of preloadRemoteGameIds) {
-                await GameUtils.preloadRemoteIcon(gameId);
-            }
+            const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => GameUtils.preloadRemoteIcon(gameId));
 
-            await Promise.all(preLoadGameAwaiters.concat(preLoadGameBySystemAwaiters));
+            await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
+
+            console.log("Loaded game icons in splash screen", preLoadGameIds, preLoadGameBySystemIds, preloadRemoteGameIds);
         } catch (ex) {
             console.log(ex);
         }

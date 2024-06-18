@@ -34,7 +34,7 @@ export default class Splash extends cc.Component {
         this.initUIListeners();
         this.handleSplashScene();
         this.sprTopImage && this.renderTopImage();
-        this.sprTopImage && this.renderTopImage1();
+        //this.sprTopImage && this.renderTopImage1();
     }
 
     private initUIListeners() {

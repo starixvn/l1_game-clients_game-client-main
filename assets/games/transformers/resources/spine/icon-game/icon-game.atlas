@@ -1,145 +1,103 @@
 
 icon-game.png
-size: 1435,398
+size: 746,513
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 3d
   rotate: true
-  xy: 604, 2
+  xy: 280, 315
   size: 196, 53
   orig: 196, 156
   offset: 0, 103
   index: -1
+bg-blank
+  rotate: false
+  xy: 2, 82
+  size: 196, 429
+  orig: 196, 429
+  offset: 0, 0
+  index: -1
 bg3
-  rotate: true
-  xy: 604, 200
+  rotate: false
+  xy: 350, 82
   size: 196, 429
   orig: 196, 429
   offset: 0, 0
   index: -1
 domdom
   rotate: false
-  xy: 1299, 148
+  xy: 200, 89
   size: 134, 74
   orig: 134, 74
   offset: 0, 0
   index: -1
-fire/f00
-  rotate: false
-  xy: 1035, 224
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
 fire/f08
-  rotate: false
-  xy: 659, 26
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f14
-  rotate: false
-  xy: 1115, 224
+  rotate: true
+  xy: 2, 2
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 fire/f22
-  rotate: false
-  xy: 739, 26
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f26
-  rotate: false
-  xy: 1195, 224
+  rotate: true
+  xy: 176, 2
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 fire/f32
-  rotate: false
-  xy: 819, 26
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f40
-  rotate: false
-  xy: 1275, 224
+  rotate: true
+  xy: 350, 2
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 fire/f46
-  rotate: false
-  xy: 899, 26
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f50
-  rotate: false
-  xy: 1355, 224
+  rotate: true
+  xy: 524, 2
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 fire/f56
   rotate: false
-  xy: 979, 26
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f64
-  rotate: false
-  xy: 1059, 50
+  xy: 200, 339
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 fire/f70
   rotate: false
-  xy: 1139, 50
-  size: 78, 172
-  orig: 78, 172
-  offset: 0, 0
-  index: -1
-fire/f74
-  rotate: false
-  xy: 1219, 50
+  xy: 200, 165
   size: 78, 172
   orig: 78, 172
   offset: 0, 0
   index: -1
 prime
-  rotate: true
-  xy: 2, 4
-  size: 392, 600
-  orig: 392, 600
-  offset: 0, 0
+  rotate: false
+  xy: 548, 101
+  size: 196, 410
+  orig: 342, 554
+  offset: 100, 144
   index: -1
 prime-eye
-  rotate: false
-  xy: 659, 6
+  rotate: true
+  xy: 698, 22
   size: 77, 18
   orig: 392, 600
   offset: 164, 473
   index: -1
 prime-mask1
-  rotate: false
-  xy: 1299, 83
+  rotate: true
+  xy: 280, 236
   size: 77, 63
   orig: 392, 600
   offset: 166, 416
   index: -1
 prime-mask2
-  rotate: false
-  xy: 1378, 88
+  rotate: true
+  xy: 280, 180
   size: 54, 58
   orig: 392, 600
   offset: 178, 418

@@ -1,817 +1,607 @@
 
 icon-game.png
-size: 1009,993
+size: 709,520
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 3d
   rotate: false
-  xy: 258, 98
-  size: 59, 16
-  orig: 59, 47
-  offset: 0, 31
+  xy: 324, 324
+  size: 100, 27
+  orig: 100, 80
+  offset: 0, 53
   index: -1
 ball light bot
-  rotate: true
-  xy: 262, 364
+  rotate: false
+  xy: 493, 402
   size: 122, 116
   orig: 147, 128
   offset: 13, 12
   index: -1
 bg
   rotate: false
-  xy: 693, 731
-  size: 59, 129
-  orig: 59, 129
+  xy: 2, 113
+  size: 100, 219
+  orig: 100, 219
   offset: 0, 0
   index: -1
 body
   rotate: false
-  xy: 2, 622
+  xy: 2, 334
   size: 177, 184
   orig: 177, 184
   offset: 0, 0
   index: -1
 coin a
   rotate: false
-  xy: 675, 73
+  xy: 282, 224
   size: 53, 53
   orig: 53, 53
   offset: 0, 0
   index: -1
 coin b
   rotate: true
-  xy: 448, 625
-  size: 13, 53
+  xy: 606, 2
+  size: 13, 11
   orig: 13, 53
-  offset: 0, 0
-  index: -1
-enegy explode/Energy Explosion no Color_1
-  rotate: false
-  xy: 240, 466
-  size: 20, 20
-  orig: 180, 132
-  offset: 86, 45
+  offset: 0, 21
   index: -1
 enegy explode/Energy Explosion no Color_11
-  rotate: true
-  xy: 600, 371
-  size: 96, 87
-  orig: 180, 132
-  offset: 47, 16
-  index: -1
-enegy explode/Energy Explosion no Color_13
-  rotate: true
-  xy: 689, 294
-  size: 96, 83
-  orig: 180, 132
-  offset: 46, 19
+  rotate: false
+  xy: 410, 162
+  size: 48, 43
+  orig: 50, 45
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_15
-  rotate: true
-  xy: 824, 598
-  size: 104, 80
-  orig: 180, 132
-  offset: 35, 25
-  index: -1
-enegy explode/Energy Explosion no Color_17
-  rotate: true
-  xy: 594, 271
-  size: 98, 93
-  orig: 180, 132
-  offset: 41, 15
+  rotate: false
+  xy: 502, 2
+  size: 51, 40
+  orig: 53, 42
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_19
   rotate: false
-  xy: 497, 372
-  size: 101, 95
-  orig: 180, 132
-  offset: 40, 13
-  index: -1
-enegy explode/Energy Explosion no Color_21
-  rotate: true
-  xy: 384, 267
-  size: 104, 105
-  orig: 180, 132
-  offset: 43, 15
+  xy: 513, 154
+  size: 50, 47
+  orig: 52, 49
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_23
-  rotate: false
-  xy: 491, 269
-  size: 101, 101
-  orig: 180, 132
-  offset: 47, 19
-  index: -1
-enegy explode/Energy Explosion no Color_25
-  rotate: false
-  xy: 726, 605
-  size: 96, 97
-  orig: 180, 132
-  offset: 43, 16
+  rotate: true
+  xy: 573, 202
+  size: 50, 51
+  orig: 52, 53
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_27
-  rotate: false
-  xy: 754, 763
-  size: 98, 99
-  orig: 180, 132
-  offset: 43, 15
-  index: -1
-enegy explode/Energy Explosion no Color_29
   rotate: true
-  xy: 132, 2
-  size: 94, 107
-  orig: 180, 132
-  offset: 48, 8
+  xy: 460, 100
+  size: 49, 50
+  orig: 51, 52
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_3
   rotate: true
-  xy: 726, 704
-  size: 25, 26
-  orig: 180, 132
-  offset: 90, 48
+  xy: 165, 94
+  size: 12, 13
+  orig: 14, 15
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_31
   rotate: false
-  xy: 917, 772
-  size: 90, 108
-  orig: 180, 132
-  offset: 47, 14
-  index: -1
-enegy explode/Energy Explosion no Color_33
-  rotate: true
-  xy: 906, 628
-  size: 92, 101
-  orig: 180, 132
-  offset: 41, 16
+  xy: 526, 203
+  size: 45, 54
+  orig: 47, 56
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_35
-  rotate: false
-  xy: 689, 392
-  size: 92, 99
-  orig: 180, 132
-  offset: 43, 15
-  index: -1
-enegy explode/Energy Explosion no Color_37
-  rotate: false
-  xy: 906, 473
-  size: 100, 92
-  orig: 180, 132
-  offset: 45, 24
+  rotate: true
+  xy: 565, 154
+  size: 46, 50
+  orig: 48, 52
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_39
-  rotate: false
-  xy: 774, 308
-  size: 98, 81
-  orig: 180, 132
-  offset: 48, 27
-  index: -1
-enegy explode/Energy Explosion no Color_41
-  rotate: false
-  xy: 534, 194
-  size: 89, 73
-  orig: 180, 132
-  offset: 47, 24
+  rotate: true
+  xy: 574, 351
+  size: 49, 41
+  orig: 51, 43
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_43
-  rotate: false
-  xy: 187, 756
-  size: 93, 60
-  orig: 180, 132
-  offset: 46, 35
-  index: -1
-enegy explode/Energy Explosion no Color_45
   rotate: true
-  xy: 241, 5
-  size: 91, 53
-  orig: 180, 132
-  offset: 50, 41
+  xy: 533, 51
+  size: 47, 30
+  orig: 49, 32
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_47
-  rotate: false
-  xy: 430, 11
-  size: 52, 29
-  orig: 180, 132
-  offset: 49, 67
-  index: -1
-enegy explode/Energy Explosion no Color_49
   rotate: true
-  xy: 136, 440
-  size: 180, 102
-  orig: 180, 132
-  offset: 0, 15
-  index: -1
-enegy explode/Energy Explosion no Color_5
-  rotate: false
-  xy: 730, 30
-  size: 46, 46
-  orig: 180, 132
-  offset: 81, 45
+  xy: 485, 13
+  size: 26, 14
+  orig: 28, 16
+  offset: 1, 1
   index: -1
 enegy explode/Energy Explosion no Color_51
-  rotate: true
-  xy: 2, 440
-  size: 180, 132
-  orig: 180, 132
-  offset: 0, 0
-  index: -1
-enegy explode/Energy Explosion no Color_53
   rotate: false
-  xy: 371, 862
-  size: 180, 129
-  orig: 180, 132
+  xy: 617, 360
+  size: 90, 66
+  orig: 90, 66
   offset: 0, 0
   index: -1
 enegy explode/Energy Explosion no Color_55
-  rotate: true
-  xy: 2, 258
-  size: 180, 129
-  orig: 180, 132
-  offset: 0, 0
-  index: -1
-enegy explode/Energy Explosion no Color_57
   rotate: false
-  xy: 553, 862
-  size: 180, 129
-  orig: 180, 132
+  xy: 189, 160
+  size: 90, 65
+  orig: 90, 66
   offset: 0, 0
   index: -1
 enegy explode/Energy Explosion no Color_59
-  rotate: true
-  xy: 2, 76
-  size: 180, 128
-  orig: 180, 132
-  offset: 0, 0
-  index: -1
-enegy explode/Energy Explosion no Color_61
   rotate: false
-  xy: 735, 864
-  size: 180, 127
-  orig: 180, 132
-  offset: 0, 2
+  xy: 189, 94
+  size: 90, 64
+  orig: 90, 66
+  offset: 0, 0
   index: -1
 enegy explode/Energy Explosion no Color_63
   rotate: true
-  xy: 133, 258
-  size: 180, 127
-  orig: 180, 132
-  offset: 0, 2
-  index: -1
-enegy explode/Energy Explosion no Color_65
-  rotate: true
-  xy: 132, 98
-  size: 158, 124
-  orig: 180, 132
-  offset: 14, 4
+  xy: 165, 2
+  size: 90, 64
+  orig: 90, 66
+  offset: 0, 1
   index: -1
 enegy explode/Energy Explosion no Color_7
   rotate: false
-  xy: 870, 244
-  size: 57, 62
-  orig: 180, 132
-  offset: 73, 44
-  index: -1
-enegy explode/Energy Explosion no Color_9
-  rotate: true
-  xy: 435, 110
-  size: 84, 74
-  orig: 180, 132
-  offset: 50, 32
+  xy: 650, 173
+  size: 28, 30
+  orig: 30, 32
+  offset: 1, 1
   index: -1
 foot L
   rotate: false
-  xy: 846, 55
+  xy: 544, 102
   size: 47, 50
   orig: 47, 50
   offset: 0, 0
   index: -1
 foot R
   rotate: false
-  xy: 591, 19
+  xy: 460, 151
   size: 51, 51
   orig: 51, 51
   offset: 0, 0
   index: -1
 hair back L
-  rotate: true
-  xy: 870, 181
+  rotate: false
+  xy: 348, 39
   size: 61, 57
   orig: 61, 57
   offset: 0, 0
   index: -1
 hair back R
   rotate: false
-  xy: 806, 170
+  xy: 639, 253
   size: 62, 54
   orig: 62, 54
   offset: 0, 0
   index: -1
 hair top
-  rotate: true
-  xy: 755, 210
+  rotate: false
+  xy: 617, 309
   size: 82, 49
   orig: 82, 49
   offset: 0, 0
   index: -1
 hand L
   rotate: true
-  xy: 448, 640
+  xy: 104, 218
   size: 114, 79
   orig: 114, 79
   offset: 0, 0
   index: -1
 hand R
   rotate: true
-  xy: 687, 493
+  xy: 104, 108
   size: 108, 83
   orig: 108, 83
   offset: 0, 0
   index: -1
 head L
   rotate: true
-  xy: 647, 91
+  xy: 680, 161
   size: 31, 26
   orig: 31, 26
   offset: 0, 0
   index: -1
 head R
-  rotate: false
-  xy: 341, 791
+  rotate: true
+  xy: 662, 100
   size: 28, 25
   orig: 28, 25
   offset: 0, 0
   index: -1
 head a
-  rotate: true
-  xy: 772, 508
+  rotate: false
+  xy: 185, 227
   size: 95, 50
   orig: 95, 50
   offset: 0, 0
   index: -1
 head b
-  rotate: false
-  xy: 917, 722
+  rotate: true
+  xy: 231, 2
   size: 90, 48
   orig: 90, 48
   offset: 0, 0
   index: -1
 horn
   rotate: true
-  xy: 917, 882
+  xy: 2, 2
   size: 109, 90
   orig: 109, 90
   offset: 0, 0
   index: -1
 leg L
-  rotate: true
-  xy: 372, 196
+  rotate: false
+  xy: 94, 2
   size: 69, 104
   orig: 82, 104
   offset: 13, 0
   index: -1
 leg L a
   rotate: false
-  xy: 625, 194
+  xy: 426, 269
   size: 65, 75
   orig: 65, 75
   offset: 0, 0
   index: -1
 leg R
   rotate: true
-  xy: 906, 567
+  xy: 324, 353
   size: 59, 101
   orig: 74, 101
   offset: 0, 0
   index: -1
 leg R a
   rotate: true
-  xy: 929, 408
+  xy: 493, 259
   size: 63, 78
   orig: 63, 78
   offset: 0, 0
   index: -1
 lighning 1/Energy Explosion_1
   rotate: true
-  xy: 484, 11
-  size: 29, 51
-  orig: 150, 150
-  offset: 15, 47
+  xy: 281, 2
+  size: 15, 25
+  orig: 75, 75
+  offset: 7, 24
   index: -1
 lighning 1/Energy Explosion_10
   rotate: true
-  xy: 632, 480
-  size: 114, 53
-  orig: 150, 150
-  offset: 19, 72
+  xy: 680, 194
+  size: 57, 26
+  orig: 75, 75
+  offset: 9, 36
   index: -1
 lighning 1/Energy Explosion_11
-  rotate: false
-  xy: 262, 209
-  size: 108, 56
-  orig: 150, 150
-  offset: 18, 77
+  rotate: true
+  xy: 502, 44
+  size: 54, 29
+  orig: 75, 75
+  offset: 9, 38
   index: -1
 lighning 1/Energy Explosion_12
   rotate: true
-  xy: 478, 196
-  size: 69, 54
-  orig: 150, 150
-  offset: 19, 78
+  xy: 388, 2
+  size: 35, 27
+  orig: 75, 75
+  offset: 9, 39
   index: -1
 lighning 1/Energy Explosion_13
   rotate: false
-  xy: 78, 2
-  size: 23, 24
-  orig: 150, 150
-  offset: 19, 89
+  xy: 324, 311
+  size: 11, 11
+  orig: 75, 75
+  offset: 10, 45
   index: -1
 lighning 1/Energy Explosion_14
   rotate: false
-  xy: 103, 9
-  size: 17, 17
-  orig: 150, 150
-  offset: 21, 95
+  xy: 485, 2
+  size: 9, 9
+  orig: 75, 75
+  offset: 10, 47
   index: -1
 lighning 1/Energy Explosion_2
-  rotate: true
-  xy: 929, 276
-  size: 63, 74
-  orig: 150, 150
-  offset: 14, 20
+  rotate: false
+  xy: 417, 2
+  size: 32, 37
+  orig: 75, 75
+  offset: 7, 10
   index: -1
 lighning 1/Energy Explosion_3
   rotate: true
-  xy: 2, 2
-  size: 72, 74
-  orig: 150, 150
-  offset: 13, 19
+  xy: 348, 2
+  size: 35, 38
+  orig: 75, 75
+  offset: 7, 9
   index: -1
 lighning 1/Energy Explosion_4
-  rotate: false
-  xy: 783, 391
-  size: 106, 65
-  orig: 150, 150
-  offset: 13, 17
+  rotate: true
+  xy: 593, 99
+  size: 53, 32
+  orig: 75, 75
+  offset: 7, 9
   index: -1
 lighning 1/Energy Explosion_5
-  rotate: false
-  xy: 929, 211
-  size: 65, 63
-  orig: 150, 150
-  offset: 64, 20
+  rotate: true
+  xy: 629, 84
+  size: 32, 31
+  orig: 75, 75
+  offset: 32, 10
   index: -1
 lighning 1/Energy Explosion_6
-  rotate: false
-  xy: 262, 267
-  size: 120, 95
-  orig: 150, 150
-  offset: 14, 17
+  rotate: true
+  xy: 411, 100
+  size: 60, 47
+  orig: 75, 75
+  offset: 7, 9
   index: -1
 lighning 1/Energy Explosion_7
   rotate: false
-  xy: 854, 763
-  size: 61, 99
-  orig: 150, 150
-  offset: 76, 27
+  xy: 512, 100
+  size: 30, 49
+  orig: 75, 75
+  offset: 38, 14
   index: -1
 lighning 1/Energy Explosion_8
   rotate: false
-  xy: 258, 116
-  size: 88, 91
-  orig: 150, 150
-  offset: 44, 39
+  xy: 278, 320
+  size: 44, 45
+  orig: 75, 75
+  offset: 22, 20
   index: -1
 lighning 1/Energy Explosion_9
   rotate: true
-  xy: 662, 603
-  size: 114, 62
-  orig: 150, 150
-  offset: 22, 69
+  xy: 470, 41
+  size: 57, 30
+  orig: 75, 75
+  offset: 11, 35
   index: -1
 lighning 2/Energy circle_1
   rotate: false
-  xy: 885, 731
-  size: 30, 30
-  orig: 150, 150
-  offset: 59, 59
+  xy: 308, 2
+  size: 14, 15
+  orig: 16, 16
+  offset: 1, 0
   index: -1
 lighning 2/Energy circle_11
   rotate: true
-  xy: 181, 622
-  size: 132, 130
-  orig: 150, 150
-  offset: 9, 10
+  xy: 281, 87
+  size: 66, 65
+  orig: 67, 67
+  offset: 0, 1
   index: -1
 lighning 2/Energy circle_13
-  rotate: false
-  xy: 313, 624
-  size: 133, 130
-  orig: 150, 150
-  offset: 9, 10
+  rotate: true
+  xy: 281, 155
+  size: 67, 65
+  orig: 68, 67
+  offset: 0, 1
   index: -1
 lighning 2/Energy circle_15
   rotate: true
-  xy: 240, 488
-  size: 132, 131
-  orig: 150, 150
-  offset: 9, 10
+  xy: 427, 346
+  size: 66, 64
+  orig: 68, 66
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_17
   rotate: true
-  xy: 373, 490
-  size: 132, 130
-  orig: 150, 150
-  offset: 8, 11
+  xy: 281, 19
+  size: 66, 65
+  orig: 68, 66
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_19
-  rotate: false
-  xy: 529, 596
-  size: 131, 121
-  orig: 150, 150
-  offset: 8, 12
+  rotate: true
+  xy: 348, 162
+  size: 65, 60
+  orig: 67, 62
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_21
   rotate: false
-  xy: 754, 704
-  size: 129, 57
-  orig: 150, 150
-  offset: 8, 75
+  xy: 337, 229
+  size: 65, 28
+  orig: 67, 30
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_3
   rotate: false
-  xy: 282, 756
-  size: 57, 60
-  orig: 150, 150
-  offset: 46, 43
+  xy: 624, 20
+  size: 28, 30
+  orig: 30, 32
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_5
   rotate: true
-  xy: 348, 115
-  size: 79, 85
-  orig: 150, 150
-  offset: 36, 33
+  xy: 278, 279
+  size: 39, 42
+  orig: 41, 44
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_7
   rotate: false
-  xy: 380, 373
-  size: 115, 115
-  orig: 150, 150
-  offset: 19, 19
+  xy: 411, 41
+  size: 57, 57
+  orig: 59, 59
+  offset: 1, 1
   index: -1
 lighning 2/Energy circle_9
   rotate: false
-  xy: 505, 469
-  size: 125, 125
-  orig: 150, 150
-  offset: 14, 12
+  xy: 337, 259
+  size: 62, 63
+  orig: 64, 64
+  offset: 1, 1
   index: -1
 light a
   rotate: false
-  xy: 187, 818
-  size: 182, 173
-  orig: 212, 209
-  offset: 19, 17
+  xy: 185, 279
+  size: 91, 86
+  orig: 106, 104
+  offset: 9, 9
   index: -1
 light b
   rotate: false
-  xy: 371, 756
+  xy: 324, 414
   size: 167, 104
   orig: 181, 125
   offset: 6, 3
   index: -1
-light c
-  rotate: false
-  xy: 341, 770
-  size: 19, 19
-  orig: 21, 20
-  offset: 1, 1
-  index: -1
 light circle
   rotate: false
-  xy: 2, 808
-  size: 183, 183
-  orig: 185, 185
+  xy: 617, 428
+  size: 90, 90
+  orig: 92, 92
   offset: 1, 1
   index: -1
-lightning 3/Electric 02_1
-  rotate: false
-  xy: 783, 458
-  size: 30, 48
-  orig: 120, 68
-  offset: 73, 1
-  index: -1
 lightning 3/Electric 02_10
-  rotate: false
-  xy: 929, 341
-  size: 77, 65
-  orig: 120, 68
-  offset: 24, 0
+  rotate: true
+  xy: 451, 2
+  size: 37, 32
+  orig: 39, 33
+  offset: 1, 0
   index: -1
 lightning 3/Electric 02_11
-  rotate: false
-  xy: 430, 42
-  size: 81, 66
-  orig: 120, 68
-  offset: 18, 2
+  rotate: true
+  xy: 589, 17
+  size: 40, 33
+  orig: 41, 33
+  offset: 0, 0
   index: -1
 lightning 3/Electric 02_12
   rotate: true
-  xy: 874, 309
-  size: 80, 53
-  orig: 120, 68
-  offset: 19, 15
+  xy: 565, 60
+  size: 40, 26
+  orig: 41, 27
+  offset: 0, 1
   index: -1
 lightning 3/Electric 02_13
   rotate: false
-  xy: 929, 150
-  size: 64, 59
-  orig: 120, 68
-  offset: 33, 9
+  xy: 629, 52
+  size: 32, 30
+  orig: 33, 30
+  offset: 0, 0
   index: -1
 lightning 3/Electric 02_14
   rotate: false
-  xy: 870, 122
-  size: 57, 57
-  orig: 120, 68
-  offset: 39, 11
-  index: -1
-lightning 3/Electric 02_2
-  rotate: true
-  xy: 692, 205
-  size: 87, 61
-  orig: 120, 68
-  offset: 17, 0
-  index: -1
-lightning 3/Electric 02_3
-  rotate: true
-  xy: 362, 32
-  size: 81, 66
-  orig: 120, 68
-  offset: 16, 0
-  index: -1
-lightning 3/Electric 02_4
-  rotate: false
-  xy: 824, 528
-  size: 80, 68
-  orig: 120, 68
-  offset: 21, 0
-  index: -1
-lightning 3/Electric 02_5
-  rotate: false
-  xy: 592, 124
-  size: 81, 68
-  orig: 120, 68
-  offset: 19, 0
+  xy: 661, 130
+  size: 28, 29
+  orig: 29, 29
+  offset: 0, 0
   index: -1
 lightning 3/Electric 02_6
-  rotate: false
-  xy: 824, 458
-  size: 80, 68
-  orig: 120, 68
-  offset: 20, 0
+  rotate: true
+  xy: 574, 309
+  size: 40, 34
+  orig: 41, 34
+  offset: 0, 0
   index: -1
 lightning 3/Electric 02_7
   rotate: true
-  xy: 806, 226
-  size: 80, 62
-  orig: 120, 68
-  offset: 21, 4
+  xy: 617, 160
+  size: 40, 31
+  orig: 41, 32
+  offset: 0, 1
   index: -1
 lightning 3/Electric 02_8
-  rotate: false
-  xy: 513, 46
-  size: 76, 68
-  orig: 120, 68
-  offset: 23, 0
+  rotate: true
+  xy: 593, 59
+  size: 38, 34
+  orig: 39, 34
+  offset: 0, 0
   index: -1
 lightning 3/Electric 02_9
   rotate: true
-  xy: 296, 13
-  size: 83, 64
-  orig: 120, 68
-  offset: 19, 4
-  index: -1
-point light/point light_1
-  rotate: false
-  xy: 529, 744
-  size: 9, 10
-  orig: 90, 69
-  offset: 40, 29
+  xy: 627, 118
+  size: 40, 32
+  orig: 42, 32
+  offset: 1, 0
   index: -1
 point light/point light_10
   rotate: true
-  xy: 78, 28
+  xy: 626, 205
   size: 46, 52
   orig: 90, 69
   offset: 22, 13
   index: -1
-point light/point light_11
-  rotate: false
-  xy: 891, 402
-  size: 35, 54
-  orig: 90, 69
-  offset: 28, 12
-  index: -1
 point light/point light_12
-  rotate: true
-  xy: 537, 12
+  rotate: false
+  xy: 555, 2
   size: 32, 47
   orig: 90, 69
   offset: 30, 11
   index: -1
-point light/point light_13
-  rotate: false
-  xy: 895, 88
-  size: 32, 32
-  orig: 90, 69
-  offset: 29, 17
-  index: -1
 point light/point light_2
   rotate: false
-  xy: 885, 707
+  xy: 401, 300
   size: 19, 22
   orig: 90, 69
   offset: 33, 22
   index: -1
-point light/point light_3
-  rotate: true
-  xy: 778, 9
-  size: 41, 45
-  orig: 90, 69
-  offset: 19, 8
-  index: -1
 point light/point light_4
   rotate: false
-  xy: 730, 78
+  xy: 410, 207
   size: 56, 60
   orig: 90, 69
   offset: 11, 0
   index: -1
-point light/point light_5
-  rotate: true
-  xy: 929, 86
-  size: 62, 64
-  orig: 90, 69
-  offset: 12, 3
-  index: -1
 point light/point light_6
-  rotate: false
-  xy: 788, 107
+  rotate: true
+  xy: 348, 98
   size: 62, 61
   orig: 90, 69
   offset: 10, 4
   index: -1
-point light/point light_7
-  rotate: true
-  xy: 730, 140
-  size: 63, 56
-  orig: 90, 69
-  offset: 8, 2
-  index: -1
 point light/point light_8
   rotate: false
-  xy: 788, 52
+  xy: 468, 204
   size: 56, 53
   orig: 90, 69
   offset: 17, 8
   index: -1
-point light/point light_9
-  rotate: true
-  xy: 592, 72
-  size: 50, 53
-  orig: 90, 69
-  offset: 20, 10
-  index: -1
 shape dragon
-  rotate: true
-  xy: 540, 719
+  rotate: false
+  xy: 181, 367
   size: 141, 151
   orig: 143, 153
   offset: 1, 1
   index: -1
 star 1
   rotate: false
-  xy: 348, 196
+  xy: 324, 6
   size: 11, 11
   orig: 15, 14
   offset: 2, 1
   index: -1
 star 2
   rotate: false
-  xy: 906, 458
+  xy: 589, 2
   size: 15, 13
   orig: 15, 15
   offset: 0, 1
   index: -1
 tail L
   rotate: false
-  xy: 511, 116
+  xy: 493, 324
   size: 79, 76
   orig: 79, 76
   offset: 0, 0
   index: -1
 tail R
-  rotate: true
-  xy: 675, 128
+  rotate: false
+  xy: 573, 254
   size: 64, 53
   orig: 64, 53
   offset: 0, 0

@@ -154,6 +154,21 @@ export default class Lobby extends cc.Component {
             action: TrackingAction.Show,
             object_name: "Banner"
         });
+
+        this.writePageLoadingTimeLog();
+    }
+
+    private writePageLoadingTimeLog() {
+        try {
+            const startLoadPageTime = window["loadingPageStartTime"] ?? new Date();
+            const startShowingLobbyTime = Date.now();
+            const totalLoadPageTimeInSeconds = (startShowingLobbyTime - startLoadPageTime) / 1000;
+            console.log(
+                `Start displaying Lobby at ${new Date(
+                    startShowingLobbyTime
+                ).toLocaleString()}. Total loading time: ${totalLoadPageTimeInSeconds}`
+            );
+        } catch {}
     }
 
     initGameUIEvents() {

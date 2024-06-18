@@ -122,7 +122,7 @@ export default class Splash extends cc.Component {
 
     private renderTopImage() {
         const href = `${window.location.origin}`;
-        const imagePath = `${href}/top-middle.png?v=${this.versionImg}`;
+        const imagePath = `${href}/splash-resources/top-middle.png?v=${this.versionImg}`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
             const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
             //const texture = new cc.Texture2D();
@@ -134,7 +134,7 @@ export default class Splash extends cc.Component {
 
     private renderTopImage1() {
         const href = `${window.location.origin}`;
-        const imagePath = `${href}/top-middle.png?v=${this.versionImg}`;
+        const imagePath = `${href}/splash-resources/top-middle.png?v=${this.versionImg}`;
         const image = new Image();
         image.src = imagePath;
         const spriteFrameTmp = new cc.SpriteFrame();

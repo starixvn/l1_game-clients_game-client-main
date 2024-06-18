@@ -12,7 +12,6 @@ export default class PromotionNotifications extends cc.Component {
     @property(cc.Node)
     countNode: cc.Node = null;
 
-    isLoadedPromotionAnnouncement = false;
     isReceivedPromotionData = false;
 
     onLoad() {
@@ -21,12 +20,6 @@ export default class PromotionNotifications extends cc.Component {
         if (PromotionNotificationsHandler.getInstance().promotionNotifications) {
             this.showNotification();
         }
-
-        if (uiManager.prefabCache.miniPanelIcons["promotionAnnouncements"]) {
-            this.onLoadedPromotionAnnouncement();
-        }
-
-        uiManager.emitterListener(InternalEvents.LOADED_PROMOTION_ANNOUNCEMENT, this.onLoadedPromotionAnnouncement.bind(this), this);
     }
 
     onDestroy() {
@@ -52,14 +45,10 @@ export default class PromotionNotifications extends cc.Component {
     }
 
     private checkToShowNotification() {
-        if (!this.icon || !this.isLoadedPromotionAnnouncement || !this.isReceivedPromotionData) {
+        if (!this.icon || !this.isReceivedPromotionData) {
             return;
         }
-        this.icon.active = true;
-    }
 
-    private onLoadedPromotionAnnouncement() {
-        this.isLoadedPromotionAnnouncement = true;
-        this.checkToShowNotification();
+        this.icon.active = true;
     }
 }

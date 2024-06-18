@@ -1,3 +1,4 @@
+import _ = require("lodash");
 import GameBase from "../GameBase";
 import DataHandler from "./DataHandler";
 
@@ -17,11 +18,22 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
         }
 
         if (data.pf && Object.keys(data.pf).length) {
-            this.main.provablyFairComponent?.handleReceiveServerSeed(data.pf);
+            this.main.provablyFairComponent?.handleServerSeed(data.pf.serverSeedHash);
         }
 
-        if (data.ownBets && Object.keys(data.ownBets).length) {
-            this.main.provablyFairComponent?.setClientSeedUIState(false);
+        if (data.ownBets) {
+            if (!_.isEmpty(data.ownBets)) {
+                this.main.provablyFairComponent?.setClientSeedUIState(false);
+            }
+            if (data.roundId) {
+                this.main.sendSocketData("getRoundPF", {
+                    roundId: data.roundId
+                });
+            }
+        }
+
+        if (data.roundPFResult) {
+            this.main.provablyFairComponent?.handleServerSeed(data.roundPFResult.serverSeedHash);
         }
     }
 }

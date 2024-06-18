@@ -71,8 +71,6 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
 
     onShow(): void {
         super.onShow();
-        this.handleServerSeed(this.nextServerSeed);
-
         if (!this.gameId) {
             return;
         }
@@ -194,17 +192,5 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         this.nodeWarningText.active = false;
         this.updateModeUI(this.pfSetting.randomClientSeedEnabled);
         this.setClientSeedUIState(true);
-        this.handleServerSeed(this.nextServerSeed);
     }
-
-    handleReceiveServerSeed(data) {
-        if (!this.currentServerSeed.length) {
-            this.currentServerSeed = data?.serverSeedHash;
-            this.handleServerSeed(data?.serverSeedHash);
-            return;
-        }
-
-        this.nextServerSeed = data?.serverSeedHash;
-    }
-
 }

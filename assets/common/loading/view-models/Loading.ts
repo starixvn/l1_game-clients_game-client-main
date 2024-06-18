@@ -12,7 +12,7 @@ export default class Loading extends cc.Component {
     }
 
     onDisable() {
-        this.percent.string = "";
+        this.percent.string = "0%";
     }
 
     setDefaultPercent() {

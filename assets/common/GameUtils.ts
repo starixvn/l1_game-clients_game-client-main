@@ -283,7 +283,7 @@ export default class GameUtils {
         return { values, chipTotal };
     }
 
-    private static setStorageGame(key, gameId, data) {
+    static setStorageGame(key, gameId, data) {
         StorageManager.set(`${key}_${gameId}`, data);
     }
 

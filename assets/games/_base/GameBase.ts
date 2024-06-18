@@ -641,8 +641,8 @@ export default class GameBase extends GameViewBase {
     }
 
     openProvablyFair() {
-        this.provablyFairComponent.onShow();
         this.provablyFairComponent.updateGameId(this.gameId);
+        this.provablyFairComponent.onShow();
     }
 
     handleGameGuide(guide: WebViewGuide, language, minBet, maxBet, isInPromotionTime) {

@@ -5,7 +5,7 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
     constructor(protected readonly main: GameBase) {}
 
     handle(data: any) {
-        if (data.resultHash) {
+        if (data.resultHash && Object.keys(data.resultHash).length) {
             this.main.provablyFairComponent?.handleReceiveServerSeed(data.resultHash);
         }
 
@@ -15,6 +15,14 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
 
         if (data.provablyFair) {
             this.main.handleProvablyFairVerifyData(data.provablyFair);
+        }
+
+        if (data.pf && Object.keys(data.pf).length) {
+            this.main.provablyFairComponent?.handleReceiveServerSeed(data.pf);
+        }
+
+        if (data.ownBets && Object.keys(data.ownBets).length) {
+            this.main.provablyFairComponent?.setClientSeedUIState(false);
         }
     }
 }

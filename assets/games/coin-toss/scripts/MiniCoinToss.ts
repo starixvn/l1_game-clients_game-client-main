@@ -1,8 +1,11 @@
-import { lodash } from "../../../ClientModules";
+import AudioManager from "../../../common/audio/AudioManager";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
+import DataHandler from "../../_base/handlers/DataHandler";
+import GameBaseProvablyFairHandler from "../../_base/handlers/GameBaseProvablyFairHandler";
 import MD5Component from "../../_base/view-models/MD5Component";
+import ClientSeedNumberInput from "../../_base/view-models/provably-fair/ClientSeedNumberInput";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
@@ -16,7 +19,6 @@ import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
 import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
-import AudioManager from "../../../common/audio/AudioManager";
 import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
 
 const { ccclass, property } = cc._decorator;
@@ -77,6 +79,11 @@ export default class MiniCoinToss extends MiniGameBase {
     constructor() {
         super();
         this.gameId = CoinTossId;
+    }
+
+    protected addHandlers(...handlers: DataHandler[]): void {
+        this.provablyFairHandler = new GameBaseProvablyFairHandler(this);
+        super.addHandlers(...handlers, this.provablyFairHandler);
     }
 
     onGameHide() {
@@ -160,6 +167,7 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     handleStartNewRound() {
+        this.provablyFairComponent.getComponent(ClientSeedNumberInput).handleStartNewRound();
         this.winningResult.hideQuickly();
         this.flipCoin.playAnim();
         this.highlightResult.hide();
@@ -246,7 +254,7 @@ export default class MiniCoinToss extends MiniGameBase {
 
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {
-            clientSeed: lodash.random(1000, 9999).toString(),
+            clientSeed: this.provablyFairComponent.getClientSeed(),
             amount: bet,
             betChoice: choice,
             username: userManager.userName,
@@ -267,7 +275,6 @@ export default class MiniCoinToss extends MiniGameBase {
             }
         }
     }
-
 
     public openHistory() {
         AudioManager.getInstance().playClick();

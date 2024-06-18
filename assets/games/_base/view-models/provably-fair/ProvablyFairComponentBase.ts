@@ -17,7 +17,7 @@ export default class ProvablyFairComponentBase extends cc.Component {
     @property(cc.Node)
     hintCopyNode: cc.Node = null;
 
-    private _gameId = 0;
+    protected gameId = 0;
     private _themeGuide = "pf";
     protected hintLabel: cc.Label = null;
     public miniPanel: MiniPanel = null;
@@ -27,7 +27,7 @@ export default class ProvablyFairComponentBase extends cc.Component {
     }
 
     updateGameId(gameId: number) {
-        this._gameId = gameId;
+        this.gameId = gameId;
     }
 
     updateThemeGuide(theme: string) {
@@ -74,10 +74,10 @@ export default class ProvablyFairComponentBase extends cc.Component {
     getUrlGuide(): string {
         const locale = getLocale();
         const language = getLanguage(locale);
-        const dataId = `gameNames.${this._gameId}`;
+        const dataId = `gameNames.${this.gameId}`;
         const gameName = `${i18n.t(dataId)}`;
 
-        return `/${language}/?gId=${this._gameId}&t=${this._themeGuide}&displayName=${gameName}&c=0&f=pf&v=${Date.now()}`;
+        return `/${language}/?gId=${this.gameId}&t=${this._themeGuide}&displayName=${gameName}&c=0&f=pf&v=${Date.now()}`;
     }
 
     showHint(node: cc.Node) {

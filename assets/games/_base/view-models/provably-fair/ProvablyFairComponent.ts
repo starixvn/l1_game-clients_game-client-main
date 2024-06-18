@@ -87,4 +87,12 @@ export default class ProvablyFairComponent extends ProvablyFairComponentBase {
     onCopyHash() {
         GameUtils.copyToClipboard(this.serverSeedCopyString, this.getHintLabel(this.hintCopyNode), this.showHint(this.hintCopyNode));
     }
+    
+    getClientSeed(){
+        // handle
+    }
+
+    setClientSeedUIState(isEnable: boolean){
+        // handle
+    }
 }

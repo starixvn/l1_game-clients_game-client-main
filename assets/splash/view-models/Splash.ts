@@ -26,15 +26,11 @@ export default class Splash extends cc.Component {
     @property(cc.Sprite)
     sprTopImage: cc.Sprite = null;
 
-    @property
-    versionImg = 1;
-
     protected onLoad(): void {
         this.disableAllNodeSplash();
         this.initUIListeners();
         this.handleSplashScene();
         this.sprTopImage && this.renderTopImage();
-        //this.sprTopImage && this.renderTopImage1();
     }
 
     private initUIListeners() {
@@ -122,25 +118,10 @@ export default class Splash extends cc.Component {
 
     private renderTopImage() {
         const href = `${window.location.origin}`;
-        const imagePath = `${href}/splash-resources/top-middle.png?v=${this.versionImg}`;
+        const imagePath = `${href}/splash-resources/top-middle.png`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
             const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-            //const texture = new cc.Texture2D();
-            // texture.image = imageAsset;
-            //spriteFrameTmp.setTexture(texture);
             this.sprTopImage.spriteFrame = spriteFrameTmp;
         });
-    }
-
-    private renderTopImage1() {
-        const href = `${window.location.origin}`;
-        const imagePath = `${href}/splash-resources/top-middle.png?v=${this.versionImg}`;
-        const image = new Image();
-        image.src = imagePath;
-        const spriteFrameTmp = new cc.SpriteFrame();
-        const texture = new cc.Texture2D();
-        texture.initWithElement(image);
-        spriteFrameTmp.setTexture(texture);
-        this.sprTopImage.spriteFrame = spriteFrameTmp;
     }
 }

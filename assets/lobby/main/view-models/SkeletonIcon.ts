@@ -72,9 +72,6 @@ export default class SkeletonIcon extends cc.Component {
     async setGameContent(id: number, batchIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         if (!uiManager.prefabCache.lobbyIcons[id] && batchIndex !== 0) {
             addListIconObscure(this);
-            // this.scheduleOnce(async () => {
-            //     await this.loadAnimation(id, categoryIndex);
-            // }, batchIndex * this.timeGap);
         } else {
             this.loadAnimation(id, categoryIndex);
         }

@@ -176,11 +176,6 @@ export default class LobbyMenu extends GameIconMenu {
                 console.log(`Cannot load game ${idGame}`, e);
             }
         }
-
-        // this.listIconObscure.forEach((iconNeedToLoad) => {
-        //     const idGame = +iconNeedToLoad.icon.node.name;
-        //     iconNeedToLoad.icon.loadAnimation(idGame);
-        // });
     }
 
     async lateUpdateGameName(icon: SkeletonIcon, gameId: number) {

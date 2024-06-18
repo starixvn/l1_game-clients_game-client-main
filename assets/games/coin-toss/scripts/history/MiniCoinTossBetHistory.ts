@@ -7,11 +7,17 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MiniCoinTossBetHistory extends SocketIOGameHistoryBase {
+    constructor() {
+        super();
+        this.enablePF = true;
+    }
+
     @property(cc.Prefab)
     ticketDetailPrefab: cc.Prefab = null;
 
     @property(cc.SpriteFrame)
     symbolSprites: cc.SpriteFrame[] = [];
+
     public handleBetHistory = (roundId) => {};
     bindItemRowData(betLog, index) {
         const itemNode = cc.instantiate(this.itemPrefab);
@@ -22,6 +28,7 @@ export default class MiniCoinTossBetHistory extends SocketIOGameHistoryBase {
             AudioManager.getInstance().playClick();
             this.showTicketDetail(betLog);
         };
+        item.init(this.socket);
     }
 
     openBetHistory(roundId: number) {

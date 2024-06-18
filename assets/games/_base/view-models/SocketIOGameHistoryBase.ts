@@ -37,6 +37,9 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
     @property(cc.ScrollView)
     scrollView: cc.ScrollView = null;
 
+    @property(cc.Prefab)
+    customResultPrefab: cc.Prefab = null;
+
     public gameId = 0;
     public pfGameId = 0;
 
@@ -135,7 +138,7 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
     initProvablyFairVerify(node: cc.Node) {
         this.provablyFairVerifyComponent = node.getComponent(ProvablyFairVerifyComponent);
         this.provablyFairVerifyComponent.onHide();
-
+        this.customResultPrefab && this.provablyFairVerifyComponent.initResultNode(this.customResultPrefab);
         node.on(OPEN_PROVABLY_FAIR_VERIFY, this.openProvablyFairVerify, this);
     }
 

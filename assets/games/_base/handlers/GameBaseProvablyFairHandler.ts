@@ -12,9 +12,8 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
         if (data.clientSeed) {
             this.main.provablyFairComponent?.updateClientSeed(data?.clientSeed);
         }
-
-        if (data.provablyFair) {
-            this.main.handleProvablyFairVerifyData(data.provablyFair);
+        if (data.provablyFair || data.roundPFResult) {
+            this.main.handleProvablyFairVerifyData(data.provablyFair || data.roundPFResult);
         }
 
         if (data.pf && Object.keys(data.pf).length) {

@@ -24,6 +24,7 @@ export default class MiniCoinTossHistoryItem extends SocketIOHistoryItemBase {
 
     setData(betLog: any, symbolsSpriteFrames: cc.SpriteFrame[], index) {
         this.data = betLog;
+        this.roundId = betLog.roundId;
         this.setBackground(index);
         const { time, betwin, roundId, totalAmount, settlementResult } = betLog;
         this.time.string = getStringDateByTime(time);

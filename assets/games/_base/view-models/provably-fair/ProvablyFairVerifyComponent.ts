@@ -44,6 +44,9 @@ export default class ProvablyFairVerifyComponent extends ProvablyFairComponentBa
     @property(cc.Node)
     hintResultCopyNode: cc.Node = null;
 
+    @property(cc.Node)
+    nodeResult: cc.Node = null;
+
     protected serverSeedCopyString = "";
     protected hashCopyString = "";
     protected finalResultCopyString = "";
@@ -64,6 +67,10 @@ export default class ProvablyFairVerifyComponent extends ProvablyFairComponentBa
     onShow() {
         super.onShow();
         this.setStatusVerifyButton(false);
+    }
+
+    initResultNode(customResultPrefab: cc.Prefab) {
+        this.nodeResult.addChild(cc.instantiate(customResultPrefab));
     }
 
     onCopyServerSeed() {
@@ -99,7 +106,7 @@ export default class ProvablyFairVerifyComponent extends ProvablyFairComponentBa
         this.verifyBtn.updateState(status);
     }
 
-    updateProvablyFairVerify(data: IProvablyFairVerify) {
+    updateProvablyFairVerify(data: any) {
         // handle
     }
 }

@@ -1013,7 +1013,7 @@ export default class GameBase extends GameViewBase {
         this.node.emit(InGameMenuEvents.OPEN_PROVABLY_FAIR);
     }
 
-    handleProvablyFairVerifyData(provablyFair: IProvablyFairVerify) {
+    handleProvablyFairVerifyData(provablyFair: any) {
         provablyFair && this.historyComponent.provablyFairVerifyComponent.updateProvablyFairVerify(provablyFair);
     }
 

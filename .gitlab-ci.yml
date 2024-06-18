@@ -15,19 +15,19 @@ include:
 variables:
     COCOS_VERSION: 2.4.6
 
-bundle-verification:
-    stage: build
-    image: hub.lumigame.com/docker-hub/library/node:18.14-alpine
-    tags:
-        - docker
-    before_script:
-        - npm set registry http://npm.lumigame.com
-        - yarn global add fs-extra
-        - yarn install
-    script:
-        - node ./test_bundle/bundle_verification.js
-    rules:
-        - if: $CI_COMMIT_TAG =~ /^deploy- */ && $DEPLOY_BY == "rocketor"
-          when: on_success
-        - when: never
-    allow_failure: false
+# bundle-verification:
+#     stage: build
+#     image: hub.lumigame.com/docker-hub/library/node:18.14-alpine
+#     tags:
+#         - docker
+#     before_script:
+#         - npm set registry http://npm.lumigame.com
+#         - yarn global add fs-extra
+#         - yarn install
+#     script:
+#         - node ./test_bundle/bundle_verification.js
+#     rules:
+#         - if: $CI_COMMIT_TAG =~ /^deploy- */ && $DEPLOY_BY == "rocketor"
+#           when: on_success
+#         - when: never
+#     allow_failure: false

@@ -21,14 +21,23 @@ export default class DynamicAdsBannerController extends BannerController {
     private isFirstLoad = false;
 
     async setGameAds(games: number[]) {
+        let index = 0;
         for (const gameId of games) {
             if (uiManager.isPauseLoadingIcons) {
                 return;
             }
 
             await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
+            this.handleShowFirstPage(index);
+            index++;
         }
     }
+
+    handleShowFirstPage = (index: number) => {
+        if (index === 0) {
+            this.showFirstPage();
+        }
+    };
 
     private triggerTouch() {
         if (this.node.childrenCount > 0 && !this.isFirstLoad) {

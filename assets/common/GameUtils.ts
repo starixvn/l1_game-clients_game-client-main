@@ -42,6 +42,8 @@ declare global {
 export default class GameUtils {
     static base64: Base64;
 
+    static versionsCache = {};
+
     public static base64Decode(data: string): string {
         if (!this.base64) {
             this.base64 = new Base64();
@@ -123,8 +125,11 @@ export default class GameUtils {
     }
 
     public static async getRemoteVersion(gameId: number) {
-        const versions: any = await GameUtils.loadRemote(`${GameUtils.remoteGameResourceUrl(gameId, "versions.json")}?v=${Date.now()}`);
-        return versions?.json;
+        if (!this.versionsCache[gameId]) {
+            const versions: any = await GameUtils.loadRemote(`${GameUtils.remoteGameResourceUrl(gameId, "versions.json")}?v=${Date.now()}`);
+            this.versionsCache[gameId] = versions?.json;
+        }
+        return this.versionsCache[gameId];
     }
 
     public static async preloadRemoteIcon(gameId: number) {

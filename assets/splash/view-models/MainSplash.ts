@@ -53,9 +53,6 @@ export default class MainSplash extends cc.Component {
     @property(cc.Node)
     noticeContainer: cc.Node = null;
 
-    @property(cc.Prefab)
-    noticePrefab: cc.Prefab = null;
-
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
@@ -63,6 +60,8 @@ export default class MainSplash extends cc.Component {
     private readonly socketIOController: SocketIOController;
 
     private loadSceneTimeout: any;
+
+    private noticePrefab: cc.Prefab = null;
 
     protected onLoad(): void {
         this.initUIListeners();
@@ -351,22 +350,28 @@ export default class MainSplash extends cc.Component {
         this.clearUIListeners();
     }
 
-    showNotice(eventMessage: { data; onConfirm; onClose }) {
+    async showNotice(eventMessage: { data; onConfirm; onClose }) {
         const { data, onConfirm, onClose } = eventMessage;
-        const node = cc.instantiate(this.noticePrefab);
-        const notice = node.getComponent(Notice);
-
-        data.button = { text: "OK" };
-        notice.init(data);
-
-        if (onConfirm) {
-            notice.handleClickButton = onConfirm;
+        if (!this.noticePrefab) {
+            this.noticePrefab = await GameUtils.loadResource("shared/prefabs/Notice");
         }
 
-        if (onClose) {
-            notice.handleClose = onClose;
-        }
+        if (this.noticePrefab) {
+            const node = cc.instantiate(this.noticePrefab);
+            const notice = node.getComponent(Notice);
 
-        this.noticeContainer.addChild(node);
+            data.button = { text: "OK" };
+            notice.init(data);
+
+            if (onConfirm) {
+                notice.handleClickButton = onConfirm;
+            }
+
+            if (onClose) {
+                notice.handleClose = onClose;
+            }
+
+            this.noticeContainer.addChild(node);
+        }
     }
 }

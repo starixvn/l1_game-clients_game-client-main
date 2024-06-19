@@ -15,9 +15,9 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{615,3},{240,92}}</string>
+                <string>{{552,545},{240,92}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>THANG_en.png</key>
             <dict>
@@ -30,9 +30,9 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{615,97},{240,92}}</string>
+                <string>{{552,787},{240,92}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>THANG_id.png</key>
             <dict>
@@ -45,9 +45,9 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{615,191},{240,92}}</string>
+                <string>{{552,1029},{240,92}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>THANG_th.png</key>
             <dict>
@@ -60,11 +60,11 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{615,285},{240,92}}</string>
+                <string>{{3,1081},{240,92}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>THANG_zh_cn.png</key>
+            <key>THANG_zh-Hans.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -75,11 +75,11 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{857,307},{240,92}}</string>
+                <string>{{3,1175},{240,92}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
-            <key>THANG_zh_tw.png</key>
+            <key>THANG_zh-Hant.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -90,7 +90,7 @@
                 <key>spriteSourceSize</key>
                 <string>{240,92}</string>
                 <key>textureRect</key>
-                <string>{{615,379},{240,92}}</string>
+                <string>{{245,1081},{240,92}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,7 +120,7 @@
                 <key>spriteSourceSize</key>
                 <string>{87,74}</string>
                 <key>textureRect</key>
-                <string>{{615,473},{87,74}}</string>
+                <string>{{146,1269},{87,74}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -135,7 +135,7 @@
                 <key>spriteSourceSize</key>
                 <string>{141,42}</string>
                 <key>textureRect</key>
-                <string>{{857,150},{141,42}}</string>
+                <string>{{3,1269},{141,42}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -150,9 +150,9 @@
                 <key>spriteSourceSize</key>
                 <string>{111,112}</string>
                 <key>textureRect</key>
-                <string>{{857,194},{111,112}}</string>
+                <string>{{392,1175},{111,112}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>player-box-balance.png</key>
             <dict>
@@ -165,9 +165,9 @@
                 <key>spriteSourceSize</key>
                 <string>{106,33}</string>
                 <key>textureRect</key>
-                <string>{{971,301},{106,33}}</string>
+                <string>{{3,1313},{106,33}}</string>
                 <key>textureRotated</key>
-                <true/>
+                <false/>
             </dict>
             <key>player-username.png</key>
             <dict>
@@ -180,7 +180,7 @@
                 <key>spriteSourceSize</key>
                 <string>{71,23}</string>
                 <key>textureRect</key>
-                <string>{{1000,150},{67,21}}</string>
+                <string>{{487,1081},{67,21}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -195,7 +195,7 @@
                 <key>spriteSourceSize</key>
                 <string>{78,76}</string>
                 <key>textureRect</key>
-                <string>{{704,473},{78,76}}</string>
+                <string>{{505,1271},{78,76}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -225,7 +225,7 @@
                 <key>spriteSourceSize</key>
                 <string>{145,145}</string>
                 <key>textureRect</key>
-                <string>{{857,3},{145,145}}</string>
+                <string>{{245,1175},{145,145}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -240,7 +240,7 @@
                 <key>spriteSourceSize</key>
                 <string>{105,24}</string>
                 <key>textureRect</key>
-                <string>{{971,194},{105,24}}</string>
+                <string>{{615,3},{105,24}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -254,13 +254,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>Avatar-new-style.png</string>
+            <string>avatar-new-style.png</string>
             <key>size</key>
-            <string>{1024,2048}</string>
+            <string>{647,1350}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b7975d995fdad35f683f7b0adc7fc743:e653dea31457f7c133941b7bd2a7727f:17edbaa9bc896d34859f0fb1cc9887ce$</string>
+            <string>$TexturePacker:SmartUpdate:72649cdf908c632e32b44dbe22dbecac:e653dea31457f7c133941b7bd2a7727f:05dd6eac5b84fe091faa8393dd20132e$</string>
             <key>textureFileName</key>
-            <string>Avatar-new-style.png</string>
+            <string>avatar-new-style.png</string>
         </dict>
     </dict>
 </plist>

@@ -2,17 +2,22 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "Biden win",
         "game_icon_name": "Coin Toss",
         "game_name": "Coin Toss",
         "glossary_head": "Biden",
-        "glossary_tail": "Trump"
+        "glossary_tail": "Trump",
+        "trump_win": "Trump win",
+        "you_win": "You win"
     },
     "Common": {
+        "Loss": "Loss",
         "back": "Back",
         "bet_amount_of_any_choice_incorrect": "Invalid Bet Amount",
         "bet_choice": "Bet Choice",
         "bet_detail": "Bet Details",
         "bet_history": "Bet History",
+        "bet_limit": "Bet Limit",
         "bet_option_even": "Even",
         "bet_option_odd": "Odd",
         "button_change": "Change",
@@ -163,6 +168,7 @@ export const phrases = {
         "submit": "SUBMIT",
         "terms_and_conditions_content": "- All new and existing punters are eligible to join the promotions and take the chance to win bigger prizes. \n- The winning amount is paid according to the promotion rules and payouts. \n- The Promotion is applied for a certain period ruled by the Company. When the promotion expires, the betting odds will be set back to the previous values.\n- The Company reserves the right to vary any of the terms of entry applying to this promotion or to modify, terminate, suspend, or reschedule this promotion at any time.\n- Any dispute arising from or in the connection with this promotion shall be decided by the Company.",
         "time": "Time",
+        "total": "Total",
         "total_stake": "Total Stake",
         "under_maintenance_suggest": "Please kindly re-login to continue playing games after the maintenance is complete.",
         "under_maintenance_time": "Starting from %{startTime} to %{endTime} (GMT+8)",

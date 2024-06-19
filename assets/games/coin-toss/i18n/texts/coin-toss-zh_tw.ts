@@ -2,10 +2,13 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "拜登獲勝",
         "game_icon_name": "抛硬幣",
         "game_name": "抛硬幣",
         "glossary_head": "拜登",
-        "glossary_tail": "川普"
+        "glossary_tail": "川普",
+        "trump_win": "川普獲勝",
+        "you_win": "你贏了"
     },
     "Common": {
         "back": "回",
@@ -163,6 +166,7 @@ export const phrases = {
         "submit": "提交",
         "terms_and_conditions_content": "- 所有新的和現有的投注者都有資格參加促銷活動並抓住機會贏得更大的獎品。\n- 中獎金額根據促銷規則和獎金支付。\n- 促銷適用於公司規定的特定時期。促銷期滿後，投注賠率將恢復為之前的值。\n- 促銷適用於公司規定的特定時期。促銷期滿後，投注賠率將恢復為之前的值。\n- 因本推廣活動引起或與之相關的任何爭議均由本公司決定。",
         "time": "時間",
+        "total": "全部的",
         "total_stake": "總賭注",
         "under_maintenance_suggest": "維護完成後請重新登錄繼續玩遊戲。",
         "under_maintenance_time": "從 %{startTime} 到 %{endTime} (GMT+8)",

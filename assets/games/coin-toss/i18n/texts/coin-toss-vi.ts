@@ -2,17 +2,22 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "Biden thắng",
         "game_icon_name": "Tung Đồng Xu",
         "game_name": "Tung Đồng Xu",
         "glossary_head": "Biden",
-        "glossary_tail": "Trump"
+        "glossary_tail": "Trump",
+        "trump_win": "Trump thắng",
+        "you_win": "Bạn vừa thắng"
     },
     "Common": {
+        "Loss": "Thua",
         "back": "Quay Lại",
         "bet_amount_of_any_choice_incorrect": "Tiền cược của một trong các cửa không hợp lệ.",
         "bet_choice": "Lựa Chọn",
         "bet_detail": "Chi Tiết Cược",
         "bet_history": "Lịch Sử",
+        "bet_limit": "Giới Hạn Cược",
         "bet_option_even": "Chẵn",
         "bet_option_odd": "Lẻ",
         "button_change": "Thay Đổi",
@@ -162,6 +167,7 @@ export const phrases = {
         "submit": "XÁC NHẬN",
         "terms_and_conditions_content": "- Tất cả người chơi đều có thể tham gia các chương trình khuyến mãi và có cơ hội giành được những giải thưởng hấp dẫn.\n- Tiền thắng được tính toán dựa theo quy định của chương trình khuyến mãi và tỷ lệ trả thưởng.\n- Chương trình khuyến mãi chỉ được áp dụng trong một khoảng thời gian nhất định do Công ty quy định. Khi chương trình khuyến mãi kết thúc, tỷ lệ trả thưởng sẽ được điều chỉnh trở về như ban đầu.\n- Trong một số tình huống, thể lệ chương trình có thể thay đổi mà không cần thông báo trước.\nTrong mọi trường hợp xảy ra tranh chấp, quyết định của Công ty sẽ là quyết định cuối cùng.",
         "time": "Thời Gian",
+        "total": "Tổng",
         "total_stake": "Tổng Cược",
         "under_maintenance_suggest": "Sau thời gian bảo trì, bạn hãy đăng nhập lại để có thể tiếp tục chơi game.",
         "under_maintenance_time": "Thời gian bảo trì từ %{startTime} đến %{endTime} (GMT+8).",

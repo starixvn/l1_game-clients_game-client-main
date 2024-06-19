@@ -2,10 +2,13 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "Biden menang",
         "game_icon_name": "Lempar Koin",
         "game_name": "Lempar Koin",
         "glossary_head": "Biden",
-        "glossary_tail": "Trump"
+        "glossary_tail": "Trump",
+        "trump_win": "Trump menang",
+        "you_win": "KAMU MENANG"
     },
     "Common": {
         "back": "Kembali",
@@ -163,6 +166,7 @@ export const phrases = {
         "submit": "KIRIMKAN",
         "terms_and_conditions_content": "- Semua pemain baru dan yang sudah ada berhak untuk mengikuti promosi dan mengambil kesempatan untuk memenangkan hadiah yang lebih besar. \n- Jumlah kemenangan dibayarkan sesuai dengan aturan promosi dan pembayaran. \n- Promosi berlaku untuk periode tertentu yang diatur oleh Perusahaan. Saat promosi kedaluwarsa, peluang taruhan akan diatur kembali ke nilai sebelumnya.\n- Perusahaan berhak mengubah syarat masuk yang berlaku untuk promosi ini atau mengubah, menghentikan, menangguhkan, atau menjadwal ulang promosi ini kapan saja.\n- Setiap perselisihan yang timbul dari atau sehubungan dengan promosi ini akan diputuskan oleh Perusahaan.",
         "time": "Waktu",
+        "total": "Total",
         "total_stake": "Total Taruhan",
         "under_maintenance_suggest": "Silakan login kembali untuk melanjutkan permainan setelah maintenance selesai.",
         "under_maintenance_time": "Mulai dari %{startTime} hingga %{endTime} (GMT+8)",

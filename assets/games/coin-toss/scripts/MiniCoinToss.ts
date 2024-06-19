@@ -20,6 +20,7 @@ import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
+import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 const { ccclass, property } = cc._decorator;
 
@@ -135,6 +136,10 @@ export default class MiniCoinToss extends MiniGameBase {
     clearRoundHistory() {
         this.currentDataLogs = [];
         //this.gameData.roundHistory.clearData();
+    }
+
+    getBetChoiceString(choice: string): string {
+        return i18n.t(`${this.gameName}.glossary_${choice}`);
     }
 
     public highlightLastResult() {

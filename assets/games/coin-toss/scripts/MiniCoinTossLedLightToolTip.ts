@@ -10,7 +10,7 @@ export default class MiniCoinTossLedLightToolTip extends MiniRoundHistoryTip {
     public setData(data: any) {
         this.roundId.string = `#${data.roundId}`;
         const key = findWinningChoice(data?.settlementResult);
-        this.result.string = i18n.t(`miniCoinToss.${key}`).toUpperCase();
+        this.result.string = i18n.t(`CoinToss.glossary_${key}`).toUpperCase();
         this.result.node.color = key === BetChoice.Biden ? cc.Color.BLUE : cc.Color.RED;
         this.show();
     }

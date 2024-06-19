@@ -9,6 +9,6 @@ export default class CustomerResultBodyItem extends BaseResultBodyItem {
 
     setData(result: any, settlementResult: any) {
         const key = findWinningChoice(settlementResult);
-        this.lblResult.string = i18n.t(`miniCoinToss.${key}`).toUpperCase();
+        this.lblResult.string = i18n.t(`CoinToss.glossary_${key}`).toUpperCase();
     }
 }

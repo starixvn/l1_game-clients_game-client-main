@@ -22,7 +22,7 @@ export default class MiniCoinTossTicketDetailItem extends SocketIOHistoryItemBas
         this.odds.string = userManager.fractionalOddsFormat ? numberWithCommas(+odds[choice] - 1, 2) : odds[choice];
         const winningAmount = settlementResult[choice] ? amount * odds[choice] : 0;
         this.time.string = getStringDateByTime(time);
-        this.choice.string = i18n.t(`miniCoinToss.${choice}`).toUpperCase();
+        this.choice.string = i18n.t(`CoinToss.glossary_${choice}`).toUpperCase();
         this.stake.string = numberWithCommas(amount);
         this.win.string = numberWithCommas(winningAmount, 2);
         this.setBackground(index);

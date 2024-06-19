@@ -24,7 +24,7 @@ export default class MiniCoinTossDetailResultGroup extends cc.Component {
         this.roundIdLabel.string = phien.toString();
 
         const key = findWinningChoice(settlementResult);
-        this.resultText.string = i18n.t(`miniCoinToss.${key}`).toUpperCase();
+        this.resultText.string = i18n.t(`CoinToss.glossary_${key}`).toUpperCase();
         this.resultImg.spriteFrame = symbolsSpriteFrames.find((sprite) => sprite.name === `result-${key}`);
     }
 }

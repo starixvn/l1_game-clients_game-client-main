@@ -1,3 +1,4 @@
+import { i18n } from "../../../../ClientModules";
 import GameUtils from "../../../../common/GameUtils";
 import { getLanguage, getLocale } from "../../../../common/auth/SessionManager";
 import WebViewVerification from "../../../../common/webview-guide/WebViewVerification";
@@ -51,9 +52,14 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
 
     onLoad() {
         this.initClientSeedsList();
-        //super.onLoad();
-        //const para = `${gc.Translator.commonTranslate("pf_provably_fair_para_2")}`;
-        // this.lblParaVerification.string = para;
+
+        this.commonDialog.addOnDidHide(() => {
+            this.statusNode(false);
+            this.verificationContainer.destroyAllChildren();
+            this.guideContainer.destroyAllChildren();
+        });
+        const para = i18n.t(`Common.pf_provably_fair_para_2`);
+        this.lblParaVerification.string = para;
     }
 
     onCopyMergeSeedClient() {

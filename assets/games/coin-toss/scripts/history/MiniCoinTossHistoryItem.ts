@@ -32,7 +32,7 @@ export default class MiniCoinTossHistoryItem extends SocketIOHistoryItemBase {
         this.win.string = numberWithCommas(betwin, 2);
         this.totalStake.string = numberWithCommas(totalAmount, 2);
         const key = findWinningChoice(settlementResult);
-        this.resultText.string = i18n.t(`miniCoinToss.${key}`).toUpperCase();
+        this.resultText.string = i18n.t(`CoinToss.glossary_${key}`).toUpperCase();
         this.resultImg.spriteFrame = symbolsSpriteFrames.find((sprite) => sprite.name === `result-${key}`);
     }
 

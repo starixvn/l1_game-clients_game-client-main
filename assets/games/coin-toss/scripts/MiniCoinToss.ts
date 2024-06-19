@@ -288,6 +288,7 @@ export default class MiniCoinToss extends MiniGameBase {
         const dialog = cc.instantiate(this.historyPrefab);
         this.historyComponent = dialog.getComponent(MiniCoinTossBetHistory);
         this.historyComponent.init(this.socket);
+        this.historyComponent.pfGameId = this.gameId;
         this.currentMiniPanel.addDialog(dialog);
     }
 }

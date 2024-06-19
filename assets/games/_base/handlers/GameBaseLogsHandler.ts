@@ -1,5 +1,6 @@
 import _ = require("lodash");
 
+import GameUtils from "../../../common/GameUtils";
 import GameBase from "../GameBase";
 import DataHandler from "./DataHandler";
 
@@ -9,7 +10,7 @@ export default class GameBaseLogsHandler implements DataHandler {
     handle(data: any) {
         if (data.roundId) {
             this.main.roundId = data.roundId;
-            this.main.truthyRoundId = data?.remainingTime > this.main.config.betTime ? data.roundId - 1 : data.roundId;
+            this.main.truthyRoundId = GameUtils.getTruthyRoundId(this.main, data);
         }
 
         if (data.roundHistory) {

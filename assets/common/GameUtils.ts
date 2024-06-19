@@ -7,6 +7,7 @@ import { lodash } from "../ClientModules";
 import SocketIOController from "../SocketIOController";
 import * as SessionManager from "../common/auth/SessionManager";
 import { GameConfiguration, getGameConfiguration, isUsingRemoteBundle } from "../configs/GameConfigurations";
+import GameBase from "../games/_base/GameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
 import { appManager } from "../managers/AppManager";
 import { uiManager } from "../managers/GameUIManager";
@@ -1142,5 +1143,9 @@ export default class GameUtils {
 
     public static readonly isMicroSite = (gameConfiguration: GameConfiguration) => {
         return gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
+    };
+
+    public static getTruthyRoundId = (main: GameBase, data) => {
+        return data?.remainingTime > main.config.betTime ? data.roundId - 1 : data.roundId;
     };
 }

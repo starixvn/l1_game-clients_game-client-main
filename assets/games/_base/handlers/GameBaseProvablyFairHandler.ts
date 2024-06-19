@@ -1,4 +1,5 @@
 import _ = require("lodash");
+import GameUtils from "../../../common/GameUtils";
 import GameBase from "../GameBase";
 import DataHandler from "./DataHandler";
 
@@ -27,7 +28,7 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
             }
             if (data.roundId) {
                 this.main.sendSocketData("getRoundPF", {
-                    roundId: data.roundId
+                    roundId: GameUtils.getTruthyRoundId(this.main, data)
                 });
             }
         }

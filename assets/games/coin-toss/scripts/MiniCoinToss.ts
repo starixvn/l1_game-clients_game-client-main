@@ -74,7 +74,7 @@ export default class MiniCoinToss extends MiniGameBase {
     protected betHistory: MiniCoinTossBetHistory;
     openPlateDuration = 0.5;
     openPlatePos = cc.v2(15, 30);
-    startRoundDuration = 2;
+    startRoundDuration = 3;
     protected delayPayoutDuration = 1;
 
     constructor() {

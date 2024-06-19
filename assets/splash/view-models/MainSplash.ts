@@ -234,9 +234,14 @@ export default class MainSplash extends cc.Component {
 
     async onLoaded() {
         try {
-            cc.log(`Start to download game icon and banner: ${new Date().toLocaleString()}`);
+            const startLoadTime = Date.now();
+            console.log(`SplashScreen - Start to download game icon and banner: ${new Date(startLoadTime).toLocaleString()}`);
             await Promise.all([this.preLoadBanner(), this.preLoadGameIcons()]);
-            cc.log(`End download game icon and banner: ${new Date().toLocaleString()}`);
+            const endLoadTime = Date.now();
+            console.log(
+                `SplashScreen - End download game icon and banner: ${new Date(endLoadTime).toLocaleString()}`,
+                `Total load time: ${(startLoadTime - endLoadTime) / 1000}`
+            );
         } catch (e) {
             console.log(e);
         }
@@ -276,7 +281,7 @@ export default class MainSplash extends cc.Component {
             // Wait all
             await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
 
-            console.log(`Loaded game icons in splash screen`, [
+            console.log(`SplashScreen - Completed load game icons`, [
                 {
                     name: "main",
                     ids: preloadGameInMain.join(",")

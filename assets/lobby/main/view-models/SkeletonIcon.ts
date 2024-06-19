@@ -69,7 +69,7 @@ export default class SkeletonIcon extends cc.Component {
     static listGameWithoutHide = [];
 
     async setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
-        if (!uiManager.prefabCache.lobbyIcons[id] && gameIconIndex + 1 >= TotalPreloadGameIcon) {
+        if (!uiManager.prefabCache.lobbyIcons[id] && gameIconIndex >= TotalPreloadGameIcon) {
             addListIconObscure(this);
         } else {
             this.loadAnimation(id, categoryIndex);

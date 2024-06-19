@@ -75,9 +75,6 @@ export default class Lobby extends cc.Component {
     @property(cc.AudioSource)
     audioBG: cc.AudioSource = null;
 
-    @property(cc.Prefab)
-    NoticePrefab: cc.Prefab = null;
-
     @property(cc.Node)
     categoryContainer: cc.Node = null;
 

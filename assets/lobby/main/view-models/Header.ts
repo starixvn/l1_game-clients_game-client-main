@@ -20,9 +20,6 @@ export default class Header extends cc.Component {
     @property(cc.Label)
     scoinsValue: cc.Label = null;
 
-    @property(cc.Prefab)
-    NoticePrefab: cc.Prefab = null;
-
     private readonly data = { name: "", avatar: null, balance: "" };
 
     onLoad() {

@@ -6,6 +6,7 @@ import GameUtils, { BannerType } from "../../common/GameUtils";
 import * as sessionManager from "../../common/auth/SessionManager";
 import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
+import { userManager } from "../../common/user/UserManager";
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameConfiguration } from "../../configs/GameConfigurations";
 import { TotalPreloadGameIcon } from "../../constants";
@@ -232,8 +233,13 @@ export default class MainSplash extends cc.Component {
     }
 
     async onLoaded() {
-        await this.preLoadBanner();
-        await this.preLoadGameIcons();
+        try {
+            cc.log(`Start to download game icon and banner: ${new Date().toLocaleString()}`);
+            await Promise.all([this.preLoadBanner(), this.preLoadGameIcons()]);
+            cc.log(`End download game icon and banner: ${new Date().toLocaleString()}`);
+        } catch (e) {
+            console.log(e);
+        }
 
         cc.resources.loadDir("lobby/games/skeleton-icon", () => {
             cc.director.loadScene("Lobby");
@@ -242,26 +248,48 @@ export default class MainSplash extends cc.Component {
 
     private async preLoadGameIcons() {
         try {
-            const preLoadGameCount = TotalPreloadGameIcon;
+            const offerGames = userManager.offerGames ?? [];
+            let firstCategoryGames = this.lobbyMenuConfig.firstCategoryList;
+            let preLoadGameIds = [];
 
-            const preLoadGameIds =
-                this.lobbyMenuConfig.firstCategoryList?.length >= preLoadGameCount
-                    ? this.lobbyMenuConfig.firstCategoryList.slice(0, preLoadGameCount)
-                    : this.lobbyMenuConfig.firstCategoryList;
-            const preLoadGameAwaiters = preLoadGameIds.map((gameId) => GameUtils.loadGameIcon(gameId));
+            // Filter offer games
+            if (offerGames.length > 0 && firstCategoryGames?.length > 0) {
+                firstCategoryGames = firstCategoryGames.filter((gameId) => offerGames.includes(gameId));
+            }
 
+            // Load game icon custom by system
+            preLoadGameIds =
+                firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
+            const preloadGameInMain = preLoadGameIds.filter((gameId) => !getGameConfiguration(gameId).isMicrosite);
+            const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
+
+            // Load game icon custom by system
             const preLoadGameBySystemIds = preLoadGameIds.filter((gameId) => this.lobbyMenuConfig.customGameIconBySystem.includes(gameId));
-
             const preLoadGameBySystemAwaiters = preLoadGameBySystemIds.map((gameId) =>
                 GameUtils.loadGameIcon(gameId, splashConfig.customPath)
             );
 
+            // Load game icon through remote site
             const preloadRemoteGameIds = preLoadGameIds.filter((id) => getGameConfiguration(id).isMicrosite);
             const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => GameUtils.preloadRemoteIcon(gameId));
 
+            // Wait all
             await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
 
-            console.log("Loaded game icons in splash screen", preLoadGameIds, preLoadGameBySystemIds, preloadRemoteGameIds);
+            console.log(`Loaded game icons in splash screen`, [
+                {
+                    name: "main",
+                    ids: preloadGameInMain.join(",")
+                },
+                {
+                    name: "custom-by-system",
+                    ids: preLoadGameBySystemIds.join(",")
+                },
+                {
+                    name: "remote",
+                    ids: preloadRemoteGameIds.join(",")
+                }
+            ]);
         } catch (ex) {
             console.log(ex);
         }

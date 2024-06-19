@@ -183,19 +183,21 @@ export default class DealHandler implements DataHandler {
         }
     }
 
-    showNoticesErrors(data: any) {
-        data.forEach((error) => {
+    async showNoticesErrors(data: any) {
+        for (const error of data) {
             const errorCode = error.errorCode.toString();
             if (isSessionTimeoutError(errorCode)) {
                 showMessageForExpiredToken(errorCode);
                 return;
             }
-            const notice = this.main.currentMiniPanel.showErrorNotice(error);
-            notice.handleClose = () => {
-                const positions = error.pos;
-                this.clearChipsAndShowErrorNotice(positions);
-            };
-        });
+            const notice = await this.main.currentMiniPanel.showErrorNotice(error);
+            if (notice) {
+                notice.handleClose = () => {
+                    const positions = error.pos;
+                    this.clearChipsAndShowErrorNotice(positions);
+                };
+            }
+        }
     }
 
     clearChipsAndShowErrorNotice(positions: number[]) {

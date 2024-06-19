@@ -19,18 +19,18 @@ import { getGameId, isMiniGame, isUsingRemoteBundle } from "../../configs/GameCo
 import CircleMenu from "../../lobby/main/view-models/CircleMenu";
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
+import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions, PromotionsEvent } from "../../lobby/promotions/Promotions";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import { UrlInfo } from "../../managers/UrlInfo";
 import * as authManager from "./../../common/auth/AuthManager";
 import { showMessageForExpiredToken } from "./../../common/auth/AuthManager";
 import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
-import { UrlInfo } from "../../managers/UrlInfo";
-import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
 
 type NewLayerCallback = () => void;
 
@@ -56,9 +56,6 @@ export default class MiniPanel extends BaseComponent {
     effectNode: cc.Node = null;
 
     @property(cc.Prefab)
-    noticePrefab: cc.Prefab = null;
-
-    @property(cc.Prefab)
     loadingPrefab: cc.Prefab = null;
 
     @property(cc.Node)
@@ -80,6 +77,8 @@ export default class MiniPanel extends BaseComponent {
     public skipShowApiErrorGameIds: number[] = [];
     public gameMiniInitializers: MiniPanelMiniGameInitializers;
     public socketIOGameInitializers: MiniPanelSocketIOGameInitializers;
+    public noticePrefab: cc.Prefab = null;
+
     private miniGamesCache = {};
     private newLayerCallbacks = {};
     public chartsWebView = {};
@@ -456,21 +455,26 @@ export default class MiniPanel extends BaseComponent {
         this.showErrorNotice(error);
     }
 
-    showErrorNotice(error): Notice {
+    async showErrorNotice(error): Promise<Notice> {
+        let notice: Notice = null;
         if (!this.node.activeInHierarchy) {
             return null;
         }
-        const node = cc.instantiate(this.noticePrefab);
-        const notice = node.getComponent(Notice);
 
-        const gameName = GameUtils.getGameNameString(error.gameTypeId);
-        const { minBet, maxBet, gameRoundId, errorCode } = error;
-        const opt = { gameName, gameRoundId, errorCode, minBet: numberWithCommas(minBet), maxBet: numberWithCommas(maxBet) };
-        const isPlaceBet = error.isPlaceBetFailed;
-        const message = NoticeUtil.getLocalizedErrorMessage(errorCode, opt, isPlaceBet);
+        await this.initNoticePrefab();
+        if (this.noticePrefab) {
+            const node = cc.instantiate(this.noticePrefab);
+            notice = node.getComponent(Notice);
 
-        notice.init({ text: message } as NoticeData);
-        this.addNotice(node);
+            const gameName = GameUtils.getGameNameString(error.gameTypeId);
+            const { minBet, maxBet, gameRoundId, errorCode } = error;
+            const opt = { gameName, gameRoundId, errorCode, minBet: numberWithCommas(minBet), maxBet: numberWithCommas(maxBet) };
+            const isPlaceBet = error.isPlaceBetFailed;
+            const message = NoticeUtil.getLocalizedErrorMessage(errorCode, opt, isPlaceBet);
+
+            notice.init({ text: message } as NoticeData);
+            this.addNotice(node);
+        }
 
         return notice;
     }
@@ -483,25 +487,29 @@ export default class MiniPanel extends BaseComponent {
         this.guideContainer?.addChild(guide);
     }
 
-    showNotice(noticeData: NoticeData, handleClickButton: () => void = null, handleClose: () => void = null) {
+    async showNotice(noticeData: NoticeData, handleClickButton: () => void = null, handleClose: () => void = null): Promise<void> {
         if (!this.node.activeInHierarchy) {
             return;
         }
-        const node = cc.instantiate(this.noticePrefab);
-        const notice = node.getComponent(Notice);
 
-        noticeData.button = { text: "OK" };
-        notice.init(noticeData);
+        await this.initNoticePrefab();
+        if (this.noticePrefab) {
+            const node = cc.instantiate(this.noticePrefab);
+            const notice = node.getComponent(Notice);
 
-        if (handleClickButton) {
-            notice.handleClickButton = handleClickButton;
+            noticeData.button = { text: "OK" };
+            notice.init(noticeData);
+
+            if (handleClickButton) {
+                notice.handleClickButton = handleClickButton;
+            }
+
+            if (handleClose) {
+                notice.handleClose = handleClose;
+            }
+
+            this.addNotice(node);
         }
-
-        if (handleClose) {
-            notice.handleClose = handleClose;
-        }
-
-        this.addNotice(node);
     }
 
     onConnectSocketFailed(gameName, gameId, isGameRoom = true) {
@@ -556,5 +564,11 @@ export default class MiniPanel extends BaseComponent {
     getGameLoadingComp(gameId: number): Loading {
         const loadingFromManager = uiManager.getLoadingWithGameID(gameId);
         return loadingFromManager || this.loading;
+    }
+
+    async initNoticePrefab() {
+        if (!this.noticePrefab) {
+            this.noticePrefab = await GameUtils.loadResource("shared/prefabs/Notice");
+        }
     }
 }

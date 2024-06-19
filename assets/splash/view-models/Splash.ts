@@ -23,10 +23,14 @@ export default class Splash extends cc.Component {
     @property(cc.Prefab)
     prfMicrositeGame: cc.Prefab = null;
 
+    @property(cc.Sprite)
+    sprTopImage: cc.Sprite = null;
+
     protected onLoad(): void {
         this.disableAllNodeSplash();
         this.initUIListeners();
         this.handleSplashScene();
+        this.sprTopImage && this.renderTopImage();
     }
 
     private initUIListeners() {
@@ -110,5 +114,14 @@ export default class Splash extends cc.Component {
     private disableAllNodeSplash() {
         this.nodeMainSplash.active = false;
         this.nodeMicrositeGame.active = false;
+    }
+
+    private renderTopImage() {
+        const href = `${window.location.origin}`;
+        const imagePath = `${href}/splash-resources/top-middle.png`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+            this.sprTopImage.spriteFrame = spriteFrameTmp;
+        });
     }
 }

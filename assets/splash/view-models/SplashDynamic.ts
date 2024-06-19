@@ -1,3 +1,6 @@
+import { OperatorAlias } from "../../ISystem";
+import * as sessionManager from "../../common/auth/SessionManager";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -7,6 +10,9 @@ export default class SplashDynamic extends cc.Component {
 
     @property(cc.Sprite)
     sprTagPower: cc.Sprite = null;
+
+    @property(cc.Sprite)
+    sprTagline: cc.Sprite = null;
 
     @property
     operatorName = "";
@@ -35,5 +41,15 @@ export default class SplashDynamic extends cc.Component {
                 this.sprTagPower.spriteFrame = spriteFrameTmp;
             });
         }
+    }
+
+    loadTagline() {
+        const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
+        console.log("loadTagline", system);
+        cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${window.i18n.curLang}`, cc.SpriteFrame, (err, frame) => {
+            if (frame) {
+                this.sprTagline.spriteFrame = frame;
+            }
+        });
     }
 }

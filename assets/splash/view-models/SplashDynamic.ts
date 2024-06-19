@@ -26,8 +26,8 @@ export default class SplashDynamic extends cc.Component {
     }
 
     loadLogoOperator() {
-        const imagePath = `${this.href}/logo_${this.operatorName}.png`;
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+        const imagePath = `${this.href}/logo_${this.operatorName}.webp`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
             const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
             this.sprLogo.spriteFrame = spriteFrameTmp;
         });

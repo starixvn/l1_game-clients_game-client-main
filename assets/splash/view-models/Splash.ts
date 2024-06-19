@@ -119,8 +119,8 @@ export default class Splash extends cc.Component {
 
     private renderTopImage() {
         const href = `${window.location.origin}`;
-        const imagePath = `${href}/splash-resources/top-middle.png`;
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+        const imagePath = `${href}/splash-resources/top-middle.webp`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
             const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
             this.sprTopImage.spriteFrame = spriteFrameTmp;
         });

@@ -128,6 +128,7 @@ export default class MiniCoinToss extends MiniGameBase {
         super.initGameDataEvents();
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleUserBetPercentage);
         this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
     }
 

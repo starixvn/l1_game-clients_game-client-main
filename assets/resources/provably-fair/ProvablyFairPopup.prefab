@@ -9746,7 +9746,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 466.49,
+      "width": 971.21,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -9798,8 +9798,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "MERGE_CLIENT_SEED",
-    "_N$string": "MERGE_CLIENT_SEED",
+    "_string": "COMMON.PF_ HEADER_MERGE_CLIENT_SEED",
+    "_N$string": "COMMON.PF_ HEADER_MERGE_CLIENT_SEED",
     "_fontSize": 42,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -15907,9 +15907,11 @@
   },
   {
     "__type__": "cc.ClickEvent",
-    "target": null,
+    "target": {
+      "__id__": 1
+    },
     "component": "",
-    "_componentId": "7dcf1x7CT1PobTTVSPEJnC1",
+    "_componentId": "91a0dmX/JVKLZKoAqRm4B8k",
     "handler": "onClickVerify",
     "customEventData": ""
   },

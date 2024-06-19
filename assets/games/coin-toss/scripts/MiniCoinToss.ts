@@ -20,7 +20,7 @@ import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
-import * as i18n from "i18n/runtime-scripts/LanguageData";
+import { i18n } from "../../../ClientModules";
 
 const { ccclass, property } = cc._decorator;
 

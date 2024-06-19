@@ -240,7 +240,7 @@ export default class MainSplash extends cc.Component {
             const endLoadTime = Date.now();
             console.log(
                 `SplashScreen - End download game icon and banner: ${new Date(endLoadTime).toLocaleString()}`,
-                `Total load time: ${(startLoadTime - endLoadTime) / 1000}`
+                `Total load time: ${(endLoadTime - startLoadTime) / 1000}`
             );
         } catch (e) {
             console.log(e);

@@ -30,7 +30,8 @@ export default class LobbyMenu extends GameIconMenu {
         //override super
     }
 
-    loadHiddenIcons() {
+    async loadHiddenIcons() {
+        await GameUtils.asyncExecute(this?.node, GameUtils.delayTime(this.durationAutoHideSkeleton));
         this.handleLoadHiddenIcons();
     }
 

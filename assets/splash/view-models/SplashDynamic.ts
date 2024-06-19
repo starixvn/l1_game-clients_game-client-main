@@ -1,28 +1,39 @@
-// Learn TypeScript:
-//  - https://docs.cocos.com/creator/manual/en/scripting/typescript.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/manual/en/scripting/life-cycle-callbacks.html
-
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class SplashDynamic extends cc.Component {
+    @property(cc.Sprite)
+    sprLogo: cc.Sprite = null;
 
-    @property(cc.Label)
-    label: cc.Label = null;
+    @property(cc.Sprite)
+    sprTagPower: cc.Sprite = null;
 
     @property
-    text: string = 'hello';
+    operatorName = "";
 
-    // LIFE-CYCLE CALLBACKS:
+    private href = `${window.location.origin}/splash-resources`;
 
-    // onLoad () {}
-
-    start () {
-
+    onLoad() {
+        this.loadLogoOperator();
+        this.loadTagPower();
     }
 
-    // update (dt) {}
+    loadLogoOperator() {
+        const imagePath = `${this.href}/logo_${this.operatorName}.png`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+            this.sprLogo.spriteFrame = spriteFrameTmp;
+        });
+    }
+
+    loadTagPower() {
+        if (this.sprTagPower) {
+            console.log("loadTagPower", window.i18n.curLang);
+            const imagePath = `${this.href}/powered_by_sc2_${window.i18n.curLang}.png`;
+            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.sprTagPower.spriteFrame = spriteFrameTmp;
+            });
+        }
+    }
 }

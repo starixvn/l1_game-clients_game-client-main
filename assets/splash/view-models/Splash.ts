@@ -31,6 +31,7 @@ export default class Splash extends cc.Component {
         this.initUIListeners();
         this.handleSplashScene();
         this.sprTopImage && this.renderTopImage();
+        this.loadBackground();
     }
 
     private initUIListeners() {
@@ -122,6 +123,14 @@ export default class Splash extends cc.Component {
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
             const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
             this.sprTopImage.spriteFrame = spriteFrameTmp;
+        });
+    }
+
+    private loadBackground() {
+        const imagePath = `${window.location.origin}/splash-resources/background.jpg`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+            this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
         });
     }
 }

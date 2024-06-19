@@ -168,12 +168,12 @@ export default class LobbyMenu extends GameIconMenu {
                 break;
             }
 
-            const idGame = +icon.node.name;
             try {
+                const idGame = +icon.node.name;
                 await icon.loadAnimation(idGame);
                 console.log(`Loaded game icon: ${idGame}`);
             } catch (e) {
-                console.log(`Cannot load game ${idGame}`, e);
+                console.log(`Cannot load game icon game`, e);
             }
         }
     }

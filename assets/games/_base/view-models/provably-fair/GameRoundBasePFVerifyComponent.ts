@@ -1,3 +1,4 @@
+import GameUtils from "../../../../common/GameUtils";
 import CommonDialog from "../../../../common/_base/view-models/CommonDialog";
 import { ClientSeedInfo } from "./ClientSeedInfo";
 import { LabelCopyComponent } from "./LabelCopyComponent";
@@ -22,18 +23,6 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     @property(cc.Label)
     lblRoundId: cc.Label = null;
 
-    @property(LabelCopyComponent)
-    lblServerSeed: LabelCopyComponent = null;
-
-    @property(LabelCopyComponent)
-    lblServerSeedHash: LabelCopyComponent = null;
-
-    @property(LabelCopyComponent)
-    lblMergeClientSeed: LabelCopyComponent = null;
-
-    @property(LabelCopyComponent)
-    lblFinalHash: LabelCopyComponent = null;
-
     @property(cc.Label)
     lblParaVerification: cc.Label = null;
 
@@ -43,7 +32,15 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     @property(cc.Node)
     nodeDisabledVerification: cc.Node = null;
 
+    @property(cc.Label)
+    lblMergeClientSeed: cc.Label = null;
+
+    @property(cc.Node)
+    hintMergeClientCopyNode: cc.Node = null;
+
     private listClientSeedInfo: ClientSeedInfo[] = [];
+
+    protected mergeSeedClientCopyString = "";
 
     onLoad() {
         this.initClientSeedsList();
@@ -52,22 +49,25 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         // this.lblParaVerification.string = para;
     }
 
+    onCopyMergeSeedClient() {
+        GameUtils.copyToClipboard(this.mergeSeedClientCopyString, this.getHintLabel(this.hintMergeClientCopyNode), this.showHint(this.hintMergeClientCopyNode));
+    }
+
     updateProvablyFairVerify(verification: IRoundBaseProvablyFairVerify) {
         const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId } = verification;
         this.lblRoundId.string = roundId.toString();
         result && this.renderResult(result);
-
-        serverSeed && this.lblServerSeed.setString(serverSeed);
-        this.lblServerSeed.setActive(!!serverSeed);
-
-        serverSeedHash && this.lblServerSeedHash.setString(serverSeedHash);
-        this.lblServerSeedHash.setActive(!!serverSeedHash);
-
-        mergeClientSeed && this.lblMergeClientSeed.setString(mergeClientSeed);
-        this.lblMergeClientSeed.setActive(!!mergeClientSeed);
-
-        finalHash && this.lblFinalHash.setString(finalHash);
-        this.lblFinalHash.setActive(!!finalHash);
+        if (!this.node.activeInHierarchy && this.node?.isValid) {
+            this.serverSeedLbl.string = this.truncateString(serverSeed.toString());
+            this.serverSeedCopyString = serverSeed;
+            this.lblMergeClientSeed.string = mergeClientSeed.toString();
+            this.mergeSeedClientCopyString = mergeClientSeed;
+            this.serverSeedSHA256Lbl.string = this.truncateString(serverSeedHash.toString());
+            this.hashCopyString = serverSeedHash;
+            this.finalResultLbl.string = this.truncateString(finalHash.toString());
+            this.finalResultCopyString = finalHash;
+            this.node.emit(OPEN_PROVABLY_FAIR_VERIFY);
+        }
 
         if (this.listClientSeedInfo.length === 0) {
             this.initClientSeedsList();

@@ -1014,7 +1014,7 @@ export default class GameBase extends GameViewBase {
     }
 
     handleProvablyFairVerifyData(provablyFair: any) {
-        provablyFair && this.historyComponent.provablyFairVerifyComponent.updateProvablyFairVerify(provablyFair);
+        provablyFair && this.historyComponent?.provablyFairVerifyComponent?.updateProvablyFairVerify(provablyFair);
     }
 
     shouldShowWinningEffect() {

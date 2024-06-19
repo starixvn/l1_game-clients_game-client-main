@@ -1,6 +1,7 @@
 import { lazyInject } from "../../../Application";
 import AudioManager from "../../../common/audio/AudioManager";
 import GameUtils from "../../../common/GameUtils";
+import { userManager } from "../../../common/user/UserManager";
 import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
@@ -21,9 +22,6 @@ export default class PopupMinigames extends cc.Component {
     @property(cc.Node)
     jackPotContainer: cc.Node = null;
 
-    @property(cc.Prefab)
-    jackpotWinnerPrefab: cc.Prefab = null;
-
     @property(cc.Node)
     roundTimer: cc.Node = null;
 
@@ -35,6 +33,7 @@ export default class PopupMinigames extends cc.Component {
     private toggleRuning = false;
     public background: cc.Node = null;
     private prevPosition;
+    private jackpotWinner: JackpotWinner = null;
 
     onLoad() {
         if (appManager.popupMiniGamesLastPosition) {
@@ -45,15 +44,9 @@ export default class PopupMinigames extends cc.Component {
         this.list.active = false;
         this.list.scale = 0;
 
-        // init jackpot winner icon
-        const jackpot = cc.instantiate(this.jackpotWinnerPrefab);
-        const jackpotWinner = jackpot.getComponent(JackpotWinner);
-        jackpotWinner.popupMiniGame = this;
-        this.jackPotContainer?.addChild(jackpot);
-        this.jackPotContainer.active = false;
-
         roundTimerManager.initEvents();
         this.initDefaultGameRoundTimer();
+        this.initJackpotEvents();
 
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
     }
@@ -70,10 +63,15 @@ export default class PopupMinigames extends cc.Component {
         roundTimerManager.requestRoundTimer();
     }
 
+    initJackpotEvents() {
+        uiManager.emitterListener(InternalEvents.RECEIVED_JACKPOT_WINNER, (data) => this.showJackpotWinner(data), this);
+    }
+
     onDestroy() {
         this.unschedule(this.moveToEdge);
         roundTimerManager.removeEvents();
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
+        uiManager.removeListenersWithTarget(this);
     }
 
     onGameShow() {
@@ -202,6 +200,46 @@ export default class PopupMinigames extends cc.Component {
                 uiManager.emitter.emit(InternalEvents.SHOW_POPUP_MINI_GAMES);
             })
             .start();
+    }
+
+    async createJackpotWinnerNode() {
+        const jackpotPrefab = await GameUtils.loadResource("minipanel/popup-mini-game/jackpot-winner-anoucement");
+        try {
+            const jackpot = cc.instantiate(jackpotPrefab);
+            const jackpotWinner = jackpot.getComponent(JackpotWinner);
+            this.jackpotWinner = jackpotWinner;
+            this.jackPotContainer?.addChild(jackpot);
+            this.jackPotContainer.active = false;
+        } catch (error) {
+            cc.warn("Failed to init jackpot - " + error);
+        }
+    }
+
+    async showJackpotWinner(data: any) {
+        if (this.isNotifyJackpotWinner(data)) {
+            if (!this.jackpotWinner) {
+                await this.createJackpotWinnerNode();
+            }
+            if (this.jackpotWinner) {
+                this.jackPotContainer.width = this.jackpotWinner.node.width;
+                this.jackPotContainer.height = this.jackpotWinner.node.height;
+                this.jackpotWinner.setData(data);
+                this.menuIcon.active = false;
+                this.jackPotContainer.active = true;
+
+                cc.tween(this)
+                    .delay(6)
+                    .call(() => {
+                        this.jackPotContainer.active = false;
+                        this.menuIcon.active = true;
+                    })
+                    .start();
+            }
+        }
+    }
+
+    isNotifyJackpotWinner(data: any) {
+        return userManager.userName !== data.winnerName && !userManager.disableJackpotGames;
     }
 
     hideListGame() {

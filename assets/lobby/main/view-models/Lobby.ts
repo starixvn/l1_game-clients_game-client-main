@@ -42,12 +42,6 @@ export default class Lobby extends cc.Component {
     @property(cc.Prefab)
     miniPanelPrefab: cc.Prefab = null;
 
-    @property(cc.Prefab)
-    logoutPrefab: cc.Prefab = null;
-
-    @property(cc.Prefab)
-    settingMenuPrefab: cc.Prefab = null;
-
     @property(cc.Node)
     appDownload: cc.Node = null;
 
@@ -90,9 +84,6 @@ export default class Lobby extends cc.Component {
     @property(cc.Node)
     arrowNode: cc.Node = null;
 
-    @property(cc.Prefab)
-    signNamePrefab = null;
-
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
@@ -107,6 +98,9 @@ export default class Lobby extends cc.Component {
     private isSSOGameMini = false;
     private isSSOToGame = false;
     private loadedOtherIconsAndBanners = false;
+    logoutPrefab: cc.Prefab = null;
+    settingMenuPrefab: cc.Prefab = null;
+    signNamePrefab: cc.Prefab = null;
 
     onDestroy() {
         appManager.miniPanel = null;
@@ -131,14 +125,30 @@ export default class Lobby extends cc.Component {
         this.trackOnLoadEvents();
     }
 
-    openSettingMenu() {
-        AudioManager.getInstance().playClick();
-        const settingMenu = cc.instantiate(this.settingMenuPrefab);
-        settingMenu.on(SettingMenuEvents.LOGOUT, () => {
-            const dialog = cc.instantiate(this.logoutPrefab);
-            this.miniPanel.addDialog(dialog);
-        });
-        this.miniPanel.addDialog(settingMenu);
+    async openSettingMenu() {
+        try {
+            AudioManager.getInstance().playClick();
+            if (!this.settingMenuPrefab) {
+                this.settingMenuPrefab = await GameUtils.loadResource("prefabs/SettingMenu");
+            }
+
+            if (this.settingMenuPrefab) {
+                const settingMenu = cc.instantiate(this.settingMenuPrefab);
+                settingMenu.on(SettingMenuEvents.LOGOUT, async () => {
+                    try {
+                        if (!this.logoutPrefab) {
+                            this.logoutPrefab = await GameUtils.loadResource("prefabs/LogoutPopup");
+                        }
+
+                        if (this.logoutPrefab) {
+                            const dialog = cc.instantiate(this.logoutPrefab);
+                            this.miniPanel.addDialog(dialog);
+                        }
+                    } catch (err) {}
+                });
+                this.miniPanel.addDialog(settingMenu);
+            }
+        } catch (err) {}
     }
 
     private trackOnLoadEvents() {
@@ -570,12 +580,20 @@ export default class Lobby extends cc.Component {
         this.updateArrowVisibility();
     }
 
-    showSignName() {
+    async showSignName() {
         if (!this.signName) {
-            const node = cc.instantiate(this.signNamePrefab);
-            this.signName = node.getComponent("SignName");
-            this.signName.init(this.handleSignName.bind(this));
-            this.miniPanel.addDialog(node);
+            try {
+                if (!this.signNamePrefab) {
+                    this.signNamePrefab = await GameUtils.loadResource("prefabs/SignName");
+                }
+
+                if (this.signNamePrefab) {
+                    const node = cc.instantiate(this.signNamePrefab);
+                    this.signName = node.getComponent("SignName");
+                    this.signName.init(this.handleSignName.bind(this));
+                    this.miniPanel.addDialog(node);
+                }
+            } catch (err) {}
         }
     }
 

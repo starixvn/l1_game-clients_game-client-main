@@ -302,10 +302,19 @@ export default class MainSplash extends cc.Component {
 
     private async preLoadBanner() {
         try {
-            if (this.lobbyMenuConfig.bannerAds.length < 1) {
+            const offerGames = userManager.offerGames ?? [];
+            let bannerGameIds = this.lobbyMenuConfig.bannerAds ?? [];
+
+            // Filter offer games
+            if (offerGames.length > 0) {
+                bannerGameIds = bannerGameIds.filter((gameId) => offerGames.includes(gameId));
+            }
+
+            if (bannerGameIds.length == 0) {
                 return;
             }
-            const bannerId = this.lobbyMenuConfig.bannerAds[0];
+
+            const bannerId = bannerGameIds[0];
 
             let bannerAwaiters: Promise<unknown>;
             const bannerType = GameUtils.getBannerTypeByGameId(bannerId);

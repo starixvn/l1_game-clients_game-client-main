@@ -235,12 +235,12 @@ export default class MainSplash extends cc.Component {
     async onLoaded() {
         try {
             const startLoadTime = Date.now();
-            console.log(`SplashScreen - Start to download game icon and banner: ${new Date(startLoadTime).toLocaleString()}`);
+            console.log(`SplashScreen - Start i&b: ${new Date(startLoadTime).toLocaleString()}`);
             await Promise.all([this.preLoadBanner(), this.preLoadGameIcons()]);
             const endLoadTime = Date.now();
             console.log(
-                `SplashScreen - End download game icon and banner: ${new Date(endLoadTime).toLocaleString()}`,
-                `Total load time: ${(endLoadTime - startLoadTime) / 1000}`
+                `SplashScreen - End i&b: ${new Date(endLoadTime).toLocaleString()}`,
+                `Total time: ${(endLoadTime - startLoadTime) / 1000}`
             );
         } catch (e) {
             console.log(e);

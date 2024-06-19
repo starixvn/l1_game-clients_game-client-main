@@ -1,22 +1,21 @@
+import { OperatorAlias } from "../../ISystem";
+import * as sessionManager from "../../common/auth/SessionManager";
 import NoticeUtil from "../utils/NoticeUtil";
 
-const { ccclass, property } = cc._decorator;
+const { ccclass } = cc._decorator;
 
 @ccclass
 export default class LocalizedMask extends cc.Mask {
-    @property(cc.SpriteAtlas)
-    atlas: cc.SpriteAtlas = null;
-
-    @property()
-    prefix = "";
-
     onLoad() {
-        this.spriteFrame = this.getSpriteFrameByLang(NoticeUtil.getCurrentLanguage());
+        this.getSpriteFrameByLang(NoticeUtil.getCurrentLanguage());
     }
 
     getSpriteFrameByLang(lang: string) {
-        const suffix = lang !== "vi" ? `_${lang}` : "";
-        const spriteName = `${this.prefix}${suffix}`;
-        return this.atlas.getSpriteFrame(spriteName);
+        const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
+        cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${lang}`, cc.SpriteFrame, (err, frame) => {
+            if (frame) {
+                this.spriteFrame = frame;
+            }
+        });
     }
 }

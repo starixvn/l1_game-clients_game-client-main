@@ -1,7 +1,7 @@
 import GameUtils from "../../../../common/GameUtils";
-import CommonDialog from "../../../../common/_base/view-models/CommonDialog";
+import { getLanguage, getLocale } from "../../../../common/auth/SessionManager";
+import WebViewVerification from "../../../../common/webview-guide/WebViewVerification";
 import { ClientSeedInfo } from "./ClientSeedInfo";
-import { LabelCopyComponent } from "./LabelCopyComponent";
 import ProvablyFairVerifyComponent, { OPEN_PROVABLY_FAIR_VERIFY } from "./ProvablyFairVerifyComponent";
 
 const { ccclass, property } = cc._decorator;
@@ -14,7 +14,6 @@ export interface IRoundBaseProvablyFairVerify {
     serverSeedHash: string;
     result: object;
     finalHash: string;
-
     roundId: number;
 }
 
@@ -38,9 +37,17 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     @property(cc.Node)
     hintMergeClientCopyNode: cc.Node = null;
 
+    @property(cc.Prefab)
+    verificationPrefab: cc.Prefab = null;
+
+    @property(cc.Node)
+    verificationContainer: cc.Node = null;
+
     private listClientSeedInfo: ClientSeedInfo[] = [];
 
     protected mergeSeedClientCopyString = "";
+
+    private provablyFair: IRoundBaseProvablyFairVerify;
 
     onLoad() {
         this.initClientSeedsList();
@@ -50,10 +57,15 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     }
 
     onCopyMergeSeedClient() {
-        GameUtils.copyToClipboard(this.mergeSeedClientCopyString, this.getHintLabel(this.hintMergeClientCopyNode), this.showHint(this.hintMergeClientCopyNode));
+        GameUtils.copyToClipboard(
+            this.mergeSeedClientCopyString,
+            this.getHintLabel(this.hintMergeClientCopyNode),
+            this.showHint(this.hintMergeClientCopyNode)
+        );
     }
 
     updateProvablyFairVerify(verification: IRoundBaseProvablyFairVerify) {
+        this.provablyFair = verification;
         const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId } = verification;
         this.lblRoundId.string = roundId.toString();
         result && this.renderResult(result);
@@ -95,6 +107,18 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
             const resultComp = this.nodeResult.getComponentInChildren(BaseResultBodyItem);
             resultComp.setData(result, result);
         }
+    }
+
+    onClickVerify() {
+        const dialog = cc.instantiate(this.verificationPrefab);
+        const verification = dialog.getComponent(WebViewVerification);
+        verification.setRoundId(this.provablyFair?.roundId);
+        const locale = getLocale();
+        const language = getLanguage(locale);
+        verification.initURLVerification(this.gameId, language);
+        verification.sendDataToIframe(this.provablyFair);
+        this.verificationContainer.addChild(dialog);
+        verification.loadWebView();
     }
 }
 

@@ -20,5 +20,6 @@ export default class MiniCoinTossBetItem extends BetItem {
     public handleHighlightAnim(isActive: boolean) {
         this.normalIcon && (this.normalIcon.active = !isActive);
         this.loseIcon && (this.loseIcon.active = isActive);
+        this.odds.node.opacity = isActive ? 150 : 255;
     }
 }

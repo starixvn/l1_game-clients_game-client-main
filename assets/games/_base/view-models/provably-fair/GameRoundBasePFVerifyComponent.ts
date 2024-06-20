@@ -84,7 +84,6 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
             this.hashCopyString = serverSeedHash;
             this.finalResultLbl.string = this.truncateString(finalHash.toString());
             this.finalResultCopyString = finalHash;
-            this.node.emit(OPEN_PROVABLY_FAIR_VERIFY);
         }
 
         if (this.listClientSeedInfo.length === 0) {

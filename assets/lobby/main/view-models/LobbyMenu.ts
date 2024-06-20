@@ -175,9 +175,9 @@ export default class LobbyMenu extends GameIconMenu {
             try {
                 const idGame = +icon.node.name;
                 await icon.loadAnimation(idGame);
-                console.log(`Loaded game icon: ${idGame}`);
+                cc.log(`Loaded game icon: ${idGame}`);
             } catch (e) {
-                console.log(`Cannot load game icon game`, e);
+                cc.log(`Cannot load game icon game`, e);
             }
         }
     }
@@ -187,7 +187,7 @@ export default class LobbyMenu extends GameIconMenu {
         try {
             icon.setGameName(gameName.toUpperCase(), gameId);
         } catch (e) {
-            console.warn("Catch error after await method", e.message);
+            cc.warn("Catch error after await method", e.message);
         }
     }
 

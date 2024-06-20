@@ -360,16 +360,15 @@ export default abstract class FeatureSlotGameBase extends NewGameRoomBase {
     }
 
     setDefaultPositionForMiniMenu() {
-        if (!this.currentMiniPanel.popupMiniGame || !this.currentMiniPanel.boostedOdds) {
+        if (!this.currentMiniPanel.popupMiniGame) {
             this.scheduleOnce(this.setDefaultPositionForMiniMenu, 0.1);
             return;
         }
 
         const node = this.currentMiniPanel.popupMiniGame.node;
-        const promotionNode = this.currentMiniPanel.boostedOdds.node;
         const wPosition = this.defaultMiniMenu.convertToWorldSpaceAR(cc.v2(0, 0));
         const localPosition = node.parent.convertToNodeSpaceAR(wPosition);
-        node.position = promotionNode.position = cc.v3(node.x, localPosition.y);
+        node.position = cc.v3(node.x, localPosition.y);
     }
 
     initShowBottomMessage(node: cc.Node) {

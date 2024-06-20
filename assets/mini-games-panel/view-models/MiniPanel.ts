@@ -190,9 +190,18 @@ export default class MiniPanel extends BaseComponent {
             const boostedOddsNode = cc.instantiate(boostedOddsPrefab);
             this.boostedOdds = boostedOddsNode.getComponent(BoostedOdds);
             this.promotionContainer?.addChild(boostedOddsNode);
+            this.updatePositionPromotionNode();
         } catch (error) {
             cc.warn("Failed to init boosted odds - " + error);
         }
+    }
+
+    updatePositionPromotionNode() {
+        const popupMiniGameNode = this.popupMiniGame?.node;
+        const boostedOddsNode = this.boostedOdds?.node;
+        const wPosition = popupMiniGameNode.convertToWorldSpaceAR(cc.v2(0, 0));
+        const localPosition = boostedOddsNode?.parent?.convertToNodeSpaceAR(wPosition);
+        boostedOddsNode.position = cc.v3(localPosition?.x, localPosition?.y);
     }
 
     async showBoostedOdds() {

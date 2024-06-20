@@ -109,6 +109,10 @@ export default class MiniCoinToss extends MiniGameBase {
         this.statisticHistory.node.active = true;
     }
 
+    onDisconnected() {
+        this.closeGame();
+    }
+
     public toggleShowStatistic() {
         this.statisticHistory.node.active = !this.statisticHistory.node.active;
     }

@@ -12,7 +12,7 @@ export interface EmitterStorageType {
 export interface SkeletonCache {
     [key: number]: {
         skeletonData: sp.SkeletonData;
-        configFile: cc.JsonAsset;
+        configFile?: cc.JsonAsset;
     };
 }
 

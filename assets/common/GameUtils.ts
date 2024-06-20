@@ -132,6 +132,12 @@ export default class GameUtils {
         return this.versionsCache[gameId];
     }
 
+    public static async cachedGameIcon(gameId: number) {
+        const gameConfiguration = getGameConfiguration(gameId);
+        const isMicrosite = gameConfiguration?.isMicrosite;
+        return isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
+    }
+
     public static async preloadRemoteIcon(gameId: number) {
         try {
             const versions = await GameUtils.getRemoteVersion(gameId);

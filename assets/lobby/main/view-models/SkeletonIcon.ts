@@ -8,7 +8,6 @@ import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 import GameNotification from "./GameNotification";
 import LobbyMenuConfig from "./LobbyMenuConfig";
-import { TotalPreloadGameIcon } from "../../../constants";
 
 const { ccclass, property } = cc._decorator;
 
@@ -52,7 +51,7 @@ export default class SkeletonIcon extends cc.Component {
         this.gameName.node.active = false;
     }
 
-    private readonly cache: SkeletonCache = uiManager.remoteIconCache;
+    private readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
 
     setGameName(text: string, gameId: number) {
         const transformersGameId = 70;
@@ -69,7 +68,9 @@ export default class SkeletonIcon extends cc.Component {
     static listGameWithoutHide = [];
 
     async setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
-        if (!uiManager.prefabCache.lobbyIcons[id] && gameIconIndex >= TotalPreloadGameIcon) {
+        const cachedGameIcon = GameUtils.cachedGameIcon(id);
+
+        if (!cachedGameIcon) {
             addListIconObscure(this);
         } else {
             this.loadAnimation(id, categoryIndex);
@@ -98,10 +99,14 @@ export default class SkeletonIcon extends cc.Component {
     private async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
-            const configFile = this.cache[id]
-                ? this.cache[id].configFile
+            const configFile = this.micrositeIconCache[id]
+                ? this.micrositeIconCache[id].configFile
                 : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
 
+            this.micrositeIconCache[id] = {
+                ...this.micrositeIconCache[id],
+                configFile
+            };
             const iconConfig: RemoteIconConfig = configFile?.json;
 
             node.addComponent(sp.Skeleton);
@@ -111,7 +116,7 @@ export default class SkeletonIcon extends cc.Component {
             remoteSpine.host = url;
             remoteSpine.spineName = "icon-game";
             remoteSpine.premultipliedAlpha = iconConfig ? iconConfig.premultipliedAlpha : false;
-            await remoteSpine.init(this.cache);
+            await remoteSpine.init(this.micrositeIconCache);
             if (iconConfig?.gameNotification) {
                 this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }

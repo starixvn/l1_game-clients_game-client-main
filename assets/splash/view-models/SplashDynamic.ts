@@ -36,8 +36,8 @@ export default class SplashDynamic extends cc.Component {
     loadTagPower() {
         if (this.sprTagPower) {
             console.log("loadTagPower", window.i18n.curLang);
-            const imagePath = `${this.href}/powered_by_sc2_${window.i18n.curLang}.png`;
-            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            const imagePath = `${this.href}/powered_by_sc2_${window.i18n.curLang}.webp`;
+            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                 this.sprTagPower.spriteFrame = spriteFrameTmp;
             });

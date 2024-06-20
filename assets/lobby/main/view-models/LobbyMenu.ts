@@ -108,6 +108,10 @@ export default class LobbyMenu extends GameIconMenu {
         return list?.filter((i) => userManager.offerGames.some((j) => j === i)) ?? [];
     }
 
+    onItemsChanged() {
+        this.loadHiddenIcons();
+    }
+
     onInitialized() {
         const layout = this.content.getComponent(cc.Layout);
         layout.updateLayout();

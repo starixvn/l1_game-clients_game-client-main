@@ -45,6 +45,8 @@ export default abstract class GameIconMenu extends BaseComponent {
             }
         }
 
+        this.onItemsChanged();
+
         if (!this.isAlive() || this.initialized) {
             return;
         }
@@ -58,5 +60,9 @@ export default abstract class GameIconMenu extends BaseComponent {
 
     onInitialized() {
         // handle onInitialized
+    }
+
+    onItemsChanged() {
+        // handle on Items changed
     }
 }

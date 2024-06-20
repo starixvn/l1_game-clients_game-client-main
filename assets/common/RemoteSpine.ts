@@ -44,10 +44,8 @@ export default class RemoteSpine extends cc.Component {
 
     async loadResources() {
         if (this.cache?.[this.id]?.skeletonData) {
-            console.log(`using cache remote spine `, this.id);
             this.spine.skeletonData = this.cache[this.id].skeletonData;
         } else {
-            console.log(`load remote spine `, this.id);
             const spineRes = [];
             const versions = await GameUtils.getRemoteVersion(this.id);
             const versionType = versions?.[versionMapping[this.type]];

@@ -132,10 +132,10 @@ export default class GameUtils {
         return this.versionsCache[gameId];
     }
 
-    public static async cachedGameIcon(gameId: number) {
+    public static cachedGameIcon(gameId: number) {
         const gameConfiguration = getGameConfiguration(gameId);
         const isMicrosite = gameConfiguration?.isMicrosite;
-        return isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
+        return !!isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
     }
 
     public static async preloadRemoteIcon(gameId: number) {
@@ -164,10 +164,11 @@ export default class GameUtils {
         const gameConfiguration = getGameConfiguration(gameId);
         const gameSetting = LobbyManager.getInstance().getGame(gameId, category);
 
+        let prefab: cc.Prefab;
         if (!!gameConfiguration?.remoteBundle) {
             const directory = systemPath === "" ? "icons" : `icons/${systemPath}`;
             const path = `${gameConfiguration?.isMicrosite ? gameId + "/" : ""}${directory}/${gameSetting?.bigSize ? "Big" : "Small"}`;
-            return BundleManager.getInstance().loadAsset<cc.Prefab>({
+            prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
                 bundleId: gameId.toString(),
                 path: path,
                 type: cc.Prefab
@@ -175,9 +176,11 @@ export default class GameUtils {
         } else {
             const directory = systemPath === "" ? "lobby/games" : `lobby/games/${systemPath}`;
             const path = `${directory}/${gameId}`;
-
-            return this.loadResource(path);
+            prefab = await this.loadResource(path);
         }
+
+        uiManager.prefabCache.lobbyIcons[gameId] = prefab;
+        return prefab;
     }
 
     public static async loadMiniPanelGameIcon(gameId: number): Promise<cc.Prefab> {

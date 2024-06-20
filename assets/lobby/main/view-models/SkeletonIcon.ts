@@ -67,13 +67,13 @@ export default class SkeletonIcon extends cc.Component {
     }
     static listGameWithoutHide = [];
 
-    async setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
+    setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         const cachedGameIcon = GameUtils.cachedGameIcon(id);
 
-        if (!cachedGameIcon) {
-            addListIconObscure(this);
-        } else {
+        if (!!cachedGameIcon) {
             this.loadAnimation(id, categoryIndex);
+        } else {
+            addListIconObscure(this);
         }
     }
 
@@ -88,7 +88,6 @@ export default class SkeletonIcon extends cc.Component {
                     prefab = await GameUtils.loadGameIcon(id, this.splashConfig.customPath);
                 }
             }
-            uiManager.prefabCache.lobbyIcons[id] = prefab;
             return cc.instantiate(prefab);
         } catch (error) {
             cc.log(error);

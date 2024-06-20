@@ -274,7 +274,7 @@ export default class MainSplash extends cc.Component {
             );
 
             // Load game icon through remote site
-            const preloadRemoteGameIds = preLoadGameIds.filter((id) => getGameConfiguration(id).isMicrosite);
+            const preloadRemoteGameIds = preLoadGameIds.filter((id) => GameUtils.isMicroSite(getGameConfiguration(id)));
             const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => GameUtils.preloadRemoteIcon(gameId));
 
             // Wait all

@@ -14,6 +14,9 @@ export default class SplashDynamic extends cc.Component {
     @property(cc.Sprite)
     sprTagline: cc.Sprite = null;
 
+    @property(cc.Animation)
+    animTagline: cc.Animation = null;
+
     @property
     operatorName = "";
 
@@ -27,30 +30,42 @@ export default class SplashDynamic extends cc.Component {
 
     loadLogoOperator() {
         const imagePath = `${this.href}/logo_${this.operatorName}.webp`;
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
-            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-            this.sprLogo.spriteFrame = spriteFrameTmp;
-        });
+        try {
+            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.sprLogo.spriteFrame = spriteFrameTmp;
+            });
+        } catch (e) {
+            cc.warn(`Missing load image at ${imagePath} `, e);
+        }
     }
 
     loadTagPower() {
         if (this.sprTagPower) {
-            console.log("loadTagPower", window.i18n.curLang);
             const imagePath = `${this.href}/powered_by_sc2_${window.i18n.curLang}.webp`;
-            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
-                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-                this.sprTagPower.spriteFrame = spriteFrameTmp;
-            });
+            try {
+                cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+                    const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                    this.sprTagPower.spriteFrame = spriteFrameTmp;
+                });
+            } catch (e) {
+                cc.warn(`Missing load image at ${imagePath} `, e);
+            }
         }
     }
 
     loadTagline() {
         const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
-        console.log("loadTagline", system);
-        cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${window.i18n.curLang}`, cc.SpriteFrame, (err, frame) => {
-            if (frame) {
-                this.sprTagline.spriteFrame = frame;
-            }
-        });
+        try {
+            cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${window.i18n.curLang}`, cc.SpriteFrame, (err, frame) => {
+                if (frame) {
+                    this.sprTagline.spriteFrame = frame;
+                }
+            });
+
+            this.animTagline && this.animTagline.play();
+        } catch (e) {
+            cc.warn(`Missing load image `, e);
+        }
     }
 }

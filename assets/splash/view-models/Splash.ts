@@ -124,9 +124,7 @@ export default class Splash extends cc.Component {
             try {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                 this.sprTopImage.spriteFrame = spriteFrameTmp;
-            } catch (e) {
-                cc.warn(`Missing load image at ${imagePath} `, e);
-            }
+            } catch (e) {}
         });
     }
 
@@ -136,9 +134,7 @@ export default class Splash extends cc.Component {
             try {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                 this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
-            } catch (e) {
-                cc.warn(`Missing load image at ${imagePath} `, e);
-            }
+            } catch (e) {}
         });
     }
 }

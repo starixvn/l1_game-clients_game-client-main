@@ -59,7 +59,7 @@ export default class SplashDynamic extends cc.Component {
         const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
         const path = `splash/images/tagline_${system}_${window.i18n.curLang}`;
         return new Promise<cc.SpriteFrame>((resolve, reject) => {
-            cc.resources.load(path, (err, frame: cc.SpriteFrame) => {
+            cc.resources.load<cc.SpriteFrame>(path, cc.SpriteFrame, (err, frame) => {
                 if (err || !frame) {
                     reject(err);
                 } else {

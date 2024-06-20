@@ -17,6 +17,9 @@ export default class SplashDynamic extends cc.Component {
     @property(cc.Animation)
     animTagline: cc.Animation = null;
 
+    @property(cc.Node)
+    nodeLightMask: cc.Node = null;
+
     @property
     operatorName = "";
 
@@ -52,6 +55,7 @@ export default class SplashDynamic extends cc.Component {
 
     private async loadTagline() {
         this.sprTagline.spriteFrame = await this.loadTaglineImage();
+        this.nodeLightMask.active = true;
         this.animTagline.play();
     }
 

@@ -30,42 +30,42 @@ export default class SplashDynamic extends cc.Component {
 
     loadLogoOperator() {
         const imagePath = `${this.href}/logo_${this.operatorName}.webp`;
-        try {
-            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+            try {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                 this.sprLogo.spriteFrame = spriteFrameTmp;
-            });
-        } catch (e) {
-            cc.warn(`Missing load image at ${imagePath} `, e);
-        }
+            } catch (e) {}
+        });
     }
 
     loadTagPower() {
         if (this.sprTagPower) {
             const imagePath = `${this.href}/powered_by_sc2_${window.i18n.curLang}.webp`;
-            try {
-                cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+                try {
                     const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                     this.sprTagPower.spriteFrame = spriteFrameTmp;
-                });
-            } catch (e) {
-                cc.warn(`Missing load image at ${imagePath} `, e);
-            }
+                } catch (e) {}
+            });
         }
     }
 
-    loadTagline() {
+    private async loadTagline() {
+        this.sprTagline.spriteFrame = await this.loadTaglineImage();
+        this.animTagline.play();
+    }
+
+    private loadTaglineImage() {
         const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
-        try {
-            cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${window.i18n.curLang}`, cc.SpriteFrame, (err, frame) => {
-                if (frame) {
-                    this.sprTagline.spriteFrame = frame;
+        const path = `splash/images/tagline_${system}_${window.i18n.curLang}`;
+        return new Promise<cc.SpriteFrame>((resolve, reject) => {
+            cc.resources.load(path, (err, frame: cc.SpriteFrame) => {
+                if (err || !frame) {
+                    reject(err);
+                } else {
+                    resolve(frame);
                 }
             });
-
-            this.animTagline && this.animTagline.play();
-        } catch (e) {
-            cc.warn(`Missing load image `, e);
-        }
+        });
     }
 }

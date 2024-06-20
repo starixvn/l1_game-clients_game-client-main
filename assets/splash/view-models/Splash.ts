@@ -121,16 +121,24 @@ export default class Splash extends cc.Component {
         const href = `${window.location.origin}`;
         const imagePath = `${href}/splash-resources/top-middle.webp`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
-            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-            this.sprTopImage.spriteFrame = spriteFrameTmp;
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.sprTopImage.spriteFrame = spriteFrameTmp;
+            } catch (e) {
+                cc.warn(`Missing load image at ${imagePath} `, e);
+            }
         });
     }
 
     private loadBackground() {
         const imagePath = `${window.location.origin}/splash-resources/background.jpg`;
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
-            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-            this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "jpg") => {
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
+            } catch (e) {
+                cc.warn(`Missing load image at ${imagePath} `, e);
+            }
         });
     }
 }

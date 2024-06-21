@@ -89,6 +89,8 @@ export default class MiniCoinToss extends MiniGameBase {
 
     onGameHide() {
         super.onGameHide();
+        this.highlightResult.hide();
+        this.flipCoin.hideSkeleton();
     }
 
     onGameShow() {

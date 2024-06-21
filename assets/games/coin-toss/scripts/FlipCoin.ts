@@ -1,6 +1,5 @@
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 
-
 const { ccclass, property } = cc._decorator;
 
 @ccclass("FlipCoin")
@@ -22,6 +21,11 @@ export class FlipCoin extends cc.Component {
     setStatusNode(status: boolean) {
         this.node.active = status;
         this.skeleton && (this.skeleton.node.active = true);
+    }
+
+    hideSkeleton() {
+        this.skeleton && (this.skeleton.node.active = false);
+        this.hand && (this.hand.active = true);
     }
 
     async playAnim() {

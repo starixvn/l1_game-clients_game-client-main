@@ -103,6 +103,11 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         this.node.emit(OPEN_PROVABLY_FAIR_VERIFY);
     }
 
+    onShow() {
+        this.statusNode(true);
+        this.commonDialog.showDialog();
+    }
+    
     private initClientSeedsList() {
         this.listClientSeedInfo = this.clientSeedsContainer.getComponentsInChildren(ClientSeedInfo);
     }

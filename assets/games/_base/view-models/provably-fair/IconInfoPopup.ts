@@ -1,5 +1,6 @@
 import { i18n } from "../../../../ClientModules";
 import AnimationUtils from "../../../../common/utils/AnimationUtils";
+import { CrossControlItem } from "./CrossControlItem";
 
 const { ccclass, property } = cc._decorator;
 
@@ -15,7 +16,10 @@ export class IconInfoPopup extends cc.Component {
     keyText = "";
 
     onLoad() {
-        //super.onLoad();
+        const crossControlItem = this.getComponentInChildren(CrossControlItem);
+        if (crossControlItem) {
+            crossControlItem.registerListenerOtherControls(() => this.hideTooltipComp());
+        }
     }
 
     hideTooltipComp() {

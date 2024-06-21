@@ -1,27 +1,8 @@
 export default class AnimationUtils {
-
     public static fadeIn = (node: cc.Node, duration: number, opacity = 255) => {
-        return this.fadeTo(node, duration, opacity);
+        return cc.tween(node).to(duration, { opacity: opacity }).start();
     };
 
-    public static fadeOut = (node: cc.Node, duration: number, opacity = 1) => {
-        return this.fadeTo(node, duration, opacity);
-    };
-
-    public static fadeTo = (node: cc.Node, duration: number, opacity: number) => {
-        const uiOpacity = node.opacity;
-
-        return new Promise<void>((resolve) => {
-            if (uiOpacity) {
-                cc.tween(uiOpacity)
-                    .to(duration, { opacity: opacity })
-                    .call(() => resolve())
-                    .start();
-            } else {
-                resolve();
-            }
-        });
-    };
     public static playSpine = (spine: sp.Skeleton, animationName: string, isLoop = false, duration?: number) => {
         return new Promise<void>((resolve, reject) => {
             const animation = spine.findAnimation(animationName);

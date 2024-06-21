@@ -137,11 +137,6 @@ export default class MiniCoinToss extends MiniGameBase {
         this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
     }
 
-    clearRoundHistory() {
-        this.currentDataLogs = [];
-        //this.gameData.roundHistory.clearData();
-    }
-
     getBetChoiceString(choice: string): string {
         return i18n.t(`${this.gameName}.glossary_${choice}`);
     }

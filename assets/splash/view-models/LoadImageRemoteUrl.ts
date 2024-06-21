@@ -25,7 +25,6 @@ export default class LoadImageRemoteUrl extends cc.Component {
         return new Promise<cc.Texture2D>((resolve, reject) => {
             cc.assetManager.loadRemote(imagePath, (err, imageAsset: cc.Texture2D) => {
                 if (err) {
-                    reject(err);
                     return;
                 }
                 resolve(imageAsset);

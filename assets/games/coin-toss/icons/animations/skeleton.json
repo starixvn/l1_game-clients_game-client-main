@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "Ha1O8CIJ0RFq6nsJWJq3PDKq2lQ=",
+	"hash": "aJSXoEaUUGt3jD8Q3rUPYhNtCHw=",
 	"spine": "3.8.75",
 	"x": -107.5,
 	"y": -107.5,
@@ -12,8 +12,8 @@
 "bones": [
 	{ "name": "root" },
 	{ "name": "flag", "parent": "root", "rotation": 0.38, "x": -0.78, "y": 32.67 },
-	{ "name": "biden", "parent": "root", "x": -50.92, "y": -21.72, "scaleX": 0.9, "scaleY": 0.9 },
-	{ "name": "trump", "parent": "root", "x": 38.88, "y": -23.47, "scaleX": 0.9, "scaleY": 0.9 },
+	{ "name": "biden", "parent": "root", "x": -31.37, "y": -29.61, "scaleX": 0.9, "scaleY": 0.9 },
+	{ "name": "trump", "parent": "root", "x": 45.23, "y": -31.36, "scaleX": 0.9, "scaleY": 0.9 },
 	{ "name": "bone", "parent": "root", "y": -29.83 },
 	{ "name": "bone2", "parent": "root" },
 	{ "name": "vs", "parent": "root", "y": 35.04, "scaleX": 0.64, "scaleY": 0.64 },
@@ -23,12 +23,12 @@
 	{ "name": "bg", "bone": "root", "attachment": "bg" },
 	{ "name": "bg1", "bone": "root", "attachment": "bg1" },
 	{ "name": "mask", "bone": "root", "attachment": "mask" },
-	{ "name": "flag/1", "bone": "flag", "color": "ffffff00", "attachment": "flag/9" },
 	{ "name": "vs", "bone": "vs", "attachment": "vs" },
-	{ "name": "anh sang 3D", "bone": "root", "attachment": "anh sang 3D" },
 	{ "name": "confetti/confetti1", "bone": "bone", "attachment": "confetti/confetti9", "blend": "screen" },
+	{ "name": "icon-pf", "bone": "root", "attachment": "icon-pf" },
 	{ "name": "BIDEN", "bone": "biden", "attachment": "BIDEN" },
 	{ "name": "trump", "bone": "trump", "attachment": "trump" },
+	{ "name": "anh sang 3D", "bone": "root", "attachment": "anh sang 3D" },
 	{ "name": "coin/coin1", "bone": "coin2", "attachment": "coin/coin0030" },
 	{ "name": "BG_text", "bone": "root", "attachment": "BG_text" }
 ],
@@ -74,22 +74,11 @@
 			"BIDEN": {
 				"BIDEN": { "x": 4.62, "y": -5.57, "width": 113, "height": 261 }
 			},
+			"icon-pf": {
+				"icon-pf": { "x": -71.62, "y": 67.18, "width": 47, "height": 47 }
+			},
 			"bg1": {
 				"bg1": { "y": 1.6, "width": 196, "height": 196 }
-			},
-			"flag/1": {
-				"flag/1": { "width": 200, "height": 114 },
-				"flag/2": { "width": 200, "height": 114 },
-				"flag/3": { "width": 200, "height": 114 },
-				"flag/4": { "width": 200, "height": 114 },
-				"flag/5": { "width": 200, "height": 114 },
-				"flag/6": { "width": 200, "height": 114 },
-				"flag/7": { "width": 200, "height": 114 },
-				"flag/8": { "width": 200, "height": 114 },
-				"flag/9": { "width": 200, "height": 114 },
-				"flag/10": { "width": 200, "height": 114 },
-				"flag/11": { "width": 200, "height": 114 },
-				"flag/12": { "width": 200, "height": 114 }
 			},
 			"trump": {
 				"trump": { "x": 0.23, "y": -0.46, "width": 78, "height": 246 }
@@ -158,20 +147,50 @@
 "animations": {
 	"animation": {
 		"slots": {
-			"flag/1": {
+			"confetti/confetti1": {
+				"color": [
+					{ "time": 0.8, "color": "ffffffff" },
+					{ "time": 1.2667, "color": "ffffff00" }
+				],
 				"attachment": [
-					{ "name": "flag/1" },
-					{ "time": 0.1667, "name": "flag/2" },
-					{ "time": 0.3667, "name": "flag/3" },
-					{ "time": 0.5333, "name": "flag/4" },
-					{ "time": 0.7333, "name": "flag/5" },
-					{ "time": 0.9, "name": "flag/6" },
-					{ "time": 1.1, "name": "flag/7" },
-					{ "time": 1.2667, "name": "flag/8" },
-					{ "time": 1.4667, "name": "flag/9" },
-					{ "time": 1.6333, "name": "flag/10" },
-					{ "time": 1.8333, "name": "flag/11" },
-					{ "time": 2, "name": "flag/12" }
+					{ "name": "confetti/confetti1" },
+					{ "time": 0.0333, "name": "confetti/confetti2" },
+					{ "time": 0.0667, "name": "confetti/confetti3" },
+					{ "time": 0.1, "name": "confetti/confetti4" },
+					{ "time": 0.1333, "name": "confetti/confetti5" },
+					{ "time": 0.1667, "name": "confetti/confetti6" },
+					{ "time": 0.2, "name": "confetti/confetti7" },
+					{ "time": 0.2333, "name": "confetti/confetti8" },
+					{ "time": 0.2667, "name": "confetti/confetti9" },
+					{ "time": 0.3, "name": "confetti/confetti10" },
+					{ "time": 0.3333, "name": "confetti/confetti11" },
+					{ "time": 0.3667, "name": "confetti/confetti12" },
+					{ "time": 0.4, "name": "confetti/confetti13" },
+					{ "time": 0.4333, "name": "confetti/confetti14" },
+					{ "time": 0.4667, "name": "confetti/confetti15" },
+					{ "time": 0.5, "name": "confetti/confetti16" },
+					{ "time": 0.5333, "name": "confetti/confetti17" },
+					{ "time": 0.5667, "name": "confetti/confetti19" },
+					{ "time": 0.6, "name": "confetti/confetti20" },
+					{ "time": 0.6333, "name": "confetti/confetti21" },
+					{ "time": 0.6667, "name": "confetti/confetti22" },
+					{ "time": 0.7, "name": "confetti/confetti23" },
+					{ "time": 0.7333, "name": "confetti/confetti24" },
+					{ "time": 0.7667, "name": "confetti/confetti25" },
+					{ "time": 0.8, "name": "confetti/confetti26" },
+					{ "time": 0.8333, "name": "confetti/confetti27" },
+					{ "time": 0.8667, "name": "confetti/confetti28" },
+					{ "time": 0.9, "name": "confetti/confetti29" },
+					{ "time": 0.9333, "name": "confetti/confetti30" },
+					{ "time": 0.9667, "name": "confetti/confetti31" },
+					{ "time": 1, "name": "confetti/confetti32" },
+					{ "time": 1.0333, "name": "confetti/confetti33" },
+					{ "time": 1.0667, "name": "confetti/confetti35" },
+					{ "time": 1.1, "name": "confetti/confetti36" },
+					{ "time": 1.1333, "name": "confetti/confetti37" },
+					{ "time": 1.1667, "name": "confetti/confetti38" },
+					{ "time": 1.2, "name": "confetti/confetti39" },
+					{ "time": 1.2333, "name": "confetti/confetti40" }
 				]
 			},
 			"coin/coin1": {
@@ -239,52 +258,6 @@
 					{ "time": 1.9333, "name": "coin/coin0009" },
 					{ "time": 1.9667, "name": "coin/coin0010" },
 					{ "time": 2, "name": "coin/coin0011" }
-				]
-			},
-			"confetti/confetti1": {
-				"color": [
-					{ "time": 0.8, "color": "ffffffff" },
-					{ "time": 1.2667, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "confetti/confetti1" },
-					{ "time": 0.0333, "name": "confetti/confetti2" },
-					{ "time": 0.0667, "name": "confetti/confetti3" },
-					{ "time": 0.1, "name": "confetti/confetti4" },
-					{ "time": 0.1333, "name": "confetti/confetti5" },
-					{ "time": 0.1667, "name": "confetti/confetti6" },
-					{ "time": 0.2, "name": "confetti/confetti7" },
-					{ "time": 0.2333, "name": "confetti/confetti8" },
-					{ "time": 0.2667, "name": "confetti/confetti9" },
-					{ "time": 0.3, "name": "confetti/confetti10" },
-					{ "time": 0.3333, "name": "confetti/confetti11" },
-					{ "time": 0.3667, "name": "confetti/confetti12" },
-					{ "time": 0.4, "name": "confetti/confetti13" },
-					{ "time": 0.4333, "name": "confetti/confetti14" },
-					{ "time": 0.4667, "name": "confetti/confetti15" },
-					{ "time": 0.5, "name": "confetti/confetti16" },
-					{ "time": 0.5333, "name": "confetti/confetti17" },
-					{ "time": 0.5667, "name": "confetti/confetti19" },
-					{ "time": 0.6, "name": "confetti/confetti20" },
-					{ "time": 0.6333, "name": "confetti/confetti21" },
-					{ "time": 0.6667, "name": "confetti/confetti22" },
-					{ "time": 0.7, "name": "confetti/confetti23" },
-					{ "time": 0.7333, "name": "confetti/confetti24" },
-					{ "time": 0.7667, "name": "confetti/confetti25" },
-					{ "time": 0.8, "name": "confetti/confetti26" },
-					{ "time": 0.8333, "name": "confetti/confetti27" },
-					{ "time": 0.8667, "name": "confetti/confetti28" },
-					{ "time": 0.9, "name": "confetti/confetti29" },
-					{ "time": 0.9333, "name": "confetti/confetti30" },
-					{ "time": 0.9667, "name": "confetti/confetti31" },
-					{ "time": 1, "name": "confetti/confetti32" },
-					{ "time": 1.0333, "name": "confetti/confetti33" },
-					{ "time": 1.0667, "name": "confetti/confetti35" },
-					{ "time": 1.1, "name": "confetti/confetti36" },
-					{ "time": 1.1333, "name": "confetti/confetti37" },
-					{ "time": 1.1667, "name": "confetti/confetti38" },
-					{ "time": 1.2, "name": "confetti/confetti39" },
-					{ "time": 1.2333, "name": "confetti/confetti40" }
 				]
 			}
 		},

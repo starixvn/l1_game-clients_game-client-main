@@ -3,6 +3,9 @@ import { BetChoice } from "../MiniCoinTossConstant";
 
 export const handlePlacingBet = (game: MiniCoinToss) => () => {
     game.highlightLastResult();
+    game.winningResult?.hideQuickly();
+    game.flipCoin?.setStatusNode(true);
+    game.flipCoin?.hideSkeleton();
 };
 
 export const handleBeginStarting = (game: MiniCoinToss) => () => {

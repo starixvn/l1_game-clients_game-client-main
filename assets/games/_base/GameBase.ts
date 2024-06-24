@@ -58,7 +58,6 @@ import MD5Component from "./view-models/MD5Component";
 import RebetButton from "./view-models/RebetButton";
 import SocketIOGameHistoryBase from "./view-models/SocketIOGameHistoryBase";
 import ProvablyFairComponent from "./view-models/provably-fair/ProvablyFairComponent";
-import { IProvablyFairVerify } from "./view-models/provably-fair/ProvablyFairVerifyComponent";
 
 const { ccclass, property } = cc._decorator;
 
@@ -561,6 +560,7 @@ export default class GameBase extends GameViewBase {
         }
         const gameAudiosNode = cc.instantiate(this.gameAudiosPrefab);
         this.gameAudios = gameAudiosNode.getComponent(GameAudios);
+        this.gameAudios.loadAudios();
     }
 
     protected initHandlers() {

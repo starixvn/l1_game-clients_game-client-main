@@ -1,4 +1,5 @@
 import { StorageManager } from "../../managers/StorageManager";
+import { TAudioConfigs } from "../AudioUtils";
 import GameUtils from "../GameUtils";
 
 export default class AudioManager {
@@ -17,6 +18,10 @@ export default class AudioManager {
     private touchStart = false;
     private readonly MusicStorageKey = "SOUND_BACKGROUND";
     private readonly SFXStorageKey = "SOUND_GAME";
+    public audioConfigs: TAudioConfigs = {};
+    public audios = [];
+    public musicGameIds = [];
+    public musicIds = [];
 
     // The AudioContext was not allowed to start.
     // It must be resumed (or created) after a user gesture on the page
@@ -151,6 +156,40 @@ export default class AudioManager {
         this.onSfxChanged(value);
         if (!value) {
             this.stopAllSFX();
+        }
+    }
+
+    static audioConfigs(configs?: TAudioConfigs) {
+        const instance = AudioManager.getInstance();
+        if (configs) {
+            this.removeEmptyKey(configs);
+            instance.audioConfigs = configs;
+        }
+        this.processAudioConfigs(instance);
+        return instance.audioConfigs;
+    }
+
+    private static removeEmptyKey(configs) {
+        const emptyValueKeys = Object.keys(configs).filter((key) => Object.keys(configs[key]).length === 0);
+        emptyValueKeys.forEach((key) => delete configs[key]);
+    }
+
+    private static processAudioConfigs(instance) {
+        const keys = Object.keys(this.audioConfigs);
+        for (const key of keys) {
+            const value = this.audioConfigs[key];
+            if (Object.keys(value).length === 0) {
+                continue;
+            }
+            if (value.type === "music") {
+                if (value?.isMusicGame) {
+                    instance.musicGameIds.push(key);
+                } else {
+                    instance.musicIds.push(key);
+                }
+            } else {
+                instance.audios.push(key);
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
@@ -5,7 +6,6 @@ import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import DataHandler from "../../_base/handlers/DataHandler";
 import GameBaseProvablyFairHandler from "../../_base/handlers/GameBaseProvablyFairHandler";
 import MD5Component from "../../_base/view-models/MD5Component";
-import ClientSeedNumberInput from "../../_base/view-models/provably-fair/ClientSeedNumberInput";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
@@ -17,10 +17,10 @@ import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
 import { CoinTossId, coinTossConfigs } from "./MiniCoinTossConfigs";
 import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
 import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
+import { ICoinTossResult, ICoinTossSettlement } from "./MiniCoinTossTypes";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
-import { i18n } from "../../../ClientModules";
 
 const { ccclass, property } = cc._decorator;
 
@@ -189,29 +189,40 @@ export default class MiniCoinToss extends MiniGameBase {
         this.updateRoundHistory();
     }
 
-    showSettlementResult(settlement: any) {
-        this.gameAudios && this.gameAudios.playEndGameAudio();
+    showSettlementResult(settlement: ICoinTossSettlement) {
+        this.gameAudios?.playEndGameAudio();
         this.flipCoin.setStatusNode(false);
         this.winningResult.setResult(settlement?.result);
         if (appManager.GAME_IS_SHOWED) {
-            this.handleAnimResult();
+            this.handleAnimResult(settlement?.result);
         }
     }
 
-    handleAnimResult() {
+    getKeyWinningForChoice(result: ICoinTossResult) {
+        const key = result?.head ? "head" : "tail";
+        return `${key}_${window?.i18n?.curLang || "en"}`;
+    }
+
+    handleAnimResult(result: ICoinTossResult) {
         this.tween(this.winningResultNode)
-            .call(() => {
-                this.winningResult.show();
+            .call(async () => {
+                await this.winningResult.show();
+                this.gameAudios?.playSFXAudio(this.getKeyWinningForChoice(result));
             })
             .delay(this.showResultDuration)
             .call(() => {
                 if (this.gameData?.settlement?.settlement) {
                     this.highlightResult.show(this.gameData?.settlement?.settlement?.result);
                     this.highlightWonItems(this.gameData?.settlement?.settlement?.settlementResult);
+                    this.gameAudios?.playSFXAudio(this.getKeyMusicWinningForChoice(result));
                     this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
                 }
             })
             .start();
+    }
+
+    getKeyMusicWinningForChoice(result: ICoinTossResult) {
+        return result?.head ? "head_music" : "tail_music";
     }
 
     handleAfterSettlementResult(settlement: any, animated: boolean) {

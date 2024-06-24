@@ -1148,4 +1148,27 @@ export default class GameUtils {
     public static getTruthyRoundId = (main: GameBase, data) => {
         return data?.remainingTime > main.config.betTime ? data.roundId - 1 : data.roundId;
     };
+
+    public static async loadAssetsFromBundle<AssetType extends cc.Asset>(
+        bundleName: string,
+        assetPath: string,
+        assetType: any,
+        onProgress: ((finished: number, total: number) => void) | null
+    ) {
+        const bundle = await BundleManager.getInstance().loadBundle(bundleName);
+        if (bundle) {
+            return new Promise<AssetType>((resolve) => {
+                bundle.load(assetPath, assetType, onProgress, (err, asset) => {
+                    if (err) {
+                        cc.log(`Cannot load asset ${assetPath} from bundle ${bundleName}`);
+                        resolve(null);
+                    } else {
+                        resolve(asset as AssetType);
+                    }
+                });
+            });
+        }
+
+        return null;
+    }
 }

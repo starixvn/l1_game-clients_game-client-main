@@ -23,18 +23,28 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
         }
 
         if (data.ownBets) {
-            if (!_.isEmpty(data.ownBets)) {
-                this.main.provablyFairComponent?.setClientSeedUIState(false);
-            }
-            if (data.roundId) {
-                this.main.sendSocketData("getRoundPF", {
-                    roundId: GameUtils.getTruthyRoundId(this.main, data)
-                });
-            }
+            this.handleOwnBets(data);
+        }
+
+        if (data.spb) {
+            this.main.provablyFairComponent.handleResetNewRound();
         }
 
         if (data.roundPFResult) {
             this.main.provablyFairComponent?.handleServerSeed(data.roundPFResult.serverSeedHash);
+        }
+    }
+
+    handleOwnBets(data) {
+        if (!_.isEmpty(data.ownBets)) {
+            this.main.provablyFairComponent?.setClientSeedUIState(false);
+        } else {
+            this.main.provablyFairComponent.handleResetNewRound();
+        }
+        if (data.roundId) {
+            this.main.sendSocketData("getRoundPF", {
+                roundId: GameUtils.getTruthyRoundId(this.main, data)
+            });
         }
     }
 }

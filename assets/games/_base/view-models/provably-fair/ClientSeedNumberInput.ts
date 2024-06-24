@@ -187,7 +187,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         !isEnabled && (this.nodeWarningText.active = true);
     }
 
-    handleStartNewRound() {
+    handleResetNewRound() {
         this.generateRandomClientSeed();
         this.nodeWarningText.active = false;
         this.updateModeUI(this.pfSetting.randomClientSeedEnabled);

@@ -180,7 +180,6 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     handleStartNewRound() {
-        this.provablyFairComponent.getComponent(ClientSeedNumberInput).handleStartNewRound();
         this.winningResult.hideQuickly();
         this.flipCoin.playAnim();
         this.highlightResult.hide();

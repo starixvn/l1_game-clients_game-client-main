@@ -82,10 +82,18 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
             this.updatePFSetting();
         }
         this.randomLabel.string = pfSetting.randomClientSeed;
-        if (pfSetting.randomClientSeedEnabled) {
-            this.manualLabel.string = "";
+        if (this.isEnabled) {
+            if (pfSetting.randomClientSeedEnabled) {
+                this.manualLabel.string = "";
+                this.enableRandomModeUI();
+                this.disableManualModeUI();
+            } else {
+                this.disableRandomModeUI();
+                this.enableManualModeUI();
+            }
         } else {
-            this.manualLabel.string = pfSetting.manualClientSeed;
+            this.disableManualModeUI();
+            this.disableRandomModeUI();
         }
         this.updateModeUI(pfSetting.randomClientSeedEnabled);
     }
@@ -117,6 +125,8 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         }
         this.pfSetting.manualClientSeed = this.pfSetting.randomClientSeed;
         this.updateModeUI(true);
+        this.enableRandomModeUI();
+        this.disableManualModeUI();
     }
 
     clickManualMode() {
@@ -124,6 +134,8 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
             return;
         }
         this.updateModeUI(false);
+        this.enableManualModeUI();
+        this.disableRandomModeUI();
         this.onClientSeedClick();
     }
 
@@ -184,13 +196,43 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         }
         this.tglRandomClientSeed.interactable = this.tglManualClientSeed.interactable = this.changeButton.interactable = isEnabled;
 
-        !isEnabled && (this.nodeWarningText.active = true);
+        if (!isEnabled) {
+            this.nodeWarningText.active = true;
+            this.disableRandomModeUI();
+            this.disableManualModeUI();
+        }
     }
 
     handleResetNewRound() {
         this.generateRandomClientSeed();
         this.nodeWarningText.active = false;
         this.updateModeUI(this.pfSetting.randomClientSeedEnabled);
+        if (this.pfSetting.randomClientSeedEnabled) {
+            this.enableRandomModeUI();
+        } else {
+            this.enableManualModeUI();
+        }
+
         this.setClientSeedUIState(true);
+    }
+
+    disableRandomModeUI() {
+        this.randomLabel.node.opacity = 155;
+        this.tglRandomClientSeed.node.opacity = 155;
+    }
+
+    enableRandomModeUI() {
+        this.randomLabel.node.opacity = 255;
+        this.tglRandomClientSeed.node.opacity = 255;
+    }
+
+    disableManualModeUI() {
+        this.manualLabel.node.opacity = 155;
+        this.tglManualClientSeed.node.opacity = 155;
+    }
+
+    enableManualModeUI() {
+        this.manualLabel.node.opacity = 255;
+        this.tglManualClientSeed.node.opacity = 255;
     }
 }

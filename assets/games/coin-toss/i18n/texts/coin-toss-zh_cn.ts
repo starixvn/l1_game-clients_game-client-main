@@ -134,7 +134,7 @@ export const phrases = {
         "pf_header_client_seed": "客户种子",
         "pf_header_combined_sha512_hash": "组合 SHA512 哈希值",
         "pf_header_server_seed": "服务器种子",
-        "pf_header_server_seed_sha256": "服务器种子 SHA256",
+        "pf_header_server_seed_sha256": "服务器种子 SHA256 ",
         "pf_new_client_seed_para_1": "你的种子：",
         "pf_player_1": "玩家1",
         "pf_player_2": "玩家2",

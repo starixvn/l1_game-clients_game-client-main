@@ -133,6 +133,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         if (!this.isEnabled) {
             return;
         }
+        this.pfSetting.manualClientSeed = this.pfSetting.randomClientSeed;
         this.updateModeUI(false);
         this.enableManualModeUI();
         this.disableRandomModeUI();

@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "aJSXoEaUUGt3jD8Q3rUPYhNtCHw=",
+	"hash": "5XeGlw1Zzcr5FGNxvfC2gMiJ/bQ=",
 	"spine": "3.8.75",
 	"x": -107.5,
 	"y": -107.5,
@@ -16,7 +16,7 @@
 	{ "name": "trump", "parent": "root", "x": 45.23, "y": -31.36, "scaleX": 0.9, "scaleY": 0.9 },
 	{ "name": "bone", "parent": "root", "y": -29.83 },
 	{ "name": "bone2", "parent": "root" },
-	{ "name": "vs", "parent": "root", "y": 35.04, "scaleX": 0.64, "scaleY": 0.64 },
+	{ "name": "vs", "parent": "root", "x": 6.3, "y": 35.04, "scaleX": 0.64, "scaleY": 0.64 },
 	{ "name": "coin2", "parent": "root", "x": -0.46, "y": -100.1 }
 ],
 "slots": [
@@ -66,7 +66,7 @@
 				"coin/coin0027": { "width": 100, "height": 100 },
 				"coin/coin0028": { "width": 100, "height": 100 },
 				"coin/coin0029": { "width": 100, "height": 100 },
-				"coin/coin0030": { "width": 100, "height": 100 }
+				"coin/coin0030": { "x": -0.99, "width": 100, "height": 100 }
 			},
 			"bg": {
 				"bg": { "width": 215, "height": 215 }

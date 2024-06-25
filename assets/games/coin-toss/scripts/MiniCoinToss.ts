@@ -26,7 +26,7 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class MiniCoinToss extends MiniGameBase {
-    @property({ type: MD5Component, visible: false })
+    @property({ type: MD5Component, visible: false, override: true })
     md5Component: MD5Component = null;
 
     @property({ type: MiniCoinTossBetItem, override: true })

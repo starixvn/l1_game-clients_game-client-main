@@ -2,7 +2,7 @@ import AnimationUtils from "../../../common/utils/AnimationUtils";
 
 const { ccclass, property } = cc._decorator;
 
-@ccclass("FlipCoin")
+@ccclass
 export class FlipCoin extends cc.Component {
     @property(sp.Skeleton)
     skeleton: sp.Skeleton = null;

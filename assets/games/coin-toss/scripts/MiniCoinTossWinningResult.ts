@@ -7,7 +7,7 @@ export interface TResult {
     tail: boolean;
 }
 
-@ccclass("MiniCoinTossWinningResult")
+@ccclass
 export class MiniCoinTossWinningResult extends cc.Component {
     @property(cc.Label)
     label: cc.Label = null;

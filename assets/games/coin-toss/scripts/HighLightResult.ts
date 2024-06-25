@@ -1,6 +1,6 @@
 const { ccclass, property } = cc._decorator;
 
-@ccclass("HighlightResult")
+@ccclass
 export class HighlightResult extends cc.Component {
     @property(cc.Node)
     biden: cc.Node = null;

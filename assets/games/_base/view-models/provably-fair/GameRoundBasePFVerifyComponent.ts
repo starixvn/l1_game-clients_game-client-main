@@ -55,8 +55,8 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
 
         this.commonDialog.addOnDidHide(() => {
             this.statusNode(false);
-            this.verificationContainer.destroyAllChildren();
-            this.guideContainer.destroyAllChildren();
+            this.verificationContainer?.destroyAllChildren();
+            this.guideContainer?.destroyAllChildren();
         });
         const para = i18n.t(`Common.pf_provably_fair_para_2`);
         this.lblParaVerification.string = para;
@@ -76,14 +76,14 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         this.lblRoundId.string = roundId.toString();
         result && this.renderResult(result);
         if (!this.node.activeInHierarchy && this.node?.isValid) {
-            this.serverSeedLbl.string = this.truncateString(serverSeed.toString());
-            this.serverSeedCopyString = serverSeed;
-            this.lblMergeClientSeed.string = mergeClientSeed.toString();
-            this.mergeSeedClientCopyString = mergeClientSeed;
-            this.serverSeedSHA256Lbl.string = this.truncateString(serverSeedHash.toString());
-            this.hashCopyString = serverSeedHash;
-            this.finalResultLbl.string = this.truncateString(finalHash.toString());
-            this.finalResultCopyString = finalHash;
+            this.serverSeedLbl.string = this.truncateString(serverSeed ?? "".toString());
+            this.serverSeedCopyString = serverSeed ?? "";
+            this.lblMergeClientSeed.string = mergeClientSeed ?? "".toString();
+            this.mergeSeedClientCopyString = mergeClientSeed ?? "";
+            this.serverSeedSHA256Lbl.string = this.truncateString(serverSeedHash ?? "".toString());
+            this.hashCopyString = serverSeedHash ?? "";
+            this.finalResultLbl.string = this.truncateString(finalHash ?? "".toString());
+            this.finalResultCopyString = finalHash ?? "";
         }
 
         if (this.listClientSeedInfo.length === 0) {
@@ -107,14 +107,14 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         this.statusNode(true);
         this.commonDialog.showDialog();
     }
-    
+
     private initClientSeedsList() {
-        this.listClientSeedInfo = this.clientSeedsContainer.getComponentsInChildren(ClientSeedInfo);
+        this.listClientSeedInfo = this.clientSeedsContainer?.getComponentsInChildren(ClientSeedInfo);
     }
 
     private renderResult(result: any) {
         if (this.nodeResult) {
-            const resultComp = this.nodeResult.getComponentInChildren(BaseResultBodyItem);
+            const resultComp = this.nodeResult?.getComponentInChildren(BaseResultBodyItem);
             resultComp.setData(result, result);
         }
     }

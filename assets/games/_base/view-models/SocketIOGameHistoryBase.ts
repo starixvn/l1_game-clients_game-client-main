@@ -143,7 +143,7 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
     }
 
     openProvablyFairVerify() {
-        this.provablyFairVerifyComponent.updateGameId(this.pfGameId);
+        this.provablyFairVerifyComponent?.updateGameId(this.pfGameId);
         this.provablyFairVerifyComponent?.onShow();
     }
 

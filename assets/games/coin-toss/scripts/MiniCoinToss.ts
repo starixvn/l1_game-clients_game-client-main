@@ -91,6 +91,7 @@ export default class MiniCoinToss extends MiniGameBase {
         super.onGameHide();
         this.highlightResult.hide();
         this.flipCoin.hideSkeleton();
+        this.clearWinningBet();
     }
 
     onGameShow() {
@@ -120,6 +121,7 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     closeGame() {
+        this.clearWinningBet();
         this.highlightResult?.hide();
         super.closeGame();
     }

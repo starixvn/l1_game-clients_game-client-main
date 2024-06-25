@@ -275,6 +275,7 @@ export const dealerGetChipsMiniGame = (main: any, settlementResult: any, statusD
     const settlementResultKeys = getLowercaseObjectKeys(settlementResult);
     const lostBetItems = _.filter(main.betItems, (item) => !settlementResult[settlementResultKeys[item.node.name.toLowerCase()]]);
     const status = { ...statusData };
+    const roundId = main?.gameData?.roundId;
     cc.tween(main.node)
         .delay(main.betChips.chipDelayFlyingTime)
         .call(() => {
@@ -283,13 +284,13 @@ export const dealerGetChipsMiniGame = (main: any, settlementResult: any, statusD
         })
         .delay(main.betChips.chipDelayFlyingTime)
         .call(() => {
-            payChipToLoginPlayerMiniGame(main, status, ownBets);
+            payChipToLoginPlayerMiniGame(main, status, ownBets, roundId);
         })
         .start();
 };
 
-const payChipToLoginPlayerMiniGame = (main: any, statusData: any, ownBets: any) => {
-    if (!statusData || !statusData.win) {
+const payChipToLoginPlayerMiniGame = (main: any, statusData: any, ownBets: any, roundId: number) => {
+    if (!statusData || !statusData.win || main?.gameData?.roundId !== roundId) {
         return;
     }
     const betItems = statusData.winningByChoices;

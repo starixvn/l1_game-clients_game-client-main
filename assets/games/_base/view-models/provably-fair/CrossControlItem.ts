@@ -1,4 +1,4 @@
-const { ccclass, property } = cc._decorator;
+const { ccclass } = cc._decorator;
 
 export enum CrossControlAction {
     Click = "cross-control-click"

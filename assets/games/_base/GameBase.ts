@@ -641,8 +641,8 @@ export default class GameBase extends GameViewBase {
     }
 
     openProvablyFair() {
-        this.provablyFairComponent.updateGameId(this.gameId);
-        this.provablyFairComponent.onShow();
+        this.provablyFairComponent?.updateGameId(this.gameId);
+        this.provablyFairComponent?.onShow();
     }
 
     handleGameGuide(guide: WebViewGuide, language, minBet, maxBet, isInPromotionTime) {
@@ -1003,10 +1003,11 @@ export default class GameBase extends GameViewBase {
 
     initProvablyFair(node: cc.Node) {
         this.provablyFairComponent = node.getComponent(ProvablyFairComponent);
-        this.node.on(InGameMenuEvents.OPEN_PROVABLY_FAIR, this.openProvablyFair, this);
-
-        this.provablyFairComponent.onHide();
-        this.provablyFairComponent.miniPanel = this.currentMiniPanel;
+        if (this.provablyFairComponent) {
+            this.node.on(InGameMenuEvents.OPEN_PROVABLY_FAIR, this.openProvablyFair, this);
+            this.provablyFairComponent.onHide();
+            this.provablyFairComponent.miniPanel = this.currentMiniPanel;
+        }
     }
 
     onClickProvablyFair() {

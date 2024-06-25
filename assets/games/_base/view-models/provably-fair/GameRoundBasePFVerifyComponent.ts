@@ -73,7 +73,7 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     updateProvablyFairVerify(verification: IRoundBaseProvablyFairVerify) {
         this.provablyFair = verification;
         const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId } = verification;
-        this.lblRoundId.string = roundId.toString();
+        this.lblRoundId.string = roundId?.toString() ?? "";
         result && this.renderResult(result);
         if (!this.node.activeInHierarchy && this.node?.isValid) {
             this.serverSeedLbl.string = this.truncateString(serverSeed ?? "".toString());
@@ -122,13 +122,13 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     onClickVerify() {
         const dialog = cc.instantiate(this.verificationPrefab);
         const verification = dialog.getComponent(WebViewVerification);
-        verification.setRoundId(this.provablyFair?.roundId);
+        verification?.setRoundId(this.provablyFair?.roundId);
         const locale = getLocale();
         const language = getLanguage(locale);
-        verification.initURLVerification(this.gameId, language);
-        verification.sendDataToIframe(this.provablyFair);
-        this.verificationContainer.addChild(dialog);
-        verification.loadWebView();
+        verification?.initURLVerification(this.gameId, language);
+        verification?.sendDataToIframe(this.provablyFair);
+        this.verificationContainer?.addChild(dialog);
+        verification?.loadWebView();
     }
 }
 

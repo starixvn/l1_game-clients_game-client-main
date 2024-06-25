@@ -96,6 +96,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
             this.disableRandomModeUI();
         }
         this.updateModeUI(pfSetting.randomClientSeedEnabled);
+        this.updateStatusPFSettingsPopup(true);
     }
 
     getPFSetting(): PFSetting {
@@ -235,5 +236,10 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
     enableManualModeUI() {
         this.manualLabel.node.opacity = 255;
         this.tglManualClientSeed.node.opacity = 255;
+    }
+
+    onCloseClick(): void {
+        super.onCloseClick();
+        this.updateStatusPFSettingsPopup(false);
     }
 }

@@ -41,7 +41,7 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
         } else {
             this.main.provablyFairComponent.handleResetNewRound();
         }
-        if (data.roundId) {
+        if (data.roundId && this.main.provablyFairComponent?.isShowPFSettings) {
             this.main.sendSocketData("getRoundPF", {
                 roundId: GameUtils.getTruthyRoundId(this.main, data)
             });

@@ -29,6 +29,8 @@ export default class ProvablyFairComponent extends ProvablyFairComponentBase {
     public nextServerSeed = "";
     public currentClientSeed = 0;
 
+    public isShowPFSettings = false;
+
     handleReceiveServerSeed(data: ProvablyFairType) {
         if (!this.currentServerSeed.length) {
             this.currentServerSeed = data?.hashValue;
@@ -55,6 +57,10 @@ export default class ProvablyFairComponent extends ProvablyFairComponentBase {
             this.lblServerSeed.string = hashValue;
             this.setCopyString(hashValue);
         }
+    }
+
+    updateStatusPFSettingsPopup(status: boolean) {
+        this.isShowPFSettings = status;
     }
 
     updateClientSeed(value: string) {

@@ -74,25 +74,25 @@ export default class ClientSeedManualPopup extends cc.Component {
             statusButton = true;
         }
 
-        this.btnClear.updateState(statusButton);
-        this.btnSave.updateState(statusButton);
-        this.btnDelete.updateState(statusButton);
+        this.btnClear?.updateState(statusButton);
+        this.btnSave?.updateState(statusButton);
+        this.btnDelete?.updateState(statusButton);
     }
 
     onClickClear() {
         this.lblClientSeed.string = "";
-        this.btnClear.updateState(true);
-        this.btnSave.updateState(true);
-        this.btnDelete.updateState(true);
+        this.btnClear?.updateState(true);
+        this.btnSave?.updateState(true);
+        this.btnDelete?.updateState(true);
     }
 
     onClickRemoveLastLetter() {
         let multiplierString = this.lblClientSeed.string.slice(0, -1);
         if (!multiplierString) {
             multiplierString = "";
-            this.btnClear.updateState(true);
-            this.btnSave.updateState(true);
-            this.btnDelete.updateState(true);
+            this.btnClear?.updateState(true);
+            this.btnSave?.updateState(true);
+            this.btnDelete?.updateState(true);
         }
 
         this.lblClientSeed.string = multiplierString;

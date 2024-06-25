@@ -73,13 +73,16 @@ export default class DynamicAdsBannerController extends BannerController {
     }
 
     private setupButtonAndHandleShowBanner(item: cc.Node, id: number) {
-        const button = item.getComponent(cc.Button);
-        const event = new cc.Component.EventHandler();
-        event.target = this.node;
-        event.component = "BannerController";
-        event.handler = "openGame";
-        event.customEventData = id.toString();
-        button.clickEvents.push(event);
+        const coinTossGameId = 80;
+        if (id != coinTossGameId) {
+            const button = item.getComponent(cc.Button);
+            const event = new cc.Component.EventHandler();
+            event.target = this.node;
+            event.component = "BannerController";
+            event.handler = "openGame";
+            event.customEventData = id.toString();
+            button.clickEvents.push(event);
+        }
 
         this.triggerTouch();
     }

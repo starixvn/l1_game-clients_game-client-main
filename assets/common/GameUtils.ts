@@ -959,8 +959,9 @@ export default class GameUtils {
     }
 
     public static async getStaticBanner(id: number, systemPath = "") {
+        const coinTossGameId = 80;
         const gameConfiguration = getGameConfiguration(id);
-        if (gameConfiguration.isMicrosite) {
+        if (gameConfiguration.isMicrosite && id != coinTossGameId) {
             return this.getRemoteBanner(id);
         }
 

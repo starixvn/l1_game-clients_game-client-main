@@ -264,7 +264,7 @@ export default class MainSplash extends cc.Component {
             // Load game icon custom by system
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
-            const preloadGameInMain = preLoadGameIds.filter((gameId) => !getGameConfiguration(gameId).isMicrosite);
+            const preloadGameInMain = preLoadGameIds.filter((gameId) => !GameUtils.isMicroSite(getGameConfiguration(gameId)));
             const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
 
             // Load game icon custom by system

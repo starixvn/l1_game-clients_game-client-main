@@ -135,7 +135,7 @@ export default class GameUtils {
 
     public static cachedGameIcon(gameId: number) {
         const gameConfiguration = getGameConfiguration(gameId);
-        const isMicrosite = gameConfiguration?.isMicrosite;
+        const isMicrosite = GameUtils.isMicroSite(gameConfiguration);
         return !!isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
     }
 

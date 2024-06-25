@@ -13,8 +13,6 @@ export class TimeEventHandler extends BaseEventHandler<TimeEventType> {
         const { remainingTime } = event;
 
         this.gameData.durations.remaining = remainingTime;
-        this.gameData.durations.start();
-
-        this.gameData.isUnderMaintenance = false;
+        !this.gameData.isUnderMaintenance && this.gameData.durations.start();
     }
 }

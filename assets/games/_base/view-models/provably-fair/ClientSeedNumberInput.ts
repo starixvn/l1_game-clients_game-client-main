@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 import GameUtils from "../../../../common/GameUtils";
-import { PFSetting } from "../../../../managers/PFStorageManager";
 import ClientSeedManualPopup from "./ClientSeedManualPopup";
 import ProvablyFairComponent from "./ProvablyFairComponent";
 
@@ -11,6 +10,11 @@ export type ProvablyFairType = {
     clientSeed?: number;
 };
 
+export type PFSetting = {
+    manualClientSeed: string;
+    randomClientSeed: string;
+    randomClientSeedEnabled: boolean;
+};
 
 @ccclass
 export default class ClientSeedNumberInput extends ProvablyFairComponent {
@@ -53,7 +57,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
     private localStorageKeys: string;
     private pfSetting: PFSetting = {
         manualClientSeed: "",
-        randomClientSeed: this.randomClientSeedValue(),
+        randomClientSeed: "",
         randomClientSeedEnabled: true
     };
     CLIENT_SEED_RANGE = "0 - 9999";
@@ -71,15 +75,10 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
             return;
         }
         this.localStorageKeys = `PF_Setting_${this.gameId};`;
-        const pfSetting = this.getPFSetting();
-        if (Object.keys(pfSetting).length) {
-            this.pfSetting = pfSetting;
-        } else {
-            this.updatePFSetting();
-        }
-        this.randomLabel.string = pfSetting.randomClientSeed;
+        this.initPFSettingValues();
+        this.updatePFSetting();
         if (this.isEnabled) {
-            if (pfSetting.randomClientSeedEnabled) {
+            if (this.pfSetting.randomClientSeedEnabled) {
                 this.manualLabel.string = "";
                 this.enableRandomModeUI();
                 this.disableManualModeUI();
@@ -91,16 +90,23 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
             this.disableManualModeUI();
             this.disableRandomModeUI();
         }
-        this.updateModeUI(pfSetting.randomClientSeedEnabled);
+        this.updateModeUI(this.pfSetting.randomClientSeedEnabled);
         this.updateStatusPFSettingsPopup(true);
     }
 
-    getPFSetting(): PFSetting {
+    getPFSettingFromStorage(): PFSetting {
         return GameUtils.getStorageGame(this.localStorageKeys, this.gameId);
     }
 
+    initPFSettingValues(): void {
+        const pfSetting = this.getPFSettingFromStorage();
+        this.pfSetting.manualClientSeed = pfSetting?.manualClientSeed || "";
+        this.pfSetting.randomClientSeed = this.pfSetting.randomClientSeed || pfSetting?.randomClientSeed || this.randomClientSeedValue();
+        this.pfSetting.randomClientSeedEnabled = pfSetting?.randomClientSeedEnabled ?? true;
+    }
+
     updatePFSetting() {
-        GameUtils.setStorageGame(this.localStorageKeys, this.gameId, this.pfSetting);
+        this.node?.active && GameUtils.setStorageGame(this.localStorageKeys, this.gameId, this.pfSetting);
     }
 
     generateRandomClientSeed() {
@@ -135,6 +141,13 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
         this.enableManualModeUI();
         this.disableRandomModeUI();
         this.onClientSeedClick();
+    }
+
+    updateClientSeed(value: string) {
+        const pfSetting = this.getPFSettingFromStorage();
+        if (!pfSetting) {
+            this.pfSetting.randomClientSeed = value;
+        }
     }
 
     private updateModeUI(isRandom: boolean) {

@@ -138,7 +138,7 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
     initProvablyFairVerify(node: cc.Node) {
         this.provablyFairVerifyComponent = node.getComponent(ProvablyFairVerifyComponent);
         this.provablyFairVerifyComponent.onHide();
-        this.customResultPrefab && this.provablyFairVerifyComponent.initResultNode(this.customResultPrefab);
+        this.customResultPrefab && this.provablyFairVerifyComponent?.initResultNode(this.customResultPrefab);
         node.on(OPEN_PROVABLY_FAIR_VERIFY, this.openProvablyFairVerify, this);
     }
 

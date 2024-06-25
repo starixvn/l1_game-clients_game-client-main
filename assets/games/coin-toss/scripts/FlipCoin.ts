@@ -32,6 +32,5 @@ export class FlipCoin extends cc.Component {
         this.setStatusNode(true);
         this.hand && (this.hand.active = false);
         this.skeleton && (await AnimationUtils.playSpine(this.skeleton, this.animName, false, this.durationFlipCoin));
-        // this.setStatusNode(false);
     }
 }

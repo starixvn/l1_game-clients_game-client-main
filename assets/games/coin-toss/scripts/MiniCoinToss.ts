@@ -233,26 +233,28 @@ export default class MiniCoinToss extends MiniGameBase {
         return result?.head ? "head_music" : "tail_music";
     }
 
-    handleAfterSettlementResult(settlement: any, animated: boolean) {
+    handleAfterSettlementResult(settlement: ICoinTossSettlement, animated: boolean) {
+        this.flipCoin.setStatusNode(false);
         this.showWinChoiceAndUpdateHistory(settlement);
 
         const doLaterPayOut = () => {
-            this.highlightAndPayout(settlement);
+            this.highlightResult.show(settlement?.result);
+            this.highlightWonItems(settlement?.settlementResult);
             !animated && this.gameData.settlement.showStatus();
         };
 
         if (animated) {
-            this.scheduleOnce(doLaterPayOut, this.delayPayoutDuration);
+            this.scheduleOnce(doLaterPayOut, this.showResultDuration);
         } else {
             doLaterPayOut();
         }
     }
 
-    showWinChoiceAndUpdateHistory(settlement: any) {
+    showWinChoiceAndUpdateHistory(settlement: ICoinTossSettlement) {
         this.gameData.roundHistory.update();
         this.updateRoundHistory();
         this.gameData.resultHash.updateUI();
-        // this.setDots(settlement.result, settlement.roundId);
+        this.winningResult?.setResult(settlement?.result);
     }
 
     highlightAndPayout(settlement: any) {

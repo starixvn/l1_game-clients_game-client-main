@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import GameUtils from "../../../../common/GameUtils";
+import { PFSetting } from "../../../../managers/PFStorageManager";
 import ClientSeedManualPopup from "./ClientSeedManualPopup";
 import ProvablyFairComponent from "./ProvablyFairComponent";
 
@@ -10,11 +11,6 @@ export type ProvablyFairType = {
     clientSeed?: number;
 };
 
-export type PFSetting = {
-    manualClientSeed: string;
-    randomClientSeed: string;
-    randomClientSeedEnabled: boolean;
-};
 
 @ccclass
 export default class ClientSeedNumberInput extends ProvablyFairComponent {

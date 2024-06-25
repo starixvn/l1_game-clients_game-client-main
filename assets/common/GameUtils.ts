@@ -1149,6 +1149,14 @@ export default class GameUtils {
         return data?.remainingTime > main.config.betTime ? data.roundId - 1 : data.roundId;
     };
 
+    public static loadResourceAsset(path: string, assetType: typeof cc.Asset): Promise<cc.AudioClip> {
+        return new Promise((resolve) => {
+            cc.resources.load(path, assetType, (err, audio: cc.AudioClip) => {
+                resolve(audio);
+            });
+        });
+    }
+
     public static async loadAssetsFromBundle<AssetType extends cc.Asset>(
         bundleName: string,
         assetPath: string,
@@ -1156,8 +1164,7 @@ export default class GameUtils {
         onProgress: ((finished: number, total: number) => void) | null
     ) {
         try {
-            const bundle: any = bundleName ? await BundleManager.getInstance().loadBundle(bundleName) : GameUtils.loadResource(assetPath);
-
+            const bundle = await BundleManager.getInstance().loadBundle(bundleName);
             if (bundle) {
                 return new Promise<AssetType>((resolve) => {
                     bundle.load(assetPath, assetType, onProgress, (err, asset) => {
@@ -1170,7 +1177,7 @@ export default class GameUtils {
                     });
                 });
             }
-            
+
             return null;
         } catch (error) {
             cc.log(`Error loading assets from bundle: ${error}`);

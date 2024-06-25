@@ -26,10 +26,13 @@ export default class AudioUtils {
 
     public static readonly getAudioClip = async (bundle: string, path: string): Promise<cc.AudioClip | null> => {
         try {
-            const loadedClip = await GameUtils.loadAssetsFromBundle(bundle, path, cc.AudioClip, null);
-            return loadedClip as cc.AudioClip;
+            const loadedClip: cc.AudioClip = bundle
+                ? await GameUtils.loadAssetsFromBundle(bundle, path, cc.AudioClip, null)
+                : await GameUtils.loadResourceAsset(path, cc.AudioClip);
+
+            return loadedClip;
         } catch (error) {
-            console.error(`Failed to load audio clip from bundle: ${error}`);
+            console.log(`Failed to load audio clip from bundle: ${error}`);
             return null;
         }
     };

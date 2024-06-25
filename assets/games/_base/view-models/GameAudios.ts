@@ -93,4 +93,14 @@ export default class GameAudios extends cc.Component {
 
         return { audioClip };
     };
+
+    preloadAudioConfigs() {
+        const audioConfigs = AudioManager?.audioConfigs() || {};
+        for (const [audioKey, value] of Object.entries(audioConfigs)) {
+            if (value?.isLazyLoad !== true) {
+                const { bundle, path } = AudioUtils.getAudioInfo(value, audioKey);
+                AudioUtils.getAudioClip(bundle, path);
+            }
+        }
+    }
 }

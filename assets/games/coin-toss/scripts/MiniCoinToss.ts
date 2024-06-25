@@ -111,6 +111,10 @@ export default class MiniCoinToss extends MiniGameBase {
         this.statisticHistory.node.active = true;
     }
 
+    initOnStart() {
+        this.gameAudios && this.gameAudios.preloadAudioConfigs();
+    }
+
     onDisconnected() {
         this.closeGame();
     }
@@ -198,30 +202,32 @@ export default class MiniCoinToss extends MiniGameBase {
         }
     }
 
-    getKeyWinningForChoice(result: ICoinTossResult) {
+    generateWinningKey(result: ICoinTossResult): string {
         const key = result?.head ? "head" : "tail";
-        return `${key}_${window?.i18n?.curLang || "en"}`;
+        const language = window?.i18n?.curLang || "en";
+
+        return `${key}_${language}`;
     }
 
     handleAnimResult(result: ICoinTossResult) {
         this.tween(this.winningResultNode)
             .call(async () => {
                 await this.winningResult.show();
-                this.gameAudios?.playSFXAudio(this.getKeyWinningForChoice(result));
+                this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
             })
             .delay(this.showResultDuration)
             .call(() => {
                 if (this.gameData?.settlement?.settlement) {
                     this.highlightResult.show(this.gameData?.settlement?.settlement?.result);
                     this.highlightWonItems(this.gameData?.settlement?.settlement?.settlementResult);
-                    this.gameAudios?.playSFXAudio(this.getKeyMusicWinningForChoice(result));
+                    this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(result));
                     this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
                 }
             })
             .start();
     }
 
-    getKeyMusicWinningForChoice(result: ICoinTossResult) {
+    generateMusicWinningKey(result: ICoinTossResult): string {
         return result?.head ? "head_music" : "tail_music";
     }
 

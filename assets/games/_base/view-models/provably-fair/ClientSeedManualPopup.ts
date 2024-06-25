@@ -21,6 +21,9 @@ export default class ClientSeedManualPopup extends cc.Component {
     @property(BehaviorClickButton)
     btnSave: BehaviorClickButton = null;
 
+    @property(BehaviorClickButton)
+    btnDelete: BehaviorClickButton = null;
+
     @property()
     clientSeedMax = 103;
 
@@ -73,12 +76,14 @@ export default class ClientSeedManualPopup extends cc.Component {
 
         this.btnClear.updateState(statusButton);
         this.btnSave.updateState(statusButton);
+        this.btnDelete.updateState(statusButton);
     }
 
     onClickClear() {
         this.lblClientSeed.string = "";
         this.btnClear.updateState(true);
         this.btnSave.updateState(true);
+        this.btnDelete.updateState(true);
     }
 
     onClickRemoveLastLetter() {
@@ -87,6 +92,7 @@ export default class ClientSeedManualPopup extends cc.Component {
             multiplierString = "";
             this.btnClear.updateState(true);
             this.btnSave.updateState(true);
+            this.btnDelete.updateState(true);
         }
 
         this.lblClientSeed.string = multiplierString;

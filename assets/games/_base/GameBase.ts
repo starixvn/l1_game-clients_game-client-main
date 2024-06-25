@@ -641,6 +641,10 @@ export default class GameBase extends GameViewBase {
     }
 
     openProvablyFair() {
+        if (!this.provablyFairComponent) {
+            return;
+        }
+
         this.provablyFairComponent.updateGameId(this.gameId);
         this.provablyFairComponent.onShow();
     }
@@ -1002,6 +1006,9 @@ export default class GameBase extends GameViewBase {
     }
 
     initProvablyFair(node: cc.Node) {
+        if (!this.provablyFairComponent) {
+            return;
+        }
         this.provablyFairComponent = node.getComponent(ProvablyFairComponent);
         this.node.on(InGameMenuEvents.OPEN_PROVABLY_FAIR, this.openProvablyFair, this);
 

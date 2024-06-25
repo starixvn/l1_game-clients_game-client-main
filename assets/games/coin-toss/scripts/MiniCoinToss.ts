@@ -87,17 +87,6 @@ export default class MiniCoinToss extends MiniGameBase {
         super.addHandlers(...handlers, this.provablyFairHandler);
     }
 
-    onGameHide() {
-        super.onGameHide();
-        this.highlightResult.hide();
-        this.flipCoin.hideSkeleton();
-        this.clearWinningBet();
-    }
-
-    onGameShow() {
-        super.onGameShow();
-    }
-
     onLoad() {
         super.onLoad();
         this.fetchComponents();
@@ -185,10 +174,17 @@ export default class MiniCoinToss extends MiniGameBase {
         this.miniRoundHistory.setData(this.currentDataLogs);
     }
 
+    resetDataAndUI() {
+        super.resetDataAndUI();
+        this.highlightResult?.hide();
+        this.flipCoin?.hideSkeleton();
+        this.clearWinningBet();
+    }
+
     handleStartNewRound() {
-        this.winningResult.hideQuickly();
-        this.flipCoin.playAnim();
-        this.highlightResult.hide();
+        this.winningResult?.hideQuickly();
+        this.flipCoin?.playAnim();
+        this.highlightResult?.hide();
     }
 
     handleRoundHistory() {
@@ -230,7 +226,7 @@ export default class MiniCoinToss extends MiniGameBase {
         const doLaterPayOut = () => {
             this.highlightResult.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
-            this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
+            animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData.settlement.showStatus();
         };
 

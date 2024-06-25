@@ -75,7 +75,7 @@ export default class MiniCoinToss extends MiniGameBase {
     openPlateDuration = 0.5;
     openPlatePos = cc.v2(15, 30);
     startRoundDuration = 3;
-    protected delayPayoutDuration = 1;
+    protected delayPayoutDuration = 0.5;
 
     constructor() {
         super();
@@ -211,22 +211,12 @@ export default class MiniCoinToss extends MiniGameBase {
         return `${key}_${language}`;
     }
 
-    handleAnimResult(result: ICoinTossResult) {
-        this.tween(this.winningResultNode)
-            .call(async () => {
-                await this.winningResult.show();
-                this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
-            })
-            .delay(this.showResultDuration)
-            .call(() => {
-                if (this.gameData?.settlement?.settlement) {
-                    this.highlightResult.show(this.gameData?.settlement?.settlement?.result);
-                    this.highlightWonItems(this.gameData?.settlement?.settlement?.settlementResult);
-                    this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(result));
-                    this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
-                }
-            })
-            .start();
+    async handleAnimResult(result: ICoinTossResult) {
+        await this.winningResult.show();
+        this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+        if (this.gameData?.settlement?.settlement) {
+            this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
+        }
     }
 
     generateMusicWinningKey(result: ICoinTossResult): string {
@@ -240,11 +230,12 @@ export default class MiniCoinToss extends MiniGameBase {
         const doLaterPayOut = () => {
             this.highlightResult.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
+            this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData.settlement.showStatus();
         };
 
         if (animated) {
-            this.scheduleOnce(doLaterPayOut, this.showResultDuration);
+            this.scheduleOnce(doLaterPayOut, this.delayPayoutDuration);
         } else {
             doLaterPayOut();
         }

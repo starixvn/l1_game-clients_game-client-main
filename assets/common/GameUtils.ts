@@ -1155,20 +1155,26 @@ export default class GameUtils {
         assetType: any,
         onProgress: ((finished: number, total: number) => void) | null
     ) {
-        const bundle = await BundleManager.getInstance().loadBundle(bundleName);
-        if (bundle) {
-            return new Promise<AssetType>((resolve) => {
-                bundle.load(assetPath, assetType, onProgress, (err, asset) => {
-                    if (err) {
-                        cc.log(`Cannot load asset ${assetPath} from bundle ${bundleName}`);
-                        resolve(null);
-                    } else {
-                        resolve(asset as AssetType);
-                    }
-                });
-            });
-        }
+        try {
+            const bundle: any = bundleName ? await BundleManager.getInstance().loadBundle(bundleName) : GameUtils.loadResource(assetPath);
 
-        return null;
+            if (bundle) {
+                return new Promise<AssetType>((resolve) => {
+                    bundle.load(assetPath, assetType, onProgress, (err, asset) => {
+                        if (err) {
+                            cc.log(`Cannot load asset ${assetPath} from bundle ${bundleName}`);
+                            resolve(null);
+                        } else {
+                            resolve(asset as AssetType);
+                        }
+                    });
+                });
+            }
+            
+            return null;
+        } catch (error) {
+            cc.log(`Error loading assets from bundle: ${error}`);
+            return null;
+        }
     }
 }

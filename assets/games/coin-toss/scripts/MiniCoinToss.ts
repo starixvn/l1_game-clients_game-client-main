@@ -79,6 +79,9 @@ export default class MiniCoinToss extends MiniGameBase {
     startRoundDuration = 3;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
+    private doLaterPayOutCallback = () => {
+        // callback
+    };
 
     constructor() {
         super();
@@ -119,6 +122,12 @@ export default class MiniCoinToss extends MiniGameBase {
         this.clearWinningBet();
         this.highlightResult?.hide();
         super.closeGame();
+    }
+
+    onGameHide(): void {
+        super.onGameHide();
+
+        this.unschedule(this.doLaterPayOutCallback);
     }
 
     public toggleShowStatistic() {
@@ -234,16 +243,17 @@ export default class MiniCoinToss extends MiniGameBase {
         this.showWinChoiceAndUpdateHistory(settlement);
 
         const doLaterPayOut = () => {
-            !this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
+            this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData?.settlement?.showStatus();
         };
 
+        this.doLaterPayOutCallback = doLaterPayOut;
         if (animated) {
-            this.scheduleOnce(doLaterPayOut, this.delayPayoutDuration);
+            this.scheduleOnce(this.doLaterPayOutCallback, this.delayPayoutDuration);
         } else {
-            doLaterPayOut();
+            this.doLaterPayOutCallback();
         }
     }
 

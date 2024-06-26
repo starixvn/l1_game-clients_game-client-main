@@ -1,4 +1,3 @@
-import AudioUtils, { TAudioConfigs, TAudioValue } from "../../../common/AudioUtils";
 import AudioManager from "../../../common/audio/AudioManager";
 
 const { ccclass, property } = cc._decorator;
@@ -17,104 +16,23 @@ export default class GameAudios extends cc.Component {
     @property(cc.AudioSource)
     showResult: cc.AudioSource = null;
 
-    @property(cc.AudioSource)
-    sfxSource: cc.AudioSource = null;
-
-    @property(cc.JsonAsset)
-    sharedAudioConfig: cc.JsonAsset = null;
-
-    @property(cc.JsonAsset)
-    audioConfig: cc.JsonAsset = null;
-
-    private audioIds = [];
-
-    playAudio(clip: cc.AudioClip) {
-        const audioId = AudioManager?.getInstance()?.playSFX(clip);
-        this.audioIds.push(audioId);
-    }
-
     playStartGameAudio() {
-        this.playAudio(this.startGame?.clip);
+        AudioManager.getInstance().playSFX(this.startGame.clip);
     }
 
     playEndGameAudio() {
-        this.playAudio(this.endGame?.clip);
+        AudioManager.getInstance().playSFX(this.endGame.clip);
     }
 
     playClockTickAudio() {
-        this.playAudio(this.clockTick?.clip);
+        AudioManager.getInstance().playSFX(this.clockTick.clip);
     }
 
     playShowResultAudio() {
-        this.playAudio(this.showResult?.clip);
+        AudioManager.getInstance().playSFX(this.showResult.clip);
     }
 
     stopAllAudio() {
-        this.audioIds.forEach((id) => {
-            AudioManager?.getInstance()?.stopSFX(id);
-        });
-        this.audioIds = [];
-    }
-
-    public async loadAudios() {
-        const audioConfigs: TAudioConfigs = {
-            ...this.sharedAudioConfig?.json,
-            ...this.audioConfig?.json
-        };
-
-        AudioManager?.audioConfigs(audioConfigs);
-    }
-
-    public async playSFXAudio(id: string) {
-        const audioClip = await this.getAudioClip(id);
-        if (audioClip) {
-            const sourceClip = this.getSourceClip(this?.sfxSource, audioClip);
-            this.playAudio(sourceClip?.clip);
-        }
-    }
-
-    protected getSourceClip(audioSource: cc.AudioSource, audioClip: cc.AudioClip) {
-        if (audioSource) {
-            audioSource.clip = audioClip;
-            return audioSource;
-        }
-
-        return null;
-    }
-
-    protected async getAudioClip(id: string) {
-        const audioValue = AudioManager?.audioConfigs()?.[id];
-        if (!audioValue) {
-            return;
-        }
-
-        const { audioClip } = await this.loadAssets(audioValue, id);
-
-        if (audioClip) {
-            return audioClip;
-        }
-        return null;
-    }
-
-    protected loadAssets = async (audioValue: TAudioValue, soundId: string): Promise<{ audioClip: cc.AudioClip | null }> => {
-        const { bundle, path } = AudioUtils.getAudioInfo(audioValue, soundId);
-
-        if (!bundle || !path) {
-            return { audioClip: null };
-        }
-
-        const audioClip = await AudioUtils.getAudioClip(bundle, path);
-
-        return { audioClip };
-    };
-
-    public preloadAudioConfigs() {
-        const audioConfigs = AudioManager?.audioConfigs() || {};
-        for (const [audioKey, value] of Object.entries(audioConfigs)) {
-            if (value?.isLazyLoad !== true) {
-                const { bundle, path } = AudioUtils.getAudioInfo(value, audioKey);
-                AudioUtils.getAudioClip(bundle, path);
-            }
-        }
+        // handle
     }
 }

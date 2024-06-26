@@ -4,6 +4,7 @@ import NewGameData from "../models/NewGameData";
 export type UMType = {
     um?: any;
     snr?: boolean;
+    spb?: boolean;
 };
 
 export class UMHandler extends BaseEventHandler<UMType> {
@@ -17,7 +18,7 @@ export class UMHandler extends BaseEventHandler<UMType> {
             this.gameData.isUnderMaintenance = true;
             this.gameData.umModel.onUM(event);
         }
-        if (event.snr) {
+        if (event.snr || event.um === false || event.spb) {
             this.gameData.isUnderMaintenance && this.gameData.umModel.checkToOffUM(event);
             this.gameData.isUnderMaintenance = false;
         }

@@ -109,7 +109,7 @@
     "_prefab": {
       "__id__": 7
     },
-    "_opacity": 180,
+    "_opacity": 150,
     "_color": {
       "__type__": "cc.Color",
       "r": 0,
@@ -430,7 +430,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 573.7,
+      "width": 476.665,
       "height": 100
     },
     "_anchorPoint": {
@@ -497,7 +497,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 533.7,
+      "width": 873.33,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -516,8 +516,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -551,7 +551,7 @@
     "_dstBlendFactor": 771,
     "_string": "COMMON.PF_TITLE_PROVABLY_FAIR_SETTINGS",
     "_N$string": "COMMON.PF_TITLE_PROVABLY_FAIR_SETTINGS",
-    "_fontSize": 22,
+    "_fontSize": 36,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -635,7 +635,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        270.85,
+        222.3325,
         0,
         0,
         0,
@@ -799,7 +799,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 573.7,
+      "width": 476.665,
       "height": 100
     },
     "_resize": 1,
@@ -818,7 +818,7 @@
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
-    "_N$affectedByScale": false,
+    "_N$affectedByScale": true,
     "_id": ""
   },
   {
@@ -976,7 +976,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 100,
-      "height": 68.04
+      "height": 90.39999999999999
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1042,8 +1042,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 775,
-      "height": 34.02
+      "width": 1550,
+      "height": 90.39999999999999
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1055,14 +1055,14 @@
       "ctor": "Float64Array",
       "array": [
         -325.44,
-        17.01,
+        22.599999999999998,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -1094,10 +1094,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Common.pf_settings_para_1",
-    "_N$string": "Common.pf_settings_para_1",
-    "_fontSize": 18,
-    "_lineHeight": 27,
+    "_string": "The final result is determined by a combination of the Server Seed and the Client Seed of the first five betting players of the round.",
+    "_N$string": "The final result is determined by a combination of the Server Seed and the Client Seed of the first five betting players of the round.",
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -1168,8 +1168,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 770,
-      "height": 34.02
+      "width": 1550,
+      "height": 90.39999999999999
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1181,14 +1181,14 @@
       "ctor": "Float64Array",
       "array": [
         -325,
-        -17.01,
+        -22.599999999999998,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -1220,10 +1220,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Common.pf_settings_para_2",
-    "_N$string": "Common.pf_settings_para_2",
-    "_fontSize": 18,
-    "_lineHeight": 27,
+    "_string": "The Player can change the Client Seed value and check the fairness of game result from Bet history.",
+    "_N$string": "The Player can change the Client Seed value and check the fairness of game result from Bet history.",
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -1275,7 +1275,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 100,
-      "height": 68.04
+      "height": 90.39999999999999
     },
     "_resize": 1,
     "_N$layoutType": 2,
@@ -1412,7 +1412,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 541.64,
+      "width": 608.845,
       "height": 70
     },
     "_anchorPoint": {
@@ -1479,8 +1479,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 299.06,
-      "height": 44.1
+      "width": 672.89,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1491,15 +1491,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        149.53,
+        168.2225,
         0,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -1533,8 +1533,8 @@
     "_dstBlendFactor": 771,
     "_string": "COMMON.PF_HEADER_CLIENT_SEED",
     "_N$string": "COMMON.PF_HEADER_CLIENT_SEED",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "0763b17c-4af5-4b06-aaf9-9ab41eb64775"
@@ -1605,8 +1605,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 238.58,
-      "height": 44.1
+      "width": 536.8,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1617,15 +1617,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        422.35,
+        474.645,
         0,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -1659,8 +1659,8 @@
     "_dstBlendFactor": 771,
     "_string": "Common.pf_client_seed_para_1",
     "_N$string": "Common.pf_client_seed_para_1",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -1711,7 +1711,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 541.64,
+      "width": 608.845,
       "height": 70
     },
     "_resize": 1,
@@ -2209,8 +2209,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 238.58,
-      "height": 44.1
+      "width": 536.8,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2228,8 +2228,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -2263,8 +2263,8 @@
     "_dstBlendFactor": 771,
     "_string": "Common.pf_client_seed_para_4",
     "_N$string": "Common.pf_client_seed_para_4",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -2811,8 +2811,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 238.58,
-      "height": 44.1
+      "width": 536.8,
+      "height": 45.36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -2830,8 +2830,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -2865,8 +2865,8 @@
     "_dstBlendFactor": 771,
     "_string": "Common.pf_client_seed_para_3",
     "_N$string": "Common.pf_client_seed_para_3",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 36,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -3389,8 +3389,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -3424,8 +3424,8 @@
     "_dstBlendFactor": 771,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 36,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -3802,8 +3802,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -3837,8 +3837,8 @@
     "_dstBlendFactor": 771,
     "_string": "",
     "_N$string": "",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 36,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "c0681aec-8139-4f26-b360-454265f3a4eb"
@@ -4015,8 +4015,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 230.67,
-      "height": 44.1
+      "width": 519.01,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4034,8 +4034,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.5,
+        0.5,
         1
       ]
     },
@@ -4069,8 +4069,8 @@
     "_dstBlendFactor": 771,
     "_string": "COMMON.BUTTON_CHANGE",
     "_N$string": "COMMON.BUTTON_CHANGE",
-    "_fontSize": 16,
-    "_lineHeight": 35,
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "0763b17c-4af5-4b06-aaf9-9ab41eb64775"
@@ -4463,8 +4463,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 740.58,
-      "height": 88.2
+      "width": 833.15,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4517,8 +4517,8 @@
     "_dstBlendFactor": 771,
     "_string": "COMMON.PF_HEADER_SERVER_SEED_SHA256",
     "_N$string": "COMMON.PF_HEADER_SERVER_SEED_SHA256",
-    "_fontSize": 32,
-    "_lineHeight": 70,
+    "_fontSize": 36,
+    "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "0763b17c-4af5-4b06-aaf9-9ab41eb64775"

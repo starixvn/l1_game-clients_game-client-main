@@ -25,7 +25,7 @@ export class MiniCoinTossWinningResult extends cc.Component {
     private skinName = "";
     private trackIndex = 0;
     private readonly animName = "settle";
-    private readonly durationShowResult = 2;
+    durationShowResult = 2;
 
     getSkinName(isBiden: boolean) {
         let name = "trump";

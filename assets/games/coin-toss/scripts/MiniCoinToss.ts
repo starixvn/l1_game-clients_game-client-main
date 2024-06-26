@@ -208,11 +208,19 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     async handleAnimResult(result: ICoinTossResult) {
-        await this.winningResult.show();
-        this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
-        if (this.gameData?.settlement?.settlement) {
-            this.gameData.settlement.finishShowResult(this.gameData.settlement.settlement, true);
-        }
+        // call into tween because action plays sound resume when the game shows
+        this.tween(this?.winningResult?.node)
+            .call(() => {
+                this.winningResult?.show();
+            })
+            .delay(this.winningResult?.durationShowResult)
+            .call(() => {
+                if (this.gameData?.settlement?.settlement) {
+                    this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+                    this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+                }
+            })
+            .start();
     }
 
     generateMusicWinningKey(result: ICoinTossResult): string {

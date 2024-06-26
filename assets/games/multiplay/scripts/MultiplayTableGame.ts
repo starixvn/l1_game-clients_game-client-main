@@ -67,8 +67,8 @@ export default class MultiplayTableGame extends MultiplayGame {
     openOtherScene = false;
     closingGameRoom = false;
 
-    assignPropertiesForSingle(single: TableGameBase, isMain: boolean) {
-        super.assignPropertiesForSingle(single, isMain);
+    assignPropertiesForSingle(single: TableGameBase, isMain: boolean, gameId: number) {
+        super.assignPropertiesForSingle(single, isMain, gameId);
         single.userProfile = this.userProfile;
         single.onCloseGameCallback = this.onCloseGame.bind(this);
         single.onUmCallback = this.checkToShowUMPopup.bind(this);

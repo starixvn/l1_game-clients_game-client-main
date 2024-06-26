@@ -67,6 +67,7 @@ export default class MultiplayGame extends GameViewBase {
     betChips: BetChips;
     currentBet: number;
     protected isGameOpened = false;
+    gamesState = {};
 
     onLoad() {
         super.onLoad();
@@ -203,7 +204,6 @@ export default class MultiplayGame extends GameViewBase {
         multiplaySingle.grantSocket();
         multiplaySingle.initSocketListener();
         multiplaySingle.startGame();
-        multiplaySingle.gameState = GameState.None;
         return multiplaySingle;
     }
 
@@ -251,7 +251,9 @@ export default class MultiplayGame extends GameViewBase {
     addMainGameUI(gameId: number) {
         const child = this.mainContent.children[0];
         if (child) {
-            child.getComponent(GameBase)?.removeGameDataEvents();
+            const game = child.getComponent(GameBase);
+            this.gamesState[game.gameId] = game.gameState || GameState.None;
+            game?.removeGameDataEvents();
             child.destroy();
         }
         this.mainContent.addChild(this.createMainGameUI(gameId));
@@ -259,7 +261,7 @@ export default class MultiplayGame extends GameViewBase {
         this.mainGameId = gameId;
     }
 
-    assignPropertiesForSingle(single: any, isMain: boolean) {
+    assignPropertiesForSingle(single: any, isMain: boolean, gameId: number) {
         single.currentMiniPanel = this.currentMiniPanel;
         single.betChips = this.betChips;
         single.isCollectChip = isMain;
@@ -267,17 +269,17 @@ export default class MultiplayGame extends GameViewBase {
         single.callbackWinningResult = this.callbackWinningResult;
         single.callbackWinningStreak = this.callbackWinningStreak;
         const oldCheckShowUmMessage = single?.checkShowUmMessage?.bind(single);
-        single.checkShowUmMessage = (data) => this.checkShowUmMessage(single, oldCheckShowUmMessage, data);
+        single.checkShowUmMessage = (data) => this.checkShowUmMessage(oldCheckShowUmMessage, gameId, data);
     }
 
-    checkShowUmMessage(single: any, baseFunc: any, data: any) {
-        return baseFunc?.(data) || single?.gameState === GameState.None;
+    checkShowUmMessage(baseFunc: any, gameId: number, data: any) {
+        return baseFunc?.(data) || this.gamesState[gameId] === GameState.Disabled;
     }
 
     createMainGameUI(gameId: number) {
         const node = cc.instantiate(this.normallPrefab);
         const single = node.getComponent(GameBase);
-        this.assignPropertiesForSingle(single, true);
+        this.assignPropertiesForSingle(single, true, gameId);
 
         this.games[gameId] = single;
         single.onDisconnectCallback = () => {
@@ -297,7 +299,9 @@ export default class MultiplayGame extends GameViewBase {
         const content = this.subContents[location];
         const child = content.children[0];
         if (child) {
-            child.getComponent(GameBase)?.removeGameDataEvents();
+            const game = child.getComponent(GameBase);
+            this.gamesState[game.gameId] = game.gameState || GameState.None;
+            game?.removeGameDataEvents();
             child.destroy();
         }
         const subGameNode = this.createSubGameUI(gameId, location);
@@ -310,7 +314,7 @@ export default class MultiplayGame extends GameViewBase {
         const node = cc.instantiate(this.smallPrefab);
         const single = node.getComponent(GameBase);
         single.maximizeCallback = (gameId) => this.switchGameToMain(gameId);
-        this.assignPropertiesForSingle(single, false);
+        this.assignPropertiesForSingle(single, false, gameId);
         this.games[gameId] = single;
         return node;
     }

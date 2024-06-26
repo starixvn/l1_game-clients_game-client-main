@@ -7,6 +7,7 @@ import InternalGameNotification from "../../../common/game-notification/Internal
 import GameUtils from "../../../common/GameUtils";
 import SocketIOController from "../../../SocketIOController";
 import GameBase from "../../_base/GameBase";
+import { GameState } from "../../_base/GameState";
 import GameViewBase from "../../_base/GameViewBase";
 import { GameConfigs } from "../../_base_new/models/GameConfigs";
 import NewGameData from "../../_base_new/models/NewGameData";
@@ -264,6 +265,12 @@ export default class MultiplayGame extends GameViewBase {
         single.groupDefaultGameId = this.gameId;
         single.callbackWinningResult = this.callbackWinningResult;
         single.callbackWinningStreak = this.callbackWinningStreak;
+        const oldCheckShowUmMessage = single?.checkShowUmMessage?.bind(single);
+        single.checkShowUmMessage = (data) => this.checkShowUmMessage(single, oldCheckShowUmMessage, data);
+    }
+
+    checkShowUmMessage(single: any, baseFunc: any, data: any) {
+        return baseFunc?.(data) || single?.gameState === GameState.Started;
     }
 
     createMainGameUI(gameId: number) {

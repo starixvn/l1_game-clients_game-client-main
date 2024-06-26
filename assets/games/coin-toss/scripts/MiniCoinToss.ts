@@ -244,7 +244,7 @@ export default class MiniCoinToss extends MiniGameBase {
         this.showWinChoiceAndUpdateHistory(settlement);
 
         const doLaterPayOut = () => {
-            this.highlightResult?.show(settlement?.result);
+            !this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData?.settlement?.showStatus();

@@ -105,18 +105,11 @@ export default class UserManager {
         const offerGames = data.offerGames.map((game) => game.gameId);
         const menuConfig = appContainer.get(LobbyMenuConfig);
         const list = [];
-
         menuConfig.list.forEach((id) => {
             if (offerGames.includes(id)) {
                 list.push(id);
             }
         });
-
-        const coinTossGameId = 80;
-        if (offerGames.includes(coinTossGameId)) {
-            list.push(coinTossGameId);
-        }
-
         userManager.updateOfferGamesIncludeSubGames(offerGames);
         userManager.updateOfferGames(list);
     }

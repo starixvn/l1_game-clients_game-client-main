@@ -6,6 +6,7 @@ export const handlePlacingBet = (game: MiniCoinToss) => () => {
     game.winningResult?.hideQuickly();
     game.flipCoin?.setStatusNode(true);
     game.flipCoin?.hideSkeleton();
+    game.highlightResult?.hide();
 };
 
 export const handleBeginStarting = (game: MiniCoinToss) => () => {

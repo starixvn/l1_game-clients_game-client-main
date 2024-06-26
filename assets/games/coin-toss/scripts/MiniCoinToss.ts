@@ -71,7 +71,7 @@ export default class MiniCoinToss extends MiniGameBase {
 
     public winningResult: MiniCoinTossWinningResult = null;
     public flipCoin: FlipCoin = null;
-    private highlightResult: HighlightResult = null;
+    public highlightResult: HighlightResult = null;
     public statisticHistory: MiniCoinTossRoundHistory = null;
     public miniRoundHistory: MiniCoinTossLedLight = null;
 
@@ -234,7 +234,7 @@ export default class MiniCoinToss extends MiniGameBase {
         this.showWinChoiceAndUpdateHistory(settlement);
 
         const doLaterPayOut = () => {
-            this.highlightResult?.show(settlement?.result);
+            !this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData?.settlement?.showStatus();

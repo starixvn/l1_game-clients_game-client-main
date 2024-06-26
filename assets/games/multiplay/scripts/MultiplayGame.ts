@@ -203,6 +203,7 @@ export default class MultiplayGame extends GameViewBase {
         multiplaySingle.grantSocket();
         multiplaySingle.initSocketListener();
         multiplaySingle.startGame();
+        multiplaySingle.gameState = GameState.None;
         return multiplaySingle;
     }
 
@@ -270,7 +271,7 @@ export default class MultiplayGame extends GameViewBase {
     }
 
     checkShowUmMessage(single: any, baseFunc: any, data: any) {
-        return baseFunc?.(data) || single?.gameState === GameState.Started;
+        return baseFunc?.(data) || single?.gameState === GameState.None;
     }
 
     createMainGameUI(gameId: number) {

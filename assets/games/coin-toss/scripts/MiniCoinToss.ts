@@ -72,8 +72,6 @@ export default class MiniCoinToss extends MiniGameBase {
     public miniRoundHistory: MiniCoinTossLedLight = null;
 
     protected betHistory: MiniCoinTossBetHistory;
-    openPlateDuration = 0.5;
-    openPlatePos = cc.v2(15, 30);
     startRoundDuration = 3;
     protected delayPayoutDuration = 0.5;
 
@@ -152,10 +150,6 @@ export default class MiniCoinToss extends MiniGameBase {
         dataLog && this.highlightWonItems(dataLog.settlementResult, false);
     }
 
-    public setDots(result, roundId) {
-        // handle
-    }
-
     private highlightWonItems(settlementResult: any, isAnimated = true) {
         this.betItems.forEach((betItem) => {
             betItem.setHighlight(settlementResult[betItem.node.name], isAnimated);
@@ -193,9 +187,9 @@ export default class MiniCoinToss extends MiniGameBase {
 
     showSettlementResult(settlement: ICoinTossSettlement) {
         this.gameAudios?.playEndGameAudio();
-        this.flipCoin.setStatusNode(false);
-        this.winningResult.setResult(settlement?.result);
-        if (appManager.GAME_IS_SHOWED) {
+        this.flipCoin?.setStatusNode(false);
+        this.winningResult?.setResult(settlement?.result);
+        if (appManager?.GAME_IS_SHOWED) {
             this.handleAnimResult(settlement?.result);
         }
     }
@@ -228,14 +222,14 @@ export default class MiniCoinToss extends MiniGameBase {
     }
 
     handleAfterSettlementResult(settlement: ICoinTossSettlement, animated: boolean) {
-        this.flipCoin.setStatusNode(false);
+        this.flipCoin?.setStatusNode(false);
         this.showWinChoiceAndUpdateHistory(settlement);
 
         const doLaterPayOut = () => {
-            this.highlightResult.show(settlement?.result);
+            this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
-            !animated && this.gameData.settlement.showStatus();
+            !animated && this.gameData?.settlement?.showStatus();
         };
 
         if (animated) {

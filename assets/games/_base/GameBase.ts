@@ -565,7 +565,7 @@ export default class GameBase extends GameViewBase {
         }
         const gameAudiosNode = cc.instantiate(this.gameAudiosPrefab);
         this.gameAudios = gameAudiosNode.getComponent(GameAudios);
-        this.gameAudios.loadAudios();
+        this.gameAudios?.loadAudios();
     }
 
     protected initHandlers() {

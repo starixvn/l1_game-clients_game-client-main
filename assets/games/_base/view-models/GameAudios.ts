@@ -29,29 +29,29 @@ export default class GameAudios extends cc.Component {
     private audioIds = [];
 
     playAudio(clip: cc.AudioClip) {
-        const audioId = AudioManager.getInstance().playSFX(clip);
+        const audioId = AudioManager?.getInstance()?.playSFX(clip);
         this.audioIds.push(audioId);
     }
 
     playStartGameAudio() {
-        this.playAudio(this.startGame.clip);
+        this.playAudio(this.startGame?.clip);
     }
 
     playEndGameAudio() {
-        this.playAudio(this.endGame.clip);
+        this.playAudio(this.endGame?.clip);
     }
 
     playClockTickAudio() {
-        this.playAudio(this.clockTick.clip);
+        this.playAudio(this.clockTick?.clip);
     }
 
     playShowResultAudio() {
-        this.playAudio(this.showResult.clip);
+        this.playAudio(this.showResult?.clip);
     }
 
     stopAllAudio() {
         this.audioIds.forEach((id) => {
-            AudioManager?.getInstance().stopSFX(id);
+            AudioManager?.getInstance()?.stopSFX(id);
         });
         this.audioIds = [];
     }
@@ -62,20 +62,24 @@ export default class GameAudios extends cc.Component {
             ...this.audioConfig?.json
         };
 
-        AudioManager.audioConfigs(audioConfigs);
+        AudioManager?.audioConfigs(audioConfigs);
     }
 
     public async playSFXAudio(id: string) {
         const audioClip = await this.getAudioClip(id);
         if (audioClip) {
-            const sourceClip = this.getSourceClip(this.sfxSource, audioClip);
+            const sourceClip = this.getSourceClip(this?.sfxSource, audioClip);
             this.playAudio(sourceClip?.clip);
         }
     }
 
     protected getSourceClip(audioSource: cc.AudioSource, audioClip: cc.AudioClip) {
-        audioSource.clip = audioClip;
-        return audioSource;
+        if (audioSource) {
+            audioSource.clip = audioClip;
+            return audioSource;
+        }
+
+        return null;
     }
 
     protected async getAudioClip(id: string) {

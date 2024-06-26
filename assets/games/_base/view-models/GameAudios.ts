@@ -26,27 +26,37 @@ export default class GameAudios extends cc.Component {
     @property(cc.JsonAsset)
     audioConfig: cc.JsonAsset = null;
 
+    private audioIds = [];
+
+    playAudio(clip: cc.AudioClip) {
+        const audioId = AudioManager.getInstance().playSFX(clip);
+        this.audioIds.push(audioId);
+    }
+
     playStartGameAudio() {
-        AudioManager.getInstance().playSFX(this.startGame.clip);
+        this.playAudio(this.startGame.clip);
     }
 
     playEndGameAudio() {
-        AudioManager.getInstance().playSFX(this.endGame.clip);
+        this.playAudio(this.endGame.clip);
     }
 
     playClockTickAudio() {
-        AudioManager.getInstance().playSFX(this.clockTick.clip);
+        this.playAudio(this.clockTick.clip);
     }
 
     playShowResultAudio() {
-        AudioManager.getInstance().playSFX(this.showResult.clip);
+        this.playAudio(this.showResult.clip);
     }
 
     stopAllAudio() {
-        // handle
+        this.audioIds.forEach((id) => {
+            AudioManager?.getInstance().stopSFX(id);
+        });
+        this.audioIds = [];
     }
 
-    async loadAudios() {
+    public async loadAudios() {
         const audioConfigs: TAudioConfigs = {
             ...this.sharedAudioConfig?.json,
             ...this.audioConfig?.json
@@ -55,11 +65,11 @@ export default class GameAudios extends cc.Component {
         AudioManager.audioConfigs(audioConfigs);
     }
 
-    async playSFXAudio(id: string) {
+    public async playSFXAudio(id: string) {
         const audioClip = await this.getAudioClip(id);
         if (audioClip) {
             const sourceClip = this.getSourceClip(this.sfxSource, audioClip);
-            AudioManager.getInstance().playSFX(sourceClip.clip);
+            this.playAudio(sourceClip?.clip);
         }
     }
 
@@ -68,7 +78,7 @@ export default class GameAudios extends cc.Component {
         return audioSource;
     }
 
-    async getAudioClip(id: string) {
+    protected async getAudioClip(id: string) {
         const audioValue = AudioManager?.audioConfigs()?.[id];
         if (!audioValue) {
             return;
@@ -82,7 +92,7 @@ export default class GameAudios extends cc.Component {
         return null;
     }
 
-    loadAssets = async (audioValue: TAudioValue, soundId: string): Promise<{ audioClip: cc.AudioClip | null }> => {
+    protected loadAssets = async (audioValue: TAudioValue, soundId: string): Promise<{ audioClip: cc.AudioClip | null }> => {
         const { bundle, path } = AudioUtils.getAudioInfo(audioValue, soundId);
 
         if (!bundle || !path) {
@@ -94,7 +104,7 @@ export default class GameAudios extends cc.Component {
         return { audioClip };
     };
 
-    preloadAudioConfigs() {
+    public preloadAudioConfigs() {
         const audioConfigs = AudioManager?.audioConfigs() || {};
         for (const [audioKey, value] of Object.entries(audioConfigs)) {
             if (value?.isLazyLoad !== true) {

@@ -522,6 +522,11 @@ export default class GameBase extends GameViewBase {
 
     protected onGameHide() {
         this.stopGame();
+        this.stopAllSFX();
+    }
+
+    protected stopAllSFX() {
+        this.gameAudios?.stopAllAudio();
     }
 
     protected onGameShow() {

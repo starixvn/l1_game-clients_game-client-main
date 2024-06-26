@@ -121,6 +121,7 @@ export default class MiniCoinToss extends MiniGameBase {
     closeGame() {
         this.clearWinningBet();
         this.highlightResult?.hide();
+        this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
     }
 

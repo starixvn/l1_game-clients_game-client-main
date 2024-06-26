@@ -349,9 +349,13 @@ export default class GameBase extends GameViewBase {
     }
 
     clearWinningBet() {
-        const winningBet = this.noticeNode.getChildByName("winningBet");
-        if (winningBet) {
-            winningBet.destroy();
+        try {
+            const winningBet = this.noticeNode.getChildByName("winningBet");
+            if (winningBet) {
+                winningBet.destroy();
+            }
+        } catch (e) {
+            cc.log(e);
         }
     }
 

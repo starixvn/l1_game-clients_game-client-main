@@ -38,7 +38,7 @@ export class Durations extends EventEmitterBase {
     private latestEventName: string;
     private latestEventCounter = 0;
 
-    protected wholeRound: number;
+    public wholeRound: number;
     public placingBet: number; // Include locking bet time
     protected waiting: number; // Mean: wholeRound - betTime
     protected lockingBet: number;

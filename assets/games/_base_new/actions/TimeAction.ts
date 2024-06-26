@@ -1,10 +1,17 @@
 import { numberPad } from "../../../common/helpers/NumberHelper";
+import { GameState } from "../../_base/GameState";
 import GameDataManager from "../models/GameDataManager";
 import MiniGameBase from "../view-models/MiniGameBase";
 
 export const startGameLoop = (game: MiniGameBase) => () => {
     const gameData = game.gameData;
-    const gameLoop = () => gameData.durations.countdown();
+    const gameLoop = () => {
+        if (game.gameState === GameState.Disabled) {
+            GameDataManager.getInstance().clearGameLoop(game.gameId);
+        } else {
+            gameData.durations.countdown();
+        }
+    };
     GameDataManager.getInstance().clearGameLoop(game.gameId);
     GameDataManager.getInstance().startGameLoop(game.gameId, gameLoop);
 };

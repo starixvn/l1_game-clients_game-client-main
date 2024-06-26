@@ -80,5 +80,6 @@ export class GameData extends EventEmitterBase {
         this.settlement?.clearSettlement();
         this.settlement?.clearStatus();
         this.settlement?.clearWinnersData();
+        this.underMaintenanceFlag = false;
     }
 }

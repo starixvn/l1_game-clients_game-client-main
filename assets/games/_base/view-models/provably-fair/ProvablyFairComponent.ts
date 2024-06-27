@@ -32,6 +32,7 @@ export default class ProvablyFairComponent extends ProvablyFairComponentBase {
     public isShowPFSettings = false;
 
     handleReceiveServerSeed(data: ProvablyFairType) {
+        console.log("handleReceiveServerSeed", data, this.currentClientSeed);
         if (!this.currentServerSeed.length) {
             this.currentServerSeed = data?.hashValue;
             this.handleServerSeed(data?.hashValue);

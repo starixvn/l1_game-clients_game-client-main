@@ -348,7 +348,7 @@ function updateLocalizedImages() {
     let title, favicon;
     switch (OperatorAlias[operator]) {
         case OperatorAlias.SP:
-            title = "SabaPlay";
+            title = "Saba Play";
             favicon = "favicon_sabaplay.ico?v=5";
             break;
         case OperatorAlias.VG:

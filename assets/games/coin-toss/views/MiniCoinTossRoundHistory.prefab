@@ -657,7 +657,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "valueTail",
+    "_name": "valueHead",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -782,7 +782,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "valueHead",
+    "_name": "valueTail",
     "_objFlags": 0,
     "_parent": {
       "__id__": 7
@@ -2507,10 +2507,10 @@
       "__id__": 67
     },
     "tail": {
-      "__id__": 17
+      "__id__": 21
     },
     "head": {
-      "__id__": 21
+      "__id__": 17
     },
     "_id": ""
   },

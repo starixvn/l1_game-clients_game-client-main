@@ -326,4 +326,9 @@ export default class MiniCoinToss extends MiniGameBase {
         this.historyComponent.pfGameId = this.gameId;
         this.currentMiniPanel.addDialog(dialog);
     }
+
+    onClickProvablyFair() {
+        super.onClickProvablyFair();
+        this.socket?.connected && this.socket.emit("getRoundPF", { roundId: this.roundId });
+    }
 }

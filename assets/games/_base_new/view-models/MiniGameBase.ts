@@ -145,6 +145,7 @@ export default class MiniGameBase extends NewMiniGameBase {
     override closeGame() {
         this.playClick();
         this.cleanGame();
+        this.stopAllSFX();
         this.node.active = false;
         this.currentMiniPanel.onGamesLayerChanged();
     }

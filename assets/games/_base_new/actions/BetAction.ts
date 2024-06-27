@@ -37,7 +37,7 @@ export const placeBetSuccess = (gameBase: MiniGameBase) => (endBet: number) => {
 };
 
 export const placeOwnChipsFake = (gameBase: MiniGameBase) => (ownBets) => {
-    if (!gameBase.isPlacingFakeChip || gameBase.isDisableGame) {
+    if (!gameBase.isPlacingFakeChip || gameBase.isDisableGame || gameBase.isStartingRound()) {
         return;
     }
     gameBase.betItems.forEach((item) => {

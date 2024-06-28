@@ -11,6 +11,9 @@ export default class MiniCoinTossTicketDetail extends GameTicketDetailBase {
     @property(cc.Prefab)
     ticketDetailGroup: cc.Prefab = null;
 
+    @property(cc.ScrollView)
+    scrollView: cc.ScrollView = null;
+
     @property(cc.Node)
     groupContent: cc.Node = null;
 
@@ -27,5 +30,6 @@ export default class MiniCoinTossTicketDetail extends GameTicketDetailBase {
             const item = node.getComponent(MiniCoinTossTicketDetailItem);
             item.setData(detail, settlementResult, odds, index);
         });
+        this.scrollView?.scrollToTop(0.1);
     }
 }

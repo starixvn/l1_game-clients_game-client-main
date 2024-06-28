@@ -1,5 +1,7 @@
+import GameUtils from "../../../common/GameUtils";
 import { numberPad } from "../../../common/helpers/NumberHelper";
 import { GameState } from "../../_base/GameState";
+import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import GameDataManager from "../models/GameDataManager";
 import MiniGameBase from "../view-models/MiniGameBase";
 
@@ -109,3 +111,25 @@ export const showLastRoundId = (game: MiniGameBase) => () => {
 export const clearRoundData = (game: MiniGameBase) => () => {
     game.clearData();
 };
+
+export const showStartBetMessage =
+    (game: MiniGameBase) =>
+    ({}) => {
+        if (true) {
+            game.scheduleOnce(() => {
+                game.getPromptMessageComponent()?.showStartBetMessage();
+                (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("start-betting"));
+            }, 2);
+        }
+    };
+
+export const showStopBetMessage =
+    (game: MiniGameBase) =>
+    ({}) => {
+        if (true) {
+            game.scheduleOnce(() => {
+                game.getPromptMessageComponent()?.showStopBetMessage();
+                (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("stop-betting"));
+            }, 0);
+        }
+    };

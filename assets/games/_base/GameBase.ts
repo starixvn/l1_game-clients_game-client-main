@@ -58,6 +58,7 @@ import MD5Component from "./view-models/MD5Component";
 import RebetButton from "./view-models/RebetButton";
 import SocketIOGameHistoryBase from "./view-models/SocketIOGameHistoryBase";
 import ProvablyFairComponent from "./view-models/provably-fair/ProvablyFairComponent";
+import PromptMessageComponent from "../../common/prompt-message/PromptMessageComponent";
 
 const { ccclass, property } = cc._decorator;
 
@@ -76,10 +77,16 @@ export default class GameBase extends GameViewBase {
     processWarningPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
+    promptMessagePrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
     miniNoticePrefab: cc.Prefab = null;
 
     @property(cc.Node)
     noticeNode: cc.Node = null;
+
+    @property(cc.Node)
+    promptMessageContainer: cc.Node = null;
 
     @property(UmWarning)
     umNotice: UmWarning = null;
@@ -217,6 +224,7 @@ export default class GameBase extends GameViewBase {
     closeGameByClick = false;
     syncShowingMD5WithResult = false;
     isDonePayingChip = false;
+    promptMessageComponent: PromptMessageComponent = null;
 
     maximizeCallback = (gameId: number) => {
         //callback
@@ -1028,5 +1036,17 @@ export default class GameBase extends GameViewBase {
 
     shouldShowWinningEffect() {
         return this.timeHandler.isInWaitTime && this.isDonePayingChip;
+    }
+
+    getPromptMessageComponent() {
+        if (!this.promptMessageComponent) {
+            const node = GameUtils.createNodeFromPrefab(this.promptMessagePrefab);
+            if (node) {
+                this.promptMessageContainer.addChild(node);
+                this.promptMessageComponent = node.getComponent(PromptMessageComponent);
+            }
+        }
+
+        return this.promptMessageComponent;
     }
 }

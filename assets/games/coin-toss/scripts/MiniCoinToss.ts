@@ -8,6 +8,7 @@ import GameBaseProvablyFairHandler from "../../_base/handlers/GameBaseProvablyFa
 import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
+import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
 import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
@@ -154,6 +155,8 @@ export default class MiniCoinToss extends MiniGameBase {
 
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleUserBetPercentage);
         this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
     }
 
     getBetChoiceString(choice: string): string {
@@ -242,7 +245,6 @@ export default class MiniCoinToss extends MiniGameBase {
     handleAfterSettlementResult(settlement: ICoinTossSettlement, animated: boolean) {
         this.flipCoin?.setStatusNode(false);
         this.showWinChoiceAndUpdateHistory(settlement);
-
         const doLaterPayOut = () => {
             !this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);

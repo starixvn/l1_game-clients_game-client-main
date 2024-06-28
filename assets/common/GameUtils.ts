@@ -1184,4 +1184,9 @@ export default class GameUtils {
             return null;
         }
     }
+
+    public static getAudioKeyForLanguage(name: string): string {
+        const language = window.i18n.curLang;
+        return `${name}_${language || "en"}`;
+    }
 }

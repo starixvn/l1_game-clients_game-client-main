@@ -69,7 +69,7 @@ export default class DynamicAudios extends GameAudios {
     protected loadAssets = async (audioValue: TAudioValue, soundId: string): Promise<{ audioClip: cc.AudioClip | null }> => {
         const { bundle, path } = AudioUtils.getAudioInfo(audioValue, soundId);
 
-        if (!bundle || !path) {
+        if (!path) {
             return { audioClip: null };
         }
 

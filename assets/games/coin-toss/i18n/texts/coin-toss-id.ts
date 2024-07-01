@@ -170,7 +170,8 @@ export const phrases = {
         "total_stake": "Total Taruhan",
         "under_maintenance_suggest": "Silakan login kembali untuk melanjutkan permainan setelah maintenance selesai.",
         "under_maintenance_time": "Mulai dari %{startTime} hingga %{endTime} (GMT+8)",
-        "win": "Menang"
+        "win": "Menang",
+        "you_reach_max_win": "Anda mencapai Maksimal Menang"
     },
     "lobbyNames": {
         "80": "Lempar Koin"

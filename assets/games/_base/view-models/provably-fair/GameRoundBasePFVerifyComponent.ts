@@ -91,6 +91,7 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         }
         this.listClientSeedInfo.forEach((clientSeedInfo) => {
             clientSeedInfo.activeDisabledBg(true);
+            clientSeedInfo.resetClientSeedData();
         });
         if (clientSeeds && clientSeeds.length > 0) {
             clientSeeds.forEach((clientSeed, index) => {

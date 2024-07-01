@@ -1,4 +1,3 @@
-
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -11,6 +10,11 @@ export class ClientSeedInfo extends cc.Component {
 
     @property(cc.Node)
     nodeDisabledBg: cc.Node = null;
+
+    resetClientSeedData() {
+        this.lblName.node.active = false;
+        this.lblClientSeed.string = this.lblName.string = "";
+    }
 
     setDisplay(data: any) {
         this.lblName.node.active = true;

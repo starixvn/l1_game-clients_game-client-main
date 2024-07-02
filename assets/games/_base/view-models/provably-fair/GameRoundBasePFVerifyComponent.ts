@@ -58,7 +58,7 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
             this.verificationContainer?.destroyAllChildren();
             this.guideContainer?.destroyAllChildren();
         });
-        const para = i18n.t(`Common.pf_provably_fair_para_2`);
+        const para = i18n.t(`pf.pf_provably_fair_para_2`);
         this.lblParaVerification.string = para;
     }
 

@@ -172,8 +172,7 @@ export const phrases = {
         "total_stake": "Total Stake",
         "under_maintenance_suggest": "Please kindly re-login to continue playing games after the maintenance is complete.",
         "under_maintenance_time": "Starting from %{startTime} to %{endTime} (GMT+8)",
-        "win": "Win",
-        "you_reach_max_win": "You reached the max win"
+        "win": "Win"
     },
     "lobbyNames": {
         "80": "Coin Toss"

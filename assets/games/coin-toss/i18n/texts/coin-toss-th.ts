@@ -170,8 +170,7 @@ export const phrases = {
         "total_stake": "เดิมพันรวม",
         "under_maintenance_suggest": "กรุณาเข้าสู่ระบบใหม่อีกครั้งเพื่อเล่นเกมต่อหลังจากการปิดปรับปรุงเสร็จสิ้นแล้ว",
         "under_maintenance_time": "เริ่มต้นจาก %{startTime} ถึง %{endTime} (GMT+8)",
-        "win": "ชนะ",
-        "you_reach_max_win": "คุณถึงยอดชนะสูงสุด"
+        "win": "ชนะ"
     },
     "lobbyNames": {
         "80": "โยนเหรียญ"

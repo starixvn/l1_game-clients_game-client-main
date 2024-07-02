@@ -171,8 +171,7 @@ export const phrases = {
         "total_stake": "Tổng Cược",
         "under_maintenance_suggest": "Sau thời gian bảo trì, bạn hãy đăng nhập lại để có thể tiếp tục chơi game.",
         "under_maintenance_time": "Thời gian bảo trì từ %{startTime} đến %{endTime} (GMT+8).",
-        "win": "Thắng",
-        "you_reach_max_win": "Bạn Đã Đạt Mức Tiền Thắng Tối Đa"
+        "win": "Thắng"
     },
     "lobbyNames": {
         "80": "Tung Đồng Xu"

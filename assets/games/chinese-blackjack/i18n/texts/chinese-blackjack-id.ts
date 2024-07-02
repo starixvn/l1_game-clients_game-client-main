@@ -42,8 +42,6 @@ export const phrases = {
         "bet_choice": "Pilihan Taruhan",
         "bet_detail": "Detail Bet",
         "bet_history": "Sejarah Taruhan",
-        "bet_option_even": "Genap",
-        "bet_option_odd": "Ganjil",
         "button_change": "Mengubah",
         "character_name": "Nama panggilan",
         "copy_failed_md5": "Fungsi salin untuk sementara tidak tersedia.",
@@ -177,10 +175,9 @@ export const phrases = {
         "pf_title_provably_fair_settings": "PENGATURAN YANG TERBUKTI ADIL",
         "pf_title_verification": "Verifikasi",
         "pf_verification_para_1": "Hasil Akhir",
-        "pf_verification_para_2": "Ambil karakter {value} pertama dari SHA512:",
+        "pf_verification_para_2": "Ambil digit {value} pertama dari SHA512:",
         "pf_verification_para_3": "Konversikan ke Desimal",
         "pf_verification_para_4": "Hitung Hasil Akhir",
-        "powered_by_vgaming": "Dipersembahkan oleh Vgaming",
         "promotion": "Promosi",
         "promotion_terms_and_conditions": "Syarat dan Ketentuan",
         "result": "Hasil",
@@ -192,12 +189,10 @@ export const phrases = {
         "submit": "KIRIMKAN",
         "terms_and_conditions_content": "- Semua pemain baru dan yang sudah ada berhak untuk mengikuti promosi dan mengambil kesempatan untuk memenangkan hadiah yang lebih besar. \n- Jumlah kemenangan dibayarkan sesuai dengan aturan promosi dan pembayaran. \n- Promosi berlaku untuk periode tertentu yang diatur oleh Perusahaan. Saat promosi kedaluwarsa, peluang taruhan akan diatur kembali ke nilai sebelumnya.\n- Perusahaan berhak mengubah syarat masuk yang berlaku untuk promosi ini atau mengubah, menghentikan, menangguhkan, atau menjadwal ulang promosi ini kapan saja.\n- Setiap perselisihan yang timbul dari atau sehubungan dengan promosi ini akan diputuskan oleh Perusahaan.",
         "time": "Waktu",
-        "total": "Total",
         "total_stake": "Total Taruhan",
         "under_maintenance_suggest": "Silakan login kembali untuk melanjutkan permainan setelah maintenance selesai.",
         "under_maintenance_time": "Mulai dari %{startTime} hingga %{endTime} (GMT+8)",
-        "win": "Menang",
-        "you_reach_max_win": "Anda mencapai Maksimal Menang"
+        "win": "Menang"
     },
     "lobbyNames": {
         "77": "Chinese Blackjack"

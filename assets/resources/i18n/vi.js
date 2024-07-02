@@ -595,6 +595,50 @@ const data = {
         toolbarGuide2: "trên thanh địa chỉ",
         toolbarGuide3: `Chọn "Ẩn thanh công cụ"`,
         toolbarGuide4: "Ẩn thanh công cụ"
+    },
+    pf: {
+        pf_header_merge_client_seed: "Kết hợp Client Seed ",
+        pf_button_clear: "Xóa",
+        pf_button_save: "Lưu",
+        pf_button_verify: "Xác Minh",
+        pf_client_seed_para_1: "(Không thể thay đổi Client Seed sau khi đặt cược thành công)",
+        pf_client_seed_para_3: "Tự nhập giá trị",
+        pf_client_seed_para_4: "Giá trị ngẫu nhiên",
+        pf_client_seed_tooltip:
+            'Client Seed được tạo ra từ phía người chơi.\nChuỗi "Kết hợp Client Seed" được tạo thành bằng sự kết hợp Client Seed của 5 người chơi theo thứ tự từ Người Chơi 1 đến Người Chơi 5.',
+        pf_client_seed_tooltip_para_1: "Client Seed được tạo ra từ phía người chơi.",
+        pf_client_seed_tooltip_para_2:
+            'Chuỗi "Kết hợp Client Seed" được tạo thành bằng sự kết hợp Client Seed của 5 người chơi theo thứ tự từ Người Chơi 1 đến Người Chơi 5.',
+        pf_combined_sha512_hash_tooltip_para_1:
+            "Kết quả cuối cùng được xác định dựa trên sự kết hợp giữa Server Seed và Client Seed của 5 người chơi đặt cược đầu tiên và được mã hóa dưới dạng SHA512 hash.",
+        pf_copy_successfully: "Copy thành công!",
+        pf_copy_unsucessful: "Chức năng Copy tạm thời không hoạt động.",
+        pf_fairness: "Minh Bạch",
+        pf_header_client_seed: "Client Seed",
+        pf_header_combined_sha512_hash: "Chuỗi SHA512 hash",
+        pf_header_server_seed: "Server Seed",
+        pf_header_server_seed_sha256: "Server Seed SHA256",
+        pf_new_client_seed_para_1: "Seed của bạn:",
+        pf_player_1: "Người Chơi 1",
+        pf_player_2: "Người Chơi 2",
+        pf_player_3: "Người Chơi 3",
+        pf_player_4: "Người Chơi 4",
+        pf_player_5: "Người Chơi 5",
+        pf_player_seed: "Người Chơi {value} Seed",
+        pf_pop_up_title_pf_guide: "Hướng Dẫn Provably Fair",
+        pf_provably_fair_para_2:
+            "Bạn có thể xác minh tính chính xác của chuỗi SHA256 hoặc SHA512 trong game bằng bất kỳ công cụ trực tuyến do bên thứ ba cung cấp.",
+        pf_settings_para_1:
+            "Kết quả cuối cùng được xác định dựa trên sự kết hợp giữa Server Seed và Client Seed của 5 người chơi đặt cược đầu tiên.",
+        pf_settings_para_2: "Người chơi có thể thay đổi giá trị Client Seed và kiểm tra tính minh bạch của kết quả trong mục Lịch sử cược.",
+        pf_title_new_client_seed: "CLIENT SEED MỚI",
+        pf_title_provably_fair: "PROVABLY FAIR",
+        pf_title_provably_fair_settings: "CÀI ĐẶT PROVABLY FAIR",
+        pf_title_verification: "XÁC MINH",
+        pf_verification_para_1: "Kết Quả Cuối Cùng",
+        pf_verification_para_2: "Lấy {value} ký tự đầu tiên trong chuỗi SHA512:",
+        pf_verification_para_3: "Đổi Sang Hệ Thập Phân",
+        pf_verification_para_4: "Tính Kết Quả "
     }
 };
 

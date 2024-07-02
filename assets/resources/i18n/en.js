@@ -594,6 +594,50 @@ const data = {
         toolbarGuide2: "in address bar",
         toolbarGuide3: `Tap "Hide Toolbar" in menu`,
         toolbarGuide4: "Hide Toolbar"
+    },
+    pf: {
+        pf_header_merge_client_seed: "Merge Client Seed",
+        pf_button_clear: "Clear ",
+        pf_button_save: "Save",
+        pf_button_verify: "Verify",
+        pf_client_seed_para_1: "(Cannot change seed after bet is accepted)",
+        pf_client_seed_para_2: "Random on every new round",
+        pf_client_seed_para_3: "Manual input",
+        pf_client_seed_para_4: "Random",
+        pf_client_seed_tooltip:
+            "Client Seed is generated from Player’s side.\nMerge Client Seed of the first five betting players of the round in sequential order from Player 1 to Player 5.",
+        pf_client_seed_tooltip_para_1: "Client Seed is generated from Player’s side.",
+        pf_client_seed_tooltip_para_2:
+            "Merge Client Seed of the first five betting players of the round in sequential order from Player 1 to Player 5.",
+        pf_combined_sha512_hash_tooltip_para_1:
+            "The final result is determined by a combination of the Server Seed and the Client Seed of the first five betting players of the round, subsequently converted into a SHA512 hash.",
+        pf_copy_successfully: "Copy Successful!",
+        pf_copy_unsucessful: "Copy function is temporarily unavailable",
+        pf_fairness: "Fairness",
+        pf_header_client_seed: "Client Seed",
+        pf_header_combined_sha512_hash: "Combined SHA512 hash",
+        pf_header_server_seed: "Server Seed",
+        pf_header_server_seed_sha256: "Server Seed SHA256",
+        pf_new_client_seed_para_1: "Your seed:",
+        pf_player_1: "Player 1",
+        pf_player_2: "Player 2",
+        pf_player_3: "Player 3",
+        pf_player_4: "Player 4",
+        pf_player_5: "Player 5",
+        pf_player_seed: "Player {value} Seed",
+        pf_pop_up_title_pf_guide: "Provably Fair Guides",
+        pf_provably_fair_para_2: "You can verify the accuracy of SHA256 or SHA512 using any online calculator provided by third parties.",
+        pf_settings_para_1:
+            "The final result is determined by a combination of the Server Seed and the Client Seed of the first five betting players of the round.",
+        pf_settings_para_2: "The Player can change the Client Seed value and check the fairness of game result from Bet history. ",
+        pf_title_new_client_seed: "NEW CLIENT SEED",
+        pf_title_provably_fair: "PROVABLY FAIR",
+        pf_title_provably_fair_settings: "PROVABLY FAIR SETTINGS",
+        pf_title_verification: "VERIFICATION",
+        pf_verification_para_1: "Final Result",
+        pf_verification_para_2: "Take first {value} characters from SHA512:",
+        pf_verification_para_3: "Convert to Decimal ",
+        pf_verification_para_4: "Calculate Final Result"
     }
 };
 

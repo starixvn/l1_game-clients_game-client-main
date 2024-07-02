@@ -6,8 +6,8 @@ export const phrases = {
         "game_icon_name": "抛硬币",
         "game_name": "抛硬币",
         "glossary_head": "拜登",
-        "glossary_tail": "特朗普",
-        "trump_win": "特朗普获胜",
+        "glossary_tail": "川普",
+        "trump_win": "川普获胜",
         "you_win": "你赢了"
     },
     "Common": {
@@ -119,7 +119,7 @@ export const phrases = {
         "pf_ header_merge_client_seed": "合并客户种子",
         "pf_button_clear": "清除",
         "pf_button_save": "保存",
-        "pf_button_verify": "核实",
+        "pf_button_verify": "验证",
         "pf_client_seed_para_1": "(投注接受后不可更改种子)",
         "pf_client_seed_para_2": "每新一轮随机",
         "pf_client_seed_para_3": "手动输入",
@@ -134,7 +134,7 @@ export const phrases = {
         "pf_header_client_seed": "客户种子",
         "pf_header_combined_sha512_hash": "组合 SHA512 哈希值",
         "pf_header_server_seed": "服务器种子",
-        "pf_header_server_seed_sha256": "服务器种子 SHA256 ",
+        "pf_header_server_seed_sha256": "服务器种子 SHA256",
         "pf_new_client_seed_para_1": "你的种子：",
         "pf_player_1": "玩家1",
         "pf_player_2": "玩家2",
@@ -170,7 +170,8 @@ export const phrases = {
         "total_stake": "总赌注",
         "under_maintenance_suggest": "维护完成后请重新登录继续玩游戏。",
         "under_maintenance_time": "从 %{startTime} 到 %{endTime} (GMT+8)",
-        "win": "赢"
+        "win": "赢",
+        "you_reach_max_win": "您达到了最大胜利"
     },
     "lobbyNames": {
         "80": "抛硬币"

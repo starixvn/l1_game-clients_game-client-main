@@ -6,7 +6,8 @@ export const handleBetControl = (mainGame: CascadingSlotBase) => (data: Cascadin
         {
             coinValues: data.coinValues,
             betLevels: data.betLevels,
-            betMultiplier: data.betMultiplier
+            betMultiplier: data.betMultiplier,
+            defaultCoinValue: data.defaultCoinValue
         },
         mainGame.gameData.placeBetModel,
         mainGame.gameData.uiModel

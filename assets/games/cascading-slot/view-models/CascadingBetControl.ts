@@ -13,6 +13,7 @@ export type BetMultiplier = {
     coinValues: number[];
     betLevels: number[];
     betMultiplier: number;
+    defaultCoinValue: number;
 };
 
 enum OrderButtonNode {
@@ -58,13 +59,14 @@ export default class CascadingBetControl extends cc.Component {
     private betMultiplier: number;
     private placeBetModel: CascadingSlotPlaceBetModel;
     private uiModel: CascadingUIModel;
+    private isTrialMode = false;
     betControlStorageKey = "CASCADING_SLOT_BET_CONTROL";
     gameId: number;
 
     closeBetControl = () => {};
 
-    resetValues() {
-        this.currentCoinIndex = 0;
+    resetValues(isTrialMode: boolean) {
+        this.isTrialMode = isTrialMode;
         this.currentBetLevelIndex = this.DefaultBetLevelIndex;
         this.currentTotalBetIndex = 0;
         const data = GameUtils.getGameSetting(this.gameId);
@@ -115,6 +117,7 @@ export default class CascadingBetControl extends cc.Component {
     private prepareCoinData(data) {
         this.coinValues = [...data.coinValues];
         this.coinValues.sort((a, b) => a - b);
+        this.currentCoinIndex = this.isTrialMode ? 0 : this.findCoinIndex(data.defaultCoinValue);
     }
 
     private prepareTotalBetData() {
@@ -246,7 +249,7 @@ export default class CascadingBetControl extends cc.Component {
     }
 
     updateSelectedCoinLevel(coin: number, level: number) {
-        const coinIndex = this.coinValues.findIndex((value) => value === coin);
+        const coinIndex = this.findCoinIndex(coin);
         const levelIndex = this.betLevels.findIndex((value) => value === level);
 
         if (coinIndex !== -1 && levelIndex !== -1) {
@@ -256,6 +259,14 @@ export default class CascadingBetControl extends cc.Component {
             this.updateDisplayLabels();
             this.updateAllButtonStatus();
         }
+    }
+
+    private findCoinIndex(coin: number) {
+        if (!!coin) {
+            return this.coinValues.findIndex((value) => value === coin);
+        }
+
+        return 0;
     }
 
     private updateAllButtonStatus() {

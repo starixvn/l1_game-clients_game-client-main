@@ -192,7 +192,7 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
         this.clearGameRound();
         this.gameData.uiModel.resetNewRound();
         this.setAndSaveSettingTurbo(false);
-        this.betControl.resetValues();
+        this.betControl.resetValues(this.isTrialMode);
     }
 
     initHandlers() {

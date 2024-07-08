@@ -21,6 +21,7 @@ export type CascadingSlotConfigData = {
     coinValues: number[];
     betMultiplier: number;
     maxWinPerRound: number;
+    defaultCoinValue: number;
     odds: {
         freeSpins: FreeSpin;
         symbols: Record<string, Array<Odd>>;

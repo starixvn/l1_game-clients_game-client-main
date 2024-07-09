@@ -37,8 +37,6 @@ export default class LocalizedLabelWithFormat extends LocalizedLabel {
         }
     }
     handleFormat(value: string) {
-        const locale = getLocale();
-        const language = getLanguage(locale);
         const data = [
             {
                 condition: this.format === FormationHandler.LOWER,
@@ -54,23 +52,27 @@ export default class LocalizedLabelWithFormat extends LocalizedLabel {
             }
         ];
         const handler = data.filter((passed) => passed.condition);
-        return handler.length && this.languageValidHandler() ? handler[0].handle(value) : value;
+        return handler.length ? handler[0].handle(value) : value;
     }
 
-    titleCase(value: string) {
+    titleCase(value) {
         const space = " ";
         const isBreakLine = value.includes("\n");
-        const result = value
-            .split(space)
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-            .join(space);
+
+        const toTitleCase = (str) => {
+            return str
+                .split(space)
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                .join(space);
+        };
+
         if (!isBreakLine) {
-            return result;
+            return toTitleCase(value);
         }
 
-        return result
+        return value
             .split("\n")
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+            .map((line) => toTitleCase(line))
             .join("\n");
     }
 
@@ -80,12 +82,5 @@ export default class LocalizedLabelWithFormat extends LocalizedLabel {
 
     lowerCase(value: string) {
         return value.toLowerCase();
-    }
-
-    languageValidHandler(): boolean {
-        const locale = getLocale();
-        const language = getLanguage(locale);
-
-        return language !== "th";
     }
 }

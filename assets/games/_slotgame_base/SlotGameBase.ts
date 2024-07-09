@@ -438,12 +438,16 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         AudioManager.getInstance().playClick();
         this.expandableMenu.collapseMenu();
 
-        const isShowing = this.stakeContainer && this.stakeContainer.node.active && this.stakeContainer.node.scaleY === 1;
+        const isShowing = this.isShowStakeLevels();
         if (!isShowing) {
             this.showStakeContainer();
         } else {
             this.hideStakeContrainer();
         }
+    }
+
+    isShowStakeLevels(): boolean {
+        return this.stakeContainer && this.stakeContainer.node.active && this.stakeContainer.node.scaleY === 1;
     }
 
     hideStakeContrainer() {

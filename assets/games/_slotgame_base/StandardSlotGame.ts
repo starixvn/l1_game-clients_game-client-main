@@ -1,9 +1,9 @@
 import { BundleManager } from "bundle-management";
 import * as _ from "lodash";
 
+import AudioManager from "../../common/audio/AudioManager";
 import CallbackAnimation from "../../common/CallbackAnimation";
 import GameUtils from "../../common/GameUtils";
-import AudioManager from "../../common/audio/AudioManager";
 import LocalizedLoadSprite from "../../common/i18n/LocalizedLoadSprite";
 import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBase";
 import { uiManager } from "../../managers/GameUIManager";
@@ -124,6 +124,7 @@ export default class StandardSlotGame extends SlotGameBase {
     private readonly effectTransitionPrefab: cc.Prefab;
     slotBoard: StandardSlotBoard;
     private colorConfig: any;
+    private betLevelsContainerNode: cc.Node = null;
 
     onLoad() {
         this.initColorConfig();
@@ -407,6 +408,7 @@ export default class StandardSlotGame extends SlotGameBase {
             this.turboToggle = slotBottomArea.turboToggle;
             this.stakeButton = slotBottomArea.stakeButton;
             this.stakeContainer = slotBottomArea.stakeContainer;
+            this.betLevelsContainerNode = slotBottomArea.betLevelsContainerNode;
             this.lineButton = slotBottomArea.lineButton;
             this.stakeLabel = slotBottomArea.stakeLabel;
             this.lineLabel = slotBottomArea.lineLabel;
@@ -446,6 +448,34 @@ export default class StandardSlotGame extends SlotGameBase {
 
             this.loadStakeLevelsConfig();
         }
+    }
+
+    isShowStakeLevels(): boolean {
+        return this.betLevelsContainerNode && this.betLevelsContainerNode.active && this.betLevelsContainerNode.opacity === 255;
+    }
+
+    hideStakeContrainer() {
+        if (!this.betLevelsContainerNode) {
+            return;
+        }
+
+        cc.tween(this.betLevelsContainerNode)
+            .to(0.2, { scaleY: 0, opacity: 0 })
+            .call(() => {
+                this.betLevelsContainerNode.active = false;
+            })
+            .start();
+    }
+
+    showStakeContainer() {
+        if (!this.betLevelsContainerNode) {
+            return;
+        }
+        this.updateStakeContainer();
+        this.betLevelsContainerNode.active = true;
+        this.betLevelsContainerNode.scaleY = 0;
+        this.betLevelsContainerNode.opacity = 255;
+        cc.tween(this.betLevelsContainerNode).to(0.2, { scaleY: 1 }).start();
     }
 
     initBottomMessage() {

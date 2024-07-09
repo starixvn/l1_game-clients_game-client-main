@@ -1,4 +1,5 @@
 import ChangeNodeColor from "../../common/ChangeNodeColor";
+import BetLevelsContainer from "./bet-levels/BetLevelsContainer";
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,9 +21,6 @@ export default class SlotBottomArea extends cc.Component {
     @property(cc.Button)
     stakeButton: cc.Button = null;
 
-    @property(cc.ToggleContainer)
-    stakeContainer: cc.ToggleContainer = null;
-
     @property(cc.Button)
     lineButton: cc.Button = null;
 
@@ -41,6 +39,14 @@ export default class SlotBottomArea extends cc.Component {
     @property(cc.Node)
     winningBetEffect: cc.Node = null;
 
+    @property(cc.Node)
+    betLevelsContainerNode: cc.Node = null;
+
+    @property(cc.Prefab)
+    betLevelsContainerPrefab: cc.Prefab = null;
+
+    stakeContainer: cc.ToggleContainer = null;
+
     onClickListener = {
         onStakeButtonClick: () => {},
         onLineSelectionClick: () => {},
@@ -50,6 +56,27 @@ export default class SlotBottomArea extends cc.Component {
         onStakeQuickChange: (event) => {},
         onStakeToggleChanged: (event, param) => {}
     };
+
+    onLoad() {
+        this.createBetLevelContainer();
+    }
+
+    createBetLevelContainer() {
+        const node = cc.instantiate(this.betLevelsContainerPrefab);
+        this.betLevelsContainerNode.addChild(node);
+
+        const betLevelContainerComp = node.getComponent(BetLevelsContainer);
+        this.stakeContainer = betLevelContainerComp.containerNode.getComponent(cc.ToggleContainer);
+
+        betLevelContainerComp.onClickListener = {
+            onStakeToggleChanged: (event: cc.Event, param: string) => {
+                this.onClickListener.onStakeToggleChanged(event, param);
+            },
+            onHideStakeContainer: () => {
+                this.onClickListener.onHideStakeContainer();
+            }
+        };
+    }
 
     onStakeButtonClick() {
         this.onClickListener.onStakeButtonClick();
@@ -69,14 +96,6 @@ export default class SlotBottomArea extends cc.Component {
 
     onStakeQuickChange(event: cc.Event) {
         this.onClickListener.onStakeQuickChange(event);
-    }
-
-    onStakeToggleChanged(event: cc.Event, param: string) {
-        this.onClickListener.onStakeToggleChanged(event, param);
-    }
-
-    onHideStakeContainer() {
-        this.onClickListener.onHideStakeContainer();
     }
 
     updateColor(colorList: BottomAreaDefinedColor) {

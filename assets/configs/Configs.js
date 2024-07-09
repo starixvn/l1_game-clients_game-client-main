@@ -5,7 +5,7 @@ const defaultConfig = {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l1-proxy2",
+    subDomain: "l2-proxy",
     env: "",
     sentry: {
         url: "",
@@ -18,7 +18,8 @@ const defaultConfig = {
     subGuideDomain: "l1-guide-2",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
-    //clientSubDomain: "l1-client"
+    subPromotionDomain: "l2-promotion1"
+    //clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
 };
 
 const domainMapper = window.envConfig ? undefined : defaultConfig.serverDomainMapper;

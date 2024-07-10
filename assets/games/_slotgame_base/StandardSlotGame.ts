@@ -269,9 +269,9 @@ export default class StandardSlotGame extends SlotGameBase {
         }
         const decreaseBtn = this.stakeButton.node.getChildByName("decrease").getComponent(cc.Button);
         const increaseBtn = this.stakeButton.node.getChildByName("increase").getComponent(cc.Button);
-        const index = this.gameConfigs.stakeLevels.findIndex((stake) => stake === this.stake);
+        const index = this.getStakeLevels().findIndex((stake) => stake === this.stake);
         this.handleStakeButtonQuickChange(decreaseBtn, index > 0);
-        this.handleStakeButtonQuickChange(increaseBtn, index < this.gameConfigs.stakeLevels.length - 1);
+        this.handleStakeButtonQuickChange(increaseBtn, index < this.getStakeLevels().length - 1);
     }
 
     handleStakeButtonQuickChange(button: cc.Button, condition: boolean) {
@@ -448,6 +448,10 @@ export default class StandardSlotGame extends SlotGameBase {
 
             this.loadStakeLevelsConfig();
         }
+    }
+
+    getStakeLevels(): number[] {
+        return this.gameConfigs?.betLevels;
     }
 
     isShowStakeLevels(): boolean {

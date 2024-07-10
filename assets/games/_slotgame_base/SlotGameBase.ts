@@ -235,12 +235,16 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         GameUtils.clearGameSetting(this.gameId);
     }
 
+    getStakeLevels(): number[] {
+        return this.gameConfigs?.stakeLevels;
+    }
+
     updateStakeContainer() {
         if (!this.stakeContainer || !this.gameConfigs) {
             return;
         }
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            if (this.stake === this.gameConfigs.stakeLevels[index]) {
+            if (this.stake === this.getStakeLevels()[index]) {
                 item.isChecked = true;
             } else {
                 // fix ToggleContainer not activeInHierarchy
@@ -290,9 +294,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         if (!this.stakeContainer || !this.gameConfigs) {
             return;
         }
-        this.setStake(this.gameConfigs?.stakeLevels[0] || 0);
+        this.setStake(this.getStakeLevels()[0] || 0);
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.gameConfigs.stakeLevels[index], 1);
+            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 1);
         });
         this.loadUserSetting();
     }
@@ -564,7 +568,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     onStakeToggleChanged(event: cc.Event, param: string) {
         AudioManager.getInstance().playClick();
-        this.setStake(this.gameConfigs.stakeLevels[+param]);
+        this.setStake(this.getStakeLevels()[+param]);
     }
 
     onStakeQuickChange(event: cc.Event) {
@@ -572,15 +576,15 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         const increase = event.target.name === "increase";
         let index = this.findIndexStakeLevel();
         index += increase ? 1 : -1;
-        if (index < 0 || index > this.gameConfigs.stakeLevels.length - 1) {
+        if (index < 0 || index > this.getStakeLevels().length - 1) {
             return;
         }
 
-        this.setStake(this.gameConfigs.stakeLevels[index]);
+        this.setStake(this.getStakeLevels()[index]);
     }
 
     findIndexStakeLevel(): number {
-        return this.gameConfigs.stakeLevels.findIndex((stake) => stake === this.stake);
+        return this.getStakeLevels().findIndex((stake) => stake === this.stake);
     }
 
     protected onStakeChanged() {

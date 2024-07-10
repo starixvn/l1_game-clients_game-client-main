@@ -45,6 +45,8 @@ export default class SlotBottomArea extends cc.Component {
     @property(cc.Prefab)
     betLevelsContainerPrefab: cc.Prefab = null;
 
+    private betLevelsContainer: BetLevelsContainer = null;
+
     stakeContainer: cc.ToggleContainer = null;
 
     onClickListener = {
@@ -61,14 +63,17 @@ export default class SlotBottomArea extends cc.Component {
         this.createBetLevelContainer();
     }
 
+    setBetLevels(betLevels: number[]) {
+        this.betLevelsContainer.setBetLevels(betLevels);
+    }
+
     createBetLevelContainer() {
         const node = cc.instantiate(this.betLevelsContainerPrefab);
         this.betLevelsContainerNode.addChild(node);
 
-        const betLevelContainerComp = node.getComponent(BetLevelsContainer);
-        this.stakeContainer = betLevelContainerComp.containerNode.getComponent(cc.ToggleContainer);
-
-        betLevelContainerComp.onClickListener = {
+        this.betLevelsContainer = node.getComponent(BetLevelsContainer);
+        this.stakeContainer = this.betLevelsContainer.containerNode.getComponent(cc.ToggleContainer);
+        this.betLevelsContainer.onClickListener = {
             onStakeToggleChanged: (event: cc.Event, param: string) => {
                 this.onClickListener.onStakeToggleChanged(event, param);
             },

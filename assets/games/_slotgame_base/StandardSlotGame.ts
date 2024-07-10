@@ -125,6 +125,7 @@ export default class StandardSlotGame extends SlotGameBase {
     slotBoard: StandardSlotBoard;
     private colorConfig: any;
     private betLevelsContainerNode: cc.Node = null;
+    private slotBottomArea: SlotBottomArea = null;
 
     onLoad() {
         this.initColorConfig();
@@ -395,26 +396,26 @@ export default class StandardSlotGame extends SlotGameBase {
 
         const slotBottom = cc.instantiate(this.slotBottomAreaPrefab);
         this.bottomArea.addChild(slotBottom);
-        const slotBottomArea = slotBottom.getComponent(SlotBottomArea);
-        slotBottomArea.updateColor({
+        this.slotBottomArea = slotBottom.getComponent(SlotBottomArea);
+        this.slotBottomArea.updateColor({
             textColor: this.colorConfig.bottomAreaTextColor,
             numberColor: this.colorConfig.bottomAreaNumberColor,
             buttonBorderColor: this.colorConfig.bottomAreaButtonBorderColor,
             winAmountColor: this.colorConfig.bottomAreaWinAmountColor
         });
 
-        if (slotBottomArea) {
-            this.autoSpinToggle = slotBottomArea.autoSpinToggle;
-            this.turboToggle = slotBottomArea.turboToggle;
-            this.stakeButton = slotBottomArea.stakeButton;
-            this.stakeContainer = slotBottomArea.stakeContainer;
-            this.betLevelsContainerNode = slotBottomArea.betLevelsContainerNode;
-            this.lineButton = slotBottomArea.lineButton;
-            this.stakeLabel = slotBottomArea.stakeLabel;
-            this.lineLabel = slotBottomArea.lineLabel;
-            this.totalBet = slotBottomArea.totalBet;
-            this.winningBet = slotBottomArea.winningBet;
-            this.winningBetEffect = slotBottomArea.winningBetEffect;
+        if (this.slotBottomArea) {
+            this.autoSpinToggle = this.slotBottomArea.autoSpinToggle;
+            this.turboToggle = this.slotBottomArea.turboToggle;
+            this.stakeButton = this.slotBottomArea.stakeButton;
+            this.stakeContainer = this.slotBottomArea.stakeContainer;
+            this.betLevelsContainerNode = this.slotBottomArea.betLevelsContainerNode;
+            this.lineButton = this.slotBottomArea.lineButton;
+            this.stakeLabel = this.slotBottomArea.stakeLabel;
+            this.lineLabel = this.slotBottomArea.lineLabel;
+            this.totalBet = this.slotBottomArea.totalBet;
+            this.winningBet = this.slotBottomArea.winningBet;
+            this.winningBetEffect = this.slotBottomArea.winningBetEffect;
 
             if (this.totalFreeSpins) {
                 this.stakeButton && (this.stakeButton.interactable = false);
@@ -422,7 +423,7 @@ export default class StandardSlotGame extends SlotGameBase {
                 this.autoSpinToggle && (this.autoSpinToggle.interactable = false);
             }
 
-            slotBottomArea.onClickListener = {
+            this.slotBottomArea.onClickListener = {
                 onStakeButtonClick: () => {
                     this.onStakeButtonClick();
                 },
@@ -456,6 +457,10 @@ export default class StandardSlotGame extends SlotGameBase {
 
     isShowStakeLevels(): boolean {
         return this.betLevelsContainerNode && this.betLevelsContainerNode.active && this.betLevelsContainerNode.opacity === 255;
+    }
+
+    setBetLevels(betLevels: number[]) {
+        this.slotBottomArea.setBetLevels(betLevels);
     }
 
     hideStakeContrainer() {

@@ -10,7 +10,7 @@ export default class BetLevelsContainer extends cc.Component {
     @property(cc.Node)
     containerNode: cc.Node = null;
 
-    private betLevels: number[] = [0.1, 0.2, 1];
+    private betLevels: number[] = [];
     private readonly itemHeight = 60;
     private itemsOfColumnMax = 5;
 
@@ -23,7 +23,18 @@ export default class BetLevelsContainer extends cc.Component {
         this.orderASCBetLevel();
 
         this.containerNode.destroyAllChildren();
+    }
 
+    setBetLevels(betLevels: number[]) {
+        if (betLevels.length <= 0) {
+            return;
+        }
+        this.betLevels = betLevels;
+        this.initBetLevelItems();
+        this.calculateContainerHeight();
+    }
+
+    initBetLevelItems() {
         this.betLevels.map((value, index) => {
             const node = cc.instantiate(this.stakeLevelItemPrefab);
             this.containerNode.addChild(node);
@@ -36,8 +47,6 @@ export default class BetLevelsContainer extends cc.Component {
                 }
             };
         });
-
-        this.calculateContainerHeight();
     }
 
     private calculateContainerHeight() {

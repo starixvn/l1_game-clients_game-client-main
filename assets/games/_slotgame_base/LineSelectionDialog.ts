@@ -47,14 +47,9 @@ export default class LineSelectionDialog extends cc.Component {
             const num = index + 1;
             item.icon.spriteFrame = this.loadPaylineSprite(num);
             item.num.string = `${num}`;
-            this.setPaylineIconColor(item);
             item.setChecked(false);
             this.items.push(item);
         });
-    }
-
-    setPaylineIconColor(item: LineItem) {
-        // empty
     }
 
     loadPaylineSprite(num): cc.SpriteFrame {

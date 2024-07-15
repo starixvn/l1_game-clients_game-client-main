@@ -1,4 +1,3 @@
-import LineItem from "./LineItem";
 import LineSelectionDialog from "./LineSelectionDialog";
 
 const { ccclass, property } = cc._decorator;
@@ -12,7 +11,7 @@ export default class StandardLineSelectionDialog extends LineSelectionDialog {
         return this.atlas.getSpriteFrame(`line-selection-${num}`);
     }
 
-    setPaylineIconColor(item: LineItem) {
-        item.setPayLineIconColor(cc.Color.WHITE, cc.Color.WHITE.fromHEX("#535050"));
+    update(dt: number) {
+        // empty
     }
 }

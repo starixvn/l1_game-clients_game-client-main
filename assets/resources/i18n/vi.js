@@ -238,7 +238,7 @@ const data = {
         evenNumbers: "Dòng Chẵn",
         oddNumbers: "Dòng Lẻ",
         uncheck: "Bỏ Chọn",
-        line_selection: "Chọn Dòng",
+        line_selection: "Dòng Cược",
         bet2: "Cược",
         bet: "Mức Cược",
         turbo: "Siêu Tốc",

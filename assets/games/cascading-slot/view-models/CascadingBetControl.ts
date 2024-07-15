@@ -265,11 +265,7 @@ export default class CascadingBetControl extends cc.Component {
     }
 
     private findCoinIndex(coin: number) {
-        if (!!coin) {
-            return this.coinValues.findIndex((value) => value === coin);
-        }
-
-        return 0;
+        return this.coinValues.findIndex((value) => value === coin);
     }
 
     private updateAllButtonStatus() {

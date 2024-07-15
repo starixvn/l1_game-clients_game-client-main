@@ -48,9 +48,11 @@ export default class CascadingBetControl extends cc.Component {
     @property(StatusButton)
     nodeButtons: StatusButton[] = [];
 
+    private readonly TrialModeDefaultBetLevelIndex = 4;
+    private readonly DefaultBetLevelIndex = 0;
+
     private totalBetUnique = [];
     private currentCoinIndex = 0;
-    private readonly DefaultBetLevelIndex = 4;
     private currentBetLevelIndex = this.DefaultBetLevelIndex;
     private currentTotalBetIndex = 0;
     private currentTotalBet = 0;
@@ -60,6 +62,7 @@ export default class CascadingBetControl extends cc.Component {
     private placeBetModel: CascadingSlotPlaceBetModel;
     private uiModel: CascadingUIModel;
     private isTrialMode = false;
+
     betControlStorageKey = "CASCADING_SLOT_BET_CONTROL";
     gameId: number;
 
@@ -67,7 +70,7 @@ export default class CascadingBetControl extends cc.Component {
 
     resetValues(isTrialMode: boolean) {
         this.isTrialMode = isTrialMode;
-        this.currentBetLevelIndex = this.DefaultBetLevelIndex;
+        this.currentBetLevelIndex = isTrialMode ? this.TrialModeDefaultBetLevelIndex : this.DefaultBetLevelIndex;
         this.currentTotalBetIndex = 0;
         const data = GameUtils.getGameSetting(this.gameId);
         data.betControl = null;

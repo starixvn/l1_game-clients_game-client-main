@@ -1,13 +1,11 @@
 FROM hub.lumigame.com/base/nginx:brotli-1.20.2-zlib as builder
 
-RUN ls -l ./
 COPY ./build/web-mobile/ /app
 RUN rm -rf /app/assets
 COPY ./build/web-mobile/assets/main /assets/main
 COPY ./build/web-mobile/assets/resources /assets/resources
 COPY ./build/web-mobile/assets/internal /assets/internal
 COPY ./build/web-mobile/assets/versions.json /assets/versions.json
-
 
 FROM hub.lumigame.com/base/nginx:brotli-1.20.2-zlib as publish
 

@@ -1,5 +1,6 @@
 import AnimatedTime from "../../common/animated-time/view-models/AnimatedTime";
 import AudioManager from "../../common/audio/AudioManager";
+import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import BonusItem from "./BonusItem";
 import { ClassicSlotSound } from "./ClassicSlotSound";
@@ -147,23 +148,6 @@ export default class BonusDialog extends cc.Component {
 
     start() {
         const duration = this.slotGameConfigs.bonusTimeOut;
-        let count = 0;
-        this.timer.setAnimatedY(5, 0);
-        this.timerTween = cc
-            .tween(this)
-            .repeat(
-                duration,
-                cc
-                    .tween()
-                    .call(() => {
-                        this.timer.setTime(`${duration - count}`);
-                        count++;
-                    })
-                    .delay(1)
-            )
-            .call(() => {
-                this.hideTimer();
-            })
-            .start();
+        this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer);
     }
 }

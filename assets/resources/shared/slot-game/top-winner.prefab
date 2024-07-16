@@ -2930,7 +2930,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "bet",
+    "_name": "prize",
     "_objFlags": 0,
     "_parent": {
       "__id__": 73
@@ -2961,7 +2961,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 67.26,
+      "width": 88.5,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -3013,8 +3013,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "UI.BET",
-    "_N$string": "UI.BET",
+    "_string": "UI.PRIZE",
+    "_N$string": "UI.PRIZE",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -3041,7 +3041,7 @@
       "__id__": 84
     },
     "_enabled": true,
-    "_dataId": "ui.bet",
+    "_dataId": "ui.prize",
     "format": 1,
     "suffix": "",
     "_id": ""

@@ -73,7 +73,11 @@ export default class SlotGameSettlementHandler implements DataHandler {
             await this.main.setDataAndSpin(result);
         }
 
+        // !this.main.jackpotAccelerate && (await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot)));
+
+        // Todo: delete after finish new animation order
         await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot));
+
         this.main.showWinningItems(winningLines);
         if (bonus.count > 0) {
             this.main.showHighlightSpecialSymbols(+bonus.symbol);
@@ -106,9 +110,13 @@ export default class SlotGameSettlementHandler implements DataHandler {
     handleJackpot(jackpot: any): Promise<void> {
         return new Promise<void>(async (resolve, reject) => {
             if (jackpot) {
+                // Todo: temp data for testing
+                jackpot["prizes"] = 10;
+
                 this.main.showLine(jackpot.winningLine + 1);
                 this.main.slotBoard.showWinningEffect(jackpot.positions, jackpot.symbol);
-                await this.main.showEffectJackpot(jackpot.winningAmount);
+
+                await this.main.showEffectJackpot(jackpot);
             }
             resolve();
         });

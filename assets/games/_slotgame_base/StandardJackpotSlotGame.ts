@@ -1,9 +1,12 @@
 import { getLocale } from "../../common/auth/SessionManager";
+import CallbackAnimation from "../../common/CallbackAnimation";
 import GameUtils from "../../common/GameUtils";
 import WebViewGuide from "../../common/webview-guide/WebViewGuide";
 import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBase";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import { ClassicSlotSound } from "./ClassicSlotSound";
+import JackpotGame from "./JackpotGame";
 import StandardSlotGame from "./StandardSlotGame";
 import StandarSlotGuide from "./StandarSlotGuide";
 
@@ -17,7 +20,11 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     @property(cc.Node)
     topWinnersButton: cc.Node = null;
 
+    @property(cc.Prefab)
+    jackpotGamePrefab: cc.Node = null;
+
     private jackpotPoolPrefab: cc.Prefab;
+    private jackpotWinningAmountPrefab: cc.Prefab;
     private isLoadedSlotBoard = false;
 
     onLoad() {
@@ -39,7 +46,8 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         const normalPrefabs = super.getPrefabsList();
         const jackpotPrefabs = {
             // prefab name : prefab property
-            "effect-jackpot": "effectJackpot"
+            "effect-jackpot": "effectJackpot",
+            "effect-jackpot-winning-amount": "jackpotWinningAmountPrefab"
         };
         return Object.assign({}, normalPrefabs, jackpotPrefabs);
     }
@@ -95,9 +103,45 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         this.topWinnersButton.active = this.jackpotEnabled;
     }
 
+    getJackpotConfigs() {
+        return this.gameConfigs?.jackpot;
+    }
+
     handleGameGuide(guide: WebViewGuide, language, minBet, maxBet, isInPromotionTime) {
         const jackpotGuide = guide as StandarSlotGuide;
         jackpotGuide.enableJackpot = this.jackpotEnabled;
+        jackpotGuide.jackpotConfigs = this.getJackpotConfigs();
         super.handleGameGuide(guide, language, minBet, maxBet, isInPromotionTime);
+    }
+
+    protected showJackpotGame(prizes: number, onJackpotFinished: () => void) {
+        const node = cc.instantiate(this.jackpotGamePrefab);
+        this.currentMiniPanel.addDialog(node);
+        const dialog = node.getComponent(JackpotGame);
+        dialog.prizes = prizes;
+        dialog.gameId = this.gameId;
+        dialog.slotGameConfigs = this.slotGameConfigs;
+        dialog.jackpotWinningAmountPrefab = this.jackpotWinningAmountPrefab;
+        dialog.playSoundCallback = this.bonusDialogPlaySound.bind(this);
+        dialog.onJackpotGameFinished = onJackpotFinished;
+        dialog.onItemClicked = (index) => {
+            this.socket.emit("jackpot", { chest: index });
+        };
+
+        this.onOpenJackpotChest = (data) => {
+            dialog && dialog.openJackpot(data);
+        };
+    }
+
+    async showEffectJackpot(jackpot) {
+        this.playSound(ClassicSlotSound.JACKPOT);
+
+        return new Promise<void>(async (resolve, reject) => {
+            const effect = cc.instantiate(this.effectJackpot);
+            const animation = effect.getComponent(CallbackAnimation);
+            animation.setDuration(this.getCustomDuration("jackpot"));
+            await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
+            this.showJackpotGame(jackpot.prizes, resolve);
+        });
     }
 }

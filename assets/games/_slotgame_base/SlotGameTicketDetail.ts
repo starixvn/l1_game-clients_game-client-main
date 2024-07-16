@@ -76,13 +76,6 @@ export default class SlotGameTicketDetail extends cc.Component {
             }
         });
 
-        const failureLine = [];
-        paylines.forEach((line) => {
-            if (!winningArray.includes(line) && (!settlementResult.jackpot || line !== settlementResult.jackpot.winningLine)) {
-                failureLine.push(line);
-            }
-        });
-
         if (settlementResult.jackpot) {
             this.addJackpotLog(settlementResult.jackpot, bet, order);
             order++;
@@ -112,7 +105,20 @@ export default class SlotGameTicketDetail extends cc.Component {
             order++;
         }
 
-        failureLine.forEach((line) => {
+        this.createFailPaylines(data, winningArray, order);
+    }
+
+    protected createFailPaylines(data, winningArray: number[], order: number) {
+        const { paylines, settlementResult, bet } = data;
+        const failLine = [];
+
+        paylines.forEach((line) => {
+            if (!winningArray.includes(line) && (!settlementResult.jackpot || line !== settlementResult.jackpot.winningLine)) {
+                failLine.push(line);
+            }
+        });
+
+        failLine.forEach((line) => {
             this.creatLogItem({
                 order,
                 paylineSprite: this.getSpriteLine(line),
@@ -143,12 +149,19 @@ export default class SlotGameTicketDetail extends cc.Component {
     }
 
     protected addJackpotLog(jackpot: any, bet, order: number) {
+        let jackpotName = i18n.t("ui.jackpot");
+
+        if (jackpot.pool) {
+            const prizeName = jackpot.pool[0].toUpperCase() + jackpot.pool.slice(1);
+            jackpotName += ` ${prizeName}`;
+        }
+
         this.creatLogItem({
             order,
             paylineSprite: this.getSpriteLine(jackpot.winningLine),
             symbolsSprite: this.setSymbolFrame(this.jackpotSymbolNumber),
             amount: "5",
-            payout: i18n.t("ui.jackpot"),
+            payout: jackpotName,
             bet,
             win: `${jackpot.winningAmount}`
         });

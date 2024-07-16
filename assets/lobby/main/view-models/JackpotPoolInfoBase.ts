@@ -1,3 +1,4 @@
+import { JackpotPoolType } from "../../../managers/JackpotManager";
 import JackpotPoolItem from "./JackpotPoolItem";
 
 const { ccclass, property } = cc._decorator;
@@ -13,7 +14,13 @@ export default class JackpotPoolInfoBase extends cc.Component {
         }
 
         // sort jackpot pools descending
-        const sortedData = [...data].sort((a, b) => +b.pool - +a.pool);
+        const sortedData = [...data].sort((a, b) => {
+            if (typeof a.pool === "string") {
+                return +JackpotPoolType[b.pool.toUpperCase()] - +JackpotPoolType[a.pool.toUpperCase()];
+            }
+
+            return +b.pool - +a.pool;
+        });
 
         this.items.forEach((item, index) => {
             if (index > sortedData.length - 1) {

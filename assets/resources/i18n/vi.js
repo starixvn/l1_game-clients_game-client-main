@@ -469,7 +469,8 @@ const data = {
         cancel: "Hủy",
         back: "Quay Lại",
         titleGuidePF: "Hướng Dẫn Provably Fair",
-        hot: "Hot"
+        hot: "Hot",
+        bet_details_classic_slot_non_winning_payline: "Không có dòng cược thắng"
     },
     termsPromotion: {
         first: "- Tất cả người chơi đều có thể tham gia các chương trình khuyến mãi và có cơ hội giành được những giải thưởng hấp dẫn.\n- Tiền thắng được tính toán dựa theo quy định của chương trình khuyến mãi và tỷ lệ trả thưởng.\n- Chương trình khuyến mãi chỉ được áp dụng trong một khoảng thời gian nhất định do Công ty quy định. Khi chương trình khuyến mãi kết thúc, tỷ lệ trả thưởng sẽ được điều chỉnh trở về như ban đầu.\n- Trong một số tình huống, thể lệ chương trình có thể thay đổi mà không cần thông báo trước.\n- Trong mọi trường hợp xảy ra tranh chấp, quyết định của Công ty sẽ là quyết định cuối cùng."

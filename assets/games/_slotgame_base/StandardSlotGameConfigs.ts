@@ -6,6 +6,8 @@ export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
     jackpotSymbol = 10;
     showTotalBonusAmountDuration = 4;
     bonusTimeOut = 120;
+    showJackpotWinningAmountDuration = 4;
+    jackpotTimeOut = 60;
 
     normalMode = {
         spinDuration: 1,
@@ -13,7 +15,7 @@ export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
         noWinningDuration: 0.75,
         freespinDuration: 2,
         bonusDuration: 2,
-        jackpotDuration: 4.61,
+        jackpotDuration: 2,
 
         bigWinDuration: 4,
         showBigWinValueDuration: 1,
@@ -26,7 +28,7 @@ export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
         noWinningDuration: 0.5,
         freespinDuration: 1.5,
         bonusDuration: 1.5,
-        jackpotDuration: 4.61,
+        jackpotDuration: 2,
 
         bigWinDuration: 3.2,
         showBigWinValueDuration: 0.8,

@@ -6,6 +6,9 @@ export interface SlotGameBaseConfigs {
     readonly showTotalBonusAmountDuration: number;
     readonly bonusTimeOut: number;
 
+    readonly showJackpotWinningAmountDuration: number;
+    readonly jackpotTimeOut: number;
+
     readonly normalMode: CustomDuration;
     readonly turboMode: CustomDuration;
 }

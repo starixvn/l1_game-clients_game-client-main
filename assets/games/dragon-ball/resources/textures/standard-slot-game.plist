@@ -799,6 +799,51 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>txt-jackpot-game-grand.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{103,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{103,37}</string>
+                <key>textureRect</key>
+                <string>{{914,3},{103,37}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>txt-jackpot-game-major.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{103,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{103,37}</string>
+                <key>textureRect</key>
+                <string>{{914,42},{103,37}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>txt-jackpot-game-minor.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{1,0}</string>
+                <key>spriteSize</key>
+                <string>{99,37}</string>
+                <key>spriteSourceSize</key>
+                <string>{103,37}</string>
+                <key>textureRect</key>
+                <string>{{3,556},{99,37}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
             <key>txt-jackpot.png</key>
             <dict>
                 <key>aliases</key>
@@ -963,7 +1008,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e44d3a0f2002d7f4e4eeeb61dce7f9fe:db678f4b48cef7c9b79c5922cadf0905:d2119907fc422292afb660fc3c3e380f$</string>
+            <string>$TexturePacker:SmartUpdate:633a7a89ba80cc1e6a10091a7b7bbc47:729011922c7ab5a71780d3ce8e9361e9:d2119907fc422292afb660fc3c3e380f$</string>
             <key>textureFileName</key>
             <string>standard-slot-game.png</string>
         </dict>

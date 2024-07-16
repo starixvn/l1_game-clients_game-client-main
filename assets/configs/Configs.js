@@ -9,13 +9,13 @@ const defaultConfig = {
     env: "",
     sentry: {
         url: "",
-        env: "LOCAL2"
+        env: "LOCAL0"
     },
     gameAnalytics: {
         clientId: "093146669bf12df12eeedd2d57ddb469",
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
-    subGuideDomain: "l1-guide-2",
+    subGuideDomain: "l2-guide",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     subPromotionDomain: "l2-promotion1"

@@ -7,6 +7,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class StandarSlotGuide extends WebViewGuide {
     enableJackpot = false;
+    jackpotConfigs = {};
 
     initURL(
         gameId: number,
@@ -18,9 +19,16 @@ export default class StandarSlotGuide extends WebViewGuide {
     ) {
         const domain = buildGameGuideUrl();
         const displayName = GameUtils.getGameNameString(gameId);
-        const url = `${domain}/${language}?gId=${gameId}&displayName=${displayName}&jackpot=${this.enableJackpot}&t=${
+        let jackpotConfigsUrl = "";
+
+        if (this.enableJackpot) {
+            jackpotConfigsUrl = `&jackpotConfigs=${this.jackpotConfigs}`;
+        }
+
+        const url = `${domain}/${language}?gId=${gameId}&displayName=${displayName}&jackpot=${this.enableJackpot}${jackpotConfigsUrl}&t=${
             this.themeName
         }&p=${isInPromotionTime}&f=c&v=${Date.now()}&fof=${fractionalOddsFormat}`;
+
         this.url = url;
     }
 }

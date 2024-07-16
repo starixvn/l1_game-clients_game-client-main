@@ -15,5 +15,15 @@ export default class SlotGameJackpotHandler implements DataHandler {
             uiManager.emitter.emit(InternalEvents.RECEIVED_JACKPOT_POOLS_IN_GAME, data.jackpotPools);
             data.jackpotPools.forEach((pool: any) => this.main.updatePoolData(pool));
         }
+
+        if (data.winningJackpot) {
+            this.main.onOpenJackpotChest && this.main.onOpenJackpotChest(data.winningJackpot);
+        }
+
+        // Todo: delete when service return data
+        setTimeout(() => {
+            data.winningJackpot = { winnerName: "abc", pool: "minor", amount: 120000 };
+            this.main.onOpenJackpotChest && this.main.onOpenJackpotChest(data.winningJackpot);
+        }, 3000);
     }
 }

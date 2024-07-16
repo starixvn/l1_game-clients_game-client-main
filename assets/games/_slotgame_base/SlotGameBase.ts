@@ -127,6 +127,16 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     })
     lightLinePrefab: cc.Prefab = null;
 
+    @property({
+        visible: function (this: SlotGameBase) {
+            return !!this.jackpotPoolInfo;
+        }
+    })
+    highlightJackpotPool = false;
+
+    @property
+    jackpotAccelerate = false;
+
     protected betChoices: number[] = [];
     protected stake: number;
     protected ingameHandler: SlotGameIngameHandler;
@@ -142,6 +152,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     public totalFreeSpins = 0;
     public jackpotPool = {};
     public onOpenBonusChest: (data: any) => void;
+    public onOpenJackpotChest: (data: any) => void;
     public waitingSpinResult = false;
     public cacheApiError: any = null;
     public isShowAutoSpinSettingDialog = false;
@@ -598,7 +609,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.updateJackpotPool();
         this.updateStakeContainer();
         this.hideStakeContrainer();
-        if (this.jackpotPoolInfo) {
+        if (this.highlightJackpotPool && this.jackpotPoolInfo) {
             this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
         }
     }
@@ -1009,7 +1020,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         return dialog;
     }
 
-    async showEffectJackpot(amount: number) {
+    async showEffectJackpot(jackpot) {
         this.playSound(ClassicSlotSound.JACKPOT);
 
         const effect = cc.instantiate(this.effectJackpot);
@@ -1017,7 +1028,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         const jackpotDuration = this.getCustomDuration("jackpot");
         callbackAnim.setDuration(jackpotDuration);
         const bigWinAnimation = effect.getComponent(BigWinAnimation);
-        bigWinAnimation.setAmount({ amount: amount, duration: jackpotDuration - 1 });
+        bigWinAnimation.setAmount({ amount: jackpot.amount, duration: jackpotDuration - 1 });
         await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
     }
 
@@ -1048,7 +1059,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
         if (this.jackpotPoolInfo) {
             this.jackpotPoolInfo.setData(dataList);
-            this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
+            this.highlightJackpotPool && this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
         }
     }
 

@@ -12,12 +12,26 @@ export default class StandardSlotGameTicketDetail extends SlotGameTicketDetail {
     @property(cc.SpriteAtlas)
     paylinesAtlas: cc.SpriteAtlas = null;
 
+    @property(cc.Node)
+    noWinningPaylinesNode: cc.Node = null;
+
     private enableJackpot = false;
     gameId: number;
 
     async setData(data: any) {
         this.enableJackpot = data.enableJackpot;
         super.setData(data);
+        this.showNoWinningPaylinesText(data);
+    }
+
+    showNoWinningPaylinesText(data) {
+        const { settlementResult } = data;
+
+        if (settlementResult.winningPaylines.length > 0) {
+            return;
+        }
+
+        this.noWinningPaylinesNode.active = true;
     }
 
     async loadSymbolsAtlas() {
@@ -39,5 +53,9 @@ export default class StandardSlotGameTicketDetail extends SlotGameTicketDetail {
         }
 
         return spriteFrame;
+    }
+
+    protected createFailPaylines(data, winningArray: number[], order: number) {
+        // override
     }
 }

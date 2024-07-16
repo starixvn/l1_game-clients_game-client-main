@@ -27,6 +27,7 @@ export default class Splash extends cc.Component {
         this.disableAllNodeSplash();
         this.initUIListeners();
         this.handleSplashScene();
+        this.loadBackground();
     }
 
     private initUIListeners() {
@@ -110,5 +111,15 @@ export default class Splash extends cc.Component {
     private disableAllNodeSplash() {
         this.nodeMainSplash.active = false;
         this.nodeMicrositeGame.active = false;
+    }
+
+    private loadBackground() {
+        const imagePath = `${window.location.origin}/splash-resources/background.jpg`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "jpg") => {
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
+            } catch (e) {}
+        });
     }
 }

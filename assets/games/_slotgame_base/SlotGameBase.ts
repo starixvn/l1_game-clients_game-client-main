@@ -154,6 +154,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     turboPaylineDuration = 0.75;
     isFinishedRound = true;
     receiviedJackpotPools;
+    disabledLinesButton = true;
 
     public get jackpotEnabled() {
         return this._jackpotEnabled;
@@ -634,8 +635,14 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.expandableMenu.collapseMenu();
         const success = this.spin();
         if (success) {
-            this.lineButton.interactable = false;
+            this.lineButtonStatus(false);
             this.stakeButton.interactable = false;
+        }
+    }
+
+    lineButtonStatus(status: boolean) {
+        if (this.lineButton && this.disabledLinesButton) {
+            this.lineButton.interactable = status;
         }
     }
 
@@ -746,7 +753,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     deactiveButtons() {
         this.deactiveSpinButton();
-        this.lineButton.interactable = false;
+        this.lineButtonStatus(false);
         this.stakeButton.interactable = false;
 
         if (!this.isAutoSpinMode()) {
@@ -766,7 +773,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         }
 
         const canChangeStakeAndLine = !isAutoSpinMode && !isFreeSpin && notAutoSpinByKeySpaceOrHold;
-        this.lineButton.interactable = canChangeStakeAndLine;
+        this.lineButtonStatus(canChangeStakeAndLine);
         this.stakeButton.interactable = canChangeStakeAndLine;
 
         this.autoSpinToggle.interactable = (isAutoSpinMode || !isFreeSpin) && notAutoSpinByKeySpaceOrHold;

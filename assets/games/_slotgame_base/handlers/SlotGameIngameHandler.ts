@@ -13,7 +13,7 @@ export default class SlotGameIngameHandler implements DataHandler {
 
             this.main.updateDisplaySpinButtons();
             this.main.stakeButton && (this.main.stakeButton.interactable = false);
-            this.main.lineButton && (this.main.lineButton.interactable = false);
+            this.main.lineButtonStatus(false);
             this.main.autoSpinToggle && (this.main.autoSpinToggle.interactable = false);
         }
     }

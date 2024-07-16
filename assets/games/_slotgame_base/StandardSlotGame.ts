@@ -122,10 +122,12 @@ export default class StandardSlotGame extends SlotGameBase {
     private readonly previewSymbolLeft: cc.Prefab;
     private readonly previewSymbolRight: cc.Prefab;
     private readonly effectTransitionPrefab: cc.Prefab;
-    slotBoard: StandardSlotBoard;
     private colorConfig: any;
     private betLevelsContainerNode: cc.Node = null;
     private slotBottomArea: SlotBottomArea = null;
+
+    disabledLinesButton = false;
+    slotBoard: StandardSlotBoard;
 
     onLoad() {
         this.initColorConfig();
@@ -419,8 +421,8 @@ export default class StandardSlotGame extends SlotGameBase {
 
             if (this.totalFreeSpins) {
                 this.stakeButton && (this.stakeButton.interactable = false);
-                this.lineButton && (this.lineButton.interactable = false);
                 this.autoSpinToggle && (this.autoSpinToggle.interactable = false);
+                this.lineButtonStatus(false);
             }
 
             this.slotBottomArea.onClickListener = {

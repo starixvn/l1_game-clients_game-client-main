@@ -90,7 +90,9 @@ function showInstructionAndScroll(isShow = true) {
         timeoutDelayEnableScroll = setTimeout(() => {
             document.body.style.overflowY = "scroll";
         }, 100);
-        instruction.onclick = () => {};
+        instruction.onclick = () => {
+            // handle
+        };
     } else {
         instruction.style.visibility = "hidden";
         document.body.style.overflow = "hidden";
@@ -405,6 +407,23 @@ function updateSplashLogo() {
     splashText.className = `splash_text${suffix}`;
 }
 
+function updateSplashOlympicMascot() {
+    const operator = getOperator()?.toUpperCase();
+    if (operator == "TIP88") {
+        return;
+    }
+
+    let suffixOperator = "";
+    const splashLogoAnimal = document.getElementById("splash-logo-mascot");
+    const systemType = window.envConfig.systemType;
+    const suffixSite = systemType === "SC2" ? "_sc2" : "_sc1";
+    if (systemType === "SC2") {
+        suffixOperator = "_vg";
+    }
+
+    splashLogoAnimal.className = `plash-logo-mascot${suffixSite}${suffixOperator}`;
+}
+
 function getCSSClassName(operator) {
     const operators = {
         TIP88: "_tip88",
@@ -421,6 +440,7 @@ function getCSSClassName(operator) {
 }
 
 updateSplashLogo();
+updateSplashOlympicMascot();
 updateLocalizedImages();
 initGameEngine();
 initGA();

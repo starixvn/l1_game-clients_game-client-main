@@ -4,6 +4,7 @@ import * as SessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import { buildProxyUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
+import { OperatorAlias } from "../../ISystem";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { AXIOS_FAILED_PREFIX } from "../../utils";
@@ -23,11 +24,19 @@ export default class Splash extends cc.Component {
     @property(cc.Prefab)
     prfMicrositeGame: cc.Prefab = null;
 
+    @property(cc.Sprite)
+    logoOlympic: cc.Sprite = null;
+
+    @property(cc.Sprite)
+    logoOlympicAnimal: cc.Sprite = null;
+
     protected onLoad(): void {
         this.disableAllNodeSplash();
         this.initUIListeners();
         this.handleSplashScene();
         this.loadBackground();
+        this.loadLogoOlympic();
+        this.loadLogoOlympicMascot();
     }
 
     private initUIListeners() {
@@ -121,5 +130,46 @@ export default class Splash extends cc.Component {
                 this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
             } catch (e) {}
         });
+    }
+
+    private loadLogoOlympic() {
+        const imagePath = `${window.location.origin}/splash-resources/logo-olympic.webp`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.logoOlympic.spriteFrame = spriteFrameTmp;
+            } catch (e) {}
+        });
+    }
+
+    private loadLogoOlympicMascot() {
+        if (getOperator()?.toUpperCase() == OperatorAlias.TIP88) {
+            return;
+        }
+
+        const currentWindow = window as any;
+        const system = currentWindow?.envConfig?.systemType === "SC2" ? "_sc2" : "_sc1";
+        console.log("system: ", system);
+        const imagePath = `${window.location.origin}/splash-resources/mascot${system}.webp`;
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "png") => {
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                this.logoOlympicAnimal.spriteFrame = spriteFrameTmp;
+            } catch (e) {}
+        });
+    }
+
+    getOperator() {
+        let operator = "";
+        try {
+            if (localStorage.getItem("current_operator")) {
+                operator = localStorage.getItem("current_operator");
+            }
+        } catch (e) {}
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("op")) {
+            operator = urlParams.get("op");
+        }
+        return operator;
     }
 }

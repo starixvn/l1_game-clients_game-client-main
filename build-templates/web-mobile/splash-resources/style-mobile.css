@@ -163,8 +163,6 @@ p.footer {
         width: auto;
         height: 50.36vh;
     }
-
-  
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
@@ -189,25 +187,6 @@ p.footer {
     background-size: auto 17.81vh;
     width: auto;
     height: 17.81vh;
-}
-
-.top-middle{
-    position: absolute;
-    top: 0;
-    background: url(./top-middle.webp) no-repeat center;
-    background-size: auto 16.8vh;
-    width: 100%;
-    height: 16.8vh
-    
-}
-
-.bottom-middle{
-    position: absolute;
-    bottom: 0;
-    background: url(./bottom-middle.png) no-repeat bottom center;
-    background-size: auto 53.8vh;
-    width: 100%;
-    height: 54.3vh
 }
 
 .splash_text {

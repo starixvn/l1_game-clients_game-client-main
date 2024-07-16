@@ -75,8 +75,9 @@ export default class MainSplash extends cc.Component {
         const operator = sessionManager.getOperator()?.toUpperCase();
         const spPosition =
             operator === OperatorAlias.TIP88
-                ? { progressBar: cc.v2(-335, -230), messageComp: cc.v2(0, -260) }
-                : { progressBar: cc.v2(-335, -307), messageComp: cc.v2(0, -331) };
+                ? { progressBar: cc.v2(-200, -230), messageComp: cc.v2(0, -260) }
+                : { progressBar: cc.v2(-200, -307), messageComp: cc.v2(0, -331) };
+
         this.progressBar.node.setPosition(spPosition.progressBar);
         this.messageComp.node.setPosition(spPosition.messageComp);
     }

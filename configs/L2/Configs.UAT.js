@@ -13,5 +13,6 @@ window.envConfig = {
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "l2-connect-uat",
     AppDownloadSubDomain: "",
-    clientSubDomain: "l2uatclient"
+    clientSubDomain: "l2uatclient",
+    subPromotionDomain: "l2uatpromotion"
 };

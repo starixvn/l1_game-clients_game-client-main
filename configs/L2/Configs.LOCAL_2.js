@@ -11,5 +11,6 @@ window.envConfig = {
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     SGConnectSubDomain: "l2-connect-2",
-    AppDownloadSubDomain: ""
+    AppDownloadSubDomain: "",
+    subPromotionDomain: "l2-promotion2"
 };

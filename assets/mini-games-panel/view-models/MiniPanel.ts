@@ -31,6 +31,7 @@ import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
+import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 
 type NewLayerCallback = () => void;
 
@@ -86,6 +87,7 @@ export default class MiniPanel extends BaseComponent {
     private readonly reloadKey = "reload";
     private readonly authKey = "auth";
     private promotionAnnouncementPrefab: cc.Prefab;
+    private promotionTournamentPrefab: cc.Prefab;
     public boostedOdds: BoostedOdds;
     public promotionAnnouncement: PromotionAnnouncements;
     private readonly preloadFolderPercent = 25;
@@ -179,6 +181,7 @@ export default class MiniPanel extends BaseComponent {
                 this.showPromotionAnnouncements.bind(this)
             );
             Promotions.getInstance().on(PromotionsEvent.SHOW_BOOSTED_ODDS, () => this.showBoostedOdds());
+            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT, this.showPromotionTournament.bind(this));
         } catch (error) {
             cc.warn("Failed to init boosted odds - " + error);
         }
@@ -258,6 +261,7 @@ export default class MiniPanel extends BaseComponent {
     addMiniGame(game: any, gameId: number) {
         if (gameId === -1) {
             //lucky wheel, so add to dialogNode
+            this.dialog?.removeAllChildren();
             this.addDialog(game.node);
         } else {
             this.miniGames && this.miniGames.addChild(game.node);
@@ -451,6 +455,27 @@ export default class MiniPanel extends BaseComponent {
             this.promotionAnnouncement.miniPanel = this;
         }
 
+        this.addDialog(node);
+    }
+
+    async createPromotionTournamentPrefab() {
+        const key = "promotionTournament";
+        if (!uiManager.prefabCache.miniPanelIcons[key]) {
+            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
+                this.node,
+                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
+            );
+            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
+        } else {
+            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
+        }
+    }
+
+    async showPromotionTournament() {
+        if (!this.promotionTournamentPrefab) {
+            await this.createPromotionTournamentPrefab();
+        }
+        const node = cc.instantiate(this.promotionTournamentPrefab);
         this.addDialog(node);
     }
 

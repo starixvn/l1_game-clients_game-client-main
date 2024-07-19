@@ -13,5 +13,6 @@ window.envConfig = {
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "connect",
     AppDownloadSubDomain: "",
-    clientSubDomain: "client"
+    clientSubDomain: "client",
+    subPromotionDomain: "promotion"
 };

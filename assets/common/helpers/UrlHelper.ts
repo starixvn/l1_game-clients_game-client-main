@@ -28,6 +28,16 @@ export function buildGameGuideUrl() {
     return `${"http"}${ssl ? "s" : ""}://${subGuideDomainText}${rootDomain}`;
 }
 
+export function buildPromotionSiteUrl() {
+    if (configs.subPromotionDomain) {
+        const ssl = configs.ssl;
+        const rootDomain = getRootDomain();
+        const subPromotionDomainText = `${configs.subPromotionDomain}.`;
+        return `${"http"}${ssl ? "s" : ""}://${subPromotionDomainText}${rootDomain}`;
+    }
+    return buildProxyUrl(`/promotion`);
+}
+
 export function buildUrlFromSubDomain(subDomain) {
     return `${"http"}${configs.ssl ? "s" : ""}://${subDomain}.${getRootDomain()}`;
 }

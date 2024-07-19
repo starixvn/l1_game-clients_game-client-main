@@ -11,3 +11,4 @@ export const enableMsgpackParserOnNotification: boolean;
 export const SGConnectSubDomain: string;
 export const AppDownloadSubDomain: string;
 export const clientSubDomain: string;
+export const subPromotionDomain: string;

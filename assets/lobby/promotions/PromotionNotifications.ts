@@ -1,5 +1,4 @@
 import { uiManager } from "../../managers/GameUIManager";
-import { InternalEvents } from "../../managers/InternalEvents";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "./PromotionNotificationsHandler";
 
 const { ccclass, property } = cc._decorator;
@@ -48,7 +47,6 @@ export default class PromotionNotifications extends cc.Component {
         if (!this.icon || !this.isReceivedPromotionData) {
             return;
         }
-
         this.icon.active = true;
     }
 }

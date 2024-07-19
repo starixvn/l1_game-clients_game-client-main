@@ -63,7 +63,6 @@ export default class SplashDynamic extends cc.Component {
         const widthTagLine = this.sprTagline?.node?.width;
         if (this?.mask?.node) {
             this.mask.node.width = widthTagLine;
-            // this.mask.spriteFrame = this.sprTagline.spriteFrame;
         }
 
         this.handleAnimLightMask();

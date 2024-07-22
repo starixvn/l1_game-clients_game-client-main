@@ -94,7 +94,7 @@ body {
     height: calc(var(--vh, 1vh) * 100) !important;
 }
 
-#Cocos2dGameContainer > div[style*="overflow-x"] {
+#Cocos2dGameContainer>div[style*="overflow-x"] {
     overflow-x: hidden !important;
 }
 
@@ -132,9 +132,15 @@ p.footer {
     }
 
     .splash-container {
-        height: 100vw;
-        width: 100vh;
-        transform: rotate(90deg);
+        transform-origin: top left;
+        height: 100vw !important;
+        width: 100vh !important;
+        transform: rotate(90deg) translateY(-100vw);
+        /* -ms-transform: translateY(-100vw) rotate(90deg);
+        -o-transform: translateY(-100vw) rotate(90deg);
+        -ms-transform: translateY(-100vw) rotate(90deg);
+        -o-transform: translateY(-100vw) rotate(90deg);
+        transform: translateY(-100vw) rotate(90deg); */
     }
 
     .instruction {
@@ -181,11 +187,11 @@ p.footer {
 }
 
 .splash {
-    position: relative;
+    position: absolute;
     top: 22.64vh;
     background: url(./logo_saba.webp) no-repeat center;
     background-size: auto 30.53vh;
-    width: auto;
+    width: 100%;
     height: 30.53vh;
 }
 
@@ -256,7 +262,7 @@ p.footer {
     top: 22.65vh;
     background-size: auto 30.53vh;
     width: auto;
-    height: 17.81vh;
+    height: 30.53vh;
 }
 
 .splash_text_other_sc1 {
@@ -269,17 +275,17 @@ p.footer {
 }
 
 .splash_tip88 {
-    position: relative;
-    top: 22.6vh;
+    position: absolute;
+    top: 22.65vh;
     background: url(./logo_soibet.webp) no-repeat center;
-    background-size: auto 40.6vh;
-    width: auto;
-    height: 40.6vh;
+    background-size: auto 30.53vh;
+    width: 100%;
+    height: 30.53vh;
 }
 
 .splash_text_tip88 {
     position: absolute;
-    top: 65.6vh;
+    top: 54.83vh;
     background: no-repeat center;
     background-size: auto 6.1vh;
     width: 100%;
@@ -288,7 +294,7 @@ p.footer {
 
 .splash_powered {
     position: relative;
-    top: 48.6vh;
+    top: 89.44vh;
     background: no-repeat center;
     background-size: auto 4.7vh;
     width: auto;
@@ -385,59 +391,71 @@ p.footer {
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
     .splash {
-        top: 25vh;
-        background-size: auto 19.53vh;
+        top: 22.64vw;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
     }
 
     .splash_text {
-        top: 50vh;
-        background-size: auto 2.7vh;
+        top: 54.83vw;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
     }
 
     .splash_Vgaming {
-        top: 25vh;
-        background-size: auto 19.53vh;
+        top: 22.9vw;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
     }
 
     .splash_text_Vgaming {
-        top: 50vh;
-        background-size: auto 2.7vh;
+        top: 54.83vw;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
     }
 
     .splash_sabaplay {
-        top: 25vh;
-        background-size: auto 19.53vh;
+        top: 22.9vw;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
     }
 
     .splash_text_sabaplay {
-        top: 50vh;
-        background-size: auto 2.7vh;
+        top: 54.83vw;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
     }
 
     .splash_tip88 {
-        top: 20.8vh;
-        background-size: auto 23.6vh;
+        top: 22.65vw;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
     }
 
     .splash_text_tip88 {
-        top: 53vh;
-        background-size: auto 2vh;
+        top: 54.83vw;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
     }
 
     .splash_powered {
-        top: 26.8vh;
-        background-size: auto 2.5vh;
+        top: 89.44vw;
+        background-size: auto 4.7vw;
+        height: 4.7vw;
     }
 
     .splash_other {
-        top: 25vh;
-        background-size: auto 19.53vh;
+        top: 22.64vw;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
     }
 
     .splash_text_other {
-        top: 50vh;
-        background-size: auto 2.7vh;
+        top: 54.83vw;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
     }
+
     /* .conner-container {
         position: fixed;
         width: calc(100vh - 70);

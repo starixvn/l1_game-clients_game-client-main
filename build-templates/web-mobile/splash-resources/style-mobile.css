@@ -134,7 +134,10 @@ p.footer {
     .splash-container {
         height: 100vw;
         width: 100vh;
-        transform: rotate(90deg);
+        transform: rotate(90deg) translateX(50%);
+        transform-origin: right top;
+        top: 50% !important;
+        right: 0;
     }
 
     .instruction {
@@ -385,91 +388,91 @@ p.footer {
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
     .splash {
-        top: 33.64vh;
+        top: 22.64vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_Vgaming {
-        top: 33.9vh;
+        top: 22.9vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_Vgaming {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_sabaplay {
-        top: 33.9vh;
+        top: 22.64vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_sabaplay {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_tip88 {
-        top: 33.65vh;
+        top: 22.64vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_tip88 {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_powered {
-        top: 67vh;
+        top: 89.44vw;
         background-size: auto 4.7vw;
         height: 4.7vw;
     }
 
     .splash_other {
-        top: 33.64vh;
+        top: 54.83vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_other {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_other_sc1 {
-        top: 33.64vh;
+        top: 54.83vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_other_sc1 {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
     .splash_other_sc2 {
-        top: 33.9vh;
+        top: 22.9vw;
         background-size: auto 30.53vw;
         height: 30.53vw;
     }
 
     .splash_text_other_sc2 {
-        top: 49.3vh;
+        top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
@@ -555,15 +558,16 @@ p.footer {
     }
 }
 
-#mockup {
+#mockup-portrait {
     position: absolute;
-    top: 22vh;
-    right: -25vh;
-    background: url(./soibet.jpg) no-repeat center;
+    bottom: 0;
+    top: 0;
+    background: url(./vg.jpg) no-repeat center;
     background-size: contain;
     width: 100vh;
     height: 100vw;
-    opacity: 0.2;
-    transform: rotate(90deg);
+    opacity: 0.3;
+    transform: rotate(90deg) translateX(-100vw);
     z-index: 99999;
+    transform-origin: bottom left;
 }

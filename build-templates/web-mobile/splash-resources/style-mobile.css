@@ -183,6 +183,34 @@ p.footer {
     z-index: 999;
 }
 
+.splash-logo-olympic {
+    position: absolute;
+    top: 5.09vh;
+    background: url(./logo-olympic.webp) no-repeat center;
+    background-size: auto 14.5vh;
+    width: 100%;
+    height: 14.5vh;
+}
+
+.plash-logo-mascot_sc1 {
+    position: absolute;
+    top: 65.52vh;
+    background: url(./mascot_sc1.webp) no-repeat center;
+    background-size: auto 18.32vh;
+    width: 100%;
+    height: 18.32vh;
+}
+
+.plash-logo-mascot_sc2_vg {
+    position: absolute;
+    top: 65.52vh;
+    background: url(./mascot_sc2.webp) no-repeat center;
+    background-size: auto 18.32vh;
+    width: 100%;
+    height: 18.32vh;
+}
+
+
 .splash {
     position: absolute;
     top: 22.64vh;
@@ -387,6 +415,24 @@ p.footer {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+    .splash-logo-olympic {
+        top: 5.09vw;
+        background-size: auto 14.5vw;
+        height: 14.5vw;
+    }
+
+    .plash-logo-mascot_sc1 {
+        top: 65.52vw;
+        background-size: auto 18.32vw;
+        height: 18.32vw;
+    }
+
+    .plash-logo-mascot_sc2_vg {
+        top: 65.52vw;
+        background-size: auto 18.32vw;
+        height: 18.32vw;
+    }
+
     .splash {
         top: 22.64vw;
         background-size: auto 30.53vw;

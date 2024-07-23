@@ -221,7 +221,7 @@ p.footer {
     top: 22.9vh;
     background: url(./logo_sabaplay.webp) no-repeat center;
     background-size: auto 30.53vh;
-    width:100%;
+    width: 100%;
     height: 30.53vh;
 }
 
@@ -391,7 +391,7 @@ p.footer {
     }
 
     .splash_text {
-        top:49.3vh;
+        top: 49.3vh;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
@@ -403,7 +403,7 @@ p.footer {
     }
 
     .splash_text_Vgaming {
-        top:49.3vh;
+        top: 49.3vh;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
@@ -415,7 +415,7 @@ p.footer {
     }
 
     .splash_text_sabaplay {
-        top:49.3vh;
+        top: 49.3vh;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
@@ -427,7 +427,7 @@ p.footer {
     }
 
     .splash_text_tip88 {
-        top:49.3vh;
+        top: 49.3vh;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
@@ -445,26 +445,34 @@ p.footer {
     }
 
     .splash_text_other {
-        top:49.3vh;
+        top: 49.3vh;
         background-size: auto 6.1vw;
         height: 6.1vw;
     }
 
-    /* .conner-container {
-        position: fixed;
-        width: calc(100vh - 70);
-        height: 100vw;
-        -ms-transform: translateY(-100vw) rotate(90deg);
-        -o-transform: translateY(-100vw) rotate(90deg);
-        -ms-transform: translateY(-100vw) rotate(90deg);
-        -o-transform: translateY(-100vw) rotate(90deg);
-        transform: translateY(-100vw) rotate(90deg);
-        -webkit-transform-origin: left bottom;
-        -moz-transform-origin: left bottom;
-        top: unset;
-        bottom: unset;
-        right: unset;
-    }  */
+    .splash_other_sc1 {
+        top: 33.64vh;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
+    }
+
+    .splash_text_other_sc1 {
+        top: 49.3vh;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
+    }
+
+    .splash_other_sc2 {
+        top: 33.9vh;
+        background-size: auto 30.53vw;
+        height: 30.53vw;
+    }
+
+    .splash_text_other_sc2 {
+        top: 49.3vh;
+        background-size: auto 6.1vw;
+        height: 6.1vw;
+    }
 }
 
 .text {
@@ -547,7 +555,7 @@ p.footer {
     }
 }
 
-#mockup{
+#mockup {
     position: absolute;
     top: 22vh;
     right: -25vh;

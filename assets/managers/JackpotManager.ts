@@ -22,6 +22,16 @@ export enum JackpotPoolType {
     GRAND
 }
 
+interface IJackpotPool {
+    amount: number;
+    gameId: number;
+    pool: string;
+}
+
+interface IPoolGroupGameId {
+    [key: string]: IJackpotPool[];
+}
+
 export default class JackpotManager {
     private static instance: JackpotManager;
     public events = {};
@@ -78,8 +88,72 @@ export default class JackpotManager {
         NotificationService.getInstance().addDataObserver(dataType, dataKey, callback);
     }
 
-    onReceivedJackpotPoolsData(data: any) {
-        let pools = lodash.groupBy(data, "gameId");
+    onReceivedJackpotPoolsData(data: IJackpotPool[]) {
+        // Todo: data test
+        data = [
+            {
+                amount: 25003125,
+                gameId: 29,
+                pool: "major"
+            },
+            {
+                amount: 5001250,
+                gameId: 29,
+                pool: "minor"
+            },
+            {
+                amount: 78687900,
+                gameId: 29,
+                pool: "grand"
+            },
+            {
+                amount: 5018222,
+                gameId: 70,
+                pool: "minor"
+            },
+            {
+                amount: 44287305.46000002,
+                gameId: 70,
+                pool: "major"
+            },
+            {
+                amount: 50658440,
+                gameId: 70,
+                pool: "grand"
+            },
+            {
+                amount: 5018283,
+                gameId: 74,
+                pool: "minor"
+            },
+            {
+                amount: 28427965,
+                gameId: 74,
+                pool: "major"
+            },
+            {
+                amount: 50650950,
+                gameId: 74,
+                pool: "grand"
+            },
+            {
+                amount: 5006218,
+                gameId: 76,
+                pool: "minor"
+            },
+            {
+                amount: 25349620,
+                gameId: 76,
+                pool: "major"
+            },
+            {
+                amount: 50345840,
+                gameId: 76,
+                pool: "grand"
+            }
+        ];
+
+        let pools: IPoolGroupGameId = lodash.groupBy(data, "gameId");
         const jackpotGames = Object.keys(pools);
         this.requestedJackpotPoolGames.forEach((requestedGameId) => {
             if (!jackpotGames.includes(requestedGameId)) {
@@ -87,6 +161,7 @@ export default class JackpotManager {
                 jackpotManager.removeRequestedDataGame(requestedGameId);
             }
         });
+
         pools = this.filterOfferGames(pools);
         pools = this.sortPoolStakeASC(pools);
         const poolsGroup = this.groupJackpotPoolsWithType(pools);
@@ -94,7 +169,7 @@ export default class JackpotManager {
         uiManager.emitter.emit(InternalEvents.RECEIVED_RAW_JACKPOT_POOLS, data);
     }
 
-    filterOfferGames(pools) {
+    filterOfferGames(pools: IPoolGroupGameId): IPoolGroupGameId {
         Object.keys(pools).forEach((gameId) => {
             if (!userManager.offerGames.includes(+gameId)) {
                 delete pools[gameId];
@@ -104,15 +179,15 @@ export default class JackpotManager {
         return pools;
     }
 
-    sortPoolStakeASC(pools) {
-        Object.values(pools).forEach((pool: any) => {
-            pool.sort((a, b) => a.pool - b.pool);
+    sortPoolStakeASC(pools: IPoolGroupGameId) {
+        Object.values(pools).forEach((pool) => {
+            pool.sort((a, b) => JackpotPoolType[a.pool.toUpperCase()] - JackpotPoolType[b.pool.toUpperCase()]);
         });
 
         return pools;
     }
 
-    groupJackpotPoolsWithType(pools) {
+    groupJackpotPoolsWithType(pools: IPoolGroupGameId) {
         const poolsGroup = {
             [JackpotPoolType.MINOR]: [],
             [JackpotPoolType.MAJOR]: [],
@@ -136,6 +211,70 @@ export default class JackpotManager {
         if (!data.length) {
             this.requestAllJackpotPools();
         }
+
+        // Todo: data test
+        data = [
+            {
+                amount: 25003125,
+                gameId: 29,
+                pool: "major"
+            },
+            {
+                amount: 5001250,
+                gameId: 29,
+                pool: "minor"
+            },
+            {
+                amount: 78687900,
+                gameId: 29,
+                pool: "grand"
+            },
+            {
+                amount: 5018222,
+                gameId: 70,
+                pool: "minor"
+            },
+            {
+                amount: 44287305.46000002,
+                gameId: 70,
+                pool: "major"
+            },
+            {
+                amount: 50658440,
+                gameId: 70,
+                pool: "grand"
+            },
+            {
+                amount: 5018283,
+                gameId: 74,
+                pool: "minor"
+            },
+            {
+                amount: 28427965,
+                gameId: 74,
+                pool: "major"
+            },
+            {
+                amount: 50650950,
+                gameId: 74,
+                pool: "grand"
+            },
+            {
+                amount: 5006218,
+                gameId: 76,
+                pool: "minor"
+            },
+            {
+                amount: 25349620,
+                gameId: 76,
+                pool: "major"
+            },
+            {
+                amount: 50345840,
+                gameId: 76,
+                pool: "grand"
+            }
+        ];
         const sortedPoolStakes = this.sortPoolStakeASC(lodash.groupBy(data, "gameId"));
         const receivedGameId = Object.keys(sortedPoolStakes)[0];
         jackpotManager.addRequestedDataGame(receivedGameId);

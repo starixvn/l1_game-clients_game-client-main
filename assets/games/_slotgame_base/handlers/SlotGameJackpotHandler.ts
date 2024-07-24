@@ -19,11 +19,5 @@ export default class SlotGameJackpotHandler implements DataHandler {
         if (data.winningJackpot) {
             this.main.onOpenJackpotChest && this.main.onOpenJackpotChest(data.winningJackpot);
         }
-
-        // Todo: delete when service return data
-        setTimeout(() => {
-            data.winningJackpot = { winnerName: "abc", pool: "minor", amount: 120000 };
-            this.main.onOpenJackpotChest && this.main.onOpenJackpotChest(data.winningJackpot);
-        }, 3000);
     }
 }

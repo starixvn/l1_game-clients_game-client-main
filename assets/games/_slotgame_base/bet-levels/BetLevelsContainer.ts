@@ -12,7 +12,7 @@ export default class BetLevelsContainer extends cc.Component {
 
     private betLevels: number[] = [];
     private readonly itemHeight = 60;
-    private itemsOfColumnMax = 5;
+    private readonly itemsOfColumnMax = 5;
 
     onClickListener = {
         onStakeToggleChanged: (event, param) => {},
@@ -35,7 +35,7 @@ export default class BetLevelsContainer extends cc.Component {
     }
 
     initBetLevelItems() {
-        this.betLevels.map((value, index) => {
+        this.betLevels.forEach((value, index) => {
             const node = cc.instantiate(this.stakeLevelItemPrefab);
             this.containerNode.addChild(node);
 

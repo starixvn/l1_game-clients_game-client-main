@@ -58,7 +58,7 @@ export default class JackpotGame extends cc.Component {
                 this.playJackpotItemSound();
                 this.onItemClicked(index);
                 item.open();
-                this.items.map((item) => {
+                this.items.forEach((item) => {
                     const button = item.getComponent(cc.Button);
                     button.interactable = false;
                 });

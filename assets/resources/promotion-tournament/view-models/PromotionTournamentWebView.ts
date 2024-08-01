@@ -20,6 +20,13 @@ export default class PromotionTournamentWebView extends cc.Component {
                 this.node.destroy();
             });
         }
+        this.webView.node.on(
+            "loaded",
+            () => {
+                this.addCustomCSS();
+            },
+            this
+        );
 
         window.addEventListener("message", this.handleEvent, false);
     }
@@ -37,5 +44,19 @@ export default class PromotionTournamentWebView extends cc.Component {
     loadPromotionSite() {
         const url = promotionTournamentHandler.getListPromotionUrl();
         this.webView && (this.webView.url = url);
+    } 
+
+    addCustomCSS() {
+        try {
+            const iframe = this.webView?._impl?._iframe;
+            if (iframe) {
+                cc.log("Applying border-radius to iframe:", iframe.style);
+                iframe.style.borderRadius = "30px";
+            } else {
+                cc.log("iframe is null");
+            }
+        } catch (error) {
+            cc.log("Error injecting CSS:", error);
+        }
     }
 }

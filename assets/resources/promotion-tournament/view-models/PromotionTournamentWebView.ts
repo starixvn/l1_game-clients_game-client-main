@@ -53,6 +53,7 @@ export default class PromotionTournamentWebView extends cc.Component {
                 cc.log("Applying border-radius to iframe:", iframe.style);
                 iframe.style.borderRadius = "30px";
                 iframe.style.border = "2px solid #ffc000";
+                iframe.style.borderTopLeftRadius = "30px 29px";
             } else {
                 cc.log("iframe is null");
             }

@@ -112,6 +112,8 @@ export default class GameUtils {
                     reject(err);
                     return;
                 }
+
+                asset?.addRef();
                 resolve(asset);
             });
         });
@@ -183,17 +185,18 @@ export default class GameUtils {
         }
 
         uiManager.prefabCache.lobbyIcons[gameId] = prefab;
+        prefab?.addRef();
         return prefab;
     }
 
     public static async loadMiniPanelGameIcon(gameId: number): Promise<cc.Prefab> {
         const gameConfiguration = getGameConfiguration(gameId);
-
+        let gameIcon = null;
         if (!!gameConfiguration?.remoteBundle) {
             const path = `icons/SmallMiniPanel`;
             const devPath = `../games/*/${path}`;
             try {
-                return await BundleManager.getInstance().loadAsset<cc.Prefab>({
+                gameIcon = await BundleManager.getInstance().loadAsset<cc.Prefab>({
                     bundleId: gameId.toString(),
                     path: path,
                     pathForDevMode: devPath,
@@ -201,11 +204,15 @@ export default class GameUtils {
                 });
             } catch (e) {
                 cc.warn(`Missing prefab for ${path} `, e);
-                return null;
+                return gameIcon;
             }
         } else {
-            return GameUtils.loadResource(`minipanel/games/${gameId}`);
+            gameIcon = await GameUtils.loadResource(`minipanel/games/${gameId}`);
         }
+
+        gameIcon?.addRef();
+
+        return gameIcon;
     }
 
     public static async loadMiniGamePrefab(gameId: number, onProgress: (completed: number, total: number, item?: unknown) => void) {

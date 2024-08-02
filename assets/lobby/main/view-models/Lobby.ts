@@ -127,6 +127,7 @@ export default class Lobby extends cc.Component {
             AudioManager.getInstance().playClick();
             if (!this.settingMenuPrefab) {
                 this.settingMenuPrefab = await GameUtils.loadResource("prefabs/SettingMenu");
+                this.settingMenuPrefab?.addRef();
             }
 
             if (this.settingMenuPrefab) {
@@ -263,6 +264,7 @@ export default class Lobby extends cc.Component {
             };
             this.categoryContainer?.addChild(categoryNode);
         });
+        this.categoryPrefab?.addRef();
     }
 
     activeBgNewOnCategory() {

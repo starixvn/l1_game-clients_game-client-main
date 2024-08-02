@@ -63,6 +63,7 @@ export default class MusicPlayer {
         const promise = new Promise<cc.AudioClip>((resolve, rejectInPromise) => {
             reject = rejectInPromise;
             cc.resources.load(`music/${song}`, cc.AudioClip, (err, audioClip: cc.AudioClip) => {
+                audioClip?.addRef();
                 resolve(audioClip);
             });
         });

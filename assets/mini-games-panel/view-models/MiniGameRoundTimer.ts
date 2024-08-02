@@ -43,7 +43,7 @@ export default class MiniGameRoundTimer extends cc.Component {
 
     async initRoundTime() {
         const prefab = await GameUtils.asyncExecute<cc.Prefab>(this.node, GameUtils.loadResource(`minipanel/popup-mini-game/RoundTime`));
-
+        prefab?.addRef();
         const node = GameUtils.createNodeFromPrefab(prefab);
         this.roundTime = node.getComponent(RoundTime);
         this.time?.addChild(node);

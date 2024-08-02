@@ -151,6 +151,7 @@ export default class MiniPanel extends BaseComponent {
     initPopUpMiniGames() {
         GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`)
             .then((prefab) => {
+                prefab?.addRef();
                 const popUpMiniGameNode = cc.instantiate(prefab);
                 this.popupMiniGame = popUpMiniGameNode.getComponent(PopupMinigames);
                 if (this.popupMiniGame) {
@@ -186,6 +187,7 @@ export default class MiniPanel extends BaseComponent {
 
     async createBoostedOddsNode() {
         const boostedOddsPrefab = await GameUtils.loadResource(`boosted-odds/BoostedOdds`);
+        boostedOddsPrefab?.addRef();
         try {
             const boostedOddsNode = cc.instantiate(boostedOddsPrefab);
             this.boostedOdds = boostedOddsNode.getComponent(BoostedOdds);
@@ -435,8 +437,10 @@ export default class MiniPanel extends BaseComponent {
                 GameUtils.loadResource("boosted-odds/PromotionAnnouncements")
             );
             uiManager.prefabCache.miniPanelIcons["promotionAnnouncements"] = this.promotionAnnouncementPrefab;
+            this.promotionAnnouncementPrefab?.addRef();
         } else {
             this.promotionAnnouncementPrefab = uiManager.prefabCache.miniPanelIcons["promotionAnnouncements"];
+            this.promotionAnnouncementPrefab?.addRef();
         }
     }
 
@@ -578,6 +582,7 @@ export default class MiniPanel extends BaseComponent {
     async initNoticePrefab() {
         if (!this.noticePrefab) {
             this.noticePrefab = await GameUtils.loadResource("shared/prefabs/Notice");
+            this?.noticePrefab?.addRef();
         }
     }
 }

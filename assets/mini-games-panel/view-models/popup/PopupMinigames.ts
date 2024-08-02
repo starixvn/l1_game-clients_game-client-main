@@ -205,6 +205,7 @@ export default class PopupMinigames extends cc.Component {
     async createJackpotWinnerNode() {
         const jackpotPrefab = await GameUtils.loadResource("minipanel/popup-mini-game/jackpot-winner-anoucement");
         try {
+            jackpotPrefab?.addRef();
             const jackpot = cc.instantiate(jackpotPrefab);
             const jackpotWinner = jackpot.getComponent(JackpotWinner);
             this.jackpotWinner = jackpotWinner;

@@ -9,5 +9,6 @@ export default class CommonAudio extends cc.Component {
 
     onLoad() {
         AudioManager.getInstance().clickAudio = this.audioClick;
+        this.audioClick?.addRef();
     }
 }

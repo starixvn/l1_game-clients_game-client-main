@@ -39,6 +39,7 @@ export default class RemoteSpine extends cc.Component {
     async init(cache: SkeletonCache) {
         this.cache = cache;
         this.spine = this.node.getComponent(sp.Skeleton);
+
         await this.loadResources();
     }
 
@@ -54,7 +55,7 @@ export default class RemoteSpine extends cc.Component {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${versionType}`;
                     const url = `${this.host}/${resName}`;
-                    const data = await GameUtils.loadRemote(url);
+                    const data = (await GameUtils.loadRemote(url)) as any;
                     if (data) {
                         spineRes.push(data);
                     }

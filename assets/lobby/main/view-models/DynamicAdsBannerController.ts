@@ -51,6 +51,7 @@ export default class DynamicAdsBannerController extends BannerController {
             const bannerType = GameUtils.getBannerTypeByGameId(id);
             if (bannerType === BannerType.Prefab) {
                 if (this.adsSpineItemPrefab) {
+                    this.adsSpineItemPrefab?.addRef();
                     const item = cc.instantiate(this.adsSpineItemPrefab);
                     if (item) {
                         await this.createBannerWithAnimation(id, item);
@@ -60,6 +61,7 @@ export default class DynamicAdsBannerController extends BannerController {
             } else {
                 const bannerSpriteFrame = await GameUtils.asyncExecute(this?.node, GameUtils.getStaticBanner(id));
                 if (bannerSpriteFrame && this.adsItemPrefab) {
+                    this.adsItemPrefab?.addRef();
                     const item = cc.instantiate(this.adsItemPrefab);
                     if (item) {
                         this.createBanner(id, bannerSpriteFrame, item);

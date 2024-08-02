@@ -31,7 +31,7 @@ export default class RoundTimerResult extends cc.Component {
             if (this.resultType === RoundTimerResultType.TEXT) {
                 this.customResultPrefab = await GameUtils.loadResource(`minipanel/popup-mini-game/RoundTimerResultText`);
             }
-
+            this.customResultPrefab?.addRef();
             this.customResultNode = GameUtils.createNodeFromPrefab(this.customResultPrefab);
             this.node?.addChild(this.customResultNode);
         } catch (e) {

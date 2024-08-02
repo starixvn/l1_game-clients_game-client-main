@@ -9,7 +9,7 @@ const { ccclass, property } = cc._decorator;
 
 interface IWinningJackpot {
     winnerName: string;
-    prize: string;
+    pool: string;
     amount: number;
 }
 @ccclass
@@ -99,11 +99,11 @@ export default class JackpotGame extends cc.Component {
         const winningAmount = cc.instantiate(this.jackpotWinningAmountPrefab);
         this.winningNode.addChild(winningAmount);
 
-        const { amount, prize } = data;
+        const { amount, pool } = data;
         this.jackpotWinningPool = winningAmount.getComponent(JackpotWinningAmount);
 
         this.jackpotWinningPool.setAmount({ amount: amount, duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime });
-        this.jackpotWinningPool.loadPoolSprite(this.gameId, prize);
+        this.jackpotWinningPool.loadPoolSprite(this.gameId, pool);
     }
 
     hideTimer() {

@@ -309,7 +309,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.setStake(this.getStakeLevels()[0] || 0);
         this.setBetLevels(this.getStakeLevels());
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 1);
+            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 2);
         });
         this.loadUserSetting();
     }

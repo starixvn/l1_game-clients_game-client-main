@@ -27,7 +27,7 @@ export default class GameBaseProvablyFairHandler implements DataHandler {
         }
 
         if (data.spb) {
-            this.main.provablyFairComponent.handleResetNewRound();
+            this.main.provablyFairComponent?.handleResetNewRound();
         }
 
         if (data.roundPFResult) {

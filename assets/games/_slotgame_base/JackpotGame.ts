@@ -42,9 +42,9 @@ export default class JackpotGame extends cc.Component {
     public onItemClicked = (index: number) => {};
     public slotGameConfigs: SlotGameBaseConfigs;
 
+    private jackpotWinningPool: JackpotWinningAmount;
     private timerTween: cc.Tween;
     prizes = 0;
-
     public playSoundCallback = (type: ClassicSlotSound) => {};
 
     initBonusItems() {
@@ -84,12 +84,14 @@ export default class JackpotGame extends cc.Component {
         }
     }
 
-    openJackpot(data: IWinningJackpot) {
-        this.initJackpotWinningAmount(data);
+    async openJackpot(data: IWinningJackpot) {
+        const delayTime = 1;
+        await GameUtils.delayTime(delayTime);
+        this.initJackpotWinningAmount(data, delayTime);
         this.checkFinishJackpot();
     }
 
-    async initJackpotWinningAmount(data: IWinningJackpot) {
+    async initJackpotWinningAmount(data: IWinningJackpot, delayTime: number) {
         if (!this.jackpotWinningAmountPrefab) {
             return;
         }
@@ -98,10 +100,10 @@ export default class JackpotGame extends cc.Component {
         this.winningNode.addChild(winningAmount);
 
         const { amount, pool } = data;
-        const jackpotWinningPool = winningAmount.getComponent(JackpotWinningAmount);
+        this.jackpotWinningPool = winningAmount.getComponent(JackpotWinningAmount);
 
-        jackpotWinningPool.setAmount({ amount: amount, duration: this.slotGameConfigs.showJackpotWinningAmountDuration });
-        jackpotWinningPool.loadPoolSprite(this.gameId, pool);
+        this.jackpotWinningPool.setAmount({ amount: amount, duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime });
+        this.jackpotWinningPool.loadPoolSprite(this.gameId, pool);
     }
 
     hideTimer() {
@@ -109,31 +111,17 @@ export default class JackpotGame extends cc.Component {
         this.timerTween.stop();
     }
 
-    showWinningAmount() {
+    showJackpotWin() {
         this.playSoundCallback(ClassicSlotSound.BONUS_TOTAL);
         this.hideTimer();
         this.winningNode.active = true;
     }
 
-    checkFinishJackpot() {
-        const delayTime = 1;
-        cc.tween(this)
-            .delay(delayTime)
-            .call(() => this.showWinningAmount())
-            .delay(this.showJackpotWinTime(delayTime))
-            .call(() => {
-                this.onJackpotGameFinished();
-                this.node.destroy();
-            })
-            .start();
-    }
-
-    showJackpotWinTime(delayTime: number): number {
-        if (!this.slotGameConfigs) {
-            return 0;
-        }
-
-        return this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime;
+    async checkFinishJackpot() {
+        this.showJackpotWin();
+        await GameUtils.delayTime(this.slotGameConfigs.showJackpotWinningAmountDuration);
+        this.onJackpotGameFinished();
+        this.node.destroy();
     }
 
     start() {

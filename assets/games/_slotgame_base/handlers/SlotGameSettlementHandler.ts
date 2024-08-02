@@ -11,6 +11,9 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.handleApiError(data);
             this.main.isFinishedRound = true;
         }
+        if (data.jackpot) {
+            await this.handleNewJackpot(data.jackpot);
+        }
 
         if (data.bonuses) {
             this.handleBonuses(data.bonuses);
@@ -38,14 +41,23 @@ export default class SlotGameSettlementHandler implements DataHandler {
     }
 
     async handleBonuses(bonuses: any) {
+        await this.spinResultSpecialCase(bonuses);
+        await this.handleBonus(bonuses.bonus);
+    }
+
+    async handleNewJackpot(jackpot: any) {
+        await this.spinResultSpecialCase(jackpot);
+        await this.main.handleNewJackpot(jackpot);
+    }
+
+    async spinResultSpecialCase(data: { roundId: number; result: number[] }) {
         this.beforeSpin();
         this.updateFreeSpinCount();
 
-        const { roundId, bonus, result } = bonuses;
+        const { roundId, result } = data;
         this.main.setGameRound(roundId);
 
         await this.main.setDataAndSpin(result);
-        await this.handleBonus(bonus);
     }
 
     updateFreeSpinCount() {
@@ -67,13 +79,15 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
         this.main.setGameRound(roundId);
         if (bonus.count > 0) {
-            await this.waitingHandleBonus();
+            await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showTotalBonusAmountDuration);
+        } else if (jackpot) {
+            await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);
         } else {
             this.updateFreeSpinCount();
             await this.main.setDataAndSpin(result);
         }
 
-        !this.main.jackpotAccelerate && (await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot)));
+        await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot));
 
         this.main.showWinningItems(winningLines);
         if (bonus.count > 0) {
@@ -95,10 +109,10 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.handlePayline(jackpot, betWin, winningLines, bigWin, freeSpins);
     }
 
-    waitingHandleBonus(): Promise<void> {
+    waitingHandleSpecialCase(totalDuration: number): Promise<void> {
         return new Promise((resolve, reject) => {
             cc.tween(this.main)
-                .delay(this.main.slotGameConfigs.showTotalBonusAmountDuration) //show total bonus in bonus dialog
+                .delay(totalDuration) //show total bonus in bonus dialog
                 .call(resolve)
                 .start();
         });
@@ -110,7 +124,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
                 this.main.showLine(jackpot.winningLine + 1);
                 this.main.slotBoard.showWinningEffect(jackpot.positions, jackpot.symbol);
 
-                await this.main.showEffectJackpot(jackpot);
+                !this.main.jackpotAccelerate && (await this.main.showEffectJackpot(jackpot));
             }
             resolve();
         });

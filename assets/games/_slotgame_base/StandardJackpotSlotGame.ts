@@ -110,7 +110,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     handleGameGuide(guide: WebViewGuide, language, minBet, maxBet, isInPromotionTime) {
         const jackpotGuide = guide as StandarSlotGuide;
         jackpotGuide.enableJackpot = this.jackpotEnabled;
-        jackpotGuide.jackpotConfigs = this.getJackpotConfigs();
+        //jackpotGuide.jackpotConfigs = this.getJackpotConfigs();
         super.handleGameGuide(guide, language, minBet, maxBet, isInPromotionTime);
     }
 
@@ -133,7 +133,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         };
     }
 
-    async showEffectJackpot(jackpot) {
+    async handleNewJackpot(jackpot: any) {
         this.playSound(ClassicSlotSound.JACKPOT);
 
         return new Promise<void>(async (resolve, reject) => {

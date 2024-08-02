@@ -60,7 +60,7 @@ export default class SlotGameHistoryItem extends cc.Component {
     setData(betLog, index, gameId) {
         const { betWin, settlementResult, time, id, paylines, bet, totalAmount } = betLog;
         let win = betWin;
-        if (settlementResult.jackpot !== null) {
+        if (settlementResult.jackpot) {
             win += settlementResult.jackpot.winningAmount;
         }
 
@@ -88,7 +88,7 @@ export default class SlotGameHistoryItem extends cc.Component {
     }
 
     protected showJackpotIcon(jackpot) {
-        if (jackpot !== null && this.jackpotIcon) {
+        if (jackpot && this.jackpotIcon) {
             this.jackpotIcon.active = true;
         }
     }

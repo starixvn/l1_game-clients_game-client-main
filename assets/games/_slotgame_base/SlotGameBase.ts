@@ -1029,6 +1029,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         callbackAnim.setDuration(jackpotDuration);
         const bigWinAnimation = effect.getComponent(BigWinAnimation);
         bigWinAnimation.setAmount({ amount: jackpot.amount, duration: jackpotDuration - 1 });
+
         await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
     }
 
@@ -1123,6 +1124,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     showHideTopWinnersButton() {
+        //empty
+    }
+
+    async handleNewJackpot(jackpot: any) {
         //empty
     }
 }

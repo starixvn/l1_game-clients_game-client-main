@@ -12,7 +12,7 @@ export default class StandardSlotGameHistoryItem extends SlotGameHistoryItem {
         const { betWin, settlementResult } = betLog;
         let win = betWin;
         const { jackpot } = settlementResult;
-        if (jackpot !== null) {
+        if (jackpot) {
             win += settlementResult.jackpot.winningAmount;
             this.updateJackpotSprite(jackpot, gameId);
         }
@@ -20,7 +20,7 @@ export default class StandardSlotGameHistoryItem extends SlotGameHistoryItem {
     }
 
     protected showJackpotIcon(jackpot) {
-        if (jackpot !== null) {
+        if (jackpot) {
             this.jackpotIcon.active = true;
         } else {
             this.jackpotIcon.active = false;

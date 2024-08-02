@@ -44,7 +44,7 @@ export default class PromotionTournamentWebView extends cc.Component {
     loadPromotionSite() {
         const url = promotionTournamentHandler.getListPromotionUrl();
         this.webView && (this.webView.url = url);
-    } 
+    }
 
     addCustomCSS() {
         try {
@@ -52,6 +52,7 @@ export default class PromotionTournamentWebView extends cc.Component {
             if (iframe) {
                 cc.log("Applying border-radius to iframe:", iframe.style);
                 iframe.style.borderRadius = "30px";
+                iframe.style.border = "2px solid #ffc000";
             } else {
                 cc.log("iframe is null");
             }

@@ -97,6 +97,11 @@ export default class AudioManager {
         cc.audioEngine.stopMusic();
     }
 
+    stopMusicAndUnCache() {
+        cc.audioEngine.uncacheAll();
+        cc.audioEngine.stopAll();
+    }
+
     initDefaultStorage() {
         this.musicEnabled = StorageManager.get(this.MusicStorageKey) ?? true;
         this.sfxEnabled = StorageManager.get(this.SFXStorageKey) ?? true;

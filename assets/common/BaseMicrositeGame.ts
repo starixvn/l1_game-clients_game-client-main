@@ -89,6 +89,7 @@ export default class BaseMicrositeGame extends cc.Component {
         const audio = AudioManager.getInstance();
         audio.stopMusic();
         audio.stopAllSFX();
+        audio.stopMusicAndUnCache();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
         const asset = cc.assetManager as any;
@@ -157,6 +158,8 @@ export default class BaseMicrositeGame extends cc.Component {
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
+        const asset = cc.assetManager as any;
+        asset.releaseUnusedAssets();
 
         if (data.gameId > 0) {
             this.onClickJoinGame(data.gameId);

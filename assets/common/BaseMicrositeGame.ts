@@ -91,6 +91,8 @@ export default class BaseMicrositeGame extends cc.Component {
         audio.stopAllSFX();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
+        const asset = cc.assetManager as any;
+        asset.releaseUnusedAssets();
     }
 
     protected loadMicrositeGame() {

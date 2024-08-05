@@ -156,6 +156,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     protected async handleBackToLobby(data: MicrositeGameParams) {
+        this.webview.url = "";
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();

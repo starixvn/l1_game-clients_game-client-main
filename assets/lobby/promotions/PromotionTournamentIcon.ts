@@ -28,16 +28,23 @@ export default class PromotionTournamentIcon extends cc.Component {
     }
 
     async createIcon() {
-        const key = "promotionTournamentIcon";
-        if (!uiManager.prefabCache.miniPanelIcons[key]) {
-            this.iconPrb = await GameUtils.asyncExecute<cc.Prefab>(this.node, GameUtils.loadResource("promotion-tournament/views/icon"));
-            uiManager.prefabCache.miniPanelIcons[key] = this.iconPrb;
-        } else {
-            this.iconPrb = uiManager.prefabCache.miniPanelIcons[key];
+        try {
+            const key = "promotionTournamentIcon";
+            if (!uiManager.prefabCache.miniPanelIcons[key]) {
+                this.iconPrb = await GameUtils.asyncExecute<cc.Prefab>(
+                    this.node,
+                    GameUtils.loadResource("promotion-tournament/views/icon")
+                );
+                uiManager.prefabCache.miniPanelIcons[key] = this.iconPrb;
+            } else {
+                this.iconPrb = uiManager.prefabCache.miniPanelIcons[key];
+            }
+            this.icon = cc.instantiate(this.iconPrb);
+            this.icon.on("click", this.onClick, this);
+            this.node.addChild(this.icon);
+        } catch (e) {
+            console.warn(e);
         }
-        this.icon = cc.instantiate(this.iconPrb);
-        this.icon.on("click", this.onClick, this);
-        this.node.addChild(this.icon);
     }
 
     onClick() {

@@ -21,4 +21,9 @@ export default class CustomWebView extends cc.WebView {
     disableDivScroll() {
         this._impl._div.style.overflow = "hidden";
     }
+
+    handleDestroy() {
+        this._impl?.destroy();
+        this?.destroy();
+    }
 }

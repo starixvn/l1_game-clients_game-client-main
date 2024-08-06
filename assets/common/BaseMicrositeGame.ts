@@ -87,31 +87,22 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected stopMainAction() {
         const audio = AudioManager.getInstance();
-        audio.stopMusic();
-        audio.stopAllSFX();
         audio.stopMusicAndUnCache();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
         this.forceCleanup();
-        const asset = cc.assetManager as any;
-        asset?.releaseUnusedAssets();
         cc.game.pause();
     }
 
-    forceCleanup() {
+    protected forceCleanup() {
         // Clear asset manager cache
-        cc.assetManager.assets.clear();
-        cc.assetManager.bundles.clear();
-        cc.assetManager.cacheManager.clearCache();
-        cc.assetManager.cacheManager.clearLRU();
+        const asset = cc.assetManager as any;
+        asset?.releaseUnusedAssets();
+        cc.assetManager?.cacheManager?.removeCache();
 
         // Clear all actions
-        cc.director.getActionManager().removeAllActions();
-
-        // Force garbage collection again
-        if (typeof global !== "undefined" && global.gc) {
-            global.gc();
-        }
+        cc.director.getCollisionManager()?.clear();
+        cc.director.getScene()?.cleanup();
     }
 
     protected loadMicrositeGame() {
@@ -173,13 +164,15 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     protected async handleBackToLobby(data: MicrositeGameParams) {
-        this.webview.url = "";
-        this.webview.destroy();
+        if (this.webview) {
+            this.webview._impl._iframe.src = "about:blank";
+            this.webview?.handleDestroy();
+        }
+
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
-        const asset = cc.assetManager as any;
-        asset.releaseUnusedAssets();
+        this.forceCleanup();
         cc.game.resume();
 
         if (data.gameId > 0) {
@@ -215,7 +208,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     private postMessageToMicrosite(data: any) {
-        this.webview?._impl._iframe.contentWindow.postMessage(data, this.micrositeUrl);
+        this.webview?._impl?._iframe?.contentWindow?.postMessage(data, this.micrositeUrl);
     }
 
     private async handleCopyToClipboard(text: string) {

@@ -100,6 +100,8 @@ export default class AudioManager {
     stopMusicAndUnCache() {
         cc.audioEngine.uncacheAll();
         cc.audioEngine.stopAll();
+        cc.audioEngine.stopMusic();
+        cc.audioEngine.stopAllEffects();
     }
 
     initDefaultStorage() {

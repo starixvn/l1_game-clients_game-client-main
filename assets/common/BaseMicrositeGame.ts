@@ -157,12 +157,13 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected async handleBackToLobby(data: MicrositeGameParams) {
         this.webview.url = "";
+        this.webview.destroy();
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
         const asset = cc.assetManager as any;
         asset.releaseUnusedAssets();
-        cc.game.resume();
+        cc.game.restart();
 
         if (data.gameId > 0) {
             this.onClickJoinGame(data.gameId);

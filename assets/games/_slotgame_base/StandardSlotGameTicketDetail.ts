@@ -27,7 +27,7 @@ export default class StandardSlotGameTicketDetail extends SlotGameTicketDetail {
     showNoWinningPaylinesText(data) {
         const { settlementResult } = data;
 
-        if (settlementResult.winningPaylines.length > 0) {
+        if (settlementResult.winningPaylines.length > 0 || settlementResult.bonus.odds > 0 || settlementResult.freeSpins.odds > 0) {
             return;
         }
 

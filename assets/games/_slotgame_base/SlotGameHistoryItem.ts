@@ -69,8 +69,8 @@ export default class SlotGameHistoryItem extends cc.Component {
         this.time.string = getStringDateByTime(time);
         this.roundID.string = id;
         this.payLines.string = paylines.length;
-        this.bet.string = numberWithCommas(bet, 1);
-        this.totalAmount.string = betLog.freeSpin ? "0" : numberWithCommas(totalAmount, 1);
+        this.bet.string = numberWithCommas(bet, 2);
+        this.totalAmount.string = betLog.freeSpin ? "0" : numberWithCommas(totalAmount, 2);
         this.win.string = numberWithCommas(win, 2);
         this.data = betLog;
 

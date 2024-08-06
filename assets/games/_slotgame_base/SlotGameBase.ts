@@ -309,7 +309,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.setStake(this.getStakeLevels()[0] || 0);
         this.setBetLevels(this.getStakeLevels());
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 2);
+            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(
+                this.getStakeLevels()[index],
+                this.isAccelerate ? 2 : 1
+            );
         });
         this.loadUserSetting();
     }
@@ -427,7 +430,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateWinningBetLabel(bet: number) {
         this.updateUserBalance();
-        this.winningBet.string = numberWithCommas(bet);
+        this.winningBet.string = numberWithCommas(bet, this.isAccelerate ? 2 : 1);
     }
 
     onLineSelectionClick() {
@@ -555,7 +558,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     getCurrentTotalBet() {
         const total = this.stake * this.betChoices.length;
-        return +total.toFixed(1);
+        return +total;
     }
 
     protected setTotalBetLabel(text: string) {
@@ -567,13 +570,13 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateTotalBetLabel() {
         const total = this.getCurrentTotalBet();
-        this.setTotalBetLabel(numberWithCommas(total, 1));
+        this.setTotalBetLabel(numberWithCommas(total, this.isAccelerate ? 2 : 1));
     }
 
     setStake(stake: number) {
         this.stake = stake;
 
-        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, 2));
+        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, this.isAccelerate ? 2 : 1));
 
         this.onStakeChanged();
     }

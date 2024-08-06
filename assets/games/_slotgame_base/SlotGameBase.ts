@@ -135,7 +135,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     highlightJackpotPool = false;
 
     @property
-    jackpotAccelerate = false;
+    isAccelerate = false;
 
     protected betChoices: number[] = [];
     protected stake: number;
@@ -573,7 +573,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     setStake(stake: number) {
         this.stake = stake;
 
-        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, 1));
+        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, 2));
 
         this.onStakeChanged();
     }

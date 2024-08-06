@@ -124,7 +124,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
                 this.main.showLine(jackpot.winningLine + 1);
                 this.main.slotBoard.showWinningEffect(jackpot.positions, jackpot.symbol);
 
-                !this.main.jackpotAccelerate && (await this.main.showEffectJackpot(jackpot));
+                !this.main.isAccelerate && (await this.main.showEffectJackpot(jackpot));
             }
             resolve();
         });

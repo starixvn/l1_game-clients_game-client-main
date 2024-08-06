@@ -136,6 +136,7 @@ export default class StandardSlotGame extends SlotGameBase {
         this.loadSpritesWithGameId();
         this.updateBalanceColor();
         uiManager.emitterListener(InternalEvents.SLOT_PLAY_SOUND, (type: ClassicSlotSound) => this.playSound(type), this);
+        uiManager.emitterListener(InternalEvents.CLICK_HAMBURGER_MENU, () => this.hideStakeContrainer(), this);
     }
 
     onDestroy() {
@@ -454,7 +455,10 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     getStakeLevels(): number[] {
-        return this.gameConfigs?.betLevels;
+        if (this.isAccelerate) {
+            return this.gameConfigs?.betLevels;
+        }
+        return this.gameConfigs?.stakeLevels;
     }
 
     isShowStakeLevels(): boolean {
@@ -588,5 +592,9 @@ export default class StandardSlotGame extends SlotGameBase {
 
     addSoundStopReel(turbo: boolean, spinDuration: number) {
         // handle
+    }
+
+    closeBetLevel() {
+        console.log("close bet level");
     }
 }

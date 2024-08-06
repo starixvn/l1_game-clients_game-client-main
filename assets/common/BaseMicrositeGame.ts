@@ -92,9 +92,26 @@ export default class BaseMicrositeGame extends cc.Component {
         audio.stopMusicAndUnCache();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
+        this.forceCleanup();
         const asset = cc.assetManager as any;
-        asset.releaseUnusedAssets();
+        asset?.releaseUnusedAssets();
         cc.game.pause();
+    }
+
+    forceCleanup() {
+        // Clear asset manager cache
+        cc.assetManager.assets.clear();
+        cc.assetManager.bundles.clear();
+        cc.assetManager.cacheManager.clearCache();
+        cc.assetManager.cacheManager.clearLRU();
+
+        // Clear all actions
+        cc.director.getActionManager().removeAllActions();
+
+        // Force garbage collection again
+        if (typeof global !== "undefined" && global.gc) {
+            global.gc();
+        }
     }
 
     protected loadMicrositeGame() {

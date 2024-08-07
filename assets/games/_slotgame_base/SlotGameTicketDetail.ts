@@ -150,9 +150,10 @@ export default class SlotGameTicketDetail extends cc.Component {
 
     protected addJackpotLog(jackpot: any, bet, order: number) {
         let jackpotName = i18n.t("ui.jackpot");
+        const { pool } = jackpot;
 
-        if (jackpot.winningPrize) {
-            const prizeName = jackpot.winningPrize[0].toUpperCase() + jackpot.winningPrize.slice(1);
+        if (pool) {
+            const prizeName = pool[0].toUpperCase() + pool.slice(1);
             jackpotName += ` ${prizeName}`;
         }
 

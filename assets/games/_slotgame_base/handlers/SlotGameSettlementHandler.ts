@@ -87,7 +87,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
             await this.main.setDataAndSpin(result);
         }
 
-        await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot));
+        !this.main.isAccelerate && (await GameUtils.asyncExecute(this.main?.node, this.handleJackpot(jackpot)));
 
         this.main.showWinningItems(winningLines);
         if (bonus.count > 0) {
@@ -124,7 +124,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
                 this.main.showLine(jackpot.winningLine + 1);
                 this.main.slotBoard.showWinningEffect(jackpot.positions, jackpot.symbol);
 
-                !this.main.isAccelerate && (await this.main.showEffectJackpot(jackpot));
+                await this.main.showEffectJackpot(jackpot);
             }
             resolve();
         });

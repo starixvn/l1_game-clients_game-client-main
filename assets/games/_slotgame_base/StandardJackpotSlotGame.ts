@@ -135,6 +135,8 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
 
     async handleNewJackpot(jackpot: any) {
         this.playSound(ClassicSlotSound.JACKPOT);
+        this.showLine(jackpot.winningLine + 1);
+        this.slotBoard.showWinningEffect(jackpot.positions, jackpot.symbol);
 
         return new Promise<void>(async (resolve, reject) => {
             const effect = cc.instantiate(this.effectJackpot);

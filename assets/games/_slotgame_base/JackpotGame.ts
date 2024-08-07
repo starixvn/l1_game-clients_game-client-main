@@ -102,7 +102,10 @@ export default class JackpotGame extends cc.Component {
         const { amount, pool } = data;
         this.jackpotWinningPool = winningAmount.getComponent(JackpotWinningAmount);
 
-        this.jackpotWinningPool.setAmount({ amount: amount, duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime });
+        this.jackpotWinningPool.setAmount({
+            amount: GameUtils.getValueByCurrency(amount),
+            duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime
+        });
         this.jackpotWinningPool.loadPoolSprite(this.gameId, pool);
     }
 

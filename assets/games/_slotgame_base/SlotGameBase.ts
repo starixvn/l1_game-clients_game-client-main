@@ -557,7 +557,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     getCurrentTotalBet() {
-        const total = this.stake * this.betChoices.length;
+        const total = +this.stakeLabel.string * this.betChoices.length;
         return +total;
     }
 

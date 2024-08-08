@@ -1,6 +1,7 @@
 import { getLocale } from "../../common/auth/SessionManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import { SpecialSymbol } from "./SlotGameBaseConfigs";
 
 const { ccclass, property } = cc._decorator;
 
@@ -34,8 +35,6 @@ export default class SymbolPreview extends cc.Component {
     textImages: cc.Node = null;
 
     gameId: number;
-    private readonly JackpotSymbol = 10;
-    private readonly BonusSymbol = 8;
     private readonly FreeSpinsSymbol = 7;
 
     onLoad() {
@@ -61,7 +60,7 @@ export default class SymbolPreview extends cc.Component {
     }
 
     showSymbolText(symbolNumber: number, textColor: string) {
-        const showText = symbolNumber === this.FreeSpinsSymbol || symbolNumber === this.BonusSymbol;
+        const showText = symbolNumber === SpecialSymbol.FREESPIN || symbolNumber === SpecialSymbol.BONUS;
         const atlas = uiManager.prefabCache.gameAtlas[this.gameId];
 
         if (!showText) {
@@ -92,13 +91,13 @@ export default class SymbolPreview extends cc.Component {
     getSymbolName(symbolNumber: number): string {
         let symbolName = "";
         switch (symbolNumber) {
-            case this.FreeSpinsSymbol:
+            case SpecialSymbol.FREESPIN:
                 symbolName = "freespins";
                 break;
-            case this.BonusSymbol:
+            case SpecialSymbol.BONUS:
                 symbolName = "bonus";
                 break;
-            case this.JackpotSymbol:
+            case SpecialSymbol.JACKPOT:
                 const locale = getLocale();
                 symbolName = locale === "vi-VN" ? "jackpot.vi-VN" : "jackpot";
                 break;
@@ -123,7 +122,7 @@ export default class SymbolPreview extends cc.Component {
             const values = [key, odds[key]];
             node.children.forEach((child, childIndex) => {
                 const isShowJackpotText =
-                    symbol.index === this.JackpotSymbol &&
+                    symbol.index === SpecialSymbol.JACKPOT &&
                     jackpotEnabled &&
                     index === keys.length - 1 &&
                     childIndex === node.children.length - 1;
@@ -134,7 +133,7 @@ export default class SymbolPreview extends cc.Component {
                     jackpotNode.active = true;
                     const atlas = uiManager.prefabCache.gameAtlas[this.gameId];
                     const jackpotSprite = jackpotNode.getComponent(cc.Sprite);
-                    const symbolName = this.getSymbolName(this.JackpotSymbol);
+                    const symbolName = this.getSymbolName(SpecialSymbol.JACKPOT);
                     jackpotSprite.spriteFrame = atlas.getSpriteFrame(`text-symbol-${symbolName}`);
                     jackpotNode.color = cc.Color.WHITE.fromHEX(colorList[childIndex]);
 

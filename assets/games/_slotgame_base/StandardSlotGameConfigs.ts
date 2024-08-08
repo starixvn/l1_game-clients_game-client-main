@@ -2,8 +2,6 @@ import { SlotGameBaseConfigs } from "./SlotGameBaseConfigs";
 
 export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
     itemTypeCount = 11;
-    wildSymbol = 9;
-    jackpotSymbol = 10;
     showTotalBonusAmountDuration = 4;
     bonusTimeOut = 120;
     showJackpotWinningAmountDuration = 4;

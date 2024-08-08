@@ -1,7 +1,7 @@
 import _ = require("lodash");
 
 import GameUtils from "../../common/GameUtils";
-import { SlotGameBaseConfigs } from "./SlotGameBaseConfigs";
+import { SlotGameBaseConfigs, SpecialSymbol } from "./SlotGameBaseConfigs";
 import SlotReelItem from "./SlotReelItem";
 
 const { ccclass, property } = cc._decorator;
@@ -128,8 +128,7 @@ export default class SlotReel extends cc.Component {
     showWinningEffect(index: number, symbol: number) {
         const item = this.getItemBottom(index);
         const itemCopy = this.getItemTop(index);
-        const highlight =
-            item.index === symbol || (item.index === this.slotGameConfig.wildSymbol && symbol !== this.slotGameConfig.jackpotSymbol);
+        const highlight = item.index === symbol || (item.index === SpecialSymbol.WILD && symbol !== SpecialSymbol.JACKPOT);
         item.showWinningEffect(highlight);
         itemCopy.showWinningEffect(highlight);
         GameUtils.moveToOtherNode(item.node, this.winningContainer);

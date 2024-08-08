@@ -2,8 +2,6 @@ import { SlotGameBaseConfigs } from "../../_slotgame_base/SlotGameBaseConfigs";
 
 export class FortuneCatSlotConfigs implements SlotGameBaseConfigs {
     itemTypeCount = 11;
-    wildSymbol = 9;
-    jackpotSymbol = 10;
     showTotalBonusAmountDuration = 3;
     bonusTimeOut = 120;
 

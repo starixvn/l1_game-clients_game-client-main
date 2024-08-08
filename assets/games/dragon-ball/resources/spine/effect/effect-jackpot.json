@@ -1,9 +1,9 @@
 {
-"skeleton": { "hash": "On7SHc9msFqi42V26ui+gE5Z8Qw", "spine": "3.8.99" },
+"skeleton": { "hash": "LAkt2nZ+NEASPn+CEMr7a7Jxm6o", "spine": "3.8.99" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "effect-big-win", "parent": "root" },
-	{ "name": "title-jackpot", "parent": "effect-big-win", "y": 157.53 },
+	{ "name": "title", "parent": "effect-big-win", "y": 157.53 },
 	{ "name": "ball", "parent": "effect-big-win" },
 	{ "name": "ball-effect", "parent": "ball", "scaleX": 0.4, "scaleY": 0.4 },
 	{ "name": "ball-effect2", "parent": "ball", "scaleX": 0.8, "scaleY": 0.8 },
@@ -71,8 +71,8 @@
 	{ "name": "ball-power19", "bone": "ball-effect19", "blend": "additive" },
 	{ "name": "ball-power20", "bone": "ball-effect20", "blend": "additive" },
 	{ "name": "ball-power30", "bone": "ball-effect30", "blend": "additive" },
-	{ "name": "title-jackpot", "bone": "title-jackpot" },
-	{ "name": "title-jackpot2", "bone": "title-jackpot", "blend": "additive" }
+	{ "name": "title", "bone": "title" },
+	{ "name": "title-jackpot2", "bone": "title", "blend": "additive" }
 ],
 "skins": [
 	{
@@ -1443,7 +1443,7 @@
 					{ "name": "dragon" }
 				]
 			},
-			"title-jackpot": {
+			"title": {
 				"color": [
 					{ "color": "ffffff00", "curve": "stepped" },
 					{ "time": 1, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
@@ -1459,8 +1459,9 @@
 			}
 		},
 		"bones": {
-			"title-jackpot": {
+			"title": {
 				"translate": [
+					{},
 					{ "time": 1, "y": -157.53, "curve": 0.25, "c3": 0.75 },
 					{ "time": 1.2333, "y": -160.39, "curve": 0.25, "c3": 0.75 },
 					{ "time": 1.4, "y": -157.53 }

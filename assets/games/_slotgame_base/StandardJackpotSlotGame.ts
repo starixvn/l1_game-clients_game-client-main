@@ -24,7 +24,6 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     jackpotGamePrefab: cc.Node = null;
 
     private jackpotPoolPrefab: cc.Prefab;
-    private jackpotWinningAmountPrefab: cc.Prefab;
     private isLoadedSlotBoard = false;
 
     onLoad() {
@@ -46,8 +45,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         const normalPrefabs = super.getPrefabsList();
         const jackpotPrefabs = {
             // prefab name : prefab property
-            "effect-jackpot": "effectJackpot",
-            "effect-jackpot-winning-amount": "jackpotWinningAmountPrefab"
+            "effect-jackpot": "effectJackpot"
         };
         return Object.assign({}, normalPrefabs, jackpotPrefabs);
     }
@@ -121,7 +119,6 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         dialog.prizes = prizes;
         dialog.gameId = this.gameId;
         dialog.slotGameConfigs = this.slotGameConfigs;
-        dialog.jackpotWinningAmountPrefab = this.jackpotWinningAmountPrefab;
         dialog.playSoundCallback = this.bonusDialogPlaySound.bind(this);
         dialog.onJackpotGameFinished = onJackpotFinished;
         dialog.onItemClicked = (index) => {

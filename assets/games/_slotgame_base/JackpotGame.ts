@@ -26,6 +26,9 @@ export default class JackpotGame extends cc.Component {
     @property(cc.Prefab)
     jackpotItem: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    jackpotWinningAmountPrefab: cc.Prefab = null;
+
     protected _gameId;
     public set gameId(value: number) {
         this._gameId = value;
@@ -36,7 +39,6 @@ export default class JackpotGame extends cc.Component {
     }
 
     items: JackpotGameItem[] = [];
-    jackpotWinningAmountPrefab: cc.Prefab = null;
 
     public onJackpotGameFinished = () => {};
     public onItemClicked = (index: number) => {};
@@ -106,7 +108,7 @@ export default class JackpotGame extends cc.Component {
             amount: GameUtils.getValueByCurrency(amount),
             duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime
         });
-        this.jackpotWinningPool.loadPoolSprite(this.gameId, pool);
+        this.jackpotWinningPool.loadPoolSprite(pool);
     }
 
     hideTimer() {

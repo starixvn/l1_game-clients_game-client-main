@@ -1,4 +1,3 @@
-import { uiManager } from "../../managers/GameUIManager";
 import BigWinAnimation from "./BigWinAnimation";
 
 const { ccclass, property } = cc._decorator;
@@ -8,12 +7,22 @@ export default class JackpotWinningAmount extends BigWinAnimation {
     @property(cc.Sprite)
     poolSprite: cc.Sprite = null;
 
-    async loadSymbolsAtlas(gameId: number) {
-        return uiManager.prefabCache.gameAtlas[gameId];
+    async loadPoolSprite(pool: string) {
+        this.loadSpritePrize(pool).then((frame) => {
+            if (frame) {
+                this.poolSprite.spriteFrame = frame;
+            }
+        });
     }
 
-    async loadPoolSprite(gameId: number, pool: string) {
-        const atlas = await this.loadSymbolsAtlas(gameId);
-        this.poolSprite.spriteFrame = atlas.getSpriteFrame(`txt-jackpot-game-${pool}`);
+    async loadSpritePrize(pool: string) {
+        return new Promise<cc.SpriteFrame>((resolve) => {
+            const prizeTxt = `text-${pool}`;
+            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/prize-jackpot/${prizeTxt}`, cc.SpriteFrame, (err, frame) => {
+                if (frame) {
+                    resolve(frame);
+                }
+            });
+        });
     }
 }

@@ -11,7 +11,7 @@ export default class LuckyWheelIcon extends SafeDraggableItem {
     luckyWheelPrefab: cc.Prefab = null;
 
     private miniPanel: MiniPanel;
-    private readonly gameId = -1;
+    private isOpen = false;
 
     init(main: MiniPanel) {
         this.miniPanel = main;
@@ -31,10 +31,15 @@ export default class LuckyWheelIcon extends SafeDraggableItem {
     }
 
     openGame() {
-        if (uiManager.getCurrentGameId() === this.gameId) {
+        if (this.isOpen) {
             return;
         }
-        uiManager.setCurrentGameId(this.gameId);
+        this.isOpen = true;
+        this.scheduleOnce(() => {
+            this.isOpen = false;
+        }, 1);
+
+        uiManager.setCurrentGameId(LuckyWheelId);
         this.miniPanel.openNewSocketMiniGame(null, LuckyWheelId);
     }
 }

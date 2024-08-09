@@ -4,6 +4,7 @@ import SlotGameBase, { LineData } from "../SlotGameBase";
 import { SlotNotification } from "../SlotGameBottomMessage";
 
 export default class SlotGameSettlementHandler implements DataHandler {
+    private receivedJackpot = false;
     constructor(protected readonly main: SlotGameBase) {}
 
     async handle(data: any) {
@@ -12,10 +13,14 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.main.isFinishedRound = true;
         }
         if (data.jackpot) {
+            this.receivedJackpot = true;
             await this.handleNewJackpot(data.jackpot);
         }
 
         if (data.bonuses) {
+            if (this.receivedJackpot) {
+                await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);
+            }
             this.handleBonuses(data.bonuses);
         }
 

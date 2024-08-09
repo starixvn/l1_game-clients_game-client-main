@@ -17,7 +17,7 @@ cocos-unit-test:
     stage: test
     image: hub.lumigame.com/docker-hub/library/node:18.14-alpine
     tags:
-        - docker
+        - ci
     before_script:
         - npm set registry http://npm.lumigame.com
         - yarn install
@@ -36,6 +36,8 @@ cocos-sonarqube-report:
     needs:
         - cocos-unit-test
     image: hub.lumigame.com/base/sonarsource/sonar-scanner-cli:latest
+    tags:
+        - ci
     before_script:
         - echo "===========Start Sonar Scanner============="
         - echo "$SOURCE_PATHS";

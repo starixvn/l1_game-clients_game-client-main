@@ -29,6 +29,9 @@ export default class JackpotGame extends cc.Component {
     @property(cc.Prefab)
     jackpotWinningAmountPrefab: cc.Prefab = null;
 
+    @property(cc.Sprite)
+    sprTitle: cc.Sprite = null;
+
     protected _gameId;
     public set gameId(value: number) {
         this._gameId = value;
@@ -48,6 +51,14 @@ export default class JackpotGame extends cc.Component {
     private timerTween: cc.Tween;
     prizes = 0;
     public playSoundCallback = (type: ClassicSlotSound) => {};
+
+    onLoad() {
+        this.loadTitleJackpot().then((frame) => {
+            if (frame) {
+                this.sprTitle.spriteFrame = frame;
+            }
+        });
+    }
 
     initBonusItems() {
         this.createBonusItems();
@@ -132,5 +143,16 @@ export default class JackpotGame extends cc.Component {
     start() {
         const duration = this.slotGameConfigs.jackpotTimeOut;
         this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer.bind(this));
+    }
+
+    loadTitleJackpot() {
+        return new Promise<cc.SpriteFrame>((resolve) => {
+            const title = window.i18n.curLang === "vi" ? "jackpot-title-vi" : "jackpot-title";
+            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${title}`, cc.SpriteFrame, (err, frame) => {
+                if (frame) {
+                    resolve(frame);
+                }
+            });
+        });
     }
 }

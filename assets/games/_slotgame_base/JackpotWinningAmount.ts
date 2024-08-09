@@ -18,7 +18,7 @@ export default class JackpotWinningAmount extends BigWinAnimation {
     async loadSpritePrize(pool: string) {
         return new Promise<cc.SpriteFrame>((resolve) => {
             const prizeTxt = `text-${pool}`;
-            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/prize-jackpot/${prizeTxt}`, cc.SpriteFrame, (err, frame) => {
+            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${prizeTxt}`, cc.SpriteFrame, (err, frame) => {
                 if (frame) {
                     resolve(frame);
                 }

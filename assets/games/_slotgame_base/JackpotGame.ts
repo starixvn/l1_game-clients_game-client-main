@@ -3,7 +3,7 @@ import GameUtils from "../../common/GameUtils";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import JackpotGameItem from "./JackpotGameItem";
 import JackpotWinningAmount from "./JackpotWinningAmount";
-import { SlotGameBaseConfigs } from "./SlotGameBaseConfigs";
+import { StandardSlotGameConfigs } from "./StandardSlotGameConfigs";
 
 const { ccclass, property } = cc._decorator;
 
@@ -42,7 +42,7 @@ export default class JackpotGame extends cc.Component {
 
     public onJackpotGameFinished = () => {};
     public onItemClicked = (index: number) => {};
-    public slotGameConfigs: SlotGameBaseConfigs;
+    public slotGameConfigs: StandardSlotGameConfigs;
 
     private jackpotWinningPool: JackpotWinningAmount;
     private timerTween: cc.Tween;
@@ -131,6 +131,6 @@ export default class JackpotGame extends cc.Component {
 
     start() {
         const duration = this.slotGameConfigs.jackpotTimeOut;
-        this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer);
+        this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer.bind(this));
     }
 }

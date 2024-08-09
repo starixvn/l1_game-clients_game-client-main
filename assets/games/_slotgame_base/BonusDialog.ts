@@ -148,6 +148,6 @@ export default class BonusDialog extends cc.Component {
 
     start() {
         const duration = this.slotGameConfigs.bonusTimeOut;
-        this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer);
+        this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer.bind(this));
     }
 }

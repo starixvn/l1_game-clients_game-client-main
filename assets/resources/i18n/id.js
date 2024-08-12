@@ -116,6 +116,8 @@ const data = {
         invalidStakeLevel: "Level Taruhan Tidak Valid",
         invalidBonus: "Permainan Bonus Tidak Valid",
         openedBonus: "Permainan Bonus Tidak Valid",
+        invalidJackpot: "Permainan Jackpot Tidak Valid",
+        openedJackpot: "Permainan Jackpot Tidak Valid",
         gameExcluded: "%{gameName}\n\nAkun Anda tidak lagi diizinkan untuk memainkan game ini. Silakan coba game lain.",
         notEnoughSpin: "Putaran tidak cukup untuk dimainkan.",
         invalidBet: "Taruhan Tidak Valid",

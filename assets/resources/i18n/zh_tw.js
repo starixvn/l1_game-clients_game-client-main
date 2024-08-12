@@ -105,6 +105,8 @@ const data = {
         invalidStakeLevel: "無效的賭注級別",
         invalidBonus: "無效的獎金遊戲",
         openedBonus: "無效的獎金遊戲",
+        invalidJackpot: "無效Jackpo遊戲",
+        openedJackpot: "無效Jackpo遊戲",
         gameExcluded: "%{gameName}\n\n您的帳戶不再允許玩此遊戲。請嘗試其他遊戲。",
         notEnoughSpin: "沒有足夠的旋轉來玩。",
         invalidBet: "無效投注",

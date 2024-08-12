@@ -112,6 +112,8 @@ const data = {
         invalidFreespin: "Invalid Freespin ",
         invalidStakeLevel: "Invalid Stake level",
         invalidBonus: "Invalid Bonus Game",
+        invalidJackpot: "Invalid Jackpot Game",
+        openedJackpot: "Invalid Jackpot Game",
         openedBonus: "Invalid Bonus Game",
         gameExcluded: "%{gameName}\n\nYour account is no longer allowed to play this game. Please try other games.",
         notEnoughSpin: "Not enough Spin to play.",

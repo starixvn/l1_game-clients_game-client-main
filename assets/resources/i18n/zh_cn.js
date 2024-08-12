@@ -105,6 +105,8 @@ const data = {
         invalidStakeLevel: "无效的赌注级别",
         invalidBonus: "无效的奖金游戏",
         openedBonus: "无效的奖金游戏",
+        invalidJackpot: "无效Jackpot游戏",
+        openedJackpot: "无效Jackpot游戏",
         gameExcluded: "%{gameName}\n\n您的帐户不再允许玩此游戏。 请尝试其他游戏。",
         notEnoughSpin: "没有足够的旋转来玩。",
         invalidBet: "无效投注",

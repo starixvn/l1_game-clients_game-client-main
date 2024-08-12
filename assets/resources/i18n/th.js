@@ -122,6 +122,8 @@ const data = {
         invalidStakeLevel: "ระดับเงินเดิมพันไม่ถูกต้อง",
         invalidBonus: "โบนัสเกมไม่ถูกต้อง",
         openedBonus: "โบนัสเกมไม่ถูกต้อง",
+        invalidJackpot: "เกม Jackpot ไม่ถูกต้อง",
+        openedJackpot: "เกม Jackpot ไม่ถูกต้อง",
         gameExcluded: "%{gameName}\n\nบัญชีของคุณไม่ได้รับอนุญาตให้เล่นเกมนี้อีกต่อไป โปรดลองเกมอื่น",
         notEnoughSpin: "สปินไม่พอเล่น",
         invalidBet: "เดิมพันไม่ถูกต้อง",

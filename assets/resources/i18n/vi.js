@@ -115,6 +115,8 @@ const data = {
         invalidStakeLevel: "Mức cược không hợp lệ.",
         invalidBonus: "Lượt chơi Bonus không hợp lệ.",
         openedBonus: "Bonus thưởng không hợp lệ.",
+        invalidJackpot: "Lượt chơi Jackpot không hợp lệ.",
+        openedJackpot: "Jackpot thưởng không hợp lệ.",
         gameExcluded: "%{gameName}\n\nTài khoản của bạn hiện đang bị giới hạn, vui lòng thử các trò chơi khác.",
         notEnoughSpin: "Bạn không có lượt để quay.",
         invalidBet: "Cược không hợp lệ",

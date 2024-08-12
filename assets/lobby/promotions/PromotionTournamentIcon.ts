@@ -12,13 +12,23 @@ export default class PromotionTournamentIcon extends cc.Component {
     private iconPrb: cc.Prefab = null;
 
     protected onLoad(): void {
+        if (!this.hasPromotionConfig()) {
+            return;
+        }
         this.icon && (this.icon.active = false);
-        configs.subPromotionDomain && promotionTournamentHandler.init();
+        promotionTournamentHandler.init();
         promotionTournamentHandler.on(PromotionTournamentEvents.TOGGLE_ICON, this.toggleIcon.bind(this));
     }
 
     protected onDestroy(): void {
+        if (!this.hasPromotionConfig()) {
+            return;
+        }
         promotionTournamentHandler.clear();
+    }
+
+    private hasPromotionConfig() {
+        return !!configs.subPromotionDomain;
     }
 
     async toggleIcon(isActive: boolean) {

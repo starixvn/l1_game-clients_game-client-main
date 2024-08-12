@@ -2,6 +2,7 @@ import GameUtils from "../../common/GameUtils";
 import AudioManager from "../../common/audio/AudioManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { PromotionTournamentEvents, promotionTournamentHandler } from "./PromotionTournamentHandler";
+import configs = require("../../configs/Configs");
 
 const { ccclass } = cc._decorator;
 
@@ -12,7 +13,7 @@ export default class PromotionTournamentIcon extends cc.Component {
 
     protected onLoad(): void {
         this.icon && (this.icon.active = false);
-        promotionTournamentHandler.init();
+        configs.subPromotionDomain && promotionTournamentHandler.init();
         promotionTournamentHandler.on(PromotionTournamentEvents.TOGGLE_ICON, this.toggleIcon.bind(this));
     }
 

@@ -239,9 +239,11 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             };
             settings = defaultSettings;
         }
+
+        const hasBetLevel = this.gameConfigs.betLevels.filter((betLevel) => betLevel === settings.stake);
         this.turboToggle.isChecked = settings.turboEnabled;
         this.setBetChoices(settings.betChoices);
-        this.setStake(settings.stake);
+        this.setStake(hasBetLevel.length > 0 ? settings.stake : this.gameConfigs.defaultBetLevel);
 
         //clear setting
         GameUtils.clearGameSetting(this.gameId);
@@ -309,10 +311,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.setStake(!this.isAccelerate ? this.getStakeLevels()[0] || 0 : this.gameConfigs?.defaultBetLevel);
         this.setBetLevels(this.getStakeLevels());
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(
-                this.getStakeLevels()[index],
-                this.isAccelerate ? 2 : 1
-            );
+            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 2);
         });
         this.loadUserSetting();
     }
@@ -557,8 +556,11 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     getCurrentTotalBet() {
-        const total = +this.stakeLabel.string * this.betChoices.length;
-        return +total;
+        if (this.stake) {
+            const total = +this.stake.toFixed(2) * this.betChoices.length;
+            return +total;
+        }
+        return 0;
     }
 
     protected setTotalBetLabel(text: string) {
@@ -570,13 +572,13 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateTotalBetLabel() {
         const total = this.getCurrentTotalBet();
-        this.setTotalBetLabel(numberWithCommas(total, this.isAccelerate ? 2 : 1));
+        this.setTotalBetLabel(numberWithCommas(total, 2));
     }
 
     setStake(stake: number) {
         this.stake = stake;
 
-        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, this.isAccelerate ? 2 : 1));
+        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, 2));
 
         this.onStakeChanged();
     }

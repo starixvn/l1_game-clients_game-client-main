@@ -51,7 +51,7 @@ export default class PromotionTournamentIcon extends cc.Component {
             }
             this.icon = cc.instantiate(this.iconPrb);
             this.icon.on("click", this.onClick, this);
-            this.node.addChild(this.icon);
+            this.node?.addChild(this.icon);          
         } catch (e) {
             console.warn(e);
         }

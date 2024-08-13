@@ -13,15 +13,17 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.main.isFinishedRound = true;
         }
         if (data.jackpot) {
+            console.log("jackpot from service");
             this.receivedJackpot = true;
-            await this.handleNewJackpot(data.jackpot);
+            this.main.isSpinnedAction && (await this.handleNewJackpot(data.jackpot));
         }
 
         if (data.bonuses) {
+            console.log("bonuses from service");
             if (this.receivedJackpot) {
                 await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);
             }
-            this.handleBonuses(data.bonuses);
+            this.main.isSpinnedAction && this.handleBonuses(data.bonuses);
         }
 
         if (data.jackpotError) {

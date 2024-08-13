@@ -166,6 +166,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     isFinishedRound = true;
     receiviedJackpotPools;
     disabledLinesButton = true;
+    isSpinnedAction = false;
 
     public get jackpotEnabled() {
         return this._jackpotEnabled;
@@ -239,11 +240,17 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             };
             settings = defaultSettings;
         }
+        let betLevel = settings.stake;
+        if (this.isAccelerate) {
+            const betLevelTmp = this.gameConfigs.betLevels.filter((betLevel) => betLevel === settings.stake);
+            if (betLevelTmp.length === 0) {
+                betLevel = this.gameConfigs.defaultBetLevel;
+            }
+        }
 
-        const hasBetLevel = this.gameConfigs.betLevels.filter((betLevel) => betLevel === settings.stake);
         this.turboToggle.isChecked = settings.turboEnabled;
         this.setBetChoices(settings.betChoices);
-        this.setStake(hasBetLevel.length > 0 ? settings.stake : this.gameConfigs.defaultBetLevel);
+        this.setStake(betLevel);
 
         //clear setting
         GameUtils.clearGameSetting(this.gameId);
@@ -669,7 +676,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.spinButton.playAnimationSpin();
         const turbo = this.isTurboMode();
         this.playSound(turbo ? ClassicSlotSound.SPINNING_TURBO : ClassicSlotSound.SPINNING_NORMAL);
-
         const spinDuration = this.getCustomDuration("spin");
         this.addSoundStopReel(turbo, spinDuration);
         await GameUtils.asyncExecute(this.slotBoard?.node, this.slotBoard.spin(spinDuration, turbo));
@@ -689,6 +695,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     spin(): boolean {
         let success = false;
+        this.isSpinnedAction = true;
         if (this.betChoices.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }

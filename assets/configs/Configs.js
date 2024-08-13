@@ -1,5 +1,5 @@
 const defaultConfig = {
-    systemType: "VG",
+    systemType: "SC2",
     ssl: true,
     serverDomainMapper: {
         localhost: "lumigame.com",
@@ -18,7 +18,7 @@ const defaultConfig = {
     subGuideDomain: "l2-guide-1",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
-    subPromotionDomain: "l2-promotion1",
+    subPromotionDomain: "l2-promotion1"
     //clientSubDomain: "l1-client"
 };
 

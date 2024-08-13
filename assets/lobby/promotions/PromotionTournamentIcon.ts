@@ -3,6 +3,7 @@ import AudioManager from "../../common/audio/AudioManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { PromotionTournamentEvents, promotionTournamentHandler } from "./PromotionTournamentHandler";
 import configs = require("../../configs/Configs");
+import { SystemType } from "../../ISystem";
 
 const { ccclass } = cc._decorator;
 
@@ -12,23 +13,21 @@ export default class PromotionTournamentIcon extends cc.Component {
     private iconPrb: cc.Prefab = null;
 
     protected onLoad(): void {
-        if (!this.hasPromotionConfig()) {
-            return;
+        if (this.supportPromotionTournament()) {
+            this.icon && (this.icon.active = false);
+            promotionTournamentHandler.init();
+            promotionTournamentHandler.on(PromotionTournamentEvents.TOGGLE_ICON, this.toggleIcon.bind(this));
         }
-        this.icon && (this.icon.active = false);
-        promotionTournamentHandler.init();
-        promotionTournamentHandler.on(PromotionTournamentEvents.TOGGLE_ICON, this.toggleIcon.bind(this));
     }
 
     protected onDestroy(): void {
-        if (!this.hasPromotionConfig()) {
-            return;
+        if (this.supportPromotionTournament()) {
+            promotionTournamentHandler.clear();
         }
-        promotionTournamentHandler.clear();
     }
 
-    private hasPromotionConfig() {
-        return !!configs.subPromotionDomain;
+    private supportPromotionTournament() {
+        return configs.systemType === SystemType.SC2;
     }
 
     async toggleIcon(isActive: boolean) {

@@ -175,7 +175,7 @@ export default class BaseMicrositeGame extends cc.Component {
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
         this.forceCleanup();
-        cc.game.restart();
+        // cc.game.restart();
 
         if (data.gameId > 0) {
             this.onClickJoinGame(data.gameId);

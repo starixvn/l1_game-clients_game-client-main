@@ -401,6 +401,8 @@ export default class MiniPanel extends BaseComponent {
     }
 
     loadGameRoom(name) {
+        cc.director.getScene()?.cleanup();
+
         const gameId = getGameId(name);
 
         if (uiManager.getCurrentGameId() !== +gameId || isMiniGame(name)) {

@@ -402,6 +402,8 @@ export default class GameUtils {
     }
 
     public static async loadScene(gameId, sceneName: string) {
+        cc.director.getScene()?.cleanup();
+
         await new Promise<void>((resolve) => {
             cc.director.preloadScene(
                 sceneName,

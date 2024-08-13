@@ -102,9 +102,6 @@ export default class BaseMicrositeGame extends cc.Component {
         // Clear all actions
         cc.director.getCollisionManager()?.clear();
         cc.director.getScene()?.cleanup();
-
-        // Forces the garbage collection
-        cc.sys.garbageCollect();
     }
 
     protected loadMicrositeGame() {

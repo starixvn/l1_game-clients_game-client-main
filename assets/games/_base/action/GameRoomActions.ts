@@ -100,6 +100,8 @@ export const closeGame = (game: any) => () => {
 
     const isGameShow = appManager.GAME_IS_SHOWED;
     game.outRoomGame().then(() => {
+        const asset = cc.assetManager as any;
+        asset?.releaseUnusedAssets();
         if (appManager.isDirectMode) {
             if (isGameShow && game?.closeGameByClick) {
                 appManager.backToOperatorLobby();

@@ -98,11 +98,13 @@ export default class BaseMicrositeGame extends cc.Component {
         // Clear asset manager cache
         const asset = cc.assetManager as any;
         asset?.releaseUnusedAssets();
-        cc.assetManager?.cacheManager?.removeCache();
 
         // Clear all actions
         cc.director.getCollisionManager()?.clear();
         cc.director.getScene()?.cleanup();
+
+        // Forces the garbage collection
+        cc.sys.garbageCollect();
     }
 
     protected loadMicrositeGame() {

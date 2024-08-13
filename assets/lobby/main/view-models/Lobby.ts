@@ -136,6 +136,7 @@ export default class Lobby extends cc.Component {
                     try {
                         if (!this.logoutPrefab) {
                             this.logoutPrefab = await GameUtils.loadResource("prefabs/LogoutPopup");
+                            this.logoutPrefab?.addRef();
                         }
 
                         if (this.logoutPrefab) {
@@ -550,6 +551,7 @@ export default class Lobby extends cc.Component {
             if (!this.luckyWheelIcon && userManager.availSpins > 0) {
                 GameUtils.loadResource(`games/lucky-wheel/LuckyWheelIcon`).then((prefab) => {
                     if (!this.luckyWheelIcon) {
+                        prefab?.addRef();
                         const node = cc.instantiate(prefab);
                         this.redhat?.insertChild(node, 0);
                         this.luckyWheelIcon = node.getComponent(LuckyWheelIcon);

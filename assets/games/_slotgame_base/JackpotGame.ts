@@ -147,7 +147,7 @@ export default class JackpotGame extends cc.Component {
 
     loadTitleJackpot() {
         return new Promise<cc.SpriteFrame>((resolve) => {
-            const title = window.i18n.curLang === "vi" ? "jackpot-title-vi" : "jackpot-title";
+            const title = `jackpot-title-${window.i18n.curLang}`;
             cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${title}`, cc.SpriteFrame, (err, frame) => {
                 if (frame) {
                     resolve(frame);

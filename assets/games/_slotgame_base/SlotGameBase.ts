@@ -240,17 +240,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             };
             settings = defaultSettings;
         }
-        let betLevel = settings.stake;
-        if (this.isAccelerate) {
-            const betLevelTmp = this.gameConfigs.betLevels.filter((betLevel) => betLevel === settings.stake);
-            if (betLevelTmp.length === 0) {
-                betLevel = this.gameConfigs.defaultBetLevel;
-            }
-        }
 
         this.turboToggle.isChecked = settings.turboEnabled;
         this.setBetChoices(settings.betChoices);
-        this.setStake(betLevel);
+        this.setStake(settings.stake);
 
         //clear setting
         GameUtils.clearGameSetting(this.gameId);

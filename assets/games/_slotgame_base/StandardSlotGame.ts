@@ -126,7 +126,6 @@ export default class StandardSlotGame extends SlotGameBase {
     private betLevelsContainerNode: cc.Node = null;
     private slotBottomArea: SlotBottomArea = null;
 
-    disabledLinesButton = false;
     slotBoard: StandardSlotBoard;
 
     onLoad() {

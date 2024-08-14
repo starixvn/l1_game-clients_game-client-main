@@ -27,6 +27,8 @@ export default class LineSelectionDialog extends cc.Component {
 
     private timer = 0;
 
+    isAccelerate = false;
+
     onConfirmCallback = (betChoices: number[]) => {};
 
     onLoad() {
@@ -125,11 +127,13 @@ export default class LineSelectionDialog extends cc.Component {
     }
 
     update(dt: number) {
-        this.timer++;
-        if (this.timer > 20) {
-            this.timer = 0;
-            const betChoices = this.getCurrentBetChoices();
-            this.confirmButton.interactable = betChoices.length > 0;
+        if (!this.isAccelerate) {
+            this.timer++;
+            if (this.timer > 20) {
+                this.timer = 0;
+                const betChoices = this.getCurrentBetChoices();
+                this.confirmButton.interactable = betChoices.length > 0;
+            }
         }
     }
 }

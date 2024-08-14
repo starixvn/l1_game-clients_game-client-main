@@ -1,3 +1,4 @@
+import GameUtils from "../../common/GameUtils";
 import BigWinAnimation from "./BigWinAnimation";
 
 const { ccclass, property } = cc._decorator;
@@ -8,21 +9,15 @@ export default class JackpotWinningAmount extends BigWinAnimation {
     poolSprite: cc.Sprite = null;
 
     async loadPoolSprite(pool: string) {
-        this.loadSpritePrize(pool).then((frame) => {
-            if (frame) {
-                this.poolSprite.spriteFrame = frame;
-            }
-        });
-    }
-
-    async loadSpritePrize(pool: string) {
-        return new Promise<cc.SpriteFrame>((resolve) => {
+        try {
             const prizeTxt = `text-${pool}`;
-            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${prizeTxt}`, cc.SpriteFrame, (err, frame) => {
-                if (frame) {
-                    resolve(frame);
-                }
-            });
-        });
+            const frame = await GameUtils.loadResourceAsset<cc.SpriteFrame>(
+                `shared/slot-game/textures/jackpot/${prizeTxt}`,
+                cc.SpriteFrame
+            );
+            this.poolSprite.spriteFrame = frame;
+        } catch (error) {
+            console.log("Failed to load pool image");
+        }
     }
 }

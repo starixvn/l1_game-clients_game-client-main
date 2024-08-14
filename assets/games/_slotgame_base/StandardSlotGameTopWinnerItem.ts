@@ -1,6 +1,7 @@
 import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "./../../common/helpers/NumberHelper";
 import SlotGameTopWinnerItem from "./SlotGameTopWinnerItem";
+import SlotUtils from "./SlotUtils";
 
 const { ccclass } = cc._decorator;
 
@@ -16,7 +17,7 @@ export default class StandardSlotGameTopWinnerItem extends SlotGameTopWinnerItem
                 ? "Free Spin"
                 : numberWithCommas(GameUtils.getValueByExchangeRateCode(baseTotalAmount ?? totalAmount * rate, exchangeRateCode), 1);
         } else {
-            pool && (amountValue = pool[0].toUpperCase() + pool.slice(1));
+            pool && (amountValue = SlotUtils.formatNamePool(pool));
         }
 
         this.amount.string = amountValue;

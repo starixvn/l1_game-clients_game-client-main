@@ -32,36 +32,21 @@ export default class JackpotGame extends cc.Component {
     @property(cc.Sprite)
     sprTitle: cc.Sprite = null;
 
-    protected _gameId;
-    public set gameId(value: number) {
-        this._gameId = value;
-        this.initBonusItems();
-    }
-    public get gameId(): number {
-        return this._gameId;
-    }
-
     items: JackpotGameItem[] = [];
 
     public onJackpotGameFinished = () => {};
     public onItemClicked = (index: number) => {};
     public slotGameConfigs: StandardSlotGameConfigs;
-
-    private jackpotWinningPool: JackpotWinningAmount;
     private timerTween: cc.Tween;
     prizes = 0;
     public playSoundCallback = (type: ClassicSlotSound) => {};
 
     onLoad() {
-        this.loadTitleJackpot().then((frame) => {
-            if (frame) {
-                this.sprTitle.spriteFrame = frame;
-            }
-        });
+        this.loadTitleJackpot();
     }
 
-    initBonusItems() {
-        this.createBonusItems();
+    initJackpotItems() {
+        this.createJackpotItems();
         this.content.children.forEach((child, index) => {
             const item = child.getComponent(JackpotGameItem);
             item && this.items.push(item);
@@ -83,7 +68,7 @@ export default class JackpotGame extends cc.Component {
         this.playSoundCallback(ClassicSlotSound.BONUS_ITEM);
     }
 
-    createBonusItems() {
+    createJackpotItems() {
         if (!this.jackpotItem) {
             return;
         }
@@ -98,10 +83,14 @@ export default class JackpotGame extends cc.Component {
     }
 
     async openJackpot(data: IWinningJackpot) {
-        const delayTime = 1;
-        await GameUtils.delayTime(delayTime);
-        this.initJackpotWinningAmount(data, delayTime);
-        this.checkFinishJackpot();
+        try {
+            const delayTime = 1;
+            await GameUtils.delayTime(delayTime);
+            this.initJackpotWinningAmount(data, delayTime);
+            this.checkFinishJackpot();
+        } catch (error) {
+            console.log("open jackpot error");
+        }
     }
 
     async initJackpotWinningAmount(data: IWinningJackpot, delayTime: number) {
@@ -113,13 +102,13 @@ export default class JackpotGame extends cc.Component {
         this.winningNode.addChild(winningAmount);
 
         const { amount, pool } = data;
-        this.jackpotWinningPool = winningAmount.getComponent(JackpotWinningAmount);
+        const jackpotWinningAmount = winningAmount.getComponent(JackpotWinningAmount);
 
-        this.jackpotWinningPool.setAmount({
+        jackpotWinningAmount.setAmount({
             amount: GameUtils.getValueByCurrency(amount),
             duration: this.slotGameConfigs.showJackpotWinningAmountDuration - delayTime
         });
-        this.jackpotWinningPool.loadPoolSprite(pool);
+        jackpotWinningAmount.loadPoolSprite(pool);
     }
 
     hideTimer() {
@@ -145,14 +134,13 @@ export default class JackpotGame extends cc.Component {
         this.timerTween = GameUtils.initSlotCountDownTimer(this.timer, duration, this.hideTimer.bind(this));
     }
 
-    loadTitleJackpot() {
-        return new Promise<cc.SpriteFrame>((resolve) => {
+    async loadTitleJackpot() {
+        try {
             const title = `jackpot-title-${window.i18n.curLang}`;
-            cc.resources.load<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${title}`, cc.SpriteFrame, (err, frame) => {
-                if (frame) {
-                    resolve(frame);
-                }
-            });
-        });
+            const frame = await GameUtils.loadResourceAsset<cc.SpriteFrame>(`shared/slot-game/textures/jackpot/${title}`, cc.SpriteFrame);
+            this.sprTitle.spriteFrame = frame;
+        } catch (error) {
+            console.log("Failed to load jackpot title image");
+        }
     }
 }

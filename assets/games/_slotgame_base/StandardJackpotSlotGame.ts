@@ -109,39 +109,37 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     handleGameGuide(guide: WebViewGuide, language, minBet, maxBet, isInPromotionTime) {
         const jackpotGuide = guide as StandarSlotGuide;
         jackpotGuide.enableJackpot = this.jackpotEnabled;
-        //jackpotGuide.jackpotConfigs = this.getJackpotConfigs();
         super.handleGameGuide(guide, language, minBet, maxBet, isInPromotionTime);
     }
 
-    protected showJackpotGame(prizes: number, onJackpotFinished: () => void) {
-        const node = cc.instantiate(this.jackpotGamePrefab);
-        this.currentMiniPanel.addDialog(node);
-        const dialog = node.getComponent(JackpotGame);
-        dialog.prizes = prizes;
-        dialog.gameId = this.gameId;
-        dialog.slotGameConfigs = this.slotGameConfigs;
-        dialog.playSoundCallback = this.bonusDialogPlaySound.bind(this);
-        dialog.onJackpotGameFinished = onJackpotFinished;
-        dialog.onItemClicked = (index) => {
-            this.socket.emit("jackpot", { chest: index });
-        };
+    protected showJackpotGame(prizes: number) {
+        return new Promise<void>((resolve) => {
+            const node = cc.instantiate(this.jackpotGamePrefab);
+            this.currentMiniPanel.addDialog(node);
+            const dialog = node.getComponent(JackpotGame);
+            dialog.prizes = prizes;
+            dialog.slotGameConfigs = this.slotGameConfigs;
+            dialog.initJackpotItems();
+            dialog.playSoundCallback = this.bonusDialogPlaySound.bind(this);
+            dialog.onJackpotGameFinished = resolve;
+            dialog.onItemClicked = (index) => {
+                this.socket.emit("jackpot", { chest: index });
+            };
 
-        this.onOpenJackpotChest = (data) => {
-            dialog && dialog.openJackpot(data);
-        };
+            this.onOpenJackpotChest = (data) => {
+                dialog && dialog.openJackpot(data);
+            };
+        });
     }
 
     async handleNewJackpot(jackpot: any) {
         this.playSound(ClassicSlotSound.JACKPOT);
         this.showLine(jackpot.winningLine + 1);
         this.slotBoard.showWinningEffect(paylines[jackpot.winningLine], jackpot.symbol);
-
-        return new Promise<void>(async (resolve, reject) => {
-            const effect = cc.instantiate(this.effectJackpot);
-            const animation = effect.getComponent(CallbackAnimation);
-            animation.setDuration(this.getCustomDuration("jackpot"));
-            await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
-            this.showJackpotGame(jackpot.prizes, resolve);
-        });
+        const effect = cc.instantiate(this.effectJackpot);
+        const animation = effect.getComponent(CallbackAnimation);
+        animation.setDuration(this.getCustomDuration("jackpot"));
+        await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
+        await this.showJackpotGame(jackpot.prizes);
     }
 }

@@ -4,8 +4,8 @@ export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
     itemTypeCount = 11;
     showTotalBonusAmountDuration = 4;
     bonusTimeOut = 120;
-    showJackpotWinningAmountDuration = 4;
-    jackpotTimeOut = 60;
+    showJackpotWinningAmountDuration? = 4;
+    jackpotTimeOut? = 60;
 
     normalMode = {
         spinDuration: 1,

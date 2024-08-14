@@ -1150,10 +1150,10 @@ export default class GameUtils {
         return data?.remainingTime > main.config.betTime ? data.roundId - 1 : data.roundId;
     };
 
-    public static loadResourceAsset(path: string, assetType: typeof cc.Asset): Promise<cc.AudioClip> {
-        return new Promise((resolve) => {
-            cc.resources.load(path, assetType, (err, audio: cc.AudioClip) => {
-                resolve(audio);
+    public static loadResourceAsset<T>(path: string, assetType: typeof cc.Asset): Promise<T> {
+        return new Promise<T>((resolve) => {
+            cc.resources.load(path, assetType, (err, asset) => {
+                resolve(asset as T);
             });
         });
     }

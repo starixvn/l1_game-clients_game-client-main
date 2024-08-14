@@ -3,6 +3,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 import GameUtils from "../../common/GameUtils";
 import SlotGameTicketDetailItem from "./SlotGameTicketDetailItem";
+import SlotUtils from "./SlotUtils";
 
 const { ccclass, property } = cc._decorator;
 
@@ -153,7 +154,7 @@ export default class SlotGameTicketDetail extends cc.Component {
         const { pool } = jackpot;
 
         if (pool) {
-            const prizeName = pool[0].toUpperCase() + pool.slice(1);
+            const prizeName = SlotUtils.formatNamePool(pool);
             jackpotName += ` ${prizeName}`;
         }
 

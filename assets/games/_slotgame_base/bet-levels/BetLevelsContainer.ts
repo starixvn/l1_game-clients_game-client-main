@@ -20,8 +20,6 @@ export default class BetLevelsContainer extends cc.Component {
     };
 
     onLoad() {
-        this.orderASCBetLevel();
-
         this.containerNode.destroyAllChildren();
     }
 
@@ -29,6 +27,7 @@ export default class BetLevelsContainer extends cc.Component {
         if (betLevels.length <= 0) {
             return;
         }
+        betLevels.sort((a, b) => a - b);
         this.betLevels = betLevels;
         this.initBetLevelItems();
         this.calculateContainerHeight();
@@ -58,10 +57,6 @@ export default class BetLevelsContainer extends cc.Component {
         }
 
         this.containerNode.height = height;
-    }
-
-    private orderASCBetLevel() {
-        this.betLevels.sort((a, b) => a - b);
     }
 
     onHideBetLevelContainer() {

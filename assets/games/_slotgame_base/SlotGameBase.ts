@@ -132,8 +132,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             return !!this.jackpotPoolInfo;
         }
     })
-    highlightJackpotPool = false;
-
     @property
     isAccelerate = false;
 
@@ -165,7 +163,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     turboPaylineDuration = 0.75;
     isFinishedRound = true;
     receiviedJackpotPools;
-    disabledLinesButton = true;
     isSpinnedAction = false;
 
     public get jackpotEnabled() {
@@ -311,7 +308,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.setStake(!this.isAccelerate ? this.getStakeLevels()[0] || 0 : this.gameConfigs?.defaultBetLevel);
         this.setBetLevels(this.getStakeLevels());
         this.stakeContainer.toggleItems.forEach((item, index) => {
-            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(this.getStakeLevels()[index], 2);
+            item.node.getChildByName("value").getComponent(cc.Label).string = numberWithCommas(
+                this.getStakeLevels()[index],
+                this.numberToFixed()
+            );
         });
         this.loadUserSetting();
     }
@@ -429,7 +429,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateWinningBetLabel(bet: number) {
         this.updateUserBalance();
-        this.winningBet.string = numberWithCommas(bet, this.isAccelerate ? 2 : 1);
+        this.winningBet.string = numberWithCommas(bet, this.numberToFixed());
     }
 
     onLineSelectionClick() {
@@ -442,6 +442,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.currentMiniPanel.addDialog(node);
 
         const dialog = node.getComponent(LineSelectionDialog);
+        dialog.isAccelerate = this.isAccelerate;
         dialog.setCheckItems(this.betChoices);
         dialog.onConfirmCallback = (betChoices) => {
             this.betChoices = betChoices;
@@ -572,13 +573,13 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateTotalBetLabel() {
         const total = this.getCurrentTotalBet();
-        this.setTotalBetLabel(numberWithCommas(total, 2));
+        this.setTotalBetLabel(numberWithCommas(total, this.numberToFixed()));
     }
 
     setStake(stake: number) {
         this.stake = stake;
 
-        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, 2));
+        this.stakeLabel && (this.stakeLabel.string = numberWithCommas(stake, this.numberToFixed()));
 
         this.onStakeChanged();
     }
@@ -614,7 +615,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.updateJackpotPool();
         this.updateStakeContainer();
         this.hideStakeContrainer();
-        if (this.highlightJackpotPool && this.jackpotPoolInfo) {
+        if (this.jackpotPoolInfo && !this.isAccelerate) {
             this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
         }
     }
@@ -657,7 +658,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     lineButtonStatus(status: boolean) {
-        if (this.lineButton && this.disabledLinesButton) {
+        if (this.isAccelerate) {
+            return;
+        }
+        if (this.lineButton) {
             this.lineButton.interactable = status;
         }
     }
@@ -1025,7 +1029,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         return dialog;
     }
 
-    async showEffectJackpot(jackpot) {
+    async showEffectJackpot(amount: number) {
         this.playSound(ClassicSlotSound.JACKPOT);
 
         const effect = cc.instantiate(this.effectJackpot);
@@ -1033,7 +1037,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         const jackpotDuration = this.getCustomDuration("jackpot");
         callbackAnim.setDuration(jackpotDuration);
         const bigWinAnimation = effect.getComponent(BigWinAnimation);
-        bigWinAnimation.setAmount({ amount: jackpot.amount, duration: jackpotDuration - 1 });
+        bigWinAnimation.setAmount({ amount: amount, duration: jackpotDuration - 1 });
 
         await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
     }
@@ -1065,7 +1069,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
         if (this.jackpotPoolInfo) {
             this.jackpotPoolInfo.setData(dataList);
-            this.highlightJackpotPool && this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
+            !this.isAccelerate && this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
         }
     }
 
@@ -1118,6 +1122,13 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     override checkShowUmMessage(data: any) {
         return !this.isAnimatingResult;
+    }
+
+    numberToFixed(): number {
+        if (this.isAccelerate) {
+            return 2;
+        }
+        return 1;
     }
 
     initBottomArea() {

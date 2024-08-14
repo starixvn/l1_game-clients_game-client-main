@@ -28,7 +28,7 @@ export default class AudioUtils {
         try {
             const loadedClip: cc.AudioClip = bundle
                 ? await GameUtils.loadAssetsFromBundle(bundle, path, cc.AudioClip, null)
-                : await GameUtils.loadResourceAsset(path, cc.AudioClip);
+                : await GameUtils.loadResourceAsset<cc.AudioClip>(path, cc.AudioClip);
 
             return loadedClip;
         } catch (error) {

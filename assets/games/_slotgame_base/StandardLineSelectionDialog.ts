@@ -13,8 +13,4 @@ export default class StandardLineSelectionDialog extends LineSelectionDialog {
     loadPaylineSprite(num): cc.SpriteFrame {
         return this.atlas.getSpriteFrame(`line-selection-${num}`);
     }
-
-    update(dt: number) {
-        // empty
-    }
 }

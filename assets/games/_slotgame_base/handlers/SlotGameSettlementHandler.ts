@@ -13,13 +13,11 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.main.isFinishedRound = true;
         }
         if (data.jackpot) {
-            console.log("jackpot from service");
             this.receivedJackpot = true;
             this.main.isSpinnedAction && (await this.handleNewJackpot(data.jackpot));
         }
 
         if (data.bonuses) {
-            console.log("bonuses from service");
             if (this.receivedJackpot) {
                 await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);
             }
@@ -31,8 +29,10 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         if (data.finish) {
-            await this.handleFinish(data.finish);
-            this.main.isFinishedRound = true;
+            if (this.main.isSpinnedAction) {
+                await this.handleFinish(data.finish);
+                this.main.isFinishedRound = true;
+            }
         }
     }
 

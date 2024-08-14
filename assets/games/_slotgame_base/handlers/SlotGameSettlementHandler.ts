@@ -32,6 +32,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
             if (this.main.isSpinnedAction) {
                 await this.handleFinish(data.finish);
                 this.main.isFinishedRound = true;
+                this.main.isSpinnedAction = false;
             }
         }
     }

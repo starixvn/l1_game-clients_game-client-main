@@ -688,7 +688,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     spin(): boolean {
         let success = false;
-        this.isSpinnedAction = true;
         if (this.betChoices.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }
@@ -723,6 +722,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         }
         this.showMessageDisplay(SlotNotification.SPINNING);
         this.socket.emit("bet", data);
+        this.isSpinnedAction = true;
         success = true;
         return success;
     }

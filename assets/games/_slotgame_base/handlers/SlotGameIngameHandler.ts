@@ -10,8 +10,8 @@ export default class SlotGameIngameHandler implements DataHandler {
             this.main.setTotalFreeSpins(total);
             let betLevel = bet;
             if (this.main.isAccelerate) {
-                const betLevels = this.main.gameConfigs.betLevels.filter((betLevel) => betLevel === bet);
-                if (betLevels.length === 0) {
+                const haveBet = this.main.gameConfigs.betLevels.includes(bet);
+                if (!haveBet) {
                     betLevel = this.main.gameConfigs.defaultBetLevel;
                 }
             }

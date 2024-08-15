@@ -1,4 +1,3 @@
-import GameUtils from "../../common/GameUtils";
 import HoverItemBase from "../../common/HoverItemBase";
 
 const { ccclass, property } = cc._decorator;
@@ -15,7 +14,6 @@ export default class JackpotGameItem extends cc.Component {
     open() {
         this.openChestSkeleton.clearTracks();
         this.openChestSkeleton.setAnimation(0, "open", false);
-        GameUtils.delayTime(0.5);
     }
 
     initEventJackpotItem() {

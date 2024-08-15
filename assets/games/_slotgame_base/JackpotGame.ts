@@ -123,10 +123,14 @@ export default class JackpotGame extends cc.Component {
     }
 
     async checkFinishJackpot() {
-        this.showJackpotWin();
-        await GameUtils.delayTime(this.slotGameConfigs.showJackpotWinningAmountDuration);
-        this.onJackpotGameFinished();
-        this.node.destroy();
+        try {
+            this.showJackpotWin();
+            await GameUtils.delayTime(this.slotGameConfigs.showJackpotWinningAmountDuration);
+            this.onJackpotGameFinished();
+            this.node.destroy();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     start() {

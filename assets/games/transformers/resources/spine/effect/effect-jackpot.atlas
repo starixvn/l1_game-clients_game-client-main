@@ -1,117 +1,26 @@
 
 effect-jackpot.png
-size: 1665,419
+size: 1116,250
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bg_coins_Lb
-  rotate: false
-  xy: 873, 66
-  size: 114, 54
-  orig: 114, 59
-  offset: 0, 4
-  index: -1
-bg_coins_Rb
-  rotate: true
-  xy: 1258, 19
-  size: 150, 50
-  orig: 150, 68
-  offset: 0, 18
-  index: -1
-bg_coins_f
-  rotate: false
-  xy: 263, 22
-  size: 305, 65
-  orig: 315, 77
-  offset: 4, 11
-  index: -1
-coin_A_00
-  rotate: true
-  xy: 1123, 35
-  size: 134, 133
-  orig: 136, 135
-  offset: 2, 2
-  index: -1
-coin_A_01
-  rotate: false
-  xy: 989, 26
-  size: 132, 143
-  orig: 140, 150
-  offset: 8, 6
-  index: -1
-coin_A_02
-  rotate: true
-  xy: 729, 13
-  size: 90, 142
-  orig: 91, 150
-  offset: 1, 1
-  index: -1
-coin_A_03
-  rotate: false
-  xy: 827, 122
-  size: 160, 47
-  orig: 161, 48
-  offset: 0, 0
-  index: -1
-coin_A_04
-  rotate: true
-  xy: 770, 105
-  size: 145, 55
-  orig: 147, 58
-  offset: 1, 2
-  index: -1
-coin_A_05
-  rotate: false
-  xy: 585, 127
-  size: 183, 123
-  orig: 186, 128
-  offset: 1, 5
-  index: -1
-eff_spot_1
-  rotate: true
-  xy: 1362, 9
-  size: 408, 301
-  orig: 410, 307
-  offset: 0, 6
-  index: -1
-frame
-  rotate: false
-  xy: 2, 252
-  size: 827, 165
-  orig: 827, 165
-  offset: 0, 0
-  index: -1
 fx_bloom
   rotate: false
-  xy: 263, 89
+  xy: 794, 87
   size: 320, 161
   orig: 322, 162
   offset: 1, 0
   index: -1
 fx_glow01
   rotate: false
-  xy: 831, 171
+  xy: 2, 2
   size: 529, 246
   orig: 529, 246
   offset: 0, 0
   index: -1
-fx_glow02
-  rotate: false
-  xy: 585, 2
-  size: 142, 123
-  orig: 142, 123
-  offset: 0, 0
-  index: -1
-fx_sparkle
-  rotate: false
-  xy: 873, 19
-  size: 43, 45
-  orig: 50, 51
-  offset: 3, 2
-  index: -1
 jackpot-box
   rotate: true
-  xy: 2, 19
+  xy: 533, 17
   size: 231, 259
   orig: 231, 259
   offset: 0, 0

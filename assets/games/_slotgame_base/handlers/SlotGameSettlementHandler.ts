@@ -20,7 +20,6 @@ export default class SlotGameSettlementHandler implements DataHandler {
         if (data.bonuses) {
             if (this.receivedJackpot) {
                 await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);
-                this.receivedJackpot = false;
             }
             this.main.isSpinnedAction && this.handleBonuses(data.bonuses);
         }
@@ -34,6 +33,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
                 await this.handleFinish(data.finish);
                 this.main.isFinishedRound = true;
                 this.main.isSpinnedAction = false;
+                this.receivedJackpot = false;
             }
         }
     }
@@ -50,7 +50,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
     }
 
     async handleBonuses(bonuses: any) {
-        await this.spinResultSpecialCase(bonuses);
+        !this.receivedJackpot && (await this.spinResultSpecialCase(bonuses));
         await this.handleBonus(bonuses.bonus);
     }
 

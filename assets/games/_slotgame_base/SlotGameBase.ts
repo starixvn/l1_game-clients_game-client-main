@@ -127,11 +127,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     })
     lightLinePrefab: cc.Prefab = null;
 
-    @property({
-        visible: function (this: SlotGameBase) {
-            return !!this.jackpotPoolInfo;
-        }
-    })
     @property
     isAccelerate = false;
 

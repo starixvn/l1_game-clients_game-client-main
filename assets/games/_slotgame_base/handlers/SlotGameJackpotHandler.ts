@@ -17,6 +17,7 @@ export default class SlotGameJackpotHandler implements DataHandler {
         }
 
         if (data.winningJackpot) {
+            console.timeEnd("jackpot");
             this.main.onOpenJackpotChest && this.main.onOpenJackpotChest(data.winningJackpot);
         }
     }

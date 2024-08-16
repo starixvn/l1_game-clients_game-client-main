@@ -56,10 +56,11 @@ export default class PopupMinigames extends cc.Component {
             this.node,
             GameUtils.loadMiniPanelGameIcon(this.lobbyMenuConfig.roundTimerGame.main)
         );
-
-        const node = cc.instantiate(prefab);
-        this.roundTimer?.addChild(node);
-        node.getChildByName("icon-game").active = false;
+        if (prefab) {
+            const node = cc.instantiate(prefab);
+            this.roundTimer?.addChild(node);
+            node.getChildByName("icon-game").active = false;
+        }
         roundTimerManager.requestRoundTimer();
     }
 

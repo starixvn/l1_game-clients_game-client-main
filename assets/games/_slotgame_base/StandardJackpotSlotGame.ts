@@ -136,10 +136,12 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         this.playSound(ClassicSlotSound.JACKPOT);
         this.showLine(jackpot.winningLine + 1);
         this.slotBoard.showWinningEffect(paylines[jackpot.winningLine], jackpot.symbol);
+        const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
         const effect = cc.instantiate(this.effectJackpot);
         const animation = effect.getComponent(CallbackAnimation);
         animation.setDuration(this.getCustomDuration("jackpot"));
         await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
+        transtition?.destroy();
         await this.showJackpotGame(jackpot.prizes);
     }
 }

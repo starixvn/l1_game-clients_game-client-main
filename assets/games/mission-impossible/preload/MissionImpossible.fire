@@ -5422,8 +5422,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 32,
-      "height": 32
+      "width": 36,
+      "height": 36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8590,17 +8590,20 @@
     "processWarningPrefab": {
       "__uuid__": "9a22cdf8-f34a-4857-9528-3db37d03c83b"
     },
+    "promptMessagePrefab": null,
     "miniNoticePrefab": {
       "__uuid__": "bbd28671-6825-49eb-930d-919acac5b9a0"
     },
     "noticeNode": {
       "__id__": 175
     },
+    "promptMessageContainer": null,
     "umNotice": null,
     "timeWaitNode": null,
     "timeWaitLabel": null,
     "animatedTime": null,
     "md5Component": null,
+    "provablyFairComponent": null,
     "gameRound": {
       "__id__": 105
     },
@@ -8696,6 +8699,7 @@
     "autoGenerateLines": true,
     "linePrefab": null,
     "lightLinePrefab": null,
+    "isAccelerate": true,
     "slotBottomAreaPrefab": {
       "__uuid__": "bb4e0e5e-2f1c-4225-988c-eb970569f87f"
     },

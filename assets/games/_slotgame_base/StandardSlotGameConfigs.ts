@@ -26,7 +26,7 @@ export class StandardSlotGameConfigs implements SlotGameBaseConfigs {
         noWinningDuration: 0.5,
         freespinDuration: 1.5,
         bonusDuration: 1.5,
-        jackpotDuration: 2,
+        jackpotDuration: 1.5,
 
         bigWinDuration: 3.2,
         showBigWinValueDuration: 0.8,

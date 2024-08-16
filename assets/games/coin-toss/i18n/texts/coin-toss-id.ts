@@ -2,20 +2,22 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
-        "Biden_win": "Biden menang",
+        "Biden_win": "Harris menang",
         "game_icon_name": "Lempar Koin",
         "game_name": "Lempar Koin",
-        "glossary_head": "Biden",
+        "glossary_head": "Harris",
         "glossary_tail": "Trump",
         "trump_win": "Trump menang",
         "you_win": "KAMU MENANG"
     },
     "Common": {
+        "Loss": "Kalah",
         "back": "Kembali",
         "bet_amount_of_any_choice_incorrect": "Jumlah Taruhan Tidak Valid",
         "bet_choice": "Pilihan Taruhan",
         "bet_detail": "Detail Bet",
         "bet_history": "Sejarah Taruhan",
+        "bet_limit": "Batas taruhan",
         "bet_option_even": "Genap",
         "bet_option_odd": "Ganjil",
         "button_change": "Mengubah",
@@ -23,10 +25,12 @@ export const phrases = {
         "copy_failed_md5": "Fungsi salin untuk sementara tidak tersedia.",
         "copy_successfully_md5": "Salin berhasil!",
         "create_nick_name": "Buat Nama Panggilan Anda",
+        "details": "Details",
         "enter_your_name": "Masukkan nama panggilan Anda.",
         "game_excluded": "%{gameName}\n\nAkun Anda tidak lagi diizinkan untuk memainkan game ini. Silakan coba game lain.",
         "game_guide": "Panduan Permainan",
         "hand_not_active": "Tangan Tidak Aktif",
+        "hot": "PANAS",
         "invalid_bet": "Taruhan Tidak Valid",
         "invalid_deal_hands": "Jumlah Tangan tidak valid",
         "invalid_position": "Posisi Tidak Valid",
@@ -111,6 +115,7 @@ export const phrases = {
         "min_bet_hand": "Taruhan minimum untuk tangan ini adalah %{minBet}",
         "name_invalid": "Nama panggilan yang dimasukkan tidak valid, harap coba lagi.",
         "nickname_requirement": "Catatan:\n+ Nama panggilan harus antara 3 dan 14 karakter.\n+ Tidak boleh mengandung spasi, karakter khusus, dan karakter non-Inggris.\n+ Tidak dapat mengubah nama panggilan setelah mengirimkan. ",
+        "non_winning_payline": "Paylines yang tidak menang",
         "not_enough_money": "Akun Anda memiliki dana yang tidak mencukupi.",
         "notice": "ULASAN",
         "odds": "Odds",
@@ -168,9 +173,11 @@ export const phrases = {
         "time": "Waktu",
         "total": "Total",
         "total_stake": "Total Taruhan",
+        "total_win": "Total menang",
         "under_maintenance_suggest": "Silakan login kembali untuk melanjutkan permainan setelah maintenance selesai.",
         "under_maintenance_time": "Mulai dari %{startTime} hingga %{endTime} (GMT+8)",
         "win": "Menang",
+        "win_loss": "Menang Kalah",
         "you_reach_max_win": "Anda mencapai Maksimal Menang"
     },
     "lobbyNames": {

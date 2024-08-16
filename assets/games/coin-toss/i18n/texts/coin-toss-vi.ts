@@ -2,10 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
-        "Biden_win": "Biden thắng",
+        "Biden_win": "Harris thắng",
         "game_icon_name": "Tung Đồng Xu",
         "game_name": "Tung Đồng Xu",
-        "glossary_head": "Biden",
+        "glossary_head": "Harris",
         "glossary_tail": "Trump",
         "trump_win": "Trump thắng",
         "you_win": "Bạn vừa thắng"
@@ -25,10 +25,12 @@ export const phrases = {
         "copy_failed_md5": "Chức năng Copy tạm thời không hoạt động.",
         "copy_successfully_md5": "Copy thành công!",
         "create_nick_name": "Tạo tên nhân vật",
+        "details": "Chi tiết",
         "enter_your_name": "Nhập tên nhân vật",
         "game_excluded": "%{gameName}\n\nTài khoản của bạn hiện đang bị giới hạn, vui lòng thử các trò chơi khác.",
         "game_guide": "Hướng Dẫn",
         "hand_not_active": "Tay bài chưa tới lượt",
+        "hot": "Hot",
         "invalid_bet": "Cược không hợp lệ",
         "invalid_deal_hands": "Số lượng tay bài không hợp lệ.",
         "invalid_position": "Vị trí tay bài không đúng",
@@ -113,6 +115,7 @@ export const phrases = {
         "min_bet_hand": "Tiền cược tối thiểu của tay bài này là %{minBet}",
         "name_invalid": "Tên nhân vật không hợp lệ.",
         "nickname_requirement": "Lưu ý:\n+ Tên nhân vật phải có từ 3 đến 14 ký tự.\n+ Không gõ dấu tiếng việt, không chứa khoảng trắng và các ký tự đặc biệt.\n+ Không thể đổi tên nhân vật sau khi tạo.",
+        "non_winning_payline": "Không có dòng cược thắng",
         "not_enough_money": "Bạn hiện không có đủ tiền để cược.",
         "notice": "THÔNG BÁO",
         "odds": "Tỷ Lệ Cược",
@@ -123,6 +126,7 @@ export const phrases = {
         "pf_button_save": "Lưu",
         "pf_button_verify": "Xác Minh",
         "pf_client_seed_para_1": "(Không thể thay đổi Client Seed sau khi đặt cược thành công)",
+        "pf_client_seed_para_2": "Được tạo ra ngẫu nhiên ở phiên mới",
         "pf_client_seed_para_3": "Tự nhập giá trị",
         "pf_client_seed_para_4": "Giá trị ngẫu nhiên",
         "pf_client_seed_tooltip": "Client Seed được tạo ra từ phía người chơi.\nChuỗi \"Kết hợp Client Seed\" được tạo thành bằng sự kết hợp Client Seed của 5 người chơi theo thứ tự từ Người Chơi 1 đến Người Chơi 5.",
@@ -169,9 +173,11 @@ export const phrases = {
         "time": "Thời Gian",
         "total": "Tổng",
         "total_stake": "Tổng Cược",
+        "total_win": "Tổng Thắng",
         "under_maintenance_suggest": "Sau thời gian bảo trì, bạn hãy đăng nhập lại để có thể tiếp tục chơi game.",
         "under_maintenance_time": "Thời gian bảo trì từ %{startTime} đến %{endTime} (GMT+8).",
         "win": "Thắng",
+        "win_loss": "Thắng Thua",
         "you_reach_max_win": "Bạn Đã Đạt Mức Tiền Thắng Tối Đa"
     },
     "lobbyNames": {

@@ -2,10 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
-        "Biden_win": "Biden win",
+        "Biden_win": "Harris win",
         "game_icon_name": "Coin Toss",
         "game_name": "Coin Toss",
-        "glossary_head": "Biden",
+        "glossary_head": "Harris",
         "glossary_tail": "Trump",
         "trump_win": "Trump win",
         "you_win": "You win"
@@ -25,10 +25,12 @@ export const phrases = {
         "copy_failed_md5": "Copy function is temporarily unavailable.",
         "copy_successfully_md5": "Copy successful!",
         "create_nick_name": "Create Your Nickname",
+        "details": "Details",
         "enter_your_name": "Enter your nickname.",
         "game_excluded": "%{gameName}\n\nYour account is no longer allowed to play this game. Please try other games.",
         "game_guide": "Game Guides",
         "hand_not_active": "Inactive Hand",
+        "hot": "Hot",
         "invalid_bet": "Invalid Bet",
         "invalid_deal_hands": "The number of Hands is invalid",
         "invalid_position": "Invalid Position",
@@ -113,6 +115,7 @@ export const phrases = {
         "min_bet_hand": "Min bet for this hand is %{minBet}",
         "name_invalid": "The entered nickname is invalid, please try again",
         "nickname_requirement": "Note:\n      + Nickname must be between 3 and 14 characters long.\n      + Cannot contain spaces, special characters, and non-English characters. \n      + Cannot change the nickname after submitting.",
+        "non_winning_payline": "Non-winning Paylines",
         "not_enough_money": "Your account has insufficient funds.",
         "notice": "notice",
         "odds": "Odds",
@@ -170,9 +173,11 @@ export const phrases = {
         "time": "Time",
         "total": "Total",
         "total_stake": "Total Stake",
+        "total_win": "Total win",
         "under_maintenance_suggest": "Please kindly re-login to continue playing games after the maintenance is complete.",
         "under_maintenance_time": "Starting from %{startTime} to %{endTime} (GMT+8)",
         "win": "Win",
+        "win_loss": "Win Loss",
         "you_reach_max_win": "You reached the max win"
     },
     "lobbyNames": {

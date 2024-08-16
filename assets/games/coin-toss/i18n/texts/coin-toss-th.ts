@@ -2,20 +2,22 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
-        "Biden_win": "ไบเดนชนะ",
+        "Biden_win": "Harris ชนะ",
         "game_icon_name": "โยนเหรียญ",
         "game_name": "โยนเหรียญ",
-        "glossary_head": "ไบเดน",
+        "glossary_head": "Harris",
         "glossary_tail": "ทรัมป์",
         "trump_win": "ทรัมป์ชนะ",
         "you_win": "คุณชนะ"
     },
     "Common": {
+        "Loss": "เสีย",
         "back": "กลับ",
         "bet_amount_of_any_choice_incorrect": "จำนวนเงินเดิมพันไม่ถูกต้อง",
         "bet_choice": "ตัวเลือกการเดิมพัน",
         "bet_detail": "รายละเอียดการเดิมพัน",
         "bet_history": "ประวัติการเดิมพัน",
+        "bet_limit": "จำกัดการเดิมพัน",
         "bet_option_even": "คู่",
         "bet_option_odd": "คี่",
         "button_change": "เปลี่ยน",
@@ -23,10 +25,12 @@ export const phrases = {
         "copy_failed_md5": "ฟังก์ชันคัดลอกใช้งานไม่ได้ชั่วคราว",
         "copy_successfully_md5": "คัดลอกสำเร็จ!",
         "create_nick_name": "ตั้งชื่อเล่น",
+        "details": "รายละเอียด",
         "enter_your_name": "กรอกชื่อเล่น",
         "game_excluded": "%{gameName}\n\nบัญชีของคุณไม่ได้รับอนุญาตให้เล่นเกมนี้อีกต่อไป โปรดลองเกมอื่น",
         "game_guide": "คู่มือเกม",
         "hand_not_active": "มือที่ไม่ใช้งาน",
+        "hot": "สีร้อนแรง",
         "invalid_bet": "เดิมพันไม่ถูกต้อง",
         "invalid_deal_hands": "จำนวนมือไม่ถูกต้อง",
         "invalid_position": "ตำแหน่งไม่ถูกต้อง",
@@ -111,6 +115,7 @@ export const phrases = {
         "min_bet_hand": "เดิมพันขั้นต่ำสำหรับมือนี้คือ %{minBet}",
         "name_invalid": "กรอกชื่อเล่นไม่ถูกต้อง กรุณาลองกรอกใหม่อีกครั้ง",
         "nickname_requirement": "หมายเหตุ:\n+ ชื่อเล่นต้องมีความยาวระหว่าง 3 ถึง 14 ตัวอักษร\n+ ต้องไม่มีช่องว่าง อักขระพิเศษ และอักขระที่ไม่ใช่ภาษาอังกฤษ\n+ ไม่สามารถเปลี่ยนชื่อเล่นหลังจากทำการยืนยัน",
+        "non_winning_payline": "ช่องจ่ายเงินที่ไม่ชนะ",
         "not_enough_money": "บัญชีของคุณมีเงินไม่เพียงพอ",
         "notice": "ประกาศ",
         "odds": "อัตราต่อรอง",
@@ -168,9 +173,11 @@ export const phrases = {
         "time": "เวลา",
         "total": "รวม",
         "total_stake": "เดิมพันรวม",
+        "total_win": "ชนะทั้งหมด",
         "under_maintenance_suggest": "กรุณาเข้าสู่ระบบใหม่อีกครั้งเพื่อเล่นเกมต่อหลังจากการปิดปรับปรุงเสร็จสิ้นแล้ว",
         "under_maintenance_time": "เริ่มต้นจาก %{startTime} ถึง %{endTime} (GMT+8)",
         "win": "ชนะ",
+        "win_loss": "ชนะ แพ้",
         "you_reach_max_win": "คุณถึงยอดชนะสูงสุด"
     },
     "lobbyNames": {

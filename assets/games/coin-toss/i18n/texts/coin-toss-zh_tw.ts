@@ -2,20 +2,22 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
-        "Biden_win": "拜登獲勝",
+        "Biden_win": "哈里斯獲勝",
         "game_icon_name": "抛硬幣",
         "game_name": "抛硬幣",
-        "glossary_head": "拜登",
+        "glossary_head": "哈里斯",
         "glossary_tail": "川普",
         "trump_win": "川普獲勝",
         "you_win": "你贏了"
     },
     "Common": {
+        "Loss": "輸",
         "back": "回",
         "bet_amount_of_any_choice_incorrect": "投注金額無效",
         "bet_choice": "投注選擇",
         "bet_detail": "投注詳情",
         "bet_history": "投注歷史",
+        "bet_limit": "投注限額",
         "bet_option_even": "雙",
         "bet_option_odd": "單",
         "button_change": "改變",
@@ -23,10 +25,12 @@ export const phrases = {
         "copy_failed_md5": "複印功能暫時不能用。",
         "copy_successfully_md5": "複製成功！",
         "create_nick_name": "創建您的暱稱",
+        "details": "詳情",
         "enter_your_name": "輸入你的暱稱。",
         "game_excluded": "%{gameName}\n\n您的帳戶不再允許玩此遊戲。請嘗試其他遊戲。",
         "game_guide": "遊戲指南",
         "hand_not_active": "不活躍手牌",
+        "hot": "熱",
         "invalid_bet": "無效投注",
         "invalid_deal_hands": "這數量手牌無效",
         "invalid_position": "無效位置",
@@ -111,6 +115,7 @@ export const phrases = {
         "min_bet_hand": "這手牌的最小下注是 %{minBet}",
         "name_invalid": "輸入的暱稱無效，請重試。",
         "nickname_requirement": "注意：\n+ 暱稱的長度必須在 3 到 14 個字符之間。\n+ 不能包含空格、特殊字符和非英文字符。\n+ 提交後不能更改暱稱。 ",
+        "non_winning_payline": "未獲勝支付線",
         "not_enough_money": "您的賬戶資金不足。",
         "notice": "注意",
         "odds": "賠率",
@@ -168,9 +173,11 @@ export const phrases = {
         "time": "時間",
         "total": "全部的",
         "total_stake": "總賭注",
+        "total_win": "總赢",
         "under_maintenance_suggest": "維護完成後請重新登錄繼續玩遊戲。",
         "under_maintenance_time": "從 %{startTime} 到 %{endTime} (GMT+8)",
         "win": "贏",
+        "win_loss": "贏 輸",
         "you_reach_max_win": "您達到了最大勝利"
     },
     "lobbyNames": {

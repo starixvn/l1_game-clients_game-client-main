@@ -45,7 +45,7 @@ export default class JackpotPoolInfo extends JackpotPoolInfoBase {
         }
 
         this.setVisibility(true);
-        this.setData(gamePools, this.gameId);
+        this.setData(gamePools, this.gameId, false);
     }
 
     protected requestData() {

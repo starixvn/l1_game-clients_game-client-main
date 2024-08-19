@@ -1064,7 +1064,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         });
 
         if (this.jackpotPoolInfo) {
-            this.jackpotPoolInfo.setData(dataList, this.gameId);
+            this.jackpotPoolInfo.setData(dataList, this.gameId, true);
             !this.isAccelerate && this.jackpotPoolInfo.setHighlight(this.findIndexStakeLevel());
         }
     }

@@ -8,18 +8,18 @@ export default class JackpotPoolInfoBase extends cc.Component {
     @property({ type: JackpotPoolItem })
     items: JackpotPoolItem[] = [];
 
-    setData(data: any[], isAccelerate: boolean) {
+    setData(data: any[], gameId: number) {
         if (!this.items || data.length < this.items.length) {
             return;
         }
 
         // sort jackpot pools descending
         const sortedData = [...data].sort((a, b) => {
-            if (isAccelerate) {
-                return +JackpotPoolType[b.pool.toUpperCase()] - +JackpotPoolType[a.pool.toUpperCase()];
+            if (gameId === 29) {
+                return +b.pool - +a.pool;
             }
 
-            return +b.pool - +a.pool;
+            return +JackpotPoolType[b.pool.toUpperCase()] - +JackpotPoolType[a.pool.toUpperCase()];
         });
 
         this.items.forEach((item, index) => {

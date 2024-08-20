@@ -16,7 +16,7 @@ export default class SlotGameIngameHandler implements DataHandler {
                 }
             }
             this.main.setStake(betLevel);
-            this.main.setBetChoices(paylines);
+            !this.main.isAccelerate && this.main.setBetChoices(paylines);
 
             this.main.updateDisplaySpinButtons();
             this.main.stakeButton && (this.main.stakeButton.interactable = false);

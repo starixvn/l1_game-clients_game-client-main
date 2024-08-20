@@ -22,11 +22,11 @@ export default class GatewayGameItem extends cc.Component {
         this.socket = socket;
         this.initGameData();
         this.initListener();
-        this.getLobbyInfo();
     }
 
     sendSignIn(receivedEvents: string[]) {
         this.socket.emit("signIn", {
+            serviceName: "baccaratx",
             gameName: this.gameName,
             receivedEvents,
             session: getSession()

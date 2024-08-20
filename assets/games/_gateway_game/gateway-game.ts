@@ -38,6 +38,7 @@ export default class GatewayGame extends BaseComponent {
 
     loadConfigs() {
         const configs = this.configs.json;
+        this.gameId = configs.gameId;
         this.gameIds = configs.gameIds;
         this.receivedEvents = configs.receivedEvents;
     }
@@ -57,6 +58,7 @@ export default class GatewayGame extends BaseComponent {
             const item = node.getComponent(GatewayGameItem);
             item.init(gameId, this.socket);
             item.sendSignIn(this.receivedEvents);
+            // item.getLobbyInfo();
         });
     }
 

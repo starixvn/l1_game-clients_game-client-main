@@ -20,6 +20,7 @@ import CircleMenu from "../../lobby/main/view-models/CircleMenu";
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
+import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 import { Promotions, PromotionsEvent } from "../../lobby/promotions/Promotions";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -31,7 +32,6 @@ import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
-import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 
 type NewLayerCallback = () => void;
 
@@ -397,6 +397,13 @@ export default class MiniPanel extends BaseComponent {
 
     openSocketByUrl(gameId, socketUri, onConnectCallback) {
         const socket = this.socketIOController.createSocketByUrl(gameId, socketUri);
+        this.socketIOController.initBaseListenersForSocketUrl(socket, gameId, this.onConnectSocketFailed.bind(this), onConnectCallback);
+        this.socketIOGameInitializers.handleSocket(socket, gameId);
+        return socket;
+    }
+
+    openGatewayGame(gameId, onConnectCallback) {
+        const socket = this.socketIOController.createGatewayGameSocket(gameId);
         this.socketIOController.initBaseListenersForSocketUrl(socket, gameId, this.onConnectSocketFailed.bind(this), onConnectCallback);
         this.socketIOGameInitializers.handleSocket(socket, gameId);
         return socket;

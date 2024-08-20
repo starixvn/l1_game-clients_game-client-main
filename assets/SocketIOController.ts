@@ -237,6 +237,23 @@ export default class SocketIOController {
         await GameUtils.waitUntil(() => this.socketsState[gameId] !== SocketState.NOT_CONNECT, 200);
     }
 
+    createGatewayGameSocket(gameId: number) {
+        const socketUri = "https://l1-gw.lumigame.com/";
+        const socketOptions: Partial<ManagerOptions & SocketOptions> = {
+            forceNew: true,
+            transports: ["websocket"],
+            upgrade: false
+        };
+
+        if (enableMsgpackParserAllGames) {
+            socketOptions.parser = MsgpackParser;
+        }
+
+        const socket = io(socketUri, socketOptions);
+        this.assignSocket(gameId, socket);
+        return socket;
+    }
+
     createGameSocket = (option: {
         socketUri: string;
         proxyRoute: string;

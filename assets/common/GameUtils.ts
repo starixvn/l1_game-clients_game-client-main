@@ -457,6 +457,25 @@ export default class GameUtils {
         });
     }
 
+    static async openGatewayGame(gameId: number, loading: Loading = null) {
+        try {
+            const available = true;
+            if (available) {
+                const sceneName = `gateway-${gameId}`;
+                await this.loadScene(gameId, sceneName);
+            } else {
+                loading?.setLoadingVisibility(false);
+                const data = {
+                    text: i18n.t("messages.lostGameConnection", { gameName: await this.getDisplayGameName(gameId) }),
+                    isInfo: false
+                };
+                uiManager.emitter.emit(InternalEvents.LOST_CONNECTION, data);
+            }
+        } catch (error) {
+            cc.error("An error occurred in openGameMicrosite:", error);
+        }
+    }
+
     public static async openGame(
         gameId: number,
         miniPanel: MiniPanel,
@@ -470,6 +489,12 @@ export default class GameUtils {
         loading.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
+        if (gameId === 81) {
+            miniPanel.openGatewayGame(gameId, () => {
+                this.openGatewayGame(gameId, loading);
+            });
+            return;
+        }
         if (GameUtils.isMicroSite(gameConfiguration)) {
             this.openGameMicrosite(gameId, loading);
             return;

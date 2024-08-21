@@ -1,6 +1,7 @@
 import { Socket } from "socket.io-client";
 import { getSession } from "../../common/auth/SessionManager";
 import { getGameName } from "../../configs/GameConfigurations";
+import RenderItem from "../render-item/render-item";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
 import { GameData } from "./models/game-data";
@@ -9,7 +10,9 @@ import { RoundHistoryStore } from "./models/round-history-store";
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GatewayGameItem extends cc.Component {
+    renderItems: RenderItem[] = [];
     gameId = 0;
+    serviceName = "";
     socket: Socket;
     gameData: GameData = null;
 
@@ -17,8 +20,14 @@ export default class GatewayGameItem extends cc.Component {
         return getGameName(this.gameId);
     }
 
-    init(gameId: number, socket: Socket) {
+    initRenderItems() {
+        this.renderItems = this.getComponentsInChildren(RenderItem);
+        this.renderItems.forEach((item) => item.init(this.gameData));
+    }
+
+    init(gameId: number, serviceName: string, socket: Socket) {
         this.gameId = gameId;
+        this.serviceName = serviceName;
         this.socket = socket;
         this.initGameData();
         this.initListener();
@@ -26,9 +35,9 @@ export default class GatewayGameItem extends cc.Component {
 
     sendSignIn(receivedEvents: string[]) {
         this.socket.emit("signIn", {
-            serviceName: "baccaratx",
-            gameName: this.gameName,
-            receivedEvents,
+            serviceName: this.serviceName,
+            gameName: this.gameName.toLocaleLowerCase(),
+            receivedEvents: receivedEvents,
             session: getSession()
         });
     }
@@ -37,16 +46,33 @@ export default class GatewayGameItem extends cc.Component {
         this.gameData = new GameData();
         this.gameData.initHandlers([RoundHistoryHandler, GameInfoHandler]);
         this.gameData.addStores([new RoundHistoryStore(), new GameInfoStore()]);
+        this.initRenderItems();
     }
 
     initListener() {
-        this.socket.off(this.gameName).on(this.gameName, this.onData.bind(this));
+        this.socket.onAny(this.filterDataGame.bind(this));
     }
+
+    filterDataGame(event: string, data: any) {
+        const eventLowerCase = event.toLocaleLowerCase();
+        if (eventLowerCase === this.gameName.toLocaleLowerCase() || eventLowerCase === "message") {
+            this.onData(data);
+        }
+    }
+
     getLobbyInfo() {
-        this.socket.emit("lobbyInfo");
+        this.socket.emit("getLobbyData", { gameName: this.gameName });
     }
 
     onData(data: any) {
+        if (data.signedIn) {
+            this.onSignedIn();
+            return;
+        }
         this.gameData.receiveData(data);
+    }
+
+    onSignedIn() {
+        this.getLobbyInfo();
     }
 }

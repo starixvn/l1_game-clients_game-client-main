@@ -40,7 +40,7 @@ export default class JackpotTopWinnersItem extends BannerJackpot {
     }
 
     private setAmount(amount: number) {
-        this.amount.string = numberWithCommas(amount, 2);
+        this.amount.string = numberWithCommas(amount, 2, false);
     }
 
     private setGameName(gameName: string) {

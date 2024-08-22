@@ -1,5 +1,6 @@
 import { Socket } from "socket.io-client";
 import { getSession } from "../../common/auth/SessionManager";
+import GameUtils from "../../common/GameUtils";
 import { getGameName } from "../../configs/GameConfigurations";
 import RenderItem from "../render-item/render-item";
 import { GameInfoHandler } from "./handlers/game-info-handler";
@@ -10,6 +11,9 @@ import { RoundHistoryStore } from "./models/round-history-store";
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GatewayGameItem extends cc.Component {
+    @property(cc.Label)
+    labelGameName: cc.Label = null;
+
     renderItems: RenderItem[] = [];
     gameId = 0;
     serviceName = "";
@@ -29,8 +33,13 @@ export default class GatewayGameItem extends cc.Component {
         this.gameId = gameId;
         this.serviceName = serviceName;
         this.socket = socket;
+        this.updateGameName(this.gameId);
         this.initGameData();
         this.initListener();
+    }
+
+    async updateGameName(gameId: number) {
+        this.labelGameName.string = await GameUtils.getDisplayGameName(gameId);
     }
 
     sendSignIn(receivedEvents: string[]) {
@@ -75,4 +84,6 @@ export default class GatewayGameItem extends cc.Component {
     onSignedIn() {
         this.getLobbyInfo();
     }
+
+    onClickOpenGame() {}
 }

@@ -1,6 +1,8 @@
 import { Socket } from "socket.io-client";
 import { lazyInject } from "../../Application";
+import AudioManager from "../../common/audio/AudioManager";
 import BaseComponent from "../../common/BaseComponent";
+import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { getGameName } from "../../configs/GameConfigurations";
 import SocketIOController from "../../SocketIOController";
 import GatewayGameItem from "./gateway-game-item";
@@ -9,21 +11,22 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GatewayGame extends BaseComponent {
     @property(cc.JsonAsset)
-    configs: cc.JsonAsset = null;
+    protected configs: cc.JsonAsset = null;
 
     @property(cc.Prefab)
-    gamePrefab: cc.Prefab = null;
+    protected gamePrefab: cc.Prefab = null;
 
     @property(cc.Node)
-    container: cc.Node = null;
+    protected container: cc.Node = null;
 
     @lazyInject(SocketIOController)
-    public readonly socketIOController: SocketIOController;
-    socket: Socket;
-    public gameId = 0;
-    serviceName = "";
-    gameIds: number[] = [];
-    receivedEvents: string[] = [];
+    protected readonly socketIOController: SocketIOController;
+    protected socket: Socket;
+    protected gameId = 0;
+    protected serviceName = "";
+    protected gameIds: number[] = [];
+    protected receivedEvents: string[] = [];
+    protected inGameMenu: InGameMenu;
 
     public get gameName() {
         return getGameName(this.gameId);
@@ -33,6 +36,7 @@ export default class GatewayGame extends BaseComponent {
         this.loadConfigs();
         this.initSocket();
         this.initItems();
+        this.initEventForInGameMenu();
         cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
     }
@@ -83,7 +87,36 @@ export default class GatewayGame extends BaseComponent {
         cc.director.loadScene("Lobby");
     }
 
+    initEventForInGameMenu() {
+        const inGameMenu = cc.director.getScene().getComponentInChildren(InGameMenu);
+        if (inGameMenu) {
+            this.inGameMenu = inGameMenu;
+            const node = inGameMenu.node;
+            node.on(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
+            node.on(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
+            node.on(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
+        }
+    }
+
+    clearEventsInGameMenu() {
+        if (this.inGameMenu) {
+            const node = this.inGameMenu.node;
+            node.off(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
+            node.off(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
+            node.off(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
+        }
+    }
+
+    openHistory() {
+        AudioManager.getInstance().playClick();
+    }
+
+    openGuide() {
+        AudioManager.getInstance().playClick();
+    }
+
     onDestroy() {
+        this.clearEventsInGameMenu();
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
     }

@@ -15,7 +15,7 @@ export default class StandardSlotGameTopWinnerItem extends SlotGameTopWinnerItem
         if (showBigWin) {
             amountValue = freeSpin
                 ? "Free Spin"
-                : numberWithCommas(GameUtils.getValueByExchangeRateCode(baseTotalAmount ?? totalAmount * rate, exchangeRateCode), 1);
+                : numberWithCommas(GameUtils.getValueByExchangeRateCode(baseTotalAmount ?? totalAmount * rate, exchangeRateCode), 2);
         } else {
             pool && (amountValue = SlotUtils.formatNamePool(pool));
         }

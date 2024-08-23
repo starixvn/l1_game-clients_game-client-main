@@ -65,7 +65,7 @@ export default class JackpotGame extends cc.Component {
     }
 
     playJackpotItemSound() {
-        this.playSoundCallback(ClassicSlotSound.BONUS_ITEM);
+        this.playSoundCallback(ClassicSlotSound.JACKPOT_ITEM);
     }
 
     createJackpotItems() {
@@ -117,7 +117,7 @@ export default class JackpotGame extends cc.Component {
     }
 
     showJackpotWin() {
-        this.playSoundCallback(ClassicSlotSound.BONUS_TOTAL);
+        this.playSoundCallback(ClassicSlotSound.JACKPOT_WIN);
         this.hideTimer();
         this.winningNode.active = true;
     }

@@ -7,6 +7,8 @@ export enum ClassicSlotSound {
     BONUS = 5,
     SPINNING_NORMAL = 6,
     SPINNING_TURBO = 7,
+    JACKPOT_ITEM = 8,
+    JACKPOT_WIN = 9,
 
     REEL_STOP,
     SYMBOL_WIN,

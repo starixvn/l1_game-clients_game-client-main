@@ -6,7 +6,6 @@ export default class SlotGameBonusHandler implements DataHandler {
 
     handle(data: any) {
         if (data.bonusChest) {
-            console.timeEnd("bonuses");
             this.main.onOpenBonusChest(data.bonusChest);
         }
     }

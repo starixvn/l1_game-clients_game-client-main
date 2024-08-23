@@ -211,7 +211,10 @@ export default class StandardSlotGame extends SlotGameBase {
             [ClassicSlotSound.SPIN]: "spin-button",
             [ClassicSlotSound.WIN]: "win",
             [ClassicSlotSound.BIG_WIN]: "big-win",
-            [ClassicSlotSound.JACKPOT]: "jackpot-win",
+            [ClassicSlotSound.JACKPOT]: "jackpot-hit",
+            [ClassicSlotSound.JACKPOT_ITEM]: "jackpot-item",
+            [ClassicSlotSound.JACKPOT_WIN]: "jackpot-win",
+
             [ClassicSlotSound.FREESPIN]: "freespin",
             [ClassicSlotSound.BONUS]: "bonus",
             [ClassicSlotSound.SPINNING_NORMAL]: "spinning-normal",

@@ -13,7 +13,6 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.main.isFinishedRound = true;
         }
         if (data.jackpot) {
-            console.time("jackpot");
             if (this.main.isSpinnedAction) {
                 this.receivedJackpot = true;
                 await this.handleNewJackpot(data.jackpot);
@@ -21,7 +20,6 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         if (data.bonuses) {
-            console.time("bonuses");
             if (this.main.isSpinnedAction) {
                 if (this.receivedJackpot) {
                     await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);

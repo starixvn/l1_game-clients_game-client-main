@@ -72,7 +72,7 @@ export default class Banner extends cc.Component {
         }
     }
 
-    async loadBanner(needLoadAllBanners: boolean, loadFromMiniGame = false) {
+    async loadBanner(needLoadAllBanners: boolean) {
         try {
             if (!this.adsBannerController) {
                 await this.init();
@@ -80,7 +80,6 @@ export default class Banner extends cc.Component {
             this.adsBannerController.node.destroyAllChildren();
             const filterList: number[] = this.getGameIdOfferBanner(needLoadAllBanners);
             await this.adsBannerController.setGameAds(filterList);
-            loadFromMiniGame && this.adsBannerController.showFirstPage();
         } catch (e) {
             console.warn("Catch error after await method", e.message);
         }

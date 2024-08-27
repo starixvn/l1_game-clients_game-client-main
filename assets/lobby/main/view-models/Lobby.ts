@@ -184,8 +184,8 @@ export default class Lobby extends cc.Component {
     }
 
     initGameUIEvents() {
-        uiManager.emitterListener(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS, this.loadOtherIconsAndBanners.bind(this, false), this);
-        uiManager.emitterListener(InternalEvents.OPEN_GAME_MINI, this.loadOtherIconsAndBanners.bind(this, true), this);
+        uiManager.emitterListener(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS, this.loadOtherIconsAndBanners.bind(this), this);
+        uiManager.emitterListener(InternalEvents.OPEN_GAME_MINI, this.loadOtherIconsAndBanners.bind(this), this);
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
         uiManager.emitterListener(
             InternalEvents.CHANGE_CATEGORY,
@@ -204,13 +204,13 @@ export default class Lobby extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    loadOtherIconsAndBanners(loadFromMiniGame: boolean) {
+    loadOtherIconsAndBanners() {
         // if (this.loadedOtherIconsAndBanners) {
         //     return;
         // }
         this.loadedOtherIconsAndBanners = true;
         this.lobbyMenu.loadHiddenIcons();
-        this.banner.loadBanner(true, loadFromMiniGame);
+        this.banner.loadBanner(true);
     }
 
     initScrollListener() {

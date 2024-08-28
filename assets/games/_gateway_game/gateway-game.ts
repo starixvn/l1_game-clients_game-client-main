@@ -1,6 +1,7 @@
 import { Socket } from "socket.io-client";
 import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
+import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { getGameName } from "../../configs/GameConfigurations";
@@ -47,6 +48,8 @@ export default class GatewayGame extends BaseComponent {
         this.gameIds = configs.gameIds;
         this.serviceName = configs.serviceName;
         this.receivedEvents = configs.receivedEvents;
+
+        sessionManager.storeInRoomGameId(this.gameId);
     }
 
     initSocket() {
@@ -80,10 +83,11 @@ export default class GatewayGame extends BaseComponent {
             return;
         }
         this.socketIOController.closeSocket(this.gameId);
-        this.goToLobbyScene();
+        sessionManager.removeInRoomGameId();
     }
 
     private goToLobbyScene() {
+        this.closeGame();
         cc.director.loadScene("Lobby");
     }
 
@@ -99,12 +103,12 @@ export default class GatewayGame extends BaseComponent {
     }
 
     clearEventsInGameMenu() {
-        if (this.inGameMenu) {
-            const node = this.inGameMenu.node;
-            node.off(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
-            node.off(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
-            node.off(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
-        }
+        // if (this.inGameMenu) {
+        //     const node = this.inGameMenu.node;
+        //     node.off(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
+        //     node.off(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
+        //     node.off(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
+        // }
     }
 
     openHistory() {

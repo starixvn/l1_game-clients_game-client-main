@@ -38,6 +38,12 @@ export default class GatewayGameItem extends cc.Component {
         this.initListener();
     }
 
+    onDestroy() {
+        this.socket.offAny(this.filterDataGame);
+        this.gameData = null;
+        this.socket = null;
+    }
+
     async updateGameName(gameId: number) {
         this.labelGameName.string = await GameUtils.getDisplayGameName(gameId);
     }
@@ -59,15 +65,15 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     initListener() {
-        this.socket.onAny(this.filterDataGame.bind(this));
+        this.socket.onAny(this.filterDataGame);
     }
 
-    filterDataGame(event: string, data: any) {
+    filterDataGame = (event: string, data: any) => {
         const eventLowerCase = event.toLocaleLowerCase();
         if (eventLowerCase === this.gameName.toLocaleLowerCase() || eventLowerCase === "message") {
             this.onData(data);
         }
-    }
+    };
 
     getLobbyInfo() {
         this.socket.emit("getLobbyData", { gameName: this.gameName });
@@ -85,5 +91,7 @@ export default class GatewayGameItem extends cc.Component {
         this.getLobbyInfo();
     }
 
-    onClickOpenGame() {}
+    onClickOpenGame() {
+        GameUtils.openGame(this.gameId, null, null, false);
+    }
 }

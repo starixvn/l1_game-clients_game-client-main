@@ -1,7 +1,7 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lazyInject } from "../Application";
-import { getGameConfiguration, initialize as initGameConfiguration } from "../configs/GameConfigurations";
+import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
 import { StorageManager } from "../managers/StorageManager";
 import SocketIOController from "../SocketIOController";
@@ -162,9 +162,9 @@ export default class BaseMicrositeGame extends cc.Component {
             return;
         }
 
-        const gameConfiguration = getGameConfiguration(currentGameId);
-        if (gameConfiguration?.gateway) {
-            const mainId = gameConfiguration.gateway.mainId;
+        if (isGatewayGame(currentGameId)) {
+            const gameConfiguration = getGameConfiguration(currentGameId);
+            const mainId = gameConfiguration.gateway?.mainId ?? 81;
             GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
             return;
         }

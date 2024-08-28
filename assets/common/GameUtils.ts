@@ -509,12 +509,12 @@ export default class GameUtils {
     ) {
         uiManager.isPauseLoadingIcons = true;
         uiManager.setCurrentGameId(gameId);
-        const loading = miniPanel.getGameLoadingComp(gameId);
-        loading.setDefaultPercent();
+        const loading = miniPanel?.getGameLoadingComp(gameId);
+        loading?.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
         if (fromMainLobby && isGatewayGame(gameId)) {
-            this.openSocketGatewayGame(gameId, miniPanel.socketIOController);
+            this.openSocketGatewayGame(gameId, miniPanel?.socketIOController);
             return;
         }
         if (GameUtils.isMicroSite(gameConfiguration)) {
@@ -526,12 +526,12 @@ export default class GameUtils {
 
         if (!gameConfiguration.mini && gameId > 0) {
             StorageManager.remove(`orientation`);
-            miniPanel.openNewSocketTableGame(null, gameId);
+            miniPanel?.openNewSocketTableGame(null, gameId);
             return;
         }
 
         onOpenMiniGame?.();
-        miniPanel.openNewSocketMiniGame(null, gameId);
+        miniPanel?.openNewSocketMiniGame(null, gameId);
     }
 
     private static async preloadGameAssets(gameConfiguration: GameConfiguration, miniPanel: MiniPanel, gameId: number) {
@@ -542,7 +542,7 @@ export default class GameUtils {
             }
         } catch (error) {
             cc.error("An error occurred in preloadGameAssets:", error);
-            miniPanel.unCacheAndHideGameLoading(miniPanel.getGameLoadingComp(gameId), gameId);
+            miniPanel?.unCacheAndHideGameLoading(miniPanel?.getGameLoadingComp(gameId), gameId);
         }
     }
 

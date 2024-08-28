@@ -20,6 +20,9 @@ export class GameInfoStore extends StoreBase {
     }
 
     changeRtp(rtp: number) {
+        if (!rtp) {
+            return;
+        }
         this.rtp = rtp;
         this.emit(EmitterEvents.RtpChange, this.rtp);
     }

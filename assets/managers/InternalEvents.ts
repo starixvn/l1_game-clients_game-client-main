@@ -17,6 +17,8 @@ export enum InternalEvents {
     SSO_FAILED = "SSO_FAILED",
     SSO_ERROR = "SSO_ERROR",
     GAME_IS_UM = "GAME_IS_UM",
+    MINI_PANEL_GAME_UM = "mini_panel_game_um",
+    MINI_PANEL_GAME_CONNECT_FAILED = "mini_panel_game_connect_failed",
     SIGN_OUT = "sign-out",
     LOADING_GAME = "loading-game",
     NOTICE = "notice-popup",

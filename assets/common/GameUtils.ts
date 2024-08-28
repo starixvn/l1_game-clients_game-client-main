@@ -5,7 +5,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lodash } from "../ClientModules";
 import * as SessionManager from "../common/auth/SessionManager";
-import { GameConfiguration, getGameConfiguration, isUsingRemoteBundle } from "../configs/GameConfigurations";
+import { GameConfiguration, getGameConfiguration, isGatewayGame, isUsingRemoteBundle } from "../configs/GameConfigurations";
 import GameBase from "../games/_base/GameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
 import { appManager } from "../managers/AppManager";
@@ -457,14 +457,36 @@ export default class GameUtils {
         });
     }
 
-    static async openGatewayGame(gameId: number, loading: Loading = null) {
+    static openSocketGatewayGame(gameId: number, socketIOController: SocketIOController) {
+        const socket = socketIOController.createGatewayGameSocket(gameId);
+        const onConnectSocketFailed = async () => {
+            const gameName = await GameUtils.getDisplayGameName(gameId);
+            uiManager.emitter.emit(InternalEvents.MINI_PANEL_GAME_CONNECT_FAILED, gameName, gameId);
+        };
+        const onConnectCallback = () => {
+            GameUtils.openGatewayGameScene(gameId);
+        };
+        socketIOController.initBaseListenersForSocketUrl(socket, gameId, onConnectSocketFailed, onConnectCallback);
+        socket.on("message", (data) => {
+            if (data.um) {
+                socketIOController.closeSocket(gameId);
+                if (data.um_message) {
+                    uiManager.emitter.emit(InternalEvents.MINI_PANEL_GAME_UM, data.um_message, gameId);
+                }
+            }
+        });
+        socket.on("forceDisconnect", () => {
+            socket.disconnect();
+        });
+    }
+
+    static async openGatewayGameScene(gameId: number) {
         try {
             const available = true;
             if (available) {
                 const sceneName = `gateway-${gameId}`;
                 await this.loadScene(gameId, sceneName);
             } else {
-                loading?.setLoadingVisibility(false);
                 const data = {
                     text: i18n.t("messages.lostGameConnection", { gameName: await this.getDisplayGameName(gameId) }),
                     isInfo: false
@@ -490,11 +512,8 @@ export default class GameUtils {
         loading.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
-        const isGatewayGame = gameId === 81;
-        if (fromMainLobby && isGatewayGame) {
-            miniPanel.openGatewayGame(gameId, () => {
-                this.openGatewayGame(gameId, loading);
-            });
+        if (fromMainLobby && isGatewayGame(gameId)) {
+            this.openSocketGatewayGame(gameId, miniPanel.socketIOController);
             return;
         }
         if (GameUtils.isMicroSite(gameConfiguration)) {

@@ -94,7 +94,7 @@ export default class MiniPanel extends BaseComponent {
     private readonly preloadOthersPercent = 30;
 
     @lazyInject(SocketIOController)
-    protected readonly socketIOController: SocketIOController;
+    public readonly socketIOController: SocketIOController;
 
     addNewLayerCallback(key: string, callback: NewLayerCallback) {
         this.newLayerCallbacks[key] = callback;
@@ -142,12 +142,16 @@ export default class MiniPanel extends BaseComponent {
         );
         NotificationService.getInstance().addDataObserver(this.authKey, this.authKey, (data) => this.dataHandlers.handleAuth(data));
         NotificationService.getInstance().addDataObserver(this.reloadKey, this.reloadKey, this.onForceReload.bind(this));
+
+        uiManager.emitterListener(InternalEvents.MINI_PANEL_GAME_UM, this.handleUmMessage.bind(this), this);
+        uiManager.emitterListener(InternalEvents.MINI_PANEL_GAME_CONNECT_FAILED, this.onConnectSocketFailed.bind(this), this);
     }
 
     onDestroy() {
         NotificationService.getInstance().removeDataObserver(this.kickedOutKey, this.kickedOutKey);
         NotificationService.getInstance().removeDataObserver(this.authKey, this.authKey);
         NotificationService.getInstance().removeDataObserver(this.reloadKey, this.reloadKey);
+        uiManager.removeListenersWithTarget(this);
     }
 
     initPopUpMiniGames() {

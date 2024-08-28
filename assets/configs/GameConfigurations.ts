@@ -19,6 +19,9 @@ export interface GameConfiguration {
     };
     isMicrosite?: boolean;
     bannerType?: string;
+    gateway?: {
+        mainId: number;
+    };
 }
 
 declare global {
@@ -111,6 +114,12 @@ export function isMiniGame(key: string) {
 
 export function getGameConfiguration(gameId: number | string) {
     return getAllGameConfigurations().find((configuration) => configuration.id === Number(gameId));
+}
+
+export function isGatewayGame(gameId: number) {
+    const gameConfiguration = getGameConfiguration(gameId);
+    return gameId === 81;
+    // return gameConfiguration?.gateway;
 }
 
 export function getAllGameConfigurations() {

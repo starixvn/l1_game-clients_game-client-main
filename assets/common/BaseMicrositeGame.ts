@@ -165,7 +165,7 @@ export default class BaseMicrositeGame extends cc.Component {
         const gameConfiguration = getGameConfiguration(currentGameId);
         if (gameConfiguration?.gateway) {
             const mainId = gameConfiguration.gateway.mainId;
-
+            GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
             return;
         }
 

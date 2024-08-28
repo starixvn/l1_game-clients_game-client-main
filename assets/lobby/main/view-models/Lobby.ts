@@ -504,7 +504,7 @@ export default class Lobby extends cc.Component {
     openGameSSO(onComplete: () => void) {
         const gameId = parseInt(window.openGameId);
         GameUtils.clearGameSetting(gameId);
-        GameUtils.openGame(gameId, this.miniPanel, onComplete);
+        GameUtils.openGame(gameId, this.miniPanel, onComplete, true);
         window.openGameId = null;
         sessionManager.removeInRoomGameId();
     }
@@ -512,7 +512,7 @@ export default class Lobby extends cc.Component {
     reloadCurrentRoomGame() {
         const inRoomGameId = sessionManager.getInRoomGameId();
         if (inRoomGameId) {
-            GameUtils.openGame(+inRoomGameId, this.miniPanel, null);
+            GameUtils.openGame(+inRoomGameId, this.miniPanel, null, true);
         }
     }
 

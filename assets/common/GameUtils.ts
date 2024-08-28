@@ -481,7 +481,8 @@ export default class GameUtils {
         miniPanel: MiniPanel,
         onOpenMiniGame = () => {
             // handle
-        }
+        },
+        fromMainLobby = false
     ) {
         uiManager.isPauseLoadingIcons = true;
         uiManager.setCurrentGameId(gameId);
@@ -489,7 +490,8 @@ export default class GameUtils {
         loading.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameId === 81) {
+        const isGatewayGame = gameId === 81;
+        if (fromMainLobby && isGatewayGame) {
             miniPanel.openGatewayGame(gameId, () => {
                 this.openGatewayGame(gameId, loading);
             });

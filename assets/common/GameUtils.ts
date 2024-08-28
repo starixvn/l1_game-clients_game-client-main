@@ -6,6 +6,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 import { lodash } from "../ClientModules";
 import * as SessionManager from "../common/auth/SessionManager";
 import { GameConfiguration, getGameConfiguration, isGatewayGame, isUsingRemoteBundle } from "../configs/GameConfigurations";
+import { TotalPreloadGameIcon } from "../constants";
 import GameBase from "../games/_base/GameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
 import { appManager } from "../managers/AppManager";
@@ -1264,5 +1265,110 @@ export default class GameUtils {
                 hideTimer();
             })
             .start();
+    }
+    public static gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
+        const onLoaded = async () => {
+            try {
+                const startLoadTime = Date.now();
+                console.log(`SplashScreen - Start i&b: ${new Date(startLoadTime).toLocaleString()}`);
+                await Promise.all([this.preLoadBanner(lobbyMenuConfig), this.preLoadGameIcons(lobbyMenuConfig, splashConfig)]);
+                const endLoadTime = Date.now();
+                console.log(
+                    `SplashScreen - End i&b: ${new Date(endLoadTime).toLocaleString()}`,
+                    `Total time: ${(endLoadTime - startLoadTime) / 1000}`
+                );
+            } catch (e) {
+                console.log(e);
+            }
+
+            cc.resources.loadDir("lobby/games/skeleton-icon", () => {
+                cc.director.loadScene("Lobby");
+            });
+        };
+
+        cc.director.preloadScene("Lobby", onProgress, onLoaded);
+    }
+
+    private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {
+        try {
+            const offerGames = userManager.offerGames ?? [];
+            let firstCategoryGames = lobbyMenuConfig.firstCategoryList;
+            let preLoadGameIds = [];
+
+            // Filter offer games
+            if (offerGames.length > 0 && firstCategoryGames?.length > 0) {
+                firstCategoryGames = firstCategoryGames.filter((gameId) => offerGames.includes(gameId));
+            }
+
+            // Load game icon custom by system
+            preLoadGameIds =
+                firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
+            const preloadGameInMain = preLoadGameIds.filter((gameId) => !GameUtils.isMicroSite(getGameConfiguration(gameId)));
+            const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
+
+            // Load game icon custom by system
+            const preLoadGameBySystemIds = preLoadGameIds.filter((gameId) => lobbyMenuConfig.customGameIconBySystem.includes(gameId));
+            const preLoadGameBySystemAwaiters = preLoadGameBySystemIds.map((gameId) =>
+                GameUtils.loadGameIcon(gameId, splashConfig.customPath)
+            );
+
+            // Load game icon through remote site
+            const preloadRemoteGameIds = preLoadGameIds.filter((id) => GameUtils.isMicroSite(getGameConfiguration(id)));
+            const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => GameUtils.preloadRemoteIcon(gameId));
+
+            // Wait all
+            await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
+
+            console.log(`SplashScreen - Completed load game icons`, [
+                {
+                    name: "main",
+                    ids: preloadGameInMain.join(",")
+                },
+                {
+                    name: "custom-by-system",
+                    ids: preLoadGameBySystemIds.join(",")
+                },
+                {
+                    name: "remote",
+                    ids: preloadRemoteGameIds.join(",")
+                }
+            ]);
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
+
+    private static async preLoadBanner(lobbyMenuConfig) {
+        try {
+            const offerGames = userManager.offerGames ?? [];
+            let bannerGameIds = lobbyMenuConfig.bannerAds ?? [];
+
+            // Filter offer games
+            if (offerGames.length > 0) {
+                bannerGameIds = bannerGameIds.filter((gameId) => offerGames.includes(gameId));
+            }
+
+            if (bannerGameIds.length == 0) {
+                return;
+            }
+
+            const bannerId = bannerGameIds[0];
+
+            let bannerAwaiters: Promise<unknown>;
+            const bannerType = GameUtils.getBannerTypeByGameId(bannerId);
+            if (bannerType === BannerType.Prefab) {
+                bannerAwaiters = GameUtils.getAnimationBanner(bannerId);
+            } else {
+                bannerAwaiters = GameUtils.getStaticBanner(bannerId);
+            }
+
+            const bannerContainerAwaiters = new Promise((resolve) => {
+                cc.resources.load("lobby/banner/bannerContainer", resolve);
+            });
+
+            await Promise.all([bannerAwaiters, bannerContainerAwaiters]);
+        } catch (ex) {
+            console.log(ex);
+        }
     }
 }

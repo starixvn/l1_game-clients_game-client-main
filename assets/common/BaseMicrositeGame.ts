@@ -1,7 +1,7 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lazyInject } from "../Application";
-import { initialize as initGameConfiguration } from "../configs/GameConfigurations";
+import { getGameConfiguration, initialize as initGameConfiguration } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
 import { StorageManager } from "../managers/StorageManager";
 import SocketIOController from "../SocketIOController";
@@ -152,6 +152,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     protected async handleBackToLobby(data: MicrositeGameParams) {
+        const currentGameId = SessionManager.getMicrositeGameId();
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
@@ -160,6 +161,14 @@ export default class BaseMicrositeGame extends cc.Component {
             this.onClickJoinGame(data.gameId);
             return;
         }
+
+        const gameConfiguration = getGameConfiguration(currentGameId);
+        if (gameConfiguration?.gateway) {
+            const mainId = gameConfiguration.gateway.mainId;
+
+            return;
+        }
+
         this.loadLobbyScene();
     }
 

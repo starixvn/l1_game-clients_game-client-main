@@ -221,7 +221,7 @@ export default class MainSplash extends cc.Component {
     preloadLobbyScene() {
         this.loadSceneTimeout = setTimeout(
             function () {
-                cc.director.preloadScene("Lobby", this.onProgress.bind(this), this.onLoaded.bind(this));
+                GameUtils.gotoLobbyScene(this.onProgress.bind(this), this.lobbyMenuConfig, this.splashConfig);
             }.bind(this),
             100
         );

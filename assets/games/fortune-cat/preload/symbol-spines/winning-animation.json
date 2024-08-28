@@ -1,0 +1,263 @@
+{
+    "skeleton": {
+        "hash": "PaGEtM42ZflN+xOoOKwffcOGufM",
+        "spine": "3.8.99",
+        "x": -107,
+        "y": -97,
+        "width": 214,
+        "height": 194,
+        "images": "E:/MYWORKFOLDER/SlotGame/chineseslot/graphic/animation/frame-effect/",
+        "audio": "E:/MYWORKFOLDER/SlotGame/chineseslot/graphic/animation/spine-file"
+    },
+    "bones": [
+        {
+            "name": "root"
+        },
+        {
+            "name": "frame",
+            "parent": "root"
+        }
+    ],
+    "slots": [
+        {
+            "name": "sequense",
+            "bone": "frame",
+            "attachment": "frame-new/18",
+            "blend": "additive"
+        }
+    ],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "sequense": {
+                    "frame-new/1": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/2": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/3": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/4": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/5": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/6": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/7": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/8": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/9": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/10": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/11": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/12": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/13": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/14": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/15": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/16": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/17": {
+                        "width": 214,
+                        "height": 194
+                    },
+                    "frame-new/18": {
+                        "width": 214,
+                        "height": 194
+                    }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "highlight": {
+            "slots": {
+                "sequense": {
+                    "attachment": [
+                        {
+                            "name": "frame-new/1"
+                        },
+                        {
+                            "time": 0.0333,
+                            "name": "frame-new/2"
+                        },
+                        {
+                            "time": 0.0667,
+                            "name": "frame-new/3"
+                        },
+                        {
+                            "time": 0.1,
+                            "name": "frame-new/4"
+                        },
+                        {
+                            "time": 0.1333,
+                            "name": "frame-new/5"
+                        },
+                        {
+                            "time": 0.1667,
+                            "name": "frame-new/6"
+                        },
+                        {
+                            "time": 0.2,
+                            "name": "frame-new/7"
+                        },
+                        {
+                            "time": 0.2333,
+                            "name": "frame-new/8"
+                        },
+                        {
+                            "time": 0.2667,
+                            "name": "frame-new/9"
+                        },
+                        {
+                            "time": 0.3,
+                            "name": "frame-new/10"
+                        },
+                        {
+                            "time": 0.3333,
+                            "name": "frame-new/11"
+                        },
+                        {
+                            "time": 0.3667,
+                            "name": "frame-new/12"
+                        },
+                        {
+                            "time": 0.4,
+                            "name": "frame-new/13"
+                        },
+                        {
+                            "time": 0.4333,
+                            "name": "frame-new/14"
+                        },
+                        {
+                            "time": 0.4667,
+                            "name": "frame-new/15"
+                        },
+                        {
+                            "time": 0.5,
+                            "name": "frame-new/16"
+                        },
+                        {
+                            "time": 0.5333,
+                            "name": "frame-new/17"
+                        },
+                        {
+                            "time": 0.5667,
+                            "name": "frame-new/18"
+                        },
+                        {
+                            "time": 0.6,
+                            "name": "frame-new/1"
+                        },
+                        {
+                            "time": 0.6333,
+                            "name": "frame-new/2"
+                        },
+                        {
+                            "time": 0.6667,
+                            "name": "frame-new/3"
+                        },
+                        {
+                            "time": 0.7,
+                            "name": "frame-new/4"
+                        },
+                        {
+                            "time": 0.7333,
+                            "name": "frame-new/5"
+                        },
+                        {
+                            "time": 0.7667,
+                            "name": "frame-new/6"
+                        },
+                        {
+                            "time": 0.8,
+                            "name": "frame-new/7"
+                        },
+                        {
+                            "time": 0.8333,
+                            "name": "frame-new/8"
+                        },
+                        {
+                            "time": 0.8667,
+                            "name": "frame-new/9"
+                        },
+                        {
+                            "time": 0.9,
+                            "name": "frame-new/10"
+                        },
+                        {
+                            "time": 0.9333,
+                            "name": "frame-new/11"
+                        },
+                        {
+                            "time": 0.9667,
+                            "name": "frame-new/12"
+                        },
+                        {
+                            "time": 1,
+                            "name": "frame-new/13"
+                        },
+                        {
+                            "time": 1.0333,
+                            "name": "frame-new/14"
+                        },
+                        {
+                            "time": 1.0667,
+                            "name": "frame-new/15"
+                        },
+                        {
+                            "time": 1.1,
+                            "name": "frame-new/16"
+                        },
+                        {
+                            "time": 1.1333,
+                            "name": "frame-new/17"
+                        },
+                        {
+                            "time": 1.1667,
+                            "name": "frame-new/18"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

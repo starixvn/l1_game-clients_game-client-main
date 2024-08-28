@@ -1266,6 +1266,8 @@ export default class GameUtils {
             })
             .start();
     }
+    private static bannerLoaded = false;
+    private static gameIconPreloaded = false;
     public static gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
         const onLoaded = async () => {
             try {
@@ -1291,6 +1293,9 @@ export default class GameUtils {
 
     private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {
         try {
+            if (this.gameIconPreloaded) {
+                return;
+            }
             const offerGames = userManager.offerGames ?? [];
             let firstCategoryGames = lobbyMenuConfig.firstCategoryList;
             let preLoadGameIds = [];
@@ -1318,7 +1323,7 @@ export default class GameUtils {
 
             // Wait all
             await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
-
+            this.gameIconPreloaded = true;
             console.log(`SplashScreen - Completed load game icons`, [
                 {
                     name: "main",
@@ -1340,6 +1345,9 @@ export default class GameUtils {
 
     private static async preLoadBanner(lobbyMenuConfig) {
         try {
+            if (this.bannerLoaded) {
+                return;
+            }
             const offerGames = userManager.offerGames ?? [];
             let bannerGameIds = lobbyMenuConfig.bannerAds ?? [];
 
@@ -1367,6 +1375,7 @@ export default class GameUtils {
             });
 
             await Promise.all([bannerAwaiters, bannerContainerAwaiters]);
+            this.bannerLoaded = true;
         } catch (ex) {
             console.log(ex);
         }

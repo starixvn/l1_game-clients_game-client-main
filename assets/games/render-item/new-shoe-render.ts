@@ -6,7 +6,10 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class NewShoeRender extends RenderItem {
     private _gameData: GameData = null;
+
     init(data: GameData) {
+        this.node.active = false;
+
         this._gameData = data;
         const store = data.getStore(Store.GameInfo);
         store?.addListener(EmitterEvents.TimeChange, this.onTimeChange);
@@ -21,12 +24,10 @@ export default class NewShoeRender extends RenderItem {
 
     onActiveNewShoe = (data: boolean) => {
         this.node.active = true;
-        console.log("====================== NEW SHOE =================");
     };
     onTimeChange = (time: number) => {
         if (time < 34 && this.node.active) {
             this.node.active = false;
-            console.log("====================== OFF NEW SHOE =================");
         }
     };
 }

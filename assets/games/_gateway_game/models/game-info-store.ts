@@ -25,6 +25,7 @@ export class GameInfoStore extends StoreBase {
 
     setNewShoe(active: boolean) {
         this.newShoePhase = active;
+        this.emit(EmitterEvents.ActiveNewShoe, this.newShoePhase);
     }
 
     increaseOnlineUser() {

@@ -1,9 +1,10 @@
 import BetChips from "../../../common/bet-chips/view-models/BetChips";
 import UserProfile from "../../../common/user-profile/UserProfile";
+import IGameBase from "../../_base/IGameBase";
 import BetItem from "../../_base/view-models/BetItem";
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
 
-export default interface TableGameBaseInterface {
+export default interface TableGameBaseInterface extends IGameBase {
     node: cc.Node;
     dealerChipBox: cc.Node;
     otherPlayers: cc.Node;

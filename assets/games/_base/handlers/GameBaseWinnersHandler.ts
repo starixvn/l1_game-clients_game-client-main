@@ -1,9 +1,9 @@
-import GameBase from "../GameBase";
+import IGameBase from "../IGameBase";
 import { showWinningEffectForPlayers } from "../action/PayChipsAction";
 import DataHandler from "./DataHandler";
 
 export default class GameBaseWinnersHandler implements DataHandler {
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (data.winners) {

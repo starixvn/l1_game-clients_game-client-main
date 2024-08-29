@@ -13,6 +13,7 @@ import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { NoticeData } from "../../common/notice/view-models/Notice";
 import ProcessingWarning from "../../common/processing-warning/view-models/ProcessingWarning";
+import PromptMessageComponent from "../../common/prompt-message/PromptMessageComponent";
 import TypingLabel from "../../common/typing-label/view-models/TypingLabel";
 import UmWarning from "../../common/um-warning/UmWarning";
 import UserProfile from "../../common/user-profile/UserProfile";
@@ -28,6 +29,7 @@ import TableGameBaseInterface from "../_base_new/view-models/TableGameBaseInterf
 import { GameData } from "../_new/_base/game-data-management/models/game-data";
 import { GameState } from "./GameState";
 import GameViewBase from "./GameViewBase";
+import IGameBase from "./IGameBase";
 import { Orientation } from "./Orientation";
 import {
     PayChipInfo,
@@ -58,7 +60,6 @@ import MD5Component from "./view-models/MD5Component";
 import RebetButton from "./view-models/RebetButton";
 import SocketIOGameHistoryBase from "./view-models/SocketIOGameHistoryBase";
 import ProvablyFairComponent from "./view-models/provably-fair/ProvablyFairComponent";
-import PromptMessageComponent from "../../common/prompt-message/PromptMessageComponent";
 
 const { ccclass, property } = cc._decorator;
 
@@ -69,7 +70,7 @@ interface EmitterStorage {
 }
 
 @ccclass
-export default class GameBase extends GameViewBase {
+export default class GameBase extends GameViewBase implements IGameBase {
     @property({ type: BetItem })
     betItems: BetItem[] = [];
 

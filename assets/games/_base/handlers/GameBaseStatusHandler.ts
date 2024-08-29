@@ -1,16 +1,11 @@
 import { appManager } from "../../../managers/AppManager";
-import GameBase from "../GameBase";
-import WebSocketTableGameBase from "../WebSocketTableGameBase";
-import DataHandler from "./DataHandler";
-
-export interface IGameBaseStatusHandler extends DataHandler {
-    currentStatusData: any;
-}
+import IGameBase from "../IGameBase";
+import { IGameBaseStatusHandler } from "./interfaces";
 
 export class GameBaseStatusHandler implements IGameBaseStatusHandler {
     public currentStatusData: any;
 
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     protected timeout: any;
 
@@ -20,7 +15,7 @@ export class GameBaseStatusHandler implements IGameBaseStatusHandler {
         if (data.status) {
             this.updateStatusData(data.status);
 
-            const mainRoomGame = this.main as WebSocketTableGameBase;
+            const mainRoomGame = this.main;
             if (mainRoomGame?.userProfile) {
                 this.handleStatusForRoomGame(mainRoomGame);
 
@@ -35,7 +30,7 @@ export class GameBaseStatusHandler implements IGameBaseStatusHandler {
         }
     }
 
-    private handleStatusForRoomGame(mainRoomGame: WebSocketTableGameBase) {
+    private handleStatusForRoomGame(mainRoomGame: IGameBase) {
         if (this.main.usingNewSettlement && this.main.shouldShowWinningEffect()) {
             this.main.showPayoutForLoginPlayer(mainRoomGame);
         }

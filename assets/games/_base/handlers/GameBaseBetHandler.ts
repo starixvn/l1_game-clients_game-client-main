@@ -1,14 +1,13 @@
 import * as _ from "lodash";
 
 import { getLowercaseObjectKeys } from "../../../common/helpers/ObjectHelper";
-import GameBase from "../GameBase";
+import { IGameBase } from "../IGameBase";
 import RoomPlayer from "../view-models/RoomPlayer";
-import WebSocketTableGameBase from "../WebSocketTableGameBase";
 import DataHandler from "./DataHandler";
 
 export default class GameBaseBetHandler implements DataHandler {
     protected playerChips = [];
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (this.main.isStopGame || this.main.isDisableGame) {
@@ -34,7 +33,7 @@ export default class GameBaseBetHandler implements DataHandler {
     }
 
     handleChipInMainRoom(data: any) {
-        const mainRoomGame = this.main as WebSocketTableGameBase;
+        const mainRoomGame = this.main;
         if (mainRoomGame && mainRoomGame.enablePlaceChips) {
             if (data.ownChip) {
                 this.placeOwnChip(data.ownChip);
@@ -91,8 +90,8 @@ export default class GameBaseBetHandler implements DataHandler {
     }
 
     updateOtherDataStorage(data: any) {
-        const gameRoomMain = this.main as WebSocketTableGameBase;
-        const player = gameRoomMain.playerHandler.otherPlayers[data.playerId];
+        const gameRoomMain = this.main;
+        const player = gameRoomMain.playerHandler?.otherPlayers[data.playerId];
 
         if (player) {
             player.idleCount = 0;

@@ -1,10 +1,10 @@
 import _ = require("lodash");
 
-import GameBase from "../GameBase";
+import IGameBase from "../IGameBase";
 import DataHandler from "./DataHandler";
 
 export default class GameBaseLogsHandler implements DataHandler {
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (data.roundId) {

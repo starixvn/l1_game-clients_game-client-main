@@ -1,9 +1,7 @@
 import { updateOtherPlayerBalance } from "../action/OtherPlayerAction";
 import { payChips } from "../action/PayChipsAction";
-import GameBase from "../GameBase";
-import WebSocketTableGameBase from "../WebSocketTableGameBase";
+import IGameBase from "../IGameBase";
 import DataHandler from "./DataHandler";
-import GameBaseMd5Handler from "./GameBaseMd5Handler";
 
 export default class GameBaseFinishHandler implements DataHandler {
     readonly payChipFlyTime = 1.2;
@@ -11,14 +9,14 @@ export default class GameBaseFinishHandler implements DataHandler {
         return 3;
     }
 
-    constructor(protected readonly main: GameBase, protected readonly playResultAnimationTime: number = 0) {}
+    constructor(protected readonly main: IGameBase, protected readonly playResultAnimationTime: number = 0) {}
 
     handle(data: any) {
         if (data.finish) {
             this.clearDataBeforeHandleFinish();
             this.main.node.activeInHierarchy && this.main.gameAudios.playEndGameAudio();
             this.setNewGameRound(data);
-            const mainRoomGame = this.main as WebSocketTableGameBase;
+            const mainRoomGame = this.main;
             if (mainRoomGame && mainRoomGame.playerHandler) {
                 updateOtherPlayerBalance(data.finish.winningPlayers, mainRoomGame);
             }
@@ -58,7 +56,7 @@ export default class GameBaseFinishHandler implements DataHandler {
     }
 
     protected updateMD5ResultHash() {
-        const md5Handler = this.main.md5Handler as GameBaseMd5Handler;
+        const md5Handler = this.main.md5Handler;
         if (md5Handler?.resultHash) {
             this.main.md5Component?.updateMD5Data(md5Handler.resultHash);
         }

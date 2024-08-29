@@ -1,22 +1,5 @@
+import { AudioInfo, TAudioValue } from "./AudioInterface";
 import GameUtils from "./GameUtils";
-
-interface AudioInfo {
-    bundle: string;
-    path: string;
-}
-
-export type TAudioValue = {
-    bundle: string;
-    path: string;
-    type: string;
-    isMusicGame?: boolean;
-    isLazyLoad?: boolean;
-};
-
-export type TAudioConfigs = {
-    [key: string]: TAudioValue;
-};
-
 export default class AudioUtils {
     public static readonly getAudioInfo = (audioValue: TAudioValue, key: string): AudioInfo => {
         const bundle = audioValue?.bundle;

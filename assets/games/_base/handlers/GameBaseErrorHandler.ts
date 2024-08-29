@@ -1,8 +1,8 @@
-import GameBase from "../GameBase";
+import IGameBase from "../IGameBase";
 import DataHandler from "./DataHandler";
 
-export default class GameBaseErrorHandler implements DataHandler {
-    constructor(protected readonly main: GameBase) {}
+export default class IGameBaseErrorHandler implements DataHandler {
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (data.apiError) {

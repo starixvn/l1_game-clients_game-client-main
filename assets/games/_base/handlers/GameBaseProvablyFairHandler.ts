@@ -1,10 +1,10 @@
 import _ = require("lodash");
 import GameUtils from "../../../common/GameUtils";
-import GameBase from "../GameBase";
+import IGameBase from "../IGameBase";
 import DataHandler from "./DataHandler";
 
 export default class GameBaseProvablyFairHandler implements DataHandler {
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (data.resultHash && Object.keys(data.resultHash).length && data.resultHash?.hashValue) {

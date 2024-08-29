@@ -1,5 +1,5 @@
 import { StorageManager } from "../../managers/StorageManager";
-import { TAudioConfigs } from "../AudioUtils";
+import { TAudioConfigs } from "../AudioInterface";
 import GameUtils from "../GameUtils";
 
 export default class AudioManager {

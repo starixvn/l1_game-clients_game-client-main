@@ -2,11 +2,8 @@ import * as _ from "lodash";
 
 import RoomPlayer, { PlayerData } from "../view-models/RoomPlayer";
 import WebSocketTableGameBase from "../WebSocketTableGameBase";
-import DataHandler from "./DataHandler";
+import { IGameBasePlayerHandler } from "./interfaces";
 
-export interface IGameBasePlayerHandler extends DataHandler {
-    getPlayerSlot(playerId: string): RoomPlayer;
-}
 export class GameBasePlayerHandler implements IGameBasePlayerHandler {
     otherPlayers = {};
 

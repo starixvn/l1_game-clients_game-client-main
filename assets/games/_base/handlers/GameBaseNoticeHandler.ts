@@ -1,11 +1,11 @@
 import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import NoticeUtil from "../../../common/utils/NoticeUtil";
-import GameBase from "../GameBase";
+import IGameBase from "../IGameBase";
 import DataHandler from "./DataHandler";
 
 export default class GameBaseNoticeHandler implements DataHandler {
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     handle(data: any) {
         if (!data.notice) {

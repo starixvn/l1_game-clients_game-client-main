@@ -1,25 +1,14 @@
 import AudioManager from "../../../common/audio/AudioManager";
 import { numberPad } from "../../../common/helpers/NumberHelper";
 import { appManager } from "../../../managers/AppManager";
-import GameBase from "../GameBase";
 import { GameState } from "../GameState";
-import WebSocketTableGameBase from "../WebSocketTableGameBase";
-import DataHandler from "./DataHandler";
-
-export interface IGameBaseTimeHandler extends DataHandler {
-    playTimeInterval: number;
-    playTime(): void;
-    stopPlayTime(): void;
-    resetTime(): void;
-    isInWaitTime: boolean;
-    isInLockBetTime: boolean;
-    isStartingNewGameRound: boolean;
-}
+import IGameBase from "../IGameBase";
+import { IGameBaseTimeHandler } from "./interfaces";
 
 export default class GameBaseTimeHandler implements IGameBaseTimeHandler {
     playTimeInterval: number;
 
-    constructor(protected readonly main: GameBase) {}
+    constructor(protected readonly main: IGameBase) {}
 
     get isInLockBetTime() {
         return this.main.currentTimeRemaining <= this.main.config.stopBetTime;
@@ -122,7 +111,7 @@ export default class GameBaseTimeHandler implements IGameBaseTimeHandler {
         this.main.node.activeInHierarchy && this.main.gameAudios && this.main.gameAudios.playStartGameAudio();
         this.main.resetDataAndUI();
 
-        const mainRoomGame = this.main as WebSocketTableGameBase;
+        const mainRoomGame = this.main;
 
         if (mainRoomGame && mainRoomGame.playerHandler) {
             mainRoomGame.playerHandler.updateTablePlayers();

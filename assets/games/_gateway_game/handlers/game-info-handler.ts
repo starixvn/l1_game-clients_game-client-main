@@ -6,15 +6,15 @@ interface GameInfoType {
     remainingTime?: number;
     rtp?: number;
     betLimit?: { minBet: number; maxBet: number };
+    player: any;
+    outgame: any;
+
+    newShoePhase?: boolean;
+    newShoeHash?: string;
 }
 export class GameInfoHandler extends BaseEventHandler<any> {
     protected verifyEvent(event: GameInfoType): boolean {
-        return (
-            event.totalOnlineUsers !== undefined ||
-            event.remainingTime !== undefined ||
-            event.rtp !== undefined ||
-            event.betLimit !== undefined
-        );
+        return true;
     }
 
     protected handle(data: GameInfoType) {
@@ -24,13 +24,22 @@ export class GameInfoHandler extends BaseEventHandler<any> {
             store.changeOnlineUsers(data.totalOnlineUsers);
         }
         if (data.remainingTime !== undefined) {
-            store.changeTime(data.remainingTime);
+            store.receiveTimeRemaining(data.remainingTime);
         }
         if (data.rtp !== undefined) {
             store.changeRtp(data.rtp);
         }
         if (data.betLimit !== undefined) {
             store.changeBetLimit(data.betLimit);
+        }
+        if (data.player !== undefined) {
+            store.increaseOnlineUser();
+        }
+        if (data.outgame !== undefined) {
+            store.decreaseOnlineUser();
+        }
+        if (data.newShoePhase || data.newShoeHash) {
+            store.setNewShoe(true);
         }
     }
 }

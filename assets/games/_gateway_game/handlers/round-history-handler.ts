@@ -4,10 +4,11 @@ import { BaseEventHandler } from "./base-event-handler";
 interface RoundHistoryType {
     roundHistory?: any[];
     finish?: any;
+    newShoeHash?: string;
 }
 export class RoundHistoryHandler extends BaseEventHandler<any> {
     protected verifyEvent(event: RoundHistoryType): boolean {
-        return !!event.roundHistory || !!event.finish;
+        return !!event.roundHistory || !!event.finish || !!event.newShoeHash;
     }
 
     protected handle(data: RoundHistoryType) {
@@ -23,13 +24,19 @@ export class RoundHistoryHandler extends BaseEventHandler<any> {
             store.roundHistory = roundHistory.filter(
                 (round, index, histories) => histories?.findIndex((history) => +history.roundId === +round.roundId) === index
             );
-        } else if (data.finish) {
+        }
+
+        if (data.finish) {
             const newRoundId = data.finish.roundId;
 
             if (lastRound && lastRound.roundId >= newRoundId) {
                 return;
             }
             store.roundHistory.unshift(data.finish);
+        }
+
+        if (data.newShoeHash) {
+            store.roundHistory = [];
         }
 
         store.updateUI();

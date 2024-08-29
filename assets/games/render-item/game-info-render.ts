@@ -28,7 +28,7 @@ export default class GameInfoRender extends RenderItem {
     }
 
     onDestroy() {
-        const store = this._gameData?.getStore(Store.RoundHistory);
+        const store = this._gameData?.getStore(Store.GameInfo);
         store?.removeListener(EmitterEvents.RtpChange, this.onChangeRTP);
         store?.removeListener(EmitterEvents.TotalOnlineChange, this.onChangeTotalOnlineUser);
         store?.removeListener(EmitterEvents.BetLimitChange, this.onChangeBetLimit);

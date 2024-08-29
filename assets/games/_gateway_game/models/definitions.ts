@@ -5,7 +5,8 @@ export const EmitterEvents = {
     RtpChange: "RtpChange",
     TotalOnlineChange: "TotalOnlineChange",
     TimeChange: "TimeChange",
-    BetLimitChange: "BetLimitChange"
+    BetLimitChange: "BetLimitChange",
+    ActiveNewShoe: "ActiveNewShoe"
 };
 
 export const Store = {

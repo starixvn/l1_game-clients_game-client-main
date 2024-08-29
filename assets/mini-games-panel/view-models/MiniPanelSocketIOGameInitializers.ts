@@ -3,17 +3,18 @@ import { appManager } from "../../managers/AppManager";
 import MiniPanelSocketIOInitializers from "./MiniPanelSocketIOInitializers";
 
 export default class MiniPanelSocketIOGameInitializers extends MiniPanelSocketIOInitializers {
-    public openGame(gameId) {
-        this.main.popupMiniGame?.hideListGame();
+    public async openGame(gameId) {
+        try {
+            this.main.popupMiniGame?.hideListGame();
 
-        if (this.main.currentGameRoomId === gameId) {
-            return;
-        }
+            if (this.main.currentGameRoomId === gameId) {
+                return;
+            }
 
-        appManager.currentScene.outRoomGame().then(() => {
+            await appManager.currentScene.outRoomGame();
             sessionManager.removeInRoomGameId();
             this.openNewSocket(gameId);
-        });
+        } catch (e) {}
     }
 
     private openNewSocket(gameId) {

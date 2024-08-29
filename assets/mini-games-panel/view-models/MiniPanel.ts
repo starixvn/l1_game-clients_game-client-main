@@ -157,6 +157,9 @@ export default class MiniPanel extends BaseComponent {
     }
 
     initPopUpMiniGames() {
+        if (!this.miniMenu) {
+            return;
+        }
         GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`)
             .then((prefab) => {
                 const popUpMiniGameNode = cc.instantiate(prefab);
@@ -206,6 +209,9 @@ export default class MiniPanel extends BaseComponent {
     }
 
     updatePositionPromotionNode() {
+        if (!this.popupMiniGame) {
+            return;
+        }
         const popupMiniGameNode = this.popupMiniGame?.node;
         const boostedOddsNode = this.boostedOdds?.node;
         const wPosition = popupMiniGameNode.convertToWorldSpaceAR(cc.v2(0, 0));

@@ -5,6 +5,7 @@ import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { getGameName } from "../../configs/GameConfigurations";
+import { appManager } from "../../managers/AppManager";
 import SocketIOController from "../../SocketIOController";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
@@ -39,6 +40,8 @@ export default class GatewayGame extends BaseComponent {
         this.initEventForInGameMenu();
         cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
+        //for room game
+        appManager.currentScene = this;
     }
 
     loadConfigs() {
@@ -100,15 +103,6 @@ export default class GatewayGame extends BaseComponent {
         }
     }
 
-    clearEventsInGameMenu() {
-        // if (this.inGameMenu) {
-        //     const node = this.inGameMenu.node;
-        //     node.off(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
-        //     node.off(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
-        //     node.off(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
-        // }
-    }
-
     openHistory() {
         AudioManager.getInstance().playClick();
     }
@@ -118,9 +112,9 @@ export default class GatewayGame extends BaseComponent {
     }
 
     onDestroy() {
-        this.clearEventsInGameMenu();
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
+        appManager.currentScene = null;
     }
 
     protected onGameHide() {
@@ -129,5 +123,9 @@ export default class GatewayGame extends BaseComponent {
 
     protected onGameShow() {
         //empty
+    }
+
+    outRoomGame() {
+        this.closeGame();
     }
 }

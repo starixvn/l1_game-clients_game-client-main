@@ -16,7 +16,6 @@ export default class GatewayGameItem extends cc.Component {
 
     renderItems: RenderItem[] = [];
     gameId = 0;
-    serviceName = "";
     socket: Socket;
     gameData: GameData = null;
 
@@ -29,9 +28,8 @@ export default class GatewayGameItem extends cc.Component {
         this.renderItems.forEach((item) => item.init(this.gameData));
     }
 
-    init(gameId: number, serviceName: string, socket: Socket) {
+    init(gameId: number, socket: Socket) {
         this.gameId = gameId;
-        this.serviceName = serviceName;
         this.socket = socket;
         this.updateGameName(this.gameId);
         this.initGameData();
@@ -50,7 +48,6 @@ export default class GatewayGameItem extends cc.Component {
 
     sendSignIn(receivedEvents: string[]) {
         this.socket.emit("signIn", {
-            serviceName: this.serviceName,
             gameName: this.gameName.toLocaleLowerCase(),
             receivedEvents: receivedEvents,
             session: getSession()

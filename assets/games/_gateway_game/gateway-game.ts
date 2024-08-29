@@ -24,7 +24,6 @@ export default class GatewayGame extends BaseComponent {
     protected readonly socketIOController: SocketIOController;
     protected socket: Socket;
     protected gameId = 0;
-    protected serviceName = "";
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
     protected inGameMenu: InGameMenu;
@@ -46,7 +45,6 @@ export default class GatewayGame extends BaseComponent {
         const configs = this.configs.json;
         this.gameId = configs.gameId;
         this.gameIds = configs.gameIds;
-        this.serviceName = configs.serviceName;
         this.receivedEvents = configs.receivedEvents;
 
         sessionManager.storeInRoomGameId(this.gameId);
@@ -65,7 +63,7 @@ export default class GatewayGame extends BaseComponent {
             this.container.addChild(node);
 
             const item = node.getComponent(GatewayGameItem);
-            item.init(gameId, this.serviceName, this.socket);
+            item.init(gameId, this.socket);
             item.sendSignIn(this.receivedEvents);
         });
     }

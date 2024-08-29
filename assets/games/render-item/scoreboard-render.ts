@@ -22,6 +22,10 @@ export default class ScoreboardRender extends RenderItem {
     }
 
     onData = (data: any) => {
-        this.scoreboard.renderScoreBoardInGame(data);
+        if (data.length === 0) {
+            this.scoreboard.resetBoard();
+        } else {
+            this.scoreboard.renderScoreBoardInGame(data);
+        }
     };
 }

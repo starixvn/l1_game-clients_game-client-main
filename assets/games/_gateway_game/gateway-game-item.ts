@@ -5,8 +5,8 @@ import { getGameName } from "../../configs/GameConfigurations";
 import RenderItem from "../render-item/render-item";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
-import { GameData } from "./models/game-data";
 import { GameInfoStore } from "./models/game-info-store";
+import { GameData } from "./models/gateway-game-data";
 import { RoundHistoryStore } from "./models/round-history-store";
 const { ccclass, property } = cc._decorator;
 @ccclass

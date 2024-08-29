@@ -1,6 +1,6 @@
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { EmitterEvents, Store } from "../_gateway_game/models/definitions";
-import { GameData } from "../_gateway_game/models/game-data";
+import { GameData } from "../_gateway_game/models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 

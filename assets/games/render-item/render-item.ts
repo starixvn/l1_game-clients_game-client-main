@@ -1,4 +1,4 @@
-import { GameData } from "../_gateway_game/models/game-data";
+import { GameData } from "../_gateway_game/models/gateway-game-data";
 
 const { ccclass, property } = cc._decorator;
 

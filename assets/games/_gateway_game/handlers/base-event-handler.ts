@@ -1,4 +1,4 @@
-import { GameData } from "../models/game-data";
+import { GameData } from "../models/gateway-game-data";
 
 export class BaseEventHandler<Event> {
     protected readonly gameData: GameData;

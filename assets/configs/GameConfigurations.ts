@@ -20,7 +20,7 @@ export interface GameConfiguration {
     isMicrosite?: boolean;
     bannerType?: string;
     gateway?: {
-        mainId: number;
+        id: number;
     };
 }
 
@@ -118,8 +118,7 @@ export function getGameConfiguration(gameId: number | string) {
 
 export function isGatewayGame(gameId: number) {
     const gameConfiguration = getGameConfiguration(gameId);
-    return gameId === 81;
-    // return gameConfiguration?.gateway;
+    return gameConfiguration?.gateway;
 }
 
 export function getAllGameConfigurations() {

@@ -19,6 +19,8 @@ export enum InternalEvents {
     GAME_IS_UM = "GAME_IS_UM",
     MINI_PANEL_GAME_UM = "mini_panel_game_um",
     MINI_PANEL_GAME_CONNECT_FAILED = "mini_panel_game_connect_failed",
+    MINI_PANEL_OPEN_TABLE_GAME = "mini_panel_open_table_game",
+    MINI_PANEL_OPEN_MINI_GAME = "mini_panel_open_mini_game",
     SIGN_OUT = "sign-out",
     LOADING_GAME = "loading-game",
     NOTICE = "notice-popup",

@@ -526,12 +526,12 @@ export default class GameUtils {
 
         if (!gameConfiguration.mini && gameId > 0) {
             StorageManager.remove(`orientation`);
-            miniPanel?.openNewSocketTableGame(null, gameId);
+            uiManager.emitter.emit(InternalEvents.MINI_PANEL_OPEN_TABLE_GAME, null, gameId);
             return;
         }
 
         onOpenMiniGame?.();
-        miniPanel?.openNewSocketMiniGame(null, gameId);
+        uiManager.emitter.emit(InternalEvents.MINI_PANEL_OPEN_MINI_GAME, null, gameId);
     }
 
     private static async preloadGameAssets(gameConfiguration: GameConfiguration, miniPanel: MiniPanel, gameId: number) {

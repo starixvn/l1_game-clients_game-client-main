@@ -145,6 +145,8 @@ export default class MiniPanel extends BaseComponent {
 
         uiManager.emitterListener(InternalEvents.MINI_PANEL_GAME_UM, this.handleUmMessage.bind(this), this);
         uiManager.emitterListener(InternalEvents.MINI_PANEL_GAME_CONNECT_FAILED, this.onConnectSocketFailed.bind(this), this);
+        uiManager.emitterListener(InternalEvents.MINI_PANEL_OPEN_TABLE_GAME, this.openNewSocketTableGame.bind(this), this);
+        uiManager.emitterListener(InternalEvents.MINI_PANEL_OPEN_MINI_GAME, this.openNewSocketMiniGame.bind(this), this);
     }
 
     onDestroy() {

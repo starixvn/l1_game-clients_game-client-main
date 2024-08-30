@@ -1,6 +1,6 @@
 import { StorageManager } from "../../managers/StorageManager";
 import { TAudioConfigs } from "../AudioInterface";
-import GameUtils from "../GameUtils";
+import AnimationUtils from "../utils/AnimationUtils";
 
 export default class AudioManager {
     public static getInstance(): AudioManager {
@@ -32,7 +32,7 @@ export default class AudioManager {
     async awaitForReady() {
         if (cc.sys.os === cc.sys.OS_IOS) {
             while (!this.isReady) {
-                await GameUtils.delayTime(0.5);
+                await AnimationUtils.delayTime(0.5);
             }
         }
     }

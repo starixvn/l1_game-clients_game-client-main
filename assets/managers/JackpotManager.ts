@@ -3,18 +3,7 @@ import NotificationService from "../common/auth/NotificationService";
 import { userManager } from "../common/user/UserManager";
 import { uiManager } from "./GameUIManager";
 import { InternalEvents } from "./InternalEvents";
-
-export const JackpotDataKey = {
-    JACKPOT_WINNER: "jackpotWinner",
-    JACKPOT_WINNERS: "jackpotWinners",
-    JACKPOT_POOLS: "jackpotPools",
-    JACKPOT_POOLS_ON_GAME: "jackpotPoolsOnGame"
-};
-
-export const JackpotEvents = {
-    GET_POOLS: "getPools",
-    GET_WINNERS: "getWinners"
-};
+import { JackpotDataKey, JackpotEvents } from "./JackpotEvents";
 
 export enum JackpotPoolType {
     MINOR = 0,

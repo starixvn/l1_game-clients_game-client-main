@@ -1,10 +1,10 @@
 import BaseMicrositeGame from "../../common/BaseMicrositeGame";
-import GameUtils from "../../common/GameUtils";
 import AudioManager from "../../common/audio/AudioManager";
 import * as AuthManager from "../../common/auth/AuthManager";
 import NotificationService from "../../common/auth/NotificationService";
 import * as SessionManager from "../../common/auth/SessionManager";
 import { userManager } from "../../common/user/UserManager";
+import EncryptUtils from "../../common/utils/EncryptUtils";
 import { appManager } from "../../managers/AppManager";
 import { jackpotManager } from "../../managers/JackpotManager";
 
@@ -32,8 +32,10 @@ export default class MicrositeGame extends BaseMicrositeGame {
             lang: auData.language,
             appType: auData.system,
             ref: directMode?.ref,
-            rurl: appManager.checkDirectModeRefData(directMode?.ref) ? directMode?.returnUrl : GameUtils.base64Encode(window.location.href),
-            purl: GameUtils.base64Encode(window.location.href),
+            rurl: appManager.checkDirectModeRefData(directMode?.ref)
+                ? directMode?.returnUrl
+                : EncryptUtils.base64Encode(window.location.href),
+            purl: EncryptUtils.base64Encode(window.location.href),
             musicEnable: audio.musicEnabled,
             sfxEnable: audio.sfxEnabled,
             isUserGesture: audio.isUserGesture,
@@ -42,7 +44,7 @@ export default class MicrositeGame extends BaseMicrositeGame {
 
         const searchParams = new URLSearchParams();
         Object.keys(params).forEach((key) => params[key] !== undefined && searchParams.append(key, params[key]));
-        const encodedQueryString = GameUtils.base64Encode(searchParams.toString());
+        const encodedQueryString = EncryptUtils.base64Encode(searchParams.toString());
         return `?params=${encodedQueryString}`;
     }
 

@@ -14,6 +14,7 @@ import { getGameConfiguration, isUsingRemoteBundle } from "./configs/GameConfigu
 import { appManager } from "./managers/AppManager";
 import { uiManager } from "./managers/GameUIManager";
 import { InternalEvents } from "./managers/InternalEvents";
+import SocketIOControllerInterface from "./SocketIOControllerInterface";
 
 enum SocketState {
     NOT_CONNECT = 0,
@@ -24,7 +25,7 @@ enum SocketState {
 }
 
 @injectable()
-export default class SocketIOController {
+export default class SocketIOController implements SocketIOControllerInterface {
     private gameSockets = {};
     private socketsState = {};
 

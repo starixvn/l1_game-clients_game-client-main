@@ -6,6 +6,7 @@ import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import GameUtils from "../../GameUtils";
 import AudioManager from "../../audio/AudioManager";
+import BetChipsInterface from "./BetChipsInterface";
 import ChipConfig from "./ChipConfig";
 import ChipView, { ChipDisplayType } from "./ChipView";
 import SnappedScrollView from "./SnappedScrollView";
@@ -14,7 +15,7 @@ const { ccclass, property } = cc._decorator;
 type OnChangedBet = (bet: string) => void;
 
 @ccclass
-export default class BetChips extends cc.Component {
+export default class BetChips extends cc.Component implements BetChipsInterface {
     @property(cc.Node)
     chips: cc.Node = null;
 

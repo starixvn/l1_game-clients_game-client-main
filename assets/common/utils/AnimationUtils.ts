@@ -59,10 +59,10 @@ export default class AnimationUtils {
         });
     };
 
-    public delayTime = (time: number) => {
+    public static delayTime = (seconds: number) => {
         return new Promise<void>((resolve) => {
             cc.tween({})
-                .delay(time)
+                .delay(seconds)
                 .call(() => resolve())
                 .start();
         });

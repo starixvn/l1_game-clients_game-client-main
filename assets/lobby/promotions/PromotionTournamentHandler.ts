@@ -1,11 +1,11 @@
 import axios from "axios";
+import * as sessionManager from "../../common/auth/SessionManager";
+import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
-import EventEmitterBase from "../../common/emitter/EventEmitterBase";
-import * as sessionManager from "../../common/auth/SessionManager";
-import GameUtils from "../../common/GameUtils";
-import { InternalEvents } from "../../managers/InternalEvents";
+import EncryptUtils from "../../common/utils/EncryptUtils";
 import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
 import configs = require("../../configs/Configs");
 
 export const PromotionTournamentEvents = {
@@ -16,7 +16,7 @@ export const PromotionTournamentEvents = {
 const endpointConstants = {
     existNewOrRunningTournamentPromotion: "exist-new-or-running-promotion-tournament",
     existTournamentPromotionNotification: "exist-promotion-tournament-notification"
-}
+};
 
 export default class PromotionTournamentHandler extends EventEmitterBase {
     private static instance: PromotionTournamentHandler;
@@ -67,12 +67,13 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
                 return this.emitSignInEvent();
             }
 
-            const existNewOrRunningPromotionTournament = await this.getPromotionData(endpointConstants.existNewOrRunningTournamentPromotion);
+            const existNewOrRunningPromotionTournament = await this.getPromotionData(
+                endpointConstants.existNewOrRunningTournamentPromotion
+            );
 
-            existNewOrRunningPromotionTournament ?
-                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT) :
-                this.initializeTournamentPromotionFirstSso();
-
+            existNewOrRunningPromotionTournament
+                ? this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT)
+                : this.initializeTournamentPromotionFirstSso();
         } catch (error) {
             this.emitSignInEvent();
         }
@@ -114,7 +115,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
     private buildParams() {
         const session = sessionManager.getSession();
         return {
-            sessionId: GameUtils.base64Encode(session?.ss || ""),
+            sessionId: EncryptUtils.base64Encode(session?.ss || ""),
             username: session?.username,
             language: session?.language
         };

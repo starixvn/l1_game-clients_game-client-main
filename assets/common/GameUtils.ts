@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Base64 } from "base64-string";
 import { BundleManager } from "bundle-management";
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
@@ -13,11 +12,11 @@ import { appManager } from "../managers/AppManager";
 import { uiManager } from "../managers/GameUIManager";
 import { InternalEvents } from "../managers/InternalEvents";
 import { StorageManager } from "../managers/StorageManager";
-import MiniPanel from "../mini-games-panel/view-models/MiniPanel";
-import SocketIOController from "../SocketIOController";
+import MiniPanelInterface from "../mini-games-panel/view-models/MiniPanelInterface";
+import SocketIOControllerInterface from "../SocketIOControllerInterface";
 import { AXIOS_FAILED_PREFIX } from "../utils";
 import AnimatedTime from "./animated-time/view-models/AnimatedTime";
-import BetChips from "./bet-chips/view-models/BetChips";
+import BetChipsInterface from "./bet-chips/view-models/BetChipsInterface";
 import { ChipParams } from "./bet-chips/view-models/ChipFlyConfig";
 import ChipStack from "./chip-stack/views/ChipStack";
 import { numberWithCommas } from "./helpers/NumberHelper";
@@ -44,23 +43,8 @@ declare global {
 }
 
 export default class GameUtils {
-    static base64: Base64;
-
     static versionsCache = {};
 
-    public static base64Decode(data: string): string {
-        if (!this.base64) {
-            this.base64 = new Base64();
-        }
-        return this.base64.decode(data);
-    }
-
-    public static base64Encode(data: string): string {
-        if (!this.base64) {
-            this.base64 = new Base64();
-        }
-        return this.base64.encode(data);
-    }
     public static addFlyingText(parent: cc.Node, win: boolean, value: number, duration = 1, startY = 0, destY = 100) {
         const temp = new cc.Node().addComponent(cc.Label);
         temp.string = (win ? "+" : "-") + numberWithCommas(value, 2);
@@ -335,7 +319,7 @@ export default class GameUtils {
         return this.getStorageGame("SpecificGame", gameId);
     }
 
-    public static async openGameDirect(gameId: number, socketIOController: SocketIOController) {
+    public static async openGameDirect(gameId: number, socketIOController: SocketIOControllerInterface) {
         const gameConfiguration = getGameConfiguration(gameId);
         if (GameUtils.isMicroSite(gameConfiguration)) {
             this.openGameMicrosite(gameId);
@@ -345,7 +329,7 @@ export default class GameUtils {
         await this.loadSceneGame(gameId, socketIOController);
     }
 
-    public static async tryOpenGameDirect(gameId: number, socketIOController: SocketIOController) {
+    public static async tryOpenGameDirect(gameId: number, socketIOController: SocketIOControllerInterface) {
         try {
             await socketIOController.openGameSocket(gameId);
             await this.preloadGameRoom(gameId);
@@ -391,7 +375,7 @@ export default class GameUtils {
         }
     }
 
-    public static async loadSceneGame(gameId, socketIOController: SocketIOController) {
+    public static async loadSceneGame(gameId, socketIOController: SocketIOControllerInterface) {
         const sceneName = socketIOController.gameScene[gameId];
         await this.loadScene(gameId, sceneName);
     }
@@ -458,7 +442,7 @@ export default class GameUtils {
         });
     }
 
-    static openSocketGatewayGame(gameId: number, socketIOController: SocketIOController) {
+    static openSocketGatewayGame(gameId: number, socketIOController: SocketIOControllerInterface) {
         const socket = socketIOController.createGatewayGameSocket(gameId);
         const onConnectSocketFailed = async () => {
             const gameName = await GameUtils.getDisplayGameName(gameId);
@@ -501,7 +485,7 @@ export default class GameUtils {
 
     public static async openGame(
         gameId: number,
-        miniPanel: MiniPanel,
+        miniPanel: MiniPanelInterface,
         onOpenMiniGame = () => {
             // handle
         },
@@ -534,7 +518,7 @@ export default class GameUtils {
         uiManager.emitter.emit(InternalEvents.MINI_PANEL_OPEN_MINI_GAME, null, gameId);
     }
 
-    private static async preloadGameAssets(gameConfiguration: GameConfiguration, miniPanel: MiniPanel, gameId: number) {
+    private static async preloadGameAssets(gameConfiguration: GameConfiguration, miniPanel: MiniPanelInterface, gameId: number) {
         try {
             if (!!gameConfiguration.remoteBundle) {
                 await BundleManager.getInstance().loadBundle(gameId.toString());
@@ -817,6 +801,9 @@ export default class GameUtils {
         return cc.instantiate(prefab);
     }
 
+    /** 
+    DEPRECATED, should use AnimationUtils.delayTime
+    */
     public static delayTime(time: number) {
         return new Promise<void>((resolve) => {
             cc.tween({})
@@ -1080,7 +1067,7 @@ export default class GameUtils {
 
     public static createChipStack(
         bet: number,
-        betChips: BetChips,
+        betChips: BetChipsInterface,
         option: { isChip3D: boolean; shadowFrame: cc.SpriteFrame; skewX: number }
     ) {
         const values = this.getChipQuantity(bet, betChips.chipValues);
@@ -1136,7 +1123,7 @@ export default class GameUtils {
         return { chip: chipNode, isFirstChip: firstChip };
     }
 
-    public static isChipStack(bet: number, betChips: BetChips, destNode: cc.Node) {
+    public static isChipStack(bet: number, betChips: BetChipsInterface, destNode: cc.Node) {
         const currNodeAmount = destNode.childrenCount;
         const values = this.getChipQuantity(bet, betChips.chipValues);
         const keys = Object.keys(values).sort((a, b) => +b - +a);

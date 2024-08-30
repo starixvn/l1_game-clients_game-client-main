@@ -29,6 +29,7 @@ import { UrlInfo } from "../../managers/UrlInfo";
 import * as authManager from "./../../common/auth/AuthManager";
 import { showMessageForExpiredToken } from "./../../common/auth/AuthManager";
 import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
+import MiniPanelInterface from "./MiniPanelInterface";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
@@ -37,7 +38,7 @@ type NewLayerCallback = () => void;
 
 const { ccclass, property } = cc._decorator;
 @ccclass
-export default class MiniPanel extends BaseComponent {
+export default class MiniPanel extends BaseComponent implements MiniPanelInterface {
     @property(cc.BitmapFont)
     fontCong: cc.BitmapFont = null;
 

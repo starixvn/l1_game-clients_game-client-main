@@ -1,7 +1,7 @@
 import * as AuthManager from "../../common/auth/AuthManager";
 import * as SessionManager from "../../common/auth/SessionManager";
 import BaseMicrositeGame from "../../common/BaseMicrositeGame";
-import GameUtils from "../../common/GameUtils";
+import EncryptUtils from "../../common/utils/EncryptUtils";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -14,7 +14,7 @@ export default class MicrositeGameWebView extends BaseMicrositeGame {
     protected getMicrositeGameQueryString() {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has("token")) {
-            const mainUrl = GameUtils.base64Encode(window.location.href);
+            const mainUrl = EncryptUtils.base64Encode(window.location.href);
             const returnMainLobbyUrl =
                 urlParams.has(UrlInfo.Ref) && appManager.checkDirectModeRefData(urlParams.get(UrlInfo.Ref)) ? "" : `&rurl=${mainUrl}`;
             return `?${urlParams.toString()}${returnMainLobbyUrl}&purl=${mainUrl}`;

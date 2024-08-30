@@ -108,8 +108,12 @@ export function getGameId(key: string) {
 
 export function isMiniGame(key: string) {
     const gameConfiguration = getAllGameConfigurations().find((configuration) => configuration.key === key);
+    return !!gameConfiguration?.mini;
+}
 
-    return gameConfiguration?.mini != null;
+export function isMiniGameByGameId(gameId: number | string) {
+    const gameConfiguration = getGameConfiguration(gameId);
+    return !!gameConfiguration?.mini;
 }
 
 export function getGameConfiguration(gameId: number | string) {

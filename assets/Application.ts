@@ -5,21 +5,10 @@ import { BundleManager } from "bundle-management";
 import { Container } from "inversify";
 import getDecorators from "inversify-inject-decorators";
 
-import SocketIOController from "./SocketIOController";
-import LobbyMenuConfig from "./lobby/main/view-models/LobbyMenuConfig";
 import { AXIOS_FAILED_PREFIX } from "./utils";
 
 export class Application {
     constructor(public readonly container = new Container()) {}
-
-    startup() {
-        this.configureServices();
-    }
-
-    configureServices() {
-        this.container.bind<SocketIOController>(SocketIOController).toSelf().inSingletonScope();
-        this.container.bind<LobbyMenuConfig>(LobbyMenuConfig).toSelf().inSingletonScope();
-    }
 }
 
 BundleManager.initialize({
@@ -39,7 +28,6 @@ BundleManager.initialize({
 });
 
 const app = new Application();
-app.startup();
 
 const { lazyInject } = getDecorators(app.container);
 const appContainer = app.container;

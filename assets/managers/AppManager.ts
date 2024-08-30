@@ -1,4 +1,3 @@
-import GameUtils from "../common/GameUtils";
 import AudioManager from "../common/audio/AudioManager";
 import * as authManager from "../common/auth/AuthManager";
 import NotificationService from "../common/auth/NotificationService";
@@ -8,7 +7,8 @@ import UserService from "../common/auth/UserService";
 import logger from "../common/logger";
 import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
-import { initialize as initGameConfiguration } from "../configs/GameConfigurations";
+import EncryptUtils from "../common/utils/EncryptUtils";
+import { initialize as initGameConfiguration, isMiniGameByGameId } from "../configs/GameConfigurations";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
@@ -93,7 +93,7 @@ class AppManager {
     backToOperatorLobby() {
         const url = appManager.urlInfo[UrlInfo.ReturnUrl];
         if (url) {
-            window.location.replace(GameUtils.base64Decode(url));
+            window.location.replace(EncryptUtils.base64Decode(url));
         }
     }
 
@@ -138,7 +138,7 @@ class AppManager {
             const gameId = urlParams.get("gameId");
             const refData = urlParams.get(UrlInfo.Ref);
 
-            if (this.checkDirectModeRefData(refData) && !GameUtils.isMiniGame(gameId)) {
+            if (this.checkDirectModeRefData(refData) && !isMiniGameByGameId(gameId)) {
                 this.urlInfo[UrlInfo.Ref] = refData;
                 this.urlInfo[UrlInfo.DirectGameId] = gameId;
                 if (urlParams.has("rurl") && urlParams.get("rurl") !== "") {

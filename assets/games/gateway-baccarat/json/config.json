@@ -1,5 +1,16 @@
 {
     "gameId": 81,
     "gameIds": [81, 10, 27],
-    "receivedEvents": ["roundHistory", "remainingTime", "rtp", "betLimit", "finish", "totalOnlineUsers"]
+    "receivedEvents": [
+        "roundHistory",
+        "remainingTime",
+        "rtp",
+        "betLimit",
+        "finish",
+        "totalOnlineUsers",
+        "player",
+        "outgame",
+        "newShoePhase",
+        "newShoeHash"
+    ]
 }

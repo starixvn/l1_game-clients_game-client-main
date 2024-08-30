@@ -48,7 +48,7 @@ export default class GatewayGameItem extends cc.Component {
 
     sendSignIn(receivedEvents: string[]) {
         this.socket.emit("signIn", {
-            gameName: this.gameName.toLocaleLowerCase(),
+            gameName: this.gameName,
             receivedEvents: receivedEvents,
             session: getSession()
         });

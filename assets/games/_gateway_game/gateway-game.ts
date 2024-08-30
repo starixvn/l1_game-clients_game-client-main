@@ -3,12 +3,25 @@ import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
+import CategoryItem from "../../common/category/category-item";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { getGameName } from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
 import SocketIOController from "../../SocketIOController";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
+interface CategoriesJson {
+    all: number[];
+    lucky: number[];
+    classic: number[];
+    vip: number[];
+}
+interface GameConfigJson {
+    gameId: number;
+    gameIds: number[];
+    categories: CategoriesJson;
+    receivedEvents: string[];
+}
 
 @ccclass
 export default class GatewayGame extends BaseComponent {
@@ -27,6 +40,7 @@ export default class GatewayGame extends BaseComponent {
     protected gameId = 0;
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
+    protected categories: CategoriesJson;
     protected inGameMenu: InGameMenu;
 
     public get gameName() {
@@ -45,10 +59,11 @@ export default class GatewayGame extends BaseComponent {
     }
 
     loadConfigs() {
-        const configs = this.configs.json;
+        const configs = this.configs.json as GameConfigJson;
         this.gameId = configs.gameId;
         this.gameIds = configs.gameIds;
         this.receivedEvents = configs.receivedEvents;
+        this.categories = configs.categories;
 
         sessionManager.storeInRoomGameId(this.gameId);
     }
@@ -68,7 +83,25 @@ export default class GatewayGame extends BaseComponent {
             const item = node.getComponent(GatewayGameItem);
             item.init(gameId, this.socket);
             item.sendSignIn(this.receivedEvents);
+
+            const categories = this.getCategory(gameId);
+            categories.forEach((category) => {
+                const comp = item.addComponent(CategoryItem);
+                comp.category = category;
+            });
         });
+    }
+
+    getCategory(gameId: number) {
+        const list = Object.keys(this.categories).flatMap((category) => {
+            if (this.categories[category].includes(gameId)) {
+                return [category];
+            } else {
+                return [];
+            }
+        });
+        console.log(`Categories:`, list);
+        return list;
     }
 
     initSocketListeners() {

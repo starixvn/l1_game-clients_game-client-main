@@ -1015,7 +1015,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             const animation = effect.getComponent(CallbackAnimation);
             animation.setDuration(this.getCustomDuration("bonus"));
             await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
-            console.timeEnd("bonuses");
             this.showBonusDialog(bonus, resolve);
         });
     }

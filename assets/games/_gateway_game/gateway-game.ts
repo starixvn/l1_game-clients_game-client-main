@@ -5,9 +5,12 @@ import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import CategoryItem from "../../common/category/category-item";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
+import UserProfile from "../../common/user-profile/UserProfile";
+import { userManager } from "../../common/user/UserManager";
 import { getGameName } from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
 import SocketIOController from "../../SocketIOController";
+import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
 interface CategoriesJson {
@@ -42,12 +45,14 @@ export default class GatewayGame extends BaseComponent {
     protected receivedEvents: string[] = [];
     protected categories: CategoriesJson;
     protected inGameMenu: InGameMenu;
+    protected userProfile: UserProfile;
 
     public get gameName() {
         return getGameName(this.gameId);
     }
 
     onLoad() {
+        this.loadUserData();
         this.loadConfigs();
         this.initSocket();
         this.initItems();
@@ -56,6 +61,13 @@ export default class GatewayGame extends BaseComponent {
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
         //for room game
         appManager.currentScene = this;
+    }
+
+    loadUserData() {
+        this.userProfile = this.getComponentInChildren(UserProfile);
+        if (this.userProfile) {
+            loadUserData(this)(userManager.user);
+        }
     }
 
     loadConfigs() {

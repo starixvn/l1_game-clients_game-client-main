@@ -18,11 +18,7 @@ export default class ColorToggle extends cc.Component {
             return;
         }
         this.initialized = true;
-        this.toggle.node.on("toggle", this.updateCheckColor, this);
-    }
-
-    onDestroy() {
-        this.toggle.node.off("toggle", this.updateCheckColor, this);
+        this.schedule(this.updateCheckColor.bind(this), 1 / 30, cc.macro.REPEAT_FOREVER);
     }
 
     updateCheckColor() {

@@ -148,6 +148,15 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         uiManager.emitterListener(InternalEvents.MINI_PANEL_GAME_CONNECT_FAILED, this.onConnectSocketFailed.bind(this), this);
         uiManager.emitterListener(InternalEvents.MINI_PANEL_OPEN_TABLE_GAME, this.openNewSocketTableGame.bind(this), this);
         uiManager.emitterListener(InternalEvents.MINI_PANEL_OPEN_MINI_GAME, this.openNewSocketMiniGame.bind(this), this);
+        uiManager.emitterListener(InternalEvents.LOADING_GAME, this.updateLoadingGameProgress.bind(this), this);
+    }
+
+    updateLoadingGameProgress(data: { gameId; progress; total }) {
+        const { gameId, progress, total } = data;
+        const loading = this.getGameLoadingComp(gameId);
+        if (loading) {
+            loading.onProgress(progress, total);
+        }
     }
 
     onDestroy() {

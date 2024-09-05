@@ -385,6 +385,7 @@ export default class GameUtils {
             cc.director.preloadScene(
                 sceneName,
                 (progress, total) => {
+                    uiManager.emitter.emit(InternalEvents.LOADING_GAME, { gameId, progress, total });
                     uiManager.emitter.emit(`${InternalEvents.LOADING_GAME}-${gameId}`, { progress, total });
                 },
                 (error) => {

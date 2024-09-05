@@ -1,6 +1,7 @@
 import { Socket } from "socket.io-client";
 import { getSession } from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
+import LazyloadSprite from "../../common/LazyloadSprite";
 import { getGameName } from "../../configs/GameConfigurations";
 import RenderItem from "../render-item/render-item";
 import { GameInfoHandler } from "./handlers/game-info-handler";
@@ -34,6 +35,15 @@ export default class GatewayGameItem extends cc.Component {
         this.updateGameName(this.gameId);
         this.initGameData();
         this.initListener();
+        this.loadLazyloadSprites();
+    }
+
+    loadLazyloadSprites() {
+        const lazyloadSprites = this.getComponentsInChildren(LazyloadSprite);
+        lazyloadSprites.forEach((sprite) => {
+            sprite.suffix = `-${this.gameId}`;
+            sprite.loadSprite();
+        });
     }
 
     onDestroy() {

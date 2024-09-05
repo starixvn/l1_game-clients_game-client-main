@@ -470,6 +470,7 @@ export default class GameUtils {
             const available = true;
             if (available) {
                 const sceneName = `gateway-${gameId}`;
+                await BundleManager.getInstance().loadBundle(`${gameId}`);
                 await this.loadScene(gameId, sceneName);
             } else {
                 const data = {

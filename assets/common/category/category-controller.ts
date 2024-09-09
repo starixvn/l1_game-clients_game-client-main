@@ -9,6 +9,8 @@ export default class CategoryController extends cc.Component {
 
     _items: cc.Node[] = [];
 
+    categories: string[] = [];
+
     get items(): cc.Node[] {
         if (this._items.length === 0) {
             this._items = this.container.children;
@@ -18,17 +20,38 @@ export default class CategoryController extends cc.Component {
 
     onToggleCategoryChanged(toggle: cc.Toggle) {
         const categoryItem = toggle.getComponent(CategoryItem);
-        this.changeCategory(categoryItem.category);
+        const isChecked = toggle.isChecked;
+
+        this.changeCategory(categoryItem.category, isChecked);
     }
 
-    changeCategory(category: string) {
-        this.updateItemVisibility(category);
+    initCategories(categories: string[]) {
+        this.categories = categories;
+        this.updateItemVisibility();
     }
 
-    updateItemVisibility(category: string) {
+    changeCategory(category: string, checked: boolean) {
+        if (checked) {
+            this.categories.push(category);
+            this.removeDuplicateCategory();
+        } else {
+            const index = this.categories.indexOf(category);
+            this.categories.splice(index);
+        }
+        console.log(`Categories updated: `, this.categories);
+        this.updateItemVisibility();
+    }
+
+    private removeDuplicateCategory() {
+        this.categories = this.categories.filter(
+            (iterator, index, categories) => categories?.findIndex((category) => category === iterator) === index
+        );
+    }
+
+    updateItemVisibility() {
         this.items.forEach((item) => {
             const comps = item.getComponents(CategoryItem);
-            item.active = comps.map((comp) => comp.category).includes(category);
+            item.active = comps.some((comp) => this.categories.includes(comp.category));
         });
     }
 }

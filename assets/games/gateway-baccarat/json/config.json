@@ -1,12 +1,6 @@
 {
     "gameId": 81,
-    "gameIds": [81, 10, 27],
-    "categories": {
-        "all": [81, 10, 27],
-        "lucky": [81],
-        "classic": [10],
-        "vip": [27]
-    },
+    "games": { "81": ["lucky"], "10": ["classic"], "27": ["classic"] },
     "receivedEvents": [
         "roundHistory",
         "remainingTime",

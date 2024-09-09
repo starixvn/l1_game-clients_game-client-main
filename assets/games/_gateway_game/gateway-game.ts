@@ -13,16 +13,10 @@ import SocketIOController from "../../SocketIOController";
 import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
-interface CategoriesJson {
-    all: number[];
-    lucky: number[];
-    classic: number[];
-    vip: number[];
-}
+type CategoryJson = { [key: string]: string[] };
 interface GameConfigJson {
     gameId: number;
-    gameIds: number[];
-    categories: CategoriesJson;
+    games: CategoryJson;
     receivedEvents: string[];
 }
 
@@ -43,7 +37,7 @@ export default class GatewayGame extends BaseComponent {
     protected gameId = 0;
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
-    protected categories: CategoriesJson;
+    protected categoryJson: CategoryJson;
     protected inGameMenu: InGameMenu;
     protected userProfile: UserProfile;
 
@@ -73,9 +67,9 @@ export default class GatewayGame extends BaseComponent {
     loadConfigs() {
         const configs = this.configs.json as GameConfigJson;
         this.gameId = configs.gameId;
-        this.gameIds = configs.gameIds;
+        this.gameIds = Object.keys(configs.games).map((key) => +key);
         this.receivedEvents = configs.receivedEvents;
-        this.categories = configs.categories;
+        this.categoryJson = configs.games;
 
         sessionManager.storeInRoomGameId(this.gameId);
     }
@@ -88,6 +82,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     initItems() {
+        let allCatogories = [];
         this.gameIds.forEach((gameId) => {
             const node = cc.instantiate(this.gamePrefab);
             this.container.addChild(node);
@@ -97,23 +92,25 @@ export default class GatewayGame extends BaseComponent {
             item.sendSignIn(this.receivedEvents);
 
             const categories = this.getCategory(gameId);
+            allCatogories.push(...categories);
             categories.forEach((category) => {
                 const comp = item.addComponent(CategoryItem);
                 comp.category = category;
             });
         });
+
+        allCatogories = allCatogories.filter(
+            (iterator, index, categories) => categories?.findIndex((category) => category === iterator) === index
+        );
+
+        // const comp = this.getComponentInChildren(CategoryController);
+        // if (comp) {
+        //     comp.initCategories(allCatogories);
+        // }
     }
 
     getCategory(gameId: number) {
-        const list = Object.keys(this.categories).flatMap((category) => {
-            if (this.categories[category].includes(gameId)) {
-                return [category];
-            } else {
-                return [];
-            }
-        });
-        console.log(`Categories:`, list);
-        return list;
+        return this.categoryJson[gameId];
     }
 
     initSocketListeners() {

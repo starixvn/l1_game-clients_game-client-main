@@ -3,7 +3,10 @@ import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
+import CategoryController from "../../common/category/category-controller";
+import { CategoryEvent } from "../../common/category/category-events";
 import CategoryItem from "../../common/category/category-item";
+import GameUtils from "../../common/GameUtils";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UserProfile from "../../common/user-profile/UserProfile";
 import { userManager } from "../../common/user/UserManager";
@@ -44,6 +47,7 @@ export default class GatewayGame extends BaseComponent {
     public get gameName() {
         return getGameName(this.gameId);
     }
+    protected readonly CategoryFilter = "category-filter";
 
     onLoad() {
         this.loadUserData();
@@ -103,10 +107,23 @@ export default class GatewayGame extends BaseComponent {
             (iterator, index, categories) => categories?.findIndex((category) => category === iterator) === index
         );
 
-        // const comp = this.getComponentInChildren(CategoryController);
-        // if (comp) {
-        //     comp.initCategories(allCatogories);
-        // }
+        const comp = this.getComponentInChildren(CategoryController);
+        if (comp) {
+            const data = GameUtils.getSpecificGameSetting(this.GatewayGameSetting);
+            const savedFilter = data[this.CategoryFilter] ?? [];
+            comp.node.on(CategoryEvent.Changed, this.saveCategoryFilter, this);
+            comp.initCategories(allCatogories, savedFilter);
+        }
+    }
+
+    get GatewayGameSetting() {
+        return `gateway-${this.gameId}`;
+    }
+
+    saveCategoryFilter(categories: string[]) {
+        const data = GameUtils.getSpecificGameSetting(this.GatewayGameSetting);
+        data[this.CategoryFilter] = categories;
+        GameUtils.setSpecificGameSetting(this.GatewayGameSetting, data);
     }
 
     getCategory(gameId: number) {

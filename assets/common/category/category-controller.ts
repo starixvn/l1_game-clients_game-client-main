@@ -1,3 +1,4 @@
+import { CategoryEvent } from "./category-events";
 import CategoryItem from "./category-item";
 
 const { ccclass, property } = cc._decorator;
@@ -8,14 +9,23 @@ export default class CategoryController extends cc.Component {
     container: cc.Node = null;
 
     _items: cc.Node[] = [];
+    _toggles: cc.Toggle[] = [];
 
     categories: string[] = [];
+    allCategories: string[] = [];
 
     get items(): cc.Node[] {
         if (this._items.length === 0) {
             this._items = this.container.children;
         }
         return this._items;
+    }
+
+    get toggles(): cc.Toggle[] {
+        if (this._toggles.length === 0) {
+            this._toggles = this.getComponentsInChildren(cc.Toggle);
+        }
+        return this._toggles;
     }
 
     onToggleCategoryChanged(toggle: cc.Toggle) {
@@ -25,8 +35,16 @@ export default class CategoryController extends cc.Component {
         this.changeCategory(categoryItem.category, isChecked);
     }
 
-    initCategories(categories: string[]) {
-        this.categories = categories;
+    initCategories(categories: string[], storageCategories: string[]) {
+        this.allCategories = categories;
+        this.categories = storageCategories.length > 0 ? storageCategories : this.allCategories;
+
+        this.toggles.forEach((toggle) => {
+            const item = toggle.getComponent(CategoryItem);
+            if (this.categories.includes(item.category)) {
+                toggle.check();
+            }
+        });
         this.updateItemVisibility();
     }
 
@@ -38,7 +56,7 @@ export default class CategoryController extends cc.Component {
             const index = this.categories.indexOf(category);
             this.categories.splice(index);
         }
-        console.log(`Categories updated: `, this.categories);
+        this.node.emit(CategoryEvent.Changed, this.categories);
         this.updateItemVisibility();
     }
 

@@ -1,3 +1,4 @@
+import AnimationUtils from "../../common/utils/AnimationUtils";
 import { EmitterEvents, Store } from "../_gateway_game/models/definitions";
 import { GameData } from "../_gateway_game/models/gateway-game-data";
 import RenderItem from "./render-item";
@@ -22,12 +23,23 @@ export default class NewShoeRender extends RenderItem {
         store?.removeListener(EmitterEvents.ActiveNewShoe, this.onActiveNewShoe);
     }
 
-    onActiveNewShoe = (data: boolean) => {
+    onActiveNewShoe = async (data: boolean) => {
         this.node.active = true;
+        try {
+            const spine = this.getComponentInChildren(sp.Skeleton);
+            await AnimationUtils.playSpine(spine, "in", false);
+            spine.setAnimation(0, "shuffling", true);
+        } catch (e) {}
     };
-    onTimeChange = (time: number) => {
+    onTimeChange = async (time: number) => {
         if (time < 34 && this.node.active) {
-            this.node.active = false;
+            try {
+                const spine = this.getComponentInChildren(sp.Skeleton);
+                await AnimationUtils.playSpine(spine, "out", false);
+                this.node.active = false;
+            } catch (e) {
+                this.node.active = false;
+            }
         }
     };
 }

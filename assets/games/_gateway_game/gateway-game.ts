@@ -17,10 +17,12 @@ import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
 type CategoryJson = { [key: string]: string[] };
+type ServiceNameJson = { [key: string]: number[] };
 interface GameConfigJson {
     gameId: number;
     games: CategoryJson;
     receivedEvents: string[];
+    serviceName: ServiceNameJson;
 }
 
 @ccclass
@@ -41,6 +43,7 @@ export default class GatewayGame extends BaseComponent {
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
     protected categoryJson: CategoryJson;
+    protected serviceNameJson: ServiceNameJson;
     protected inGameMenu: InGameMenu;
     protected userProfile: UserProfile;
 
@@ -74,6 +77,7 @@ export default class GatewayGame extends BaseComponent {
         this.gameIds = Object.keys(configs.games).map((key) => +key);
         this.receivedEvents = configs.receivedEvents;
         this.categoryJson = configs.games;
+        this.serviceNameJson = configs.serviceName;
 
         sessionManager.storeInRoomGameId(this.gameId);
     }
@@ -85,6 +89,10 @@ export default class GatewayGame extends BaseComponent {
         }
     }
 
+    getServiceName(gameId: number) {
+        return Object.keys(this.serviceNameJson).find((key) => this.serviceNameJson[key].includes(gameId)) ?? "";
+    }
+
     initItems() {
         let allCatogories = [];
         this.gameIds.forEach((gameId) => {
@@ -92,7 +100,8 @@ export default class GatewayGame extends BaseComponent {
             this.container.addChild(node);
 
             const item = node.getComponent(GatewayGameItem);
-            item.init(gameId, this.socket);
+            const serviceName = this.getServiceName(gameId);
+            item.init(gameId, serviceName, this.socket);
             item.sendSignIn(this.receivedEvents);
 
             const categories = this.getCategory(gameId);

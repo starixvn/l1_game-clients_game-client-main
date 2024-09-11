@@ -1,6 +1,9 @@
 {
     "gameId": 81,
     "games": { "81": ["lucky"], "10": ["classic"], "27": ["classic"], "84": ["classic"] },
+    "serviceName": {
+        "baccaratx": [81, 84]
+    },
     "receivedEvents": [
         "roundHistory",
         "remainingTime",

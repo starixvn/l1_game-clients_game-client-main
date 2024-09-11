@@ -1,6 +1,6 @@
-import AnimationUtils from "../../common/utils/AnimationUtils";
-import { EmitterEvents, Store } from "../_gateway_game/models/definitions";
-import { GameData } from "../_gateway_game/models/gateway-game-data";
+import AnimationUtils from "../../../common/utils/AnimationUtils";
+import { EmitterEvents, Store } from "../models/definitions";
+import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 

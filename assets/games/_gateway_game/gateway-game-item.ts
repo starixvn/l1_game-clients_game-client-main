@@ -3,12 +3,12 @@ import { getSession } from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import LazyloadSprite from "../../common/LazyloadSprite";
 import { getGameName } from "../../configs/GameConfigurations";
-import RenderItem from "../render-item/render-item";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
 import { GameInfoStore } from "./models/game-info-store";
 import { GameData } from "./models/gateway-game-data";
 import { RoundHistoryStore } from "./models/round-history-store";
+import RenderItem from "./render-item/render-item";
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GatewayGameItem extends cc.Component {

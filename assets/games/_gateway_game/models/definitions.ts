@@ -6,14 +6,22 @@ export const EmitterEvents = {
     TotalOnlineChange: "TotalOnlineChange",
     TimeChange: "TimeChange",
     BetLimitChange: "BetLimitChange",
-    ActiveNewShoe: "ActiveNewShoe"
+    ActiveNewShoe: "ActiveNewShoe",
+    DisabledGame: "DisabledGame",
+    UmMessage: "UmMessage",
+    ConnectionFailed: "ConnectionFailed"
 };
 
 export const Store = {
     RoundHistory: "RoundHistoryStore",
-    GameInfo: "GameInfoStore"
+    GameInfo: "GameInfoStore",
+    DisableGame: "DisableGameStore"
 };
 
 export class StoreBase extends EventEmitterBase {
     storeName: string;
+
+    wakeUp() {
+        this.updateUI();
+    }
 }

@@ -140,6 +140,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     initSocketListeners() {
+        this.socket.off("message");
         this.socket.on("disconnect", this.onDisconnected.bind(this));
     }
 

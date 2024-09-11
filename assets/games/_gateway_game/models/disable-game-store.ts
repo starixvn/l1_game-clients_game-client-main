@@ -1,4 +1,4 @@
-import { EmitterEvents, StoreBase } from "./definitions";
+import { EmitterEvents, Store, StoreBase } from "./definitions";
 
 export interface RoundHistory {
     result: any;
@@ -7,6 +7,7 @@ export interface RoundHistory {
 }
 
 export class DisableGameStore extends StoreBase {
+    storeName = Store.DisableGame;
     disabledGame = false;
     umMessage = "";
     gameDisconnected = false;

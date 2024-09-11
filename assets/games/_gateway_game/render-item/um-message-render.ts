@@ -5,9 +5,6 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class UmMessageRender extends RenderItem {
-    @property(cc.Label)
-    label: cc.Label = null;
-
     private _gameData: GameData = null;
 
     init(data: GameData) {
@@ -32,6 +29,9 @@ export default class UmMessageRender extends RenderItem {
     };
 
     onChangeUmMessage = (message: string) => {
-        this.label && (this.label.string = message);
+        const label = this.getComponentInChildren(cc.Label);
+        if (label) {
+            label.string = message;
+        }
     };
 }

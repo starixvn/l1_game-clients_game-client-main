@@ -1,3 +1,4 @@
+import NoticeUtil from "../../../common/utils/NoticeUtil";
 import { EmitterEvents, Store } from "../models/definitions";
 import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
@@ -24,5 +25,10 @@ export default class ConnectionErrorRender extends RenderItem {
 
     onChangeConnectionFailed = (isFailed: boolean) => {
         this.node.active = isFailed;
+
+        const label = this.getComponentInChildren(cc.Label);
+        if (label) {
+            label.string = NoticeUtil.getLocalizedErrorMessage("SB0010", {});
+        }
     };
 }

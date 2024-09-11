@@ -3,8 +3,10 @@ import { getSession } from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import LazyloadSprite from "../../common/LazyloadSprite";
 import { getGameName } from "../../configs/GameConfigurations";
+import { DisableGameHandler } from "./handlers/disable-game-handler";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
+import { DisableGameStore } from "./models/disable-game-store";
 import { GameInfoStore } from "./models/game-info-store";
 import { GameData } from "./models/gateway-game-data";
 import { RoundHistoryStore } from "./models/round-history-store";
@@ -72,8 +74,8 @@ export default class GatewayGameItem extends cc.Component {
 
     initGameData() {
         this.gameData = new GameData();
-        this.gameData.initHandlers([RoundHistoryHandler, GameInfoHandler]);
-        this.gameData.addStores([new RoundHistoryStore(), new GameInfoStore()]);
+        this.gameData.initHandlers([RoundHistoryHandler, GameInfoHandler, DisableGameHandler]);
+        this.gameData.addStores([new RoundHistoryStore(), new GameInfoStore(), new DisableGameStore()]);
         this.initRenderItems();
     }
 
@@ -83,7 +85,8 @@ export default class GatewayGameItem extends cc.Component {
 
     filterDataGame = (event: string, data: any) => {
         const eventLowerCase = event.toLocaleLowerCase();
-        if (eventLowerCase === this.gameName.toLocaleLowerCase() || eventLowerCase === "message") {
+        const gameName = this.gameName.toLocaleLowerCase();
+        if (eventLowerCase === gameName || (eventLowerCase === "message" && data.gameName?.toLocaleLowerCase() === gameName)) {
             this.onData(data);
         }
     };

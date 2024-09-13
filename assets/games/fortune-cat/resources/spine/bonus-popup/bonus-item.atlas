@@ -1,27 +1,34 @@
 
 bonus-item.png
-size: 169,464
+size: 169,509
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 disco-ball-hidden
   rotate: false
-  xy: 2, 2
+  xy: 2, 47
   size: 153, 145
   orig: 172, 173
   offset: 10, 10
   index: -1
 disco-ball-open
   rotate: false
-  xy: 2, 149
+  xy: 2, 194
   size: 157, 145
   orig: 172, 173
   offset: 10, 9
   index: -1
 frameeffect-1
   rotate: false
-  xy: 2, 296
+  xy: 2, 341
   size: 165, 166
   orig: 172, 173
   offset: 7, 2
+  index: -1
+value-background
+  rotate: false
+  xy: 2, 2
+  size: 159, 43
+  orig: 202, 50
+  offset: 22, 4
   index: -1

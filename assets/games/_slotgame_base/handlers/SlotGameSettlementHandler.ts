@@ -20,7 +20,6 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         if (data.bonuses) {
-            console.time("bonuses");
             if (this.main.isSpinnedAction) {
                 if (this.receivedJackpot) {
                     await this.waitingHandleSpecialCase(this.main.slotGameConfigs.showJackpotWinningAmountDuration);

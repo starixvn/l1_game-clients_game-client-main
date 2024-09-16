@@ -4,6 +4,7 @@ import * as SessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import { buildProxyUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
+import { initialize as initGameConfiguration } from "../../configs/GameConfigurations";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { AXIOS_FAILED_PREFIX } from "../../utils";
@@ -44,6 +45,7 @@ export default class Splash extends cc.Component {
     }
 
     private async handleSplashScene() {
+        await initGameConfiguration();
         if (await this.isOpenMicrositeGame()) {
             this.enableMicrositeGameIframe();
         } else {

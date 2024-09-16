@@ -8,7 +8,7 @@ import logger from "../common/logger";
 import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
 import EncryptUtils from "../common/utils/EncryptUtils";
-import { initialize as initGameConfiguration, isMiniGameByGameId } from "../configs/GameConfigurations";
+import { isMiniGameByGameId } from "../configs/GameConfigurations";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
@@ -119,7 +119,6 @@ class AppManager {
 
     async ssoAndAuthorize() {
         this.init();
-        await initGameConfiguration();
         this.handleAppMode();
         await this.requestSSO();
         await getLobbyConfigs();

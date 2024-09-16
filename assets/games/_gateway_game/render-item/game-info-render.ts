@@ -46,12 +46,12 @@ export default class GameInfoRender extends RenderItem {
         if (!this.labelTotalOnlineUsers) {
             return;
         }
-        this.labelTotalOnlineUsers.string = data.toString();
+        this.labelTotalOnlineUsers.string = numberWithCommas(data);
     };
     onChangeRTP = (data: number) => {
         if (!this.labelRTP) {
             return;
         }
-        this.labelRTP.string = `${data.toFixed(2)}%`;
+        this.labelRTP.string = `${numberWithCommas(data, 2)}%`;
     };
 }

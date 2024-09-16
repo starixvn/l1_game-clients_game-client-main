@@ -1,13 +1,11 @@
-import axios from "axios";
-
+import { lazyInject } from "../../Application";
 import * as SessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
-import { buildProxyUrl } from "../../common/helpers/UrlHelper";
-import { sentryLogger } from "../../common/logger";
-import { initialize as initGameConfiguration } from "../../configs/GameConfigurations";
+import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame } from "../../configs/GameConfigurations";
+import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
-import { AXIOS_FAILED_PREFIX } from "../../utils";
+import SocketIOController from "../../SocketIOController";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -23,6 +21,9 @@ export default class Splash extends cc.Component {
 
     @property(cc.Prefab)
     prfMicrositeGame: cc.Prefab = null;
+
+    @lazyInject(SocketIOController)
+    private readonly socketIOControler: SocketIOController;
 
     protected onLoad(): void {
         this.disableAllNodeSplash();
@@ -46,19 +47,38 @@ export default class Splash extends cc.Component {
 
     private async handleSplashScene() {
         await initGameConfiguration();
-        if (await this.isOpenMicrositeGame()) {
-            this.enableMicrositeGameIframe();
+        const urlParams = new URLSearchParams(window.location.search);
+        const hasToken = urlParams.has("token");
+        const hasGameId = urlParams.has("gameId");
+        const gameId = +urlParams.get("gameId");
+
+        const ssoToGame = hasToken && hasGameId && gameId !== 0;
+        if (ssoToGame && !appManager.isDirectMode) {
+            if (isGatewayGame(gameId)) {
+                const gameConfiguration = getGameConfiguration(gameId);
+                const mainId = gameConfiguration.gateway?.id;
+                GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
+            } else if (this.isOpenMicrositeGame(gameId, hasToken)) {
+                await this.enableMicrositeGameIframe(gameId);
+            }
         } else {
             this.enableMainSplashScreen();
         }
     }
 
-    private enableMicrositeGameIframe() {
+    private async enableMicrositeGameIframe(gameId) {
+        const healthy = await GameUtils.healthCheckMicrositeGame(gameId);
+        if (!healthy) {
+            this.enableMainSplashScreen();
+            return;
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has("op")) {
             const operator = urlParams.get("op");
             SessionManager.storeOperator(operator);
         }
+
         if (urlParams.has("gameId")) {
             const gameId = +urlParams.get("gameId");
             SessionManager.clearStorageMicroSite(true);
@@ -81,28 +101,14 @@ export default class Splash extends cc.Component {
         this.nodeMicrositeGame.active = false;
     }
 
-    private async isOpenMicrositeGame() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has("token") && urlParams.has("gameId") && urlParams.get("gameId") !== "0") {
-            const gameId = +urlParams.get("gameId");
-            if (await this.isMicrositeGame(gameId)) {
-                return GameUtils.healthCheckMicrositeGame(gameId);
-            }
-            return false;
-        }
-        return !urlParams.has("token") && +SessionManager.getMicrositeGameId() > 0;
+    private isOpenMicrositeGame(gameId, hasToken) {
+        const ingameMicrositeReload = !hasToken && +SessionManager.getMicrositeGameId() > 0;
+        return this.isMicrositeGame(gameId) || ingameMicrositeReload;
     }
 
     async isMicrositeGame(gameId) {
-        const url = buildProxyUrl(`/game/configurations/${gameId}`);
-        const configuration = await axios
-            .get(url)
-            .then((response) => response.data)
-            .catch(() => {
-                sentryLogger.log(`${AXIOS_FAILED_PREFIX} get ${url}`);
-                return {};
-            });
-        return configuration.isMicrosite;
+        const gameConfiguration = getGameConfiguration(gameId);
+        return GameUtils.isMicroSite(gameConfiguration);
     }
 
     private openGameFromMicroGame(gameId: number) {

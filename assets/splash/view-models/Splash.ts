@@ -36,6 +36,7 @@ export default class Splash extends cc.Component {
         this.initUIListeners();
         this.loadBackground();
 
+        this.enableMainSplashScreen();
         this.handleAuthorization();
     }
 
@@ -59,8 +60,6 @@ export default class Splash extends cc.Component {
         const gameId = +urlParams.get("gameId");
 
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
-
-        this.enableMainSplashScreen();
 
         if (ssoToGame) {
             if (isGatewayGame(gameId) && !appManager.isDirectMode) {

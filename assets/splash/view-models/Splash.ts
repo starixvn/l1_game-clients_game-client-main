@@ -64,12 +64,19 @@ export default class Splash extends cc.Component {
                 GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
                 appManager.clearSSOGameId();
                 return;
-            } else if (this.isOpenMicrositeGame(gameId, hasToken)) {
+            } else if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);
                 await this.enableMicrositeGameIframe(gameId);
                 appManager.clearSSOGameId();
                 return;
             }
+        }
+
+        const micrositeGameId = +SessionManager.getMicrositeGameId();
+        const isReloadFromMicrositeGame = !hasToken && micrositeGameId > 0;
+        if (isReloadFromMicrositeGame) {
+            await this.enableMicrositeGameIframe(micrositeGameId);
+            return;
         }
 
         cc.log("Active Main Splash");
@@ -109,12 +116,6 @@ export default class Splash extends cc.Component {
         this.nodeMainSplash.active = true;
         this.nodeMicrositeGame.destroyAllChildren();
         this.nodeMicrositeGame.active = false;
-    }
-
-    private isOpenMicrositeGame(gameId, hasToken) {
-        const micrositeGameId = +SessionManager.getMicrositeGameId();
-        const ingameMicrositeReload = !hasToken && micrositeGameId > 0;
-        return this.isMicrositeGame(gameId) || ingameMicrositeReload;
     }
 
     isMicrositeGame(gameId) {

@@ -37,7 +37,7 @@ export default class CategoryController extends cc.Component {
 
     initCategories(categories: string[], storageCategories: string[]) {
         this.allCategories = categories;
-        this.categories = storageCategories.length > 0 ? storageCategories : this.allCategories;
+        this.categories = storageCategories;
 
         this.toggles.forEach((toggle) => {
             const item = toggle.getComponent(CategoryItem);
@@ -57,8 +57,7 @@ export default class CategoryController extends cc.Component {
             this.categories.splice(index);
         }
 
-        const categories = this.categories.length > 0 ? this.categories : this.allCategories;
-        this.node.emit(CategoryEvent.Changed, categories);
+        this.node.emit(CategoryEvent.Changed, this.categories);
         this.updateItemVisibility();
     }
 
@@ -69,9 +68,10 @@ export default class CategoryController extends cc.Component {
     }
 
     updateItemVisibility() {
+        const categories = this.categories.length > 0 ? this.categories : this.allCategories;
         this.items.forEach((item) => {
             const comps = item.getComponents(CategoryItem);
-            item.active = comps.some((comp) => this.categories.includes(comp.category));
+            item.active = comps.some((comp) => categories.includes(comp.category));
         });
     }
 }

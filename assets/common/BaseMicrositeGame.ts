@@ -123,6 +123,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
         if (data.backLobby && !this.isLoadingLobby) {
             this.isLoadingLobby = true;
+            this.setCanvasVisibilty(true);
             await this.handleBackToLobby(data);
             return;
         }
@@ -219,7 +220,6 @@ export default class BaseMicrositeGame extends cc.Component {
             await joinGameHelper.joinGameIsNotMiniGame(gameId, this.socketIOControler);
         } else {
             cc.director.loadScene("Lobby", () => {
-                this.setCanvasVisibilty(true);
                 GameUtils.openGame(joinGameHelper.getGameId(gameId), appManager.miniPanel);
             });
         }

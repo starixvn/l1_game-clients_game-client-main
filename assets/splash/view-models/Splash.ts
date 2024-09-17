@@ -32,6 +32,8 @@ export default class Splash extends cc.Component {
     private readonly socketIOControler: SocketIOController;
 
     protected onLoad(): void {
+        appManager.init();
+
         this.disableAllNodeSplash();
         this.initUIListeners();
         this.loadBackground();

@@ -51,7 +51,7 @@ class AppManager {
         return this.isDirectMode || this.isAppMode || this.isPFF;
     }
 
-    private init() {
+    init() {
         this.urlParams = new URLSearchParams(window.location.search);
         this.ssoGameId = +this.urlParams.get("gameId");
         cc.log("AppManager init ", this.ssoGameId);
@@ -136,7 +136,6 @@ class AppManager {
     }
 
     async ssoAndAuthorize() {
-        this.init();
         this.handleAppMode();
         await this.requestSSO();
         await getLobbyConfigs();

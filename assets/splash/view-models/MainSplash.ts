@@ -65,8 +65,6 @@ export default class MainSplash extends cc.Component {
         this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
-
-        this.loadToLobbyOrDirectGame();
     }
 
     private setPositionProgressBarAndMessage() {

@@ -1022,7 +1022,7 @@ export default class GameUtils {
         });
     }
 
-    public static isMiniGame(gameId: string): boolean {
+    public static isMiniGame(gameId: string | number): boolean {
         const gameConfiguration = getGameConfiguration(gameId);
         return +gameId !== 0 && !!gameConfiguration?.mini;
     }

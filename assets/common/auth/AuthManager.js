@@ -110,7 +110,7 @@ function checkHasToken(urlParams, onSuccessFunc) {
             if (response.isAuthenticated) {
                 setAuthorizeInfo(response);
                 window.authData.time = new Date();
-                window.openGameId = urlParams.get("gameId");
+
                 sessionManager.storeSessionData(response);
                 sessionManager.removeDirectMode();
                 sessionManager.removeMicrositeGameId();

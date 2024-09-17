@@ -1182,7 +1182,7 @@ export default class GameUtils {
     }
 
     public static readonly isMicroSite = (gameConfiguration: GameConfiguration) => {
-        return gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
+        return !!gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
     };
 
     public static getTruthyRoundId = (main: IGameBase, data) => {

@@ -167,7 +167,6 @@ export function removeCheckedTournamentPromotionFirstSso() {
 declare global {
     export interface Window {
         authData: Session;
-        openGameId: string;
         isSSO: boolean;
     }
 }

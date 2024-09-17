@@ -341,9 +341,9 @@ export default class Lobby extends cc.Component {
     }
 
     onSignIn() {
-        this.isSSOToGame = window.openGameId && parseInt(window.openGameId) > 0;
+        this.isSSOToGame = appManager.ssoGameId > 0;
         if (this.isSSOToGame) {
-            this.isSSOGameMini = this.isSSOToGame && GameUtils.isMiniGame(window.openGameId);
+            this.isSSOGameMini = this.isSSOToGame && GameUtils.isMiniGame(appManager.ssoGameId);
             this.loadLobby(false);
             this.openGameSSO(() => {
                 this.openLuckyWheel();
@@ -502,10 +502,10 @@ export default class Lobby extends cc.Component {
     }
 
     openGameSSO(onComplete: () => void) {
-        const gameId = parseInt(window.openGameId);
+        const gameId = appManager.ssoGameId;
         GameUtils.clearGameSetting(gameId);
         GameUtils.openGame(gameId, this.miniPanel, onComplete, true);
-        window.openGameId = null;
+        appManager.clearSSOGameId();
         sessionManager.removeInRoomGameId();
     }
 

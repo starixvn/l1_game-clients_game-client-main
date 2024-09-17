@@ -191,6 +191,7 @@ export default class MainSplash extends cc.Component {
             if (appManager.isDirectMode) {
                 cc.log("Main Splash : loadGameDirectly");
                 await this.loadGameDirectly();
+                appManager.clearSSOGameId();
             } else {
                 cc.log("Main Splash : Goto Lobby");
                 this.preloadLobbyScene();

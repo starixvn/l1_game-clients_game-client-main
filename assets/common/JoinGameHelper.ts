@@ -1,12 +1,12 @@
-import GameUtils from "./GameUtils";
 import { getGameConfiguration } from "../configs/GameConfigurations";
-import SocketIOController from "../SocketIOController";
 import { appManager } from "../managers/AppManager";
+import SocketIOController from "../SocketIOController";
+import GameUtils from "./GameUtils";
 
 export default class JoinGameHelper {
     public async joinGameIsNotMiniGame(gameId: number, socketIOControler: SocketIOController) {
         const gameConfiguration = getGameConfiguration(gameId);
-        if (gameConfiguration?.isMicrosite) {
+        if (!!gameConfiguration?.isMicrosite) {
             GameUtils.openGameMicrosite(gameId);
             return;
         }

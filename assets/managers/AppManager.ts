@@ -19,6 +19,9 @@ import { jackpotManager } from "./JackpotManager";
 import { UrlInfo } from "./UrlInfo";
 
 const sentryLogger = logger();
+enum GameId {
+    UNKNOWN = -9999
+}
 class AppManager {
     GAME_IS_SHOWED = true;
     font = {
@@ -42,11 +45,19 @@ class AppManager {
 
     urlParams: URLSearchParams;
 
+    ssoGameId = GameId.UNKNOWN;
+
     private init() {
         this.urlParams = new URLSearchParams(window.location.search);
+        this.ssoGameId = +this.urlParams.get("gameId");
+        cc.log("AppManager init ", this.ssoGameId);
         sentryLogger.start();
         this.initLanguage();
         this.storeOperator();
+    }
+
+    clearSSOGameId() {
+        this.ssoGameId = GameId.UNKNOWN;
     }
 
     async microSiteLaunchedInit() {

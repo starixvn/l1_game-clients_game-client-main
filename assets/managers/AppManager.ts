@@ -40,7 +40,10 @@ class AppManager {
 
     registeredShowHideAppEvent = false;
 
+    urlParams: URLSearchParams;
+
     private init() {
+        this.urlParams = new URLSearchParams(window.location.search);
         sentryLogger.start();
         this.initLanguage();
         this.storeOperator();
@@ -132,7 +135,7 @@ class AppManager {
     }
 
     private handleAppMode() {
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = this.urlParams;
         if (urlParams.has(UrlInfo.Ref) && urlParams.has("gameId") && urlParams.get("gameId") !== "0") {
             const gameId = urlParams.get("gameId");
             const refData = urlParams.get(UrlInfo.Ref);
@@ -236,7 +239,7 @@ class AppManager {
 
     initLanguage() {
         let language = getCacheLanguage();
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = this.urlParams;
         if (urlParams.has("lang")) {
             language = getLanguage(urlParams.get("lang") ?? "en-US");
         }
@@ -245,7 +248,7 @@ class AppManager {
 
     storeOperator() {
         let operator = sessionManager.getOperator();
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = this.urlParams;
         if (urlParams.has("op")) {
             operator = urlParams.get("op");
         }

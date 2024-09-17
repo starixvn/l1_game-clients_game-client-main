@@ -176,7 +176,7 @@ export default class Lobby extends cc.Component {
             const startLoadPageTime = window["loadingPageStartTime"] ?? new Date();
             const startShowingLobbyTime = Date.now();
             const totalLoadPageTimeInSeconds = (startShowingLobbyTime - startLoadPageTime) / 1000;
-            console.log(
+            cc.log(
                 `Start displaying Lobby at ${new Date(
                     startShowingLobbyTime
                 ).toLocaleString()}. Total loading time in splash screen: ${totalLoadPageTimeInSeconds}`

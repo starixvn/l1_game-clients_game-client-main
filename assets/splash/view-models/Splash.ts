@@ -47,23 +47,31 @@ export default class Splash extends cc.Component {
 
     private async handleSplashScene() {
         await initGameConfiguration();
-        const urlParams = new URLSearchParams(window.location.search);
+        if (!appManager.authorized) {
+            await appManager.ssoAndAuthorize();
+        }
+        const urlParams = appManager.urlParams;
         const hasToken = urlParams.has("token");
         const hasGameId = urlParams.has("gameId");
         const gameId = +urlParams.get("gameId");
 
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
-        if (ssoToGame && !appManager.isDirectMode) {
-            if (isGatewayGame(gameId)) {
+        if (ssoToGame) {
+            if (isGatewayGame(gameId) && !appManager.isDirectMode) {
+                cc.log("Open gateway at Splash");
                 const gameConfiguration = getGameConfiguration(gameId);
                 const mainId = gameConfiguration.gateway?.id;
                 GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
+                return;
             } else if (this.isOpenMicrositeGame(gameId, hasToken)) {
+                cc.log("Open game microsite at Splash ", gameId);
                 await this.enableMicrositeGameIframe(gameId);
+                return;
             }
-        } else {
-            this.enableMainSplashScreen();
         }
+
+        cc.log("Active Main Splash");
+        this.enableMainSplashScreen();
     }
 
     private async enableMicrositeGameIframe(gameId) {
@@ -73,7 +81,7 @@ export default class Splash extends cc.Component {
             return;
         }
 
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = appManager.urlParams;
         if (urlParams.has("op")) {
             const operator = urlParams.get("op");
             SessionManager.storeOperator(operator);

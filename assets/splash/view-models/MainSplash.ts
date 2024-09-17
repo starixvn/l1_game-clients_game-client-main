@@ -187,13 +187,12 @@ export default class MainSplash extends cc.Component {
     async requestSSO() {
         try {
             this.updateProgress(0);
-            if (!appManager.authorized) {
-                await appManager.ssoAndAuthorize();
-            }
 
             if (appManager.isDirectMode) {
+                cc.log("Main Splash : loadGameDirectly");
                 await this.loadGameDirectly();
             } else {
+                cc.log("Main Splash : Goto Lobby");
                 this.preloadLobbyScene();
             }
         } catch (error) {
@@ -211,7 +210,7 @@ export default class MainSplash extends cc.Component {
             await GameUtils.openGameDirect(gameId, this.socketIOController);
             uiManager.removeListenersWithName(`${InternalEvents.LOADING_GAME}-${gameId}`);
         } catch (error) {
-            console.warn(`Can not load game directly id ${gameId}`, error);
+            cc.warn(`Can not load game directly id ${gameId}`, error);
         }
     }
 

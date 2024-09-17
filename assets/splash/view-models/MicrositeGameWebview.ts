@@ -12,7 +12,7 @@ const { ccclass } = cc._decorator;
 @ccclass
 export default class MicrositeGameWebView extends BaseMicrositeGame {
     protected getMicrositeGameQueryString() {
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = appManager.urlParams;
         if (urlParams.has("token")) {
             const mainUrl = EncryptUtils.base64Encode(window.location.href);
             const returnMainLobbyUrl =

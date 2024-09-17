@@ -56,7 +56,9 @@ export default class CategoryController extends cc.Component {
             const index = this.categories.indexOf(category);
             this.categories.splice(index);
         }
-        this.node.emit(CategoryEvent.Changed, this.categories);
+
+        const categories = this.categories.length > 0 ? this.categories : this.allCategories;
+        this.node.emit(CategoryEvent.Changed, categories);
         this.updateItemVisibility();
     }
 

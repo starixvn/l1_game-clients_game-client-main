@@ -74,7 +74,9 @@ export default class GatewayGame extends BaseComponent {
     loadConfigs() {
         const configs = this.configs.json as GameConfigJson;
         this.gameId = configs.gameId;
-        this.gameIds = Object.keys(configs.games).map((key) => +key);
+        this.gameIds = Object.keys(configs.games)
+            .map((key) => +key)
+            .filter((gameId) => userManager.offerGames.includes(gameId));
         this.receivedEvents = configs.receivedEvents;
         this.categoryJson = configs.games;
         this.serviceNameJson = configs.serviceName;

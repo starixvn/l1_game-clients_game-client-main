@@ -62,10 +62,11 @@ export default class MainSplash extends cc.Component {
 
     protected onLoad(): void {
         this.initUIListeners();
-        this.requestSSO();
         this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
+
+        this.loadToLobbyOrDirectGame();
     }
 
     private setPositionProgressBarAndMessage() {
@@ -184,7 +185,7 @@ export default class MainSplash extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    async requestSSO() {
+    async loadToLobbyOrDirectGame() {
         try {
             this.updateProgress(0);
 

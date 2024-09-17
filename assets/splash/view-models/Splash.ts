@@ -8,6 +8,7 @@ import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import SocketIOController from "../../SocketIOController";
+import MainSplash from "./MainSplash";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -58,6 +59,9 @@ export default class Splash extends cc.Component {
         const gameId = +urlParams.get("gameId");
 
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
+
+        this.enableMainSplashScreen();
+
         if (ssoToGame) {
             if (isGatewayGame(gameId) && !appManager.isDirectMode) {
                 cc.log("Open gateway at Splash");
@@ -81,8 +85,12 @@ export default class Splash extends cc.Component {
             return;
         }
 
-        cc.log("Active Main Splash");
-        this.enableMainSplashScreen();
+        this.loadToLobbyOrDirectGame();
+    }
+
+    loadToLobbyOrDirectGame() {
+        const mainSplash = this.nodeMainSplash.getComponent(MainSplash);
+        mainSplash.loadToLobbyOrDirectGame();
     }
 
     private async handleAuthorization() {
@@ -141,10 +149,10 @@ export default class Splash extends cc.Component {
     private async enableMicrositeGameIframe(gameId) {
         const healthy = await GameUtils.healthCheckMicrositeGame(gameId);
         if (!healthy) {
-            this.enableMainSplashScreen();
+            this.loadToLobbyOrDirectGame();
             return;
         }
-
+        this.activeMicrositeGameNode();
         const urlParams = appManager.urlParams;
         if (urlParams.has("op")) {
             const operator = urlParams.get("op");
@@ -158,16 +166,15 @@ export default class Splash extends cc.Component {
         }
         const iframe = cc.instantiate(this.prfMicrositeGame);
         this.nodeMicrositeGame.addChild(iframe);
+    }
+
+    private activeMicrositeGameNode() {
         this.nodeMicrositeGame.active = true;
         this.nodeMainSplash.active = false;
-        setTimeout(() => {
-            this.background.active = false;
-        }, 100);
     }
 
     private enableMainSplashScreen() {
         GameUtils.setCanvasVisibilty(true);
-        this.background.active = true;
         this.nodeMainSplash.active = true;
         this.nodeMicrositeGame.destroyAllChildren();
         this.nodeMicrositeGame.active = false;

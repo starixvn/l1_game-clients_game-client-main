@@ -1,6 +1,8 @@
 import { lazyInject } from "../../Application";
 import * as SessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
+import { userManager } from "../../common/user/UserManager";
+import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame } from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -22,14 +24,18 @@ export default class Splash extends cc.Component {
     @property(cc.Prefab)
     prfMicrositeGame: cc.Prefab = null;
 
+    @property(cc.Node)
+    nodeDialog: cc.Node = null;
+
     @lazyInject(SocketIOController)
     private readonly socketIOControler: SocketIOController;
 
     protected onLoad(): void {
         this.disableAllNodeSplash();
         this.initUIListeners();
-        this.handleSplashScene();
         this.loadBackground();
+
+        this.handleAuthorization();
     }
 
     private initUIListeners() {
@@ -46,10 +52,6 @@ export default class Splash extends cc.Component {
     }
 
     private async handleSplashScene() {
-        await initGameConfiguration();
-        if (!appManager.authorized) {
-            await appManager.ssoAndAuthorize();
-        }
         const urlParams = appManager.urlParams;
         const hasToken = urlParams.has("token");
         const hasGameId = urlParams.has("gameId");
@@ -81,6 +83,59 @@ export default class Splash extends cc.Component {
 
         cc.log("Active Main Splash");
         this.enableMainSplashScreen();
+    }
+
+    private async handleAuthorization() {
+        await initGameConfiguration();
+        if (!appManager.authorized) {
+            await appManager.ssoAndAuthorize();
+            if (!appManager.authorized) {
+                if (!appManager.autoGenerateNickname) {
+                    this.showSignName();
+                }
+                return;
+            }
+        }
+
+        this.handleSplashScene();
+    }
+
+    async showSignName() {
+        const prefab = await GameUtils.loadResource("prefabs/SignName");
+
+        const node = cc.instantiate(prefab);
+        const signName = node.getComponent("SignName");
+        signName.init(this.handleSignName.bind(this));
+
+        this.nodeDialog.addChild(node);
+    }
+
+    handleSignName(response) {
+        if (response.authorized) {
+            appManager.authorized = true;
+            userManager.updateUser(response.user);
+            this.serviceAuthorized(response.authorized);
+        } else {
+            const errorCode = response.errorCode;
+            const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });
+            this.showNotice(text);
+        }
+    }
+
+    async showNotice(text: string) {
+        const data = {
+            text: text,
+            isInfo: false
+        };
+        uiManager.emitter.emit(InternalEvents.NOTICE, { data });
+    }
+
+    serviceAuthorized(Authorized) {
+        if (!Authorized) {
+            this.showSignName();
+        } else {
+            this.handleSplashScene();
+        }
     }
 
     private async enableMicrositeGameIframe(gameId) {

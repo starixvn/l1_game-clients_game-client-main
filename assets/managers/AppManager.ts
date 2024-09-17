@@ -47,6 +47,10 @@ class AppManager {
 
     ssoGameId = GameId.UNKNOWN;
 
+    get autoGenerateNickname() {
+        return this.isDirectMode || this.isAppMode || this.isPFF;
+    }
+
     private init() {
         this.urlParams = new URLSearchParams(window.location.search);
         this.ssoGameId = +this.urlParams.get("gameId");
@@ -201,7 +205,7 @@ class AppManager {
     }
 
     private async handleAuthorizedResponse(response) {
-        if (!response.authorized && (this.isDirectMode || this.isAppMode || this.isPFF || response.autoGenerateNickname)) {
+        if (!response.authorized && (this.autoGenerateNickname || response.autoGenerateNickname)) {
             return this.autoGenerateName();
         }
 

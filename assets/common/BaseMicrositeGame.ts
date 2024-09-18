@@ -8,6 +8,7 @@ import SocketIOController from "../SocketIOController";
 import AudioManager from "./audio/AudioManager";
 import MusicPlayer from "./audio/MusicPlayer";
 import * as AuthManager from "./auth/AuthManager";
+import NotificationService from "./auth/NotificationService";
 import * as SessionManager from "./auth/SessionManager";
 import CustomWebView from "./CustomWebView";
 import GameUtils from "./GameUtils";
@@ -91,6 +92,9 @@ export default class BaseMicrositeGame extends cc.Component {
         audio.stopAllSFX();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
+
+        NotificationService.getInstance().forceKickedOut();
+        AuthManager.removeRecheckInInterval();
     }
 
     protected loadMicrositeGame() {

@@ -1,7 +1,6 @@
 import BaseMicrositeGame from "../../common/BaseMicrositeGame";
 import AudioManager from "../../common/audio/AudioManager";
 import * as AuthManager from "../../common/auth/AuthManager";
-import NotificationService from "../../common/auth/NotificationService";
 import * as SessionManager from "../../common/auth/SessionManager";
 import { userManager } from "../../common/user/UserManager";
 import EncryptUtils from "../../common/utils/EncryptUtils";
@@ -12,12 +11,6 @@ const { ccclass } = cc._decorator;
 
 @ccclass
 export default class MicrositeGame extends BaseMicrositeGame {
-    protected stopMainAction() {
-        super.stopMainAction();
-        NotificationService.getInstance().forceKickedOut();
-        AuthManager.removeRecheckInInterval();
-    }
-
     protected getMicrositeGameQueryString() {
         const auData = SessionManager.getSession();
         if (!auData.ss) {

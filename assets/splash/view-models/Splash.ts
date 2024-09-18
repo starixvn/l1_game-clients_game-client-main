@@ -68,9 +68,11 @@ export default class Splash extends cc.Component {
                 cc.log("Open gateway at Splash");
                 const gameConfiguration = getGameConfiguration(gameId);
                 const mainId = gameConfiguration.gateway?.id;
-                GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
-                appManager.clearSSOGameId();
-                return;
+                if (mainId === gameId) {
+                    GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
+                    appManager.clearSSOGameId();
+                    return;
+                }
             } else if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);
                 await this.enableMicrositeGameIframe(gameId);

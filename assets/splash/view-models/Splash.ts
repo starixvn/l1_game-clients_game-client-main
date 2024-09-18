@@ -43,7 +43,7 @@ export default class Splash extends cc.Component {
     }
 
     private initUIListeners() {
-        uiManager.emitterListener(InternalEvents.MICROSITE_BACK_TO_LOBBY, this.enableMainSplashScreen.bind(this), this);
+        uiManager.emitterListener(InternalEvents.MICROSITE_BACK_TO_LOBBY, this.loadToLobbyOrDirectGame.bind(this), this);
         uiManager.emitterListener(InternalEvents.MICROSITE_OPEN_GAME_BACK_FROM_LOBBY, this.openGameFromMicroGame.bind(this), this);
     }
 

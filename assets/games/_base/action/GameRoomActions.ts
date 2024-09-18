@@ -3,6 +3,7 @@ import * as sessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { truncateFixedDecimals } from "../../../common/helpers/NumberHelper";
 import UserProfile from "../../../common/user-profile/UserProfile";
+import { getGameConfiguration, isGatewayGame } from "../../../configs/GameConfigurations";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 
@@ -108,6 +109,16 @@ export const closeGame = (game: any) => () => {
             }
         } else {
             uiManager.isPauseLoadingIcons = false;
+            const gameId = game.gameId;
+            if (isGatewayGame(gameId)) {
+                cc.log("Open gateway lobby from game V2");
+                const gameConfiguration = getGameConfiguration(gameId);
+                const mainId = gameConfiguration.gateway?.id;
+                GameUtils.openSocketGatewayGame(mainId, game.currentMiniPanel.socketIOController);
+                appManager.clearSSOGameId();
+                return;
+            }
+
             cc.director.loadScene("Lobby");
         }
     });

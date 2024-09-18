@@ -499,8 +499,9 @@ export default class GameUtils {
         loading?.setDefaultPercent();
 
         const gameConfiguration = getGameConfiguration(gameId);
-        if (fromMainLobby && isGatewayGame(gameId)) {
-            this.openSocketGatewayGame(gameId, miniPanel?.socketIOController);
+        const mainId = gameConfiguration.gateway?.id;
+        if (fromMainLobby && isGatewayGame(gameId) && mainId === gameId) {
+            this.openSocketGatewayGame(mainId, miniPanel?.socketIOController);
             return;
         }
         if (GameUtils.isMicroSite(gameConfiguration)) {

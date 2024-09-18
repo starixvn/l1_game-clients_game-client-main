@@ -49,12 +49,13 @@ export default class CategoryController extends cc.Component {
     }
 
     changeCategory(category: string, checked: boolean) {
+        cc.log(`changeCategory ${category} `, checked);
         if (checked) {
             this.categories.push(category);
             this.removeDuplicateCategory();
         } else {
             const index = this.categories.indexOf(category);
-            this.categories.splice(index);
+            this.categories.splice(index, 1);
         }
 
         this.node.emit(CategoryEvent.Changed, this.categories);
@@ -69,6 +70,7 @@ export default class CategoryController extends cc.Component {
 
     updateItemVisibility() {
         const categories = this.categories.length > 0 ? this.categories : this.allCategories;
+        cc.log("updateItemVisibility  ---- category: ", categories);
         this.items.forEach((item) => {
             const comps = item.getComponents(CategoryItem);
             item.active = comps.some((comp) => categories.includes(comp.category));

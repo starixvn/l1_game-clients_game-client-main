@@ -35,20 +35,31 @@ export default class PopupMinigames extends cc.Component {
     private prevPosition;
     private jackpotWinner: JackpotWinner = null;
 
+    private hideMiniGames = false;
+
     onLoad() {
+        if (this.getMiniGamesList().length === 0) {
+            this.hideMiniGames = true;
+        }
+        this.panel.active = !this.hideMiniGames;
+
         if (appManager.popupMiniGamesLastPosition) {
             this.node.position = appManager.popupMiniGamesLastPosition;
         }
 
         this.prevPosition = this.node.position;
-        this.list.active = false;
-        this.list.scale = 0;
+        this.setMiniGamesIconVisibility(false);
 
         roundTimerManager.initEvents();
         this.initDefaultGameRoundTimer();
         this.initJackpotEvents();
 
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
+    }
+
+    getMiniGamesList() {
+        const list = this.lobbyMenuConfig.miniList;
+        return list.filter((i) => i === 0 || userManager.offerGames.some((j) => j === i));
     }
 
     async initDefaultGameRoundTimer() {
@@ -80,6 +91,10 @@ export default class PopupMinigames extends cc.Component {
     }
 
     onEnable() {
+        if (this.hideMiniGames) {
+            return;
+        }
+
         this.panel.on(cc.Node.EventType.TOUCH_START, this.eventStart, this);
         this.panel.on(cc.Node.EventType.TOUCH_MOVE, this.eventMove, this);
         this.panel.on(cc.Node.EventType.TOUCH_END, this.eventEnd, this);
@@ -185,12 +200,11 @@ export default class PopupMinigames extends cc.Component {
         this.prevPosition = this.node.position;
         this.background.active = true;
         cc.tween(this.background).to(0.1, { opacity: 224 }).start();
-        this.list.scale = 1;
 
         cc.tween(this.node)
             .to(0.2, { scale: 0, opacity: 0 }, { easing: "sineOut" })
             .call(() => {
-                this.list.active = true;
+                this.setMiniGamesIconVisibility(true);
                 cc.tween(this.menuIcon).to(0.2, { scale: 0.8 }, { easing: "sineOut" }).start();
             })
             .to(0.3, { scale: 1, opacity: 255, position: cc.v3(0, 0, 0) }, { easing: "sineIn" })
@@ -201,6 +215,11 @@ export default class PopupMinigames extends cc.Component {
                 uiManager.emitter.emit(InternalEvents.SHOW_POPUP_MINI_GAMES);
             })
             .start();
+    }
+
+    setMiniGamesIconVisibility(visible: boolean) {
+        this.list.active = visible && !this.hideMiniGames;
+        this.list.scale = visible ? 1 : 0;
     }
 
     async createJackpotWinnerNode() {
@@ -249,8 +268,7 @@ export default class PopupMinigames extends cc.Component {
             .call(() => {
                 this.background.active = false;
                 this.toggleRuning = false;
-                this.list.active = false;
-                this.list.scale = 0;
+                this.setMiniGamesIconVisibility(false);
             })
             .to(0.2, { scale: 1, opacity: 255 }, { easing: "sineOut" })
             .call(() => {

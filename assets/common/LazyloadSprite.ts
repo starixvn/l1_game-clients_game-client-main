@@ -30,7 +30,9 @@ export default class LazyloadSprite extends cc.Component {
         try {
             const path = this.suffix === "" ? this.path : `${this.path}${this.suffix}`;
             const spriteFrame = await GameUtils.loadAssetsFromBundle<cc.SpriteFrame>(this.bundleName, path, cc.SpriteFrame, null);
-            sprite.spriteFrame = spriteFrame;
+            if (spriteFrame) {
+                sprite.spriteFrame = spriteFrame;
+            }
         } catch (e) {}
     }
 }

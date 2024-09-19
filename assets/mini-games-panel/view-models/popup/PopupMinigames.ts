@@ -59,7 +59,7 @@ export default class PopupMinigames extends cc.Component {
 
     getMiniGamesList() {
         const list = this.lobbyMenuConfig.miniList;
-        return list.filter((i) => i === 0 || userManager.offerGames.some((j) => j === i));
+        return list.filter((i) => userManager.offerGames.some((j) => j === i));
     }
 
     async initDefaultGameRoundTimer() {

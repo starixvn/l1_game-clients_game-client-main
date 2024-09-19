@@ -28,6 +28,7 @@ export class UserData {
         public isSignedInSM = false,
         public type = false,
         public disableJackpotGames = true,
+        public disableMiniPanel = false,
         public multiplier = 0,
         public currencyCode = ""
     ) {}

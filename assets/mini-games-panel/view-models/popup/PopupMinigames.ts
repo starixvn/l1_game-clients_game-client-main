@@ -38,7 +38,7 @@ export default class PopupMinigames extends cc.Component {
     private hideMiniGames = false;
 
     onLoad() {
-        if (this.getMiniGamesList().length === 0) {
+        if (this.getMiniGamesList().length === 0 || userManager.disableMiniPanel) {
             this.hideMiniGames = true;
         }
         this.panel.active = !this.hideMiniGames;

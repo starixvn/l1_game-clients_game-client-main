@@ -73,6 +73,10 @@ export default class UserManager {
         return this._data.disableJackpotGames;
     }
 
+    get disableMiniPanel() {
+        return this._data.disableMiniPanel;
+    }
+
     get multiplier() {
         return this._data.multiplier;
     }

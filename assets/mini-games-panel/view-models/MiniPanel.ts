@@ -20,6 +20,7 @@ import CircleMenu from "../../lobby/main/view-models/CircleMenu";
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
+import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 import { Promotions, PromotionsEvent } from "../../lobby/promotions/Promotions";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -31,7 +32,6 @@ import MiniPanelDataHandlers from "./MiniPanelDataHandlers";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
-import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 
 type NewLayerCallback = () => void;
 
@@ -276,6 +276,7 @@ export default class MiniPanel extends BaseComponent {
     }
 
     onSignIn() {
+        this.popupMiniGame?.checkToShowMiniGames();
         Object.keys(this.miniGamesCache).forEach((key) => {
             const game = this.miniGamesCache[key];
             if (game && game.node && game.node.isValid) {

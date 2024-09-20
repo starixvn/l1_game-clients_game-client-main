@@ -35,13 +35,10 @@ export default class PopupMinigames extends cc.Component {
     private prevPosition;
     private jackpotWinner: JackpotWinner = null;
 
-    private hideMiniGames = false;
+    private enableMiniGames = true;
 
     onLoad() {
-        if (this.getMiniGamesList().length === 0 || userManager.disableMiniPanel) {
-            this.hideMiniGames = true;
-        }
-        this.panel.active = !this.hideMiniGames;
+        this.checkToShowMiniGames();
 
         if (appManager.popupMiniGamesLastPosition) {
             this.node.position = appManager.popupMiniGamesLastPosition;
@@ -55,6 +52,23 @@ export default class PopupMinigames extends cc.Component {
         this.initJackpotEvents();
 
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
+    }
+
+    checkToShowMiniGames() {
+        const miniGamesCount = this.getMiniGamesList().length;
+        const disableMiniGames = miniGamesCount === 0 || userManager.disableMiniPanel;
+        this.showMiniGamesPanel(!disableMiniGames);
+    }
+
+    showMiniGamesPanel(enabled: boolean) {
+        this.enableMiniGames = enabled;
+
+        this.panel.active = this.enableMiniGames;
+        if (this.enableMiniGames) {
+            this.registerTouchForPanel();
+        } else {
+            this.unRegisterTouchForPanel();
+        }
     }
 
     getMiniGamesList() {
@@ -80,6 +94,7 @@ export default class PopupMinigames extends cc.Component {
     }
 
     onDestroy() {
+        this.unRegisterTouchForPanel();
         this.unschedule(this.moveToEdge);
         roundTimerManager.removeEvents();
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
@@ -89,25 +104,22 @@ export default class PopupMinigames extends cc.Component {
     onGameShow() {
         roundTimerManager.requestRoundTimer();
     }
-
-    onEnable() {
-        if (this.hideMiniGames) {
-            return;
-        }
-
+    private registerTouchForPanel() {
         this.panel.on(cc.Node.EventType.TOUCH_START, this.eventStart, this);
         this.panel.on(cc.Node.EventType.TOUCH_MOVE, this.eventMove, this);
         this.panel.on(cc.Node.EventType.TOUCH_END, this.eventEnd, this);
         this.panel.on(cc.Node.EventType.TOUCH_CANCEL, this.eventEnd, this);
         this.panel.on(cc.Node.EventType.MOUSE_ENTER, this.setTop, this);
     }
-    onDisable() {
+
+    private unRegisterTouchForPanel() {
         this.panel.off(cc.Node.EventType.TOUCH_START, this.eventStart, this);
         this.panel.off(cc.Node.EventType.TOUCH_MOVE, this.eventMove, this);
         this.panel.off(cc.Node.EventType.TOUCH_END, this.eventEnd, this);
         this.panel.off(cc.Node.EventType.TOUCH_CANCEL, this.eventEnd, this);
         this.panel.off(cc.Node.EventType.MOUSE_ENTER, this.setTop, this);
     }
+
     eventStart(e) {
         this.setTop();
         this.ttOffset = cc.v2(e.touch.getLocationX() - this.node.position.x, e.touch.getLocationY() - this.node.position.y);
@@ -218,7 +230,7 @@ export default class PopupMinigames extends cc.Component {
     }
 
     setMiniGamesIconVisibility(visible: boolean) {
-        this.list.active = visible && !this.hideMiniGames;
+        this.list.active = visible && this.enableMiniGames;
         this.list.scale = visible ? 1 : 0;
     }
 

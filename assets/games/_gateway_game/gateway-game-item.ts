@@ -57,7 +57,11 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     async updateGameName(gameId: number) {
-        this.labelGameName.string = await GameUtils.getDisplayGameName(gameId);
+        try {
+            this.labelGameName.string = await GameUtils.getDisplayGameName(gameId);
+        } catch (e) {
+            this.labelGameName.string = `Game___${gameId}`;
+        }
     }
 
     sendSignIn(receivedEvents: string[]) {

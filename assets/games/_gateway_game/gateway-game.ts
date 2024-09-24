@@ -17,7 +17,7 @@ import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
 const { ccclass, property } = cc._decorator;
 type CategoryJson = { [key: string]: string[] };
-type ServiceNameJson = { [key: string]: number[] };
+type ServiceNameJson = { value: string; excludes: number[] };
 interface GameConfigJson {
     gameId: number;
     games: CategoryJson;
@@ -92,7 +92,10 @@ export default class GatewayGame extends BaseComponent {
     }
 
     getServiceName(gameId: number) {
-        return Object.keys(this.serviceNameJson).find((key) => this.serviceNameJson[key].includes(gameId)) ?? "";
+        if (this.serviceNameJson.excludes.includes(gameId)) {
+            return "";
+        }
+        return this.serviceNameJson.value;
     }
 
     initItems() {

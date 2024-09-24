@@ -1,8 +1,28 @@
 {
-    "gameId": 81,
-    "games": { "81": ["lucky"], "10": ["classic"], "27": ["classic"], "84": ["classic"], "98": ["speed"] },
+    "gameId": 102,
+    "games": {
+        "10": ["classic"],
+        "27": ["classic"],
+        "81": ["lucky"],
+        "82": ["lucky"],
+        "83": ["lucky"],
+        "88": ["lucky"],
+        "89": ["lucky"],
+        "84": ["classic"],
+        "85": ["classic"],
+        "86": ["classic"],
+        "87": ["classic"],
+        "90": ["classic"],
+        "91": ["classic"],
+        "92": ["classic"],
+        "97": ["classic"],
+        "98": ["speed"],
+        "100": ["speed"],
+        "101": ["speed"]
+    },
     "serviceName": {
-        "baccaratx": [81, 84, 98]
+        "value": "baccaratx",
+        "excludes": [10, 27]
     },
     "receivedEvents": [
         "roundHistory",

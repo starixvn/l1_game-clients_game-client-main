@@ -3,6 +3,9 @@ import i18n from "i18n/runtime-scripts/LanguageData";
 import AudioManager from "../../../common/audio/AudioManager";
 import UserService from "../../../common/auth/UserService";
 import { appManager } from "../../../managers/AppManager";
+import * as sessionManager from "../../../common/auth/SessionManager";
+import  GameUtils from "../../../common/GameUtils";
+import PromotionTournamentHandler from "../../../lobby/promotions/PromotionTournamentHandler";
 
 var BrowserUtil = require("BrowserUtil");
 const NameGenerator = require("../../../common/name-generator/NameGenerator");
@@ -107,6 +110,8 @@ cc.Class({
             this.errorMessage.string = i18n.t(InvalidUserNameKey);
         } else {
             const authData = window.authData;
+            
+            PromotionTournamentHandler.getInstance().openTournamentPopup();
             UserService.getInstance().auth.signName(authData.ss, authData.username, this.username.string).then(this.onSuccessFunc);
         }
     },

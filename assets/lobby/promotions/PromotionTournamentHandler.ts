@@ -4,6 +4,7 @@ import { sentryLogger } from "../../common/logger";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import * as sessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
+import { appManager } from "../../managers/AppManager";
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
@@ -37,18 +38,17 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         this.toggleIcon(isExist);
     }
 
-    async isExistPromotionTournament() {
-        try {
-            const queryString = this.getQueryString();
-            const url = `${buildPromotionSiteUrl()}/notification/exist-promotion-tournament?${queryString}`;
-            const response = await axios.get(url);
-            if (response.data?.data) {
-                return true;
-            }
-        } catch (error) {
-            sentryLogger.log(`Get promotion tournament failed: ${error.message}`);
+    async openTournamentPopup() {
+        const existPromotionTournamentNotification = await this.getPromotionData("exist-new-or-running-promotion-tournament");
+        if (existPromotionTournamentNotification) {
+            sessionManager.getTrackedOpenTournamentPopup() === 0 && this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+            sessionManager.increaseTrackedOpenTournamentPopup();
         }
-        return false;
+    }
+
+    async isExistPromotionTournament() {
+        const result = await this.getPromotionData("exist-promotion-tournament-notification");
+        return result;
     }
 
     toggleIcon(isActive: boolean) {
@@ -67,14 +67,30 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         this.intervalId = null;
     }
 
-    private getQueryString() {
+    private async getPromotionData(action: string) {
+        try {
+            const queryString = this.getQueryString();
+            const url = `${buildPromotionSiteUrl()}/notification/${action}?${queryString}`;
+            const response = await axios.get(url);
+
+            return response.data;
+        } catch (error) {
+            sentryLogger.log(`Get promotion tournament failed: ${error.message}`);
+            return false;
+        }
+    }
+
+    private buildParams() {
         const session = sessionManager.getSession();
-        const params = {
+        return {
             sessionId: GameUtils.base64Encode(session?.ss || ""),
             username: session?.username,
             language: session?.language
         };
+    }
+    private getQueryString() {
         const searchParams = new URLSearchParams();
+        const params = this.buildParams();
         Object.keys(params).forEach((key) => params[key] !== undefined && searchParams.append(key, params[key]));
         return searchParams.toString();
     }

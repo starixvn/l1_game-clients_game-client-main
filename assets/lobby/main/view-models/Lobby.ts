@@ -31,6 +31,7 @@ import CategoryItem from "./CategoryItem";
 import Header from "./Header";
 import LobbyManager from "./LobbyManager";
 import LobbyMenu from "./LobbyMenu";
+import PromotionTournamentHandler from "../../promotions/PromotionTournamentHandler";
 
 const socketIOController = appContainer.get(SocketIOController);
 const sentryLogger = logger();
@@ -141,11 +142,11 @@ export default class Lobby extends cc.Component {
                             const dialog = cc.instantiate(this.logoutPrefab);
                             this.miniPanel.addDialog(dialog);
                         }
-                    } catch (err) {}
+                    } catch (err) { }
                 });
                 this.miniPanel.addDialog(settingMenu);
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     private trackOnLoadEvents() {
@@ -180,7 +181,7 @@ export default class Lobby extends cc.Component {
                 ).toLocaleString()}. Total loading time in splash screen: ${totalLoadPageTimeInSeconds}`
             );
             window["dontWritePageLoadingTimeLog"] = true;
-        } catch {}
+        } catch { }
     }
 
     initGameUIEvents() {
@@ -320,6 +321,9 @@ export default class Lobby extends cc.Component {
     checkToShowSignName() {
         if (!appManager.authorized) {
             this.showSignName();
+        }
+        else {
+            PromotionTournamentHandler.getInstance().openTournamentPopup();
         }
     }
 
@@ -589,7 +593,7 @@ export default class Lobby extends cc.Component {
                     this.signName.init(this.handleSignName.bind(this));
                     this.miniPanel.addDialog(node);
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
     }
 
@@ -598,6 +602,7 @@ export default class Lobby extends cc.Component {
             appManager.authorized = true;
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
+            // sessionManager.getTrackedOpenTournamentPopup(GameUtils.base64Encode(authData?.ss || "")) === 1 && this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

@@ -81,6 +81,10 @@ export default class UserManager {
         return this._data.currencyCode;
     }
 
+    get currencyGroup() {
+        return this._data.currencyGroup;
+    }
+
     public static getInstance(): UserManager {
         if (!UserManager.instance) {
             UserManager.instance = new UserManager();

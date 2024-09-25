@@ -9,6 +9,7 @@ import { TotalPreloadGameIcon } from "../constants";
 import IGameBase from "../games/_base/IGameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
 import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
+import SharedResourceManager from "../lobby/main/view-models/SharedResourceManager";
 import { appManager } from "../managers/AppManager";
 import { uiManager } from "../managers/GameUIManager";
 import { InternalEvents } from "../managers/InternalEvents";
@@ -94,8 +95,9 @@ export default class GameUtils {
 
     public static loadRemote<T>(url: string): Promise<T> {
         return new Promise((resolve, reject) => {
-            cc.assetManager.loadRemote(url, (err, asset: any) => {
+            cc.assetManager.loadRemote(url, (err, asset: T) => {
                 if (err) {
+                    console.log("err load remote", err);
                     reject(err);
                     return;
                 }
@@ -164,6 +166,14 @@ export default class GameUtils {
                 type: cc.Prefab
             });
         } else {
+            // const currencyGroup = userManager.currencyGroup;
+            const lang = window.i18n.curLang || "en";
+            if (gameId == 2) {
+                const pathResource = `${"Credit_PHP".toLowerCase()}/game-icons/${gameId}/${lang}.png`;
+                const asset = await SharedResourceManager.loadRemoteSharedResourceLobby<cc.Texture2D>(pathResource);
+                console.log("asset load shared resource--: ", asset);
+            }
+
             const directory = systemPath === "" ? "lobby/games" : `lobby/games/${systemPath}`;
             const path = `${directory}/${gameId}`;
             prefab = await this.loadResource(path);

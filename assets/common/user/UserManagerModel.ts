@@ -29,6 +29,7 @@ export class UserData {
         public type = false,
         public disableJackpotGames = true,
         public multiplier = 0,
-        public currencyCode = ""
+        public currencyCode = "",
+        public currencyGroup = ""
     ) {}
 }

@@ -72,9 +72,9 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
 
     updateProvablyFairVerify(verification: IRoundBaseProvablyFairVerify) {
         this.provablyFair = verification;
-        const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId } = verification;
+        const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId, match } = verification;
         this.lblRoundId.string = roundId?.toString() ?? "";
-        result && this.renderResult(result);
+        result && this.renderResult(result, match);
         if (!this.node.activeInHierarchy && this.node?.isValid) {
             this.serverSeedLbl.string = this.truncateString(serverSeed ?? "".toString());
             this.serverSeedCopyString = serverSeed ?? "";
@@ -113,10 +113,10 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
         this.listClientSeedInfo = this.clientSeedsContainer?.getComponentsInChildren(ClientSeedInfo);
     }
 
-    private renderResult(result: any) {
+    private renderResult(result: any, match: any) {
         if (this.nodeResult) {
             const resultComp = this.nodeResult?.getComponentInChildren(BaseResultBodyItem);
-            resultComp.setData(result, result);
+            resultComp.setData(result, result, match);
         }
     }
 
@@ -134,5 +134,5 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
 }
 
 export class BaseResultBodyItem extends cc.Component {
-    setData(result: any, settlementResult: any) {}
+    setData(result: any, settlementResult: any, match: any) {}
 }

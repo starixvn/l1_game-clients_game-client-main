@@ -103,6 +103,8 @@ export default class MiniGameBase extends NewMiniGameBase {
     callbackWinningStreak = (game: any) => {};
     extraFeature: ExtraFeature;
 
+    private updateScale: () => void; 
+
     override onLoad() {
         super.onLoad();
         this.initGameData();
@@ -132,6 +134,7 @@ export default class MiniGameBase extends NewMiniGameBase {
             GameDataManager.getInstance().clearGameLoop(this.gameId);
             this.clearGameData();
         }
+        window.removeEventListener('resize', this.updateScale);
         super.onDestroy();
     }
 
@@ -442,9 +445,29 @@ export default class MiniGameBase extends NewMiniGameBase {
         pfContainer.width = 1398;
         pfContainer.height = 786;
         const pfContainerWidget = pfContainer.addComponent(cc.Widget);
+        pfContainerWidget.isAlignTop =
+            pfContainerWidget.isAlignBottom =
+            pfContainerWidget.isAlignLeft =
+            pfContainerWidget.isAlignRight =
+                true;
         pfContainerWidget.top = pfContainerWidget.bottom = pfContainerWidget.left = pfContainerWidget.right = 0;
         this.currentMiniPanel.node.addChild(pfContainer);
         this.provablyFairComponent.node.parent.parent = pfContainer;
         pfContainer.setSiblingIndex(4);
+        this.setupAutoScale(pfContainer);
+    }
+
+    setupAutoScale(pfContainer: cc.Node): void {
+        this.updateScale = () => {
+            const designResolution = cc.Canvas.instance.designResolution;
+            const screenSize = cc.view.getVisibleSize();
+            const scaleX = screenSize.width / designResolution.width;
+            const scaleY = screenSize.height / designResolution.height;
+            const scale = Math.min(scaleX, scaleY);
+            pfContainer.setScale(scale);
+        };
+
+        this.updateScale();
+        window.addEventListener("resize", this.updateScale);
     }
 }

@@ -9,7 +9,7 @@ import { TotalPreloadGameIcon } from "../constants";
 import IGameBase from "../games/_base/IGameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
 import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
-import SharedResourceManager from "../lobby/main/view-models/SharedResourceManager";
+import LobbyResourceManager from "../lobby/main/view-models/LobbyResourceManager";
 import { appManager } from "../managers/AppManager";
 import { uiManager } from "../managers/GameUIManager";
 import { InternalEvents } from "../managers/InternalEvents";
@@ -170,7 +170,7 @@ export default class GameUtils {
             const lang = window.i18n.curLang || "en";
             if (gameId == 2) {
                 const pathResource = `${"Credit_PHP".toLowerCase()}/game-icons/${gameId}/${lang}.png`;
-                const asset = await SharedResourceManager.loadRemoteSharedResourceLobby<cc.Texture2D>(pathResource);
+                const asset = await LobbyResourceManager.loadRemoteSharedResource<cc.Texture2D>(pathResource);
                 console.log("asset load shared resource--: ", asset);
             }
 

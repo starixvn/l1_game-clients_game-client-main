@@ -35,7 +35,9 @@ export default class Category extends cc.Component {
         this.categoryName.string = this.checkMark.string = name?.toUpperCase();
     }
 
-    onCategoryChanged = (e) => {};
+    onCategoryChanged = (e) => {
+        // handle
+    };
 
     onClickCategory() {
         AudioManager.getInstance().playClick();

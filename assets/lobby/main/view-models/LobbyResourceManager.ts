@@ -1,5 +1,6 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
+import UserManager from "../../../common/user/UserManager";
 import { StorageManager } from "../../../managers/StorageManager";
 
 interface IVersionGroupCurrency {
@@ -8,15 +9,16 @@ interface IVersionGroupCurrency {
     "mini-game-icons": string;
 }
 
-export default class SharedResourceManager {
-    private static instance: SharedResourceManager;
-    static currencyGroupList: string[] = ["Credit_PHP"];
+export default class LobbyResourceManager {
+    private static instance: LobbyResourceManager;
+    public static readonly themeNames: string[] = ["Credit_PHP"];
 
     private versionGroupCurrency: Map<string, IVersionGroupCurrency> = new Map();
+    private static defaultPath = "lobby/themes";
 
-    public static getInstance(): SharedResourceManager {
+    public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
-            this.instance = new SharedResourceManager();
+            this.instance = new LobbyResourceManager();
         }
 
         return this.instance;
@@ -31,17 +33,19 @@ export default class SharedResourceManager {
     }
 
     public updateVersion(currencyGroup: string, version: IVersionGroupCurrency): void {
-        if (SharedResourceManager.currencyGroupList.includes(currencyGroup)) {
+        if (LobbyResourceManager.themeNames.includes(currencyGroup)) {
             this.versionGroupCurrency.set(currencyGroup, version);
         } else {
             console.warn(`Currency group ${currencyGroup} not exist.`);
         }
     }
 
-    public saveVersionToStorage(): void {}
+    public saveVersionToStorage(): void {
+        // handle
+    }
 
     public loadVersionFromStorage(): void {
-        SharedResourceManager.currencyGroupList.forEach((currencyGroup) => {
+        LobbyResourceManager.themeNames.forEach((currencyGroup) => {
             const storedVersion = StorageManager.get(`${currencyGroup}_version`);
             if (storedVersion) {
                 this.updateVersion(currencyGroup, storedVersion);
@@ -49,12 +53,29 @@ export default class SharedResourceManager {
         });
     }
 
-    public static loadRemoteSharedResourceLobby<T>(pathResource: string) {
+    public static loadRemoteSharedResource<T>(pathResource: string) {
         return GameUtils.loadRemote<T>(this.remoteShareLobbyResourceUrl(pathResource));
     }
 
     public static remoteShareLobbyResourceUrl(pathResource: string) {
         const url = buildShareResourceGameUrl();
         return `${url}/lobbies/${pathResource}`;
+    }
+
+    public static loadResource(path: string): Promise<cc.Prefab> {
+        return new Promise((resolve) => {
+            cc.resources.load(`${LobbyResourceManager.getThemePath()}${path}`, (err, prefab: cc.Prefab) => {
+                resolve(prefab);
+            });
+        });
+    }
+
+    private static getThemePath() {
+        const currencyGroup = UserManager.getInstance()?.currencyGroup;
+        if (LobbyResourceManager.themeNames.includes(currencyGroup)) {
+            return `${LobbyResourceManager.defaultPath}/${currencyGroup.toLocaleLowerCase()}/`;
+        }
+
+        return `${LobbyResourceManager.defaultPath}/default/`;
     }
 }

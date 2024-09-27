@@ -1,6 +1,6 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
-import { appContainer, lazyInject } from "../../../Application";
+import { appContainer } from "../../../Application";
 import SocketIOController from "../../../SocketIOController";
 import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import GameUtils from "../../../common/GameUtils";
@@ -13,7 +13,6 @@ import { userManager } from "../../../common/user/UserManager";
 import NoticeUtil from "../../../common/utils/NoticeUtil";
 import * as Configs from "../../../configs/Configs";
 import LuckyWheelIcon from "../../../games/lucky-wheel/view-models/LuckyWheelIcon";
-import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
@@ -24,11 +23,10 @@ import PromotionNotificationsHandler from "../../promotions/PromotionNotificatio
 import CommonDialog from "./../../../common/_base/view-models/CommonDialog";
 import * as authManager from "./../../../common/auth/AuthManager";
 import * as sessionManager from "./../../../common/auth/SessionManager";
-import Banner from "./Banner";
 import ButtonArrow from "./ButtonArrow";
 import ButtonsLobby from "./ButtonsLobby";
 import Header from "./Header";
-import LobbyMenu from "./LobbyMenu";
+import LobbyCenter from "./LobbyCenter";
 import LobbyResourceManager from "./LobbyResourceManager";
 
 const socketIOController = appContainer.get(SocketIOController);
@@ -40,15 +38,6 @@ const { ccclass, property } = cc._decorator;
 export default class Lobby extends cc.Component {
     @property(cc.Prefab)
     miniPanelPrefab: cc.Prefab = null;
-
-    @property(cc.ScrollView)
-    mainScroll: cc.ScrollView = null;
-
-    @property(Banner)
-    banner: Banner = null;
-
-    @property(cc.Node)
-    scrollContent: cc.Node = null;
 
     @property(cc.Node)
     redhat: cc.Node = null;
@@ -62,8 +51,8 @@ export default class Lobby extends cc.Component {
     @property(cc.Node)
     categoryContainer: cc.Node = null;
 
-    @lazyInject(LobbyMenuConfig)
-    private readonly lobbyMenuConfig: LobbyMenuConfig;
+    @property(cc.Node)
+    lobbyCenterContainer: cc.Node = null;
 
     @property(cc.Node)
     backgroundUIContainer: cc.Node = null;
@@ -82,7 +71,6 @@ export default class Lobby extends cc.Component {
 
     private initializedLobby = false;
     private luckyWheelIcon: LuckyWheelIcon;
-    private lobbyMenu: LobbyMenu;
     private miniPanel: MiniPanel;
     private isSSOToGame = false;
     private marqueePrefab: cc.Prefab = null;
@@ -91,10 +79,12 @@ export default class Lobby extends cc.Component {
     private buttonArrowPrefab: cc.Prefab = null;
     private containerButtonsPrefabs: cc.Prefab = null;
     private categoryContainerPrefab: cc.Prefab = null;
+    private lobbyCenterPrefab: cc.Prefab = null;
     private headerComp: Header = null;
     private newsContentsComp: NewsContent = null;
     private buttonArrowComp: ButtonArrow = null;
     private categoryListComp: CategoryList = null;
+    private lobbyCenterComp: LobbyCenter = null;
 
     signName: any;
     logoutPrefab: cc.Prefab = null;
@@ -129,6 +119,7 @@ export default class Lobby extends cc.Component {
         await this.loadBackgroundUI();
         await this.loadHeader();
         await this.loadMarquee();
+        await this.loadLobbyCenterContainer();
         await this.loadButtonArrow();
         await this.loadButtons();
         await this.loadPrefabCategoryContainer();
@@ -179,6 +170,27 @@ export default class Lobby extends cc.Component {
         } catch (err) {}
     }
 
+    async loadLobbyCenterContainer() {
+        try {
+            if (!this.lobbyCenterPrefab) {
+                this.lobbyCenterPrefab = await LobbyResourceManager.loadResource("prefabs/lobbyCenter");
+            }
+
+            if (this.lobbyCenterPrefab) {
+                const lobbyCenter = cc.instantiate(this.lobbyCenterPrefab);
+                if (lobbyCenter) {
+                    this.lobbyCenterComp = lobbyCenter?.getComponent(LobbyCenter);
+                    // this.lobbyCenterComp.updateArrowVisibility = () => {
+                    //     this.updateArrowVisibility();
+                    // };
+                    this.lobbyCenterComp.setMiniPanel(this.miniPanel);
+                    this.lobbyCenterComp.setButtonArrowComp(this.buttonArrowComp);
+                    this.lobbyCenterContainer.addChild(lobbyCenter);
+                }
+            }
+        } catch (err) {}
+    }
+
     async loadButtonArrow() {
         try {
             if (!this.buttonArrowPrefab) {
@@ -189,7 +201,7 @@ export default class Lobby extends cc.Component {
                 const buttonArrow = cc.instantiate(this.buttonArrowPrefab);
                 if (buttonArrow) {
                     buttonArrow.on("click", () => {
-                        this.onFastScrollClick();
+                        this.lobbyCenterComp?.onFastScrollClick();
                     });
                     this.buttonArrowComp = buttonArrow?.getComponent(ButtonArrow);
                     this.buttonArrowContainer.addChild(buttonArrow);
@@ -227,7 +239,7 @@ export default class Lobby extends cc.Component {
                 if (categoryContainer) {
                     this.categoryListComp = categoryContainer?.getComponent(CategoryList);
                     this.categoryListComp.onCategoryChanged = (index: number) => {
-                        this.onCategoryChanged(index);
+                        this.lobbyCenterComp?.onCategoryChanged(index);
                     };
                     this.categoryContainer.addChild(categoryContainer);
                 }
@@ -297,8 +309,6 @@ export default class Lobby extends cc.Component {
     }
 
     initGameUIEvents() {
-        uiManager.emitterListener(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS, this.loadOtherIconsAndBanners.bind(this), this);
-        uiManager.emitterListener(InternalEvents.OPEN_GAME_MINI, this.loadOtherIconsAndBanners.bind(this), this);
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
     }
 
@@ -306,63 +316,12 @@ export default class Lobby extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    loadOtherIconsAndBanners() {
-        this.lobbyMenu.loadHiddenIcons();
-        this.banner.loadBanner(true);
-    }
-
     initScrollListener() {
-        this.mainScroll.content.on(cc.Node.EventType.SIZE_CHANGED, () => {
-            this.updateArrowVisibility();
-        });
-        this.mainScroll.node.on("scroll-ended", () => {
-            const offset = Math.abs(Math.floor(this.mainScroll.getScrollOffset().x));
-            const maxOffset = Math.floor(this.mainScroll.getMaxScrollOffset().x);
-
-            if (offset <= 1 || offset >= maxOffset) {
-                const right = offset < maxOffset;
-                this.buttonArrowComp?.handleScale(right);
-            }
-        });
-    }
-
-    updateArrowVisibility() {
-        this.buttonArrowComp?.updateArrowVisibility(this.mainScroll.content.width > this.mainScroll.node.width);
+        this.lobbyCenterComp?.initScrollListener();
     }
 
     loadCategory() {
         this.categoryListComp?.loadCategory();
-    }
-
-    onFastScrollClick() {
-        AudioManager.getInstance().playClick();
-
-        if (this.mainScroll.content.childrenCount === 0) {
-            return;
-        }
-
-        const offset = Math.abs(this.mainScroll.getScrollOffset().x);
-        const maxOffset = Math.abs(this.mainScroll.getMaxScrollOffset().x);
-        const direction = this.buttonArrowComp?.background?.scaleX;
-        const delta = this.mainScroll.node.width;
-        let newOffset = offset + direction * delta;
-
-        const layout = this.mainScroll.content.getComponent(cc.Layout);
-        const paddingLeft = layout.paddingLeft;
-        const paddingRight = layout.paddingRight;
-        const spacing = layout.spacingX;
-        const itemSize = this.mainScroll.content.children[0].width;
-        const stepWidth = itemSize + spacing;
-
-        if (direction > 0) {
-            const stepCount = Math.floor((newOffset - paddingLeft) / stepWidth);
-            newOffset = paddingLeft + stepCount * stepWidth;
-        } else {
-            const stepCount = Math.floor((maxOffset - paddingRight - newOffset) / stepWidth);
-            newOffset = maxOffset - stepCount * stepWidth;
-        }
-
-        this.mainScroll.scrollToOffset(cc.v2(newOffset, 0), 0.4);
     }
 
     initMiniPanel() {
@@ -416,26 +375,11 @@ export default class Lobby extends cc.Component {
         if (userManager.offerGames.length === 0) {
             this.showNotice({ text: i18n.t("messages.noGameOffer") });
         }
-        this.initLobbyMenu();
+        this.lobbyCenterComp?.initLobbyMenu();
         this.initCategory();
-        this.initBanners(loadAllBanners);
+        this.lobbyCenterComp?.initBanners(loadAllBanners);
 
         this.initializedLobby = true;
-    }
-
-    initLobbyMenu() {
-        let lobbyMenu = this.mainScroll.getComponent(LobbyMenu);
-        if (lobbyMenu) {
-            return;
-        }
-        lobbyMenu = this.mainScroll.addComponent(LobbyMenu);
-        lobbyMenu.content = this.scrollContent;
-        lobbyMenu.miniPanel = this.miniPanel;
-
-        this.lobbyMenu = lobbyMenu;
-        if (this.isSSOToGame) {
-            this.lobbyMenu.skipLoadHiddenIcons = true;
-        }
     }
 
     initCategory() {
@@ -443,12 +387,8 @@ export default class Lobby extends cc.Component {
         if (!window.isSSO) {
             category = this.categoryListComp.activeCategoryFromStorage();
         }
-        this.categoryListComp.activeBgNewOnCategory();
-        this.lobbyMenu?.setCategory(category);
-    }
-
-    initBanners(isLoadAllBanner: boolean) {
-        this.banner.loadBanner(isLoadAllBanner);
+        this.categoryListComp?.activeBgNewOnCategory();
+        this.lobbyCenterComp?.setMenuCategory(category);
     }
 
     outRoomGame() {
@@ -616,12 +556,6 @@ export default class Lobby extends cc.Component {
                 this.luckyWheelIcon.openGame();
             }
         }
-    }
-
-    onCategoryChanged(categoryIndex: number) {
-        AudioManager.getInstance().playClick();
-        this.lobbyMenu?.setCategory(+categoryIndex);
-        this.updateArrowVisibility();
     }
 
     async showSignName() {

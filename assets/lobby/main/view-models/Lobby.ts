@@ -24,10 +24,10 @@ import NewsContent from "../../news/NewsContent";
 import PromotionNotificationsHandler from "../../promotions/PromotionNotificationsHandler";
 import CommonDialog from "./../../../common/_base/view-models/CommonDialog";
 import * as authManager from "./../../../common/auth/AuthManager";
-import { AppTypes } from "./../../../common/auth/AuthManager";
 import * as sessionManager from "./../../../common/auth/SessionManager";
 import Banner from "./Banner";
 import ButtonArrow from "./ButtonArrow";
+import ButtonsLobby from "./ButtonsLobby";
 import CategoryItem from "./CategoryItem";
 import Header from "./Header";
 import LobbyManager from "./LobbyManager";
@@ -43,9 +43,6 @@ const { ccclass, property } = cc._decorator;
 export default class Lobby extends cc.Component {
     @property(cc.Prefab)
     miniPanelPrefab: cc.Prefab = null;
-
-    @property(cc.Node)
-    appDownload: cc.Node = null;
 
     @property(cc.ScrollView)
     mainScroll: cc.ScrollView = null;
@@ -86,6 +83,9 @@ export default class Lobby extends cc.Component {
     @property(cc.Node)
     containerButtonArrow: cc.Node = null;
 
+    @property(cc.Node)
+    containerButtons: cc.Node = null;
+
     private initializedLobby = false;
     private luckyWheelIcon: LuckyWheelIcon;
     private lobbyMenu: LobbyMenu;
@@ -99,6 +99,7 @@ export default class Lobby extends cc.Component {
     headerPrefab: cc.Prefab = null;
     backgroundUIPrefab: cc.Prefab = null;
     buttonArrowPrefab: cc.Prefab = null;
+    containerButtonsPrefabs: cc.Prefab = null;
     compHeader: Header = null;
     compNewsContents: NewsContent = null;
     compButtonArrow: ButtonArrow = null;
@@ -132,6 +133,7 @@ export default class Lobby extends cc.Component {
         await this.loadHeader();
         await this.loadMarquee();
         await this.loadButtonArrow();
+        await this.loadButtons();
     }
 
     async loadBackgroundUI() {
@@ -194,6 +196,23 @@ export default class Lobby extends cc.Component {
                     this.compButtonArrow = buttonArrow?.getComponent(ButtonArrow);
                     this.containerButtonArrow.addChild(buttonArrow);
                 }
+            }
+        } catch (err) {}
+    }
+
+    async loadButtons() {
+        try {
+            if (!this.containerButtonsPrefabs) {
+                this.containerButtonsPrefabs = await LobbyResourceManager.loadResource("prefabs/buttons");
+            }
+
+            if (this.containerButtonsPrefabs) {
+                const buttons = cc.instantiate(this.containerButtonsPrefabs);
+                const compButtonsLobby = buttons.getComponent(ButtonsLobby);
+                compButtonsLobby.initClickEven(compButtonsLobby.downloadApp, this.node, "Lobby", "redirectToDownloadPage");
+                compButtonsLobby.initClickEven(compButtonsLobby.settingMenu, this.node, "Lobby", "openSettingMenu");
+
+                buttons && this.containerButtons.addChild(buttons);
             }
         } catch (err) {}
     }
@@ -404,11 +423,6 @@ export default class Lobby extends cc.Component {
             (userManager.availSpins || userManager.scoins) && this.compHeader.showScoins(userManager.scoins);
 
             this.renderLuckyWheelIcon();
-        }
-        if (GameUtils.isAndroid()) {
-            this.appDownload.active = Configs.AppDownloadSubDomain && window.authData?.system !== AppTypes.SabaApp;
-        } else {
-            this.appDownload.active = false;
         }
     }
 

@@ -43,5 +43,6 @@ export enum InternalEvents {
     RECEIVED_ROUND_TIMER = "received round timer",
     HIDE_POPUP_MINI_GAMES = "hide popup mini game",
     SHOW_POPUP_MINI_GAMES = "show popup mini game",
-    HANDLE_ON_SIGN_IN = "HANDLE_ON_SIGN_IN"
+    HANDLE_ON_SIGN_IN = "HANDLE_ON_SIGN_IN",
+    GATEWAY_OPEN_GAME = "GATEWAY_OPEN_GAME"
 }

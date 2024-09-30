@@ -3,6 +3,8 @@ import { getSession } from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import LazyloadSprite from "../../common/LazyloadSprite";
 import { getGameName } from "../../configs/GameConfigurations";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
 import { DisableGameHandler } from "./handlers/disable-game-handler";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
@@ -111,6 +113,7 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     onClickOpenGame() {
+        uiManager.emitter.emit(InternalEvents.GATEWAY_OPEN_GAME);
         GameUtils.openGame(this.gameId, null, null, false);
     }
 }

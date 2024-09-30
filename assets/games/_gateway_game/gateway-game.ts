@@ -12,6 +12,8 @@ import UserProfile from "../../common/user-profile/UserProfile";
 import { userManager } from "../../common/user/UserManager";
 import { getGameName } from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
 import SocketIOController from "../../SocketIOController";
 import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
@@ -35,6 +37,9 @@ export default class GatewayGame extends BaseComponent {
 
     @property(cc.Node)
     protected container: cc.Node = null;
+
+    @property(cc.Node)
+    loading: cc.Node = null;
 
     @lazyInject(SocketIOController)
     protected readonly socketIOController: SocketIOController;
@@ -62,6 +67,8 @@ export default class GatewayGame extends BaseComponent {
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
         //for room game
         appManager.currentScene = this;
+
+        uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
     }
 
     loadUserData() {
@@ -189,6 +196,7 @@ export default class GatewayGame extends BaseComponent {
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
         appManager.currentScene = null;
+        uiManager.removeListenersWithTarget(this);
     }
 
     protected onGameHide() {
@@ -201,5 +209,9 @@ export default class GatewayGame extends BaseComponent {
 
     outRoomGame() {
         this.closeGame();
+    }
+
+    handleOpenGame() {
+        this.loading.active = true;
     }
 }

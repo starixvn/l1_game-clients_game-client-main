@@ -27,6 +27,7 @@ export class DisableGameHandler extends BaseEventHandler<any> {
 
         if (data.remainingTime !== undefined) {
             store.setDisabledGame(false);
+            store.setConnectionError(false);
         }
 
         if (data.errorCode === "SB0010") {

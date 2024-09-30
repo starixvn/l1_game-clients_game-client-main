@@ -3,8 +3,6 @@ import i18n from "i18n/runtime-scripts/LanguageData";
 import AudioManager from "../../../common/audio/AudioManager";
 import UserService from "../../../common/auth/UserService";
 import { appManager } from "../../../managers/AppManager";
-import * as sessionManager from "../../../common/auth/SessionManager";
-import  GameUtils from "../../../common/GameUtils";
 import PromotionTournamentHandler from "../../../lobby/promotions/PromotionTournamentHandler";
 
 var BrowserUtil = require("BrowserUtil");

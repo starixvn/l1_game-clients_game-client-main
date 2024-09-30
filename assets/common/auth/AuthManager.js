@@ -114,6 +114,7 @@ function checkHasToken(urlParams, onSuccessFunc) {
                 sessionManager.storeSessionData(response);
                 sessionManager.removeDirectMode();
                 sessionManager.removeMicrositeGameId();
+                sessionManager.removeOpenTournamentPopup();
                 clearQueryStringOnUrl();
                 onSuccessFunc();
             } else {

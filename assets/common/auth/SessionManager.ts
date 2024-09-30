@@ -1,7 +1,6 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { StorageManager } from "../../managers/StorageManager";
-import GameUtils from "../GameUtils";
 
 declare global {
     export interface Window {
@@ -23,7 +22,7 @@ export interface Session {
 const sessionIdStorageName = "scss";
 const micrositeGameIdKey = "microsite_game_id";
 const clearStorageMicroSiteKey = "clear_storage_microsite";
-const trackedOpenTournamentPopup = "tracked_open_tournament_popup";
+const openTournamentPopup = "open_tournament_popup";
 
 export function getSessionKey() {
     if (window.location && window.location.hostname) {
@@ -34,7 +33,7 @@ export function getSessionKey() {
 }
 
 export function removeSession() {
-    removTrackedOpenTournamentPopup();
+    removeOpenTournamentPopup();
     StorageManager.remove(getSessionKey());
 }
 
@@ -154,25 +153,16 @@ export function removeOperator() {
     StorageManager.remove("current_operator");
 }
 
-export function increaseTrackedOpenTournamentPopup() {
-    StorageManager.set(`${trackedOpenTournamentPopup}_${getBase64SessionId()}`, getTrackedOpenTournamentPopup() + 1);
+export function setOpenTournamentPopup(data = true) {
+    StorageManager.set(openTournamentPopup, data);
 }
 
-export function getTrackedOpenTournamentPopup(): number {
-    return StorageManager.get(`${trackedOpenTournamentPopup}_${getBase64SessionId()}`) ?? 0;
+export function getOpenTournamentPopup(): boolean {
+    return StorageManager.get(openTournamentPopup) ?? false;
 }
 
-export function removTrackedOpenTournamentPopup() {
-    StorageManager.remove(`${trackedOpenTournamentPopup}_${getBase64SessionId()}`);
-}
-
-function getBase64SessionId() {
-    const { ss } = getSession();
-    if (ss) {
-        return GameUtils.base64Encode(ss);
-    }
-
-    return "";
+export function removeOpenTournamentPopup() {
+    StorageManager.remove(openTournamentPopup);
 }
 
 declare global {

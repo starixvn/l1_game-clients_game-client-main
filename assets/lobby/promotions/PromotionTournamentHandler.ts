@@ -4,7 +4,6 @@ import { sentryLogger } from "../../common/logger";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import * as sessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
-import { appManager } from "../../managers/AppManager";
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
@@ -39,10 +38,12 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
     }
 
     async openTournamentPopup() {
-        const existPromotionTournamentNotification = await this.getPromotionData("exist-new-or-running-promotion-tournament");
-        if (existPromotionTournamentNotification) {
-            sessionManager.getTrackedOpenTournamentPopup() === 0 && this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
-            sessionManager.increaseTrackedOpenTournamentPopup();
+        if (!sessionManager.getOpenTournamentPopup()) {
+            const existPromotionTournamentNotification = await this.getPromotionData("exist-new-or-running-promotion-tournament");
+            if (existPromotionTournamentNotification) {
+                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+                sessionManager.setOpenTournamentPopup();
+            }
         }
     }
 

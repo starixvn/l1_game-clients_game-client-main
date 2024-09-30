@@ -78,4 +78,8 @@ export default class LobbyResourceManager {
 
         return `${LobbyResourceManager.defaultPath}/default/`;
     }
+
+    public static isLoadCurrencyGroup(currencyGroup: string) {
+        return LobbyResourceManager.themeNames.includes(currencyGroup);
+    }
 }

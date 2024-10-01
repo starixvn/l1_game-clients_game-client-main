@@ -1,7 +1,9 @@
-import CustomWebView from "../../../common/CustomWebView";
 import LoadWebView from "../../../common/LoadWebView";
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { promotionTournamentHandler } from "../../../lobby/promotions/PromotionTournamentHandler";
+import { uiManager } from "../../../managers/GameUIManager";
+import { InternalEvents } from "../../../managers/InternalEvents";
+import * as sessionManager from "../../../common/auth/SessionManager";
 
 const CLOSE_PROMOTION_EVENT = "closePromotionPopup";
 
@@ -30,6 +32,11 @@ export default class PromotionTournamentWebView extends LoadWebView {
 
     handleEvent = async ({ data }: { data: string }) => {
         if (data === CLOSE_PROMOTION_EVENT) {
+            if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
+                uiManager.emitter.emit(InternalEvents.HANDLE_ON_SIGN_IN, {});
+                sessionManager.setCheckedTournamentPromotionFirstSso(true);
+            }
+
             this.commonDialog.closeDialog();
         }
     };

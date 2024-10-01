@@ -4,14 +4,22 @@ import { sentryLogger } from "../../common/logger";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import * as sessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
+import { InternalEvents } from "../../managers/InternalEvents";
+import { uiManager } from "../../managers/GameUIManager";
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
     TOGGLE_ICON: "TOGGLE_ICON"
 };
 
+const endpointConstants = {
+    existNewOrRunningTournamentPromotion: "exist-new-or-running-promotion-tournament",
+    existTournamentPromotionNotification: "exist-promotion-tournament-notification"
+}
+
 export default class PromotionTournamentHandler extends EventEmitterBase {
     private static instance: PromotionTournamentHandler;
+
     private intervalId: NodeJS.Timer = null;
     private intervalTime = 1000 * 60 * 10;
 
@@ -22,6 +30,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
 
         return this.instance;
     }
+
 
     init() {
         if (!this.intervalId) {
@@ -37,19 +46,31 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         this.toggleIcon(isExist);
     }
 
-    async openTournamentPopup() {
-        if (!sessionManager.getOpenTournamentPopup()) {
-            const existPromotionTournamentNotification = await this.getPromotionData("exist-new-or-running-promotion-tournament");
-            if (existPromotionTournamentNotification) {
-                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
-                sessionManager.setOpenTournamentPopup();
+    async checkTournamentPromotionsBeforeSignIn() {
+        const emitSignInEvent = () => uiManager.emitter.emit(InternalEvents.HANDLE_ON_SIGN_IN, {});
+
+        try {
+            if (sessionManager.getCheckedTournamentPromotionFirstSso()) {
+                return emitSignInEvent();
             }
+
+            const existNewOrRunningPromotionTournament = await this.getPromotionData(endpointConstants.existNewOrRunningTournamentPromotion);
+
+            if (existNewOrRunningPromotionTournament) {
+                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+            }
+            else {
+                sessionManager.setCheckedTournamentPromotionFirstSso(true);
+                emitSignInEvent();
+            }
+
+        } catch (error) {
+            emitSignInEvent();
         }
     }
 
     async isExistPromotionTournament() {
-        const result = await this.getPromotionData("exist-promotion-tournament-notification");
-        return result;
+        return await this.getPromotionData(endpointConstants.existTournamentPromotionNotification);
     }
 
     toggleIcon(isActive: boolean) {

@@ -22,7 +22,7 @@ export interface Session {
 const sessionIdStorageName = "scss";
 const micrositeGameIdKey = "microsite_game_id";
 const clearStorageMicroSiteKey = "clear_storage_microsite";
-const openTournamentPopup = "open_tournament_popup";
+const checkedTournamentPromotionFirstSso = "checked_tournament_promotion_first_sso";
 
 export function getSessionKey() {
     if (window.location && window.location.hostname) {
@@ -33,7 +33,6 @@ export function getSessionKey() {
 }
 
 export function removeSession() {
-    removeOpenTournamentPopup();
     StorageManager.remove(getSessionKey());
 }
 
@@ -153,16 +152,16 @@ export function removeOperator() {
     StorageManager.remove("current_operator");
 }
 
-export function setOpenTournamentPopup(data = true) {
-    StorageManager.set(openTournamentPopup, data);
+export function setCheckedTournamentPromotionFirstSso(data = true) {
+    StorageManager.set(checkedTournamentPromotionFirstSso, data);
 }
 
-export function getOpenTournamentPopup(): boolean {
-    return StorageManager.get(openTournamentPopup) ?? false;
+export function getCheckedTournamentPromotionFirstSso(): boolean {
+    return StorageManager.get(checkedTournamentPromotionFirstSso) ?? false;
 }
 
-export function removeOpenTournamentPopup() {
-    StorageManager.remove(openTournamentPopup);
+export function removeCheckedTournamentPromotionFirstSso() {
+    StorageManager.remove(checkedTournamentPromotionFirstSso);
 }
 
 declare global {

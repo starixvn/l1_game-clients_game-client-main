@@ -112,6 +112,8 @@ export default class Lobby extends cc.Component {
         document.cookie = "redT=1702;path=/";
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
+        this.initGameUIEvents();
+
         this.initMiniPanel();
         this.checkToShowSignName();
         this.loadCategory();
@@ -119,7 +121,6 @@ export default class Lobby extends cc.Component {
         MusicPlayer.getInstance().init();
 
         this.initScrollListener();
-        this.initGameUIEvents();
         this.trackOnLoadEvents();
     }
 
@@ -199,6 +200,7 @@ export default class Lobby extends cc.Component {
             },
             this
         );
+        uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
     }
 
     removeGameUIEvent() {
@@ -206,9 +208,6 @@ export default class Lobby extends cc.Component {
     }
 
     loadOtherIconsAndBanners() {
-        // if (this.loadedOtherIconsAndBanners) {
-        //     return;
-        // }
         this.loadedOtherIconsAndBanners = true;
         this.lobbyMenu.loadHiddenIcons();
         this.banner.loadBanner(true);
@@ -323,18 +322,16 @@ export default class Lobby extends cc.Component {
             this.showSignName();
         }
         else {
-            PromotionTournamentHandler.getInstance().openTournamentPopup();
+            PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
         }
     }
 
     onLoadLobby() {
         if (appManager.authorized) {
-            this.onSignIn();
             this.header.setUserName(userManager.userName);
             this.header.setBalance(this.formatUserCurrency(userManager.balance));
             this.header.setAvatar(userManager.avatarId);
             (userManager.availSpins || userManager.scoins) && this.header.showScoins(userManager.scoins);
-
             this.renderLuckyWheelIcon();
         }
         if (GameUtils.isAndroid()) {
@@ -503,7 +500,6 @@ export default class Lobby extends cc.Component {
         }
 
         this.miniPanel && this.miniPanel.onSignIn();
-        this.onSignIn();
     }
 
     openGameSSO(onComplete: () => void) {
@@ -602,7 +598,7 @@ export default class Lobby extends cc.Component {
             appManager.authorized = true;
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
-            // sessionManager.getTrackedOpenTournamentPopup(GameUtils.base64Encode(authData?.ss || "")) === 1 && this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+            PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

@@ -23,7 +23,7 @@ export default class ScoreboardRender extends RenderItem {
         const store = this._gameData?.getStore(Store.RoundHistory);
         store?.removeListener(EmitterEvents.RoundHistoryChange, this.onData);
 
-        const infoStore = data.getStore(Store.GameInfo);
+        const infoStore = this._gameData?.getStore(Store.GameInfo);
         infoStore?.removeListener(EmitterEvents.LockingBet, this.showNextNode);
     }
 

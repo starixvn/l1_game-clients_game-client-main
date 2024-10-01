@@ -1,4 +1,5 @@
 import { Store } from "../models/definitions";
+import { GameInfoStore } from "../models/game-info-store";
 import { RoundHistoryStore } from "../models/round-history-store";
 import { BaseEventHandler } from "./base-event-handler";
 interface RoundHistoryType {
@@ -24,6 +25,12 @@ export class RoundHistoryHandler extends BaseEventHandler<any> {
             store.roundHistory = roundHistory.filter(
                 (round, index, histories) => histories?.findIndex((history) => +history.roundId === +round.roundId) === index
             );
+            store.updateUI();
+        }
+
+        if (data.newShoeHash) {
+            store.roundHistory = [];
+            store.updateUI();
         }
 
         if (data.finish) {
@@ -33,12 +40,12 @@ export class RoundHistoryHandler extends BaseEventHandler<any> {
                 return;
             }
             store.roundHistory.unshift(data.finish);
-        }
 
-        if (data.newShoeHash) {
-            store.roundHistory = [];
+            const infoStore = this.gameData.getStore(Store.GameInfo) as GameInfoStore;
+            const generatingResult = infoStore.durations.generatingResult;
+            setTimeout(() => {
+                store?.updateUI();
+            }, generatingResult * 1000);
         }
-
-        store.updateUI();
     }
 }

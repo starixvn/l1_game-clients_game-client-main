@@ -9,6 +9,7 @@ import { DisableGameHandler } from "./handlers/disable-game-handler";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
 import { DisableGameStore } from "./models/disable-game-store";
+import { Durations } from "./models/durations-interface";
 import { GameInfoStore } from "./models/game-info-store";
 import { GameData } from "./models/gateway-game-data";
 import { RoundHistoryStore } from "./models/round-history-store";
@@ -34,12 +35,13 @@ export default class GatewayGameItem extends cc.Component {
         this.renderItems.forEach((item) => item.init(this.gameData));
     }
 
-    init(gameId: number, serviceName: string, socket: Socket) {
+    init(settings: { gameId: number; serviceName: string; socket: Socket; durations: Durations }) {
+        const { gameId, serviceName, socket, durations } = settings;
         this.gameId = gameId;
         this.serviceName = serviceName;
         this.socket = socket;
         this.updateGameName(this.gameId);
-        this.initGameData();
+        this.initGameData(durations);
         this.initListener();
         this.loadLazyloadSprites();
     }
@@ -77,10 +79,13 @@ export default class GatewayGameItem extends cc.Component {
         this.socket.emit("signIn", data);
     }
 
-    initGameData() {
+    initGameData(durations: Durations) {
         this.gameData = new GameData();
         this.gameData.initHandlers([RoundHistoryHandler, GameInfoHandler, DisableGameHandler]);
-        this.gameData.addStores([new RoundHistoryStore(), new GameInfoStore(), new DisableGameStore()]);
+
+        const infoStore = new GameInfoStore();
+        infoStore.durations = durations;
+        this.gameData.addStores([new RoundHistoryStore(), infoStore, new DisableGameStore()]);
         this.initRenderItems();
     }
 

@@ -43,6 +43,13 @@ export default abstract class BaccaratBigRoad extends BigRoad {
         scoreBoardItem.renderNextNode();
     }
 
+    clearNextNode() {
+        this.content.children.forEach((node) => {
+            const item = this.getComponentItem(node);
+            item.clearNextNode();
+        });
+    }
+
     protected updateScoreBoardUI(bigRoadMatrix: BigRoadScoreboardPoint<BaccaratSettlementResult>[][]) {
         super.updateScoreBoardUI(bigRoadMatrix);
         const bigRoadLength = bigRoadMatrix[0].length;

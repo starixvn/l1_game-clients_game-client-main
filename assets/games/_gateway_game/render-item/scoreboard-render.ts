@@ -14,14 +14,25 @@ export default class ScoreboardRender extends RenderItem {
         this._gameData = data;
         const store = data.getStore(Store.RoundHistory);
         store?.addListener(EmitterEvents.RoundHistoryChange, this.onData);
+
+        const infoStore = data.getStore(Store.GameInfo);
+        infoStore?.addListener(EmitterEvents.LockingBet, this.showNextNode);
     }
 
     onDestroy() {
         const store = this._gameData?.getStore(Store.RoundHistory);
         store?.removeListener(EmitterEvents.RoundHistoryChange, this.onData);
+
+        const infoStore = data.getStore(Store.GameInfo);
+        infoStore?.removeListener(EmitterEvents.LockingBet, this.showNextNode);
     }
 
+    showNextNode = () => {
+        this.scoreboard.renderNextNode();
+    };
+
     onData = (data: any) => {
+        this.scoreboard.clearNextNode();
         if (data.length === 0) {
             this.scoreboard.resetBoard();
         } else {

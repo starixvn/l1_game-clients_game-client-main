@@ -29,6 +29,12 @@ export default class BigRoadItem extends cc.Component {
         node.getChildByName(this.NodeItems.NEXT).active = true;
     }
 
+    clearNextNode() {
+        this.nodes.forEach((node) => {
+            node.getChildByName(this.NodeItems.NEXT).active = false;
+        });
+    }
+
     isFilledColumn() {
         return this.hasValueArray.every((value) => value);
     }

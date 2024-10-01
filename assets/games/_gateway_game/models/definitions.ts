@@ -5,6 +5,8 @@ export const EmitterEvents = {
     RtpChange: "RtpChange",
     TotalOnlineChange: "TotalOnlineChange",
     TimeChange: "TimeChange",
+    StartRound: "StartRound",
+    LockingBet: "LockingBet",
     BetLimitChange: "BetLimitChange",
     ActiveNewShoe: "ActiveNewShoe",
     DisabledGame: "DisabledGame",

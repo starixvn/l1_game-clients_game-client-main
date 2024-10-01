@@ -17,14 +17,18 @@ import { InternalEvents } from "../../managers/InternalEvents";
 import SocketIOController from "../../SocketIOController";
 import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
+import { Durations } from "./models/durations-interface";
 const { ccclass, property } = cc._decorator;
+
 type CategoryJson = { [key: string]: string[] };
+type DurationsJson = { [key: string]: { ids?: number[]; value: Durations } };
 type ServiceNameJson = { value: string; excludes: number[] };
 interface GameConfigJson {
     gameId: number;
     games: CategoryJson;
     receivedEvents: string[];
     serviceName: ServiceNameJson;
+    durations: DurationsJson;
 }
 
 @ccclass
@@ -49,6 +53,7 @@ export default class GatewayGame extends BaseComponent {
     protected receivedEvents: string[] = [];
     protected categoryJson: CategoryJson;
     protected serviceNameJson: ServiceNameJson;
+    protected durationsJson: DurationsJson;
     protected inGameMenu: InGameMenu;
     protected userProfile: UserProfile;
 
@@ -87,6 +92,7 @@ export default class GatewayGame extends BaseComponent {
         this.receivedEvents = configs.receivedEvents;
         this.categoryJson = configs.games;
         this.serviceNameJson = configs.serviceName;
+        this.durationsJson = configs.durations;
 
         sessionManager.storeInRoomGameId(this.gameId);
     }
@@ -105,6 +111,11 @@ export default class GatewayGame extends BaseComponent {
         return this.serviceNameJson.value;
     }
 
+    getDurations(gameId: number) {
+        const type = Object.keys(this.durationsJson).find((key) => this.durationsJson[key].ids?.includes(gameId)) ?? "default";
+        return this.durationsJson[type].value;
+    }
+
     initItems() {
         let allCatogories = [];
         this.gameIds.forEach((gameId) => {
@@ -113,7 +124,8 @@ export default class GatewayGame extends BaseComponent {
 
             const item = node.getComponent(GatewayGameItem);
             const serviceName = this.getServiceName(gameId);
-            item.init(gameId, serviceName, this.socket);
+            const durations = this.getDurations(gameId);
+            item.init({ gameId, serviceName, durations, socket: this.socket });
             item.sendSignIn(this.receivedEvents);
 
             const categories = this.getCategory(gameId);

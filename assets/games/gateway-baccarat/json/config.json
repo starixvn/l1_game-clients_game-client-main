@@ -20,6 +20,31 @@
         "100": ["speed"],
         "101": ["speed"]
     },
+    "durations": {
+        "default": {
+            "value": {
+                "wholeRound": 47,
+                "wholeShoe": 65,
+                "lockingBet": 3,
+                "placingBet": 30,
+                "generatingResult": 7,
+                "showingResult": 5,
+                "startRound": 4
+            }
+        },
+        "speed": {
+            "ids": [98, 100, 101],
+            "value": {
+                "wholeRound": 33,
+                "wholeShoe": 51,
+                "lockingBet": 3,
+                "placingBet": 20,
+                "generatingResult": 4,
+                "showingResult": 5,
+                "startRound": 3
+            }
+        }
+    },
     "serviceName": {
         "value": "baccaratx",
         "excludes": [10, 27]

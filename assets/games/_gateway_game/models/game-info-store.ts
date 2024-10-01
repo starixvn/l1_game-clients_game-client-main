@@ -1,4 +1,5 @@
 import { EmitterEvents, Store, StoreBase } from "./definitions";
+import { Durations } from "./durations-interface";
 
 export interface RoundHistory {
     result: any;
@@ -17,6 +18,8 @@ export class GameInfoStore extends StoreBase {
     betLimit: { minBet: number; maxBet: number } = null;
 
     timer: any;
+
+    durations: Durations;
 
     changeOnlineUsers(totalOnlineUsers: number) {
         this.totalOnlineUsers = totalOnlineUsers;
@@ -53,6 +56,14 @@ export class GameInfoStore extends StoreBase {
     changeTime(time: number) {
         this.remainingTime = time;
         this.emit(EmitterEvents.TimeChange, this.remainingTime);
+
+        if (time === this.durations.placingBet + this.durations.startRound) {
+            this.emit(EmitterEvents.StartRound);
+        }
+
+        if (time === this.durations.lockingBet) {
+            this.emit(EmitterEvents.LockingBet);
+        }
     }
 
     activeTimer() {

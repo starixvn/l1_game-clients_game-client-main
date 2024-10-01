@@ -26,7 +26,9 @@ export default class BigRoadItem extends cc.Component {
     renderNextNode() {
         const row = this.hasValueArray.findIndex((value) => !value);
         const node = this.nodes[row];
-        node.getChildByName(this.NodeItems.NEXT).active = true;
+        if (node) {
+            node.getChildByName(this.NodeItems.NEXT).active = true;
+        }
     }
 
     clearNextNode() {

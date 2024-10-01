@@ -166,14 +166,6 @@ export default class GameUtils {
                 type: cc.Prefab
             });
         } else {
-            // const currencyGroup = userManager.currencyGroup;
-            const lang = window.i18n.curLang || "en";
-            if (gameId == 2) {
-                const pathResource = `${"Credit_PHP".toLowerCase()}/game-icons/${gameId}/${lang}.png`;
-                const asset = await LobbyResourceManager.loadRemoteSharedResource<cc.Texture2D>(pathResource);
-                console.log("asset load shared resource--: ", asset);
-            }
-
             const directory = systemPath === "" ? "lobby/games" : `lobby/games/${systemPath}`;
             const path = `${directory}/${gameId}`;
             prefab = await this.loadResource(path);

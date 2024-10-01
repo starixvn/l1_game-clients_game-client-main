@@ -8,6 +8,7 @@ import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 import GameNotification from "./GameNotification";
 import LobbyMenuConfig from "./LobbyMenuConfig";
+import LobbyResourceManager from "./LobbyResourceManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -141,12 +142,27 @@ export default class SkeletonIcon extends cc.Component {
     }
 
     public async loadAnimation(id: number, categoryIndex = 0) {
-        const gameConfiguration = getGameConfiguration(id);
-        const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
-        if (gameNode) {
-            this.hideSkeleton();
-            this.gameContent?.addChild(gameNode);
-            this.newTag && (this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex));
+        if (LobbyResourceManager.isUseTheme()) {
+            const spriteFrame = await LobbyResourceManager.loadGameIcon(id);
+            if (spriteFrame) {
+                this.hideSkeleton();
+                this.gameContent.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+                this.updateNewTag(id, categoryIndex);
+            }
+        } else {
+            const gameConfiguration = getGameConfiguration(id);
+            const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
+            if (gameNode) {
+                this.hideSkeleton();
+                this.gameContent?.addChild(gameNode);
+                this.updateNewTag(id, categoryIndex);
+            }
+        }
+    }
+
+    private updateNewTag(id: number, categoryIndex: number): void {
+        if (this.newTag) {
+            this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex);
         }
     }
 

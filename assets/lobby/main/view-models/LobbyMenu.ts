@@ -8,6 +8,7 @@ import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
 import LobbyManager from "./LobbyManager";
 import LobbyMenuConfig from "./LobbyMenuConfig";
+import LobbyResourceManager from "./LobbyResourceManager";
 import SkeletonIcon from "./SkeletonIcon";
 
 const { ccclass, property } = cc._decorator;
@@ -28,6 +29,10 @@ export default class LobbyMenu extends GameIconMenu {
 
     onLoad() {
         //override super
+    }
+
+    updateSpacing(spacing: number) {
+        this.spacing = spacing;
     }
 
     async loadHiddenIcons() {
@@ -143,9 +148,15 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     loadPrefab(gameId: number): Promise<cc.Prefab> {
-        const skeletonIconPath = this.lobbyMenuConfig.isBigSize(gameId, this.currentCategory)
-            ? `lobby/games/skeleton-icon/icon-big`
-            : `lobby/games/skeleton-icon/icon-small`;
+        let skeletonIconPath = "";
+        const isBigSize = this.lobbyMenuConfig.isBigSize(gameId, this.currentCategory);
+        if (LobbyResourceManager.isUseTheme()) {
+            skeletonIconPath = isBigSize ? `skeleton-icon/icon-big` : `skeleton-icon/icon-small`;
+
+            return LobbyResourceManager.loadResource(skeletonIconPath);
+        }
+
+        skeletonIconPath = isBigSize ? `lobby/games/skeleton-icon/icon-big` : `lobby/games/skeleton-icon/icon-small`;
 
         return GameUtils.loadResource(skeletonIconPath);
     }

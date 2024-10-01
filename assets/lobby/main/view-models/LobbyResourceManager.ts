@@ -1,6 +1,5 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
-import UserManager from "../../../common/user/UserManager";
 import { StorageManager } from "../../../managers/StorageManager";
 
 interface IVersionGroupCurrency {
@@ -11,10 +10,11 @@ interface IVersionGroupCurrency {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    public static readonly themeNames: string[] = ["Credit_PHP"];
+    public static readonly supportThemes: string[] = ["Credit_PHP"];
 
     private versionGroupCurrency: Map<string, IVersionGroupCurrency> = new Map();
     private static defaultPath = "lobby/themes";
+    private static currentTheme = "";
 
     public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
@@ -22,6 +22,10 @@ export default class LobbyResourceManager {
         }
 
         return this.instance;
+    }
+
+    public static setCurrentTheme(theme: string) {
+        this.currentTheme = theme;
     }
 
     public getVersionGroupCurrencyFollowKey(currencyGroup: string, key: keyof IVersionGroupCurrency): string | null {
@@ -33,7 +37,7 @@ export default class LobbyResourceManager {
     }
 
     public updateVersion(currencyGroup: string, version: IVersionGroupCurrency): void {
-        if (LobbyResourceManager.themeNames.includes(currencyGroup)) {
+        if (LobbyResourceManager.supportThemes.includes(currencyGroup)) {
             this.versionGroupCurrency.set(currencyGroup, version);
         } else {
             console.warn(`Currency group ${currencyGroup} not exist.`);
@@ -45,7 +49,7 @@ export default class LobbyResourceManager {
     }
 
     public loadVersionFromStorage(): void {
-        LobbyResourceManager.themeNames.forEach((currencyGroup) => {
+        LobbyResourceManager.supportThemes.forEach((currencyGroup) => {
             const storedVersion = StorageManager.get(`${currencyGroup}_version`);
             if (storedVersion) {
                 this.updateVersion(currencyGroup, storedVersion);
@@ -64,22 +68,34 @@ export default class LobbyResourceManager {
 
     public static loadResource(path: string): Promise<cc.Prefab> {
         return new Promise((resolve) => {
-            cc.resources.load(`${LobbyResourceManager.getThemePath()}${path}`, (err, prefab: cc.Prefab) => {
+            cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
                 resolve(prefab);
             });
         });
     }
 
     private static getThemePath() {
-        const currencyGroup = UserManager.getInstance()?.currencyGroup;
-        if (LobbyResourceManager.themeNames.includes(currencyGroup)) {
-            return `${LobbyResourceManager.defaultPath}/${currencyGroup.toLocaleLowerCase()}/`;
+        if (this.supportThemes.includes(this.currentTheme)) {
+            return `${this.defaultPath}/${this.currentTheme.toLocaleLowerCase()}`;
         }
 
-        return `${LobbyResourceManager.defaultPath}/default/`;
+        return `${this.defaultPath}/default`;
     }
 
-    public static isLoadCurrencyGroup(currencyGroup: string) {
-        return LobbyResourceManager.themeNames.includes(currencyGroup);
+    public static isUseTheme() {
+        return this.supportThemes.includes(this.currentTheme);
+    }
+
+    public static async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
+        const pathResource = `${this.currentTheme.toLowerCase()}/game-icons/${gameId}/en.png`;
+        const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(pathResource);
+
+        if (remoteTexture) {
+            return new cc.SpriteFrame(remoteTexture);
+        }
+
+        cc.log(`Not get Game Icon from shared resource: ${gameId}`);
+
+        return null;
     }
 }

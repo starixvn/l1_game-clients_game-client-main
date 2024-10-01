@@ -49,6 +49,21 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
+            <key>bottom-bar-loop.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{122,64}</string>
+                <key>spriteSourceSize</key>
+                <string>{122,64}</string>
+                <key>textureRect</key>
+                <string>{{293,1938},{122,64}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>bottom-bar.png</key>
             <dict>
                 <key>aliases</key>
@@ -270,7 +285,7 @@
                 <key>spriteSourceSize</key>
                 <string>{93,99}</string>
                 <key>textureRect</key>
-                <string>{{165,1938},{93,99}}</string>
+                <string>{{198,1938},{93,99}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -300,7 +315,7 @@
                 <key>spriteSourceSize</key>
                 <string>{76,73}</string>
                 <key>textureRect</key>
-                <string>{{3,1953},{76,73}}</string>
+                <string>{{123,1953},{76,73}}</string>
                 <key>textureRotated</key>
                 <true/>
             </dict>
@@ -316,6 +331,21 @@
                 <string>{183,157}</string>
                 <key>textureRect</key>
                 <string>{{767,538},{183,157}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>top-bar-loop.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{118,83}</string>
+                <key>spriteSourceSize</key>
+                <string>{118,83}</string>
+                <key>textureRect</key>
+                <string>{{3,1953},{118,83}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -348,7 +378,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3e122edf06a182169ef0c773e161aea6:e9da57b3b239d12ab833390de66e926a:01c614cca71ff96ccb5a2c1ef1d47c9f$</string>
+            <string>$TexturePacker:SmartUpdate:f7a3226233e6e73287b7f6cb0dd90ca9:30a220e4f73ad242277e3a6f2955f078:01c614cca71ff96ccb5a2c1ef1d47c9f$</string>
             <key>textureFileName</key>
             <string>ph-lobby.png</string>
         </dict>

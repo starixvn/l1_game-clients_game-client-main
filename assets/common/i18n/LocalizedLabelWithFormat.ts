@@ -1,6 +1,6 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
-import { getLanguage, getLocale } from "../auth/SessionManager";
+import StringUtil from "../utils/StringUtil";
 import { FormationHandler } from "./FormationHandler";
 
 const LocalizedLabel = require("LocalizedLabel");
@@ -29,63 +29,11 @@ export default class LocalizedLabelWithFormat extends LocalizedLabel {
         }
         let localizedString = i18n.t(this.dataId);
         if (localizedString) {
-            localizedString = this.handleFormat(localizedString);
+            localizedString = StringUtil.handleFormatTitle(localizedString, this.format);
             if (this.suffix.length > 0) {
                 localizedString += this.suffix;
             }
             this.label.string = localizedString;
         }
-    }
-    handleFormat(value: string) {
-        const locale = getLocale();
-        const language = getLanguage(locale);
-        const data = [
-            {
-                condition: this.format === FormationHandler.LOWER,
-                handle: this.lowerCase
-            },
-            {
-                condition: this.format === FormationHandler.UPPER,
-                handle: this.upperCase
-            },
-            {
-                condition: this.format === FormationHandler.TITLE,
-                handle: this.titleCase
-            }
-        ];
-        const handler = data.filter((passed) => passed.condition);
-        return handler.length && this.languageValidHandler() ? handler[0].handle(value) : value;
-    }
-
-    titleCase(value: string) {
-        const space = " ";
-        const isBreakLine = value.includes("\n");
-        const result = value
-            .split(space)
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-            .join(space);
-        if (!isBreakLine) {
-            return result;
-        }
-
-        return result
-            .split("\n")
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-            .join("\n");
-    }
-
-    upperCase(value: string) {
-        return value.toUpperCase();
-    }
-
-    lowerCase(value: string) {
-        return value.toLowerCase();
-    }
-
-    languageValidHandler(): boolean {
-        const locale = getLocale();
-        const language = getLanguage(locale);
-
-        return language !== "th";
     }
 }

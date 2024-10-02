@@ -10,7 +10,7 @@ interface IVersionGroupCurrency {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    public static readonly supportThemes: string[] = ["Credit_PHP"];
+    public static readonly supportThemes: string[] = ["Credit_PHP", "Cash_PHP"];
 
     private versionGroupCurrency: Map<string, IVersionGroupCurrency> = new Map();
     private static defaultPath = "lobby/themes";

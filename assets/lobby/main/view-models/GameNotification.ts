@@ -17,6 +17,10 @@ export default class GameNotification extends cc.Component {
     private isScheduling = false;
 
     onLoad() {
+        this.initReceiveEvents();
+    }
+
+    initReceiveEvents() {
         this.dataKey = `${this.key}_${this.gameId}_${Date.now()}`;
         NotificationService.getInstance().addDataObserver(this.dataType, this.dataKey, this.receivedData.bind(this));
         this.getData();

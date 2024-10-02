@@ -2,7 +2,9 @@ import { lazyInject } from "../../../Application";
 import AudioManager from "../../../common/audio/AudioManager";
 import * as SessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
+import { FormationHandler } from "../../../common/i18n/FormationHandler";
 import { userManager } from "../../../common/user/UserManager";
+import StringUtil from "../../../common/utils/StringUtil";
 import { uiManager } from "../../../managers/GameUIManager";
 import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
@@ -23,6 +25,7 @@ export default class LobbyMenu extends GameIconMenu {
     rowChildrenCount = 0;
     currentCategory = -1;
     public skipLoadHiddenIcons = false;
+    formatGameName = FormationHandler.UPPER;
 
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
@@ -196,7 +199,7 @@ export default class LobbyMenu extends GameIconMenu {
     async lateUpdateGameName(icon: SkeletonIcon, gameId: number) {
         const gameName = await GameUtils.getDisplayGameName(gameId, true);
         try {
-            icon.setGameName(gameName.toUpperCase(), gameId);
+            icon.setGameName(StringUtil.handleFormatTitle(gameName, this.formatGameName), gameId);
         } catch (e) {
             cc.warn("Catch error after await method", e.message);
         }

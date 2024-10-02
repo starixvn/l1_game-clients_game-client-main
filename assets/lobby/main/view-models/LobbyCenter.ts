@@ -1,4 +1,5 @@
 import AudioManager from "../../../common/audio/AudioManager";
+import { FormationHandler } from "../../../common/i18n/FormationHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
@@ -18,6 +19,9 @@ export default class LobbyCenter extends cc.Component {
 
     @property(cc.Node)
     scrollContent: cc.Node = null;
+
+    @property({ type: cc.Enum(FormationHandler) })
+    formatGameName = FormationHandler.UPPER;
 
     protected buttonArrowComp: ButtonArrow = null;
     protected miniPanel: MiniPanel = null;
@@ -45,6 +49,7 @@ export default class LobbyCenter extends cc.Component {
         lobbyMenu = this.mainScroll.addComponent(LobbyMenu);
         lobbyMenu.content = this.scrollContent;
         lobbyMenu.miniPanel = this.miniPanel;
+        lobbyMenu.formatGameName = this.formatGameName;
 
         this.lobbyMenu = lobbyMenu;
         const isSSOToGame = window.openGameId && parseInt(window.openGameId) > 0;

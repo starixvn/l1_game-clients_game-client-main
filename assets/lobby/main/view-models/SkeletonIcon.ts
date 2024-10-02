@@ -8,7 +8,6 @@ import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 import GameNotification from "./GameNotification";
 import LobbyMenuConfig from "./LobbyMenuConfig";
-import LobbyResourceManager from "./LobbyResourceManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -70,6 +69,7 @@ export default class SkeletonIcon extends cc.Component {
 
     setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         const cachedGameIcon = GameUtils.cachedGameIcon(id);
+        cachedGameIcon && console.log("cachedGameIcon", id, cachedGameIcon);
 
         if (!!cachedGameIcon) {
             this.loadAnimation(id, categoryIndex);
@@ -78,7 +78,7 @@ export default class SkeletonIcon extends cc.Component {
         }
     }
 
-    private async createIconNode(id: number) {
+    protected async createIconNode(id: number) {
         try {
             let prefab: cc.Prefab;
             if (uiManager.prefabCache.lobbyIcons[id]) {
@@ -96,7 +96,7 @@ export default class SkeletonIcon extends cc.Component {
         }
     }
 
-    private async createRemoteIconNode(id: number) {
+    protected async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
             const configFile = this.micrositeIconCache[id]
@@ -127,7 +127,7 @@ export default class SkeletonIcon extends cc.Component {
         return node;
     }
 
-    private async addGameNotificationComponent(node: cc.Node, id: number, gameNotification: GameNotificationConfig) {
+    protected async addGameNotificationComponent(node: cc.Node, id: number, gameNotification: GameNotificationConfig) {
         const notification = node.addComponent(GameNotification);
         notification.gameId = id;
 
@@ -142,31 +142,22 @@ export default class SkeletonIcon extends cc.Component {
     }
 
     public async loadAnimation(id: number, categoryIndex = 0) {
-        if (LobbyResourceManager.isUseTheme()) {
-            const spriteFrame = await LobbyResourceManager.loadGameIcon(id);
-            if (spriteFrame) {
-                this.hideSkeleton();
-                this.gameContent.getComponent(cc.Sprite).spriteFrame = spriteFrame;
-                this.updateNewTag(id, categoryIndex);
-            }
-        } else {
-            const gameConfiguration = getGameConfiguration(id);
-            const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
-            if (gameNode) {
-                this.hideSkeleton();
-                this.gameContent?.addChild(gameNode);
-                this.updateNewTag(id, categoryIndex);
-            }
+        const gameConfiguration = getGameConfiguration(id);
+        const gameNode = gameConfiguration.isMicrosite ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
+        if (gameNode) {
+            this.hideSkeleton();
+            this.gameContent?.addChild(gameNode);
+            this.newTag && (this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex));
         }
     }
 
-    private updateNewTag(id: number, categoryIndex: number): void {
+    protected updateNewTag(id: number, categoryIndex: number): void {
         if (this.newTag) {
             this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex);
         }
     }
 
-    private hideSkeleton() {
+    protected hideSkeleton() {
         this.lightTop && (this.lightTop.active = false);
         this.skeletonLoading && (this.skeletonLoading.active = false);
     }

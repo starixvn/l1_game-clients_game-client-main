@@ -126,7 +126,7 @@ export default class GatewayGame extends BaseComponent {
             const serviceName = this.getServiceName(gameId);
             const durations = this.getDurations(gameId);
             item.init({ gameId, serviceName, durations, socket: this.socket });
-            item.sendSignIn(this.receivedEvents);
+            item.setReceiveEvents(this.receivedEvents);
 
             const categories = this.getCategory(gameId);
             allCatogories.push(...categories);

@@ -11,7 +11,8 @@ export const EmitterEvents = {
     ActiveNewShoe: "ActiveNewShoe",
     DisabledGame: "DisabledGame",
     UmMessage: "UmMessage",
-    ConnectionFailed: "ConnectionFailed"
+    ConnectionFailed: "ConnectionFailed",
+    GetLobbyData: "GetLobbyData"
 };
 
 export const Store = {

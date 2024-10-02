@@ -26,6 +26,8 @@ export class DisableGameHandler extends BaseEventHandler<any> {
         }
 
         if (data.remainingTime !== undefined) {
+            store.setSignInSuccess(true);
+            store.clearIntervalGetLobbyData();
             store.setDisabledGame(false);
             store.setConnectionError(false);
         }

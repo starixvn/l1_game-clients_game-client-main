@@ -11,10 +11,34 @@ export class DisableGameStore extends StoreBase {
     disabledGame = false;
     umMessage = "";
     gameDisconnected = false;
+    signInSuccess = false;
+    intervalGetLobbyData: NodeJS.Timer;
+
+    setSignInSuccess(value: boolean) {
+        this.signInSuccess = value;
+    }
 
     setDisabledGame(disable: boolean) {
         this.disabledGame = disable;
         this.emit(EmitterEvents.DisabledGame, this.disabledGame);
+
+        if (disable && !this.signInSuccess) {
+            this.startIntervalGetLobbyData();
+        }
+    }
+
+    startIntervalGetLobbyData() {
+        if (this.intervalGetLobbyData) {
+            return;
+        }
+        this.intervalGetLobbyData = setInterval(() => {
+            this.emit(EmitterEvents.GetLobbyData);
+        }, 60 * 1000);
+    }
+
+    clearIntervalGetLobbyData() {
+        this.intervalGetLobbyData && clearInterval(this.intervalGetLobbyData);
+        this.intervalGetLobbyData = null;
     }
 
     setUmMessage(message: string) {

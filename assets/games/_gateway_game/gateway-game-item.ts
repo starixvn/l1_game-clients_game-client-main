@@ -8,6 +8,7 @@ import { InternalEvents } from "../../managers/InternalEvents";
 import { DisableGameHandler } from "./handlers/disable-game-handler";
 import { GameInfoHandler } from "./handlers/game-info-handler";
 import { RoundHistoryHandler } from "./handlers/round-history-handler";
+import { EmitterEvents, Store } from "./models/definitions";
 import { DisableGameStore } from "./models/disable-game-store";
 import { Durations } from "./models/durations-interface";
 import { GameInfoStore } from "./models/game-info-store";
@@ -25,6 +26,7 @@ export default class GatewayGameItem extends cc.Component {
     serviceName = "";
     socket: Socket;
     gameData: GameData = null;
+    receivedEvents: string[];
 
     public get gameName() {
         return getGameName(this.gameId);
@@ -55,6 +57,8 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     onDestroy() {
+        const disableGameStore = this.gameData.getStore(Store.DisableGame) as DisableGameStore;
+        disableGameStore.clearIntervalGetLobbyData();
         this.socket.offAny(this.filterDataGame);
         this.gameData = null;
         this.socket = null;
@@ -67,10 +71,15 @@ export default class GatewayGameItem extends cc.Component {
         }
     }
 
-    sendSignIn(receivedEvents: string[]) {
+    setReceiveEvents(receivedEvents: string[]) {
+        this.receivedEvents = receivedEvents;
+        this.sendSignIn();
+    }
+
+    private sendSignIn() {
         const data = {
             gameName: this.gameName,
-            receivedEvents: receivedEvents,
+            receivedEvents: this.receivedEvents,
             session: getSession()
         };
         if (this.serviceName !== "") {
@@ -85,7 +94,9 @@ export default class GatewayGameItem extends cc.Component {
 
         const infoStore = new GameInfoStore();
         infoStore.durations = durations;
-        this.gameData.addStores([new RoundHistoryStore(), infoStore, new DisableGameStore()]);
+        const disableGameStore = new DisableGameStore();
+        disableGameStore.addListener(EmitterEvents.GetLobbyData, this.sendSignIn.bind(this));
+        this.gameData.addStores([new RoundHistoryStore(), infoStore, disableGameStore]);
         this.initRenderItems();
     }
 
@@ -101,7 +112,7 @@ export default class GatewayGameItem extends cc.Component {
         }
     };
 
-    getLobbyInfo() {
+    getLobbyData() {
         this.socket.emit("getLobbyData", { gameName: this.gameName });
     }
 
@@ -114,7 +125,7 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     onSignedIn() {
-        this.getLobbyInfo();
+        this.getLobbyData();
     }
 
     onClickOpenGame() {

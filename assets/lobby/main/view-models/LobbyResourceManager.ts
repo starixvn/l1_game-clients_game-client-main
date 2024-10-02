@@ -1,5 +1,6 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
+import { uiManager } from "../../../managers/GameUIManager";
 import { StorageManager } from "../../../managers/StorageManager";
 
 interface IVersionGroupCurrency {
@@ -89,9 +90,11 @@ export default class LobbyResourceManager {
     public static async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
         const pathResource = `${this.currentTheme.toLowerCase()}/game-icons/${gameId}/en.png`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(pathResource);
+        const spriteFrame = new cc.SpriteFrame(remoteTexture);
+        uiManager.remoteSpriteFrameCache[gameId] = { spriteFrame };
 
-        if (remoteTexture) {
-            return new cc.SpriteFrame(remoteTexture);
+        if (spriteFrame) {
+            return spriteFrame;
         }
 
         cc.log(`Not get Game Icon from shared resource: ${gameId}`);

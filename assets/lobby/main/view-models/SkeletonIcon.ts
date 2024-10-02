@@ -69,7 +69,6 @@ export default class SkeletonIcon extends cc.Component {
 
     setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         const cachedGameIcon = GameUtils.cachedGameIcon(id);
-        cachedGameIcon && console.log("cachedGameIcon", id, cachedGameIcon);
 
         if (!!cachedGameIcon) {
             this.loadAnimation(id, categoryIndex);

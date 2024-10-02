@@ -67,6 +67,6 @@ export default class Header extends cc.Component {
 
     showScoins(scoins = 0) {
         this.scoinsNode.active = true;
-        this.scoinsValue.string = numberWithCommas(scoins);
+        this.scoinsValue && (this.scoinsValue.string = numberWithCommas(scoins));
     }
 }

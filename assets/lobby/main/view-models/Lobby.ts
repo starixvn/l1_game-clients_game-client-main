@@ -103,7 +103,6 @@ export default class Lobby extends cc.Component {
         document.cookie = "redT=1702;path=/";
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
-        LobbyResourceManager.setCurrentTheme(UserManager.getInstance()?.currencyGroup);
         this.initMiniPanel();
         this.checkToShowSignName();
         await this.initUIs();

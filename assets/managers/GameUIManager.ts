@@ -16,6 +16,12 @@ export interface SkeletonCache {
     };
 }
 
+export interface SpriteFrameCache {
+    [key: number]: {
+        spriteFrame: cc.SpriteFrame;
+    };
+}
+
 export default class GameUIManager {
     private static instance: GameUIManager;
     private iconGameLoading = {};
@@ -46,6 +52,8 @@ export default class GameUIManager {
     public remoteIconCache: SkeletonCache = {};
 
     public remoteBannerCache: SkeletonCache = {};
+
+    public remoteSpriteFrameCache: SpriteFrameCache = {};
 
     initEmitter() {
         this.emitter = new EventEmitterBase();

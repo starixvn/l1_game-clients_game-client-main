@@ -1,3 +1,4 @@
+import { uiManager } from "../../../managers/GameUIManager";
 import GameNotification from "./GameNotification";
 import JackpotPoolInfo from "./JackpotPoolInfo";
 import LobbyResourceManager from "./LobbyResourceManager";
@@ -13,13 +14,25 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     @property(JackpotPoolInfo)
     jackpotPoolInfo: JackpotPoolInfo = null;
 
+    setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
+        if (!!uiManager.remoteSpriteFrameCache[id]) {
+            this.loadAnimation(id, categoryIndex);
+        } else {
+            addListIconObscure(this);
+        }
+    }
+
     public async loadAnimation(id: number, categoryIndex = 0) {
-        const spriteFrame = await LobbyResourceManager.loadGameIcon(id);
+        const cachedSprite = uiManager.remoteSpriteFrameCache[id]?.spriteFrame;
+        const spriteFrame = cachedSprite || (await LobbyResourceManager.loadGameIcon(id));
+
         if (spriteFrame) {
             this.hideSkeleton();
-            this.gameContent.getComponent(cc.Sprite).spriteFrame = spriteFrame;
+            const spriteComponent = this.gameContent.getComponent(cc.Sprite);
+            spriteComponent.spriteFrame = spriteFrame;
             this.updateNewTag(id, categoryIndex);
         }
+
         this.updateJackpotPoolInfo(id);
         this.updateReceiveNotification(id);
     }

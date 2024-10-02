@@ -2,11 +2,14 @@ import { appContainer, lazyInject } from "../../Application";
 import { i18n } from "../../ClientModules";
 import { OperatorAlias } from "../../ISystem";
 import SocketIOController from "../../SocketIOController";
-import GameUtils from "../../common/GameUtils";
+import GameUtils, { BannerType } from "../../common/GameUtils";
 import * as sessionManager from "../../common/auth/SessionManager";
 import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
+import UserManager, { userManager } from "../../common/user/UserManager";
 import NoticeUtil from "../../common/utils/NoticeUtil";
+import { getGameConfiguration } from "../../configs/GameConfigurations";
+import { TotalPreloadGameIcon } from "../../constants";
 import LobbyMenuConfig from "../../lobby/main/view-models/LobbyMenuConfig";
 import LobbyResourceManager from "../../lobby/main/view-models/LobbyResourceManager";
 import { appManager } from "../../managers/AppManager";
@@ -64,6 +67,7 @@ export default class MainSplash extends cc.Component {
     protected onLoad(): void {
         LobbyResourceManager.getInstance();
         this.initUIListeners();
+        this.requestSSO();
         this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
@@ -185,16 +189,17 @@ export default class MainSplash extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    async loadToLobbyOrDirectGame() {
+    async requestSSO() {
         try {
             this.updateProgress(0);
+            if (!appManager.authorized) {
+                await appManager.ssoAndAuthorize();
+                LobbyResourceManager.setCurrentTheme(UserManager.getInstance()?.currencyGroup);
+            }
 
             if (appManager.isDirectMode) {
-                cc.log("Main Splash : loadGameDirectly");
                 await this.loadGameDirectly();
-                appManager.clearSSOGameId();
             } else {
-                cc.log("Main Splash : Goto Lobby");
                 this.preloadLobbyScene();
             }
         } catch (error) {
@@ -212,14 +217,14 @@ export default class MainSplash extends cc.Component {
             await GameUtils.openGameDirect(gameId, this.socketIOController);
             uiManager.removeListenersWithName(`${InternalEvents.LOADING_GAME}-${gameId}`);
         } catch (error) {
-            cc.warn(`Can not load game directly id ${gameId}`, error);
+            console.warn(`Can not load game directly id ${gameId}`, error);
         }
     }
 
     preloadLobbyScene() {
         this.loadSceneTimeout = setTimeout(
             function () {
-                GameUtils.gotoLobbyScene(this.onProgress.bind(this), this.lobbyMenuConfig, this.splashConfig);
+                cc.director.preloadScene("Lobby", this.onProgress.bind(this), this.onLoaded.bind(this));
             }.bind(this),
             100
         );
@@ -261,10 +266,22 @@ export default class MainSplash extends cc.Component {
             if (offerGames.length > 0 && firstCategoryGames?.length > 0) {
                 firstCategoryGames = firstCategoryGames.filter((gameId) => offerGames.includes(gameId));
             }
-
-            // Load game icon custom by system
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
+
+            if (LobbyResourceManager.isUseTheme()) {
+                console.log("Use Theme cache preLoad GameIcons");
+                const preloadGameInMain = preLoadGameIds.filter(
+                    (gameId) => getGameConfiguration(gameId) || this.lobbyMenuConfig.customGameIconBySystem.includes(gameId)
+                );
+                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager.loadGameIcon(gameId));
+                await Promise.all([preLoadGameAwaiters]);
+
+                return;
+            }
+
+            // Load game icon custom by system
+
             const preloadGameInMain = preLoadGameIds.filter((gameId) => !GameUtils.isMicroSite(getGameConfiguration(gameId)));
             const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
 

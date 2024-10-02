@@ -1,22 +1,19 @@
 import LoadWebView from "../../../common/LoadWebView";
-import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { promotionTournamentHandler } from "../../../lobby/promotions/PromotionTournamentHandler";
-import { uiManager } from "../../../managers/GameUIManager";
-import { InternalEvents } from "../../../managers/InternalEvents";
-import * as sessionManager from "../../../common/auth/SessionManager";
+import PromotionTournamentDialog from "./PromotionTournamentDialog";
 
 const CLOSE_PROMOTION_EVENT = "closePromotionPopup";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class PromotionTournamentWebView extends LoadWebView {
-    @property(CommonDialog)
-    commonDialog: CommonDialog = null;
+    @property(PromotionTournamentDialog)
+    promotionTournamentDialog: PromotionTournamentDialog = null;
 
     onLoad(): void {
         this.loadPromotionSite();
-        if (this.commonDialog) {
-            this.commonDialog.addOnDidHide(() => {
+        if (this.promotionTournamentDialog) {
+            this.promotionTournamentDialog.addOnDidHide(() => {
                 this.node.destroy();
             });
         }
@@ -32,12 +29,7 @@ export default class PromotionTournamentWebView extends LoadWebView {
 
     handleEvent = async ({ data }: { data: string }) => {
         if (data === CLOSE_PROMOTION_EVENT) {
-            if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
-                uiManager.emitter.emit(InternalEvents.HANDLE_ON_SIGN_IN, {});
-                sessionManager.setCheckedTournamentPromotionFirstSso(true);
-            }
-
-            this.commonDialog.closeDialog();
+            this.promotionTournamentDialog.closeDialog();
         }
     };
 

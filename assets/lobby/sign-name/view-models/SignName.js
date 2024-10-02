@@ -107,8 +107,7 @@ cc.Class({
             this.errorMessage.string = i18n.t(InvalidUserNameKey);
         } else {
             const authData = window.authData;
-        UserService.getInstance().auth.signName(authData.ss, authData.username, this.username.string).then(this.onSuccessFunc);
-        
+            UserService.getInstance().auth.signName(authData.ss, authData.username, this.username.string).then(this.onSuccessFunc);
         }
     },
 

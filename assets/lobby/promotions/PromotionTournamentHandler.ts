@@ -31,7 +31,6 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         return this.instance;
     }
 
-
     init() {
         if (!this.intervalId) {
             this.intervalId = setInterval(() => {
@@ -46,26 +45,35 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         this.toggleIcon(isExist);
     }
 
-    async checkTournamentPromotionsBeforeSignIn() {
-        const emitSignInEvent = () => uiManager.emitter.emit(InternalEvents.HANDLE_ON_SIGN_IN, {});
+    emitSignInEvent() {
+        uiManager.emitter.emit(InternalEvents.HANDLE_ON_SIGN_IN, {});
+    }
 
+    initializeTournamentPromotionFirstSso() {
+        sessionManager.setCheckedTournamentPromotionFirstSso(true);
+        this.emitSignInEvent();
+    }
+
+    onClosePromotionTournamentPopup() {
+        if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
+            this.initializeTournamentPromotionFirstSso();
+        }
+    }
+
+    async checkTournamentPromotionsBeforeSignIn() {
         try {
             if (sessionManager.getCheckedTournamentPromotionFirstSso()) {
-                return emitSignInEvent();
+                return this.emitSignInEvent();
             }
 
             const existNewOrRunningPromotionTournament = await this.getPromotionData(endpointConstants.existNewOrRunningTournamentPromotion);
 
-            if (existNewOrRunningPromotionTournament) {
-                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
-            }
-            else {
-                sessionManager.setCheckedTournamentPromotionFirstSso(true);
-                emitSignInEvent();
-            }
+            existNewOrRunningPromotionTournament ?
+                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT) :
+                this.initializeTournamentPromotionFirstSso();
 
         } catch (error) {
-            emitSignInEvent();
+            this.emitSignInEvent();
         }
     }
 

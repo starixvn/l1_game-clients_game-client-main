@@ -1,3 +1,4 @@
+import GatewayGameItem from "../../games/_gateway_game/gateway-game-item";
 import { CategoryEvent } from "./category-events";
 import CategoryItem from "./category-item";
 
@@ -60,6 +61,7 @@ export default class CategoryController extends cc.Component {
 
         this.node.emit(CategoryEvent.Changed, this.categories);
         this.updateItemVisibility();
+        this.updateSortOrder();
     }
 
     private removeDuplicateCategory() {
@@ -74,6 +76,16 @@ export default class CategoryController extends cc.Component {
         this.items.forEach((item) => {
             const comps = item.getComponents(CategoryItem);
             item.active = comps.some((comp) => categories.includes(comp.category));
+        });
+    }
+
+    updateSortOrder() {
+        this.items.forEach((item) => {
+            const gameItem = item.getComponent(GatewayGameItem);
+
+            if (gameItem) {
+                gameItem.node.zIndex = gameItem.gameId;
+            }
         });
     }
 }

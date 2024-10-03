@@ -1,8 +1,8 @@
-import { uiManager } from "../../../managers/GameUIManager";
-import GameNotification from "./GameNotification";
-import JackpotPoolInfo from "./JackpotPoolInfo";
-import LobbyResourceManager from "./LobbyResourceManager";
-import SkeletonIcon from "./SkeletonIcon";
+import { uiManager } from "../../../../managers/GameUIManager";
+import GameNotification from "./../GameNotification";
+import JackpotPoolInfo from "./../JackpotPoolInfo";
+import LobbyResourceManager from "./../LobbyResourceManager";
+import SkeletonIcon from "./../SkeletonIcon";
 
 const { ccclass, property } = cc._decorator;
 
@@ -15,7 +15,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     jackpotPoolInfo: JackpotPoolInfo = null;
 
     setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
-        if (!!uiManager.remoteSpriteFrameCache[id]) {
+        if (!!uiManager.spriteFrameCache.lobbyIcons[id]) {
             this.loadAnimation(id, categoryIndex);
         } else {
             addListIconObscure(this);
@@ -23,7 +23,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     }
 
     public async loadAnimation(id: number, categoryIndex = 0) {
-        const cachedSprite = uiManager.remoteSpriteFrameCache[id]?.spriteFrame;
+        const cachedSprite = uiManager.spriteFrameCache.lobbyIcons[id]?.spriteFrame;
         const spriteFrame = cachedSprite || (await LobbyResourceManager.loadGameIcon(id));
 
         if (spriteFrame) {

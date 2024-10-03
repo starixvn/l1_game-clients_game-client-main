@@ -9,7 +9,7 @@ import MusicPlayer from "../../../common/audio/MusicPlayer";
 import { truncateFixedDecimals } from "../../../common/helpers/NumberHelper";
 import logger from "../../../common/logger";
 import { SettingMenuEvents } from "../../../common/setting-menu/SettingMenu";
-import UserManager, { userManager } from "../../../common/user/UserManager";
+import { userManager } from "../../../common/user/UserManager";
 import NoticeUtil from "../../../common/utils/NoticeUtil";
 import * as Configs from "../../../configs/Configs";
 import LuckyWheelIcon from "../../../games/lucky-wheel/view-models/LuckyWheelIcon";
@@ -128,7 +128,7 @@ export default class Lobby extends cc.Component {
     async loadBackgroundUI() {
         try {
             if (!this.backgroundUIPrefab) {
-                this.backgroundUIPrefab = await LobbyResourceManager.loadResource("backgroundUI");
+                this.backgroundUIPrefab = await LobbyResourceManager.loadResource("background-ui");
             }
 
             if (this.backgroundUIPrefab) {
@@ -173,7 +173,7 @@ export default class Lobby extends cc.Component {
     async loadLobbyCenterContainer() {
         try {
             if (!this.lobbyCenterPrefab) {
-                this.lobbyCenterPrefab = await LobbyResourceManager.loadResource("lobbyCenter");
+                this.lobbyCenterPrefab = await LobbyResourceManager.loadResource("lobby-center");
             }
 
             if (this.lobbyCenterPrefab) {
@@ -190,7 +190,7 @@ export default class Lobby extends cc.Component {
     async loadButtonArrow() {
         try {
             if (!this.buttonArrowPrefab) {
-                this.buttonArrowPrefab = await LobbyResourceManager.loadResource("buttonArrow");
+                this.buttonArrowPrefab = await LobbyResourceManager.loadResource("button-arrow");
             }
 
             if (this.buttonArrowPrefab) {
@@ -228,7 +228,7 @@ export default class Lobby extends cc.Component {
     async loadPrefabCategoryContainer() {
         try {
             if (!this.categoryContainerPrefab) {
-                this.categoryContainerPrefab = await LobbyResourceManager.loadResource("categoryContainer");
+                this.categoryContainerPrefab = await LobbyResourceManager.loadResource("category-container");
             }
 
             if (this.categoryContainerPrefab) {

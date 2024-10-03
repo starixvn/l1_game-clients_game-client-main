@@ -14,8 +14,10 @@ const { ccclass, property } = cc._decorator;
 export default class PopupMinigames extends cc.Component {
     @property(cc.Node)
     list: cc.Node = null;
+
     @property(cc.Node)
     panel: cc.Node = null;
+
     @property(cc.Node)
     menuIcon: cc.Node = null;
 
@@ -27,6 +29,9 @@ export default class PopupMinigames extends cc.Component {
 
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
+
+    @property(cc.Node)
+    highlightIcon: cc.Node = null;
 
     private ttOffset = cc.v2(0, 0);
     private ttOffset2 = cc.v2(0, 0);
@@ -43,6 +48,7 @@ export default class PopupMinigames extends cc.Component {
         this.prevPosition = this.node.position;
         this.list.active = false;
         this.list.scale = 0;
+        this.handleHighlightIcon(true);
 
         roundTimerManager.initEvents();
         this.initDefaultGameRoundTimer();
@@ -185,6 +191,7 @@ export default class PopupMinigames extends cc.Component {
         this.prevPosition = this.node.position;
         this.background.active = true;
         cc.tween(this.background).to(0.1, { opacity: 224 }).start();
+        this.handleHighlightIcon(false);
         this.list.scale = 1;
 
         cc.tween(this.node)
@@ -251,6 +258,7 @@ export default class PopupMinigames extends cc.Component {
                 this.toggleRuning = false;
                 this.list.active = false;
                 this.list.scale = 0;
+                this.handleHighlightIcon(true);
             })
             .to(0.2, { scale: 1, opacity: 255 }, { easing: "sineOut" })
             .call(() => {
@@ -264,5 +272,9 @@ export default class PopupMinigames extends cc.Component {
 
     setTop() {
         this.node.parent.insertChild(this.node, this.node.parent.childrenCount - 1);
+    }
+
+    handleHighlightIcon(status: boolean) {
+        this.highlightIcon && (this.highlightIcon.active = status);
     }
 }

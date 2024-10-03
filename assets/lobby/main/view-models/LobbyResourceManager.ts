@@ -75,7 +75,7 @@ export default class LobbyResourceManager {
         });
     }
 
-    private static getThemePath() {
+    protected static getThemePath() {
         if (this.supportThemes.includes(this.currentTheme)) {
             return `${this.defaultPath}/${this.currentTheme.toLocaleLowerCase()}`;
         }
@@ -87,18 +87,27 @@ export default class LobbyResourceManager {
         return this.supportThemes.includes(this.currentTheme);
     }
 
-    public static async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
-        const pathResource = `${this.currentTheme.toLowerCase()}/game-icons/${gameId}/en.png`;
-        const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(pathResource);
+    protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
+        const resourcePath = `${this.currentTheme.toLowerCase()}/${type}-icons/${gameId}/en.png`;
+        const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
-        uiManager.remoteSpriteFrameCache[gameId] = { spriteFrame };
+
+        // Cache the sprite frame
+        cache[gameId] = { spriteFrame };
 
         if (spriteFrame) {
             return spriteFrame;
         }
 
-        cc.log(`Not get Game Icon from shared resource: ${gameId}`);
-
+        cc.log(`Not get ${type === "game" ? "Game" : "Mini Game"} Icon from shared resource: ${gameId}`);
         return null;
+    }
+
+    public static async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
+        return this.loadIcon(gameId, "game", uiManager.spriteFrameCache.lobbyIcons);
+    }
+
+    public static async loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame> {
+        return this.loadIcon(gameId, "mini-game", uiManager.spriteFrameCache.miniPanelIcons);
     }
 }

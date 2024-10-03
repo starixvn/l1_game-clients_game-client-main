@@ -18,6 +18,7 @@ import ScaleActiveController from "../../common/scale-active-item/ScaleActiveCon
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameId, isMiniGame, isUsingRemoteBundle } from "../../configs/GameConfigurations";
 import CircleMenu from "../../lobby/main/view-models/CircleMenu";
+import LobbyResourceManager from "../../lobby/main/view-models/LobbyResourceManager";
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
@@ -171,7 +172,12 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         if (!this.miniMenu) {
             return;
         }
-        GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`)
+
+        const loadPromise = LobbyResourceManager.isUseTheme()
+            ? LobbyResourceManager.loadResource("mini-game/popup-mini-game")
+            : GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`);
+
+        loadPromise
             .then((prefab) => {
                 const popUpMiniGameNode = cc.instantiate(prefab);
                 this.popupMiniGame = popUpMiniGameNode.getComponent(PopupMinigames);

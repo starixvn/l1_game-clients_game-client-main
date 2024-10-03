@@ -49,11 +49,15 @@ export default class GameUIManager {
         multiplierPrefab: {}
     };
 
+    public spriteFrameCache = {
+        lobbyIcons: {},
+        lobbyBanners: {},
+        miniPanelIcons: {}
+    };
+
     public remoteIconCache: SkeletonCache = {};
 
     public remoteBannerCache: SkeletonCache = {};
-
-    public remoteSpriteFrameCache: SpriteFrameCache = {};
 
     initEmitter() {
         this.emitter = new EventEmitterBase();

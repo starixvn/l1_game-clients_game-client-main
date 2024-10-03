@@ -45,7 +45,7 @@ export default class CircleMenu extends GameIconMenu {
         return Promise.resolve(gameId === 0 ? this.homeIcon : this.skeletonPrefab);
     }
 
-    private async updateGameName(gameId: number, node: cc.Node) {
+    protected async updateGameName(gameId: number, node: cc.Node) {
         if (gameId === 0) {
             return;
         }

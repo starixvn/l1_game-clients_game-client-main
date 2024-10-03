@@ -4,6 +4,6 @@ export class VipBaccaratConfigs implements GameConfigBase {
     minBetTime = 1;
     fullTime = 45;
     betTime = 30;
-    stopBetTime = 5;
+    stopBetTime = 3;
     waitTime = 20;
 }

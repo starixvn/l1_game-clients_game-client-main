@@ -18,6 +18,7 @@ export class DisableGameHandler extends BaseEventHandler<any> {
     protected handle(data: DisableGameEvent) {
         const store = this.gameData.getStore(Store.DisableGame) as DisableGameStore;
         if (data.um !== undefined) {
+            store.setConnectionError(false);
             store.setDisabledGame(data.um);
             if (data.um_message) {
                 const message = NoticeUtil.getMessageByLocale(data.um_message);

@@ -250,6 +250,7 @@ export default class GameBase extends GameViewBase implements IGameBase {
         this.initGameAudios();
         this.setGameRound(0);
         this.resetDataAndUI();
+        this.animatedTime.setRedTime(this.config.stopBetTime);
     }
 
     onDestroy() {

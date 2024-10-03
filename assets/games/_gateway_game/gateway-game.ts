@@ -10,7 +10,7 @@ import GameUtils from "../../common/GameUtils";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UserProfile from "../../common/user-profile/UserProfile";
 import { userManager } from "../../common/user/UserManager";
-import { getGameName } from "../../configs/GameConfigurations";
+import { getGameName, isGatewayGame } from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -88,7 +88,7 @@ export default class GatewayGame extends BaseComponent {
         this.gameId = configs.gameId;
         this.gameIds = Object.keys(configs.games)
             .map((key) => +key)
-            .filter((gameId) => userManager.offerGamesIncludeSubGames.includes(gameId));
+            .filter((gameId) => userManager.offerGamesIncludeSubGames.includes(gameId) && isGatewayGame(gameId));
         this.receivedEvents = configs.receivedEvents;
         this.categoryJson = configs.games;
         this.serviceNameJson = configs.serviceName;

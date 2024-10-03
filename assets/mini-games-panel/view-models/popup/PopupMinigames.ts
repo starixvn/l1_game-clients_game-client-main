@@ -3,6 +3,7 @@ import AudioManager from "../../../common/audio/AudioManager";
 import GameUtils from "../../../common/GameUtils";
 import { userManager } from "../../../common/user/UserManager";
 import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
+import LobbyResourceManager from "../../../lobby/main/view-models/LobbyResourceManager";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
@@ -28,16 +29,13 @@ export default class PopupMinigames extends cc.Component {
     roundTimer: cc.Node = null;
 
     @lazyInject(LobbyMenuConfig)
-    private readonly lobbyMenuConfig: LobbyMenuConfig;
-
-    @property(cc.Node)
-    highlightIcon: cc.Node = null;
+    protected readonly lobbyMenuConfig: LobbyMenuConfig;
 
     private ttOffset = cc.v2(0, 0);
     private ttOffset2 = cc.v2(0, 0);
-    private toggleRuning = false;
+    protected toggleRuning = false;
     public background: cc.Node = null;
-    private prevPosition;
+    protected prevPosition;
     private jackpotWinner: JackpotWinner = null;
 
     onLoad() {
@@ -48,7 +46,6 @@ export default class PopupMinigames extends cc.Component {
         this.prevPosition = this.node.position;
         this.list.active = false;
         this.list.scale = 0;
-        this.handleHighlightIcon(true);
 
         roundTimerManager.initEvents();
         this.initDefaultGameRoundTimer();
@@ -58,15 +55,21 @@ export default class PopupMinigames extends cc.Component {
     }
 
     async initDefaultGameRoundTimer() {
-        const prefab = await GameUtils.asyncExecute<cc.Prefab>(
-            this.node,
-            GameUtils.loadMiniPanelGameIcon(this.lobbyMenuConfig.roundTimerGame.main)
-        );
+        const mainGameId = this.lobbyMenuConfig.roundTimerGame?.main;
+        let prefab: cc.Prefab;
+        if (LobbyResourceManager.isUseTheme()) {
+            prefab = await LobbyResourceManager.loadResource(`mini-game/counters/${mainGameId}`);
+        } else {
+            prefab = await GameUtils.asyncExecute<cc.Prefab>(this.node, GameUtils.loadMiniPanelGameIcon(mainGameId));
+        }
+
         if (prefab) {
             const node = cc.instantiate(prefab);
             this.roundTimer?.addChild(node);
-            node.getChildByName("icon-game").active = false;
+            const iconGame = node?.getChildByName("icon-game");
+            iconGame && (iconGame.active = false);
         }
+
         roundTimerManager.requestRoundTimer();
     }
 
@@ -191,7 +194,6 @@ export default class PopupMinigames extends cc.Component {
         this.prevPosition = this.node.position;
         this.background.active = true;
         cc.tween(this.background).to(0.1, { opacity: 224 }).start();
-        this.handleHighlightIcon(false);
         this.list.scale = 1;
 
         cc.tween(this.node)
@@ -258,7 +260,6 @@ export default class PopupMinigames extends cc.Component {
                 this.toggleRuning = false;
                 this.list.active = false;
                 this.list.scale = 0;
-                this.handleHighlightIcon(true);
             })
             .to(0.2, { scale: 1, opacity: 255 }, { easing: "sineOut" })
             .call(() => {
@@ -272,9 +273,5 @@ export default class PopupMinigames extends cc.Component {
 
     setTop() {
         this.node.parent.insertChild(this.node, this.node.parent.childrenCount - 1);
-    }
-
-    handleHighlightIcon(status: boolean) {
-        this.highlightIcon && (this.highlightIcon.active = status);
     }
 }

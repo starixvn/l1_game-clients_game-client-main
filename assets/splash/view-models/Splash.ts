@@ -7,7 +7,6 @@ import { sentryLogger } from "../../common/logger";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { AXIOS_FAILED_PREFIX } from "../../utils";
-import PromotionTournamentHandler, { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -19,68 +18,21 @@ export default class Splash extends cc.Component {
     nodeMainSplash: cc.Node = null;
 
     @property(cc.Node)
-    nodeTournamentPromotion: cc.Node = null;
-
-    @property(cc.Node)
     nodeMicrositeGame: cc.Node = null;
 
     @property(cc.Prefab)
     prfMicrositeGame: cc.Prefab = null;
 
-    @property(cc.Node)
-    dialog: cc.Node = null;
-
-    private promotionTournamentPrefab: cc.Prefab = null;
-
     protected onLoad(): void {
-        promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT, this.showPromotionTournament.bind(this));
-        this.initUIListeners();
         this.disableAllNodeSplash();
+        this.initUIListeners();
         this.handleSplashScene();
         this.loadBackground();
-        // this.requestSSO();
-
-        // PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-    }
-    async showPromotionTournament() {
-        if (!this.promotionTournamentPrefab) {
-            await this.createPromotionTournamentPrefab();
-        }
-        const node = cc.instantiate(this.promotionTournamentPrefab);
-        this.addDialog(node);
-    }
-
-    async createPromotionTournamentPrefab() {
-        const key = "promotionTournament";
-        if (!uiManager.prefabCache.miniPanelIcons[key]) {
-            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
-                this.node,
-                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
-            );
-            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
-        } else {
-            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
-        }
-    }
-
-    addDialog(dialogNode: cc.Node) {
-        // this.enableMainSplashScreen();
-        this.nodeTournamentPromotion.getChildByName('dialog')?.addChild(dialogNode);
-    }
-
-    async requestSSO() {
-        try {
-            // await appManager.ssoAndAuthorize();
-            // PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-        } catch (error) {
-            sentryLogger.logError(error);
-        }
     }
 
     private initUIListeners() {
         uiManager.emitterListener(InternalEvents.MICROSITE_BACK_TO_LOBBY, this.enableMainSplashScreen.bind(this), this);
         uiManager.emitterListener(InternalEvents.MICROSITE_OPEN_GAME_BACK_FROM_LOBBY, this.openGameFromMicroGame.bind(this), this);
-        uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.handleSplashScene.bind(this), this);
     }
 
     private clearUIListeners() {
@@ -92,11 +44,8 @@ export default class Splash extends cc.Component {
     }
 
     private async handleSplashScene() {
-
         if (await this.isOpenMicrositeGame()) {
-            // PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-            // this.enableMicrositeGameIframe();
-            this.handleSplashScene()
+            this.enableMicrositeGameIframe();
         } else {
             this.enableMainSplashScreen();
         }

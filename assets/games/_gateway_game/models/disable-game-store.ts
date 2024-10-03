@@ -48,6 +48,7 @@ export class DisableGameStore extends StoreBase {
 
     setConnectionError(value: boolean) {
         this.gameDisconnected = value;
+        this.emit(EmitterEvents.ConnectionFailed, value);
     }
 
     updateUI() {

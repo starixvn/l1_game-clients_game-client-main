@@ -27,6 +27,7 @@ import { sentryLogger } from "./logger";
 import { preloadAssets } from "./PreloadRemoteAsset";
 import SetStaticFontSizeLabel from "./SetStaticFontSizeLabel";
 import { userManager } from "./user/UserManager";
+import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
 
 export const MINI_GAMES_SCALE_ON_DESKTOP = 0.8;
 export const MICRO_GAMES_NOT_OFFER_BANNER = [9, 48, 49, 50];
@@ -169,9 +170,8 @@ export default class GameUtils {
         let prefab: cc.Prefab;
         if (!!gameConfiguration?.remoteBundle) {
             const directory = systemPath === "" ? "icons" : `icons/${systemPath}`;
-            const path = `${GameUtils.isMicroSite(gameConfiguration) ? gameId + "/" : ""}${directory}/${
-                gameSetting?.bigSize ? "Big" : "Small"
-            }`;
+            const path = `${GameUtils.isMicroSite(gameConfiguration) ? gameId + "/" : ""}${directory}/${gameSetting?.bigSize ? "Big" : "Small"
+                }`;
             prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
                 bundleId: gameId.toString(),
                 path: path,
@@ -337,7 +337,7 @@ export default class GameUtils {
     public static async openGameDirect(gameId: number, socketIOController: SocketIOController) {
         const gameConfiguration = getGameConfiguration(gameId);
         if (GameUtils.isMicroSite(gameConfiguration)) {
-            await this.openGameMicrosite(gameId);
+            this.openGameMicrosite(gameId);
             return;
         }
         await this.tryOpenGameDirect(gameId, socketIOController);
@@ -406,7 +406,10 @@ export default class GameUtils {
                     if (error) {
                         this.onForceReload();
                     } else {
-                        cc.director.loadScene(sceneName, resolve);
+                        cc.director.loadScene(sceneName, () => {
+                            PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
+                            resolve();
+                        });
                     }
                 }
             );
@@ -778,7 +781,7 @@ export default class GameUtils {
 
     public static waitUntil = async (condition, interval = 1000, maxWait = 10000) => {
         const startTime = new Date().getTime();
-        for (;;) {
+        for (; ;) {
             try {
                 if (await condition()) {
                     return true;
@@ -838,7 +841,7 @@ export default class GameUtils {
                 if (remoteTexture) {
                     break;
                 }
-            } catch (error) {}
+            } catch (error) { }
         }
         if (remoteTexture) {
             return new cc.SpriteFrame(remoteTexture);
@@ -921,7 +924,7 @@ export default class GameUtils {
                     const url = `${host}/${resName}`;
                     const asset = await GameUtils.loadRemote<cc.Asset>(url);
                     spineAssets.push(asset);
-                } catch (error) {}
+                } catch (error) { }
             }
         } catch (error) {
             cc.log(this.getErrorMessageBanner(id));

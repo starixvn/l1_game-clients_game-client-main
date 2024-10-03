@@ -15,8 +15,11 @@ export default class NewsContent extends BaseComponent {
     @property(cc.Font)
     marqueeFont: cc.Font = null;
 
-    private readonly colors = ["#F24647", "#33D3E9", "#F8E49D"];
-    private fonts = {};
+    @property()
+    fontSize = 16;
+
+    protected readonly colors = ["#F24647", "#33D3E9", "#F8E49D"];
+    protected fonts = {};
     private readonly dataKey = "marquee";
 
     onLoad(): void {
@@ -79,7 +82,7 @@ export default class NewsContent extends BaseComponent {
             label.string = message;
             label.lineHeight = 47;
             label.verticalAlign = cc.Label.VerticalAlign.CENTER;
-            label.fontSize = 16;
+            label.fontSize = this.fontSize;
             this.addNewsNode(node);
             this.node.active = true;
         });

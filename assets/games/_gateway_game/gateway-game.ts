@@ -1,6 +1,7 @@
 import { Socket } from "socket.io-client";
 import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
+import MusicPlayer from "../../common/audio/MusicPlayer";
 import * as sessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import CategoryController from "../../common/category/category-controller";
@@ -74,6 +75,11 @@ export default class GatewayGame extends BaseComponent {
         appManager.currentScene = this;
 
         uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
+        this.ensureEnableMusicPlayer();
+    }
+
+    private ensureEnableMusicPlayer() {
+        MusicPlayer.getInstance().init();
     }
 
     loadUserData() {

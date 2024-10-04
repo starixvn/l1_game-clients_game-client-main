@@ -6,6 +6,7 @@ import * as sessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { uiManager } from "../../managers/GameUIManager";
+import configs = require("../../configs/Configs");
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
@@ -62,7 +63,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
 
     async checkTournamentPromotionsBeforeSignIn() {
         try {
-            if (sessionManager.getCheckedTournamentPromotionFirstSso()) {
+            if (configs.systemType.toUpperCase() == "SC1" && sessionManager.getCheckedTournamentPromotionFirstSso()) {
                 return this.emitSignInEvent();
             }
 

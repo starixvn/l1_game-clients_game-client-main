@@ -9,19 +9,19 @@ import BannerController from "./BannerController";
 import DynamicAdsBannerController from "./DynamicAdsBannerController";
 import JackpotNavigation from "./JackpotNavigation";
 
-const { ccclass, property } = cc._decorator;
+const { ccclass } = cc._decorator;
 
 @ccclass
 export default class Banner extends cc.Component {
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
-    private adsBannerController: DynamicAdsBannerController = null;
+    protected adsBannerController: DynamicAdsBannerController = null;
 
-    private jackpotBannerContainer: cc.Node = null;
-    private jackpotNavigationContainer: cc.Node = null;
-    private adsToggle: cc.Toggle = null;
-    private jackpotToggle: cc.Toggle = null;
+    protected jackpotBannerContainer: cc.Node = null;
+    protected jackpotNavigationContainer: cc.Node = null;
+    protected adsToggle: cc.Toggle = null;
+    protected jackpotToggle: cc.Toggle = null;
 
     showJackpotBanner = false;
     bannerPrefabNode: cc.Node = null;
@@ -35,9 +35,21 @@ export default class Banner extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    private async init() {
+    protected getPrefabBannerContainer() {
+        return GameUtils.loadResource("lobby/banner/bannerContainer");
+    }
+
+    protected getPathJackpotContainer() {
+        return GameUtils.loadResource("lobby/banner/jackpotController");
+    }
+
+    protected getPathJackpotNavigation() {
+        return GameUtils.loadResource("lobby/banner/jackpotNavigation");
+    }
+
+    protected async init() {
         try {
-            const prefab = await GameUtils.loadResource(`lobby/banner/bannerContainer`);
+            const prefab = await this.getPrefabBannerContainer();
             const bannerPrefabNode = cc.instantiate(prefab);
             this.bannerPrefabNode = bannerPrefabNode;
             this.node?.addChild(bannerPrefabNode);
@@ -95,10 +107,9 @@ export default class Banner extends cc.Component {
         await this.setJackpotNavigation();
     }
 
-    private async setJackpotContainer() {
+    protected async setJackpotContainer() {
         try {
-            const pathPrefab = `lobby/banner/jackpotController`;
-            const prefab = await GameUtils.loadResource(pathPrefab);
+            const prefab = await this.getPathJackpotContainer();
             const jackpotBannerNode = cc.instantiate(prefab);
             this.jackpotContainer?.addChild(jackpotBannerNode);
             const jackpotNode = this.jackpotContainer?.children[0];
@@ -116,10 +127,9 @@ export default class Banner extends cc.Component {
         }
     }
 
-    private async setJackpotNavigation() {
+    protected async setJackpotNavigation() {
         try {
-            const pathPrefab = `lobby/banner/jackpotNavigation`;
-            const prefab = await GameUtils.loadResource(pathPrefab);
+            const prefab = await this.getPathJackpotNavigation();
             const gameNode = cc.instantiate(prefab);
             this.jackpotNavigationContainer?.addChild(gameNode);
 

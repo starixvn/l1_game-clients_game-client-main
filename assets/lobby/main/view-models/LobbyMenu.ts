@@ -156,7 +156,7 @@ export default class LobbyMenu extends GameIconMenu {
         if (LobbyResourceManager.isUseTheme()) {
             skeletonIconPath = isBigSize ? `skeleton-icon/icon-big` : `skeleton-icon/icon-small`;
 
-            return LobbyResourceManager.loadResource(skeletonIconPath);
+            return LobbyResourceManager.loadPrefabResource(skeletonIconPath);
         }
 
         skeletonIconPath = isBigSize ? `lobby/games/skeleton-icon/icon-big` : `lobby/games/skeleton-icon/icon-small`;

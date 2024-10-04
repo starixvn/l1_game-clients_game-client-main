@@ -50,7 +50,7 @@ export default class DynamicAdsBannerController extends BannerController {
         }
     }
 
-    private async createAdsItem(id: number) {
+    protected async createAdsItem(id: number) {
         try {
             const bannerType = GameUtils.getBannerTypeByGameId(id);
             if (bannerType === BannerType.Prefab) {
@@ -76,7 +76,7 @@ export default class DynamicAdsBannerController extends BannerController {
         }
     }
 
-    private setupButtonAndHandleShowBanner(item: cc.Node, id: number) {
+    protected setupButtonAndHandleShowBanner(item: cc.Node, id: number) {
         const button = item.getComponent(cc.Button);
         const event = new cc.Component.EventHandler();
         event.target = this.node;
@@ -107,7 +107,7 @@ export default class DynamicAdsBannerController extends BannerController {
         }
     }
 
-    private async createBannerWithAnimation(id: number, item: cc.Node) {
+    protected async createBannerWithAnimation(id: number, item: cc.Node) {
         this.node?.addChild(item);
 
         const bannerItem = item.getComponent(BannerItem);

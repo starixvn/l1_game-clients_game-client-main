@@ -10,7 +10,7 @@ const { ccclass } = cc._decorator;
 
 @ccclass
 export default class CircleMenuTheme extends CircleMenu {
-    async loadGameIcon(gameId: number, node: cc.Node) {
+    override async loadGameIcon(gameId: number, node: cc.Node) {
         if (gameId === 0) {
             return;
         }
@@ -24,7 +24,7 @@ export default class CircleMenuTheme extends CircleMenu {
                 skeletonMiniIcon.hideSkeleton();
                 const prefabCounter = await GameUtils.asyncExecute<cc.Prefab>(
                     this?.node,
-                    LobbyResourceManager.loadResource(`mini-game/counters/${gameId}`)
+                    LobbyResourceManager.loadPrefabResource(`mini-game/counters/${gameId}`)
                 );
                 prefabCounter && skeletonMiniIcon.containerCounter.addChild(cc.instantiate(prefabCounter));
             }
@@ -33,7 +33,7 @@ export default class CircleMenuTheme extends CircleMenu {
         }
     }
 
-    addItem(id: number, prefab: cc.Prefab): cc.Node {
+    override addItem(id: number, prefab: cc.Prefab): cc.Node {
         if (!prefab || (id === 0 && appManager.isDirectMode && !appManager.urlInfo[UrlInfo.ReturnUrl])) {
             return null;
         }
@@ -51,7 +51,7 @@ export default class CircleMenuTheme extends CircleMenu {
         return node;
     }
 
-    onInitialized() {
+    override onInitialized() {
         const count = this.content.childrenCount;
         const radius = this.content.width * 0.3;
         const degree = 360 / count;

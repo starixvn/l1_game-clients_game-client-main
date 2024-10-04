@@ -128,7 +128,7 @@ export default class Lobby extends cc.Component {
     async loadBackgroundUI() {
         try {
             if (!this.backgroundUIPrefab) {
-                this.backgroundUIPrefab = await LobbyResourceManager.loadResource("background-ui");
+                this.backgroundUIPrefab = await LobbyResourceManager.loadPrefabResource("background-ui");
             }
 
             if (this.backgroundUIPrefab) {
@@ -141,7 +141,7 @@ export default class Lobby extends cc.Component {
     async loadHeader() {
         try {
             if (!this.headerPrefab) {
-                this.headerPrefab = await LobbyResourceManager.loadResource("header");
+                this.headerPrefab = await LobbyResourceManager.loadPrefabResource("header");
             }
 
             if (this.headerPrefab) {
@@ -157,7 +157,7 @@ export default class Lobby extends cc.Component {
     async loadMarquee() {
         try {
             if (!this.marqueePrefab) {
-                this.marqueePrefab = await LobbyResourceManager.loadResource("marquee");
+                this.marqueePrefab = await LobbyResourceManager.loadPrefabResource("marquee");
             }
 
             if (this.marqueePrefab) {
@@ -173,7 +173,7 @@ export default class Lobby extends cc.Component {
     async loadLobbyCenterContainer() {
         try {
             if (!this.lobbyCenterPrefab) {
-                this.lobbyCenterPrefab = await LobbyResourceManager.loadResource("lobby-center");
+                this.lobbyCenterPrefab = await LobbyResourceManager.loadPrefabResource("lobby-center");
             }
 
             if (this.lobbyCenterPrefab) {
@@ -190,7 +190,7 @@ export default class Lobby extends cc.Component {
     async loadButtonArrow() {
         try {
             if (!this.buttonArrowPrefab) {
-                this.buttonArrowPrefab = await LobbyResourceManager.loadResource("button-arrow");
+                this.buttonArrowPrefab = await LobbyResourceManager.loadPrefabResource("button-arrow");
             }
 
             if (this.buttonArrowPrefab) {
@@ -210,7 +210,7 @@ export default class Lobby extends cc.Component {
     async loadButtons() {
         try {
             if (!this.containerButtonsPrefabs) {
-                this.containerButtonsPrefabs = await LobbyResourceManager.loadResource("buttons");
+                this.containerButtonsPrefabs = await LobbyResourceManager.loadPrefabResource("buttons");
             }
 
             if (this.containerButtonsPrefabs) {
@@ -228,7 +228,7 @@ export default class Lobby extends cc.Component {
     async loadPrefabCategoryContainer() {
         try {
             if (!this.categoryContainerPrefab) {
-                this.categoryContainerPrefab = await LobbyResourceManager.loadResource("category-container");
+                this.categoryContainerPrefab = await LobbyResourceManager.loadPrefabResource("category-container");
             }
 
             if (this.categoryContainerPrefab) {

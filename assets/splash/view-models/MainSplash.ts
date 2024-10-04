@@ -257,8 +257,6 @@ export default class MainSplash extends cc.Component {
     private async preLoadGameIcons() {
         try {
             const offerGames = userManager.offerGames ?? [];
-            console.log("offerGames: ", offerGames);
-            console.log("lobbyMenuConfig: ", this.lobbyMenuConfig);
             let firstCategoryGames = this.lobbyMenuConfig.firstCategoryList;
             let preLoadGameIds = [];
 

@@ -32,7 +32,7 @@ export default class SkeletonBanner extends cc.Component {
     @lazyInject(SplashConfig)
     protected readonly splashConfig: SplashConfig;
 
-    private readonly cache: SkeletonCache = uiManager.remoteBannerCache;
+    protected readonly cache: SkeletonCache = uiManager.remoteBannerCache;
 
     @property
     public spineName = "banner-game";
@@ -42,7 +42,7 @@ export default class SkeletonBanner extends cc.Component {
 
     readonly resourceExts = ["atlas", "json", "png"];
 
-    private async createRemoteIconNode(id: number) {
+    protected async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
             const configFile = this.cache[id]
@@ -108,7 +108,7 @@ export default class SkeletonBanner extends cc.Component {
         }
     }
 
-    private hideSkeleton() {
+    protected hideSkeleton() {
         this.lightTop && (this.lightTop.active = false);
         this.skeletonLoading && (this.skeletonLoading.active = false);
         this.border && (this.border.active = false);

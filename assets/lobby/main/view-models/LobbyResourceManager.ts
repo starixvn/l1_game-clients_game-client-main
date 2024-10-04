@@ -22,7 +22,7 @@ export default class LobbyResourceManager {
         miniGameIcons: 1
     };
 
-    private static defaultPath = "lobby/themes";
+    private static readonly defaultPath = "lobby/themes";
     private static currentCurrency = "";
 
     public static getInstance(): LobbyResourceManager {
@@ -44,10 +44,10 @@ export default class LobbyResourceManager {
 
     public static remoteShareLobbyResourceUrl(pathResource: string) {
         const url = buildShareResourceGameUrl();
-        return `${url}/lobbies/${pathResource}`;
+        return `${url}/lobbies/${this.getTheme()}/${pathResource}`;
     }
 
-    public static loadResource(path: string): Promise<cc.Prefab> {
+    public static loadPrefabResource(path: string): Promise<cc.Prefab> {
         return new Promise((resolve) => {
             cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
                 resolve(prefab);
@@ -69,7 +69,7 @@ export default class LobbyResourceManager {
 
     protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
         const version = this.versionsCache[type === "game" ? "gameIcons" : "miniGameIcons"];
-        const resourcePath = `${this.getTheme()}/${type}-icons/${gameId}/en.png?v=${version}`;
+        const resourcePath = `${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
 
@@ -93,12 +93,16 @@ export default class LobbyResourceManager {
     }
 
     public static async getRemoteVersion() {
-        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`${this.getTheme()}/versions.json?v=${Date.now()}`);
+        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`versions.json?v=${Date.now()}`);
 
         versions && (this.versionsCache = versions.json);
     }
 
     private static getTheme() {
         return this.themes[this.currentCurrency];
+    }
+
+    public static loadRemoteInfoBanner(gameId: number) {
+        return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`);
     }
 }

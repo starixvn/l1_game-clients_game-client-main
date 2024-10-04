@@ -14,7 +14,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     @property(JackpotPoolInfo)
     jackpotPoolInfo: JackpotPoolInfo = null;
 
-    setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
+    override setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         if (!!uiManager.spriteFrameCache.lobbyIcons[id]) {
             this.loadAnimation(id, categoryIndex);
         } else {
@@ -22,7 +22,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         }
     }
 
-    public async loadAnimation(id: number, categoryIndex = 0) {
+    public override async loadAnimation(id: number, categoryIndex = 0) {
         const cachedSprite = uiManager.spriteFrameCache.lobbyIcons[id]?.spriteFrame;
         const spriteFrame = cachedSprite || (await LobbyResourceManager.loadGameIcon(id));
 

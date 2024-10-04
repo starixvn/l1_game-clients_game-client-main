@@ -174,7 +174,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         }
 
         const loadPromise = LobbyResourceManager.isUseTheme()
-            ? LobbyResourceManager.loadResource("mini-game/popup-mini-game")
+            ? LobbyResourceManager.loadPrefabResource("mini-game/popup-mini-game")
             : GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`);
 
         loadPromise

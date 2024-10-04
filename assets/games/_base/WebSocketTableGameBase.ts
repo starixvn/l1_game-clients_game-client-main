@@ -3,7 +3,6 @@ import _ = require("lodash");
 import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
 import MusicPlayer from "../../common/audio/MusicPlayer";
-import * as sessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UmWarning from "../../common/um-warning/UmWarning";
@@ -142,7 +141,6 @@ export default class WebSocketTableGameBase extends GameBase {
             MusicPlayer.getInstance().handleIncreaseVolume();
         }
         this.closeGame();
-        sessionManager.removeInRoomGameId();
     }
 
     async initBackgroundMusic() {

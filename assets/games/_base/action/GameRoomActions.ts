@@ -129,5 +129,4 @@ export const closeGame = (game: any) => () => {
 
 export const leaveGameRoom = (game: any) => () => {
     game.closeGame();
-    sessionManager.removeInRoomGameId();
 };

@@ -10,7 +10,6 @@ import NoticeUtil from "../../common/utils/NoticeUtil";
 import { appManager } from "../../managers/AppManager";
 import * as authManager from "./../../common/auth/AuthManager";
 import { showMessageForExpiredToken } from "./../../common/auth/AuthManager";
-import { removeInRoomGameId } from "./../../common/auth/SessionManager";
 import MiniPanel from "./MiniPanel";
 
 declare global {
@@ -59,7 +58,6 @@ export default class MiniPanelDataHandlers {
 
         if (data.notPermittedToPlay) {
             this.main.setLoadingVisibility(false);
-            removeInRoomGameId();
 
             const gameId = data.gameId;
             const gameName = GameUtils.getGameNameString(gameId);

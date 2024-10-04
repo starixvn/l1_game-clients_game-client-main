@@ -87,6 +87,7 @@ function getInRoomGameIdStorage() {
 }
 
 export function storeInRoomGameId(gameId) {
+    cc.log("--------------------- storeInRoomGameId", gameId);
     const session = getSession();
     const ss = session.ss;
     if (ss) {
@@ -105,6 +106,7 @@ export function getInRoomGameId() {
 }
 
 export function removeInRoomGameId() {
+    cc.log("--------------------- removeInRoomGameId");
     StorageManager.remove(getInRoomGameIdKey());
 }
 

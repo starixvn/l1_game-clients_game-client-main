@@ -8,6 +8,7 @@ import GameUtils from "../../common/GameUtils";
 import LoadWebView from "../../common/LoadWebView";
 import AudioManager from "../../common/audio/AudioManager";
 import NotificationService from "../../common/auth/NotificationService";
+import { removeInRoomGameId } from "../../common/auth/SessionManager";
 import UserService from "../../common/auth/UserService";
 import { isSessionTimeoutError } from "../../common/helpers/ErrorCodeHelper";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
@@ -316,6 +317,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
             };
         }
 
+        removeInRoomGameId();
         if (showNotice) {
             const noticeData = {
                 text: message,

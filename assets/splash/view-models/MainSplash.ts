@@ -194,7 +194,7 @@ export default class MainSplash extends cc.Component {
             this.updateProgress(0);
             if (!appManager.authorized) {
                 await appManager.ssoAndAuthorize();
-                LobbyResourceManager.setCurrentTheme(UserManager.getInstance()?.currencyGroup);
+                LobbyResourceManager.initLobbyResource(UserManager.getInstance()?.currency);
             }
 
             if (appManager.isDirectMode) {

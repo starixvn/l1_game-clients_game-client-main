@@ -10,7 +10,11 @@ interface IVersionsCache {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    public static readonly supportThemes: string[] = ["Credit_PHP", "Cash_PHP"];
+    public static readonly supportCurrencies: string[] = ["PC", "PE"];
+    public static readonly themes = {
+        PC: "credit_php",
+        PE: "credit_php"
+    };
 
     public static versionsCache: IVersionsCache = {
         banners: 1,
@@ -19,7 +23,7 @@ export default class LobbyResourceManager {
     };
 
     private static defaultPath = "lobby/themes";
-    private static currentTheme = "";
+    private static currentCurrency = "";
 
     public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
@@ -29,8 +33,8 @@ export default class LobbyResourceManager {
         return this.instance;
     }
 
-    public static setCurrentTheme(theme: string) {
-        this.currentTheme = theme;
+    public static initLobbyResource(currency: string) {
+        this.currentCurrency = currency;
         this.getRemoteVersion();
     }
 
@@ -52,20 +56,20 @@ export default class LobbyResourceManager {
     }
 
     protected static getThemePath() {
-        if (this.supportThemes.includes(this.currentTheme)) {
-            return `${this.defaultPath}/${this.currentTheme.toLocaleLowerCase()}`;
+        if (this.supportCurrencies.includes(this.currentCurrency)) {
+            return `${this.defaultPath}/${this.getTheme()}`;
         }
 
         return `${this.defaultPath}/default`;
     }
 
     public static isUseTheme() {
-        return this.supportThemes.includes(this.currentTheme);
+        return this.supportCurrencies.includes(this.currentCurrency);
     }
 
     protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
         const version = this.versionsCache[type === "game" ? "gameIcons" : "miniGameIcons"];
-        const resourcePath = `${this.currentTheme.toLowerCase()}/${type}-icons/${gameId}/en.png?v=${version}`;
+        const resourcePath = `${this.getTheme()}/${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
 
@@ -89,12 +93,12 @@ export default class LobbyResourceManager {
     }
 
     public static async getRemoteVersion() {
-        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(
-            `${this.currentTheme.toLowerCase()}/versions.json?v=${Date.now()}`
-        );
-
-        console.log("share resources versions: ", versions, versions?.json);
+        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`${this.getTheme()}/versions.json?v=${Date.now()}`);
 
         versions && (this.versionsCache = versions.json);
+    }
+
+    private static getTheme() {
+        return this.themes[this.currentCurrency];
     }
 }

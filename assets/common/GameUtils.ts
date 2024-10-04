@@ -97,7 +97,6 @@ export default class GameUtils {
         return new Promise((resolve, reject) => {
             cc.assetManager.loadRemote(url, (err, asset: T) => {
                 if (err) {
-                    console.log("err load remote", err);
                     reject(err);
                     return;
                 }

@@ -109,7 +109,6 @@ export default class LobbyManager {
     }
 
     storeLobby(model: LobbyConfigs) {
-        console.log("Get and storeLobby: ", model);
         LobbyManager.lobbyConfigs = model;
         LobbyManager.categoryList = this.createCategoryList(model);
     }

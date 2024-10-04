@@ -94,7 +94,6 @@ export default class UserManager {
     }
 
     public updateUser(userData: any) {
-        console.log("userData: ", userData);
         Object.keys(userData).forEach((name: string) => {
             if (name === "offerGames") {
                 this.parseOfferGames(userData);

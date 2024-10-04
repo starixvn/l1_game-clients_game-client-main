@@ -64,7 +64,9 @@ export default class BaseMicrositeGame extends cc.Component {
     @lazyInject(SocketIOController)
     private readonly socketIOControler: SocketIOController;
 
+    protected gameId = 0;
     protected onLoad(): void {
+        this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();
         window.addEventListener("message", this.handleEvent);
@@ -98,7 +100,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     protected loadMicrositeGame() {
-        this.micrositeUrl = buildMicrositeGameUrl(SessionManager.getMicrositeGameId());
+        this.micrositeUrl = buildMicrositeGameUrl(this.gameId);
         const queryString = this.getMicrositeGameQueryString();
         this.webview && (this.webview.url = `${this.micrositeUrl}/${queryString}`);
     }
@@ -157,7 +159,7 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     protected async handleBackToLobby(data: MicrositeGameParams) {
-        const currentGameId = SessionManager.getMicrositeGameId();
+        const currentGameId = this.gameId;
         SessionManager.removeMicrositeGameId();
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();

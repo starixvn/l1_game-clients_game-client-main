@@ -24,7 +24,7 @@ export default class MicrositeGame extends BaseMicrositeGame {
             uname: auData.username,
             lang: auData.language,
             appType: auData.system,
-            ref: directMode?.ref,
+            ref: this.gameId === directMode?.directGameId ? directMode?.ref : "",
             rurl: appManager.checkDirectModeRefData(directMode?.ref)
                 ? directMode?.returnUrl
                 : EncryptUtils.base64Encode(window.location.href),

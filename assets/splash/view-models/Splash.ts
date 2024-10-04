@@ -119,7 +119,7 @@ export default class Splash extends cc.Component {
             try {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
                 this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
-            } catch (e) { }
+            } catch (e) {}
         });
     }
 }

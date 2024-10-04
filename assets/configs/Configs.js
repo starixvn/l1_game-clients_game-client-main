@@ -1,9 +1,10 @@
 const defaultConfig = {
-    systemType: "SC1",
+    systemType: "SC2",
     ssl: true,
     serverDomainMapper: {
         localhost: "lumigame.com",
-        "10.5.10.31": "lumigame.com"
+        "10.5.10.31": "lumigame.com",
+         "10.5.10.17": "lumigame.com"
     },
     subDomain: "l2-proxy",
     env: "",
@@ -18,7 +19,7 @@ const defaultConfig = {
     subGuideDomain: "l2-guide",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
-    subPromotionDomain: "l2-promotion1"
+     subPromotionDomain: "l2-promotion"
     //clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
 };
 
@@ -29,3 +30,4 @@ const configs =
         : { ...defaultConfig, serverDomainMapper: domainMapper, ...window.envConfig };
 
 module.exports = configs;
+

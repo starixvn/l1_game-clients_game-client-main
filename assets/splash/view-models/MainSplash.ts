@@ -53,9 +53,6 @@ export default class MainSplash extends cc.Component {
     @property(cc.Node)
     noticeContainer: cc.Node = null;
 
-    @property(cc.Node)
-    dialog: cc.Node = null;
-
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
@@ -66,39 +63,12 @@ export default class MainSplash extends cc.Component {
 
     private noticePrefab: cc.Prefab = null;
 
-    private promotionTournamentPrefab: cc.Prefab = null;
-
     protected onLoad(): void {
         this.initUIListeners();
         this.requestSSO();
         this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
-    }
-
-    async showPromotionTournament() {
-        if (!this.promotionTournamentPrefab) {
-            await this.createPromotionTournamentPrefab();
-        }
-        const node = cc.instantiate(this.promotionTournamentPrefab);
-        this.addDialog(node);
-    }
-
-    async createPromotionTournamentPrefab() {
-        const key = "promotionTournament";
-        if (!uiManager.prefabCache.miniPanelIcons[key]) {
-            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
-                this.node,
-                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
-            );
-            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
-        } else {
-            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
-        }
-    }
-
-    addDialog(dialogNode: cc.Node) {
-        this.dialog?.addChild(dialogNode);
     }
 
     private setPositionProgressBarAndMessage() {
@@ -211,7 +181,6 @@ export default class MainSplash extends cc.Component {
             },
             this
         );
-        // uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.showPromotionTournament.bind(this), this);
     }
 
     private clearUIListeners() {
@@ -227,8 +196,6 @@ export default class MainSplash extends cc.Component {
 
             if (appManager.isDirectMode) {
                 await this.loadGameDirectly();
-
-
             } else {
                 this.preloadLobbyScene();
             }

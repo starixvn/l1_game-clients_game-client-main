@@ -1,19 +1,23 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
 import { uiManager } from "../../../managers/GameUIManager";
-import { StorageManager } from "../../../managers/StorageManager";
 
-interface IVersionGroupCurrency {
-    banners: string;
-    "game-icons": string;
-    "mini-game-icons": string;
+interface IVersionsCache {
+    banners: number;
+    gameIcons: number;
+    miniGameIcons: number;
 }
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
     public static readonly supportThemes: string[] = ["Credit_PHP", "Cash_PHP"];
 
-    private versionGroupCurrency: Map<string, IVersionGroupCurrency> = new Map();
+    public static versionsCache: IVersionsCache = {
+        banners: 1,
+        gameIcons: 1,
+        miniGameIcons: 1
+    };
+
     private static defaultPath = "lobby/themes";
     private static currentTheme = "";
 
@@ -27,35 +31,7 @@ export default class LobbyResourceManager {
 
     public static setCurrentTheme(theme: string) {
         this.currentTheme = theme;
-    }
-
-    public getVersionGroupCurrencyFollowKey(currencyGroup: string, key: keyof IVersionGroupCurrency): string | null {
-        const versionObject = this.versionGroupCurrency.get(currencyGroup);
-        if (versionObject) {
-            return versionObject[key];
-        }
-        return null;
-    }
-
-    public updateVersion(currencyGroup: string, version: IVersionGroupCurrency): void {
-        if (LobbyResourceManager.supportThemes.includes(currencyGroup)) {
-            this.versionGroupCurrency.set(currencyGroup, version);
-        } else {
-            console.warn(`Currency group ${currencyGroup} not exist.`);
-        }
-    }
-
-    public saveVersionToStorage(): void {
-        // handle
-    }
-
-    public loadVersionFromStorage(): void {
-        LobbyResourceManager.supportThemes.forEach((currencyGroup) => {
-            const storedVersion = StorageManager.get(`${currencyGroup}_version`);
-            if (storedVersion) {
-                this.updateVersion(currencyGroup, storedVersion);
-            }
-        });
+        this.getRemoteVersion();
     }
 
     public static loadRemoteSharedResource<T>(pathResource: string) {
@@ -88,7 +64,8 @@ export default class LobbyResourceManager {
     }
 
     protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
-        const resourcePath = `${this.currentTheme.toLowerCase()}/${type}-icons/${gameId}/en.png`;
+        const version = this.versionsCache[type === "game" ? "gameIcons" : "miniGameIcons"];
+        const resourcePath = `${this.currentTheme.toLowerCase()}/${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
 
@@ -109,5 +86,15 @@ export default class LobbyResourceManager {
 
     public static async loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame> {
         return this.loadIcon(gameId, "mini-game", uiManager.spriteFrameCache.miniPanelIcons);
+    }
+
+    public static async getRemoteVersion() {
+        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(
+            `${this.currentTheme.toLowerCase()}/versions.json?v=${Date.now()}`
+        );
+
+        console.log("share resources versions: ", versions, versions?.json);
+
+        versions && (this.versionsCache = versions.json);
     }
 }

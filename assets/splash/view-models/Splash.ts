@@ -64,7 +64,7 @@ export default class Splash extends cc.Component {
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
 
         if (ssoToGame) {
-            if (isGatewayGame(gameId) && !appManager.isDirectMode) {
+            if (isGatewayGame(gameId)) {
                 cc.log("Open gateway at Splash");
                 const gameConfiguration = getGameConfiguration(gameId);
                 const mainId = gameConfiguration.gateway?.id;

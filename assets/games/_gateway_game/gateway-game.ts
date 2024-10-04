@@ -182,7 +182,7 @@ export default class GatewayGame extends BaseComponent {
 
     private goToLobbyScene() {
         this.closeGame();
-        cc.director.loadScene("Lobby");
+        appManager.redirectToLobby();
     }
 
     initEventForInGameMenu() {

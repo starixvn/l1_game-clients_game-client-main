@@ -115,6 +115,17 @@ class AppManager {
         }
     }
 
+    redirectToLobby() {
+        const currentSceneName = cc.director.getScene().name;
+        if (currentSceneName !== "Lobby") {
+            if (appManager.isDirectMode) {
+                appManager.backToOperatorLobby();
+            } else {
+                cc.director.loadScene("Lobby");
+            }
+        }
+    }
+
     checkDirectModeRefData(refData: string) {
         const directRef = ["d_direct", "m_direct"];
         return directRef.some((data) => data === refData);

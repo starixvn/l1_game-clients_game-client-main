@@ -595,14 +595,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     }
 
     redirectToLobby() {
-        const currentSceneName = cc.director.getScene().name;
-        if (currentSceneName !== "Lobby") {
-            if (appManager.isDirectMode) {
-                appManager.backToOperatorLobby();
-            } else {
-                cc.director.loadScene("Lobby");
-            }
-        }
+        appManager.redirectToLobby();
     }
 
     addDialog(dialogNode: cc.Node) {

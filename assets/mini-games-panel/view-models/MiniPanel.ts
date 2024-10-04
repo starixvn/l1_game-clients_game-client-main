@@ -310,7 +310,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         let forceReload = () => {
             location.reload();
         };
-        if (appManager.isDirectMode && appManager.urlInfo[UrlInfo.ReturnUrl]) {
+        if (appManager.isDirectModeInRoomGame && appManager.urlInfo[UrlInfo.ReturnUrl]) {
             forceReload = () => {
                 appManager.backToOperatorLobby();
             };

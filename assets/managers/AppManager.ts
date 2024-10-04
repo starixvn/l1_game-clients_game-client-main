@@ -97,6 +97,11 @@ class AppManager {
         return this._directMode;
     }
 
+    get isDirectModeInRoomGame() {
+        const roomGameId = sessionManager.getInRoomGameId();
+        return this.isDirectMode && +roomGameId === appManager.directGameId;
+    }
+
     get isAppMode() {
         return this._appMode;
     }

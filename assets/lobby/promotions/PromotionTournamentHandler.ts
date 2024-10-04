@@ -63,7 +63,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
 
     async checkTournamentPromotionsBeforeSignIn() {
         try {
-            if (configs.systemType.toUpperCase() == "SC1" && sessionManager.getCheckedTournamentPromotionFirstSso()) {
+            if (configs.systemType.toUpperCase() == "SC1" || sessionManager.getCheckedTournamentPromotionFirstSso()) {
                 return this.emitSignInEvent();
             }
 

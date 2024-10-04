@@ -29,7 +29,6 @@ export function buildGameGuideUrl() {
 }
 
 export function buildPromotionSiteUrl() {
-    return "http://10.5.10.17:5000";
     if (configs.subPromotionDomain) {
         const ssl = configs.ssl;
         const rootDomain = getRootDomain();

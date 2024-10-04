@@ -105,7 +105,7 @@ class AppManager {
     }
 
     get directGameId() {
-        return this.urlInfo[UrlInfo.DirectGameId] || 0;
+        return +this.urlInfo[UrlInfo.DirectGameId] || 0;
     }
 
     backToOperatorLobby() {

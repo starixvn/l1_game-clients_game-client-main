@@ -96,13 +96,17 @@ export function storeInRoomGameId(gameId) {
     }
 }
 
-export function getInRoomGameId() {
+export function getInRoomGameId(checkValid = true) {
     const data = getInRoomGameIdStorage();
-    const session = getSession();
-    if (data.ss && session.ss && data.ss === session.ss) {
-        return data.gameId;
+    if (checkValid) {
+        const session = getSession();
+        if (data.ss && session.ss && data.ss === session.ss) {
+            return data.gameId;
+        }
+        return 0;
+    } else {
+        return data?.gameId || 0;
     }
-    return 0;
 }
 
 export function removeInRoomGameId() {

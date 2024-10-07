@@ -12,6 +12,7 @@ window.envConfig = {
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
     subGuideDomain: "l1guidesuat",
+    gatewaySubDomain: "l1gwuat",
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "l1uatconnectsite",

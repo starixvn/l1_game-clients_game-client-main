@@ -12,6 +12,7 @@ window.envConfig = {
         env: "SIT"
     },
     subGuideDomain: "l2guidessit",
+    gatewaySubDomain: "l2gwsit",
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "l2-connect-sit",

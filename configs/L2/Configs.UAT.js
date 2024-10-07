@@ -9,6 +9,7 @@ window.envConfig = {
         env: "UAT"
     },
     subGuideDomain: "l2guidesuat",
+    gatewaySubDomain: "l2gwuat",
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "l2-connect-uat",

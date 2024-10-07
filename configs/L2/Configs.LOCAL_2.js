@@ -8,6 +8,7 @@ window.envConfig = {
         env: "LOCAL_2"
     },
     subGuideDomain: "l2-guide-2",
+    gatewaySubDomain: "l2-gw2",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     SGConnectSubDomain: "l2-connect-2",

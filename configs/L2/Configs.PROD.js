@@ -9,6 +9,7 @@ window.envConfig = {
         env: "PRO"
     },
     subGuideDomain: "guides",
+    gatewaySubDomain: "gw",
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "connect",

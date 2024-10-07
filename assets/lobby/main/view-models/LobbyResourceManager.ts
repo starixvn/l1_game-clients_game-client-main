@@ -10,10 +10,10 @@ interface IVersionsCache {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    public static readonly supportCurrencies: string[] = ["PC", "PE"];
+    public static readonly supportGroupCurrencies: string[] = ["Credit_PHP", "Cash_PHP"];
     public static readonly themes = {
-        PC: "credit_php",
-        PE: "credit_php"
+        Credit_PHP: "credit_php",
+        Cash_PHP: "credit_php"
     };
 
     public static versionsCache: IVersionsCache = {
@@ -23,7 +23,7 @@ export default class LobbyResourceManager {
     };
 
     private static readonly defaultPath = "lobby/themes";
-    private static currentCurrency = "";
+    private static currentGroupCurrency = "";
 
     public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
@@ -33,8 +33,8 @@ export default class LobbyResourceManager {
         return this.instance;
     }
 
-    public static initLobbyResource(currency: string) {
-        this.currentCurrency = currency;
+    public static initLobbyResource(groupCurrency: string) {
+        this.currentGroupCurrency = groupCurrency;
         this.getRemoteVersion();
     }
 
@@ -56,7 +56,7 @@ export default class LobbyResourceManager {
     }
 
     protected static getThemePath() {
-        if (this.supportCurrencies.includes(this.currentCurrency)) {
+        if (this.supportGroupCurrencies.includes(this.currentGroupCurrency)) {
             return `${this.defaultPath}/${this.getTheme()}`;
         }
 
@@ -64,7 +64,7 @@ export default class LobbyResourceManager {
     }
 
     public static isUseTheme() {
-        return this.supportCurrencies.includes(this.currentCurrency);
+        return this.supportGroupCurrencies.includes(this.currentGroupCurrency);
     }
 
     protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
@@ -99,7 +99,7 @@ export default class LobbyResourceManager {
     }
 
     private static getTheme() {
-        return this.themes[this.currentCurrency];
+        return this.themes[this.currentGroupCurrency];
     }
 
     public static loadRemoteInfoBanner(gameId: number) {

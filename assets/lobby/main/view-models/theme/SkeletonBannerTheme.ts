@@ -16,6 +16,7 @@ interface LanguagesConfig {
 export interface RemoteSharedResourceConfig {
     premultipliedAlpha: boolean;
     languages: LanguagesConfig;
+    version?: number;
 }
 
 @ccclass

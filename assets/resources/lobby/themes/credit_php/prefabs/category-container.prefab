@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "category",
+    "_name": "category-container",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -55,7 +55,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 810,
+      "width": 1000,
       "height": 48
     },
     "_anchorPoint": {
@@ -68,7 +68,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        283.975,
+        247,
         0,
         0,
         0,
@@ -277,7 +277,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 390,
+      "width": 0,
       "height": 8
     },
     "_anchorPoint": {
@@ -336,7 +336,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 390,
+      "width": 0,
       "height": 8
     },
     "_resize": 1,
@@ -347,11 +347,11 @@
       "height": 40
     },
     "_N$startAxis": 0,
-    "_N$paddingLeft": 200,
-    "_N$paddingRight": 200,
+    "_N$paddingLeft": 0,
+    "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,
-    "_N$spacingX": 10,
+    "_N$spacingX": 20,
     "_N$spacingY": 0,
     "_N$verticalDirection": 1,
     "_N$horizontalDirection": 0,
@@ -802,7 +802,7 @@
     "syncPosition": false,
     "ratioWidth": 1,
     "ratioHeight": 1,
-    "widthPadding": 0,
+    "widthPadding": 20,
     "heightPadding": 0,
     "_id": ""
   },

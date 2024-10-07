@@ -85,7 +85,7 @@ export default class RemoteSpine extends cc.Component {
             this.spine.skeletonData = this.cache[this.id].skeletonData;
         } else {
             const spineRes = [];
-            const version = LobbyResourceManager.versionsCache.banners;
+            const version = config?.version || LobbyResourceManager.versionsCache.banners;
 
             for (const ext of this.resourceExts) {
                 try {

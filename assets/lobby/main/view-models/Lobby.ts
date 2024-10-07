@@ -105,10 +105,8 @@ export default class Lobby extends cc.Component {
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
         await this.initUIs();
-        this.initMiniPanel();
         this.initGameUIEvents();
         this.checkToShowSignName();
-
         this.loadCategory();
         this.onLoadLobby();
         MusicPlayer.getInstance().init();
@@ -119,6 +117,7 @@ export default class Lobby extends cc.Component {
     }
 
     async initUIs() {
+        this.initMiniPanel();
         await this.loadBackgroundUI();
         await this.loadHeader();
         await this.loadMarquee();

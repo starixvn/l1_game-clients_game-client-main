@@ -20,6 +20,7 @@ import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import CategoryList from "../../category/view-models/CategoryList";
 import NewsContent from "../../news/NewsContent";
 import PromotionNotificationsHandler from "../../promotions/PromotionNotificationsHandler";
+import PromotionTournamentHandler from "../../promotions/PromotionTournamentHandler";
 import CommonDialog from "./../../../common/_base/view-models/CommonDialog";
 import * as authManager from "./../../../common/auth/AuthManager";
 import * as sessionManager from "./../../../common/auth/SessionManager";
@@ -103,15 +104,17 @@ export default class Lobby extends cc.Component {
         document.cookie = "redT=1702;path=/";
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
-        this.initMiniPanel();
-        this.checkToShowSignName();
         await this.initUIs();
+        this.initMiniPanel();
+        this.initGameUIEvents();
+        this.checkToShowSignName();
+
         this.loadCategory();
         this.onLoadLobby();
         MusicPlayer.getInstance().init();
 
         this.initScrollListener();
-        this.initGameUIEvents();
+
         this.trackOnLoadEvents();
     }
 
@@ -307,6 +310,7 @@ export default class Lobby extends cc.Component {
 
     initGameUIEvents() {
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
+        uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
     }
 
     removeGameUIEvent() {
@@ -331,12 +335,13 @@ export default class Lobby extends cc.Component {
     checkToShowSignName() {
         if (!appManager.authorized) {
             this.showSignName();
+        } else {
+            PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
         }
     }
 
     onLoadLobby() {
         if (appManager.authorized) {
-            this.onSignIn();
             this.headerComp.setUserName(userManager.userName);
             this.headerComp.setBalance(this.formatUserCurrency(userManager.balance));
             this.headerComp.setAvatar(userManager.avatarId);
@@ -484,7 +489,6 @@ export default class Lobby extends cc.Component {
         }
 
         this.miniPanel && this.miniPanel.onSignIn();
-        this.onSignIn();
     }
 
     openGameSSO(onComplete: () => void) {
@@ -577,6 +581,7 @@ export default class Lobby extends cc.Component {
             appManager.authorized = true;
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
+            PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

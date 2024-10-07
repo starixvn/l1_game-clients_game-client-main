@@ -3,6 +3,7 @@
     "games": {
         "10": ["classic"],
         "27": ["classic"],
+        "48": ["classic"],
         "81": ["lucky"],
         "82": ["lucky"],
         "83": ["lucky"],
@@ -43,11 +44,32 @@
                 "showingResult": 5,
                 "startRound": 3
             }
+        },
+        "blockchain": {
+            "ids": [48],
+            "value": {
+                "wholeRound": 58,
+                "wholeShoe": 48,
+                "lockingBet": 5,
+                "placingBet": 30,
+                "generatingResult": 4,
+                "showingResult": 5,
+                "startRound": 3
+            }
         }
     },
     "serviceName": {
-        "value": "baccaratx",
-        "excludes": [10, 27]
+        "default": {
+            "value": "baccaratx"
+        },
+        "old": {
+            "value": "",
+            "ids": [10, 27]
+        },
+        "blockchain": {
+            "value": "blockchain-baccarat",
+            "ids": [48]
+        }
     },
     "receivedEvents": [
         "roundHistory",
@@ -62,6 +84,7 @@
         "newShoeHash",
         "um",
         "um_message",
-        "errorCode"
+        "errorCode",
+        "newBlockchain"
     ]
 }

@@ -23,7 +23,7 @@ const { ccclass, property } = cc._decorator;
 
 type CategoryJson = { [key: string]: string[] };
 type DurationsJson = { [key: string]: { ids?: number[]; value: Durations } };
-type ServiceNameJson = { value: string; excludes: number[] };
+type ServiceNameJson = { [key: string]: { ids?: number[]; value: string } };
 interface GameConfigJson {
     gameId: number;
     games: CategoryJson;
@@ -111,10 +111,8 @@ export default class GatewayGame extends BaseComponent {
     }
 
     getServiceName(gameId: number) {
-        if (this.serviceNameJson.excludes.includes(gameId)) {
-            return "";
-        }
-        return this.serviceNameJson.value;
+        const type = Object.keys(this.serviceNameJson).find((key) => this.serviceNameJson[key].ids?.includes(gameId)) ?? "default";
+        return this.serviceNameJson[type].value;
     }
 
     getDurations(gameId: number) {

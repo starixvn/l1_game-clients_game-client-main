@@ -11,6 +11,7 @@ interface GameInfoType {
 
     newShoePhase?: boolean;
     newShoeHash?: string;
+    newBlockchain?: any;
 }
 export class GameInfoHandler extends BaseEventHandler<any> {
     protected verifyEvent(event: GameInfoType): boolean {
@@ -38,7 +39,7 @@ export class GameInfoHandler extends BaseEventHandler<any> {
         if (data.outgame !== undefined) {
             store.decreaseOnlineUser();
         }
-        if (data.newShoePhase || data.newShoeHash) {
+        if (data.newShoePhase || data.newShoeHash || data.newBlockchain) {
             store.setNewShoe(true);
         }
     }

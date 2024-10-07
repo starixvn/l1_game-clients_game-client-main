@@ -5,7 +5,7 @@ const defaultConfig = {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l2-proxy",
+    subDomain: "l1-proxy",
     env: "",
     sentry: {
         url: "",
@@ -15,6 +15,7 @@ const defaultConfig = {
         clientId: "093146669bf12df12eeedd2d57ddb469",
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
+    gatewaySubDomain: "l1-gw",
     subGuideDomain: "l2-guide",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,

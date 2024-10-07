@@ -12,3 +12,4 @@ export const SGConnectSubDomain: string;
 export const AppDownloadSubDomain: string;
 export const clientSubDomain: string;
 export const subPromotionDomain: string;
+export const gatewaySubDomain: string;

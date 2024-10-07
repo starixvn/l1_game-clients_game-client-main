@@ -38,6 +38,10 @@ export function buildPromotionSiteUrl() {
     return buildProxyUrl(`/promotion`);
 }
 
+export function buildGatewayUrl() {
+    return buildUrlFromSubDomain(configs.gatewaySubDomain);
+}
+
 export function buildUrlFromSubDomain(subDomain) {
     return `${"http"}${configs.ssl ? "s" : ""}://${subDomain}.${getRootDomain()}`;
 }

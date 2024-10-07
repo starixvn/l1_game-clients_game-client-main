@@ -6,7 +6,7 @@ import * as MsgpackParser from "socket.io-msgpack-parser";
 import { i18n } from "./ClientModules";
 import { getSession } from "./common/auth/SessionManager";
 import GameUtils from "./common/GameUtils";
-import { buildServerUrl, getProxyRoute } from "./common/helpers/UrlHelper";
+import { buildGatewayUrl, buildServerUrl, getProxyRoute } from "./common/helpers/UrlHelper";
 import { sentryLogger } from "./common/logger.js";
 import { userManager } from "./common/user/UserManager";
 import { enableMsgpackParserAllGames } from "./configs/Configs.js";
@@ -239,7 +239,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
     }
 
     createGatewayGameSocket(gameId: number) {
-        const socketUri = "https://l1-gw.lumigame.com/";
+        const socketUri = buildGatewayUrl();
         const socketOptions: Partial<ManagerOptions & SocketOptions> = {
             forceNew: true,
             transports: ["websocket"],

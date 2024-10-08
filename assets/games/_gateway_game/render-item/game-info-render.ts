@@ -35,6 +35,9 @@ export default class GameInfoRender extends RenderItem {
     }
 
     onChangeBetLimit = (data: { minBet: number; maxBet: number }) => {
+        if (!data) {
+            return;
+        }
         if (this.labelMinBet) {
             this.labelMinBet.string = numberWithCommas(data.minBet);
         }

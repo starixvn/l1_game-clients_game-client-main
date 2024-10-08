@@ -23,8 +23,8 @@ export default class NewShoeRender extends RenderItem {
         store?.removeListener(EmitterEvents.ActiveNewShoe, this.onActiveNewShoe);
     }
 
-    onActiveNewShoe = async (data: boolean) => {
-        this.node.active = true;
+    onActiveNewShoe = async (show: boolean) => {
+        this.node.active = show;
         try {
             cc.log("show shoe animation ");
             const spine = this.getComponentInChildren(sp.Skeleton);

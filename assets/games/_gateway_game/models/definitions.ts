@@ -27,4 +27,6 @@ export class StoreBase extends EventEmitterBase {
     wakeUp() {
         this.updateUI();
     }
+
+    reset() {}
 }

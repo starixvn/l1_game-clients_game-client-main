@@ -12,4 +12,9 @@ export class RoundHistoryStore extends StoreBase {
     updateUI() {
         this.emit(EmitterEvents.RoundHistoryChange, this.roundHistory);
     }
+
+    reset() {
+        this.roundHistory = [];
+        this.updateUI();
+    }
 }

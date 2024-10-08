@@ -21,6 +21,16 @@ export class GameInfoStore extends StoreBase {
 
     durations: Durations;
 
+    reset() {
+        this.totalOnlineUsers = 0;
+        this.rtp = 0;
+        this.remainingTime = 0;
+        this.newShoePhase = false;
+        this.betLimit = null;
+        this.clearTimer();
+        this.updateUI();
+    }
+
     changeOnlineUsers(totalOnlineUsers: number) {
         this.totalOnlineUsers = totalOnlineUsers;
         this.emit(EmitterEvents.TotalOnlineChange, this.totalOnlineUsers);

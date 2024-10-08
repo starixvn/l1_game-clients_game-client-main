@@ -138,6 +138,7 @@ export default class GatewayGame extends BaseComponent {
     forceSignIn() {
         this.container.children.forEach((child) => {
             const item = child.getComponent(GatewayGameItem);
+            item.resetGameData();
             item.sendSignIn();
         });
     }

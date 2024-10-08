@@ -98,6 +98,10 @@ export default class GatewayGameItem extends cc.Component {
         this.sendSignIn();
     }
 
+    resetGameData() {
+        this.gameData.reset();
+    }
+
     sendSignIn() {
         const data = {
             gameName: this.gameName,

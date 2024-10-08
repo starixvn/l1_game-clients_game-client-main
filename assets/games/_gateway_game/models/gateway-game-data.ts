@@ -21,4 +21,8 @@ export class GameData extends EventEmitterBase {
     receiveData(data: unknown) {
         this.eventHandlers.forEach((handler) => handler.onReceiveEvent(data));
     }
+
+    reset() {
+        this.stores.forEach((store) => store.reset());
+    }
 }

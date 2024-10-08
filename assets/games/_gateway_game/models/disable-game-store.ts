@@ -13,6 +13,15 @@ export class DisableGameStore extends StoreBase {
     gameDisconnected = false;
     intervalGetLobbyData: NodeJS.Timer;
 
+    reset() {
+        this.disabledGame = false;
+        this.umMessage = "";
+        this.gameDisconnected = false;
+        this.clearIntervalGetLobbyData();
+
+        this.updateUI();
+    }
+
     setDisabledGame(disable: boolean) {
         this.disabledGame = disable;
         this.emit(EmitterEvents.DisabledGame, this.disabledGame);

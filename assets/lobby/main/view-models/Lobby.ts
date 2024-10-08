@@ -120,12 +120,12 @@ export default class Lobby extends cc.Component {
     async initUIs() {
         this.initMiniPanel();
         await this.loadBackgroundUI();
-        await this.loadHeader();
-        await this.loadMarquee();
+        await this.loadPrefabCategoryContainer();
         await this.loadLobbyCenterContainer();
+        await this.loadHeader();
         await this.loadButtonArrow();
         await this.loadButtons();
-        await this.loadPrefabCategoryContainer();
+        await this.loadMarquee();
     }
 
     async loadBackgroundUI() {

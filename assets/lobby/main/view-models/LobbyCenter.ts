@@ -50,7 +50,7 @@ export default class LobbyCenter extends cc.Component {
             return;
         }
         lobbyMenu = this.mainScroll.addComponent(LobbyMenu);
-        lobbyMenu.updateSpacing(this.spacingIcon)
+        lobbyMenu.updateSpacing(this.spacingIcon);
         lobbyMenu.content = this.scrollContent;
         lobbyMenu.miniPanel = this.miniPanel;
         lobbyMenu.formatGameName = this.formatGameName;
@@ -109,8 +109,8 @@ export default class LobbyCenter extends cc.Component {
     }
 
     protected loadOtherIconsAndBanners() {
-        this.lobbyMenu.loadHiddenIcons();
-        this.banner.loadBanner(true);
+        this.lobbyMenu?.loadHiddenIcons();
+        this.banner?.loadBanner(true);
     }
 
     protected updateArrowVisibility() {
@@ -124,7 +124,7 @@ export default class LobbyCenter extends cc.Component {
     }
 
     setMenuCategory(index: number) {
-        this.lobbyMenu.setCategory(index);
+        this.lobbyMenu?.setCategory(index);
     }
 
     initBanners(isLoadAllBanner: boolean) {

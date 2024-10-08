@@ -251,8 +251,6 @@ export default class GatewayGame extends BaseComponent {
     }
 
     handleOpenGame(gameId) {
-        this.loading.active = true;
-        this.closeGame();
         GameUtils.openGame(gameId, null, null, false);
     }
 }

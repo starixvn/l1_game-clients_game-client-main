@@ -21,6 +21,9 @@ export default class GatewayGameItem extends cc.Component {
     @property(cc.Label)
     labelGameName: cc.Label = null;
 
+    @property(cc.Node)
+    loading: cc.Node = null;
+
     renderItems: RenderItem[] = [];
     gameId = 0;
     serviceName = "";
@@ -46,6 +49,17 @@ export default class GatewayGameItem extends cc.Component {
         this.initGameData(durations);
         this.initListener();
         this.loadLazyloadSprites();
+        this.initUIListeners();
+    }
+
+    initUIListeners() {
+        uiManager.emitterListener(
+            InternalEvents.GATEWAY_OPEN_GAME,
+            (gameId) => {
+                this.loading.active = gameId === this.gameId;
+            },
+            this
+        );
     }
 
     loadLazyloadSprites() {
@@ -57,6 +71,7 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     onDestroy() {
+        uiManager.removeListenersWithTarget(this);
         const disableGameStore = this.gameData.getStore(Store.DisableGame) as DisableGameStore;
         disableGameStore.clearIntervalGetLobbyData();
         this.removeSocketListeners();

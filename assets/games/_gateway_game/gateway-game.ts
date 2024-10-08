@@ -190,6 +190,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     private goToLobbyScene() {
+        this.loading.active = true;
         this.closeGame();
         appManager.redirectToLobby();
     }

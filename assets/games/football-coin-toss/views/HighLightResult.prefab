@@ -226,7 +226,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "confetti",
+    "defaultAnimation": "",
     "_preCacheMode": 1,
     "_cacheMode": 1,
     "loop": true,
@@ -243,7 +243,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "8c5ee001-15fa-441d-9788-ea8198acdd07"
+      "__uuid__": "52f56a79-aa13-4bfe-b474-49e55d5490ac"
     },
     "_N$_defaultCacheMode": 1,
     "_N$debugSlots": false,
@@ -291,8 +291,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 224.18,
-      "height": 369.31
+      "width": 812,
+      "height": 497
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -343,7 +343,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "harris",
+    "defaultAnimation": "blue-player",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -354,13 +354,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "harris",
+    "_animationName": "blue-player",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "1990be14-1641-49c0-bbff-1ca8b4e66c52"
+      "__uuid__": "691335c1-81b2-458b-9a55-e502f593162a"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -538,7 +538,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "confetti",
+    "defaultAnimation": "",
     "_preCacheMode": 1,
     "_cacheMode": 1,
     "loop": true,
@@ -555,7 +555,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "8c5ee001-15fa-441d-9788-ea8198acdd07"
+      "__uuid__": "52f56a79-aa13-4bfe-b474-49e55d5490ac"
     },
     "_N$_defaultCacheMode": 1,
     "_N$debugSlots": false,
@@ -603,8 +603,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 398.4,
-      "height": 398.4
+      "width": 812,
+      "height": 497
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -655,7 +655,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "trump",
+    "defaultAnimation": "red-player",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -666,13 +666,13 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "trump",
+    "_animationName": "red-player",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "d3ef1325-7247-4c98-b384-1bb00dd9e0cb"
+      "__uuid__": "691335c1-81b2-458b-9a55-e502f593162a"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -705,17 +705,17 @@
     "sync": false
   },
   {
-    "__type__": "6bce7yQz6BLcYFBYeDi3njI",
+    "__type__": "34829IgEURFt4gZrpACxlXW",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "biden": {
+    "home": {
       "__id__": 2
     },
-    "trump": {
+    "away": {
       "__id__": 10
     },
     "_id": ""

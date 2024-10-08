@@ -5,6 +5,6 @@ export class BlockchainBaccaratConfig implements BlockchainConfig {
     fullTime = 48;
     fullTimeNewShoe = 58;
     betTime = 30;
-    stopBetTime = 5;
+    stopBetTime = 3;
     waitTime = 20;
 }

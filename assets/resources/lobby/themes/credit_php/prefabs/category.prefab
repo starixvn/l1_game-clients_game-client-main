@@ -835,7 +835,7 @@
         "__id__": 26
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 29
@@ -866,7 +866,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100.04,
+      "width": 0,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1027,8 +1027,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "ALL GAME",
-    "_N$string": "ALL GAME",
+    "_string": "",
+    "_N$string": "",
     "_fontSize": 20,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -1279,7 +1279,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": null,
-    "_N$isChecked": false,
+    "_N$isChecked": true,
     "toggleGroup": null,
     "checkMark": null,
     "checkEvents": [

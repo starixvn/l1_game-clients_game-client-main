@@ -215,10 +215,11 @@ export default class GatewayGame extends BaseComponent {
     }
 
     onDestroy() {
+        cc.log("on destroy gateway game ", this.gameId);
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
-        cc.log("on destroy gateway game ", this.gameId);
         appManager.currentScene = null;
+        this.socket.removeAllListeners();
         this.socketIOController.closeSocket(this.gameId);
         uiManager.removeListenersWithTarget(this);
     }
@@ -235,7 +236,9 @@ export default class GatewayGame extends BaseComponent {
         this.closeGame();
     }
 
-    handleOpenGame() {
+    handleOpenGame(gameId) {
         this.loading.active = true;
+        this.closeGame();
+        GameUtils.openGame(gameId, null, null, false);
     }
 }

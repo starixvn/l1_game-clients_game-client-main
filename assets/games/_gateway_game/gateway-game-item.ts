@@ -133,7 +133,6 @@ export default class GatewayGameItem extends cc.Component {
     }
 
     onClickOpenGame() {
-        uiManager.emitter.emit(InternalEvents.GATEWAY_OPEN_GAME);
-        GameUtils.openGame(this.gameId, null, null, false);
+        uiManager.emitter.emit(InternalEvents.GATEWAY_OPEN_GAME, this.gameId);
     }
 }

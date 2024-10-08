@@ -6,6 +6,8 @@ interface RoundHistoryType {
     roundHistory?: any[];
     finish?: any;
     newShoeHash?: string;
+    newShoePhase?: boolean;
+    newBlockchain?: any;
 }
 export class RoundHistoryHandler extends BaseEventHandler<any> {
     protected verifyEvent(event: RoundHistoryType): boolean {
@@ -28,7 +30,7 @@ export class RoundHistoryHandler extends BaseEventHandler<any> {
             store.updateUI();
         }
 
-        if (data.newShoeHash) {
+        if (data.newShoePhase || data.newShoeHash || data.newBlockchain) {
             store.roundHistory = [];
             store.updateUI();
         }

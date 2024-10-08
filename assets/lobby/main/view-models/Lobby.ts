@@ -105,9 +105,10 @@ export default class Lobby extends cc.Component {
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
         await this.initUIs();
+        this.loadCategory();
         this.initGameUIEvents();
         this.checkToShowSignName();
-        this.loadCategory();
+
         this.onLoadLobby();
         MusicPlayer.getInstance().init();
 

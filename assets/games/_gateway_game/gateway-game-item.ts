@@ -113,12 +113,7 @@ export default class GatewayGameItem extends cc.Component {
     };
 
     onReconnectGame() {
-        const store = this.gameData.getStore(Store.DisableGame) as DisableGameStore;
-        if (store.signInSuccess) {
-            this.getLobbyData();
-        } else {
-            this.sendSignIn();
-        }
+        this.sendSignIn();
     }
 
     getLobbyData() {

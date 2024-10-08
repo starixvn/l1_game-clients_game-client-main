@@ -268,12 +268,18 @@ export default class MainSplash extends cc.Component {
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
 
             if (LobbyResourceManager.isUseTheme()) {
-                console.log("Use Theme cache preLoad GameIcons");
                 const preloadGameInMain = preLoadGameIds.filter(
                     (gameId) => getGameConfiguration(gameId) || this.lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );
                 const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager.loadGameIcon(gameId));
                 await Promise.all([preLoadGameAwaiters]);
+
+                console.log(`SplashScreen - Completed load game icons`, [
+                    {
+                        name: "main",
+                        ids: preloadGameInMain.join(",")
+                    }
+                ]);
 
                 return;
             }

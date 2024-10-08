@@ -17,7 +17,7 @@ export default class GameNotification extends cc.Component {
     private isScheduling = false;
 
     onLoad() {
-        this.initReceiveEvents();
+        this.gameId > 0 && this.initReceiveEvents();
     }
 
     initReceiveEvents() {

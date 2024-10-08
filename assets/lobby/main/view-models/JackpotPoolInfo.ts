@@ -12,12 +12,7 @@ export default class JackpotPoolInfo extends JackpotPoolInfoBase {
     gameId = 0;
 
     onLoad() {
-        if (userManager.disableJackpotGames) {
-            this.node.active = false;
-        } else {
-            this.node.active = true;
-            this.initReceiveEvents();
-        }
+        this.gameId > 0 && this.initReceiveEvents();
     }
 
     onDestroy() {
@@ -32,9 +27,14 @@ export default class JackpotPoolInfo extends JackpotPoolInfoBase {
     }
 
     initReceiveEvents() {
-        this.initEvents();
-        this.requestData();
-        this.schedule(this.requestData, 5);
+        if (userManager.disableJackpotGames) {
+            this.node.active = false;
+        } else {
+            this.node.active = true;
+            this.initEvents();
+            this.requestData();
+            this.schedule(this.requestData, 5);
+        }
     }
 
     protected initEvents() {

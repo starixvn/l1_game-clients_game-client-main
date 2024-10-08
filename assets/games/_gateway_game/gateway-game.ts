@@ -64,18 +64,36 @@ export default class GatewayGame extends BaseComponent {
     protected readonly CategoryFilter = "category-filter";
 
     onLoad() {
+        //for room game
+        appManager.currentScene = this;
+
+        this.ensureEnableMusicPlayer();
         this.loadUserData();
         this.loadConfigs();
+
+        if (this.checkReloadOpenedGame()) {
+            return;
+        }
+
+        sessionManager.storeInRoomGameId(this.gameId);
+
         this.initSocket();
         this.initItems();
         this.initEventForInGameMenu();
         cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
-        //for room game
-        appManager.currentScene = this;
 
         uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
-        this.ensureEnableMusicPlayer();
+    }
+
+    checkReloadOpenedGame() {
+        const roomGameId = +sessionManager.getInRoomGameId();
+        cc.log("checkReloadOpenedGame id", roomGameId);
+        if (this.gameIds.includes(roomGameId)) {
+            this.scheduleOnce(() => this.handleOpenGame(roomGameId), 0.1);
+            return true;
+        }
+        return false;
     }
 
     private ensureEnableMusicPlayer() {
@@ -99,8 +117,6 @@ export default class GatewayGame extends BaseComponent {
         this.categoryJson = configs.games;
         this.serviceNameJson = configs.serviceName;
         this.durationsJson = configs.durations;
-
-        sessionManager.storeInRoomGameId(this.gameId);
     }
 
     initSocket() {

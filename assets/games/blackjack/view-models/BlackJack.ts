@@ -209,6 +209,7 @@ export default class BlackJack extends SocketIOTableGameBase {
 
     protected onGameHide() {
         // handle
+        this.isGameHide = true;
     }
 
     checkShowUmMessage(data: any) {

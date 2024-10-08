@@ -209,7 +209,6 @@ export default class GameBase extends GameViewBase implements IGameBase {
 
     public usingNewSettlement = false;
     public inSettlementSequence = false;
-
     // using multiplay game
     public gameData: GameData;
 
@@ -535,6 +534,7 @@ export default class GameBase extends GameViewBase implements IGameBase {
     }
 
     protected onGameHide() {
+        this.isGameHide = true;
         this.stopGame();
         this.stopAllSFX();
     }

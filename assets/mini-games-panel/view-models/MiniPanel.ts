@@ -361,6 +361,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     }
 
     openNewSocketTableGame(event, gameId) {
+        cc.log("openNewSocketTableGame ", gameId);
         this.loadGame(gameId, () => {
             this.socketIOGameInitializers?.openGame(gameId);
         });

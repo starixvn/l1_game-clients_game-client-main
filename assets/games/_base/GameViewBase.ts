@@ -7,6 +7,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GameViewBase extends BaseComponent {
     public currentMiniPanel: MiniPanel;
+    public isGameHide = false;
     protected _gameId: number;
     public set gameId(value: number) {
         this._gameId = value;
@@ -44,6 +45,7 @@ export default class GameViewBase extends BaseComponent {
 
     protected onGameHide() {
         //empty
+        this.isGameHide = true;
     }
 
     protected onGameShow() {

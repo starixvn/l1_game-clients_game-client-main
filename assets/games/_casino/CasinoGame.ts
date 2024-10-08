@@ -3,6 +3,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../analytics/AnalyticsManager";
 import AnimatedTime from "../../common/animated-time/view-models/AnimatedTime";
 import AudioManager from "../../common/audio/AudioManager";
+import BetChipsNew from "../../common/bet-chips/view-models/BetChipsNew";
 import NewButton from "../../common/custom-button/NewButton";
 import GameUtils from "../../common/GameUtils";
 import { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
@@ -13,7 +14,6 @@ import RoomPlayer from "../_base/view-models/RoomPlayer";
 import NewGameRoomBase from "../_new/_base/NewGameRoomBase";
 import { events } from "../_new/connection/SocketIOConnection";
 import CasinoMD5 from "./CasinoMD5";
-import BetChipsNew from "../../common/bet-chips/view-models/BetChipsNew";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -92,6 +92,7 @@ export default class CasinoGame extends NewGameRoomBase {
 
     onGameHide() {
         // onGameHide
+        this.isGameHide = true;
     }
 
     onLoad() {

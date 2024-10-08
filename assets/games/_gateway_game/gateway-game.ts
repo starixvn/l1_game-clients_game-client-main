@@ -120,6 +120,13 @@ export default class GatewayGame extends BaseComponent {
         return this.durationsJson[type].value;
     }
 
+    forceSignIn() {
+        this.container.children.forEach((child) => {
+            const item = child.getComponent(GatewayGameItem);
+            item.sendSignIn();
+        });
+    }
+
     initItems() {
         let allCatogories = [];
         this.gameIds.forEach((gameId) => {
@@ -220,7 +227,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     protected onGameShow() {
-        //empty
+        this.forceSignIn();
     }
 
     outRoomGame() {

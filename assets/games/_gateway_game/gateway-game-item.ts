@@ -76,7 +76,7 @@ export default class GatewayGameItem extends cc.Component {
         this.sendSignIn();
     }
 
-    private sendSignIn() {
+    sendSignIn() {
         const data = {
             gameName: this.gameName,
             receivedEvents: this.receivedEvents,

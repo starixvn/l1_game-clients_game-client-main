@@ -67,6 +67,7 @@ export class GameInfoStore extends StoreBase {
     }
 
     activeTimer() {
+        this.clearTimer();
         this.timer = setInterval(() => {
             const value = this.remainingTime - 1;
             if (value >= 0) {

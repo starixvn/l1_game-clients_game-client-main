@@ -1,19 +1,20 @@
 {
-"skeleton": { "hash": "c7jxZdz1T/zWfqxUtXhoBv3aImo", "spine": "3.8.99", "x": -129, "y": -225.59, "width": 268.78, "height": 432.59 },
+"skeleton": { "hash": "Yt2e245+cxV9xy/S+i2esVVTf2A", "spine": "3.8.99", "x": -112.14, "y": -205.74, "width": 243.92, "height": 392.24 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "banner", "parent": "root" },
-	{ "name": "top", "parent": "root", "y": 160.99 },
+	{ "name": "top", "parent": "root", "y": 142.27 },
 	{ "name": "text1", "parent": "top", "y": 9.83 },
 	{ "name": "text2", "parent": "top", "y": -17.32 },
-	{ "name": "game-name", "parent": "root", "y": 87.52 },
+	{ "name": "game-name", "parent": "root", "y": 69.73 },
 	{ "name": "bg-gamename", "parent": "game-name" },
 	{ "name": "gamename", "parent": "game-name" },
-	{ "name": "bottom", "parent": "root", "y": -143.21 },
+	{ "name": "bottom", "parent": "root", "y": -130.1 },
 	{ "name": "effect-bot", "parent": "bottom", "x": 61.78 },
 	{ "name": "text-bot", "parent": "bottom" },
 	{ "name": "flare", "parent": "game-name" },
-	{ "name": "effect-bot2", "parent": "bottom", "x": -49.14, "y": -12.64, "scaleX": 0.9, "scaleY": 0.9 }
+	{ "name": "effect-bot2", "parent": "bottom", "x": -49.14, "y": -12.64, "scaleX": 0.9, "scaleY": 0.9 },
+	{ "name": "bowl", "parent": "root" }
 ],
 "slots": [
 	{ "name": "banner", "bone": "banner", "attachment": "banner" },
@@ -25,47 +26,51 @@
 	{ "name": "effect-bot", "bone": "effect-bot", "attachment": "effect-bot" },
 	{ "name": "effect-bot2", "bone": "effect-bot2", "attachment": "effect-bot" },
 	{ "name": "text-bot", "bone": "text-bot", "attachment": "text-bot" },
-	{ "name": "flare", "bone": "flare", "attachment": "flare" }
+	{ "name": "flare", "bone": "flare", "attachment": "flare" },
+	{ "name": "bowl", "bone": "bowl", "attachment": "bowl" }
 ],
 "skins": [
 	{
 		"name": "default",
 		"attachments": {
 			"banner": {
-				"banner": { "x": 0.5, "width": 259, "height": 414 }
+				"banner": { "x": 0.5, "width": 209, "height": 373 }
 			},
 			"banner2": {
-				"banner": { "x": 0.5, "width": 259, "height": 414 }
+				"banner": { "x": 0.5, "width": 209, "height": 373 }
 			},
 			"bg-gamename": {
-				"bg-gamename": { "x": 0.5, "width": 202, "height": 97 }
+				"bg-gamename": { "x": 0.5, "width": 174, "height": 85 }
+			},
+			"bowl": {
+				"bowl": { "x": 22.93, "y": 6.08, "width": 158, "height": 106 }
 			},
 			"effect-bot": {
-				"effect-bot": { "width": 156, "height": 155 }
+				"effect-bot": { "width": 140, "height": 140 }
 			},
 			"effect-bot2": {
-				"effect-bot": { "width": 156, "height": 155 }
+				"effect-bot": { "width": 140, "height": 140 }
 			},
 			"flare": {
-				"flare": { "x": 0.5, "width": 173, "height": 44 }
+				"flare": { "x": 0.5, "width": 155, "height": 39 }
 			},
 			"gamename": {
-				"gamename": { "x": 0.5, "width": 159, "height": 39 }
+				"gamename": { "x": 0.5, "width": 143, "height": 35 }
 			},
 			"text-bot": {
-				"text-bot": { "width": 226, "height": 102 }
+				"text-bot": { "width": 202, "height": 90 }
 			},
 			"text1": {
-				"text1": { "x": 0.5, "width": 197, "height": 33 }
+				"text1": { "x": 0.5, "width": 177, "height": 31 }
 			},
 			"text2": {
-				"text2": { "x": 0.5, "width": 197, "height": 37 }
+				"text2": { "x": 0.5, "width": 177, "height": 35 }
 			}
 		}
 	}
 ],
 "animations": {
-	"animation": {
+	"show": {
 		"slots": {
 			"banner2": {
 				"color": [

@@ -43,10 +43,13 @@
       },
       {
         "__id__": 38
+      },
+      {
+        "__id__": 39
       }
     ],
     "_prefab": {
-      "__id__": 39
+      "__id__": 40
     },
     "_opacity": 255,
     "_color": {
@@ -58,8 +61,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 209,
-      "height": 442
+      "width": 1398,
+      "height": 786
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -70,8 +73,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        699,
+        393,
         0,
         0,
         0,
@@ -125,8 +128,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 215,
-      "height": 448
+      "width": 190,
+      "height": 370
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -138,7 +141,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        1.087,
+        0,
         0,
         0,
         0,
@@ -178,10 +181,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f6a60bd4-ba33-44ad-821c-b33a6819bcdd"
+      "__uuid__": "d21993c3-6f65-494a-9ba0-2ddc60e48647"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -192,7 +195,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "c0b57f99-4d3a-4318-bcfe-c29b48174bb7"
+      "__uuid__": "dda373e6-1944-4403-8012-95d983eec871"
     },
     "_id": ""
   },
@@ -252,8 +255,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 183,
-      "height": 157
+      "width": 146,
+      "height": 126
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -483,7 +486,7 @@
       }
     ],
     "_spriteFrame": {
-      "__uuid__": "4ac66f19-0cc1-46ae-b180-7b6b29188991"
+      "__uuid__": "9701e735-2a87-4200-96a8-93e9271df84a"
     },
     "_type": 2,
     "_segments": 64,
@@ -648,7 +651,7 @@
     "node": {
       "__id__": 17
     },
-    "_enabled": false,
+    "_enabled": true,
     "groupId": 1,
     "_id": ""
   },
@@ -977,7 +980,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
+      "width": 23.57,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1258,6 +1261,33 @@
     },
     "spineName": "banner-game",
     "animationName": "show",
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Widget",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "alignMode": 1,
+    "_target": null,
+    "_alignFlags": 45,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 0,
+    "_verticalCenter": 0,
+    "_horizontalCenter": 0,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
+    "_isAbsHorizontalCenter": true,
+    "_isAbsVerticalCenter": true,
+    "_originalWidth": 209,
+    "_originalHeight": 442,
     "_id": ""
   },
   {

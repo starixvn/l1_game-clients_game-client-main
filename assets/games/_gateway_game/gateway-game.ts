@@ -186,8 +186,7 @@ export default class GatewayGame extends BaseComponent {
         if (!this.isAlive()) {
             return;
         }
-        this.socket.removeAllListeners();
-        sessionManager.removeInRoomGameId();
+        this.removeSocketListeners();
     }
 
     private goToLobbyScene() {
@@ -219,9 +218,24 @@ export default class GatewayGame extends BaseComponent {
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
         appManager.currentScene = null;
-        this.socket.removeAllListeners();
-        this.socketIOController.closeSocket(this.gameId);
+        sessionManager.removeInRoomGameId();
+        this.removeSocketListeners();
         uiManager.removeListenersWithTarget(this);
+    }
+
+    private removeSocketListeners() {
+        if (!this.socket) {
+            return;
+        }
+
+        this.socket.removeAllListeners();
+        this.container?.children?.forEach((child) => {
+            const item = child.getComponent(GatewayGameItem);
+            item.removeSocketListeners();
+        });
+
+        this.socketIOController.closeSocket(this.gameId);
+        this.socket = null;
     }
 
     protected onGameHide() {

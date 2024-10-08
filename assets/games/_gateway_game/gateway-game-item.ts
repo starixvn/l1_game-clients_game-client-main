@@ -59,8 +59,15 @@ export default class GatewayGameItem extends cc.Component {
     onDestroy() {
         const disableGameStore = this.gameData.getStore(Store.DisableGame) as DisableGameStore;
         disableGameStore.clearIntervalGetLobbyData();
-        this.socket.offAny(this.filterDataGame);
+        this.removeSocketListeners();
         this.gameData = null;
+    }
+
+    removeSocketListeners() {
+        if (!this.socket) {
+            return;
+        }
+        this.socket.removeAllListeners();
         this.socket = null;
     }
 

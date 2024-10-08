@@ -109,7 +109,6 @@ export default class GatewayGame extends BaseComponent {
             this.initSocketListeners();
         }
     }
-
     getServiceName(gameId: number) {
         const type = Object.keys(this.serviceNameJson).find((key) => this.serviceNameJson[key].ids?.includes(gameId)) ?? "default";
         return this.serviceNameJson[type].value;
@@ -180,14 +179,14 @@ export default class GatewayGame extends BaseComponent {
     }
 
     onDisconnected() {
-        this.closeGame();
+        this.goToLobbyScene();
     }
 
     closeGame() {
         if (!this.isAlive()) {
             return;
         }
-        this.socketIOController.closeSocket(this.gameId);
+        this.socket.removeAllListeners();
         sessionManager.removeInRoomGameId();
     }
 
@@ -218,7 +217,9 @@ export default class GatewayGame extends BaseComponent {
     onDestroy() {
         cc.game.off(cc.game.EVENT_HIDE, this.onGameHide, this);
         cc.game.off(cc.game.EVENT_SHOW, this.onGameShow, this);
+        cc.log("on destroy gateway game ", this.gameId);
         appManager.currentScene = null;
+        this.socketIOController.closeSocket(this.gameId);
         uiManager.removeListenersWithTarget(this);
     }
 

@@ -11,18 +11,13 @@ export class DisableGameStore extends StoreBase {
     disabledGame = false;
     umMessage = "";
     gameDisconnected = false;
-    signInSuccess = false;
     intervalGetLobbyData: NodeJS.Timer;
-
-    setSignInSuccess(value: boolean) {
-        this.signInSuccess = value;
-    }
 
     setDisabledGame(disable: boolean) {
         this.disabledGame = disable;
         this.emit(EmitterEvents.DisabledGame, this.disabledGame);
 
-        if (disable && !this.signInSuccess) {
+        if (disable) {
             this.startIntervalGetLobbyData();
         }
     }

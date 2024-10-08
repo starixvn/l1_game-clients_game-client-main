@@ -23,6 +23,9 @@ export default class LobbyCenter extends cc.Component {
     @property({ type: cc.Enum(FormationHandler) })
     formatGameName = FormationHandler.UPPER;
 
+    @property
+    spacingIcon = 24;
+
     protected buttonArrowComp: ButtonArrow = null;
     protected miniPanel: MiniPanel = null;
     protected lobbyMenu: LobbyMenu;
@@ -47,6 +50,7 @@ export default class LobbyCenter extends cc.Component {
             return;
         }
         lobbyMenu = this.mainScroll.addComponent(LobbyMenu);
+        lobbyMenu.updateSpacing(this.spacingIcon)
         lobbyMenu.content = this.scrollContent;
         lobbyMenu.miniPanel = this.miniPanel;
         lobbyMenu.formatGameName = this.formatGameName;

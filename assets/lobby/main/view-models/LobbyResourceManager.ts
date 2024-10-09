@@ -6,6 +6,7 @@ interface IVersionsCache {
     banners: number;
     gameIcons: number;
     miniGameIcons: number;
+    version?: number;
 }
 
 export default class LobbyResourceManager {
@@ -35,7 +36,9 @@ export default class LobbyResourceManager {
 
     public static initLobbyResource(groupCurrency: string) {
         this.currentGroupCurrency = groupCurrency;
-        this.getRemoteVersion();
+        if (this.isUseTheme()) {
+            this.getRemoteVersion();
+        }
     }
 
     public static loadRemoteSharedResource<T>(pathResource: string) {

@@ -1,7 +1,5 @@
 import GameUtils from "../../../../common/GameUtils";
-import { appManager } from "../../../../managers/AppManager";
 import { uiManager } from "../../../../managers/GameUIManager";
-import { UrlInfo } from "../../../../managers/UrlInfo";
 import LobbyResourceManager from "../LobbyResourceManager";
 import CircleMenu from "./../CircleMenu";
 import SkeletonMiniIcon from "./SkeletonMiniIcon";
@@ -33,27 +31,9 @@ export default class CircleMenuTheme extends CircleMenu {
         }
     }
 
-    override addItem(id: number, prefab: cc.Prefab): cc.Node {
-        if (!prefab || (id === 0 && appManager.isDirectMode && !appManager.urlInfo[UrlInfo.ReturnUrl])) {
-            return null;
-        }
-        const node = cc.instantiate(prefab);
-
-        node.scale = 0.95;
-        this.content?.addChild(node);
-        this.updateGameName(id, node);
-        this.loadGameIcon(id, node);
-
-        const hoverScale = node.getComponent("hoverScale");
-        if (hoverScale) {
-            hoverScale.pressedScale = 1;
-        }
-        return node;
-    }
-
     override onInitialized() {
         const count = this.content.childrenCount;
-        const radius = this.content.width * 0.3;
+        const radius = this.content.width * 0.35;
         const degree = 360 / count;
         this.content.children.forEach((child, index) => {
             const angle = degree * index;

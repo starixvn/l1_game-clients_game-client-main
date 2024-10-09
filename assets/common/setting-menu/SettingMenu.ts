@@ -1,7 +1,7 @@
+import CommonDialog from "../_base/view-models/CommonDialog";
 import AudioManager from "../audio/AudioManager";
 import { AppTypes } from "../auth/AuthManager";
 import ExpandableMenu from "../expandable-menu/view-models/ExpandableMenu";
-import CommonDialog from "../_base/view-models/CommonDialog";
 const { ccclass, property } = cc._decorator;
 
 export enum SettingMenuEvents {
@@ -29,7 +29,7 @@ export default class SettingMenu extends cc.Component {
             });
         }
 
-        if (window.authData?.system !== AppTypes.SabaApp) {
+        if (window.authData?.system !== AppTypes.SabaApp && this.logoutButton) {
             this.logoutButton.active = false;
             this.bgNode.height = 300;
         }
@@ -39,7 +39,9 @@ export default class SettingMenu extends cc.Component {
         AudioManager.getInstance().playClick();
     }
 
-    collapseMenu(animated: boolean) {}
+    collapseMenu(animated: boolean) {
+        // handle
+    }
 
     onClickLogout() {
         this.doCommons();

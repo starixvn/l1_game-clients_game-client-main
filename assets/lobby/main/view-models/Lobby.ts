@@ -251,7 +251,7 @@ export default class Lobby extends cc.Component {
         try {
             AudioManager.getInstance().playClick();
             if (!this.settingMenuPrefab) {
-                this.settingMenuPrefab = await GameUtils.loadResource("prefabs/SettingMenu");
+                this.settingMenuPrefab = await LobbyResourceManager.loadPrefabResource("setting-menu");
             }
 
             if (this.settingMenuPrefab) {

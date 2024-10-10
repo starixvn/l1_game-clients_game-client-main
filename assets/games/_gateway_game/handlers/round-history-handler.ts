@@ -11,7 +11,7 @@ interface RoundHistoryType {
 }
 export class RoundHistoryHandler extends BaseEventHandler<any> {
     protected verifyEvent(event: RoundHistoryType): boolean {
-        return !!event.roundHistory || !!event.finish || !!event.newShoeHash;
+        return !!event.roundHistory || !!event.finish || !!event.newShoeHash || !!event.newBlockchain;
     }
 
     protected handle(data: RoundHistoryType) {

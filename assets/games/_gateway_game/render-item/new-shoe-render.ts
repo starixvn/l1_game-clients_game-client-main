@@ -24,7 +24,11 @@ export default class NewShoeRender extends RenderItem {
     }
 
     onActiveNewShoe = async (show: boolean) => {
+        cc.log("onActiveNewShoe", show);
         this.node.active = show;
+        if (!show) {
+            return;
+        }
         try {
             cc.log("show shoe animation ");
             const spine = this.getComponentInChildren(sp.Skeleton);
@@ -37,12 +41,9 @@ export default class NewShoeRender extends RenderItem {
             try {
                 const spine = this.getComponentInChildren(sp.Skeleton);
                 await AnimationUtils.playSpine(spine, "out", false);
-                this.node.active = false;
-                cc.log("hide shoe animation ");
-            } catch (e) {
-                this.node.active = false;
-                cc.log("hide shoe animation ");
-            }
+            } catch (e) {}
+            this.node.active = false;
+            cc.log("hide shoe animation ");
         }
     };
 }

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "containerBackground",
+    "_name": "background-ui",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -64,8 +64,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        699,
-        393,
+        0,
+        0,
         0,
         0,
         0,
@@ -256,8 +256,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 444,
-      "height": 484
+      "width": 436,
+      "height": 550
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -268,8 +268,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -517.5,
-        -150.25400000000002,
+        -525.5,
+        -118.25400000000002,
         0,
         0,
         0,
@@ -338,7 +338,7 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 8,
-    "_left": -40.5,
+    "_left": -44.5,
     "_right": 0,
     "_top": 0,
     "_bottom": 0,

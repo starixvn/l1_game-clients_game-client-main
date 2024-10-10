@@ -7,7 +7,7 @@ export default class RoundTime extends cc.Component {
     @property(cc.Label)
     time: cc.Label = null;
 
-    private readonly timeToChangeColor = 5;
+    protected readonly timeToChangeColor = 5;
 
     setTime(time: number) {
         this.time.string = `${numberPad(time, 2)}`;

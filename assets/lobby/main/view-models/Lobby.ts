@@ -22,6 +22,7 @@ import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import Category from "../../category/view-models/Category";
 import NewsContent from "../../news/NewsContent";
 import PromotionNotificationsHandler from "../../promotions/PromotionNotificationsHandler";
+import PromotionTournamentHandler from "../../promotions/PromotionTournamentHandler";
 import CommonDialog from "./../../../common/_base/view-models/CommonDialog";
 import * as authManager from "./../../../common/auth/AuthManager";
 import { AppTypes } from "./../../../common/auth/AuthManager";
@@ -31,7 +32,6 @@ import CategoryItem from "./CategoryItem";
 import Header from "./Header";
 import LobbyManager from "./LobbyManager";
 import LobbyMenu from "./LobbyMenu";
-import PromotionTournamentHandler from "../../promotions/PromotionTournamentHandler";
 
 const socketIOController = appContainer.get(SocketIOController);
 const sentryLogger = logger();
@@ -115,8 +115,8 @@ export default class Lobby extends cc.Component {
         this.initGameUIEvents();
 
         this.initMiniPanel();
-        this.checkToShowSignName();
         this.loadCategory();
+        this.checkToShowSignName();
         this.onLoadLobby();
         MusicPlayer.getInstance().init();
 
@@ -143,11 +143,11 @@ export default class Lobby extends cc.Component {
                             const dialog = cc.instantiate(this.logoutPrefab);
                             this.miniPanel.addDialog(dialog);
                         }
-                    } catch (err) { }
+                    } catch (err) {}
                 });
                 this.miniPanel.addDialog(settingMenu);
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     private trackOnLoadEvents() {
@@ -182,7 +182,7 @@ export default class Lobby extends cc.Component {
                 ).toLocaleString()}. Total loading time in splash screen: ${totalLoadPageTimeInSeconds}`
             );
             window["dontWritePageLoadingTimeLog"] = true;
-        } catch { }
+        } catch {}
     }
 
     initGameUIEvents() {
@@ -320,8 +320,7 @@ export default class Lobby extends cc.Component {
     checkToShowSignName() {
         if (!appManager.authorized) {
             this.showSignName();
-        }
-        else {
+        } else {
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
         }
     }
@@ -589,7 +588,7 @@ export default class Lobby extends cc.Component {
                     this.signName.init(this.handleSignName.bind(this));
                     this.miniPanel.addDialog(node);
                 }
-            } catch (err) { }
+            } catch (err) {}
         }
     }
 

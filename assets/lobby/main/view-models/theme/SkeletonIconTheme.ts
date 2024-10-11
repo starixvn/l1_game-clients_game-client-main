@@ -44,16 +44,10 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
     private updateReceiveNotification(id: number) {
         const gameNotificationComp = this.node.getComponent(GameNotification);
-        if (gameNotificationComp) {
-            gameNotificationComp.gameId = id;
-            gameNotificationComp.initReceiveEvents();
-        }
+        gameNotificationComp && (gameNotificationComp.gameId = id);
     }
 
     private updateJackpotPoolInfo(id: number) {
-        if (this.jackpotPoolInfo) {
-            this.jackpotPoolInfo.gameId = id;
-            this.jackpotPoolInfo.initReceiveEvents();
-        }
+        this.jackpotPoolInfo && (this.jackpotPoolInfo.gameId = id);
     }
 }

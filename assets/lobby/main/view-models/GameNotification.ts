@@ -4,7 +4,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class GameNotification extends cc.Component {
     @property
-    gameId = 1;
+    gameId = 0;
 
     @property
     key = "lobby";

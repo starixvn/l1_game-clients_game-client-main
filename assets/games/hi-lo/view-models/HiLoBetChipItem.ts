@@ -1,3 +1,5 @@
+import { nFormatter } from "../../../common/helpers/NumberHelper";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -9,7 +11,7 @@ export default class HiLoBetChipItem extends cc.Component {
     selectedBg: cc.Sprite = null;
 
     public renderBetChipItem(value: number) {
-        this.number.string = value.toString();
+        this.number.string = nFormatter(value);
         this.node.name = value.toString();
     }
 

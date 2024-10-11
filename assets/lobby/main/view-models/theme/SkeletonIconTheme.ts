@@ -14,6 +14,11 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     @property(JackpotPoolInfo)
     jackpotPoolInfo: JackpotPoolInfo = null;
 
+    override setGameName(text: string, gameId: number) {
+        this.gameName.node.active = true;
+        this.gameName.string = text;
+    }
+
     override setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
         if (!!uiManager.spriteFrameCache.lobbyIcons[id]) {
             this.loadAnimation(id, categoryIndex);

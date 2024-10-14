@@ -10,12 +10,14 @@ import { userManager } from "../common/user/UserManager";
 import EncryptUtils from "../common/utils/EncryptUtils";
 import { isMiniGameByGameId } from "../configs/GameConfigurations";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
+import LobbyResourceManager from "../lobby/main/view-models/LobbyResourceManager";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
 import { delayTime } from "../utils";
 import { uiManager } from "./GameUIManager";
 import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
+import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
 
 const sentryLogger = logger();
@@ -146,6 +148,7 @@ class AppManager {
 
     async ssoAndAuthorize() {
         this.handleAppMode();
+        this.handleCurrencyGroup();
         await this.requestSSO();
         await getLobbyConfigs();
         if (window.authData && this.isDirectMode) {
@@ -155,6 +158,18 @@ class AppManager {
         this.loadDirectModeInfo();
         this.authorized = await this.authorizeByUserService();
         await this.initNotificationService();
+    }
+
+    private handleCurrencyGroup() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("cg")) {
+            const currencyGroup = urlParams.get("cg");
+            LobbyResourceManager.getInstance().init(currencyGroup);
+            StorageManager.set("currency_group", currencyGroup);
+        } else {
+            const currencyGroup = StorageManager.get("currency_group");
+            currencyGroup && LobbyResourceManager.getInstance().init(currencyGroup);
+        }
     }
 
     private handleAppMode() {

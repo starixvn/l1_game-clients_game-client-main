@@ -6,14 +6,14 @@ const { ccclass } = cc._decorator;
 @ccclass
 export default class BannerTheme extends Banner {
     protected override getPrefabBannerContainer() {
-        return LobbyResourceManager.loadPrefabResource("banner/bannerContainer");
+        return LobbyResourceManager.getInstance().loadPrefabResource("banner/bannerContainer");
     }
 
     protected override getPathJackpotContainer() {
-        return LobbyResourceManager.loadPrefabResource("banner/jackpotController");
+        return LobbyResourceManager.getInstance().loadPrefabResource("banner/jackpotController");
     }
 
     protected override getPathJackpotNavigation() {
-        return LobbyResourceManager.loadPrefabResource("banner/jackpotNavigation");
+        return LobbyResourceManager.getInstance().loadPrefabResource("banner/jackpotNavigation");
     }
 }

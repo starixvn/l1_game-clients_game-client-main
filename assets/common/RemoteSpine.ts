@@ -85,13 +85,15 @@ export default class RemoteSpine extends cc.Component {
             this.spine.skeletonData = this.cache[this.id].skeletonData;
         } else {
             const spineRes = [];
-            const version = config?.version || LobbyResourceManager.versionsCache.banners;
+            const version = config?.version || LobbyResourceManager?.getInstance()?.versionsCache?.banners;
 
             for (const ext of this.resourceExts) {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${version}`;
                     const langPath = config?.languages[window.i18n.curLang] ? window.i18n.curLang : "en";
-                    const data = await LobbyResourceManager.loadRemoteSharedResource(`banners/${this.id}/${langPath}/${resName}`);
+                    const data = await LobbyResourceManager.getInstance().loadRemoteSharedResource(
+                        `banners/${this.id}/${langPath}/${resName}`
+                    );
                     if (data) {
                         spineRes.push(data);
                     }

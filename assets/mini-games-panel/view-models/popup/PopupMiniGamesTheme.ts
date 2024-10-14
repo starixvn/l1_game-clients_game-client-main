@@ -17,7 +17,7 @@ export default class PopupMiniGamesTheme extends PopupMinigames {
 
     async initDefaultGameRoundTimer() {
         const mainGameId = this.lobbyMenuConfig.roundTimerGame?.main;
-        const prefab = await LobbyResourceManager.loadPrefabResource(`mini-game/counters/${mainGameId}`);
+        const prefab = await LobbyResourceManager?.getInstance()?.loadPrefabResource(`mini-game/counters/${mainGameId}`);
 
         if (prefab) {
             const node = cc.instantiate(prefab);

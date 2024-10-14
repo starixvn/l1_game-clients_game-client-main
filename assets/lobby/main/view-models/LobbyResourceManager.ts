@@ -11,20 +11,20 @@ interface IVersionsCache {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    public static readonly supportGroupCurrencies: string[] = ["Credit_PHP", "Cash_PHP"];
-    public static readonly themes = {
+    private readonly supportGroupCurrencies: string[] = ["Credit_PHP", "Cash_PHP"];
+    private readonly themes = {
         Credit_PHP: "credit_php",
         Cash_PHP: "credit_php"
     };
 
-    public static versionsCache: IVersionsCache = {
+    public versionsCache: IVersionsCache = {
         banners: 1,
         gameIcons: 1,
         miniGameIcons: 1
     };
 
-    private static readonly defaultPath = "lobby/themes";
-    private static currentGroupCurrency = "";
+    private readonly defaultPath = "lobby/themes";
+    private currentGroupCurrency = "";
 
     public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
@@ -34,23 +34,23 @@ export default class LobbyResourceManager {
         return this.instance;
     }
 
-    public static initLobbyResource(groupCurrency: string) {
+    public init(groupCurrency: string) {
         this.currentGroupCurrency = groupCurrency;
         if (this.isUseTheme()) {
             this.getRemoteVersion();
         }
     }
 
-    public static loadRemoteSharedResource<T>(pathResource: string) {
+    public loadRemoteSharedResource<T>(pathResource: string) {
         return GameUtils.loadRemote<T>(this.remoteShareLobbyResourceUrl(pathResource));
     }
 
-    public static remoteShareLobbyResourceUrl(pathResource: string) {
+    public remoteShareLobbyResourceUrl(pathResource: string) {
         const url = buildShareResourceGameUrl();
         return `${url}/lobbies/${this.getTheme()}/${pathResource}`;
     }
 
-    public static loadPrefabResource(path: string): Promise<cc.Prefab> {
+    public loadPrefabResource(path: string): Promise<cc.Prefab> {
         return new Promise((resolve) => {
             cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
                 resolve(prefab);
@@ -58,7 +58,7 @@ export default class LobbyResourceManager {
         });
     }
 
-    protected static getThemePath() {
+    protected getThemePath() {
         if (this.supportGroupCurrencies.includes(this.currentGroupCurrency)) {
             return `${this.defaultPath}/${this.getTheme()}`;
         }
@@ -66,11 +66,11 @@ export default class LobbyResourceManager {
         return `${this.defaultPath}/default`;
     }
 
-    public static isUseTheme() {
+    public isUseTheme() {
         return this.supportGroupCurrencies.includes(this.currentGroupCurrency);
     }
 
-    protected static async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
+    protected async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
         const version = this.versionsCache[type === "game" ? "gameIcons" : "miniGameIcons"];
         const resourcePath = `${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
@@ -87,25 +87,25 @@ export default class LobbyResourceManager {
         return null;
     }
 
-    public static async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
+    public async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
         return this.loadIcon(gameId, "game", uiManager.spriteFrameCache.lobbyIcons);
     }
 
-    public static async loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame> {
+    public async loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame> {
         return this.loadIcon(gameId, "mini-game", uiManager.spriteFrameCache.miniPanelIcons);
     }
 
-    public static async getRemoteVersion() {
+    public async getRemoteVersion() {
         const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`versions.json?v=${Date.now()}`);
 
         versions && (this.versionsCache = versions.json);
     }
 
-    private static getTheme() {
+    private getTheme() {
         return this.themes[this.currentGroupCurrency];
     }
 
-    public static loadRemoteInfoBanner(gameId: number) {
+    public loadRemoteInfoBanner(gameId: number) {
         return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`);
     }
 }

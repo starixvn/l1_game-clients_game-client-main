@@ -6,7 +6,7 @@ import GameUtils, { BannerType } from "../../common/GameUtils";
 import * as sessionManager from "../../common/auth/SessionManager";
 import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
-import UserManager, { userManager } from "../../common/user/UserManager";
+import { userManager } from "../../common/user/UserManager";
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameConfiguration } from "../../configs/GameConfigurations";
 import { TotalPreloadGameIcon } from "../../constants";
@@ -65,7 +65,6 @@ export default class MainSplash extends cc.Component {
     private noticePrefab: cc.Prefab = null;
 
     protected onLoad(): void {
-        LobbyResourceManager.getInstance();
         this.initUIListeners();
         this.requestSSO();
         this.setPositionProgressBarAndMessage();
@@ -194,7 +193,6 @@ export default class MainSplash extends cc.Component {
             this.updateProgress(0);
             if (!appManager.authorized) {
                 await appManager.ssoAndAuthorize();
-                LobbyResourceManager.initLobbyResource(UserManager.getInstance()?.currencyGroup);
             }
 
             if (appManager.isDirectMode) {
@@ -267,11 +265,11 @@ export default class MainSplash extends cc.Component {
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
 
-            if (LobbyResourceManager.isUseTheme()) {
+            if (LobbyResourceManager?.getInstance()?.isUseTheme()) {
                 const preloadGameInMain = preLoadGameIds.filter(
                     (gameId) => getGameConfiguration(gameId) || this.lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );
-                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager.loadGameIcon(gameId));
+                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager?.getInstance()?.loadGameIcon(gameId));
                 await Promise.all([preLoadGameAwaiters]);
 
                 console.log(`SplashScreen - Completed load game icons`, [

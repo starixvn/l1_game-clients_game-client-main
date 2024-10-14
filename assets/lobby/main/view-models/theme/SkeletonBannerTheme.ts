@@ -27,7 +27,9 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
     protected override async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
-            const configFile = this.cache[id] ? this.cache[id].configFile : await LobbyResourceManager.loadRemoteInfoBanner(id);
+            const configFile = this.cache[id]
+                ? this.cache[id].configFile
+                : await LobbyResourceManager.getInstance().loadRemoteInfoBanner(id);
 
             const iconConfig: RemoteSharedResourceConfig = configFile?.json;
 

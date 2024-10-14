@@ -29,7 +29,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
     public override async loadAnimation(id: number, categoryIndex = 0) {
         const cachedSprite = uiManager.spriteFrameCache.lobbyIcons[id]?.spriteFrame;
-        const spriteFrame = cachedSprite || (await LobbyResourceManager.loadGameIcon(id));
+        const spriteFrame = cachedSprite || (await LobbyResourceManager.getInstance().loadGameIcon(id));
 
         if (spriteFrame) {
             this.hideSkeleton();

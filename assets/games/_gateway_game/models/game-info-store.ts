@@ -104,5 +104,6 @@ export class GameInfoStore extends StoreBase {
         this.emit(EmitterEvents.TotalOnlineChange, this.totalOnlineUsers);
         this.emit(EmitterEvents.TimeChange, this.remainingTime);
         this.emit(EmitterEvents.BetLimitChange, this.betLimit);
+        this.emit(EmitterEvents.ActiveNewShoe, this.newShoePhase);
     }
 }

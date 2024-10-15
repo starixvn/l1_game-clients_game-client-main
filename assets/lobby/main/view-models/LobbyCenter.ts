@@ -34,6 +34,16 @@ export default class LobbyCenter extends cc.Component {
         uiManager.emitterListener(InternalEvents.LOAD_OTHER_ICONS_AND_BANNERS, this.loadOtherIconsAndBanners.bind(this), this);
         uiManager.emitterListener(InternalEvents.OPEN_GAME_MINI, this.loadOtherIconsAndBanners.bind(this), this);
         this.initScrollListener();
+        window.addEventListener("resize", this.onWindowResize.bind(this));
+    }
+
+    protected onDestroy() {
+        window.removeEventListener("resize", this.onWindowResize);
+        uiManager.removeListenersWithTarget(this);
+    }
+
+    onWindowResize() {
+        this.buttonArrowComp?.handleScale(true);
     }
 
     setButtonArrowComp(buttonArrow: ButtonArrow) {

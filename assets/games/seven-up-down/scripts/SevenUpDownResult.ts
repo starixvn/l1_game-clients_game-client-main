@@ -1,13 +1,11 @@
-import axios from "axios";
-import { BundleManager } from "bundle-management";
-
 import GameUtils from "../../../common/GameUtils";
+import AnimationUtils from "../../../common/utils/AnimationUtils";
 
 const { ccclass, property } = cc._decorator;
 
 interface IResult {
-    dice1: number;
-    dice2: number;
+    dice1: string | undefined;
+    dice2: string | undefined;
 }
 
 @ccclass
@@ -18,94 +16,59 @@ export default class SevenUpDownResult extends cc.Component {
     @property(sp.Skeleton)
     diceSkeleton: sp.Skeleton = null;
 
-    private diceSprites: any[] = [];
+    private prevResult: IResult = { dice1: "01", dice2: "02" };
+    private currentResult: IResult = { dice1: null, dice2: null };
+    private diceFrames: cc.SpriteFrame[] = [];
+    private durationTime = 2;
 
-    onLoad() {
-        BundleManager.initialize({
-            adapters: {
-                assetManager: () => cc.assetManager,
-                http: () => ({
-                    get: (url: string) =>
-                        axios
-                            .get(url)
-                            .then((res) => res.data)
-                            .catch((error) => {
-                                throw new Error(`BundleManager get ${url}: ${error.message}`);
-                            })
-                })
-            },
-            listeners: []
-        });
+    async showResult() {
+        this.setCurrentResult();
+        const animationName = "dice-1-s1-e1";
+        this.diceFrames = [];
+
+        await this.loadDiceImages();
+        this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, animationName, false, this.durationTime);
+        this.runAnimation();
     }
 
-    showResult() {
-        this.loadDiceImages();
+    setCurrentResult() {
+        this.currentResult = { dice1: this.getRandomNumber(6), dice2: this.getRandomNumber(6) };
     }
 
-    async loadAsset(folder: string) {
-        const frame = await GameUtils.loadAssetsFromBundle(`103`, `textures/dices/${folder}`, cc.SpriteFrame, null);
-        this.diceSprites = this.diceSprites.concat(frame);
-        console.log(this.diceSprites);
+    private getRandomNumber(max: number): string {
+        const randomNumber = Math.floor(Math.random() * max) + 1;
+        return randomNumber.toString().padStart(2, "0");
     }
 
-    private loadDiceImages() {
-        const folders = ["start-01", "loop-01", "end-02"];
-        folders.forEach((folder) => {
-            this.loadAsset(folder);
-
-            // BundleManager.getInstance()
-            //     .loadBundle("80")
-            //     .then((bundle: cc.AssetManager.Bundle) => {
-            //         // bundle.loadDir(preloadPath, () => {
-            //         //     bundle.loadDir(path, cc.SpriteFrame, resolve);
-            //         // });
-            //         const spriteFrame = bundle.load<cc.SpriteFrame>(`textures/dices/${folder}`, cc.SpriteFrame, null);
-            //         console.log(spriteFrame);
-            //     });
-
-            // const spriteFrame = BundleManager.getInstance().loadAsset<cc.SpriteFrame>({
-            //     bundleId: "103",
-            //     path: `textures/dices/${folder}`,
-            //     type: cc.SpriteFrame
-            //     // onComplete: (error: Error, assets: cc.SpriteFrame[]) => {
-            //     //     if (!error) {
-            //     //         this.diceSprites = this.diceSprites.concat(assets);
-            //     //     }
-            //     // }
-            // });
-            // console.log(spriteFrame);
-        });
+    async setFrame(spriteFrame: cc.SpriteFrame) {
+        this.diceSprite.spriteFrame = spriteFrame;
+        await AnimationUtils.delayTime(this.durationTime / 42);
     }
 
-    // private getRandomAnimation(): string {
-    //     const animations = this.diceSkeleton.skeletonData.animations;
-    //     const randomIndex = Math.floor(Math.random() * animations.length);
-    //     return animations[randomIndex].name;
-    // }
+    async loadAtlasFile(file: string) {
+        try {
+            const atlas = await GameUtils.loadAssetsFromBundle<cc.SpriteAtlas>(`80`, `textures/dices/${file}`, cc.SpriteAtlas, null);
+            const spriteFrames: cc.SpriteFrame[] = atlas.getSpriteFrames();
+            spriteFrames.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+            this.diceFrames.push(...spriteFrames);
+        } catch (error) {
+            console.error(`Failed to load atlas file: ${file}`, error);
+        }
+    }
 
-    // private getRandomBone(): sp.spine.Bone {
-    //     const bones = this.diceSkeleton.skeleton.bones;
-    //     const randomIndex = Math.floor(Math.random() * bones.length);
-    //     return bones[randomIndex];
-    // }
+    private async loadDiceImages() {
+        const files = [`start-${this.prevResult.dice1}`, `loop-${this.getRandomNumber(3)}`, `end-${this.currentResult.dice1}`];
 
-    // setResult(result: IResult) {
-    //     // Set a random sprite from the loaded sprites
-    //     if (this.diceSprites.length > 0) {
-    //         const randomIndex = Math.floor(Math.random() * this.diceSprites.length);
-    //         this.diceSprite.spriteFrame = this.diceSprites[randomIndex];
-    //     }
+        for (const file of files) {
+            await this.loadAtlasFile(file);
+        }
 
-    //     // Get a random animation name
-    //     const randomAnimation = this.getRandomAnimation();
-    //     console.log("Random animation:", randomAnimation);
+        this.prevResult = this.currentResult;
+    }
 
-    //     // Get a random bone
-    //     const randomBone = this.getRandomBone();
-    //     console.log("Random bone:", randomBone.data.name);
-
-    //     // You can use the random animation and bone as needed
-    //     // For example, you might want to play the random animation:
-    //     // this.diceSkeleton.setAnimation(0, randomAnimation, false);
-    // }
+    private async runAnimation() {
+        for (const spriteFrame of this.diceFrames) {
+            await this.setFrame(spriteFrame);
+        }
+    }
 }

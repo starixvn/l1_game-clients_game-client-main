@@ -28,7 +28,7 @@ export default class SpineAttachmentNode extends cc.Component {
         const wPos = this.skeleton.node.convertToWorldSpaceAR(cc.v3(this.bone.worldX, this.bone.worldY));
         const localPos = this.node.parent.convertToNodeSpaceAR(wPos);
         this.node.position = localPos;
-        this.node.opacity = this.slot.color.a * 255;
+        this.slot && (this.node.opacity = this.slot.color.a * 255);
         this.node.scaleX = this.bone.scaleX;
         this.node.scaleY = this.bone.scaleY;
     }

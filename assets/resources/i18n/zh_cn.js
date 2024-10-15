@@ -35,8 +35,7 @@ const data = {
         45: "Hi-Lo",
         46: "Nightclub Lady",
         52: "Mega Keno",
-        53: "Mega Keno 2",
-        61: "Win Three Cards"
+        53: "Mega Keno 2"
     },
     messages: {
         accountNotExist: "发生了错误。 详情请联系CSD，谢谢。(%{errorCode})",

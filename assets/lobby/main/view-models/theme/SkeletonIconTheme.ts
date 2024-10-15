@@ -17,7 +17,6 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     jackpotPoolInfo: JackpotPoolInfo = null;
 
     override setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
-        debugger;
         this.gameName.node.active = true;
         this.gameName.string = LobbyResourceManager.getInstance()?.infoShareResource?.ignoreCapitalizeGameNames.includes(gameId)
             ? text

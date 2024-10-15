@@ -36,8 +36,7 @@ const data = {
         46: "Gái Nhảy",
         47: "Đảo Châu Báu",
         52: "Mega Keno",
-        53: "Mega Keno 2",
-        61: "Trác Kim Hoa"
+        53: "Mega Keno 2"
     },
     messages: {
         accountNotExist: "Đã xảy ra lỗi. Vui lòng liên hệ bộ phận CSKH để biết chi tiết, cảm ơn bạn. (%{errorCode})",

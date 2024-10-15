@@ -45,8 +45,7 @@ const data = {
         45: "ไฮโล",
         46: "Nightclub Lady",
         52: "Mega Keno",
-        53: "Mega Keno 2",
-        61: "ชนะไพ่สามใบ"
+        53: "Mega Keno 2"
     },
     messages: {
         accountNotExist: "เกิดข้อผิดพลาด กรุณาติดต่อแอดมินสำหรับรายละเอียดเพิ่มเติม ขอบคุณค่ะ (%{errorCode})",

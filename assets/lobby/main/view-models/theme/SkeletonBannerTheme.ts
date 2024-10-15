@@ -1,23 +1,8 @@
 import RemoteSpine, { Type } from "../../../../common/RemoteSpine";
-import LobbyResourceManager from "../LobbyResourceManager";
+import LobbyResourceManager, { IInfoShareResourceBanner } from "../LobbyResourceManager";
 import SkeletonBanner from "../SkeletonBanner";
 
 const { ccclass, property } = cc._decorator;
-
-interface LanguagesConfig {
-    en: boolean;
-    vi?: boolean;
-    th?: boolean;
-    id?: boolean;
-    zh_cn?: boolean;
-    zh_tw?: boolean;
-}
-
-export interface RemoteSharedResourceConfig {
-    premultipliedAlpha: boolean;
-    languages: LanguagesConfig;
-    version?: number;
-}
 
 @ccclass
 export default class SkeletonBannerTheme extends SkeletonBanner {
@@ -31,7 +16,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
                 ? this.cache[id].configFile
                 : await LobbyResourceManager.getInstance().loadRemoteInfoBanner(id);
 
-            const iconConfig: RemoteSharedResourceConfig = configFile?.json;
+            const iconConfig: IInfoShareResourceBanner = configFile?.json;
 
             node.addComponent(sp.Skeleton);
             const remoteSpine = node.addComponent(RemoteSpine);

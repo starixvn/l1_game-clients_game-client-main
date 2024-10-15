@@ -2,7 +2,9 @@ import { lazyInject } from "../../../Application";
 import GameUtils from "../../../common/GameUtils";
 import RemoteSpine from "../../../common/RemoteSpine";
 import { getLocale } from "../../../common/auth/SessionManager";
+import { FormationHandler } from "../../../common/i18n/FormationHandler";
 import Loading from "../../../common/loading/view-models/Loading";
+import StringUtil from "../../../common/utils/StringUtil";
 import { getGameConfiguration } from "../../../configs/GameConfigurations";
 import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
@@ -53,11 +55,11 @@ export default class SkeletonIcon extends cc.Component {
 
     private readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
 
-    setGameName(text: string, gameId: number) {
+    setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
         const transformersGameId = 70;
         const transformersLabelFontSize = 23;
         this.gameName.node.active = true;
-        this.gameName.string = text;
+        this.gameName.string = StringUtil.formatText(text, formatGameName);
         const language = getLocale();
         if (gameId === transformersGameId) {
             if (language === "en-US" || language === "id-ID") {

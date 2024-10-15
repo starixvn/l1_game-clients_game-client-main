@@ -29,7 +29,7 @@ export default class LocalizedLabelWithFormat extends LocalizedLabel {
         }
         let localizedString = i18n.t(this.dataId);
         if (localizedString) {
-            localizedString = StringUtil.handleFormatTitle(localizedString, this.format);
+            localizedString = StringUtil.formatText(localizedString, this.format);
             if (this.suffix.length > 0) {
                 localizedString += this.suffix;
             }

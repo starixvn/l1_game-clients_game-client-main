@@ -1,9 +1,8 @@
-import { getLanguage, getLocale } from "../auth/SessionManager";
 import { FormationHandler } from "../i18n/FormationHandler";
 
 export default class StringUtil {
-    public static handleFormatTitle(value: string, format: FormationHandler) {
-        const data = [
+    public static formatText(value: string, format: FormationHandler) {
+        const conditions = [
             {
                 condition: format === FormationHandler.LOWER,
                 handle: this.lowerCase
@@ -17,24 +16,24 @@ export default class StringUtil {
                 handle: this.titleCase
             }
         ];
-        const handler = data.filter((passed) => passed.condition);
-        return handler.length && this.languageValidHandler() ? handler[0].handle(value) : value;
+        const condition = conditions.find((passed) => passed.condition);
+        return condition?.handle(value) ?? value;
     }
 
     private static titleCase(value: string) {
-        const space = " ";
-        const isBreakLine = value.includes("\n");
-        const result = value
-            .split(space)
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
-            .join(space);
-        if (!isBreakLine) {
-            return result;
-        }
-
-        return result
+        return value
             .split("\n")
-            .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+            .map((line) =>
+                line
+                    .split(" ")
+                    .map((word) =>
+                        word
+                            .split("-")
+                            .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+                            .join("-")
+                    )
+                    .join(" ")
+            )
             .join("\n");
     }
 
@@ -44,12 +43,5 @@ export default class StringUtil {
 
     private static lowerCase(value: string) {
         return value.toLowerCase();
-    }
-
-    private static languageValidHandler(): boolean {
-        const locale = getLocale();
-        const language = getLanguage(locale);
-
-        return language !== "th";
     }
 }

@@ -4,7 +4,6 @@ import * as SessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { FormationHandler } from "../../../common/i18n/FormationHandler";
 import { userManager } from "../../../common/user/UserManager";
-import StringUtil from "../../../common/utils/StringUtil";
 import { uiManager } from "../../../managers/GameUIManager";
 import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
@@ -199,7 +198,7 @@ export default class LobbyMenu extends GameIconMenu {
     async lateUpdateGameName(icon: SkeletonIcon, gameId: number) {
         const gameName = await GameUtils.getDisplayGameName(gameId, true);
         try {
-            icon.setGameName(StringUtil.handleFormatTitle(gameName, this.formatGameName), gameId);
+            icon.setGameName(gameName, gameId, this.formatGameName);
         } catch (e) {
             cc.warn("Catch error after await method", e.message);
         }

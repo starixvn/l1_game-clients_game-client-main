@@ -1,3 +1,5 @@
+import { FormationHandler } from "../../../../common/i18n/FormationHandler";
+import StringUtil from "../../../../common/utils/StringUtil";
 import { uiManager } from "../../../../managers/GameUIManager";
 import GameNotification from "./../GameNotification";
 import JackpotPoolInfo from "./../JackpotPoolInfo";
@@ -14,9 +16,12 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     @property(JackpotPoolInfo)
     jackpotPoolInfo: JackpotPoolInfo = null;
 
-    override setGameName(text: string, gameId: number) {
+    override setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
+        debugger;
         this.gameName.node.active = true;
-        this.gameName.string = text;
+        this.gameName.string = LobbyResourceManager.getInstance()?.infoShareResource?.ignoreCapitalizeGameNames.includes(gameId)
+            ? text
+            : StringUtil.formatText(text, formatGameName);
     }
 
     override setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {

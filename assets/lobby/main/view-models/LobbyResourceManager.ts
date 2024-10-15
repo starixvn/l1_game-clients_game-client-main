@@ -2,11 +2,26 @@ import GameUtils from "../../../common/GameUtils";
 import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
 import { uiManager } from "../../../managers/GameUIManager";
 
-interface IVersionsCache {
-    banners: number;
-    gameIcons: number;
-    miniGameIcons: number;
+export interface IInfoShareResource {
+    versionBanner: number;
+    versionGameIcon: number;
+    versionMiniGameIcon: number;
+    ignoreCapitalizeGameNames: number[];
+}
+
+export interface IInfoShareResourceBanner {
+    premultipliedAlpha: boolean;
+    languages: LanguagesConfig;
     version?: number;
+}
+
+interface LanguagesConfig {
+    en: boolean;
+    vi?: boolean;
+    th?: boolean;
+    id?: boolean;
+    zh_cn?: boolean;
+    zh_tw?: boolean;
 }
 
 export default class LobbyResourceManager {
@@ -17,10 +32,11 @@ export default class LobbyResourceManager {
         Cash_PHP: "credit_php"
     };
 
-    public versionsCache: IVersionsCache = {
-        banners: 1,
-        gameIcons: 1,
-        miniGameIcons: 1
+    public infoShareResource: IInfoShareResource = {
+        versionBanner: 1,
+        versionGameIcon: 1,
+        versionMiniGameIcon: 1,
+        ignoreCapitalizeGameNames: []
     };
 
     private readonly defaultPath = "lobby/themes";
@@ -71,7 +87,7 @@ export default class LobbyResourceManager {
     }
 
     protected async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
-        const version = this.versionsCache[type === "game" ? "gameIcons" : "miniGameIcons"];
+        const version = this.infoShareResource[type === "game" ? "gameIcons" : "miniGameIcons"];
         const resourcePath = `${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
@@ -96,9 +112,9 @@ export default class LobbyResourceManager {
     }
 
     public async getRemoteVersion() {
-        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`versions.json?v=${Date.now()}`);
+        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
 
-        versions && (this.versionsCache = versions.json);
+        versions && (this.infoShareResource = versions.json);
     }
 
     private getTheme() {

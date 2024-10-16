@@ -20,17 +20,19 @@ export default class StringUtil {
         return condition?.handle(value) ?? value;
     }
 
-    private static titleCase(value: string) {
+    private static titleCase(value: string): string {
         return value
             .split("\n")
             .map((line) =>
                 line
                     .split(" ")
                     .map((word) =>
-                        word
-                            .split("-")
-                            .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-                            .join("-")
+                        /^\d/.test(word) // Check if the word starts with a number
+                            ? word
+                            : word
+                                  .split("-")
+                                  .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+                                  .join("-")
                     )
                     .join(" ")
             )

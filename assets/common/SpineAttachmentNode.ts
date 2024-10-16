@@ -12,8 +12,12 @@ export default class SpineAttachmentNode extends cc.Component {
     protected slot: sp.spine.Slot;
 
     onLoad() {
-        this.bone = this.skeleton.findBone(this.boneName);
-        this.slot = this.skeleton.findSlot(this.boneName);
+        this.updateBoneName(this.boneName);
+    }
+
+    updateBoneName(boneName) {
+        this.bone = this.skeleton.findBone(boneName);
+        this.slot = this.skeleton.findSlot(boneName);
     }
 
     protected update(dt: number): void {

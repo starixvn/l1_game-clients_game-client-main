@@ -3,7 +3,7 @@ export default class AnimationUtils {
         return cc.tween(node).to(duration, { opacity: opacity }).start();
     };
 
-    public static playSpine = (spine: sp.Skeleton, animationName: string, isLoop = false, duration?: number) => {
+    public static playSpine = (spine: sp.Skeleton, animationName: string, isLoop = false, duration?: number, trackIndex?: number) => {
         return new Promise<void>((resolve, reject) => {
             const animation = spine.findAnimation(animationName);
             if (!animation) {
@@ -17,7 +17,7 @@ export default class AnimationUtils {
                 duration = animationDuration;
             }
 
-            spine.setAnimation(0, animationName, isLoop);
+            spine.setAnimation(!!trackIndex ? trackIndex : 0, animationName, isLoop);
 
             cc.tween(spine)
                 .delay(duration)

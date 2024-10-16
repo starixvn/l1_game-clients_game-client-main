@@ -1,0 +1,101 @@
+{
+"skeleton": { "hash": "id59v6hBq9b4KTDwzu9/mWErS4g", "spine": "3.8.99" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "betoption-up-0", "parent": "root", "scaleX": -1 }
+],
+"slots": [
+	{ "name": "betoption-up-0", "bone": "betoption-up-0" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"betoption-up-0": {
+				"betoption-up-00": { "width": 270, "height": 276 },
+				"betoption-up-01": { "width": 270, "height": 276 },
+				"betoption-up-02": { "width": 270, "height": 276 },
+				"betoption-up-03": { "width": 270, "height": 276 },
+				"betoption-up-04": { "width": 270, "height": 276 },
+				"betoption-up-05": { "width": 270, "height": 276 },
+				"betoption-up-06": { "width": 270, "height": 276 },
+				"betoption-up-07": { "width": 270, "height": 276 },
+				"betoption-up-08": { "width": 270, "height": 276 },
+				"betoption-up-09": { "width": 270, "height": 276 },
+				"betoption-up-10": { "width": 270, "height": 276 },
+				"betoption-up-11": { "width": 270, "height": 276 },
+				"betoption-up-12": { "width": 270, "height": 276 },
+				"betoption-up-13": { "width": 270, "height": 276 },
+				"betoption-up-14": { "width": 270, "height": 276 },
+				"betoption-up-15": { "width": 270, "height": 276 },
+				"betoption-up-16": { "width": 270, "height": 276 },
+				"betoption-up-17": { "width": 270, "height": 276 },
+				"betoption-up-18": { "width": 270, "height": 276 },
+				"betoption-up-19": { "width": 270, "height": 276 },
+				"betoption-up-20": { "width": 270, "height": 276 },
+				"betoption-up-21": { "width": 270, "height": 276 },
+				"betoption-up-22": { "width": 270, "height": 276 },
+				"betoption-up-23": { "width": 270, "height": 276 },
+				"betoption-up-24": { "width": 270, "height": 276 },
+				"betoption-up-25": { "width": 270, "height": 276 },
+				"betoption-up-26": { "width": 270, "height": 276 },
+				"betoption-up-27": { "width": 270, "height": 276 },
+				"betoption-up-28": { "width": 270, "height": 276 },
+				"betoption-up-29": { "width": 270, "height": 276 },
+				"betoption-up-30": { "width": 270, "height": 276 },
+				"betoption-up-31": { "width": 270, "height": 276 },
+				"betoption-up-32": { "width": 270, "height": 276 },
+				"betoption-up-33": { "width": 270, "height": 276 },
+				"betoption-up-34": { "width": 270, "height": 276 },
+				"betoption-up-35": { "width": 270, "height": 276 }
+			}
+		}
+	}
+],
+"animations": {
+	"show": {
+		"slots": {
+			"betoption-up-0": {
+				"attachment": [
+					{ "name": "betoption-up-00" },
+					{ "time": 0.0667, "name": "betoption-up-01" },
+					{ "time": 0.1333, "name": "betoption-up-02" },
+					{ "time": 0.2, "name": "betoption-up-03" },
+					{ "time": 0.2667, "name": "betoption-up-04" },
+					{ "time": 0.3333, "name": "betoption-up-05" },
+					{ "time": 0.4, "name": "betoption-up-06" },
+					{ "time": 0.4667, "name": "betoption-up-07" },
+					{ "time": 0.5333, "name": "betoption-up-08" },
+					{ "time": 0.6, "name": "betoption-up-09" },
+					{ "time": 0.6667, "name": "betoption-up-10" },
+					{ "time": 0.7333, "name": "betoption-up-11" },
+					{ "time": 0.8, "name": "betoption-up-12" },
+					{ "time": 0.8667, "name": "betoption-up-13" },
+					{ "time": 0.9333, "name": "betoption-up-14" },
+					{ "time": 1, "name": "betoption-up-15" },
+					{ "time": 1.0667, "name": "betoption-up-16" },
+					{ "time": 1.1333, "name": "betoption-up-17" },
+					{ "time": 1.2, "name": "betoption-up-18" },
+					{ "time": 1.2667, "name": "betoption-up-19" },
+					{ "time": 1.3333, "name": "betoption-up-20" },
+					{ "time": 1.4, "name": "betoption-up-21" },
+					{ "time": 1.4667, "name": "betoption-up-22" },
+					{ "time": 1.5333, "name": "betoption-up-23" },
+					{ "time": 1.6, "name": "betoption-up-24" },
+					{ "time": 1.6667, "name": "betoption-up-25" },
+					{ "time": 1.7333, "name": "betoption-up-26" },
+					{ "time": 1.8, "name": "betoption-up-27" },
+					{ "time": 1.8667, "name": "betoption-up-28" },
+					{ "time": 1.9333, "name": "betoption-up-29" },
+					{ "time": 2, "name": "betoption-up-30" },
+					{ "time": 2.0667, "name": "betoption-up-31" },
+					{ "time": 2.1333, "name": "betoption-up-32" },
+					{ "time": 2.2, "name": "betoption-up-33" },
+					{ "time": 2.2667, "name": "betoption-up-34" },
+					{ "time": 2.3333, "name": "betoption-up-35" }
+				]
+			}
+		}
+	}
+}
+}

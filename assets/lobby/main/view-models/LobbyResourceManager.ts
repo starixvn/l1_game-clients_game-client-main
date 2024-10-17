@@ -91,8 +91,6 @@ export default class LobbyResourceManager {
         const resourcePath = `${type}-icons/${gameId}/en.png?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
-
-        // Cache the sprite frame
         cache[gameId] = { spriteFrame };
 
         if (spriteFrame) {

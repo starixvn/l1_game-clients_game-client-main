@@ -15,6 +15,17 @@ export default class LocalizedLoadSprite extends cc.Component {
     @property()
     nameImage = "";
 
+    @property
+    enableCustomizePath = false;
+
+    @property({
+        type: cc.String,
+        visible: function (this: LocalizedLoadSprite) {
+            return this.enableCustomizePath;
+        }
+    })
+    customizePath = "";
+
     protected sprite: cc.Sprite;
 
     onLoad() {
@@ -26,18 +37,24 @@ export default class LocalizedLoadSprite extends cc.Component {
         if (sprite) {
             this.sprite = sprite;
             this.updateSprite({ language: window.i18n.curLang, name: this.nameImage, gameId: this.gameId });
-            return;
         }
+
+        null;
     }
 
     public async getSpriteFrameByLang(lang: string, name: string, gameId: number) {
         const gameConfiguration = getGameConfiguration(gameId);
-        const loadFromResources = () =>
-            new Promise<cc.SpriteFrame>((resolve) => {
-                cc.resources.load<cc.SpriteFrame>(`${pathRoot}/${lang}/${gameId}/${name}`, cc.SpriteFrame, (err, spriteFrame) => {
+        const loadFromResources = () => {
+            const path = this.enableCustomizePath
+                ? `${this.customizePath}/${lang}${this.gameId > 0 ? `/${gameId}` : ""}/${name}`
+                : `${pathRoot}/${lang}/${gameId}/${name}`;
+
+            return new Promise<cc.SpriteFrame>((resolve) => {
+                cc.resources.load<cc.SpriteFrame>(path, cc.SpriteFrame, (err, spriteFrame) => {
                     resolve(spriteFrame);
                 });
             });
+        };
 
         if (gameConfiguration && !gameConfiguration.remoteBundle) {
             return loadFromResources();

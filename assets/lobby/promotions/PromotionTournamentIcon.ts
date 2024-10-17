@@ -1,9 +1,10 @@
+import { SystemType } from "../../ISystem";
 import GameUtils from "../../common/GameUtils";
 import AudioManager from "../../common/audio/AudioManager";
 import { uiManager } from "../../managers/GameUIManager";
+import LobbyResourceManager from "../main/view-models/LobbyResourceManager";
 import { PromotionTournamentEvents, promotionTournamentHandler } from "./PromotionTournamentHandler";
 import configs = require("../../configs/Configs");
-import { SystemType } from "../../ISystem";
 
 const { ccclass } = cc._decorator;
 
@@ -41,20 +42,26 @@ export default class PromotionTournamentIcon extends cc.Component {
         try {
             const key = "promotionTournamentIcon";
             if (!uiManager.prefabCache.miniPanelIcons[key]) {
-                this.iconPrb = await GameUtils.asyncExecute<cc.Prefab>(
-                    this.node,
-                    GameUtils.loadResource("promotion-tournament/views/icon")
-                );
+                this.iconPrb = await this.loadIcon();
                 uiManager.prefabCache.miniPanelIcons[key] = this.iconPrb;
             } else {
                 this.iconPrb = uiManager.prefabCache.miniPanelIcons[key];
             }
             this.icon = cc.instantiate(this.iconPrb);
             this.icon.on("click", this.onClick, this);
-            this.node?.addChild(this.icon);          
+            this.node?.addChild(this.icon);
         } catch (e) {
             console.warn(e);
         }
+    }
+
+    loadIcon() {
+        return GameUtils.asyncExecute<cc.Prefab>(
+            this.node,
+            LobbyResourceManager?.getInstance()?.isUseTheme()
+                ? LobbyResourceManager?.getInstance()?.loadPrefabResource("promotion-tournament/icon")
+                : GameUtils.loadResource("promotion-tournament/views/icon")
+        );
     }
 
     onClick() {

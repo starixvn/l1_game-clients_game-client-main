@@ -1,669 +1,629 @@
 {
-    "skeleton": {
-        "hash": "UnRHmV5pDBAd1AtkXaRAaUfycuI=",
-        "spine": "3.8.75",
-        "x": -131,
-        "y": -144,
-        "width": 263,
-        "height": 290,
-        "images": "./images/",
-        "audio": ""
-    },
-    "bones": [
-        { "name": "root" },
-        { "name": "dice-1-s1-e1", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s1-e2", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s1-e3", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s1-e4", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s2-e1", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s2-e2", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s2-e3", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s2-e4", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s3-e1", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s3-e2", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s3-e3", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s3-e4", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s4-e1", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s4-e2", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s4-e3", "parent": "root", "x": -49, "y": -47 },
-        { "name": "dice-1-s4-e4", "parent": "root", "x": -49, "y": -47 }
-    ],
-    "slots": [
-        { "name": "1", "bone": "dice-1-s1-e1", "attachment": "empty" },
-        { "name": "2", "bone": "dice-1-s1-e2" },
-        { "name": "3", "bone": "dice-1-s1-e3" },
-        { "name": "4", "bone": "dice-1-s1-e4" },
-        { "name": "5", "bone": "dice-1-s2-e1" },
-        { "name": "6", "bone": "dice-1-s2-e2" },
-        { "name": "7", "bone": "dice-1-s2-e3" },
-        { "name": "8", "bone": "dice-1-s2-e4" },
-        { "name": "9", "bone": "dice-1-s3-e1" },
-        { "name": "10", "bone": "dice-1-s3-e2" },
-        { "name": "11", "bone": "dice-1-s3-e3" },
-        { "name": "12", "bone": "dice-1-s3-e4" },
-        { "name": "13", "bone": "dice-1-s4-e1" },
-        { "name": "14", "bone": "dice-1-s4-e2" },
-        { "name": "15", "bone": "dice-1-s4-e3" },
-        { "name": "16", "bone": "dice-1-s4-e4" },
-        { "name": "path-s1e1", "bone": "root", "attachment": "path-s1e1" },
-        { "name": "path-s2e1", "bone": "root", "attachment": "path-s2e1" },
-        { "name": "path-s3e1", "bone": "root", "attachment": "path-s3e1" },
-        { "name": "path-s4e1", "bone": "root", "attachment": "path-s4e1" },
-        { "name": "path-s3e2", "bone": "root", "attachment": "path-s3e2" },
-        { "name": "path-s4e2", "bone": "root", "attachment": "path-s4e2" },
-        { "name": "path-s3e3", "bone": "root", "attachment": "path-s3e3" },
-        { "name": "path-s3e4", "bone": "root", "attachment": "path-s3e4" },
-        { "name": "path-s4e4", "bone": "root", "attachment": "path-s4e4" },
-        { "name": "path-s2e2", "bone": "root", "attachment": "path-s2e2" },
-        { "name": "path-s2e3", "bone": "root", "attachment": "path-s2e3" },
-        { "name": "path-s4e3", "bone": "root", "attachment": "path-s4e3" },
-        { "name": "path-s2e4", "bone": "root", "attachment": "path-s2e4" },
-        { "name": "path-s1e2", "bone": "root", "attachment": "path-s1e1" },
-        { "name": "path-s1e3", "bone": "root", "attachment": "path-s1e1" },
-        { "name": "path-s1e4", "bone": "root", "attachment": "path-s1e1" }
-    ],
-    "path": [
-        {
-            "name": "path-s1e1",
-            "bones": ["dice-1-s1-e1"],
-            "target": "path-s1e1",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s1e2",
-            "order": 1,
-            "bones": ["dice-1-s1-e2"],
-            "target": "path-s1e2",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s1e3",
-            "order": 2,
-            "bones": ["dice-1-s1-e3"],
-            "target": "path-s1e3",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s1e4",
-            "order": 3,
-            "bones": ["dice-1-s1-e4"],
-            "target": "path-s1e4",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s2e1",
-            "order": 4,
-            "bones": ["dice-1-s2-e1"],
-            "target": "path-s2e1",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s2e2",
-            "order": 5,
-            "bones": ["dice-1-s2-e2"],
-            "target": "path-s2e2",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s2e3",
-            "order": 6,
-            "bones": ["dice-1-s2-e3"],
-            "target": "path-s2e3",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s2e4",
-            "order": 7,
-            "bones": ["dice-1-s2-e4"],
-            "target": "path-s2e4",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s3e1",
-            "order": 8,
-            "bones": ["dice-1-s3-e1"],
-            "target": "path-s3e1",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s3e2",
-            "order": 9,
-            "bones": ["dice-1-s3-e2"],
-            "target": "path-s3e2",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s3e3",
-            "order": 10,
-            "bones": ["dice-1-s3-e3"],
-            "target": "path-s3e3",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s3e4",
-            "order": 11,
-            "bones": ["dice-1-s3-e4"],
-            "target": "path-s3e4",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s4e1",
-            "order": 12,
-            "bones": ["dice-1-s4-e1"],
-            "target": "path-s4e1",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s4e2",
-            "order": 13,
-            "bones": ["dice-1-s4-e2"],
-            "target": "path-s4e2",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s4e3",
-            "order": 14,
-            "bones": ["dice-1-s4-e3"],
-            "target": "path-s4e3",
-            "rotateMix": 0
-        },
-        {
-            "name": "path-s4e4",
-            "order": 15,
-            "bones": ["dice-1-s4-e4"],
-            "target": "path-s4e4",
-            "rotateMix": 0
-        }
-    ],
-    "skins": [
-        {
-            "name": "default",
-            "attachments": {
-                "path-s1e4": {
-                    "path-s1e1": {
-                        "type": "path",
-                        "lengths": [107.03, 216.42, 329.8, 459.43, 566.32, 705.16, 845.27, 985.88],
-                        "vertexCount": 24,
-                        "vertices": [
-                            90.36, -55.97, 74.97, -29.51, 68.57, -18.49, -18.71, 27.88, -11.08, 33.35, 3.08, 43.48, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -80.85, -16.23, -47.88,
-                            -32.82, -14.9, -49.42
-                        ]
-                    }
-                },
-                "path-s1e2": {
-                    "path-s1e1": {
-                        "type": "path",
-                        "lengths": [102.66, 212.04, 325.43, 455.06, 561.95, 700.79, 840.9, 924.13],
-                        "vertexCount": 24,
-                        "vertices": [
-                            5.88, -94.85, -9.51, -68.39, -15.91, -57.37, -18.71, 27.88, -11.08, 33.35, 3.08, 43.48, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -80.85, -16.23, -47.88,
-                            -32.82, -14.9, -49.42
-                        ]
-                    }
-                },
-                "path-s3e3": {
-                    "path-s3e3": {
-                        "type": "path",
-                        "lengths": [164.19, 325.59, 438.98, 568.61, 675.5, 814.34, 973.2, 1010.69],
-                        "vertexCount": 24,
-                        "vertices": [
-                            62.77, -89.02, 47.39, -62.56, 40.98, -51.54, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 14.5, -45.97, 47.48,
-                            -62.56, 80.45, -79.15
-                        ]
-                    }
-                },
-                "path-s2e2": {
-                    "path-s2e2": {
-                        "type": "path",
-                        "lengths": [144.41, 305.81, 419.2, 548.83, 655.72, 794.56, 956.62, 994.15],
-                        "vertexCount": 24,
-                        "vertices": [
-                            5.93, -95.31, -9.45, -68.84, -15.86, -57.83, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -42.52, -52.21, -9.54,
-                            -68.8, 23.43, -85.4
-                        ]
-                    }
-                },
-                "path-s4e3": {
-                    "path-s4e3": {
-                        "type": "path",
-                        "lengths": [159.94, 321.35, 434.74, 564.37, 671.26, 810.09, 968.66, 1016.59],
-                        "vertexCount": 24,
-                        "vertices": [
-                            90.4, -56.57, 75.01, -30.11, 68.61, -19.09, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 14.52, -45.63, 47.5,
-                            -62.22, 80.47, -78.82
-                        ]
-                    }
-                },
-                "path-s4e2": {
-                    "path-s4e2": {
-                        "type": "path",
-                        "lengths": [160.01, 321.41, 434.8, 564.43, 671.32, 810.15, 972.16, 1074.67],
-                        "vertexCount": 24,
-                        "vertices": [
-                            90.19, -56.92, 74.81, -30.46, 68.4, -19.44, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -42.56, -52.13, -9.58,
-                            -68.73, 23.39, -85.32
-                        ]
-                    }
-                },
-                "path-s1e3": {
-                    "path-s1e1": {
-                        "type": "path",
-                        "lengths": [112.58, 221.97, 335.35, 464.98, 571.87, 710.71, 850.82, 974.8],
-                        "vertexCount": 24,
-                        "vertices": [
-                            62.84, -88.61, 47.45, -62.15, 41.05, -51.13, -18.71, 27.88, -11.08, 33.35, 3.08, 43.48, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -80.85, -16.23, -47.88,
-                            -32.82, -14.9, -49.42
-                        ]
-                    }
-                },
-                "path-s2e3": {
-                    "path-s2e3": {
-                        "type": "path",
-                        "lengths": [144.41, 305.81, 419.2, 548.83, 655.72, 794.56, 953.12, 1021.17],
-                        "vertexCount": 24,
-                        "vertices": [
-                            5.93, -95.31, -9.45, -68.84, -15.86, -57.83, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 14.52, -45.63, 47.5,
-                            -62.22, 80.47, -78.82
-                        ]
-                    }
-                },
-                "1": {
-                    "empty": { "width": 96, "height": 96 }
-                },
-                "path-s1e1": {
-                    "path-s1e1": {
-                        "type": "path",
-                        "lengths": [102.94, 264.35, 377.73, 507.36, 614.25, 753.09, 893.2, 930.7],
-                        "vertexCount": 24,
-                        "vertices": [
-                            -32.6, -59.29, -47.99, -32.83, -54.39, -21.81, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -80.85, -16.23, -47.88,
-                            -32.82, -14.9, -49.42
-                        ]
-                    }
-                },
-                "path-s2e1": {
-                    "path-s2e1": {
-                        "type": "path",
-                        "lengths": [103.04, 264.45, 377.84, 507.46, 614.35, 753.19, 915.25, 963.46],
-                        "vertexCount": 24,
-                        "vertices": [
-                            -32.52, -59.4, -47.9, -32.93, -54.31, -21.92, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -42.52, -52.21, -9.54,
-                            -68.8, 23.43, -85.4
-                        ]
-                    }
-                },
-                "path-s3e1": {
-                    "path-s3e1": {
-                        "type": "path",
-                        "lengths": [103.04, 264.45, 377.84, 507.46, 614.35, 753.19, 912.05, 1000.76],
-                        "vertexCount": 24,
-                        "vertices": [
-                            -32.52, -59.4, -47.9, -32.93, -54.31, -21.92, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 14.5, -45.97, 47.48,
-                            -62.56, 80.45, -79.15
-                        ]
-                    }
-                },
-                "path-s4e1": {
-                    "path-s4e1": {
-                        "type": "path",
-                        "lengths": [103.04, 264.45, 377.84, 507.46, 614.35, 753.19, 893.09, 1010.87],
-                        "vertexCount": 24,
-                        "vertices": [
-                            -32.52, -59.4, -47.9, -32.93, -54.31, -21.92, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 41.67, -13.96, 74.65,
-                            -30.55, 107.62, -47.14
-                        ]
-                    }
-                },
-                "path-s3e2": {
-                    "path-s3e2": {
-                        "type": "path",
-                        "lengths": [164.03, 325.44, 438.82, 568.45, 675.34, 814.18, 976.19, 1051.65],
-                        "vertexCount": 24,
-                        "vertices": [
-                            62.83, -88.78, 47.45, -62.32, 41.04, -51.3, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, -42.56, -52.13, -9.58,
-                            -68.73, 23.39, -85.32
-                        ]
-                    }
-                },
-                "path-s3e4": {
-                    "path-s3e4": {
-                        "type": "path",
-                        "lengths": [163.97, 325.38, 438.77, 568.4, 675.29, 814.12, 954.25, 1023.66],
-                        "vertexCount": 24,
-                        "vertices": [
-                            62.8, -88.74, 47.42, -62.27, 41.01, -51.26, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 41.9, -14.13, 74.88,
-                            -30.72, 107.85, -47.31
-                        ]
-                    }
-                },
-                "path-s4e4": {
-                    "path-s4e4": {
-                        "type": "path",
-                        "lengths": [159.62, 321.03, 434.42, 564.04, 670.93, 809.77, 949.9, 986.84],
-                        "vertexCount": 24,
-                        "vertices": [
-                            90.05, -56.49, 74.66, -30.03, 68.26, -19.01, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 41.9, -14.13, 74.88,
-                            -30.72, 107.85, -47.31
-                        ]
-                    }
-                },
-                "path-s2e4": {
-                    "path-s2e4": {
-                        "type": "path",
-                        "lengths": [144.41, 305.81, 419.2, 548.83, 655.72, 794.56, 934.16, 1038.62],
-                        "vertexCount": 24,
-                        "vertices": [
-                            5.93, -95.31, -9.45, -68.84, -15.86, -57.83, -57.62, 63.73, -49.99, 69.19, -35.83, 79.32, 71, -21.34, 74.89,
-                            -30.52, 76.02, -33.19, 96.12, 68.4, 62.3, 76.45, 46.19, 80.28, -35.27, 33.92, -34.98, -0.51, -34.87, -13.15,
-                            60.75, -40.44, 64.24, -36.32, 84.69, -12.18, 45.04, 75.81, 7.61, 76.93, -29.82, 78.05, 41.84, -13.5, 74.81,
-                            -30.09, 107.79, -46.69
-                        ]
-                    }
-                }
-            }
-        }
-    ],
-    "animations": {
-        "dice-1-s1-e1": {
-            "path": {
-                "path-s1e1": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" }
-                    ]
-                }
-            }
-        },
-        "dice-1-s1-e2": {
-            "path": {
-                "path-s1e2": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s1-e3": {
-            "path": {
-                "path-s1e3": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s1-e4": {
-            "path": {
-                "path-s1e4": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s2-e1": {
-            "path": {
-                "path-s2e1": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s2-e2": {
-            "path": {
-                "path-s2e2": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s2-e3": {
-            "path": {
-                "path-s2e3": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s2-e4": {
-            "path": {
-                "path-s2e4": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s3-e1": {
-            "path": {
-                "path-s3e1": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s3-e2": {
-            "path": {
-                "path-s3e2": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s3-e3": {
-            "path": {
-                "path-s3e3": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s3-e4": {
-            "path": {
-                "path-s3e4": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s4-e1": {
-            "path": {
-                "path-s4e1": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s4-e2": {
-            "path": {
-                "path-s4e2": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s4-e3": {
-            "path": {
-                "path-s4e3": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        },
-        "dice-1-s4-e4": {
-            "path": {
-                "path-s4e4": {
-                    "position": [
-                        { "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.2, "position": 0.125, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.3333, "position": 0.3, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.5, "position": 0.4077, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.6667, "position": 0.5722, "curve": 0.25, "c3": 0.75 },
-                        { "time": 0.8333, "position": 0.6863, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.0667, "position": 0.8431, "curve": 0.25, "c3": 0.75 },
-                        { "time": 1.2667, "position": 1, "curve": "stepped" },
-                        { "time": 2, "position": 1 }
-                    ]
-                }
-            }
-        }
-    }
+"skeleton": {
+	"hash": "7J39oauJjlxPMa4Vh0yqg/FOTC0=",
+	"spine": "3.8.75",
+	"x": -83.67,
+	"y": -67.58,
+	"width": 168.66,
+	"height": 172.66,
+	"images": "./images/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "control", "parent": "root", "y": -36.58 },
+	{ "name": "dice-1-s1-e1", "parent": "control", "x": -35.44, "y": 38.4 },
+	{ "name": "dice-1-s1-e2", "parent": "control", "x": -35.55, "y": 38.35 },
+	{ "name": "dice-1-s1-e3", "parent": "control", "x": -35.67, "y": 38.16 },
+	{ "name": "dice-1-s1-e4", "parent": "control", "x": -35.64, "y": 38.26 },
+	{ "name": "dice-1-s2-e1", "parent": "control", "x": -14.96, "y": 28.87 },
+	{ "name": "dice-1-s2-e2", "parent": "control", "x": -14.84, "y": 28.97 },
+	{ "name": "dice-1-s2-e3", "parent": "control", "x": -14.86, "y": 29.06 },
+	{ "name": "dice-1-s2-e4", "parent": "control", "x": -14.71, "y": 28.81 },
+	{ "name": "dice-1-s3-e1", "parent": "control", "x": 17.73, "y": 28.6 },
+	{ "name": "dice-1-s3-e2", "parent": "control", "x": 17.72, "y": 28.32 },
+	{ "name": "dice-1-s3-e3", "parent": "control", "x": 17.13, "y": 28.71 },
+	{ "name": "dice-1-s3-e4", "parent": "control", "x": 17.25, "y": 28.29 },
+	{ "name": "dice-1-s4-e1", "parent": "control", "x": 36.71, "y": 37.64 },
+	{ "name": "dice-1-s4-e2", "parent": "control", "x": 36.93, "y": 37.94 },
+	{ "name": "dice-1-s4-e3", "parent": "control", "x": 36.69, "y": 37.96 },
+	{ "name": "dice-1-s4-e4", "parent": "control", "x": 36.99, "y": 37.63 },
+	{ "name": "box-size", "parent": "root", "y": -36.58 }
+],
+"slots": [
+	{ "name": "box-back", "bone": "box-size" },
+	{ "name": "box-inside", "bone": "box-size" },
+	{ "name": "1", "bone": "dice-1-s1-e1" },
+	{ "name": "2", "bone": "dice-1-s1-e2" },
+	{ "name": "3", "bone": "dice-1-s1-e3" },
+	{ "name": "4", "bone": "dice-1-s1-e4" },
+	{ "name": "5", "bone": "dice-1-s2-e1" },
+	{ "name": "6", "bone": "dice-1-s2-e2" },
+	{ "name": "7", "bone": "dice-1-s2-e3" },
+	{ "name": "8", "bone": "dice-1-s2-e4" },
+	{ "name": "9", "bone": "dice-1-s3-e1" },
+	{ "name": "10", "bone": "dice-1-s3-e2" },
+	{ "name": "11", "bone": "dice-1-s3-e3" },
+	{ "name": "12", "bone": "dice-1-s3-e4" },
+	{ "name": "13", "bone": "dice-1-s4-e1" },
+	{ "name": "14", "bone": "dice-1-s4-e2" },
+	{ "name": "15", "bone": "dice-1-s4-e3" },
+	{ "name": "16", "bone": "dice-1-s4-e4" },
+	{ "name": "path-s1e1", "bone": "control", "attachment": "path-s1-e1" },
+	{ "name": "path-s2e1", "bone": "control", "attachment": "path-s2-e1" },
+	{ "name": "path-s3e1", "bone": "control", "attachment": "path-s3-e1" },
+	{ "name": "path-s4e1", "bone": "control", "attachment": "path-s4-e1" },
+	{ "name": "path-s3e2", "bone": "control", "attachment": "path-s3-e2" },
+	{ "name": "path-s4e2", "bone": "control", "attachment": "path-s4-e2" },
+	{ "name": "path-s3e3", "bone": "control", "attachment": "path-s3-e3" },
+	{ "name": "path-s3e4", "bone": "control", "attachment": "path-s3-e4" },
+	{ "name": "path-s4e4", "bone": "control", "attachment": "path-s4e4" },
+	{ "name": "path-s2e2", "bone": "control", "attachment": "path-s2-e2" },
+	{ "name": "path-s2e3", "bone": "control", "attachment": "path-s2-e3" },
+	{ "name": "path-s4e3", "bone": "control", "attachment": "path-s4-e3" },
+	{ "name": "path-s2e4", "bone": "control", "attachment": "path-s2-e4" },
+	{ "name": "path-s1e3", "bone": "control", "attachment": "path-s1-e3" },
+	{ "name": "path-s1e4", "bone": "control", "attachment": "path-s1-e4" },
+	{ "name": "path-s1e2", "bone": "control", "attachment": "path-s1e2" },
+	{ "name": "box-front", "bone": "box-size" },
+	{ "name": "box-cover", "bone": "box-size" },
+	{ "name": "mark", "bone": "control" }
+],
+"path": [
+	{
+		"name": "path-s1e1",
+		"bones": [ "dice-1-s1-e1" ],
+		"target": "path-s1e1",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s1e2",
+		"order": 1,
+		"bones": [ "dice-1-s1-e2" ],
+		"target": "path-s1e2",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s1e3",
+		"order": 2,
+		"bones": [ "dice-1-s1-e3" ],
+		"target": "path-s1e3",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s1e4",
+		"order": 3,
+		"bones": [ "dice-1-s1-e4" ],
+		"target": "path-s1e4",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s2e1",
+		"order": 4,
+		"bones": [ "dice-1-s2-e1" ],
+		"target": "path-s2e1",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s2e2",
+		"order": 5,
+		"bones": [ "dice-1-s2-e2" ],
+		"target": "path-s2e2",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s2e3",
+		"order": 6,
+		"bones": [ "dice-1-s2-e3" ],
+		"target": "path-s2e3",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s2e4",
+		"order": 7,
+		"bones": [ "dice-1-s2-e4" ],
+		"target": "path-s2e4",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s3e1",
+		"order": 8,
+		"bones": [ "dice-1-s3-e1" ],
+		"target": "path-s3e1",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s3e2",
+		"order": 9,
+		"bones": [ "dice-1-s3-e2" ],
+		"target": "path-s3e2",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s3e3",
+		"order": 10,
+		"bones": [ "dice-1-s3-e3" ],
+		"target": "path-s3e3",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s3e4",
+		"order": 11,
+		"bones": [ "dice-1-s3-e4" ],
+		"target": "path-s3e4",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s4e1",
+		"order": 12,
+		"bones": [ "dice-1-s4-e1" ],
+		"target": "path-s4e1",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s4e2",
+		"order": 13,
+		"bones": [ "dice-1-s4-e2" ],
+		"target": "path-s4e2",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s4e3",
+		"order": 14,
+		"bones": [ "dice-1-s4-e3" ],
+		"target": "path-s4e3",
+		"rotateMix": 0
+	},
+	{
+		"name": "path-s4e4",
+		"order": 15,
+		"bones": [ "dice-1-s4-e4" ],
+		"target": "path-s4e4",
+		"rotateMix": 0
+	}
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"path-s1e4": {
+				"path-s1-e4": {
+					"type": "path",
+					"lengths": [ 83.34, 179.88, 277.37, 374.81, 460.15, 543.82, 621.05, 688.24, 744.43, 805.65, 860.98, 916.25, 958.39, 993.35, 1044.06 ],
+					"vertexCount": 45,
+					"vertices": [ -13.9, 33.42, -35.64, 38.26, -48.02, 41.02, -41.98, 127.61, -22.98, 111.43, -3.98, 95.24, -41.52, 20.91, -13.93, 19.77, 13.65, 18.63, -26.39, 111.11, 1.34, 110.42, 29.07, 109.73, -5.08, 30.42, 18.23, 18.97, 41.53, 7.51, 4.49, 89.01, 25.06, 98.76, 45.63, 108.52, 58.53, 34.85, 37.72, 28.21, 16.92, 21.57, 17.41, 87.89, -3.28, 89.72, -23.97, 91.55, -20.29, 38.66, -37.25, 34.84, -42.76, 33.61, -41.22, 90.33, -25.59, 84.89, -9.97, 79.45, -30.6, 32.01, -14.74, 27.01, 1.12, 22.01, -15.22, 76.94, 0.54, 76.65, 16.3, 76.36, 5.38, 32.47, 17.82, 26.4, 30.27, 20.34, 15.7, 59.56, 24.46, 64.99, 33.21, 70.43, 44.61, 41.62, 36.52, 38.01, 28.42, 34.39 ]
+				}
+			},
+			"path-s1e2": {
+				"path-s1e2": {
+					"type": "path",
+					"lengths": [ 100.68, 209.38, 311.32, 410.72, 506.58, 593.82, 675.83, 761.32, 838.85, 904.8, 968.1, 1018.3, 1061.8, 1107.64, 1138.48, 1169.42, 1175.65 ],
+					"vertexCount": 51,
+					"vertices": [ -11.4, 25.91, -35.55, 38.35, -59.69, 50.78, 10.13, 147.32, 5.9, 118.82, 1.67, 90.32, 11.87, 20.3, -16.19, 17.21, -44.25, 14.13, -53.92, 101.55, -26.64, 103.24, 0.64, 104.93, -7.37, 21.51, 19.28, 19.41, 45.92, 17.32, 29.49, 96.67, 4.96, 100.75, -19.57, 104.83, -13.16, 25.52, -36.67, 28.71, -50.61, 30.61, -24.88, 95.42, -1.92, 95.14, 21.04, 94.86, 47.7, 48.19, 37.72, 27.81, 27.74, 7.43, 13.06, 83.71, -6.26, 86.27, -25.58, 88.84, -50.92, 45.88, -35.35, 37.52, -19.79, 29.16, -4.97, 77.1, 11.32, 76.83, 27.61, 76.56, 31.79, 48.95, 36.3, 36.33, 40.8, 23.72, 24.82, 77.03, 13.35, 71.16, 1.88, 65.3, 23.65, 36.92, 18.61, 27.29, 13.58, 17.66, 10.89, 50.14, 2.55, 50.51, -5.79, 50.88, -20.65, 33.74, -14.12, 28.74, -7.59, 23.74 ]
+				}
+			},
+			"path-s3e3": {
+				"path-s3-e3": {
+					"type": "path",
+					"lengths": [ 105.15, 212.62, 307.75, 399.26, 489.65, 582.55, 666.06, 749.25, 825.3, 884.77, 940.09, 995.35, 1048.81, 1100.83, 1147.5, 1193.32, 1219.75 ],
+					"vertexCount": 51,
+					"vertices": [ 38.26, 44.5, 17.13, 28.71, -3.99, 12.93, -63.68, 105.77, -35.22, 103.54, -6.76, 101.32, 9.71, 29.57, 37.3, 27.14, 64.88, 24.7, 24.24, 99.5, 0, 100.43, -24.24, 101.37, -60.96, 35.71, -36.77, 29.99, -12.59, 24.26, -4.55, 106.3, 18.63, 96.02, 41.81, 85.74, 6.73, 25.77, -15.77, 20.67, -38.27, 15.58, -26.83, 93.09, -4.67, 90.74, 17.49, 88.39, 25, 38.81, 19.34, 16.95, 13.68, -4.91, 12.01, 78.43, -6.08, 85.31, -24.16, 92.19, -23.46, 47.01, -36.47, 38.18, -49.49, 29.36, -26.45, 87.38, -12.74, 80.79, 0.97, 74.19, -30.35, 33.62, -15.79, 28.24, -1.24, 22.86, -6.41, 70.94, 8.05, 73.1, 22.51, 75.26, 43.18, 47.84, 36.41, 36.04, 29.65, 24.24, 15.28, 70.01, 3.64, 65.42, -7.99, 60.83, 6.39, 24.41, 17.45, 28.55, 28.51, 32.69 ]
+				}
+			},
+			"path-s2e2": {
+				"path-s2-e2": {
+					"type": "path",
+					"lengths": [ 99.58, 207.49, 316.17, 431.68, 530.68, 634.63, 725.79, 830.19, 910.45, 971.11, 1026.99, 1080.85, 1131.05, 1165.99, 1195.49, 1226.33, 1254.85 ],
+					"vertexCount": 51,
+					"vertices": [ 12.9, 24.61, -14.84, 28.97, -42.59, 33.32, -2.49, 126, -0.33, 121.46, 3.85, 112.69, -43.99, 25.9, -13.86, 19.62, 16.27, 13.34, -24.89, 119.53, 5.57, 120.23, 36.04, 120.94, 46.43, 23.57, 18.12, 20.36, -2.84, 17.98, -48.53, 90.08, -39.2, 95.88, -30.68, 101.17, 12.1, 22.6, 37.55, 28.72, 63.01, 34.84, 58.18, 105.14, 31.4, 105.23, 4.62, 105.32, -20.63, 50.96, -36, 28.97, -51.37, 6.98, -2.08, 82.73, 17.14, 84.81, 36.35, 86.89, 50.24, 44.77, 36.57, 36.84, 22.9, 28.91, 12.53, 73, -2.76, 73.27, -18.05, 73.53, -44.64, 49.59, -35.94, 38.09, -27.25, 26.59, -9.03, 66.87, 3.75, 64.66, 16.53, 62.45, 14.74, 33.22, 12.18, 33.71, 9.06, 34.31, 3.59, 55.78, -6.1, 55.81, -15.78, 55.84, -17.13, 33.12, -14.5, 28.86, -10.05, 21.65 ]
+				}
+			},
+			"path-s4e3": {
+				"path-s4-e3": {
+					"type": "path",
+					"lengths": [ 92.05, 195.16, 292.37, 386.35, 469.14, 546.22, 612.94, 683.02, 743.6, 797.4, 848.38, 898.61, 931.64, 956.6, 1003.38 ],
+					"vertexCount": 45,
+					"vertices": [ 60.5, 48.23, 36.69, 37.96, 12.89, 27.7, 25.84, 129.93, 2.48, 117.32, -20.89, 104.7, 44.65, 23.55, 18.24, 20.26, 3.96, 18.49, 15.89, 109.7, -9.35, 110.4, -34.6, 111.1, 8.86, 19.84, -14.2, 21.17, -31.01, 22.15, -7.98, 92.49, -28.1, 100.21, -48.23, 107.93, -39.09, 41.34, -35.55, 29.36, -30.86, 13.5, -31.01, 90.67, -12.18, 89.3, 6.65, 87.94, 2.35, 33.76, -14.46, 27.84, -31.28, 21.92, -16.09, 76.64, -30.21, 82.95, -44.34, 89.27, -49, 43.47, -36.05, 37.49, -23.11, 31.51, -11.84, 68.1, 2.84, 67.69, 17.52, 67.28, 34.06, 46.05, 39.2, 35.38, 44.34, 24.7, 19.29, 51.09, 11.95, 48.74, 4.61, 46.39, 12.01, 26.78, 18.05, 28.61, 24.09, 30.44 ]
+				}
+			},
+			"path-s4e2": {
+				"path-s4-e2": {
+					"type": "path",
+					"lengths": [ 101.29, 216.97, 320.51, 417.23, 506.89, 596.09, 688.13, 784.76, 870.45, 927.55, 978.81, 1038.82, 1091.43, 1136.91, 1175.93, 1207.79, 1284.66 ],
+					"vertexCount": 51,
+					"vertices": [ 55.76, 59.88, 36.93, 37.94, 18.1, 16, -42.65, 130.78, -36.2, 100.69, -29.76, 70.61, 11.17, 14.74, 40.09, 23.21, 63.73, 30.14, 12.91, 102.79, -13.26, 98.31, -39.42, 93.83, -5.96, 22.64, 18.15, 19.62, 42.26, 16.6, 30.42, 95.38, 7.07, 95.76, -16.29, 96.15, -36.5, 28.98, -14.09, 20.96, 8.33, 12.93, 50.74, 78.35, 27.8, 88.34, 4.86, 98.32, -45.15, 53.28, -35.94, 29.57, -28.97, 11.62, 9.18, 80.04, 28.68, 81.48, 48.17, 82.92, 52.72, 39.17, 38.59, 35.09, 24.46, 31.01, 24.68, 72.97, 8.16, 73.44, -8.37, 73.9, -28.37, 51.55, -37.47, 37.25, -46.56, 22.95, -10.52, 68.3, 3.96, 65.83, 18.44, 63.36, 25.43, 37.68, 18.44, 27.72, 11.45, 17.77, 3.65, 54.61, -5.92, 54.98, -15.49, 55.36, -22.17, 31.55, -14.38, 29.01, -6.59, 26.47 ]
+				}
+			},
+			"path-s1e3": {
+				"path-s1-e3": {
+					"type": "path",
+					"lengths": [ 94.19, 197.83, 300.84, 392.82, 476.98, 568.4, 650.92, 734.47, 807.54, 874.8, 948.29, 1003.09, 1050.91, 1097.14, 1129.36, 1159.98, 1194.45 ],
+					"vertexCount": 51,
+					"vertices": [ -16.25, 25.75, -35.67, 38.16, -52.84, 49.14, -22.94, 116.24, 0.38, 115.81, 23.7, 115.38, 57.47, 39.84, 36.68, 28.69, 15.89, 17.54, 4.81, 109.38, -22.5, 108.55, -49.81, 107.72, -47.58, 35.27, -33.54, 26.55, -12.91, 13.73, -24.5, 101.78, -0.65, 98.56, 23.19, 95.34, 39.23, 23.06, 18.25, 19.56, 5.61, 17.45, 4.18, 91.15, -18.61, 90.62, -41.4, 90.09, -35.74, 19.03, -14.45, 18.8, 6.61, 18.57, -9.56, 78.87, 8.42, 84.95, 26.39, 91.03, 55.94, 39.56, 36.96, 36.19, 17.98, 32.82, -2.36, 80.08, -20.31, 79.85, -38.26, 79.62, -47.75, 44.22, -37.13, 35.24, -26.52, 26.26, -23.13, 75.93, -10.48, 71.53, 2.17, 67.14, -20.98, 36.72, -14.83, 27.49, -8.68, 18.27, -5.37, 50.85, 3.13, 51.12, 11.62, 51.39, 24.64, 32.97, 17.87, 28.55, 11.1, 24.12 ]
+				}
+			},
+			"path-s2e3": {
+				"path-s2-e3": {
+					"type": "path",
+					"lengths": [ 69.72, 143.92, 211.15, 237.34, 289.89, 387.1, 484.45, 572.86, 661.92, 734.11, 808.16, 873.78, 929.61, 978.35, 1021.72, 1049.94, 1075.6, 1098.44, 1125.41, 1144.98 ],
+					"vertexCount": 60,
+					"vertices": [ 1.61, 37.69, -14.86, 29.06, -31.33, 20.43, -50.74, 65.41, -43.62, 83.96, -36.5, 102.51, -0.52, 121.45, 18.8, 116.72, 38.12, 111.99, 53.82, 81.11, 47.51, 61.65, 45.51, 55.48, 40.48, 47.23, 33.98, 39.37, 19.97, 22.44, -11.54, 17.47, -13.04, 18.59, -32.53, 33.11, -24.8, 100.07, 0.53, 105.24, 25.86, 110.41, 59.77, 39.7, 36.81, 28.77, 21.63, 21.54, 0.4, 102.19, -21.66, 90.36, -43.72, 78.53, 9.39, 17.4, 18.8, 19.11, 28.63, 20.9, 23.53, 80.5, 3.66, 84.1, -16.21, 87.69, -40.23, 48.03, -36.01, 29.03, -31.79, 10.03, -11, 73.16, 5.75, 74.7, 22.5, 76.25, 43.95, 48.76, 37.59, 35.81, 31.23, 22.86, 11.75, 59.44, -1.56, 59.82, -14.87, 60.21, -28.58, 38.99, -38.44, 38.03, -48.31, 37.07, -32.9, 58.38, -25.75, 57.48, -18.6, 56.58, -21.7, 37.29, -15.03, 35.08, -8.37, 32.87, -4.09, 49.37, 2.73, 48.04, 9.55, 46.71, 23.33, 33.16, 17.54, 28.72, 11.74, 24.28 ]
+				}
+			},
+			"1": {
+				"empty": { "width": 96, "height": 96 }
+			},
+			"path-s1e1": {
+				"path-s1-e1": {
+					"type": "path",
+					"lengths": [ 104.18, 216.86, 327.07, 429.76, 521.83, 622.51, 721.1, 817.86, 892.54, 960.64, 1020.52, 1075.4, 1122.07, 1167.67, 1196.17, 1217.49, 1244.32 ],
+					"vertexCount": 51,
+					"vertices": [ -10.59, 28.27, -35.44, 38.4, -60.29, 48.52, -29.09, 130.37, -1.69, 121.23, 25.71, 112.1, 40.72, 39.66, 19.08, 20.22, -2.56, 0.79, -51.03, 93.02, -25.29, 104, 0.46, 114.99, 12.38, 30.41, 38.43, 28.48, 64.48, 26.56, 34.88, 103.33, 9.87, 101.41, -15.13, 99.48, -57.76, 33.02, -32.13, 23.06, -6.51, 13.09, 4.46, 98.11, 31.11, 93.15, 57.77, 88.19, 7.45, 25.18, -14.36, 19.75, -36.16, 14.31, -27.89, 77.02, -9.44, 83.04, 9, 89.06, 20.48, 42.11, 37.29, 36.6, 54.1, 31.1, 19.81, 85.11, 5.8, 78.05, -8.2, 70.99, 23.12, 40.71, 18.29, 27.03, 13.47, 13.34, 15.57, 68.1, 2.35, 68.27, -10.86, 68.45, -4.94, 33.15, -13.75, 27.45, -22.55, 21.75, -17.44, 48.7, -23.41, 51.6, -29.37, 54.5, -39.58, 41.66, -35.51, 38.03, -31.44, 34.39 ]
+				}
+			},
+			"path-s2e1": {
+				"path-s2-e1": {
+					"type": "path",
+					"lengths": [ 102.52, 211.28, 323.63, 436.08, 539.15, 636.26, 718.3, 800.43, 871.35, 947.45, 1001.57, 1052.59, 1076.53, 1097.95, 1131.88 ],
+					"vertexCount": 45,
+					"vertices": [ -31.03, 5.61, -14.96, 28.87, -1.63, 48.15, 56.19, 112.13, 26.43, 113.51, -3.34, 114.9, -6.71, 22.91, -36.07, 29.85, -65.44, 36.79, -30.23, 124.96, -0.96, 119.99, 28.31, 115.02, 40.94, 39.87, 18.21, 20.64, -4.52, 1.4, 19.89, 109.28, -7.44, 114.51, -34.77, 119.74, -43.18, 54.77, -35.79, 30.98, -28.4, 7.19, -26.61, 102.95, -3.5, 101.85, 19.61, 100.75, 26.44, 28.75, 17.51, 28.43, 11.52, 28.23, -25.14, 82.7, -19.52, 87.59, -17.79, 89.1, 14.79, 35.57, 36.12, 38.04, 46.15, 39.2, 10.34, 79.79, 4.58, 79.39, -4.5, 78.77, -10.92, 32.61, -14.62, 32.81, -16.76, 32.93, -20.12, 55.24, -23.26, 54.91, -27.41, 54.48, -31.18, 45.41, -36.12, 38.21, -42.59, 28.79 ]
+				}
+			},
+			"path-s3e1": {
+				"path-s3-e1": {
+					"type": "path",
+					"lengths": [ 92.65, 190.44, 289.88, 373.36, 468.52, 553.25, 637.69, 723.15, 796.98, 856.84, 916.57, 977.84, 1029.46, 1073.22, 1100.65, 1118.17, 1199.88 ],
+					"vertexCount": 51,
+					"vertices": [ 44.12, 31.72, 17.73, 28.6, -8.65, 25.49, 19.16, 115.9, 7.35, 116.54, -1.32, 117.01, -40.14, 31.29, -36.15, 29.84, -32.98, 28.69, 16.53, 109.38, 22.95, 109.64, 31.61, 110, 45.32, 32.02, 36.45, 29.24, 32.67, 28.06, -17.06, 105.12, -22.95, 103.34, -31.58, 100.75, -18.52, 19.11, -15.15, 19.94, -13.26, 20.41, -11.06, 100.35, 1.95, 101.54, 12.56, 102.52, 10.26, 23.53, 19.65, 18.74, 25.5, 15.76, 17.75, 89.1, 25.05, 91.94, 31.7, 94.54, 44.88, 36.87, 39.24, 35.33, 35.5, 34.3, 9.31, 84.19, 4.53, 83.71, -1.63, 83.09, -24.08, 42.83, -15.77, 28.56, -14.14, 25.77, 2.22, 75.39, 7.7, 74.21, 12.02, 73.27, 12.52, 37.33, -1.04, 34.65, -10.26, 32.83, -19.78, 50.58, -23.21, 49.63, -25.35, 49.04, -29.93, 46.16, -36.29, 38.25, -43.86, 28.84 ]
+				}
+			},
+			"path-s4e1": {
+				"path-s4-e1": {
+					"type": "path",
+					"lengths": [ 104.99, 184.99, 284.89, 373.28, 475.44, 575.28, 656.9, 736.5, 743.13, 817.04, 882.03, 955.71, 1014.27, 1063.36, 1111.38, 1160.94, 1193.61, 1291.08 ],
+					"vertexCount": 54,
+					"vertices": [ 59.29, 57.64, 36.71, 37.64, 18.65, 21.65, -13.49, 124.45, -34.87, 108.26, -37.52, 106.25, -49.98, 43.18, -35.82, 30.05, -16.72, 12.36, -5.33, 107.99, 21.3, 106.37, 47.93, 104.75, 43.75, 25.49, 38.13, 25.55, 31.73, 25.62, -1.55, 105.46, -29.18, 98.31, -56.81, 91.16, 6.8, 18.93, 17.98, 20.34, 33.65, 22.31, 40.7, 92.52, 17.98, 92.86, -2.73, 93.16, -19.33, 50.63, -15.84, 27.06, -15.5, 24.78, -15.92, 21.91, -14.25, 20.81, -9.72, 17.83, 2.81, 79.92, 21.3, 84.33, 39.8, 88.73, 58.8, 36.83, 40.14, 33.76, 21.48, 30.7, 1.55, 80.12, -16.71, 78.08, -34.97, 76.05, -27.64, 32.81, -14.04, 27.73, -0.45, 22.65, -8.83, 70.41, 4.92, 69.99, 18.66, 69.58, 21.63, 25.07, 18.52, 26.74, 4.58, 34.24, -13.61, 58.16, -14.68, 62.87, -14.92, 63.89, -21.51, 56.81, -35.84, 38.11, -41.78, 30.36 ]
+				}
+			},
+			"path-s3e2": {
+				"path-s3-e2": {
+					"type": "path",
+					"lengths": [ 86.44, 183.05, 276.66, 359.51, 455.18, 526.36, 609.48, 694.21, 767.35, 830.41, 895.07, 954.99, 999.56, 1045.9, 1086.53, 1122.41, 1180.85 ],
+					"vertexCount": 51,
+					"vertices": [ 41.35, 18.29, 17.72, 28.32, 15.91, 29.09, 10.61, 111.55, -1.1, 111.78, -11.25, 111.98, -39.57, 29.87, -15.15, 22.98, 9.27, 16.09, 10.27, 105.52, 20.81, 105.6, 24.35, 105.62, 60.27, 32, 36.55, 30.01, 12.83, 28.02, -21.34, 100.78, -25.55, 100.35, -29.39, 99.95, -39.05, 31.08, -35.95, 30.29, -31.89, 29.25, -9.51, 106.89, 0.37, 104.35, 5.19, 103.11, 19.69, 21.97, 18.57, 21.81, 16.69, 21.55, 1.06, 90.58, -2.74, 91.7, -8.27, 93.32, -39.02, 39.09, -35.76, 38.7, -32.81, 38.35, -5.48, 87.99, 4.98, 88.33, 10.91, 88.51, 39.21, 39.6, 36.29, 37.96, 30.82, 34.88, 12.22, 73.78, 8, 71.75, 1.42, 68.58, 18.88, 28.8, 18.15, 27.19, 16.73, 24.05, 0.46, 61.5, -2.67, 61.92, -8.41, 62.7, -10.25, 43.75, -14.72, 29.06, -17.77, 19.01 ]
+				}
+			},
+			"path-s3e4": {
+				"path-s3-e4": {
+					"type": "path",
+					"lengths": [ 94.84, 200.3, 308.66, 414.21, 509.6, 601.49, 687.03, 772.55, 853.41, 919.28, 982.3, 1040.17, 1094.62, 1149.2, 1196.76, 1240.22, 1274.21, 1305.17, 1348.07 ],
+					"vertexCount": 57,
+					"vertices": [ 12.15, 2.18, 17.25, 28.29, 23.86, 62.11, -8.3, 116.69, -12.91, 115.75, -16.78, 114.97, -10.25, 27.14, 17.25, 18.54, 44.75, 9.95, 29.78, 109.35, 1.94, 111.11, -25.91, 112.88, -41.02, 31.04, -15.69, 20.63, 9.64, 10.22, -6.34, 101.01, 18.87, 104.15, 44.09, 107.29, 59.6, 34.06, 36.51, 27.13, 13.42, 20.2, 16.77, 96.05, -6.65, 96.5, -30.07, 96.94, -58.08, 37.35, -37.04, 28.52, -16, 19.69, -7.77, 86.13, 12.15, 88.61, 32.06, 91.09, 51.63, 44.56, 35.58, 37.57, 19.53, 30.58, 9.04, 82.89, -7.57, 80.02, -24.19, 77.15, -26.13, 38.94, -15.46, 28.75, -4.79, 18.57, 13.75, 66.59, 0.4, 72.41, -12.94, 78.23, -34.62, 52.21, -36.73, 38.03, -38.83, 23.84, -13.52, 67.53, -0.7, 65.01, 12.13, 62.5, 7.45, 30.52, 18.03, 27.28, 28.61, 24.04, 11.75, 54.36, 19.21, 58.92, 26.66, 63.47, 41.86, 42.92, 35.59, 38.01, 29.32, 33.09 ]
+				}
+			},
+			"path-s4e4": {
+				"path-s4e4": {
+					"type": "path",
+					"lengths": [ 98.58, 209.65, 305.04, 399.73, 497.96, 579.46, 664.05, 739.86, 812.48, 873.11, 932.26, 986.15, 1038.59, 1080.8, 1120.39, 1162.32, 1192.37 ],
+					"vertexCount": 51,
+					"vertices": [ 61.2, 51.35, 36.99, 37.63, 12.78, 23.91, 18.42, 127.62, -8.74, 118.33, -35.91, 109.04, -42.76, 26.7, -14.93, 19.87, -4.81, 17.39, -12.05, 105.6, 14.93, 107.3, 41.91, 108.99, 49.69, 26.64, 40.75, 23.37, 22.15, 16.56, 7.62, 97.47, -17.62, 99.23, -42.86, 100.99, -48.66, 32.17, -36.45, 28.75, -14.16, 22.51, -5, 93.24, 17.35, 89.81, 39.71, 86.38, 26.43, 22.58, 17.89, 20.41, 6.69, 17.56, 3.1, 78.33, -14.39, 83.89, -31.88, 89.46, -50.81, 44.66, -36.18, 37.63, -21.55, 30.59, -6.43, 75.72, 8.87, 72.71, 24.17, 69.7, 32.23, 31.87, 18.49, 26.87, 4.75, 21.87, -3.51, 63.1, -16.44, 63.51, -29.37, 63.92, -25.85, 29.79, -14.95, 27.94, -4.05, 26.09, -5, 57.53, 6.14, 59.67, 17.28, 61.82, 43.21, 47.03, 36.67, 37.87, 30.13, 28.71 ]
+				}
+			},
+			"path-s2e4": {
+				"path-s2-e4": {
+					"type": "path",
+					"lengths": [ 88.89, 183.25, 271.59, 362.91, 453.56, 545.44, 630.01, 712.83, 785.81, 851.47, 913.98, 974.27, 1021.39, 1062.96, 1108.41, 1145.52, 1174.6 ],
+					"vertexCount": 51,
+					"vertices": [ 7.64, 35, -14.71, 28.81, -37.06, 22.62, -4.67, 111.58, -27.3, 112.43, -49.94, 113.28, -59.28, 34.06, -36.15, 29.62, -13.02, 25.17, -37.87, 116.68, -13.37, 109.75, 11.14, 102.82, -39.15, 27.69, -13.76, 23.29, 11.62, 18.88, -22.24, 109.13, 3.58, 106.81, 29.4, 104.49, -6.23, 27.63, 17.8, 20.45, 41.83, 13.26, 7.19, 90.93, 28.22, 99.44, 49.24, 107.96, 57.24, 37.04, 37.87, 28.58, 18.5, 20.11, 21.8, 85.58, 2.05, 88.01, -17.69, 90.45, -18.95, 39.4, -36.3, 37.72, -53.65, 36.04, -30.46, 93.55, -15.25, 86.34, -0.03, 79.13, 0.91, 43.22, 16.05, 35.83, 31.18, 28.44, -3.07, 78.1, 4.52, 78.32, 13.87, 78.59, -15.84, 42.75, -8.42, 40.22, 4.55, 35.8, 18.05, 65.99, 24.95, 68.77, 32.29, 71.73, 45.66, 41.52, 36.45, 38.07, 27.24, 34.61 ]
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"dice-1-s1-e1": {
+		"path": {
+			"path-s1e1": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1, "curve": "stepped" },
+					{ "time": 1.4, "position": 0.999, "curve": "stepped" },
+					{ "time": 1.4667, "position": 1, "curve": "stepped" },
+					{ "time": 1.5333, "position": 0.9995, "curve": "stepped" },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s1-e2": {
+		"path": {
+			"path-s1e2": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2159 },
+					{ "time": 0.3667, "position": 0.4317 },
+					{ "time": 0.6, "position": 0.6476 },
+					{ "time": 0.8667, "position": 0.8095 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.9984 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.999 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s1-e3": {
+		"path": {
+			"path-s1e3": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s1-e4": {
+		"path": {
+			"path-s1e4": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s2-e1": {
+		"path": {
+			"path-s2e1": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8333, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s2-e2": {
+		"path": {
+			"path-s2e2": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s2-e3": {
+		"path": {
+			"path-s2e3": {
+				"position": [
+					{},
+					{ "time": 0.2, "position": 0.2 },
+					{ "time": 0.4, "position": 0.4 },
+					{ "time": 0.6333, "position": 0.6 },
+					{ "time": 0.9, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s2-e4": {
+		"path": {
+			"path-s2e4": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s3-e1": {
+		"path": {
+			"path-s3e1": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s3-e2": {
+		"path": {
+			"path-s3e2": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s3-e3": {
+		"path": {
+			"path-s3e3": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s3-e4": {
+		"path": {
+			"path-s3e4": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s4-e1": {
+		"path": {
+			"path-s4e1": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s4-e2": {
+		"path": {
+			"path-s4e2": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s4-e3": {
+		"path": {
+			"path-s4e3": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	},
+	"dice-1-s4-e4": {
+		"path": {
+			"path-s4e4": {
+				"position": [
+					{},
+					{ "time": 0.1667, "position": 0.2 },
+					{ "time": 0.3667, "position": 0.4 },
+					{ "time": 0.6, "position": 0.6 },
+					{ "time": 0.8667, "position": 0.8 },
+					{ "time": 1.3333, "position": 1 },
+					{ "time": 1.4, "position": 0.999 },
+					{ "time": 1.4667, "position": 1 },
+					{ "time": 1.5333, "position": 0.9995 },
+					{ "time": 1.6, "position": 1, "curve": "stepped" },
+					{ "time": 2, "position": 1 }
+				]
+			}
+		}
+	}
+}
 }

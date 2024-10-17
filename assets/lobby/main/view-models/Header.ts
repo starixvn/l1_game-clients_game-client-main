@@ -24,6 +24,11 @@ export default class Header extends cc.Component {
 
     onLoad() {
         this.clearUserInfo();
+        this.node.active = false;
+    }
+
+    active() {
+        this.node.active = true;
     }
 
     clearUserInfo() {

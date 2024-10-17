@@ -342,6 +342,7 @@ export default class Lobby extends cc.Component {
 
     onLoadLobby() {
         if (appManager.authorized) {
+            this.headerComp.active();
             this.headerComp.setUserName(userManager.userName);
             this.headerComp.setBalance(this.formatUserCurrency(userManager.balance));
             this.headerComp.setAvatar(userManager.avatarId);
@@ -578,6 +579,7 @@ export default class Lobby extends cc.Component {
 
     handleSignName(response) {
         if (response.authorized) {
+            this.headerComp.active();
             appManager.authorized = true;
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);

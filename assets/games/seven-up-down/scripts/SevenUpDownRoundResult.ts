@@ -14,8 +14,8 @@ export default class SevenUpDownRoundResult extends cc.Component {
     @property(cc.Sprite)
     total: cc.Sprite = null;
 
-    @property(cc.Sprite)
-    result: cc.Sprite = null;
+    @property(cc.Label)
+    multiplier: cc.Label = null;
 
     @property(cc.Sprite)
     highlight: cc.Sprite = null;
@@ -28,13 +28,13 @@ export default class SevenUpDownRoundResult extends cc.Component {
             .start();
     }
     updateLabels(data: any) {
-        const { settlementResult, result } = data;
-        const lang = window.i18n.curLang === "vi" ? "" : `_${window.i18n.curLang}`;
-        const choice = this.getTextFollowChoice({ settlementResult });
+        const { settlementResult, result, multiplier } = data;
+        //const lang = window.i18n.curLang === "vi" ? "" : `_${window.i18n.curLang}`;
+        //const choice = this.getTextFollowChoice({ settlementResult });
 
         this.total.spriteFrame = this.atlas.getSpriteFrame(result.dice1 + result.dice2);
 
-        this.result.spriteFrame = this.getSpriteFrameByLang(choice, lang);
+        this.multiplier.string = multiplier;
     }
 
     getTextFollowChoice({ settlementResult }): string {

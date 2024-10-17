@@ -10,17 +10,13 @@ import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
-import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { HighlightResult } from "./HighLightResult";
-import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
-import { ICoinTossResult, ICoinTossSettlement } from "./MiniCoinTossTypes";
-import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownStatistic from "./SevenUpDownStatistic";
-import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
+import { ISevenUpDownResult, ISevenUpDownSettlement } from "./SevenUpDownTypes";
+import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 
 const { ccclass, property } = cc._decorator;
 
@@ -58,12 +54,12 @@ export default class SevenUpDown extends MiniGameBase {
     @property(cc.JsonAsset)
     gameAudioConfig: cc.JsonAsset = null;
 
-    public winningResult: MiniCoinTossWinningResult = null;
-    public highlightResult: HighlightResult = null;
+    //public winningResult: MiniCoinTossWinningResult = null;
+    //public highlightResult: HighlightResult = null;
     public statisticHistory: SevenUpDownStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
 
-    protected betHistory: MiniCoinTossBetHistory;
+    protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 3;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
@@ -84,7 +80,7 @@ export default class SevenUpDown extends MiniGameBase {
     onLoad() {
         super.onLoad();
         this.fetchComponents();
-        this.winningResult.hideQuickly();
+        //this.winningResult.hideQuickly();
         this.animatedTime.setAnimatedY(30, -5);
         this.animatedTime.setRedTime(3);
     }
@@ -107,7 +103,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     closeGame() {
         this.clearWinningBet();
-        this.highlightResult?.hide();
+        //this.highlightResult?.hide();
         this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
     }
@@ -123,8 +119,8 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     fetchComponents() {
-        this.winningResult = this.winningResultNode.getComponent(MiniCoinTossWinningResult);
-        this.highlightResult = this.highlightResultNode.getComponent(HighlightResult);
+        //this.winningResult = this.winningResultNode.getComponent(MiniCoinTossWinningResult);
+        //this.highlightResult = this.highlightResultNode.getComponent(HighlightResult);
     }
 
     initMiniPanel(miniPanel: MiniPanel) {
@@ -135,11 +131,8 @@ export default class SevenUpDown extends MiniGameBase {
 
     initGameDataEvents() {
         super.initGameDataEvents();
-        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
-        this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
-
-        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleUserBetPercentage);
-        this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
+        // this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
+        // this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
     }
@@ -164,70 +157,60 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     public updateRoundHistory() {
-        const miniHistoryData = this.currentDataLogs.map((d) => {
-            return {
-                head: d.result.head
-            };
-        });
-
-        this.statisticHistory && this.statisticHistory.setData(miniHistoryData);
-        this.miniRoundHistory.setData(this.currentDataLogs);
+        super.updateRoundHistory();
+        //this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
     }
 
     resetDataAndUI() {
         super.resetDataAndUI();
-        this.highlightResult?.hide();
+        //this.highlightResult?.hide();
         this.clearWinningBet();
     }
 
     handleStartNewRound() {
-        this.winningResult?.hideQuickly();
-        this.highlightResult?.hide();
+        //this.winningResult?.hideQuickly();
+        //this.highlightResult?.hide();
     }
 
-    handleRoundHistory() {
-        this.updateRoundHistory();
-    }
-
-    showSettlementResult(settlement: ICoinTossSettlement) {
+    showSettlementResult(settlement: ISevenUpDownSettlement) {
         this.gameAudios?.playEndGameAudio();
-        this.winningResult?.setResult(settlement?.result);
+        //this.winningResult?.setResult(settlement?.result);
         if (appManager?.GAME_IS_SHOWED) {
-            this.handleAnimResult(settlement?.result);
+            //this.handleAnimResult(settlement?.result);
         }
     }
 
-    generateWinningKey(result: ICoinTossResult): string {
-        const key = result?.head ? "head" : "tail";
-        const language = window?.i18n?.curLang || "en";
+    // generateWinningKey(result: ICoinTossResult): string {
+    //     const key = result?.head ? "head" : "tail";
+    //     const language = window?.i18n?.curLang || "en";
 
-        return `${key}_${language}`;
+    //     return `${key}_${language}`;
+    // }
+
+    // async handleAnimResult(result: ICoinTossResult) {
+    //     // call into tween because action plays sound resume when the game shows
+    //     this.tween(this?.winningResult?.node)
+    //         .call(() => {
+    //             this.winningResult?.show();
+    //         })
+    //         .delay(this.winningResult?.durationShowResult)
+    //         .call(() => {
+    //             if (this.gameData?.settlement?.settlement) {
+    //                 this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+    //                 this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+    //             }
+    //         })
+    //         .start();
+    // }
+
+    generateMusicWinningKey(result: ISevenUpDownResult): string {
+        return Object.keys(result).find((key) => result[key] === true);
     }
 
-    async handleAnimResult(result: ICoinTossResult) {
-        // call into tween because action plays sound resume when the game shows
-        this.tween(this?.winningResult?.node)
-            .call(() => {
-                this.winningResult?.show();
-            })
-            .delay(this.winningResult?.durationShowResult)
-            .call(() => {
-                if (this.gameData?.settlement?.settlement) {
-                    this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
-                    this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-                }
-            })
-            .start();
-    }
-
-    generateMusicWinningKey(result: ICoinTossResult): string {
-        return result?.head ? "head_music" : "tail_music";
-    }
-
-    handleAfterSettlementResult(settlement: ICoinTossSettlement, animated: boolean) {
-        this.showWinChoiceAndUpdateHistory(settlement);
+    handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
+        // this.showWinChoiceAndUpdateHistory(settlement);
         const doLaterPayOut = () => {
-            !this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
+            //!this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
             !animated && this.gameData?.settlement?.showStatus();
@@ -241,11 +224,11 @@ export default class SevenUpDown extends MiniGameBase {
         }
     }
 
-    showWinChoiceAndUpdateHistory(settlement: ICoinTossSettlement) {
+    showWinChoiceAndUpdateHistory(settlement: ISevenUpDownSettlement) {
         this.gameData.roundHistory.update();
         this.updateRoundHistory();
         this.gameData.resultHash.updateUI();
-        this.winningResult?.setResult(settlement?.result);
+        //this.winningResult?.setResult(settlement?.result);
     }
 
     highlightAndPayout(settlement: any) {
@@ -264,16 +247,16 @@ export default class SevenUpDown extends MiniGameBase {
         });
     }
 
-    initRoundHistory(node: cc.Node) {
-        this.statisticHistory = node.getComponent(MiniCoinTossRoundHistory);
-        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-            this.statisticHistory.logControl.nextItemActive = false;
-        });
-        this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-            this.statisticHistory.logControl.nextItemActive = true;
-        });
-        this.statisticHistory.init(this);
-    }
+    // initRoundHistory(node: cc.Node) {
+    //     this.statisticHistory = node.getComponent(MiniCoinTossRoundHistory);
+    //     this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
+    //         this.statisticHistory.logControl.nextItemActive = false;
+    //     });
+    //     this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
+    //         this.statisticHistory.logControl.nextItemActive = true;
+    //     });
+    //     this.statisticHistory.init(this);
+    // }
 
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {
@@ -291,7 +274,7 @@ export default class SevenUpDown extends MiniGameBase {
         AudioManager.getInstance().playClick();
 
         const dialog = cc.instantiate(this.historyPrefab);
-        this.historyComponent = dialog.getComponent(MiniCoinTossBetHistory);
+        this.historyComponent = dialog.getComponent(SevenUpDownBetHistory);
         this.historyComponent.init(this.socket);
         this.historyComponent.pfGameId = this.gameId;
         this.currentMiniPanel.addDialog(dialog);

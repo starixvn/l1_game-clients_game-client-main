@@ -1,6 +1,6 @@
 import { i18n } from "../../../ClientModules";
 import BetItem from "../../_base/view-models/BetItem";
-import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
+import { MatchConfig } from "./FootballCoinTossConstant";
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,9 +20,6 @@ export default class FootballCoinTossBetItem extends BetItem {
 
     @property(cc.Label)
     lblTeamName: cc.Label = null;
-
-    private match: MatchConfig;
-    private lastMatch: LastMatchConfig;
 
     public setTeam(match: MatchConfig) {
         if (match?.home && match?.away) {

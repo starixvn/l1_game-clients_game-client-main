@@ -19,14 +19,20 @@ import FootballCoinTossLedLight from "./FootballCoinTossLedLight";
 import FootballCoinTossRoundHistory from "./FootballCoinTossRoundHistory";
 import { IFootballCoinTossResult, IFootballCoinTossSettlement } from "./FootballCoinTossTypes";
 import { FootballCoinTossWinningResult } from "./FootballCoinTossWinningResult";
-import { handleBeginStarting, handlePlacingBet, handleShowResult, handleUserBetPercentage } from "./actions/FootballCoinTossCustomActions";
+import {
+    handleBeginStarting,
+    handlePlacingBet,
+    handleShowResult,
+    handleUserBetPercentage
+} from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
-import { MatchConfig } from "./FootballCoinTossConstant";
+import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
 import MatchConfigHandler from "./handlers/MatchConfigHandler";
 import GameUtils from "../../../common/GameUtils";
 import { Settlement } from "../../_base_new/models/Settlement";
 import { FootballFlipCoin } from "./FootballFlipCoin";
 import { FootballHighlightResult } from "./FootballHighLightResult";
+import FootballCoinTossConfigsHandler from "./handlers/FootballCoinTossConfigsHandler";
 
 const { ccclass, property } = cc._decorator;
 export const HOME_AWAY_NAME = "HOME-AWAY";
@@ -90,7 +96,9 @@ export default class FootballCoinToss extends MiniGameBase {
     public match: MatchConfig;
     public currentMatch: MatchConfig;
     private nextMatchSkeleton: sp.SkeletonData;
-    private readonly pathAnimTossDefault = `animations/${HOME_AWAY_NAME}/toss/coin_toss`;
+
+    public lastMatch: LastMatchConfig;
+    private readonly pathAnimTossDefault = `animations/flip-coin/${HOME_AWAY_NAME}/toss/coin_toss`;
 
     private readonly BUNDLE_NAME = "93";
     constructor() {
@@ -101,7 +109,8 @@ export default class FootballCoinToss extends MiniGameBase {
     protected addHandlers(...handlers: DataHandler[]): void {
         this.provablyFairHandler = new GameBaseProvablyFairHandler(this);
         this.matchHandler = new MatchConfigHandler(this);
-        super.addHandlers(...handlers, this.provablyFairHandler, this.matchHandler);
+        this.configsHandler = new FootballCoinTossConfigsHandler(this);
+        super.addHandlers(...handlers, this.provablyFairHandler, this.matchHandler, this.configsHandler);
     }
 
     onLoad() {
@@ -162,12 +171,22 @@ export default class FootballCoinToss extends MiniGameBase {
         super.initGameDataEvents();
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
-
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleUserBetPercentage);
         this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.settlement, Settlement.Events.SHOW_RESULT, handleShowResult);
+        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.FIRST_LOAD, () => () => {
+            const lastRound = this.gameData.roundHistory?.roundHistory?.[0];
+            console.log("last match", this.lastMatch);
+            if (lastRound && this.gameData.durations.isWaiting()) {
+                this.betItems.forEach((betItem) => {
+                    betItem.setTeam(this.lastMatch);
+                });
+            } else {
+                this.renderStaticBetItem();
+            }
+        });
     }
 
     getBetChoiceString(choice: string): string {
@@ -214,6 +233,7 @@ export default class FootballCoinToss extends MiniGameBase {
             this.winningResult?.setSkeletonData(this.nextMatchSkeleton);
         }
         this.highlightResult?.hide();
+        this.renderStaticBetItem();
     }
 
     handleRoundHistory() {
@@ -352,9 +372,18 @@ export default class FootballCoinToss extends MiniGameBase {
         this.match = match;
         this.updateMatch(match);
         this.statisticHistory.updateTeamName(match);
-        this.betItems.forEach((betItem) => {
-            betItem.setTeam(match);
-        });
+    }
+
+    handleLastMatch(roundHistories: any) {
+        if (roundHistories && roundHistories.length > 0) {
+            const parsedMatch = (roundHistories[0] as any).match;
+            const lastMatch = {
+                home: parsedMatch.home,
+                away: parsedMatch.away,
+                roundId: roundHistories[0].roundId
+            };
+            this.lastMatch = lastMatch;
+        }
     }
 
     updateMatch(match: MatchConfig) {
@@ -411,5 +440,11 @@ export default class FootballCoinToss extends MiniGameBase {
         if (skeletonData) {
             this.nextMatchSkeleton = skeletonData;
         }
+    }
+
+    public renderStaticBetItem() {
+        this.betItems.forEach((betItem) => {
+            betItem.setTeam(this.match);
+        });
     }
 }

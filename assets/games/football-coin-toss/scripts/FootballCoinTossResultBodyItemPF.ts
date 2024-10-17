@@ -16,7 +16,7 @@ export default class FootballCoinTossResultBodyItem extends BaseResultBodyItem {
     setData(result: any, settlementResult: any, match: any) {
         const key = findWinningChoice(settlementResult);
         const teamName = match[key] ?? key;
-        this.resultImg.spriteFrame = this.flagsAtlas.getSpriteFrame(teamName.toLowerCase());
+        this.resultImg.spriteFrame = this.flagsAtlas.getSpriteFrame(`result-${teamName.toLowerCase()}`);
         this.lblResult.string = i18n.t(`FootballCoinToss.glossary_${teamName}`).toUpperCase();
     }
 }

@@ -27,6 +27,6 @@ export default class FootballCoinTossDetailResultGroup extends cc.Component {
         const key = findWinningChoice(settlementResult);
         const teamName = betLog.match[key] ?? key;
         this.resultText.string = i18n.t(`FootballCoinToss.glossary_${teamName}`).toUpperCase();
-        this.resultImg.spriteFrame = this.flagsAtlas.getSpriteFrame(teamName.toLowerCase());
+        this.resultImg.spriteFrame = this.flagsAtlas.getSpriteFrame(`result-${teamName.toLowerCase()}`);
     }
 }

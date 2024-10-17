@@ -117,7 +117,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 517,
+      "width": 476,
       "height": 151
     },
     "_anchorPoint": {
@@ -203,7 +203,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -208.5,
+        -187,
         0,
         0,
         0,
@@ -422,15 +422,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 250,
-      "g": 149,
-      "b": 0,
+      "r": 255,
+      "g": 235,
+      "b": 165,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 564.24,
-      "height": 52.4
+      "width": 522.08,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -481,9 +481,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "",
-    "_N$string": "",
-    "_fontSize": 28,
+    "_string": "FOOTBALLCOINTOSS.GLOSSARY_AWAY",
+    "_N$string": "FOOTBALLCOINTOSS.GLOSSARY_AWAY",
+    "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -515,21 +515,36 @@
     "_id": ""
   },
   {
-    "__type__": "cc.LabelOutline",
+    "__type__": "05576aY10ZCs4XpEkhUIX+E",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 8
     },
     "_enabled": true,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 250,
-      "g": 149,
-      "b": 0,
-      "a": 255
-    },
-    "_width": 1,
+    "_colors": [
+      {
+        "__type__": "cc.Color",
+        "r": 246,
+        "g": 216,
+        "b": 96,
+        "a": 255
+      },
+      {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 235,
+        "b": 165,
+        "a": 255
+      },
+      {
+        "__type__": "cc.Color",
+        "r": 250,
+        "g": 149,
+        "b": 0,
+        "a": 255
+      }
+    ],
     "_id": ""
   },
   {
@@ -569,15 +584,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 246,
-      "g": 216,
-      "b": 96,
+      "r": 255,
+      "g": 235,
+      "b": 165,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 568.3,
-      "height": 52.4
+      "width": 525.85,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -628,9 +643,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "",
-    "_N$string": "",
-    "_fontSize": 28,
+    "_string": "FOOTBALLCOINTOSS.GLOSSARY_HOME",
+    "_N$string": "FOOTBALLCOINTOSS.GLOSSARY_HOME",
+    "_fontSize": 26,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
@@ -662,21 +677,36 @@
     "_id": ""
   },
   {
-    "__type__": "cc.LabelOutline",
+    "__type__": "05576aY10ZCs4XpEkhUIX+E",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 13
     },
     "_enabled": true,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 250,
-      "g": 149,
-      "b": 0,
-      "a": 255
-    },
-    "_width": 1,
+    "_colors": [
+      {
+        "__type__": "cc.Color",
+        "r": 246,
+        "g": 216,
+        "b": 96,
+        "a": 255
+      },
+      {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 235,
+        "b": 165,
+        "a": 255
+      },
+      {
+        "__type__": "cc.Color",
+        "r": 250,
+        "g": 149,
+        "b": 0,
+        "a": 255
+      }
+    ],
     "_id": ""
   },
   {
@@ -962,7 +992,7 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 13,
-    "_left": 0,
+    "_left": 1,
     "_right": 0,
     "_top": 1,
     "_bottom": 1,
@@ -1069,8 +1099,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 416,
-      "height": 149
+      "width": 374,
+      "height": 146
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1081,7 +1111,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        50.5,
+        51,
         0,
         0,
         0,
@@ -1140,8 +1170,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 416,
-      "height": 149
+      "width": 374,
+      "height": 146
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1153,7 +1183,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        74.5,
+        73,
         0,
         0,
         0,
@@ -1223,7 +1253,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        208,
+        187,
         0,
         0,
         0,
@@ -2455,7 +2485,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 517,
+      "width": 476,
       "height": 151
     },
     "_resize": 1,
@@ -2466,7 +2496,7 @@
       "height": 40
     },
     "_N$startAxis": 0,
-    "_N$paddingLeft": 0,
+    "_N$paddingLeft": 1,
     "_N$paddingRight": 0,
     "_N$paddingTop": 0,
     "_N$paddingBottom": 0,

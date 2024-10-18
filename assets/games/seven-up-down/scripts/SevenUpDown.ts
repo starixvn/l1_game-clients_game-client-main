@@ -13,11 +13,13 @@ import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
+import { handleBeginStarting, handlePlacingBet } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
+import { findWinningChoice } from "./SevenUpDownHelper";
 import SevenUpDownResult from "./SevenUpDownResult";
-import { ISevenUpDownResult, ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
+import { ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
 
@@ -88,7 +90,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     onEnable(): void {
         super.onEnable();
-        //this.statisticHistory.node.active = true;
+        this.statisticHistory.node.active = true;
     }
 
     initOnStart() {
@@ -132,8 +134,8 @@ export default class SevenUpDown extends MiniGameBase {
 
     initGameDataEvents() {
         super.initGameDataEvents();
-        // this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
-        // this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
+        this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
     }
@@ -177,19 +179,19 @@ export default class SevenUpDown extends MiniGameBase {
         this.gameAudios?.playEndGameAudio();
         //this.winningResult?.setResult(settlement?.result);
         if (appManager?.GAME_IS_SHOWED) {
-            this.handleAnimResult(settlement?.result);
+            this.handleAnimResult(settlement);
         }
     }
 
-    // generateWinningKey(result: ICoinTossResult): string {
-    //     const key = result?.head ? "head" : "tail";
-    //     const language = window?.i18n?.curLang || "en";
+    generateWinningKey(result: ISevenUpDownSettlement): string {
+        const language = window?.i18n?.curLang || "en";
+        const key = findWinningChoice(result?.settlementResult);
 
-    //     return `${key}_${language}`;
-    // }
+        return `${key}_${language}`;
+    }
 
-    async handleAnimResult(result: ISevenUpDownResult) {
-        // call into tween because action plays sound resume when the game shows
+    async handleAnimResult(result: ISevenUpDownSettlement) {
+        //call into tween because action plays sound resume when the game shows
         // this.tween(this?.winningResult?.node)
         //     .call(() => {
         //         this.winningResult?.show();
@@ -202,6 +204,10 @@ export default class SevenUpDown extends MiniGameBase {
         //         }
         //     })
         //     .start();
+        if (this.gameData?.settlement?.settlement) {
+            this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+            this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+        }
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
@@ -209,7 +215,7 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
-        // this.showWinChoiceAndUpdateHistory(settlement);
+        this.showWinChoiceAndUpdateHistory(settlement);
         const doLaterPayOut = () => {
             //!this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);

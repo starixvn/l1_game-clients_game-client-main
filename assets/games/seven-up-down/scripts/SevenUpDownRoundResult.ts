@@ -34,7 +34,7 @@ export default class SevenUpDownRoundResult extends cc.Component {
 
         this.total.spriteFrame = this.atlas.getSpriteFrame(result.dice1 + result.dice2);
 
-        this.multiplier.string = multiplier;
+        //this.multiplier.string = multiplier;
     }
 
     getTextFollowChoice({ settlementResult }): string {

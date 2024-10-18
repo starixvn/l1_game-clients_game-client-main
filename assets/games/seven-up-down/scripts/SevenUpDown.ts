@@ -15,8 +15,8 @@ import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
+import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
 import SevenUpDownResult from "./SevenUpDownResult";
-import SevenUpDownStatistic from "./SevenUpDownStatistic";
 import { ISevenUpDownResult, ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
@@ -57,7 +57,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     //public winningResult: MiniCoinTossWinningResult = null;
     //public highlightResult: HighlightResult = null;
-    public statisticHistory: SevenUpDownStatistic = null;
+    public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
 
     protected betHistory: SevenUpDownBetHistory;
@@ -159,7 +159,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     public updateRoundHistory() {
         super.updateRoundHistory();
-        //this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
+        this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
     }
 
     resetDataAndUI() {
@@ -213,7 +213,7 @@ export default class SevenUpDown extends MiniGameBase {
         const doLaterPayOut = () => {
             //!this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
-            animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.result));
+            animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.settlementResult));
             !animated && this.gameData?.settlement?.showStatus();
         };
 
@@ -249,12 +249,13 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     initRoundHistory(node: cc.Node) {
-        this.statisticHistory = node.getComponent(SevenUpDownStatistic);
+        this.statisticHistory = node.getComponent(SevenUpDownDicesStatistic);
+        this.statisticHistory.logView.managedByParent = true;
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-            this.statisticHistory.logControl.nextItemActive = false;
+            this.statisticHistory.logView.nextItemActive = false;
         });
         this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-            this.statisticHistory.logControl.nextItemActive = true;
+            this.statisticHistory.logView.nextItemActive = true;
         });
         this.statisticHistory.init(this);
     }

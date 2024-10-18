@@ -1,6 +1,8 @@
+import GameUtils from "../../../common/GameUtils";
 import GameBase from "../../_base/GameBase";
 import GameBaseFinishHandler from "../../_base/handlers/GameBaseFinishHandler";
 import GameLogControlBase from "../../_base/view-models/GameLogControlBase";
+import { findWinningChoice } from "./SevenUpDownHelper";
 import SevenUpDownRoundResult from "./SevenUpDownRoundResult";
 
 const { ccclass, property } = cc._decorator;
@@ -13,10 +15,7 @@ export enum IconButtonChart {
 @ccclass
 export default class SevenUpDownDicesStatistic extends cc.Component {
     @property(cc.Label)
-    percentageTop: cc.Label = null;
-
-    @property(cc.Label)
-    percentageBottom: cc.Label = null;
+    itemPercentList: cc.Label[] = [];
 
     @property(cc.Prefab)
     roundResultPrefab: cc.Prefab = null;
@@ -41,7 +40,11 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
 
     protected isShowDiceView = true;
 
-    init(currentDataLogs: any, main: GameBase) {
+    public setData(dataLogs: any[]) {
+        this.updateData(dataLogs);
+    }
+
+    init(main: GameBase) {
         const condition = () => {
             const finishHandler = main.finishHandler as GameBaseFinishHandler;
             return (
@@ -49,8 +52,6 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
                 main.currentTimeRemaining > main.config.fullTime - finishHandler.getResultAnimationTime()
             );
         };
-
-        this.updateData(currentDataLogs);
         this.logView.init(condition);
     }
 
@@ -58,8 +59,12 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
         return ["up", "seven", "down"];
     }
 
-    get getChoicesDefault(): string {
-        return "up";
+    updatePercentages(dataLogs: any[]) {
+        const percentage = GameUtils.calculateWinPercentage(this.getChoices, dataLogs);
+        console.log("updatePercentages", percentage);
+        this.itemPercentList.forEach((item, index) => {
+            item.string = `${Object.values(percentage)[index]}%`;
+        });
     }
 
     updateData(dataLogs: any[]) {
@@ -70,28 +75,6 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
         this.roundResultContainer.getComponent(cc.Layout).updateLayout();
         this.statsScrollView.getComponent(cc.ScrollView).horizontal = this.statsScrollView.width < this.roundResultContainer.width;
         this.roundResultContainer.getComponent(cc.Widget).updateAlignment();
-    }
-
-    updatePercentages(dataLogs: any[]) {
-        if (dataLogs.length > 0) {
-            const length = dataLogs.length;
-            const choices = this.getChoices;
-            let totalTop = 0,
-                totalBottom = 0;
-
-            dataLogs.forEach((log) => {
-                const { settlementResult } = log;
-
-                totalTop += settlementResult[choices[0]] ? 1 : 0;
-                totalBottom += settlementResult[choices[1]] ? 1 : 0;
-            });
-
-            const percentageTop = Math.round((totalTop / length) * 100);
-            const percentageBottom = Math.round((totalBottom / length) * 100);
-
-            this.percentageTop.string = `${percentageTop}%`;
-            this.percentageBottom.string = `${percentageBottom}%`;
-        }
     }
 
     updateRoundResult(dataLogs: any[]) {
@@ -112,12 +95,11 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
 
     renderLogView(dataLogs: any[]) {
         const statsData = [];
-        const choice = this.getChoicesDefault;
         if (dataLogs.length > 0) {
             dataLogs.forEach((log) => {
                 const { settlementResult } = log;
-
-                statsData.unshift(settlementResult[choice] ? 0 : 1);
+                const indexWin = this.getChoices.indexOf(findWinningChoice(settlementResult));
+                statsData.unshift(indexWin);
             });
             this.logView.setData(statsData);
         }

@@ -1,5 +1,6 @@
 import { Socket } from "socket.io-client";
 import GameUtils from "../../../common/GameUtils";
+import AudioManager from "../../../common/audio/AudioManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -36,6 +37,7 @@ export default class SocketIOHistoryItemBase extends cc.Component {
     }
 
     onClickVerify() {
+        AudioManager.getInstance().playClick();
         this.socket?.connected && this.socket.emit("getRoundPF", { roundId: this.roundId });
     }
 }

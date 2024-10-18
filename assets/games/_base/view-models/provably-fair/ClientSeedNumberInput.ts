@@ -2,6 +2,7 @@ import * as _ from "lodash";
 import GameUtils from "../../../../common/GameUtils";
 import ClientSeedManualPopup from "./ClientSeedManualPopup";
 import ProvablyFairComponent from "./ProvablyFairComponent";
+import AudioManager from "../../../../common/audio/AudioManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -177,6 +178,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
     }
 
     onClientSeedClick(): void {
+        AudioManager.getInstance().playClick();
         const clientSeedManual = cc.instantiate(this.clientSeedManualPrefab);
         const clientSeedManualCpt = clientSeedManual.getComponent(ClientSeedManualPopup);
         clientSeedManualCpt.clientSeedMax = 9999;

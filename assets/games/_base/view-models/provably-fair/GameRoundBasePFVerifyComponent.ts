@@ -1,5 +1,6 @@
 import { i18n } from "../../../../ClientModules";
 import GameUtils from "../../../../common/GameUtils";
+import AudioManager from "../../../../common/audio/AudioManager";
 import { getLanguage, getLocale } from "../../../../common/auth/SessionManager";
 import WebViewVerification from "../../../../common/webview-guide/WebViewVerification";
 import { ClientSeedInfo } from "./ClientSeedInfo";
@@ -121,6 +122,7 @@ export default class GameRoundBasePFVerifyComponent extends ProvablyFairVerifyCo
     }
 
     onClickVerify() {
+        AudioManager.getInstance().playClick();
         const dialog = cc.instantiate(this.verificationPrefab);
         const verification = dialog.getComponent(WebViewVerification);
         verification?.setRoundId(this.provablyFair?.roundId);

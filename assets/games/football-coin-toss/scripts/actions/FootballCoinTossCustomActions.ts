@@ -1,3 +1,7 @@
+import { i18n } from "../../../../ClientModules";
+import GameUtils from "../../../../common/GameUtils";
+import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
+import NoticeUtil from "../../../../common/utils/NoticeUtil";
 import { appManager } from "../../../../managers/AppManager";
 import FootballCoinToss from "../FootballCoinToss";
 import { BetChoice } from "../FootballCoinTossConstant";
@@ -63,4 +67,24 @@ const isValidMatch = (match) => {
 
 const getMatchToInsert = (game: FootballCoinToss) => {
     return isValidMatch(game.currentMatch) ? game.currentMatch : null;
+};
+
+export const handleNotice = (game: FootballCoinToss) => (notice) => {
+    const { errorCode, hedgeBetGroup, minBet, maxBet, gameRoundId, gameTypeId } = notice;
+    const gameName = GameUtils.getGameNameString(gameTypeId);
+    if (!gameRoundId || gameRoundId === game.roundId) {
+        const opt = { gameName, gameRoundId, errorCode, minBet: numberWithCommas(minBet), maxBet: numberWithCommas(maxBet) };
+
+        if (hedgeBetGroup && hedgeBetGroup.length > 0) {
+            hedgeBetGroup.forEach((choice, index) => {
+                const choiceName = game.match ? game.match[choice] : choice;
+                opt[`betChoice${index + 1}`] = i18n.t(`FootballCoinToss.glossary_${choiceName}`).toUpperCase();
+            });
+        }
+
+        const text = NoticeUtil.getLocalizedErrorMessage(errorCode, opt);
+        if (text) {
+            game.showMiniWarning(text);
+        }
+    }
 };

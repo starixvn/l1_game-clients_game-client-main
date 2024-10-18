@@ -19,12 +19,7 @@ import FootballCoinTossLedLight from "./FootballCoinTossLedLight";
 import FootballCoinTossRoundHistory from "./FootballCoinTossRoundHistory";
 import { IFootballCoinTossResult, IFootballCoinTossSettlement } from "./FootballCoinTossTypes";
 import { FootballCoinTossWinningResult } from "./FootballCoinTossWinningResult";
-import {
-    handleBeginStarting,
-    handlePlacingBet,
-    handleShowResult,
-    handleUserBetPercentage
-} from "./actions/FootballCoinTossCustomActions";
+import { handleBeginStarting, handleNotice, handlePlacingBet, handleShowResult, handleUserBetPercentage } from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
 import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
 import MatchConfigHandler from "./handlers/MatchConfigHandler";
@@ -33,6 +28,7 @@ import { Settlement } from "../../_base_new/models/Settlement";
 import { FootballFlipCoin } from "./FootballFlipCoin";
 import { FootballHighlightResult } from "./FootballHighLightResult";
 import FootballCoinTossConfigsHandler from "./handlers/FootballCoinTossConfigsHandler";
+import { NoticeModel } from "../../_base_new/models/NoticeModel";
 
 const { ccclass, property } = cc._decorator;
 export const HOME_AWAY_NAME = "HOME-AWAY";
@@ -143,6 +139,7 @@ export default class FootballCoinToss extends MiniGameBase {
         this.highlightResult?.hide();
         this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
+        AudioManager.getInstance().playClick();
     }
 
     onGameHide(): void {
@@ -152,6 +149,7 @@ export default class FootballCoinToss extends MiniGameBase {
     }
 
     public toggleShowStatistic() {
+        AudioManager.getInstance().playClick();
         this.statisticHistory.node.active = !this.statisticHistory.node.active;
     }
 
@@ -185,8 +183,9 @@ export default class FootballCoinToss extends MiniGameBase {
                 });
             } else {
                 this.renderStaticBetItem();
-            }
+            }   
         });
+        this.emitterListener(this.gameData.notice, NoticeModel.Events.CHANGE, handleNotice);
     }
 
     getBetChoiceString(choice: string): string {
@@ -364,6 +363,7 @@ export default class FootballCoinToss extends MiniGameBase {
     }
 
     onClickProvablyFair() {
+        AudioManager.getInstance().playClick();
         super.onClickProvablyFair();
         this.socket?.connected && this.socket.emit("getRoundPF", { roundId: this.roundId });
     }
@@ -446,5 +446,10 @@ export default class FootballCoinToss extends MiniGameBase {
         this.betItems.forEach((betItem) => {
             betItem.setTeam(this.match);
         });
+    }
+
+    openGuide() {
+        super.openGuide();
+        AudioManager.getInstance().playClick();
     }
 }

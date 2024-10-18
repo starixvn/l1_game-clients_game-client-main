@@ -1,5 +1,4 @@
 import SpineAttachmentNode from "../../../common/SpineAttachmentNode";
-import AnimationUtils from "../../../common/utils/AnimationUtils";
 
 const { ccclass, property } = cc._decorator;
 
@@ -20,13 +19,7 @@ export default class SevenUpDownDice extends cc.Component {
         this.diceSprite.spriteFrame = spriteFrame;
     }
 
-    async runAnimation(resultDiceFrames: cc.SpriteFrame[], diceSkeleton: sp.Skeleton, animationName: string, trackIndex: number) {
-        diceSkeleton && AnimationUtils.playSpine(diceSkeleton, animationName, false, null, trackIndex);
-
-        this.setAllFrame(resultDiceFrames);
-    }
-
-    async setAllFrame(resultDiceFrames: cc.SpriteFrame[]) {
+    async runAnimation(resultDiceFrames: cc.SpriteFrame[]) {
         resultDiceFrames.forEach((spriteFrame) => {
             this.setFrame(spriteFrame);
         });

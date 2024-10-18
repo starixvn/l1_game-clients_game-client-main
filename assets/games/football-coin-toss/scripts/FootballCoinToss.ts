@@ -19,7 +19,13 @@ import FootballCoinTossLedLight from "./FootballCoinTossLedLight";
 import FootballCoinTossRoundHistory from "./FootballCoinTossRoundHistory";
 import { IFootballCoinTossResult, IFootballCoinTossSettlement } from "./FootballCoinTossTypes";
 import { FootballCoinTossWinningResult } from "./FootballCoinTossWinningResult";
-import { handleBeginStarting, handleNotice, handlePlacingBet, handleShowResult, handleUserBetPercentage } from "./actions/FootballCoinTossCustomActions";
+import {
+    handleBeginStarting,
+    handleNotice,
+    handlePlacingBet,
+    handleShowResult,
+    handleUserBetPercentage
+} from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
 import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
 import MatchConfigHandler from "./handlers/MatchConfigHandler";
@@ -176,14 +182,13 @@ export default class FootballCoinToss extends MiniGameBase {
         this.emitterListener(this.gameData.settlement, Settlement.Events.SHOW_RESULT, handleShowResult);
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.FIRST_LOAD, () => () => {
             const lastRound = this.gameData.roundHistory?.roundHistory?.[0];
-            console.log("last match", this.lastMatch);
             if (lastRound && this.gameData.durations.isWaiting()) {
                 this.betItems.forEach((betItem) => {
                     betItem.setTeam(this.lastMatch);
                 });
             } else {
                 this.renderStaticBetItem();
-            }   
+            }
         });
         this.emitterListener(this.gameData.notice, NoticeModel.Events.CHANGE, handleNotice);
     }
@@ -233,6 +238,7 @@ export default class FootballCoinToss extends MiniGameBase {
         }
         this.highlightResult?.hide();
         this.renderStaticBetItem();
+        this.betItems.forEach((betItem) => betItem.setTotalBet(0));
     }
 
     handleRoundHistory() {

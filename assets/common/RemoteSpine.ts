@@ -31,11 +31,17 @@ export default class RemoteSpine extends cc.Component {
 
     private spine: sp.Skeleton;
 
-    readonly resourceExts = ["atlas", "json", "png"];
+    readonly pngResourcePatterns = ["atlas", "json", "png"];
+    readonly webpResourcePatterns = ["atlas", "json", "webp"];
 
     private cache: SkeletonCache;
 
     public type = Type.Icon;
+    public useWebp = false;
+
+    private getResourceExtensions() {
+        return this.useWebp ? this.webpResourcePatterns : this.pngResourcePatterns;
+    }
 
     async init(cache: SkeletonCache) {
         this.cache = cache;
@@ -51,7 +57,7 @@ export default class RemoteSpine extends cc.Component {
             const versions = await GameUtils.getRemoteVersion(this.id);
             const versionType = versions?.[versionMapping[this.type]];
 
-            for (const ext of this.resourceExts) {
+            for (const ext of this.getResourceExtensions()) {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${versionType}`;
                     const url = `${this.host}/${resName}`;
@@ -86,7 +92,7 @@ export default class RemoteSpine extends cc.Component {
             const spineRes = [];
             const version = config?.version || LobbyResourceManager?.getInstance()?.infoShareResource?.versionBanner;
 
-            for (const ext of this.resourceExts) {
+            for (const ext of this.getResourceExtensions()) {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${version}`;
                     const langPath = config?.languages[window.i18n.curLang] ? window.i18n.curLang : "en";
@@ -115,7 +121,7 @@ export default class RemoteSpine extends cc.Component {
         skeletonData.skeletonJson = spineRes[SpineFile.Json].json;
         skeletonData.atlasText = spineRes[SpineFile.Atlas].text;
         skeletonData.textures = [spineRes[SpineFile.Texture]];
-        skeletonData["textureNames"] = [`${this.spineName}.${this.resourceExts[SpineFile.Texture]}`];
+        skeletonData["textureNames"] = [`${this.spineName}.${this.getResourceExtensions()[SpineFile.Texture]}`];
         return skeletonData;
     }
 

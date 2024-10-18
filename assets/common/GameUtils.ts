@@ -1286,9 +1286,6 @@ export default class GameUtils {
 
     private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {
         try {
-            if (this.gameIconPreloaded) {
-                return;
-            }
             const offerGames = userManager.offerGames ?? [];
             let firstCategoryGames = lobbyMenuConfig.firstCategoryList;
             let preLoadGameIds = [];
@@ -1297,10 +1294,28 @@ export default class GameUtils {
             if (offerGames.length > 0 && firstCategoryGames?.length > 0) {
                 firstCategoryGames = firstCategoryGames.filter((gameId) => offerGames.includes(gameId));
             }
-
-            // Load game icon custom by system
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
+
+            if (LobbyResourceManager?.getInstance()?.isUseTheme()) {
+                const preloadGameInMain = preLoadGameIds.filter(
+                    (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
+                );
+                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager?.getInstance()?.loadGameIcon(gameId));
+                await Promise.all([preLoadGameAwaiters]);
+
+                console.log(`SplashScreen - Completed load game icons`, [
+                    {
+                        name: "main",
+                        ids: preloadGameInMain.join(",")
+                    }
+                ]);
+
+                return;
+            }
+
+            // Load game icon custom by system
+
             const preloadGameInMain = preLoadGameIds.filter((gameId) => !GameUtils.isMicroSite(getGameConfiguration(gameId)));
             const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
 
@@ -1316,7 +1331,7 @@ export default class GameUtils {
 
             // Wait all
             await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
-            this.gameIconPreloaded = true;
+
             console.log(`SplashScreen - Completed load game icons`, [
                 {
                     name: "main",

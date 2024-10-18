@@ -13,10 +13,11 @@ import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
-import SevenUpDownStatistic from "./SevenUpDownStatistic";
-import { ISevenUpDownResult, ISevenUpDownSettlement } from "./SevenUpDownTypes";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
+import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
+import SevenUpDownResult from "./SevenUpDownResult";
+import SevenUpDownStatistic from "./SevenUpDownStatistic";
+import { ISevenUpDownResult, ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
 
@@ -27,8 +28,8 @@ export default class SevenUpDown extends MiniGameBase {
     @property({ type: MD5Component, visible: false, override: true })
     md5Component: MD5Component = null;
 
-    @property(cc.Animation)
-    animation: cc.Animation = null;
+    @property(SevenUpDownResult)
+    resultComp: SevenUpDownResult = null;
 
     @property(cc.Prefab)
     roundHistoryPrefab: cc.Prefab = null;
@@ -47,9 +48,6 @@ export default class SevenUpDown extends MiniGameBase {
 
     @property({ type: cc.Node })
     winningResultNode: cc.Node = null;
-
-    @property({ type: cc.Node })
-    flipCoinNode: cc.Node = null;
 
     @property({ type: cc.Node })
     highlightResultNode: cc.Node = null;
@@ -179,7 +177,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.gameAudios?.playEndGameAudio();
         //this.winningResult?.setResult(settlement?.result);
         if (appManager?.GAME_IS_SHOWED) {
-            //this.handleAnimResult(settlement?.result);
+            this.handleAnimResult(settlement?.result);
         }
     }
 
@@ -190,23 +188,23 @@ export default class SevenUpDown extends MiniGameBase {
     //     return `${key}_${language}`;
     // }
 
-    // async handleAnimResult(result: ICoinTossResult) {
-    //     // call into tween because action plays sound resume when the game shows
-    //     this.tween(this?.winningResult?.node)
-    //         .call(() => {
-    //             this.winningResult?.show();
-    //         })
-    //         .delay(this.winningResult?.durationShowResult)
-    //         .call(() => {
-    //             if (this.gameData?.settlement?.settlement) {
-    //                 this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
-    //                 this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-    //             }
-    //         })
-    //         .start();
-    // }
+    async handleAnimResult(result: ISevenUpDownResult) {
+        // call into tween because action plays sound resume when the game shows
+        // this.tween(this?.winningResult?.node)
+        //     .call(() => {
+        //         this.winningResult?.show();
+        //     })
+        //     .delay(this.winningResult?.durationShowResult)
+        //     .call(() => {
+        //         if (this.gameData?.settlement?.settlement) {
+        //             this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+        //             this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+        //         }
+        //     })
+        //     .start();
+    }
 
-    generateMusicWinningKey(result: ISevenUpDownResult): string {
+    generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
         return Object.keys(result).find((key) => result[key] === true);
     }
 

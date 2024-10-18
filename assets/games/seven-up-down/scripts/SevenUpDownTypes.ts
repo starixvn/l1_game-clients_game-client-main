@@ -1,4 +1,4 @@
-export interface ISevenUpDownResult {
+export interface ISevenUpDownSettlementResult {
     up: boolean;
     down: boolean;
     seven: boolean;
@@ -6,7 +6,12 @@ export interface ISevenUpDownResult {
 
 export interface ISevenUpDownSettlement {
     result: ISevenUpDownResult;
-    settlementResult: ISevenUpDownResult;
+    settlementResult: ISevenUpDownSettlementResult;
     roundId: number;
     multiplier: string;
+}
+
+export interface ISevenUpDownResult {
+    dice1: number;
+    dice2: number;
 }

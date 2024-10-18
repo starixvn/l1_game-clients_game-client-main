@@ -42,6 +42,9 @@ export default class SevenUpDown extends MiniGameBase {
     @property({ type: ProvablyFairComponent, visible: false, override: true })
     provablyFairComponent: ProvablyFairComponent = null;
 
+    @property({ type: cc.Label, visible: false, override: true })
+    betPercentage: cc.Label[] = [];
+
     @property({ type: cc.Node })
     winningResultNode: cc.Node = null;
 
@@ -247,16 +250,16 @@ export default class SevenUpDown extends MiniGameBase {
         });
     }
 
-    // initRoundHistory(node: cc.Node) {
-    //     this.statisticHistory = node.getComponent(MiniCoinTossRoundHistory);
-    //     this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-    //         this.statisticHistory.logControl.nextItemActive = false;
-    //     });
-    //     this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-    //         this.statisticHistory.logControl.nextItemActive = true;
-    //     });
-    //     this.statisticHistory.init(this);
-    // }
+    initRoundHistory(node: cc.Node) {
+        this.statisticHistory = node.getComponent(SevenUpDownStatistic);
+        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
+            this.statisticHistory.logControl.nextItemActive = false;
+        });
+        this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
+            this.statisticHistory.logControl.nextItemActive = true;
+        });
+        this.statisticHistory.init(this);
+    }
 
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {

@@ -164,7 +164,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
 
         const { result, roundId } = this.gameData.roundHistory.roundHistory[0];
-        this.resultComp.showResult(result, roundId);
+        this.resultComp.showResultNoAnim(result, roundId);
 
         //this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
     }
@@ -197,24 +197,20 @@ export default class SevenUpDown extends MiniGameBase {
 
     async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
-        this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
+
         // call into tween because action plays sound resume when the game shows
-        // this.tween(this?.winningResult?.node)
-        //     .call(() => {
-        //         this.winningResult?.show();
-        //     })
-        //     .delay(this.winningResult?.durationShowResult)
-        //     .call(() => {
-        //         if (this.gameData?.settlement?.settlement) {
-        //             this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
-        //             this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-        //         }
-        //     })
-        //     .start();
-        if (this.gameData?.settlement?.settlement) {
-            this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
-            this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-        }
+        this.tween(this?.resultComp?.node)
+            .call(() => {
+                this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
+            })
+            .delay(this.resultComp?.resultDuration)
+            .call(() => {
+                if (this.gameData?.settlement?.settlement) {
+                    this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
+                    this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+                }
+            })
+            .start();
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
@@ -242,7 +238,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.gameData.roundHistory.update();
         this.updateRoundHistory();
         this.gameData.resultHash.updateUI();
-        //this.winningResult?.setResult(settlement?.result);
     }
 
     highlightAndPayout(settlement: any) {

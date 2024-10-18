@@ -19,17 +19,17 @@ export default class SevenUpDownResult extends cc.Component {
     @property(cc.SpriteAtlas)
     diceAtlas: cc.SpriteAtlas = null;
 
-    private defaultValuesDiceFrames;
-
     private resultDiceFrames: IResultDiceFrames;
     private diceSpriteFrames: cc.SpriteFrame[] = [];
+    private dicePositionNumber = 7;
+    resultDuration = 1.3;
 
     onLoad() {
         this.resetResultDiceFrames();
-        this.setDiceSpriteFrames();
+        this.initDiceSpriteFrames();
     }
 
-    setDiceSpriteFrames() {
+    initDiceSpriteFrames() {
         this.diceSpriteFrames = this.diceAtlas.getSpriteFrames();
         this.diceSpriteFrames.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
     }
@@ -39,11 +39,13 @@ export default class SevenUpDownResult extends cc.Component {
     }
 
     private getDiceAnimationName(roundId: number): string {
-        const start = roundId % 7 === 0 ? 7 : roundId % 7;
-        return `s${start}-e${start + 1}`;
+        const position = roundId % this.dicePositionNumber || this.dicePositionNumber;
+        const nextPosition = (position % this.dicePositionNumber) + 1;
+
+        return `s${position}-e${nextPosition}`;
     }
 
-    showResult(result: ISevenUpDownResult, roundId: number) {
+    showResultNoAnim(result: ISevenUpDownResult, roundId: number) {
         this.diceSkeleton && AnimationUtils.pauseSpineAnimation(this.diceSkeleton, 1, this.getDiceAnimationName(roundId));
         this.dicesComponent.forEach((dice, index) => {
             dice.setFrame(this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${result[`dice${index + 1}`]}`));
@@ -53,7 +55,7 @@ export default class SevenUpDownResult extends cc.Component {
     async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
         this.resetResultDiceFrames();
         await this.setResultDiceFrames(prevResult, result);
-        this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, 1.3);
+        this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, this.resultDuration);
         this.dicesComponent.forEach((dice, index) => {
             dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`]);
         });

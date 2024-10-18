@@ -2,12 +2,11 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     SevenUpDown: {
-        Biden_win: "哈里斯獲勝",
-        game_icon_name: "抛硬幣",
-        game_name: "抛硬幣",
-        glossary_head: "哈里斯",
-        glossary_tail: "川普",
-        trump_win: "川普獲勝",
+        game_icon_name: "7 Up 7 Down",
+        game_name: "7 Up 7 Down",
+        glossary_up: "Up",
+        glossary_down: "Down",
+        glossary_seven: "Seven",
         you_win: "你贏了"
     },
     Common: {

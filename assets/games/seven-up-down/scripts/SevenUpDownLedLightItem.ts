@@ -1,4 +1,5 @@
 import MiniRoundHistoryItem from "../../../common/mini-round-history/MiniRoundHistoryItem";
+import { findWinningChoice } from "./SevenUpDownHelper";
 
 const { ccclass, property } = cc._decorator;
 
@@ -13,7 +14,7 @@ export default class SevenUpDownLedLightItem extends MiniRoundHistoryItem {
     public setData(data: any) {
         this.data = data;
         const { settlementResult } = data;
-        const choiceWin = settlementResult.find((choice) => settlementResult[choice]);
+        const choiceWin = findWinningChoice(settlementResult);
         this.icon.spriteFrame = this.mainAtlas.getSpriteFrame(`statistic-${choiceWin}`);
     }
 }

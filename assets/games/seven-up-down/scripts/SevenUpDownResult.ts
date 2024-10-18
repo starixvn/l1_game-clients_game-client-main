@@ -1,12 +1,8 @@
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import SevenUpDownDice from "./SevenUpDownDice";
+import { ISevenUpDownResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
-
-interface IResult {
-    dice1: string | undefined;
-    dice2: string | undefined;
-}
 
 interface IResultDiceFrames {
     dice1: cc.SpriteFrame[];
@@ -23,37 +19,44 @@ export default class SevenUpDownResult extends cc.Component {
     @property(cc.SpriteAtlas)
     diceAtlas: cc.SpriteAtlas = null;
 
-    private defaultValuesDiceFrames = { dice1: [], dice2: [] };
+    private defaultValuesDiceFrames;
 
-    private prevResult: IResult = { dice1: "01", dice2: "02" };
-    private currentResult: IResult = { dice1: null, dice2: null };
     private resultDiceFrames: IResultDiceFrames;
     private diceSpriteFrames: cc.SpriteFrame[] = [];
-    private roundId = 0;
 
     onLoad() {
-        this.resultDiceFrames = this.defaultValuesDiceFrames;
+        this.resetResultDiceFrames();
+        this.setDiceSpriteFrames();
+    }
+
+    setDiceSpriteFrames() {
         this.diceSpriteFrames = this.diceAtlas.getSpriteFrames();
         this.diceSpriteFrames.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
     }
 
-    async showResult() {
-        this.setCurrentResult();
-        this.resultDiceFrames = this.defaultValuesDiceFrames;
+    private resetResultDiceFrames() {
+        this.resultDiceFrames = { dice1: [], dice2: [] };
+    }
 
-        await this.setResultDiceFrames();
+    private getDiceAnimationName(roundId: number): string {
+        const start = roundId % 7 === 0 ? 7 : roundId % 7;
+        return `s${start}-e${start + 1}`;
+    }
 
-        this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, "postion-1", false);
+    showResult(result: ISevenUpDownResult, roundId: number) {
+        this.diceSkeleton && AnimationUtils.pauseSpineAnimation(this.diceSkeleton, 1, this.getDiceAnimationName(roundId));
+        this.dicesComponent.forEach((dice, index) => {
+            dice.setFrame(this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${result[`dice${index + 1}`]}`));
+        });
+    }
 
+    async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
+        this.resetResultDiceFrames();
+        await this.setResultDiceFrames(prevResult, result);
+        this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, 1.3);
         this.dicesComponent.forEach((dice, index) => {
             dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`]);
         });
-
-        this.prevResult = this.currentResult;
-    }
-
-    setCurrentResult() {
-        this.currentResult = { dice1: this.getRandomNumber(6), dice2: this.getRandomNumber(6) };
     }
 
     private getRandomNumber(max: number): string {
@@ -61,13 +64,9 @@ export default class SevenUpDownResult extends cc.Component {
         return randomNumber.toString().padStart(2, "0");
     }
 
-    private async setResultDiceFrames() {
+    private async setResultDiceFrames(prevResult: ISevenUpDownResult, result: ISevenUpDownResult) {
         for (let i = 0; i < this.dicesComponent.length; i++) {
-            const files = [
-                `start-${this.prevResult[`dice${i + 1}`]}`,
-                `loop-${this.getRandomNumber(3)}`,
-                `end-${this.currentResult[`dice${i + 1}`]}`
-            ];
+            const files = [`start-${prevResult[`dice${i + 1}`]}`, `loop-${this.getRandomNumber(3)}`, `end-${result[`dice${i + 1}`]}`];
             for (const file of files) {
                 const matchingFrames = this.diceSpriteFrames.filter((frame) => frame.name.startsWith(file));
                 this.resultDiceFrames[`dice${i + 1}`].push(...matchingFrames);

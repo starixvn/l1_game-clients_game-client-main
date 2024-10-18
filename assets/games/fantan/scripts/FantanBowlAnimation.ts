@@ -1,6 +1,7 @@
 import { lodash } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
 import GameUtils from "../../../common/GameUtils";
+import AnimationUtils from "../../../common/utils/AnimationUtils";
 import Seed from "./Seed";
 
 const { ccclass, property } = cc._decorator;
@@ -93,7 +94,7 @@ export default class FantanBowlAnimation extends cc.Component {
     }
 
     public showStaticResult(numbersOfSeed) {
-        this.pauseSpineAnimation(this.bowlSpine, 0.99, this.animationOpenName);
+        AnimationUtils.pauseSpineAnimation(this.bowlSpine, 0.99, this.animationOpenName);
 
         const animated = false;
         this.generateResultSeeds(numbersOfSeed);
@@ -116,7 +117,7 @@ export default class FantanBowlAnimation extends cc.Component {
 
     start() {
         this.initNewSeeds();
-        this.pauseSpineAnimation(this.bowlSpine, 0, this.animationOpenName);
+        AnimationUtils.pauseSpineAnimation(this.bowlSpine, 0, this.animationOpenName);
         this.bowlSpine.clearTracks();
     }
 
@@ -163,7 +164,7 @@ export default class FantanBowlAnimation extends cc.Component {
             this.ClearSeedGrouping(!animated);
         }
         if (!animated) {
-            this.pauseSpineAnimation(this.bowlSpine, 0, this.animationOpenName);
+            AnimationUtils.pauseSpineAnimation(this.bowlSpine, 0, this.animationOpenName);
             Seed.HideSmallBowlSeed();
         } else {
             this.bowlSpine.setAnimation(0, this.animationShakingName, false);
@@ -303,7 +304,7 @@ export default class FantanBowlAnimation extends cc.Component {
 
         AudioManager.getInstance().playSFX(this.openBowlSound);
 
-        this.pauseSpineAnimation(this.bowlSpine, 0.99);
+        AnimationUtils.pauseSpineAnimation(this.bowlSpine, 0.99, this.animationShakingName);
         this.bowlSpine.update(0.01);
         this.smallBowlBone.update();
         this.prevSmallBowlPos = this.bowlSpine.node.convertToWorldSpaceAR(cc.v3(this.smallBowlBone.worldX, this.smallBowlBone.worldY));
@@ -508,14 +509,6 @@ export default class FantanBowlAnimation extends cc.Component {
 
     startRound() {
         this.ResetBigBowlSeeds();
-    }
-
-    pauseSpineAnimation(spineAnimation: sp.Skeleton, startProgress: number, animationName = this.animationShakingName) {
-        spineAnimation.node.active = true;
-        spineAnimation.timeScale = 0;
-        spineAnimation.setAnimation(0, animationName, false);
-        const trackEntry = spineAnimation.getCurrent(0);
-        trackEntry.animationStart = trackEntry.animationEnd * startProgress;
     }
 
     MoveTo(node: cc.Node, x: number, y: number, duration: number, easing, delay = 0, a = true) {

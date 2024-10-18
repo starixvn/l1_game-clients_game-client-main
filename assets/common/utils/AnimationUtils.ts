@@ -41,6 +41,7 @@ export default class AnimationUtils {
                 return;
             }
             const animationDuration = animation.duration;
+
             if (duration) {
                 spine.timeScale = animationDuration / duration;
             } else {
@@ -67,6 +68,14 @@ export default class AnimationUtils {
                 .start();
         });
     };
+
+    public static pauseSpineAnimation(spineAnimation: sp.Skeleton, startProgress: number, animationName) {
+        spineAnimation.node.active = true;
+        spineAnimation.timeScale = 0;
+        spineAnimation.setAnimation(0, animationName, false);
+        const trackEntry = spineAnimation.getCurrent(0);
+        trackEntry.animationStart = trackEntry.animationEnd * startProgress;
+    }
 }
 export const isValidNode = (comp: cc.Component) => {
     return comp.node && comp.node.isValid;

@@ -1052,8 +1052,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 191,
-      "height": 202.55
+      "width": 162,
+      "height": 91
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9280,7 +9280,9 @@
     "waitingDotsSubGame": null,
     "gameNameSprite": null,
     "tableGameBg": null,
-    "resultComp": null,
+    "resultComp": {
+      "__id__": 47
+    },
     "roundHistoryPrefab": null,
     "miniRoundHistoryPrefab": {
       "__uuid__": "667fa3c6-2003-4342-9a05-3b3e79aa4976"

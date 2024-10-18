@@ -162,6 +162,11 @@ export default class SevenUpDown extends MiniGameBase {
     public updateRoundHistory() {
         super.updateRoundHistory();
         this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
+
+        const { result, roundId } = this.gameData.roundHistory.roundHistory[0];
+        this.resultComp.showResult(result, roundId);
+
+        //this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
     }
 
     resetDataAndUI() {
@@ -179,7 +184,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.gameAudios?.playEndGameAudio();
         //this.winningResult?.setResult(settlement?.result);
         if (appManager?.GAME_IS_SHOWED) {
-            this.handleAnimResult(settlement);
+            this.handleAnimResult(settlement, settlement.roundId);
         }
     }
 
@@ -190,8 +195,10 @@ export default class SevenUpDown extends MiniGameBase {
         return `${key}_${language}`;
     }
 
-    async handleAnimResult(result: ISevenUpDownSettlement) {
-        //call into tween because action plays sound resume when the game shows
+    async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
+        const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
+        this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
+        // call into tween because action plays sound resume when the game shows
         // this.tween(this?.winningResult?.node)
         //     .call(() => {
         //         this.winningResult?.show();
@@ -205,7 +212,7 @@ export default class SevenUpDown extends MiniGameBase {
         //     })
         //     .start();
         if (this.gameData?.settlement?.settlement) {
-            this.gameAudios?.playSFXAudio(this.generateWinningKey(result));
+            this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
             this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
         }
     }

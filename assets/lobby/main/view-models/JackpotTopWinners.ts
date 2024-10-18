@@ -1,6 +1,7 @@
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
-import { JackpotEvents, jackpotManager } from "../../../managers/JackpotManager";
+import { JackpotEvents } from "../../../managers/JackpotEvents";
+import { jackpotManager } from "../../../managers/JackpotManager";
 import JackpotTopWinnersItem from "./JackpotTopWinnersItem";
 import LobbyManager from "./LobbyManager";
 

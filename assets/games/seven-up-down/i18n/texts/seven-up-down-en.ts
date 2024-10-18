@@ -204,7 +204,9 @@ export const phrases = {
         under_maintenance_time: "Starting from %{startTime} to %{endTime} (GMT+8)",
         win: "Win",
         win_loss: "Win Loss",
-        you_reach_max_win: "You reached the max win"
+        you_reach_max_win: "You reached the max win",
+        hash256: "SHA 256",
+        hash_result: "RESULT"
     },
     lobbyNames: {
         "103": "7 Up 7 Down"

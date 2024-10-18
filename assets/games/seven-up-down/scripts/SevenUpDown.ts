@@ -87,7 +87,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     onEnable(): void {
         super.onEnable();
-        this.statisticHistory.node.active = true;
+        //this.statisticHistory.node.active = true;
     }
 
     initOnStart() {
@@ -260,7 +260,6 @@ export default class SevenUpDown extends MiniGameBase {
 
     public sendBetAtChoice(choice: string, bet: number) {
         const betData = {
-            clientSeed: this.provablyFairComponent.getClientSeed(),
             amount: bet,
             betChoice: choice,
             username: userManager.userName,

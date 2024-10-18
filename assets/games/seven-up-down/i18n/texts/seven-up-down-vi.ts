@@ -205,7 +205,9 @@ export const phrases = {
         under_maintenance_time: "Thời gian bảo trì từ %{startTime} đến %{endTime} (GMT+8).",
         win: "Thắng",
         win_loss: "Thắng Thua",
-        you_reach_max_win: "Bạn Đã Đạt Mức Tiền Thắng Tối Đa"
+        you_reach_max_win: "Bạn Đã Đạt Mức Tiền Thắng Tối Đa",
+        hash256: "SHA 25",
+        hash_result: "RESULT"
     },
     lobbyNames: {
         "103": "7 Up 7 Down"

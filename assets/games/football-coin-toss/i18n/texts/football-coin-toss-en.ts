@@ -13,6 +13,7 @@ export const phrases = {
         "belgium_win": "Belgium wins",
         "che_wins": "Chelsea wins",
         "denmark_wins": "Denmark wins",
+        "game_icon_name": "Soccer Coin Toss",
         "game_name": "Soccer Coin Toss",
         "glossary_ARS": "Arsenal",
         "glossary_AUT": "Austria",
@@ -63,6 +64,12 @@ export const phrases = {
         "create_nick_name": "Create Your Nickname",
         "details": "Details",
         "enter_your_name": "Enter your nickname.",
+        "game_category_ph_1": "All Games",
+        "game_category_ph_2": "Pinoy Special",
+        "game_category_ph_3": "Slot Games",
+        "game_category_ph_4": "Card Games",
+        "game_category_ph_5": "Casual Games",
+        "game_category_ph_6": "Lotto",
         "game_excluded": "%{gameName}\n\nYour account is no longer allowed to play this game. Please try other games.",
         "game_guide": "Game Guides",
         "hand_not_active": "Inactive Hand",
@@ -221,7 +228,9 @@ export const phrases = {
         "win_loss": "Win Loss",
         "you_reach_max_win": "You reached the max win"
     },
-    "lobbyNames": {},
+    "lobbyNames": {
+        "93": "Soccer Coin Toss"
+    },
     "gameNames": {
         "93": "Soccer Coin Toss"
     }

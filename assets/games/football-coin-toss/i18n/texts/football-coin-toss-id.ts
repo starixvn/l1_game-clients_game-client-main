@@ -13,6 +13,7 @@ export const phrases = {
         "belgium_win": "Belgium menang",
         "che_wins": "Chelsea menang",
         "denmark_wins": "Denmark menang",
+        "game_icon_name": "Lempar Koin\nSepak Bola",
         "game_name": "Lempar Koin Sepak Bola",
         "glossary_ARS": "Arsenal",
         "glossary_AUT": "Austria",
@@ -218,7 +219,9 @@ export const phrases = {
         "win_loss": "Menang Kalah",
         "you_reach_max_win": "Anda mencapai Maksimal Menang"
     },
-    "lobbyNames": {},
+    "lobbyNames": {
+        "93": "Lempar Koin\nSepak Bola"
+    },
     "gameNames": {
         "93": "Lempar Koin Sepak Bola"
     }

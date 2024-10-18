@@ -13,6 +13,7 @@ export const phrases = {
         "belgium_win": "Bỉ Thắng",
         "che_wins": "Chelsea thắng",
         "denmark_wins": "Đan Mạch Thắng",
+        "game_icon_name": "Tung Xu Bóng Đá",
         "game_name": "Tung Xu Bóng Đá",
         "glossary_ARS": "Arsenal",
         "glossary_AUT": "Áo",
@@ -221,7 +222,9 @@ export const phrases = {
         "win_loss": "Thắng Thua",
         "you_reach_max_win": "Bạn Đã Đạt Mức Tiền Thắng Tối Đa"
     },
-    "lobbyNames": {},
+    "lobbyNames": {
+        "93": "Tung Xu Bóng Đá"
+    },
     "gameNames": {
         "93": "Tung Xu Bóng Đá"
     }

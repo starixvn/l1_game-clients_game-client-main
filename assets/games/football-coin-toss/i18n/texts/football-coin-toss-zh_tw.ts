@@ -13,6 +13,7 @@ export const phrases = {
         "belgium_win": "比利時獲勝",
         "che_wins": "切爾西獲勝",
         "denmark_wins": "丹麥獲勝",
+        "game_icon_name": "足球擲幣遊戲",
         "game_name": "足球擲幣遊戲",
         "glossary_ARS": "阿森納",
         "glossary_AUT": "奧地利",
@@ -218,7 +219,9 @@ export const phrases = {
         "win_loss": "贏 輸",
         "you_reach_max_win": "您達到了最大勝利"
     },
-    "lobbyNames": {},
+    "lobbyNames": {
+        "93": "足球擲幣遊戲"
+    },
     "gameNames": {
         "93": "足球擲幣遊戲"
     }

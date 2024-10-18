@@ -235,10 +235,11 @@ export default class FootballCoinToss extends MiniGameBase {
             this.flipCoin?.setSkeletonData(this.nextMatchSkeleton);
             this.flipCoin?.playAnim();
             this.winningResult?.setSkeletonData(this.nextMatchSkeleton);
+            this.betItems.forEach((betItem) => betItem.setTotalBet(0));
+            this.updateProgressBarBetPercentage(0, true);
         }
         this.highlightResult?.hide();
         this.renderStaticBetItem();
-        this.betItems.forEach((betItem) => betItem.setTotalBet(0));
     }
 
     handleRoundHistory() {

@@ -87,8 +87,8 @@ export default class LobbyResourceManager {
     }
 
     protected async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
-        const version = this.infoShareResource[type === "game" ? "gameIcons" : "miniGameIcons"];
-        const resourcePath = `${type}-icons/${gameId}/en.png?v=${version}`;
+        const version = this.infoShareResource[type === "game" ? "versionGameIcon" : "versionMiniGameIcon"];
+        const resourcePath = `${type}-icons/${gameId}/en.webp?v=${version}`;
         const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
         cache[gameId] = { spriteFrame };

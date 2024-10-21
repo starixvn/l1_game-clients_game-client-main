@@ -83,8 +83,6 @@ export default class SevenUpDown extends MiniGameBase {
 
     onLoad() {
         super.onLoad();
-        this.fetchComponents();
-        //this.winningResult.hideQuickly();
         this.animatedTime.setAnimatedY(30, -5);
         this.animatedTime.setRedTime(3);
     }
@@ -114,17 +112,11 @@ export default class SevenUpDown extends MiniGameBase {
 
     onGameHide(): void {
         super.onGameHide();
-
         this.unschedule(this.doLaterPayOutCallback);
     }
 
     public toggleShowStatistic() {
         this.statisticHistory.node.active = !this.statisticHistory.node.active;
-    }
-
-    fetchComponents() {
-        //this.winningResult = this.winningResultNode.getComponent(MiniCoinTossWinningResult);
-        //this.highlightResult = this.highlightResultNode.getComponent(HighlightResult);
     }
 
     initMiniPanel(miniPanel: MiniPanel) {
@@ -156,7 +148,6 @@ export default class SevenUpDown extends MiniGameBase {
     private highlightWonItems(settlementResult: any, isAnimated = true) {
         this.betItems.forEach((betItem) => {
             betItem.setHighlight(settlementResult[betItem.node.name], isAnimated);
-            //betItem.handleHighlightAnim(!settlementResult[betItem.node.name] && isAnimated);
         });
     }
 
@@ -166,13 +157,10 @@ export default class SevenUpDown extends MiniGameBase {
 
         const { result, roundId } = this.gameData.roundHistory.roundHistory[0];
         this.resultComp.showResultNoAnim(result, roundId);
-
-        //this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
     }
 
     resetDataAndUI() {
         super.resetDataAndUI();
-        //this.highlightResult?.hide();
         this.clearWinningBet();
     }
 
@@ -183,7 +171,6 @@ export default class SevenUpDown extends MiniGameBase {
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {
         this.gameAudios?.playEndGameAudio();
-        //this.winningResult?.setResult(settlement?.result);
         if (appManager?.GAME_IS_SHOWED) {
             this.handleAnimResult(settlement, settlement.roundId);
         }
@@ -196,7 +183,7 @@ export default class SevenUpDown extends MiniGameBase {
         return `${key}_${language}`;
     }
 
-    async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
+    handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
         this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
 
@@ -280,7 +267,6 @@ export default class SevenUpDown extends MiniGameBase {
         const dialog = cc.instantiate(this.historyPrefab);
         this.historyComponent = dialog.getComponent(SevenUpDownBetHistory);
         this.historyComponent.init(this.socket);
-        this.historyComponent.pfGameId = this.gameId;
         this.currentMiniPanel.addDialog(dialog);
     }
 }

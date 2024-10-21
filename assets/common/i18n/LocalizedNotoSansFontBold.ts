@@ -3,8 +3,8 @@ import LocalizedFont from "./LocalizedFont";
 const { ccclass, menu } = cc._decorator;
 
 @ccclass
-@menu("i18n/LocalizedSharnayFontBold")
-export default class LocalizedSharnayFontBold extends LocalizedFont {
+@menu("i18n/LocalizedNotoSansFontBold")
+export default class LocalizedNotoSansFontBold extends LocalizedFont {
     initData() {
         this.fontBases = {
             vi: "NotoSans-Bold",

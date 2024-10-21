@@ -13,4 +13,8 @@ export default class SevenUpDownHash256 extends MD5Component {
             .to(0.3, { position: cc.v3(0, 0, 0) })
             .start();
     }
+
+    setDataTip(data: MD5Type) {
+        this.tipString = data.rawValue || data.hashValue;
+    }
 }

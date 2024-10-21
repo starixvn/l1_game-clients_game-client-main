@@ -61,7 +61,7 @@ export default class SevenUpDownResult extends cc.Component {
         this.setResultDiceFrames(prevResult, result);
         this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, this.RESULT_DURATION);
         this.dicesComponent.forEach((dice, index) => {
-            dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`]);
+            dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`], this.RESULT_DURATION);
         });
     }
 

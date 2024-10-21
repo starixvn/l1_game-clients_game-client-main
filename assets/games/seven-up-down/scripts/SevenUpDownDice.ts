@@ -18,9 +18,21 @@ export default class SevenUpDownDice extends cc.Component {
         this.diceSprite.spriteFrame = spriteFrame;
     }
 
-    runAnimation(resultDiceFrames: cc.SpriteFrame[]) {
-        resultDiceFrames.forEach((spriteFrame) => {
-            this.setFrame(spriteFrame);
-        });
+    runAnimation(resultDiceFrames: cc.SpriteFrame[], duration: number) {
+        let index = 0;
+        const diceFramesNumber = resultDiceFrames.length - 1;
+
+        cc.tween(this.diceSprite.node)
+            .repeat(
+                diceFramesNumber,
+                cc
+                    .tween()
+                    .delay(duration / diceFramesNumber)
+                    .call(() => {
+                        this.setFrame(resultDiceFrames[index]);
+                        index++;
+                    })
+            )
+            .start();
     }
 }

@@ -23,7 +23,7 @@ import {
     handleBeginStarting,
     handleNotice,
     handlePlacingBet,
-    handleShowResult,
+    addMatchToRoundHistory,
     handleUserBetPercentage
 } from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
@@ -179,7 +179,7 @@ export default class FootballCoinToss extends MiniGameBase {
         this.emitterListener(this.gameData.betModel, BetModel.Events.CHANGE_BET_PERCENTAGE, handleUserBetPercentage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
-        this.emitterListener(this.gameData.settlement, Settlement.Events.SHOW_RESULT, handleShowResult);
+        this.emitterListener(this.gameData.settlement, Settlement.Events.SHOW_RESULT, addMatchToRoundHistory);
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.FIRST_LOAD, () => () => {
             const lastRound = this.gameData.roundHistory?.roundHistory?.[0];
             if (lastRound && this.gameData.durations.isWaiting()) {
@@ -191,6 +191,10 @@ export default class FootballCoinToss extends MiniGameBase {
             }
         });
         this.emitterListener(this.gameData.notice, NoticeModel.Events.CHANGE, handleNotice);
+        this.emitterListener(this.gameData.durations, Durations.Events.STARTING_ROUND, () => () => {
+            this.betItems.forEach((betItem) => betItem.setTotalBet(0));
+            this.betPercentage && this.betPercentage.forEach((label) => (label.string = `0%`));
+        });
     }
 
     getBetChoiceString(choice: string): string {
@@ -235,8 +239,6 @@ export default class FootballCoinToss extends MiniGameBase {
             this.flipCoin?.setSkeletonData(this.nextMatchSkeleton);
             this.flipCoin?.playAnim();
             this.winningResult?.setSkeletonData(this.nextMatchSkeleton);
-            this.betItems.forEach((betItem) => betItem.setTotalBet(0));
-            this.updateProgressBarBetPercentage(0, true);
         }
         this.highlightResult?.hide();
         this.renderStaticBetItem();

@@ -3,6 +3,7 @@ import GameUtils from "../../../../common/GameUtils";
 import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
 import NoticeUtil from "../../../../common/utils/NoticeUtil";
 import { appManager } from "../../../../managers/AppManager";
+import { Durations } from "../../../_new/_base/game-data-management/models/durations";
 import FootballCoinToss from "../FootballCoinToss";
 import { BetChoice } from "../FootballCoinTossConstant";
 
@@ -23,42 +24,23 @@ export const handleBeginStarting = (game: FootballCoinToss) => () => {
 };
 
 export const handleUserBetPercentage = (game: FootballCoinToss) => (betPercentage: any) => {
+    const changeLater = game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND);
     if (game.isDisableGame) {
         return;
     }
-    const bidenBetPercentage = betPercentage?.[BetChoice.Home] ?? 0;
+    let bidenBetPercentage = betPercentage?.[BetChoice.Home] ?? 0;
     const trumpBetPercentage = betPercentage?.[BetChoice.Away] ?? 0;
-    const isShowProgressDefault = bidenBetPercentage === 0 && trumpBetPercentage === 0;
+    if (changeLater) {
+        bidenBetPercentage = 0;
+    }
+    const isShowProgressDefault = (bidenBetPercentage === 0 && trumpBetPercentage === 0) || changeLater;
     game.updateProgressBarBetPercentage(bidenBetPercentage, isShowProgressDefault);
 };
 
-export const handleShowResult = (game: FootballCoinToss) => (settlement) => {
-    if (game.isDisableGame) {
-        return;
-    }
-    game.inSettlementSequence = true;
-    if (game.usingNewSettlement) {
-        game.gameData.settlement.clearStatus();
-        game.gameData.settlement.clearWinnersData();
-    }
+export const addMatchToRoundHistory = (game: FootballCoinToss) => (settlement) => {
     const matchToInsert = getMatchToInsert(game);
     settlement.match = matchToInsert ?? game.match;
-    game.gameData.roundHistory.add(settlement);
-    game.gameData.roundHistory.checkWinningStreak(settlement, game.showResultDuration);
-    game.disableRebetButton();
-    if (game.countDownProgressBar) {
-        game.animatedTime.node.active = false;
-        game.setWaitingDotsVisibility(true);
-        game.countDownProgressBar.setIndicatorVisibility(false);
-    }
-
-    const isDelayEndGame = game.gameData.durations.isBeforePlacingBet();
-    if (isDelayEndGame || !appManager.GAME_IS_SHOWED) {
-        game.gameData.settlement.finishShowResult(settlement, false);
-    } else {
-        game.isShowingSettlementOnUI = true;
-        game.showSettlementResult(settlement);
-    }
+    console.log("addMatchToRoundHistory", game.gameData.roundHistory);
 };
 
 const isValidMatch = (match) => {

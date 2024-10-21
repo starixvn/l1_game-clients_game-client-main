@@ -26,8 +26,6 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SevenUpDown extends MiniGameBase {
-    // @property({ type: MiniCoinTossBetItem, override: true })
-    // betItems: MiniCoinTossBetItem[] = [];
     @property({ type: MD5Component, visible: false, override: true })
     md5Component: MD5Component = null;
 
@@ -49,17 +47,9 @@ export default class SevenUpDown extends MiniGameBase {
     @property({ type: cc.Label, visible: false, override: true })
     betPercentage: cc.Label[] = [];
 
-    @property({ type: cc.Node })
-    winningResultNode: cc.Node = null;
-
-    @property({ type: cc.Node })
-    highlightResultNode: cc.Node = null;
-
     @property(cc.JsonAsset)
     gameAudioConfig: cc.JsonAsset = null;
 
-    //public winningResult: MiniCoinTossWinningResult = null;
-    //public highlightResult: HighlightResult = null;
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
 
@@ -105,7 +95,6 @@ export default class SevenUpDown extends MiniGameBase {
 
     closeGame() {
         this.clearWinningBet();
-        //this.highlightResult?.hide();
         this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
     }
@@ -164,11 +153,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.clearWinningBet();
     }
 
-    handleStartNewRound() {
-        //this.winningResult?.hideQuickly();
-        //this.highlightResult?.hide();
-    }
-
     showSettlementResult(settlement: ISevenUpDownSettlement) {
         this.gameAudios?.playEndGameAudio();
         if (appManager?.GAME_IS_SHOWED) {
@@ -202,7 +186,6 @@ export default class SevenUpDown extends MiniGameBase {
     handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
         this.showWinChoiceAndUpdateHistory(settlement);
         const doLaterPayOut = () => {
-            //!this?.gameData?.durations?.isPlacingBet() && this.highlightResult?.show(settlement?.result);
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.settlementResult));
             !animated && this.gameData?.settlement?.showStatus();

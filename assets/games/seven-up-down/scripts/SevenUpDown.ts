@@ -183,7 +183,7 @@ export default class SevenUpDown extends MiniGameBase {
         return `${key}_${language}`;
     }
 
-    handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
+    async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
         this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
 

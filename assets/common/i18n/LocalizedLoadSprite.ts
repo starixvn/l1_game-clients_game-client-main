@@ -19,7 +19,6 @@ export default class LocalizedLoadSprite extends cc.Component {
     enableCustomizePath = false;
 
     @property({
-        type: cc.String,
         visible: function (this: LocalizedLoadSprite) {
             return this.enableCustomizePath;
         }

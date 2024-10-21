@@ -200,7 +200,7 @@ export default class SevenUpDown extends MiniGameBase {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
         this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
 
-        await AnimationUtils.delayTime(this.resultComp?.resultDuration);
+        await AnimationUtils.delayTime(this.resultComp?.RESULT_DURATION);
 
         if (this.gameData?.settlement?.settlement) {
             this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));

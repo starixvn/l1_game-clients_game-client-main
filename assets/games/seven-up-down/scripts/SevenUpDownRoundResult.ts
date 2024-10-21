@@ -28,13 +28,13 @@ export default class SevenUpDownRoundResult extends cc.Component {
             .start();
     }
     updateLabels(data: any) {
-        const { settlementResult, result, multiplier } = data;
+        const { result } = data;
         //const lang = window.i18n.curLang === "vi" ? "" : `_${window.i18n.curLang}`;
         //const choice = this.getTextFollowChoice({ settlementResult });
 
         this.total.spriteFrame = this.atlas.getSpriteFrame(result.dice1 + result.dice2);
 
-        //this.multiplier.string = multiplier;
+        this.multiplier.string = result.multiplierValue ? `${result.multiplierValue}X` : "";
     }
 
     getTextFollowChoice({ settlementResult }): string {

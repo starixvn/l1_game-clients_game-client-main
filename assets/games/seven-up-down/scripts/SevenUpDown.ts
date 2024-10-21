@@ -2,6 +2,7 @@ import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
 import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import { userManager } from "../../../common/user/UserManager";
+import AnimationUtils from "../../../common/utils/AnimationUtils";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import DataHandler from "../../_base/handlers/DataHandler";
@@ -197,20 +198,14 @@ export default class SevenUpDown extends MiniGameBase {
 
     async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
+        this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
 
-        // call into tween because action plays sound resume when the game shows
-        this.tween(this?.resultComp?.node)
-            .call(() => {
-                this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
-            })
-            .delay(this.resultComp?.resultDuration)
-            .call(() => {
-                if (this.gameData?.settlement?.settlement) {
-                    this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
-                    this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-                }
-            })
-            .start();
+        await AnimationUtils.delayTime(this.resultComp?.resultDuration);
+
+        if (this.gameData?.settlement?.settlement) {
+            this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
+            this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+        }
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {

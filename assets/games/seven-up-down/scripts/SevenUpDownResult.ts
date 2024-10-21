@@ -52,9 +52,9 @@ export default class SevenUpDownResult extends cc.Component {
         });
     }
 
-    async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
+    showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
         this.resetResultDiceFrames();
-        await this.setResultDiceFrames(prevResult, result);
+        this.setResultDiceFrames(prevResult, result);
         this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, this.resultDuration);
         this.dicesComponent.forEach((dice, index) => {
             dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`]);
@@ -66,7 +66,7 @@ export default class SevenUpDownResult extends cc.Component {
         return randomNumber.toString().padStart(2, "0");
     }
 
-    private async setResultDiceFrames(prevResult: ISevenUpDownResult, result: ISevenUpDownResult) {
+    private setResultDiceFrames(prevResult: ISevenUpDownResult, result: ISevenUpDownResult) {
         for (let i = 0; i < this.dicesComponent.length; i++) {
             const files = [`start-${prevResult[`dice${i + 1}`]}`, `loop-${this.getRandomNumber(3)}`, `end-${result[`dice${i + 1}`]}`];
             for (const file of files) {

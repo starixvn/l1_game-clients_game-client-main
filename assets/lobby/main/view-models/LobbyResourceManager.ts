@@ -7,6 +7,8 @@ export interface IInfoShareResource {
     versionGameIcon: number;
     versionMiniGameIcon: number;
     ignoreCapitalizeGameNames: number[];
+    gameNamesBreakLine: IGameNamesBreakLine;
+    gameNamesFontSize: IGameNamesFontSize;
 }
 
 export interface IInfoShareResourceBanner {
@@ -24,6 +26,18 @@ interface LanguagesConfig {
     zh_tw?: boolean;
 }
 
+interface IGameNamesBreakLine {
+    [gameId: string]: {
+        [languageCode: string]: string;
+    };
+}
+
+interface IGameNamesFontSize {
+    [gameId: string]: {
+        [languageCode: string]: number;
+    };
+}
+
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
     private readonly supportGroupCurrencies: string[] = ["Credit_PHP", "Cash_PHP"];
@@ -36,7 +50,9 @@ export default class LobbyResourceManager {
         versionBanner: 1,
         versionGameIcon: 1,
         versionMiniGameIcon: 1,
-        ignoreCapitalizeGameNames: []
+        ignoreCapitalizeGameNames: [],
+        gameNamesBreakLine: {},
+        gameNamesFontSize: {}
     };
 
     private readonly defaultPath = "lobby/themes";
@@ -49,8 +65,31 @@ export default class LobbyResourceManager {
 
         return this.instance;
     }
+    public static init(groupCurrency: string) {
+        return this.getInstance().init(groupCurrency);
+    }
 
-    public init(groupCurrency: string) {
+    public static loadPrefab(path: string): Promise<cc.Prefab> {
+        return this.getInstance().loadPrefab(path);
+    }
+
+    public static isUseTheme() {
+        return this.getInstance().isUseTheme();
+    }
+
+    public getIgnoreCapitalizeGameNames() {
+        return this.infoShareResource.ignoreCapitalizeGameNames;
+    }
+
+    public getGameNameBreakLine(gameId: number, lang: string) {
+        return this.infoShareResource.gameNamesBreakLine?.[gameId]?.[lang];
+    }
+
+    public getGameNamesFontSize(gameId: number, lang: string) {
+        return this.infoShareResource.gameNamesFontSize?.[gameId]?.[lang];
+    }
+
+    protected init(groupCurrency: string) {
         this.currentGroupCurrency = groupCurrency;
         if (this.isUseTheme()) {
             this.getRemoteVersion();
@@ -66,7 +105,7 @@ export default class LobbyResourceManager {
         return `${url}/lobbies/${this.getTheme()}/${pathResource}`;
     }
 
-    public loadPrefabResource(path: string): Promise<cc.Prefab> {
+    protected loadPrefab(path: string): Promise<cc.Prefab> {
         return new Promise((resolve) => {
             cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
                 resolve(prefab);
@@ -82,7 +121,7 @@ export default class LobbyResourceManager {
         return `${this.defaultPath}/default`;
     }
 
-    public isUseTheme() {
+    protected isUseTheme() {
         return this.supportGroupCurrencies.includes(this.currentGroupCurrency);
     }
 

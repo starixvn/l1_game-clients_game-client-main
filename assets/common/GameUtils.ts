@@ -1297,7 +1297,7 @@ export default class GameUtils {
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
 
-            if (LobbyResourceManager?.getInstance()?.isUseTheme()) {
+            if (LobbyResourceManager.isUseTheme()) {
                 const preloadGameInMain = preLoadGameIds.filter(
                     (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );

@@ -17,10 +17,12 @@ export default class SkeletonIconTheme extends SkeletonIcon {
     jackpotPoolInfo: JackpotPoolInfo = null;
 
     override setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
+        const gameName = this.getGameNamesBreakLine(gameId, text);
         this.gameName.node.active = true;
-        this.gameName.string = LobbyResourceManager.getInstance()?.infoShareResource?.ignoreCapitalizeGameNames.includes(gameId)
-            ? text
-            : StringUtil.formatText(text, formatGameName);
+        this.gameName.string = LobbyResourceManager.getInstance()?.getIgnoreCapitalizeGameNames().includes(gameId)
+            ? gameName
+            : StringUtil.formatText(gameName, formatGameName);
+        this.handleFontSize(gameId);
     }
 
     override setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
@@ -53,5 +55,21 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
     private updateJackpotPoolInfo(id: number) {
         this.jackpotPoolInfo && (this.jackpotPoolInfo.gameId = id);
+    }
+
+    protected getGameNamesBreakLine(gameId: number, currentGameName: string): string {
+        const lang = window.i18n.curLang ?? "en";
+        const gameName = LobbyResourceManager.getInstance()?.getGameNameBreakLine(gameId, lang);
+
+        return gameName ?? currentGameName;
+    }
+
+    protected handleFontSize(gameId: number) {
+        const lang = window.i18n.curLang ?? "en";
+        const fontSize = LobbyResourceManager.getInstance()?.getGameNamesFontSize(gameId, lang);
+
+        if (fontSize && fontSize > 0) {
+            this.gameName.fontSize = fontSize;
+        }
     }
 }

@@ -131,7 +131,7 @@ export default class Lobby extends cc.Component {
     async loadBackgroundUI() {
         try {
             if (!this.backgroundUIPrefab) {
-                this.backgroundUIPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("background-ui");
+                this.backgroundUIPrefab = await LobbyResourceManager.loadPrefab("background-ui");
             }
 
             if (this.backgroundUIPrefab) {
@@ -144,7 +144,7 @@ export default class Lobby extends cc.Component {
     async loadHeader() {
         try {
             if (!this.headerPrefab) {
-                this.headerPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("header");
+                this.headerPrefab = await LobbyResourceManager.loadPrefab("header");
             }
 
             if (this.headerPrefab) {
@@ -160,7 +160,7 @@ export default class Lobby extends cc.Component {
     async loadMarquee() {
         try {
             if (!this.marqueePrefab) {
-                this.marqueePrefab = await LobbyResourceManager.getInstance().loadPrefabResource("marquee");
+                this.marqueePrefab = await LobbyResourceManager.loadPrefab("marquee");
             }
 
             if (this.marqueePrefab) {
@@ -176,7 +176,7 @@ export default class Lobby extends cc.Component {
     async loadLobbyCenterContainer() {
         try {
             if (!this.lobbyCenterPrefab) {
-                this.lobbyCenterPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("lobby-center");
+                this.lobbyCenterPrefab = await LobbyResourceManager.loadPrefab("lobby-center");
             }
 
             if (this.lobbyCenterPrefab) {
@@ -193,7 +193,7 @@ export default class Lobby extends cc.Component {
     async loadButtonArrow() {
         try {
             if (!this.buttonArrowPrefab) {
-                this.buttonArrowPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("button-arrow");
+                this.buttonArrowPrefab = await LobbyResourceManager.loadPrefab("button-arrow");
             }
 
             if (this.buttonArrowPrefab) {
@@ -213,7 +213,7 @@ export default class Lobby extends cc.Component {
     async loadButtons() {
         try {
             if (!this.containerButtonsPrefabs) {
-                this.containerButtonsPrefabs = await LobbyResourceManager.getInstance().loadPrefabResource("buttons");
+                this.containerButtonsPrefabs = await LobbyResourceManager.loadPrefab("buttons");
             }
 
             if (this.containerButtonsPrefabs) {
@@ -231,7 +231,7 @@ export default class Lobby extends cc.Component {
     async loadPrefabCategoryContainer() {
         try {
             if (!this.categoryContainerPrefab) {
-                this.categoryContainerPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("category-container");
+                this.categoryContainerPrefab = await LobbyResourceManager.loadPrefab("category-container");
             }
 
             if (this.categoryContainerPrefab) {
@@ -251,7 +251,7 @@ export default class Lobby extends cc.Component {
         try {
             AudioManager.getInstance().playClick();
             if (!this.settingMenuPrefab) {
-                this.settingMenuPrefab = await LobbyResourceManager.getInstance().loadPrefabResource("setting-menu");
+                this.settingMenuPrefab = await LobbyResourceManager.loadPrefab("setting-menu");
             }
 
             if (this.settingMenuPrefab) {

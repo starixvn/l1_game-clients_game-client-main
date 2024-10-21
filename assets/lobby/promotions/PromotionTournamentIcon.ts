@@ -58,8 +58,8 @@ export default class PromotionTournamentIcon extends cc.Component {
     loadIcon() {
         return GameUtils.asyncExecute<cc.Prefab>(
             this.node,
-            LobbyResourceManager?.getInstance()?.isUseTheme()
-                ? LobbyResourceManager?.getInstance()?.loadPrefabResource("promotion-tournament/icon")
+            LobbyResourceManager.isUseTheme()
+                ? LobbyResourceManager.loadPrefab("promotion-tournament/icon")
                 : GameUtils.loadResource("promotion-tournament/views/icon")
         );
     }

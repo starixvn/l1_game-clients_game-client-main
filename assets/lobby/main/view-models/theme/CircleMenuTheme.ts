@@ -22,7 +22,7 @@ export default class CircleMenuTheme extends CircleMenu {
                 skeletonMiniIcon.hideSkeleton();
                 const prefabCounter = await GameUtils.asyncExecute<cc.Prefab>(
                     this?.node,
-                    LobbyResourceManager.getInstance().loadPrefabResource(`mini-game/counters/${gameId}`)
+                    LobbyResourceManager.loadPrefab(`mini-game/counters/${gameId}`)
                 );
                 prefabCounter && skeletonMiniIcon.containerCounter.addChild(cc.instantiate(prefabCounter));
             }

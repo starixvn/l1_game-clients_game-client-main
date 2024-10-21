@@ -164,11 +164,11 @@ class AppManager {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has("cg")) {
             const currencyGroup = urlParams.get("cg");
-            LobbyResourceManager.getInstance().init(currencyGroup);
+            LobbyResourceManager.init(currencyGroup);
             StorageManager.set("currency_group", currencyGroup);
         } else {
             const currencyGroup = StorageManager.get("currency_group");
-            currencyGroup && LobbyResourceManager.getInstance().init(currencyGroup);
+            currencyGroup && LobbyResourceManager.init(currencyGroup);
         }
     }
 

@@ -17,6 +17,7 @@ export interface IRoundBaseProvablyFairVerify {
     result: object;
     finalHash: string;
     roundId: number;
+    match?: any;
 }
 
 @ccclass

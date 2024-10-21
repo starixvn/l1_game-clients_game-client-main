@@ -13,7 +13,7 @@ export interface IProvablyFairVerify {
 }
 
 export const OPEN_PROVABLY_FAIR_VERIFY = " open_provably_fair_verify";
-export const PF_MAX_CHARACTER_DISPLAY = 70;
+export const PF_MAX_CHARACTER_DISPLAY = 69;
 
 @ccclass
 export default class ProvablyFairVerifyComponent extends ProvablyFairComponentBase {

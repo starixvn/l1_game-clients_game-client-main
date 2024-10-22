@@ -9,7 +9,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
     @property({ type: cc.Node, override: true, visible: false })
     lightTop: cc.Node = null;
 
-    protected override async createRemoteIconNode(id: number) {
+    public override async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
             const configFile = this.cache[id]
@@ -35,7 +35,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
         return node;
     }
 
-    override async loadAnimation(id: number) {
+    public override async loadAnimation(id: number) {
         const gameNode = await this.createRemoteIconNode(id);
         if (gameNode) {
             this.hideSkeleton();

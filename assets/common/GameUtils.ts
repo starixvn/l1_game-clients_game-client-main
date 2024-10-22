@@ -8,6 +8,7 @@ import { GameConfiguration, getGameConfiguration, isGatewayGame, isUsingRemoteBu
 import { TotalPreloadGameIcon } from "../constants";
 import IGameBase from "../games/_base/IGameBase";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
+import SkeletonBannerTheme from "../lobby/main/view-models/theme/SkeletonBannerTheme";
 import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
 import LobbyResourceManager from "../lobby/main/view-models/LobbyResourceManager";
 import { appManager } from "../managers/AppManager";
@@ -1369,6 +1370,14 @@ export default class GameUtils {
             }
 
             const bannerId = bannerGameIds[0];
+
+            if (LobbyResourceManager.isUseTheme() && bannerId > 0) {
+                const node = new cc.Node();
+                const bannerComp = node.addComponent(SkeletonBannerTheme);
+                await bannerComp.createRemoteIconNode(bannerId);
+
+                return;
+            }
 
             let bannerAwaiters: Promise<unknown>;
             const bannerType = GameUtils.getBannerTypeByGameId(bannerId);

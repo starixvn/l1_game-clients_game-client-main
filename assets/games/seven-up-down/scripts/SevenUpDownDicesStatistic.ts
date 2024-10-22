@@ -106,9 +106,10 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
 
     changeDisplayMode() {
         this.isShowDiceView = !this.isShowDiceView;
-        this.buttonSprite.spriteFrame = this.isShowDiceView
-            ? this.iconSpriteFrames[IconButtonChart.chartDice]
-            : this.iconSpriteFrames[IconButtonChart.chartDot];
+
+        const iconFrame = this.isShowDiceView ? IconButtonChart.chartDice : IconButtonChart.chartDot;
+
+        this.buttonSprite.spriteFrame = this.iconSpriteFrames[iconFrame];
         this.statsScrollView.active = this.isShowDiceView;
         this.logView.node.active = !this.isShowDiceView;
     }

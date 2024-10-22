@@ -1,5 +1,6 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
-import MD5Component from "../../_base/view-models/MD5Component";
+
+import MD5Component, { MD5Type } from "../../_base/view-models/MD5Component";
 
 const { ccclass, property } = cc._decorator;
 

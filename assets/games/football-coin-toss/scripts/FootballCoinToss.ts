@@ -191,10 +191,6 @@ export default class FootballCoinToss extends MiniGameBase {
             }
         });
         this.emitterListener(this.gameData.notice, NoticeModel.Events.CHANGE, handleNotice);
-        this.emitterListener(this.gameData.durations, Durations.Events.STARTING_ROUND, () => () => {
-            this.betItems.forEach((betItem) => betItem.setTotalBet(0));
-            this.betPercentage && this.betPercentage.forEach((label) => (label.string = `0%`));
-        });
     }
 
     getBetChoiceString(choice: string): string {

@@ -1,4 +1,5 @@
 import GameBase from "../../_base/GameBase";
+import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import MiniGameBase from "../view-models/MiniGameBase";
 import { collectChipsLost, dealerGetChipsMiniGame } from "./../../_base/action/PayChipsAction";
 
@@ -6,7 +7,9 @@ export const updateTotalBets = (gameBase: MiniGameBase) => (data) => {
     if (gameBase.isDisableGame) {
         return;
     }
-    gameBase.betItems.forEach((item) => item.setTotalBetsData(data));
+    const isStartingRound = gameBase.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND);
+    const totalBetsData = isStartingRound ? {} : data;
+    gameBase.betItems.forEach((item) => item.setTotalBetsData(totalBetsData));
 };
 
 export const updateOwnBets = (gameBase: MiniGameBase) => (data) => {
@@ -51,9 +54,13 @@ export const changeBetPercentage = (game: MiniGameBase) => (betPercentage: any) 
     if (game.isDisableGame) {
         return;
     }
+    const isStartingRound = game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND);
     Object.keys(betPercentage).forEach((key) => {
         const label = game.betPercentage.find((label) => label.node.name === key);
-        label && (label.string = `${betPercentage[key]}%`);
+
+        if (label) {
+            label.string = isStartingRound ? `0%` : `${betPercentage[key]}%`;
+        }
     });
 };
 

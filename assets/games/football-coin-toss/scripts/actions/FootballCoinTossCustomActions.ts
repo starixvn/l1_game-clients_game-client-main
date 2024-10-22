@@ -40,7 +40,6 @@ export const handleUserBetPercentage = (game: FootballCoinToss) => (betPercentag
 export const addMatchToRoundHistory = (game: FootballCoinToss) => (settlement) => {
     const matchToInsert = getMatchToInsert(game);
     settlement.match = matchToInsert ?? game.match;
-    console.log("addMatchToRoundHistory", game.gameData.roundHistory);
 };
 
 const isValidMatch = (match) => {

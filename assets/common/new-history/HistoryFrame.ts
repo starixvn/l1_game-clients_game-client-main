@@ -65,10 +65,12 @@ export default class HistoryFrame extends cc.Component {
     }
 
     updateTitleSize(width: number) {
-        this.titleBgNode.children.forEach((child) => {
-            child.width = width / 2;
-        });
-        this.titleBgNode.getComponent(cc.Layout).updateLayout();
+        if (this.titleBgNode) {
+            this.titleBgNode.children.forEach((child) => {
+                child.width = width / 2;
+            });
+            this.titleBgNode.getComponent(cc.Layout).updateLayout();
+        }
     }
 
     closePopup() {

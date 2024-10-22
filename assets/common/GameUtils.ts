@@ -960,7 +960,7 @@ export default class GameUtils {
         return { isStack: totalChip < currNodeAmount, chipValues: values, chipTotal: totalChip };
     }
 
-    public static setFontSizeLabelsInNode(node: cc.Node, isCustom = false, fontSize = 36) {
+    public static setFontSizeLabelsInNode(node: cc.Node, isCustom = false, fontSize = 36, colorText = "#ffe800") {
         let parentNode;
         node.getComponentsInChildren(cc.Label).forEach((label) => {
             const labelNode = label.node;
@@ -971,7 +971,7 @@ export default class GameUtils {
             }
 
             if (isCustom) {
-                labelNode.color = cc.Color.BLACK.fromHEX("#ffe800");
+                labelNode.color = cc.Color.BLACK.fromHEX(colorText);
                 const labelFormat = labelNode.getComponent("LocalizedLabelWithFormat");
                 if (labelFormat) {
                     labelFormat.format = FormationHandler.TITLE;

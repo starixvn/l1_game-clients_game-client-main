@@ -388,9 +388,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
@@ -529,9 +529,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
@@ -670,9 +670,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
@@ -811,9 +811,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
@@ -952,9 +952,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
@@ -1069,7 +1069,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "fairness",
+    "_name": "winloss",
     "_objFlags": 0,
     "_parent": {
       "__id__": 8
@@ -1096,14 +1096,14 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 223,
-      "b": 109,
+      "r": 237,
+      "g": 187,
+      "b": 2,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 215.49,
+      "width": 190.01,
       "height": 30.24
     },
     "_anchorPoint": {
@@ -1148,7 +1148,7 @@
       "__id__": 34
     },
     "_enabled": true,
-    "_dataId": "Common.pf_fairness",
+    "_dataId": "Common.win_loss",
     "format": 3,
     "suffix": "",
     "_id": ""
@@ -1168,8 +1168,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "COMMON.PF_FAIRNESS",
-    "_N$string": "COMMON.PF_FAIRNESS",
+    "_string": "COMMON.WIN_LOSS",
+    "_N$string": "COMMON.WIN_LOSS",
     "_fontSize": 18,
     "_lineHeight": 24,
     "_enableWrapText": true,
@@ -1208,7 +1208,7 @@
       "__id__": 34
     },
     "_enabled": true,
-    "_dataId": "Common.pf_fairness",
+    "_dataId": "Common.win_loss",
     "format": 1,
     "suffix": "",
     "_id": ""

@@ -28,8 +28,8 @@ export default class HistoryFrame extends cc.Component {
     @property(cc.Layout)
     title: cc.Layout = null;
 
-    private readonly PADDING = 12;
-    private readonly PADDING_TOP_HEIGHT = 60;
+    protected readonly PADDING = 12;
+    protected readonly PADDING_TOP_HEIGHT = 60;
     protected PADDING_AROUND_POPUP = 80;
 
     protected needUpdateAutoScaleWidth = true;

@@ -1,5 +1,5 @@
 import AudioManager from "../../../../common/audio/AudioManager";
-import { getStringDateByTime } from "../../../../common/helpers/DateTimeHelper";
+import { getString12HourByTime, getStringDate1 } from "../../../../common/helpers/DateTimeHelper";
 import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
 import SocketIOHistoryItemBase from "../../../_base/view-models/SocketIOHistoryItemBase";
 
@@ -28,7 +28,7 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
         this.roundId = betLog.roundId;
         this.setBackground(index);
         const { time, betwin, roundId, totalAmount, result } = betLog;
-        this.time.string = getStringDateByTime(time);
+        this.time.string = `${getStringDate1(time)} ${getString12HourByTime(time)}`;
         this.round.string = roundId.toString();
         this.win.string = numberWithCommas(betwin, 2);
         this.totalStake.string = numberWithCommas(totalAmount, 2);

@@ -16,4 +16,12 @@ const getStringDate = (t) => {
     return moment(new Date(t)).format("DD/MM/YYYY");
 };
 
-export { getStringDateByTime, formatDateTime, getStringHourByTime, getStringDate };
+export const getStringDate1 = (time: string) => {
+    return moment(new Date(time)).format("MM/DD/YYYY");
+};
+
+export const getString12HourByTime = (time: string) => {
+    return moment(new Date(time)).format("hh:mm:ss A");
+};
+
+export { formatDateTime, getStringDate, getStringDateByTime, getStringHourByTime };

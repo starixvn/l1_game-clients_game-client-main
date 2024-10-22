@@ -8,6 +8,7 @@ const { ccclass, property } = cc._decorator;
 export default class SevenUpDownBetHistory extends SocketIOGameHistoryBase {
     @property(cc.Prefab)
     ticketDetailPrefab: cc.Prefab = null;
+    public headerTitleColor = "#EDBB02";
 
     public handleBetHistory = (roundId) => {};
     bindItemRowData(betLog, index) {

@@ -6,7 +6,7 @@ import AnimationUtils from "../../../common/utils/AnimationUtils";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import DataHandler from "../../_base/handlers/DataHandler";
-import GameBaseProvablyFairHandler from "../../_base/handlers/GameBaseProvablyFairHandler";
+import GameBaseMultiplierHandler from "../../_base/handlers/GameBaseMultiplierHandler";
 import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
@@ -67,8 +67,9 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     protected addHandlers(...handlers: DataHandler[]): void {
-        this.provablyFairHandler = new GameBaseProvablyFairHandler(this);
-        super.addHandlers(...handlers, this.provablyFairHandler);
+        //this.provablyFairHandler = new GameBaseProvablyFairHandler(this);
+        this.multiplierHandler = new GameBaseMultiplierHandler(this);
+        super.addHandlers(...handlers, this.multiplierHandler);
     }
 
     onLoad() {
@@ -251,5 +252,10 @@ export default class SevenUpDown extends MiniGameBase {
         this.historyComponent = dialog.getComponent(SevenUpDownBetHistory);
         this.historyComponent.init(this.socket);
         this.currentMiniPanel.addDialog(dialog);
+    }
+
+    showMultiplier(multiplierValue: number, multiplierChoice: string) {
+        console.log("multiplier", multiplierValue);
+        console.log("multiplier", multiplierChoice);
     }
 }

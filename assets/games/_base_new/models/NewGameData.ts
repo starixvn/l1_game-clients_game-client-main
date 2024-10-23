@@ -5,6 +5,7 @@ import { TotalBetsEventHandler } from "../../_new/_base/game-data-management/eve
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
 import { BetHandler } from "../handlers/BetHandler";
 import { GameConfigHandler } from "../handlers/GameConfigHandler";
+import { MultiplierHandler } from "../handlers/MultiplierHandler";
 import { NoticeHandler } from "../handlers/NoticeHandler";
 import { OddsHandler } from "../handlers/OddsHandler";
 import { ResultHashHandler } from "../handlers/ResultHashHandler";
@@ -15,6 +16,7 @@ import { BetModel } from "./BetModel";
 import { BoostedChoicesModel } from "./BoostedChoicesModel";
 import { BoostedOddsModel } from "./BoostedOddsModel";
 import { GameConfigs } from "./GameConfigs";
+import { Multiplier } from "./Multiplier";
 import { NewDurations } from "./NewDurations";
 import { NoticeModel } from "./NoticeModel";
 import { ResultHash } from "./ResultHash";
@@ -41,6 +43,7 @@ export default class NewGameData extends GameData {
     durations: NewDurations;
     boostedChoicesModel: BoostedChoicesModel;
     boostedOddsModel: BoostedOddsModel;
+    multiplier: Multiplier;
 
     roundId: number;
 
@@ -64,7 +67,8 @@ export default class NewGameData extends GameData {
             this.settlement,
             this.resultHash,
             this.boostedChoicesModel,
-            this.boostedOddsModel
+            this.boostedOddsModel,
+            this.multiplier
         ];
         this.eventEmitters.push(...models);
     }
@@ -80,6 +84,7 @@ export default class NewGameData extends GameData {
         this.umModel = new UMModel();
         this.boostedChoicesModel = new BoostedChoicesModel();
         this.boostedOddsModel = new BoostedOddsModel();
+        this.multiplier = new Multiplier();
     }
 
     changeRoundId(roundId: number) {
@@ -100,6 +105,7 @@ export default class NewGameData extends GameData {
             //
             UMHandler,
             ResultHashHandler,
+            MultiplierHandler,
             TimeEventHandler,
             GameConfigHandler,
             RoundHistoryHandler,

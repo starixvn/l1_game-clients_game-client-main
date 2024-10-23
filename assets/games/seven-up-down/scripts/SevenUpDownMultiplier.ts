@@ -15,8 +15,8 @@ export default class SevenUpDownMultiplier extends cc.Component {
         });
     }
 
-    renderMultiplier(multiplierValue: number, multiplierChoice: string) {
-        const choice = this.listMultiplier.find((choice) => choice.node.name === multiplierChoice);
-        choice.string = `${multiplierValue}x`;
+    renderMultiplier(multiplier: any) {
+        const choice = this.listMultiplier.find((choice) => choice.node.name === multiplier.choice);
+        choice.string = `${multiplier.value}x`;
     }
 }

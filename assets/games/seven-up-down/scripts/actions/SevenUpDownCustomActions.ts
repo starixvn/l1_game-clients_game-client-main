@@ -9,3 +9,7 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
     game.resetDataAndUI();
     game.highlightLastResult();
 };
+
+export const showMultiplier = (game: SevenUpDown) => (data) => {
+    game.multiplierComp.renderMultiplier(data);
+};

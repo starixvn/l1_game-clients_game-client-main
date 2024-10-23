@@ -162,7 +162,7 @@ export const phrases = {
         win: "Win",
         win_loss: "Win Loss",
         you_reach_max_win: "You reached the max win",
-        hash256: "SHA 256",
+        sha256: "SHA-256",
         hash_result: "RESULT"
     },
     lobbyNames: {

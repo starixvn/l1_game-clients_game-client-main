@@ -146,7 +146,8 @@ export const phrases = {
         under_maintenance_time: "从 %{startTime} 到 %{endTime} (GMT+8)",
         win: "赢",
         win_loss: "赢 输",
-        you_reach_max_win: "您达到了最大胜利"
+        you_reach_max_win: "您达到了最大胜利",
+        sha256: "SHA-256"
     },
     lobbyNames: {
         "103": "7 Up 7 Down"

@@ -162,7 +162,8 @@ export const phrases = {
         under_maintenance_time: "Mulai dari %{startTime} hingga %{endTime} (GMT+8)",
         win: "Menang",
         win_loss: "Menang Kalah",
-        you_reach_max_win: "Anda mencapai Maksimal Menang"
+        you_reach_max_win: "Anda mencapai Maksimal Menang",
+        sha256: "SHA-256"
     },
     lobbyNames: {
         "103": "7 Up 7 Down"

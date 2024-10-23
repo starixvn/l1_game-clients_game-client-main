@@ -65,6 +65,7 @@ export default class LobbyResourceManager {
 
         return this.instance;
     }
+
     public static init(groupCurrency: string) {
         return this.getInstance().init(groupCurrency);
     }
@@ -75,6 +76,10 @@ export default class LobbyResourceManager {
 
     public static isUseTheme() {
         return this.getInstance().isUseTheme();
+    }
+    
+    public static getThemePath() {
+        return this.getInstance().getThemePath();
     }
 
     public getIgnoreCapitalizeGameNames() {

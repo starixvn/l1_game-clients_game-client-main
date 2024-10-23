@@ -1277,12 +1277,20 @@ export default class GameUtils {
                 console.log(e);
             }
 
-            cc.resources.loadDir("lobby/games/skeleton-icon", () => {
-                cc.director.loadScene("Lobby");
-            });
+            this.preloadDir();
         };
 
         cc.director.preloadScene("Lobby", onProgress, onLoaded);
+    }
+
+    private static preloadDir() {
+        const themePath = LobbyResourceManager.isUseTheme() ? LobbyResourceManager.getThemePath() : "lobby/games";
+
+        const iconPath = `${themePath}/prefabs/skeleton-icon`;
+
+        cc.resources.loadDir(iconPath, () => {
+            cc.director.loadScene("Lobby");
+        });
     }
 
     private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {

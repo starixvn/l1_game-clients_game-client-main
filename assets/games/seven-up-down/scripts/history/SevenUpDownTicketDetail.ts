@@ -8,7 +8,6 @@ export default class SevenUpDownTicketDetail extends GameTicketDetailBase {
     scrollView: cc.ScrollView = null;
 
     setData(data: any, symbolSprites: cc.SpriteFrame[]) {
-        const { betLogDetails, odds, settlementResult } = data;
         this.scrollView?.scrollToTop(0.1);
     }
 }

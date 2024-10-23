@@ -29,11 +29,7 @@ export default class SevenUpDownRoundResult extends cc.Component {
     }
     updateLabels(data: any) {
         const { result } = data;
-        //const lang = window.i18n.curLang === "vi" ? "" : `_${window.i18n.curLang}`;
-        //const choice = this.getTextFollowChoice({ settlementResult });
-
         this.total.spriteFrame = this.atlas.getSpriteFrame(result.dice1 + result.dice2);
-
         this.multiplier.string = result.multiplierValue ? `${result.multiplierValue}x` : "";
     }
 

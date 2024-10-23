@@ -42,11 +42,10 @@ export default class SevenUpDownStatistic extends cc.Component {
 
     updateRoundResult(dataLogs: any) {
         this.roundResultContainer.destroyAllChildren();
-        for (let i = 0; i < dataLogs.length; i++) {
-            const dataLog = dataLogs[i];
+        for (const log of dataLogs) {
             const roundResultNode = cc.instantiate(this.roundResultPrefab);
             const control = roundResultNode.getComponent(SevenUpDownRoundResult);
-            control.updateLabels(dataLog);
+            control.updateLabels(log);
             this.roundResultContainer.addChild(roundResultNode);
         }
     }

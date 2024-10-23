@@ -35,8 +35,10 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
         const winloss = betwin - totalAmount;
         this.winLoss.string = numberWithCommas(winloss, 2);
         this.winLoss.node.color = winloss >= 0 ? cc.Color.WHITE.fromHEX("#F1E344") : cc.Color.WHITE.fromHEX("#EB3D26");
+
         this.dicesFrame.forEach((dice, index) => {
-            dice.spriteFrame = this.mainAtlas.getSpriteFrame(`scoreboard_dice_${result[`dice${index + 1}`]}`);
+            const spriteName = `scoreboard_dice_${result[`dice${index + 1}`]}`;
+            dice.spriteFrame = this.mainAtlas.getSpriteFrame(spriteName);
         });
     }
 

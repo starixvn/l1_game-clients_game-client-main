@@ -27,7 +27,7 @@ export default class SevenUpDownResultTest extends cc.Component {
     async showResult() {
         this.increaseRound();
         this.setCurrentResult();
-        await this.resultComp.showResultAnim(this.prevResult, this.currentResult, this.roundId);
+        this.resultComp.showResultAnim(this.prevResult, this.currentResult, this.roundId);
         this.prevResult = this.currentResult;
     }
 }

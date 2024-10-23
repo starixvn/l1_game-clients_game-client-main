@@ -19,6 +19,7 @@ import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
 import { findWinningChoice } from "./SevenUpDownHelper";
+import SevenUpDownMultiplier from "./SevenUpDownMultiplier";
 import SevenUpDownResult from "./SevenUpDownResult";
 import { ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
 
@@ -49,6 +50,9 @@ export default class SevenUpDown extends MiniGameBase {
 
     @property(cc.JsonAsset)
     gameAudioConfig: cc.JsonAsset = null;
+
+    @property(SevenUpDownMultiplier)
+    multiplierComp: SevenUpDownMultiplier = null;
 
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
@@ -152,6 +156,7 @@ export default class SevenUpDown extends MiniGameBase {
     resetDataAndUI() {
         super.resetDataAndUI();
         this.clearWinningBet();
+        this.multiplierComp.resetMultiplier();
     }
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {
@@ -255,7 +260,6 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     showMultiplier(multiplierValue: number, multiplierChoice: string) {
-        console.log("multiplier", multiplierValue);
-        console.log("multiplier", multiplierChoice);
+        this.multiplierComp.renderMultiplier(multiplierValue, multiplierChoice);
     }
 }

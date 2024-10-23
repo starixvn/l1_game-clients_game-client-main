@@ -59,7 +59,7 @@ export const handleNotice = (game: FootballCoinToss) => (notice) => {
         if (hedgeBetGroup && hedgeBetGroup.length > 0) {
             hedgeBetGroup.forEach((choice, index) => {
                 const choiceName = game.match ? game.match[choice] : choice;
-                opt[`betChoice${index + 1}`] = i18n.t(`FootballCoinToss.glossary_${choiceName}`).toUpperCase();
+                opt[`betChoice${index + 1}`] = i18n.t(`FootballCoinToss.glossary_${choiceName}`);
             });
         }
 

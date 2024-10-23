@@ -25,7 +25,7 @@ export default class FootballCoinTossLedLightToolTip extends MiniRoundHistoryTip
             const roundIdWidth = roundIdText.length * letterWidth;
             let backgroundWidth = (name?.length || 9) * letterWidth;
             backgroundWidth = backgroundWidth > roundIdWidth ? backgroundWidth : roundIdWidth;
-            this.background.width = backgroundWidth + 25;
+            this.background.width = backgroundWidth + 60;
         }
 
         this.show();

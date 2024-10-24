@@ -28,6 +28,11 @@ export function buildGameGuideUrl() {
     return `${"http"}${ssl ? "s" : ""}://${subGuideDomainText}${rootDomain}`;
 }
 
+export function buildSharedResourceUrl(path: string) {
+    const url = buildUrl("https", "/shared-resources/");
+    return `${url}${path}`;
+}
+
 export function buildPromotionSiteUrl() {
     if (configs.subPromotionDomain) {
         const ssl = configs.ssl;

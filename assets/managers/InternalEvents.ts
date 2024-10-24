@@ -44,5 +44,7 @@ export enum InternalEvents {
     HIDE_POPUP_MINI_GAMES = "hide popup mini game",
     SHOW_POPUP_MINI_GAMES = "show popup mini game",
     HANDLE_ON_SIGN_IN = "HANDLE_ON_SIGN_IN",
-    GATEWAY_OPEN_GAME = "GATEWAY_OPEN_GAME"
+    GATEWAY_OPEN_GAME = "GATEWAY_OPEN_GAME",
+    OPEN_GAME = "OPEN_GAME",
+    CENTER_BANNER_SHOW = "CENTER_BANNER_SHOW"
 }

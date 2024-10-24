@@ -23,7 +23,7 @@ import BetChipsInterface from "./bet-chips/view-models/BetChipsInterface";
 import { ChipParams } from "./bet-chips/view-models/ChipFlyConfig";
 import ChipStack from "./chip-stack/views/ChipStack";
 import { numberWithCommas } from "./helpers/NumberHelper";
-import { buildMicrositeGameUrl } from "./helpers/UrlHelper";
+import { buildMicrositeGameUrl, buildSharedResourceUrl } from "./helpers/UrlHelper";
 import { FormationHandler } from "./i18n/FormationHandler";
 import Loading from "./loading/view-models/Loading";
 import { sentryLogger } from "./logger";
@@ -92,6 +92,11 @@ export default class GameUtils {
 
     public static loadRemoteGameResource<T>(gameId: number, pathResource: string) {
         return this.loadRemote<T>(this.remoteGameResourceUrl(gameId, pathResource));
+    }
+
+    public static loadRemoteFromSharedResource<T>(pathResource: string) {
+        const url = buildSharedResourceUrl(pathResource);
+        return this.loadRemote<T>(url);
     }
 
     public static loadRemote<T>(url: string): Promise<T> {
@@ -947,15 +952,15 @@ export default class GameUtils {
     }
 
     private static createBannerNameOptions(id: number, isMicrosite: boolean): string[] {
+        const currentLang = this.getCurrentLanguage();
         if (isMicrosite) {
-            const currentLang = this.getCurrentLanguage();
             const name1 = `${currentLang}`;
             const defaultName = `en`;
 
             return [name1, defaultName];
         } else {
-            const currentLang = this.getCurrentLanguage() !== "vi" ? `_${this.getCurrentLanguage()}` : "";
-            const name1 = `${id}${currentLang}`;
+            const suffix = currentLang !== "vi" ? `_${currentLang}` : "";
+            const name1 = `${id}${suffix}`;
             const name2 = `${id}`;
 
             return [name1, name2];

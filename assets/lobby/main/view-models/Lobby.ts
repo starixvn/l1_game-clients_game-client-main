@@ -115,6 +115,13 @@ export default class Lobby extends cc.Component {
         this.initScrollListener();
 
         this.trackOnLoadEvents();
+
+        //test centerbanner
+        this.scheduleOnce(this.showCenterBanner.bind(this), 1);
+    }
+
+    showCenterBanner() {
+        uiManager.emitter.emit(InternalEvents.CENTER_BANNER_SHOW);
     }
 
     async initUIs() {

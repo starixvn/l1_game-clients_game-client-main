@@ -29,9 +29,6 @@ export default class SevenUpDown extends MiniGameBase {
     @property({ type: MD5Component, visible: false, override: true })
     md5Component: MD5Component = null;
 
-    @property(SevenUpDownResult)
-    resultComp: SevenUpDownResult = null;
-
     @property(cc.Prefab)
     roundHistoryPrefab: cc.Prefab = null;
 
@@ -55,6 +52,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
+    private resultComp: SevenUpDownResult = null;
 
     protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 3;
@@ -68,11 +66,6 @@ export default class SevenUpDown extends MiniGameBase {
         super();
         this.gameId = SevenUpDownId;
     }
-
-    // protected addHandlers(...handlers: DataHandler[]): void {
-    //     //this.multiplierHandler = new GameBaseMultiplierHandler(this);
-    //     //super.addHandlers(...handlers, this.multiplierHandler);
-    // }
 
     onLoad() {
         super.onLoad();
@@ -236,6 +229,10 @@ export default class SevenUpDown extends MiniGameBase {
             this.statisticHistory.logView.nextItemActive = true;
         });
         this.statisticHistory.init(this);
+    }
+
+    initResult(node: cc.Node) {
+        this.resultComp = node.getComponent(SevenUpDownResult);
     }
 
     public sendBetAtChoice(choice: string, bet: number) {

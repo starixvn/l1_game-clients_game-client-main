@@ -102,7 +102,7 @@ export default class Splash extends cc.Component {
     }
 
     async onMicrositeBackToLobby() {
-        await this.handleBackFromeMicrositeGame();
+        await this.handleBackFromMicrositeGame();
         this.loadToLobbyOrDirectGame();
     }
 
@@ -111,7 +111,7 @@ export default class Splash extends cc.Component {
         mainSplash.loadToLobbyOrDirectGame();
     }
 
-    private async handleBackFromeMicrositeGame() {
+    private async handleBackFromMicrositeGame() {
         this.enableMainSplashScreen();
         await appManager.initNotificationService();
     }
@@ -211,7 +211,7 @@ export default class Splash extends cc.Component {
     private async openGameFromMicroGame(gameId: number) {
         SessionManager.storeInRoomGameId(gameId);
 
-        await this.handleBackFromeMicrositeGame();
+        await this.handleBackFromMicrositeGame();
     }
 
     private disableAllNodeSplash() {

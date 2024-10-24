@@ -170,10 +170,13 @@ export default class BaseMicrositeGame extends cc.Component {
         }
 
         if (isGatewayGame(currentGameId)) {
-            await this.handleBackFromeMicrositeGame();
             const gameConfiguration = getGameConfiguration(currentGameId);
             const mainId = gameConfiguration.gateway?.id;
-            GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
+
+            const onConnected = async () => {
+                await this.handleBackFromeMicrositeGame();
+            };
+            GameUtils.openSocketGatewayGame(mainId, this.socketIOControler, onConnected);
             return;
         }
 

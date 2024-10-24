@@ -170,6 +170,7 @@ export default class BaseMicrositeGame extends cc.Component {
         }
 
         if (isGatewayGame(currentGameId)) {
+            await this.handleBackFromeMicrositeGame();
             const gameConfiguration = getGameConfiguration(currentGameId);
             const mainId = gameConfiguration.gateway?.id;
             GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
@@ -177,6 +178,10 @@ export default class BaseMicrositeGame extends cc.Component {
         }
 
         this.loadLobbyScene();
+    }
+
+    protected async handleBackFromeMicrositeGame() {
+        await appManager.initNotificationService();
     }
 
     protected async updateSession(session: MicrositeGameParams) {

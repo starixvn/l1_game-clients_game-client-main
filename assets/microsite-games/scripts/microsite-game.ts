@@ -2,10 +2,8 @@ import BaseMicrositeGame from "../../common/BaseMicrositeGame";
 import AudioManager from "../../common/audio/AudioManager";
 import * as AuthManager from "../../common/auth/AuthManager";
 import * as SessionManager from "../../common/auth/SessionManager";
-import { userManager } from "../../common/user/UserManager";
 import EncryptUtils from "../../common/utils/EncryptUtils";
 import { appManager } from "../../managers/AppManager";
-import { jackpotManager } from "../../managers/JackpotManager";
 
 const { ccclass } = cc._decorator;
 
@@ -53,8 +51,7 @@ export default class MicrositeGame extends BaseMicrositeGame {
 
     protected loadLobbyScene() {
         cc.director.loadScene("Lobby", async () => {
-            await appManager.microSiteLaunchedInit();
-            !userManager.disableJackpotGames && jackpotManager.requestAllJackpotPools();
+            await this.handleBackFromeMicrositeGame();
         });
     }
 

@@ -168,6 +168,7 @@ export default class JackpotManager {
     }
 
     requestAllJackpotPools() {
+        cc.log("JackpotManager - requestAllJackpotPools -------------------------");
         jackpotManager.emitEvent(JackpotEvents.GET_POOLS, {});
     }
 

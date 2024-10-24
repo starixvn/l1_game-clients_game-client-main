@@ -58,26 +58,19 @@ class AppManager {
         sentryLogger.start();
         this.initLanguage();
         this.storeOperator();
+        AudioManager.getInstance().init();
+        this.initShowHideAppEvent();
     }
 
     clearSSOGameId() {
         this.ssoGameId = GameId.UNKNOWN;
     }
 
-    async microSiteLaunchedInit() {
-        appManager.initShowHideAppEvent();
+    async initNotificationService() {
+        cc.log("initNotificationService -----------------------------------");
         jackpotManager.initEvents();
         await NotificationService.getInstance().forceConnect();
         appManager.initPromotions();
-    }
-
-    private async authorizedInit() {
-        AudioManager.getInstance().init();
-        this.initShowHideAppEvent();
-        jackpotManager.initEvents();
-
-        await NotificationService.getInstance().connect();
-        this.initPromotions();
     }
 
     clearPromotionObservers() {
@@ -161,7 +154,7 @@ class AppManager {
         }
         this.loadDirectModeInfo();
         this.authorized = await this.authorizeByUserService();
-        await this.authorizedInit();
+        await this.initNotificationService();
     }
 
     private handleAppMode() {

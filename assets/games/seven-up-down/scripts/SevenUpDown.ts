@@ -5,16 +5,15 @@ import { userManager } from "../../../common/user/UserManager";
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
-import DataHandler from "../../_base/handlers/DataHandler";
-import GameBaseMultiplierHandler from "../../_base/handlers/GameBaseMultiplierHandler";
 import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
+import { Multiplier } from "../../_base_new/models/Multiplier";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { handleBeginStarting, handlePlacingBet } from "./actions/SevenUpDownCustomActions";
+import { handleBeginStarting, handlePlacingBet, showMultiplier } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -70,11 +69,10 @@ export default class SevenUpDown extends MiniGameBase {
         this.gameId = SevenUpDownId;
     }
 
-    protected addHandlers(...handlers: DataHandler[]): void {
-        //this.provablyFairHandler = new GameBaseProvablyFairHandler(this);
-        this.multiplierHandler = new GameBaseMultiplierHandler(this);
-        super.addHandlers(...handlers, this.multiplierHandler);
-    }
+    // protected addHandlers(...handlers: DataHandler[]): void {
+    //     //this.multiplierHandler = new GameBaseMultiplierHandler(this);
+    //     //super.addHandlers(...handlers, this.multiplierHandler);
+    // }
 
     onLoad() {
         super.onLoad();
@@ -125,6 +123,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
+        this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
     }
 
     getBetChoiceString(choice: string): string {
@@ -257,9 +256,5 @@ export default class SevenUpDown extends MiniGameBase {
         this.historyComponent = dialog.getComponent(SevenUpDownBetHistory);
         this.historyComponent.init(this.socket);
         this.currentMiniPanel.addDialog(dialog);
-    }
-
-    showMultiplier(multiplierValue: number, multiplierChoice: string) {
-        this.multiplierComp.renderMultiplier(multiplierValue, multiplierChoice);
     }
 }

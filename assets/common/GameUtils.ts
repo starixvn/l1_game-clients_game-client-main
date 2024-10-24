@@ -1365,6 +1365,7 @@ export default class GameUtils {
             if (this.bannerLoaded) {
                 return;
             }
+
             const offerGames = userManager.offerGames ?? [];
             let bannerGameIds = lobbyMenuConfig.bannerAds ?? [];
 
@@ -1382,7 +1383,18 @@ export default class GameUtils {
             if (LobbyResourceManager.isUseTheme() && bannerId > 0) {
                 const node = new cc.Node();
                 const bannerComp = node.addComponent(SkeletonBannerTheme);
-                await bannerComp.createRemoteIconNode(bannerId);
+
+                // Load banner and container concurrently
+                await Promise.all([
+                    bannerComp.createRemoteIconNode(bannerId),
+                    new Promise((resolve) =>
+                        cc.resources.load(`${LobbyResourceManager.getThemePath()}/prefabs/banner/bannerContainer`, resolve)
+                    )
+                ]);
+
+                // Cleanup and set banner loaded flag
+                node.destroy();
+                this.bannerLoaded = true;
 
                 return;
             }

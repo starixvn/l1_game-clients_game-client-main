@@ -219,7 +219,7 @@ export default class Splash extends cc.Component {
     }
 
     private loadIcon(position: "top" | "bottom") {
-        const imagePath = `${this.href}/${position === "top" ? "top" : "bot"}.png`;
+        const imagePath = `${this.href}/${position === "top" ? "top" : "bot"}.webp`;
 
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
             if (err) {

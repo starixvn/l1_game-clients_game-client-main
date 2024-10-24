@@ -28,8 +28,16 @@ export default class Splash extends cc.Component {
     @property(cc.Node)
     nodeDialog: cc.Node = null;
 
+    @property(cc.Sprite)
+    iconTop: cc.Sprite = null;
+
+    @property(cc.Sprite)
+    iconBottom: cc.Sprite = null;
+
     @lazyInject(SocketIOController)
     private readonly socketIOControler: SocketIOController;
+
+    private href = `${window.location.origin}/splash-resources`;
 
     protected onLoad(): void {
         appManager.init();
@@ -40,6 +48,8 @@ export default class Splash extends cc.Component {
 
         this.enableMainSplashScreen();
         this.handleAuthorization();
+        this.loadIconTop();
+        this.loadIconBottom();
     }
 
     private initUIListeners() {
@@ -206,5 +216,35 @@ export default class Splash extends cc.Component {
                 this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
             } catch (e) {}
         });
+    }
+
+    private loadIcon(position: "top" | "bottom") {
+        const imagePath = `${this.href}/${position === "top" ? "top" : "bot"}.png`;
+
+        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+            if (err) {
+                console.error(`Failed to load image: ${imagePath}`, err);
+                return;
+            }
+
+            try {
+                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                if (position === "top") {
+                    this.iconTop.spriteFrame = spriteFrameTmp;
+                } else {
+                    this.iconBottom.spriteFrame = spriteFrameTmp;
+                }
+            } catch (e) {
+                console.error(`Error setting sprite frame for ${position}`, e);
+            }
+        });
+    }
+
+    private loadIconTop() {
+        this.loadIcon("top");
+    }
+
+    private loadIconBottom() {
+        this.loadIcon("bottom");
     }
 }

@@ -30,7 +30,9 @@ export default class SevenUpDownRoundResult extends cc.Component {
     updateLabels(data: any) {
         const { result } = data;
         this.total.spriteFrame = this.atlas.getSpriteFrame(result.dice1 + result.dice2);
-        this.multiplier.string = result.multiplier.value ? `${result.multiplier.value}x` : "";
+        if (result.multiplier) {
+            this.multiplier.string = result.multiplier.value ? `${result.multiplier.value}x` : "";
+        }
     }
 
     getTextFollowChoice({ settlementResult }): string {

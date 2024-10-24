@@ -11,7 +11,7 @@ export default class SevenUpDownLedLightToolTip extends MiniRoundHistoryTip {
         this.roundId.string = `#${data.roundId}`;
         const key = findWinningChoice(settlementResult);
         const choiceWin = i18n.t(`SevenUpDown.glossary_${key}`).toUpperCase();
-        const diceResult = `(${result.dice1}-${result.dice2})`;
+        const diceResult = `(${result.dice1},${result.dice2})`;
         this.result.string = `${choiceWin} ${diceResult}`;
         this.show();
     }

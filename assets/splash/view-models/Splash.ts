@@ -53,7 +53,7 @@ export default class Splash extends cc.Component {
     }
 
     private initUIListeners() {
-        uiManager.emitterListener(InternalEvents.MICROSITE_BACK_TO_LOBBY, this.loadToLobbyOrDirectGame.bind(this), this);
+        uiManager.emitterListener(InternalEvents.MICROSITE_BACK_TO_LOBBY, this.onMicrositeBackToLobby.bind(this), this);
         uiManager.emitterListener(InternalEvents.MICROSITE_OPEN_GAME_BACK_FROM_LOBBY, this.openGameFromMicroGame.bind(this), this);
     }
 
@@ -101,8 +101,12 @@ export default class Splash extends cc.Component {
         this.loadToLobbyOrDirectGame();
     }
 
-    async loadToLobbyOrDirectGame() {
+    async onMicrositeBackToLobby() {
         await this.handleBackFromeMicrositeGame();
+        this.loadToLobbyOrDirectGame();
+    }
+
+    loadToLobbyOrDirectGame() {
         const mainSplash = this.nodeMainSplash.getComponent(MainSplash);
         mainSplash.loadToLobbyOrDirectGame();
     }

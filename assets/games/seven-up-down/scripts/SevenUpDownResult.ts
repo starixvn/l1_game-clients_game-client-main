@@ -1,6 +1,6 @@
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import SevenUpDownDice from "./SevenUpDownDice";
-import { ISevenUpDownResult } from "./SevenUpDownTypes";
+import { ISevenUpDownResult, SevenUpDownChoice } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
 
@@ -79,12 +79,12 @@ export default class SevenUpDownResult extends cc.Component {
         if (totalPoints === 7) {
             choiceWin = "7";
         } else if (totalPoints > 6) {
-            choiceWin = `${totalPoints} - UP`;
+            choiceWin = `${totalPoints} - ${SevenUpDownChoice.UP}`;
         } else {
-            choiceWin = `${totalPoints} - DOWN`;
+            choiceWin = `${totalPoints} - ${SevenUpDownChoice.DOWN}`;
         }
 
-        this.lblResult && (this.lblResult.string = choiceWin);
+        this.lblResult && (this.lblResult.string = choiceWin.toUpperCase());
     }
 
     calcTotalPoints(result: ISevenUpDownResult): number {

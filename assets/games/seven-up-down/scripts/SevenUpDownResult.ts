@@ -91,6 +91,8 @@ export default class SevenUpDownResult extends cc.Component {
         return Object.keys(result).reduce((total, dice) => {
             if (dice.startsWith("dice")) {
                 return total + result[dice];
+            } else {
+                return total;
             }
         }, 0);
     }

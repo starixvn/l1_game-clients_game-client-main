@@ -4,6 +4,7 @@ import * as MsgpackParser from "socket.io-msgpack-parser";
 import { enableMsgpackParserOnNotification } from "../../configs/Configs";
 import { JackpotDataKey, JackpotEvents } from "../../managers/JackpotEvents";
 import { RoundTimerEvents } from "../../mini-games-panel/view-models/RoundTimerEvents";
+import GameUtils from "../GameUtils";
 import { buildUrl, getEnvironment } from "../helpers/UrlHelper";
 import { sentryLogger } from "../logger";
 
@@ -117,9 +118,10 @@ export default class NotificationService {
         this.socket && this.socket.disconnect();
     }
 
-    emitEvent(eventName, data) {
+    async emitEvent(eventName, data) {
         if (!this.socket || !this.socket.connected) {
-            return;
+            cc.log("notification not ready ---------------------------------");
+            await GameUtils.waitUntil(() => this.socket?.connected, 50, 1000);
         }
         try {
             this.socket.emit(eventName, data);

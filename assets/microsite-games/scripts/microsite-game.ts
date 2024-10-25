@@ -49,9 +49,10 @@ export default class MicrositeGame extends BaseMicrositeGame {
         appManager.authorized = await appManager.authorizeByUserService();
     }
 
-    protected async loadLobbyScene() {
-        await this.handleBackFromMicrositeGame();
-        cc.director.loadScene("Lobby");
+    protected loadLobbyScene() {
+        cc.director.loadScene("Lobby", async () => {
+            await this.handleBackFromMicrositeGame();
+        });
     }
 
     onDestroy(): void {

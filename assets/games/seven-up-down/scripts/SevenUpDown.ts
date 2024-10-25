@@ -149,6 +149,7 @@ export default class SevenUpDown extends MiniGameBase {
         super.resetDataAndUI();
         this.clearWinningBet();
         this.multiplierComp.resetMultiplier();
+        this.resultComp?.setResultNodeVisibility(false);
     }
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {

@@ -19,6 +19,12 @@ export default class SevenUpDownResult extends cc.Component {
     @property(cc.SpriteAtlas)
     diceAtlas: cc.SpriteAtlas = null;
 
+    @property(cc.Node)
+    nodeResult: cc.Node = null;
+
+    @property(cc.Label)
+    lblResult: cc.Label = null;
+
     private resultDiceFrames: IResultDiceFrames;
     private diceSpriteFrames: cc.SpriteFrame[] = [];
     private DICE_POSITION_NUMBER = 7;
@@ -27,6 +33,7 @@ export default class SevenUpDownResult extends cc.Component {
     DICE_END_FRAME = 11;
 
     onLoad() {
+        this.setResultNodeVisibility(false);
         this.resetResultDiceFrames();
         this.initDiceSpriteFrames();
     }
@@ -56,13 +63,47 @@ export default class SevenUpDownResult extends cc.Component {
         });
     }
 
-    showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
+    setResultNodeVisibility(isShow: boolean) {
+        if (!this.nodeResult) {
+            return;
+        }
+        this.nodeResult.active = isShow;
+    }
+
+    displayTotalPoints(result: ISevenUpDownResult) {
+        this.setResultNodeVisibility(true);
+
+        const totalPoints = this.calcTotalPoints(result);
+        let choiceWin = "";
+
+        if (totalPoints === 7) {
+            choiceWin = "7";
+        } else if (totalPoints > 6) {
+            choiceWin = `${totalPoints} - UP`;
+        } else {
+            choiceWin = `${totalPoints} - DOWN`;
+        }
+
+        this.lblResult && (this.lblResult.string = choiceWin);
+    }
+
+    calcTotalPoints(result: ISevenUpDownResult): number {
+        return Object.keys(result).reduce((total, dice) => {
+            if (dice.startsWith("dice")) {
+                return total + result[dice];
+            }
+        }, 0);
+    }
+
+    async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
         this.resetResultDiceFrames();
         this.setResultDiceFrames(prevResult, result);
         this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, this.RESULT_DURATION);
         this.dicesComponent.forEach((dice, index) => {
             dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`], this.RESULT_DURATION);
         });
+        await AnimationUtils.delayTime(this.RESULT_DURATION);
+        this.displayTotalPoints(result);
     }
 
     private getRandomNumber(max: number): number {

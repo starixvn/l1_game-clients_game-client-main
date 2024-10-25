@@ -24,7 +24,7 @@ export default class SevenUpDownResultTest extends cc.Component {
         this.currentResult = { dice1: this.getRandomNumber(6), dice2: this.getRandomNumber(6) };
     }
 
-    async showResult() {
+    showResult() {
         this.increaseRound();
         this.setCurrentResult();
         this.resultComp.showResultAnim(this.prevResult, this.currentResult, this.roundId);

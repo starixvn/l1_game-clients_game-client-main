@@ -67,34 +67,38 @@ export default class SevenUpDownResult extends cc.Component {
         if (!this.nodeResult) {
             return;
         }
+
         this.nodeResult.active = isShow;
+
+        if (!isShow) {
+            this.nodeResult.opacity = 0;
+            return;
+        }
+
+        cc.tween(this.nodeResult).to(0.2, { scale: 1.2 }, { easing: "bounceOut" }).to(0.3, { scale: 1, opacity: 255 }).start();
+    }
+
+    private determineWinningChoice(totalPoints: number): string {
+        if (totalPoints === 7) {
+            return "7";
+        }
+
+        return totalPoints > 6 ? `${totalPoints} - ${SevenUpDownChoice.UP}` : `${totalPoints} - ${SevenUpDownChoice.DOWN}`;
     }
 
     displayTotalPoints(result: ISevenUpDownResult) {
         this.setResultNodeVisibility(true);
 
         const totalPoints = this.calcTotalPoints(result);
-        let choiceWin = "";
+        const choiceWin = this.determineWinningChoice(totalPoints);
 
-        if (totalPoints === 7) {
-            choiceWin = "7";
-        } else if (totalPoints > 6) {
-            choiceWin = `${totalPoints} - ${SevenUpDownChoice.UP}`;
-        } else {
-            choiceWin = `${totalPoints} - ${SevenUpDownChoice.DOWN}`;
+        if (this.lblResult) {
+            this.lblResult.string = choiceWin.toUpperCase();
         }
-
-        this.lblResult && (this.lblResult.string = choiceWin.toUpperCase());
     }
 
     calcTotalPoints(result: ISevenUpDownResult): number {
-        return Object.keys(result).reduce((total, dice) => {
-            if (dice.startsWith("dice")) {
-                return total + result[dice];
-            } else {
-                return total;
-            }
-        }, 0);
+        return ["dice1", "dice2"].map((key) => result[key]).reduce((sum, value) => sum + value, 0);
     }
 
     async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {

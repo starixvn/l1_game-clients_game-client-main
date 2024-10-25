@@ -1,23 +1,21 @@
 {
-"skeleton": { "hash": "AM+6wrkodpWeYZcOfHjQLQo6QjY", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
+"skeleton": { "hash": "CiGRcbgmm4qHjoynFmyQbZUuZao", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "icon-game", "parent": "root" },
 	{ "name": "bg", "parent": "icon-game" },
 	{ "name": "bone", "parent": "root", "x": 34.85, "y": -21.78 },
 	{ "name": "dice-bottom", "parent": "bone", "x": 0.22, "y": 1.01 },
-	{ "name": "move-leftright", "parent": "root", "x": -22.26, "y": 12.58 },
-	{ "name": "move-updown", "parent": "move-leftright", "x": -0.27, "y": 0.04 },
-	{ "name": "star", "parent": "root", "x": 80.05, "y": -2.27 },
-	{ "name": "star2", "parent": "root", "x": 49.39, "y": -56.91, "scaleX": 1.2, "scaleY": 1.2 },
-	{ "name": "star3", "parent": "root", "x": -61.84, "y": 58.75, "scaleX": 1.3, "scaleY": 1.3 }
+	{ "name": "move-leftright", "parent": "root", "x": -20.46, "y": 12.58 },
+	{ "name": "move-updown", "parent": "move-leftright", "x": -10.47, "y": 9.64 },
+	{ "name": "star", "parent": "root", "x": 80.05, "y": -2.27, "scaleX": 0.8, "scaleY": 0.8 },
+	{ "name": "star2", "parent": "root", "x": 49.39, "y": -56.91 },
+	{ "name": "star3", "parent": "root", "x": -61.84, "y": 58.75, "scaleX": 1.1, "scaleY": 1.1 }
 ],
 "slots": [
 	{ "name": "bg", "bone": "bg", "attachment": "bg" },
 	{ "name": "dice-bottom", "bone": "dice-bottom", "attachment": "dice-bottom" },
-	{ "name": "dice-bottom2", "bone": "dice-bottom", "attachment": "dice-bottom", "blend": "additive" },
 	{ "name": "dice-top", "bone": "move-updown", "attachment": "dice-top" },
-	{ "name": "dice-top2", "bone": "move-updown", "attachment": "dice-top", "blend": "additive" },
 	{ "name": "12", "bone": "root" },
 	{ "name": "star", "bone": "star" },
 	{ "name": "star2", "bone": "star2" },
@@ -31,16 +29,10 @@
 				"bg": { "width": 202, "height": 202 }
 			},
 			"dice-bottom": {
-				"dice-bottom": { "x": -3.57, "y": 2.27, "width": 59, "height": 67 }
-			},
-			"dice-bottom2": {
-				"dice-bottom": { "x": -3.57, "y": 2.27, "width": 59, "height": 67 }
+				"dice-bottom": { "x": -3.57, "y": 2.27, "width": 68, "height": 70 }
 			},
 			"dice-top": {
-				"dice-top": { "x": 10.42, "y": -2.48, "width": 91, "height": 89 }
-			},
-			"dice-top2": {
-				"dice-top": { "x": 10.42, "y": -2.48, "width": 91, "height": 89 }
+				"dice-top": { "x": 10.42, "y": -2.48, "width": 90, "height": 92 }
 			},
 			"star": {
 				"star": { "x": 0.31, "y": 0.58, "width": 23, "height": 23 }
@@ -57,20 +49,6 @@
 "animations": {
 	"show": {
 		"slots": {
-			"dice-bottom2": {
-				"color": [
-					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
-					{ "time": 1.7, "color": "ffffff2c", "curve": 0.25, "c3": 0.75 },
-					{ "time": 3, "color": "ffffff00" }
-				]
-			},
-			"dice-top2": {
-				"color": [
-					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
-					{ "time": 1.5, "color": "ffffff41", "curve": 0.25, "c3": 0.75 },
-					{ "time": 3, "color": "ffffff00" }
-				]
-			},
 			"star": {
 				"color": [
 					{ "time": 0.6667, "color": "ffffffff", "curve": 0.635, "c2": 0.23, "c3": 0.709, "c4": 0.47 },

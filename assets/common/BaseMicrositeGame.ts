@@ -174,7 +174,7 @@ export default class BaseMicrositeGame extends cc.Component {
             const mainId = gameConfiguration.gateway?.id;
 
             const onConnected = async () => {
-                await this.handleBackFromeMicrositeGame();
+                await this.handleBackFromMicrositeGame();
             };
             GameUtils.openSocketGatewayGame(mainId, this.socketIOControler, onConnected);
             return;
@@ -183,7 +183,7 @@ export default class BaseMicrositeGame extends cc.Component {
         this.loadLobbyScene();
     }
 
-    protected async handleBackFromeMicrositeGame() {
+    protected async handleBackFromMicrositeGame() {
         await appManager.initNotificationService();
     }
 

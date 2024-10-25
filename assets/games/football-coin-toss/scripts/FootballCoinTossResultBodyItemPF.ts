@@ -1,9 +1,8 @@
 import { i18n } from "../../../ClientModules";
-import { BaseResultBodyItem } from "../../_base/view-models/provably-fair/GameRoundBasePFVerifyComponent";
 import { findWinningChoice } from "./FootballCoinTossHelper";
 const { ccclass, property } = cc._decorator;
 @ccclass
-export default class FootballCoinTossResultBodyItem extends BaseResultBodyItem {
+export default class FootballCoinTossResultBodyItem extends cc.Component {
     @property(cc.Label)
     lblResult: cc.Label = null;
 
@@ -13,7 +12,7 @@ export default class FootballCoinTossResultBodyItem extends BaseResultBodyItem {
     @property(cc.SpriteAtlas)
     flagsAtlas: cc.SpriteAtlas = null;
 
-    setData(result: any, settlementResult: any, match: any) {
+    setData(settlementResult: any, match: any) {
         const key = findWinningChoice(settlementResult);
         const teamName = match[key] ?? key;
         this.resultImg.spriteFrame = this.flagsAtlas.getSpriteFrame(`result-${teamName.toLowerCase()}`);

@@ -64,7 +64,7 @@ export default class BannerController extends cc.Component {
     }
 
     onDisable() {
-        this.unschedule(this.autoChange);
+        this.clearAutoChange();
 
         const distance = this.node.width * 1.3;
         this.content?.children?.forEach((child) => {
@@ -75,7 +75,7 @@ export default class BannerController extends cc.Component {
     }
 
     onDestroy() {
-        this.unschedule(this.autoChange);
+        this.clearAutoChange();
         if (cc.sys.isMobile) {
             this.content.off(cc.Node.EventType.TOUCH_START, this.eventStart, this, true);
             this.content.off(cc.Node.EventType.TOUCH_MOVE, this.eventMove, this, true);
@@ -104,7 +104,7 @@ export default class BannerController extends cc.Component {
                 this.showNextPage();
             }
         } else {
-            this.unschedule(this.autoChange);
+            this.clearAutoChange();
             this.moveToCenter(node, 0.3);
         }
     }
@@ -163,7 +163,7 @@ export default class BannerController extends cc.Component {
     }
 
     animationMovePage(pageIndex: number, direction: PageDirection) {
-        this.unschedule(this.autoChange);
+        this.clearAutoChange();
 
         const oldPage = this.getCurrentPage();
         this.currentIndex = pageIndex;
@@ -256,8 +256,12 @@ export default class BannerController extends cc.Component {
 
     triggerAutoChange() {
         if (!this.isScrollNestedScrollView) {
-            this.unschedule(this.autoChange);
+            this.clearAutoChange();
             this.scheduleOnce(this.autoChange, this.intervalChangeImage);
         }
+    }
+
+    clearAutoChange() {
+        this.unschedule(this.autoChange);
     }
 }

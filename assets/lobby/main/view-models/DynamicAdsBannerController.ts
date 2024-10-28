@@ -22,15 +22,19 @@ export default class DynamicAdsBannerController extends BannerController {
 
     async setGameAds(games: number[]) {
         let index = 0;
-        for (const gameId of games) {
-            if (uiManager.isPauseLoadingIcons) {
-                return;
-            }
+        this.destroyAllBanners();
+        this.clearAutoChange();
+        try {
+            for (const gameId of games) {
+                if (uiManager.isPauseLoadingIcons) {
+                    return;
+                }
 
-            await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
-            this.handleShowFirstPage(index);
-            index++;
-        }
+                await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
+                this.handleShowFirstPage(index);
+                index++;
+            }
+        } catch (e) {}
     }
 
     handleShowFirstPage = (index: number) => {
@@ -82,6 +86,10 @@ export default class DynamicAdsBannerController extends BannerController {
         button.clickEvents.push(event);
 
         this.triggerTouch();
+    }
+
+    destroyAllBanners() {
+        this.node.removeAllChildren();
     }
 
     private createBanner(id: number, spriteFrame: cc.SpriteFrame, item: cc.Node) {

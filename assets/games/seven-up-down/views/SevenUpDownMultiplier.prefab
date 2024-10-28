@@ -27,11 +27,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 13
     },
     "_opacity": 255,
     "_color": {
@@ -158,8 +158,8 @@
       }
     ],
     "paused": false,
-    "defaultSkin": "default",
-    "defaultAnimation": "show",
+    "defaultSkin": "",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": false,
@@ -213,10 +213,13 @@
     "_components": [
       {
         "__id__": 9
+      },
+      {
+        "__id__": 10
       }
     ],
     "_prefab": {
-      "__id__": 10
+      "__id__": 11
     },
     "_opacity": 255,
     "_color": {
@@ -393,6 +396,20 @@
     "_id": ""
   },
   {
+    "__type__": "54513El43dLDrtMPHdK5u4s",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 5
+    },
+    "_enabled": true,
+    "skeleton": {
+      "__id__": 3
+    },
+    "boneName": "multifier-animation",
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -415,7 +432,10 @@
       "__id__": 6
     },
     "pfbMultiplier": {
-      "__uuid__": "bbf5d645-e0c8-410e-b00f-9eab03a4ba87"
+      "__uuid__": "5961df7f-71db-45ea-b93d-fa5a9921a04d"
+    },
+    "spineMultiplier": {
+      "__id__": 3
     },
     "_id": ""
   },

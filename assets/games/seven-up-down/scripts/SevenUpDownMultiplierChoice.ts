@@ -1,19 +1,26 @@
+import SpineAttachmentNode from "../../../common/SpineAttachmentNode";
+import AnimationUtils from "../../../common/utils/AnimationUtils";
 import SevenUpDownMultiplierItem from "./SevenUpDownMultiplierItem";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class SevenUpDownMultiplierAnim extends cc.Component {
+export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(cc.Node)
     lblMultiplier: cc.Node = null;
 
     @property(cc.Prefab)
     pfbMultiplier: cc.Prefab = null;
 
+    @property(sp.Skeleton)
+    spineMultiplier: sp.Skeleton = null;
+
     public listMultiplier = [2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8];
-    public multiplierValue = 4;
+    public multiplierValue = 0;
+    private OFFSET_MULTIPLIER = 864;
 
     onLoad() {
+        this.handleSpineMultiplier("show");
         this.appendMultiplier();
         this.animRollingMultiplier();
     }
@@ -22,12 +29,9 @@ export default class SevenUpDownMultiplierAnim extends cc.Component {
         const moveDownDuration = 0.15;
         const moveUpDuration = 1;
         const normalSpinDuration = 3 - moveUpDuration - moveDownDuration;
-
-        const offset = 864;
         cc.tween(this.lblMultiplier)
             .delay(0.2)
-            .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -offset) }, { easing: "sineOut" })
-            //.to(moveUpDuration, { position: cc.v2(this.lblMultiplier.x, -offset) }, { easing: "easeOut" })
+            .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
             .start();
     }
 
@@ -44,7 +48,14 @@ export default class SevenUpDownMultiplierAnim extends cc.Component {
     renderMultiplierValue(value: number) {
         const multiplierItem = cc.instantiate(this.pfbMultiplier);
         const comp = multiplierItem.getComponent(SevenUpDownMultiplierItem);
+        const spineAttachment = multiplierItem.addComponent(SpineAttachmentNode);
+        spineAttachment.skeleton = this.spineMultiplier;
+        spineAttachment.boneName = "value";
         comp.multiplierValue = value;
         return multiplierItem;
+    }
+
+    async handleSpineMultiplier(anim: string) {
+        await AnimationUtils.playSpine(this.spineMultiplier, anim);
     }
 }

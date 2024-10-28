@@ -1,4 +1,4 @@
-import SevenUpDownMultiplierAnim from "./SevenUpDownMultiplierAnim";
+import SevenUpDownMultiplierChoice from "./SevenUpDownMultiplierChoice";
 
 const { ccclass, property } = cc._decorator;
 
@@ -10,21 +10,27 @@ export default class SevenUpDownMultiplier extends cc.Component {
     @property(cc.Node)
     listMultiplier: cc.Node[] = [];
 
+    private multiplierAnim: SevenUpDownMultiplierChoice = null;
+
     onLoad() {
         this.resetMultiplier();
     }
 
     resetMultiplier() {
-        this.listMultiplier.forEach((item) => {
-            item.destroyAllChildren();
+        this.listMultiplier.forEach(async (item) => {
+            if (item.children.length > 0) {
+                const comp = item.children[0].getComponent(SevenUpDownMultiplierChoice);
+                await comp.handleSpineMultiplier("hide");
+                item.destroyAllChildren();
+            }
         });
     }
 
     renderMultiplier(multiplier: any) {
         const choice = this.listMultiplier.find((choice) => choice.name === multiplier.choice);
         const multiplierNode = cc.instantiate(this.pfbMultiplier);
-        const comp = multiplierNode.getComponent(SevenUpDownMultiplierAnim);
-        comp.multiplierValue = multiplier.value;
+        this.multiplierAnim = multiplierNode.getComponent(SevenUpDownMultiplierChoice);
+        this.multiplierAnim.multiplierValue = multiplier.value;
         choice.addChild(multiplierNode);
     }
 }

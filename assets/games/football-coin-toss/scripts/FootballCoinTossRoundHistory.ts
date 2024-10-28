@@ -20,10 +20,10 @@ export default class FootballCoinTossRoundHistory extends cc.Component {
     home: cc.Label = null;
 
     @property(cc.Label)
-    homeLabel: cc.Label;
+    homeLabel: cc.Label = null;
 
     @property(cc.Label)
-    awayLabel: cc.Label;
+    awayLabel: cc.Label = null;
 
     protected suffix = "%";
 

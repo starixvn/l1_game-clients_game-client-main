@@ -1,9 +1,14 @@
+import SevenUpDownMultiplierAnim from "./SevenUpDownMultiplierAnim";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SevenUpDownMultiplier extends cc.Component {
-    @property(cc.Label)
-    listMultiplier: cc.Label[] = [];
+    @property(cc.Prefab)
+    pfbMultiplier: cc.Prefab = null;
+
+    @property(cc.Node)
+    listMultiplier: cc.Node[] = [];
 
     onLoad() {
         this.resetMultiplier();
@@ -11,25 +16,15 @@ export default class SevenUpDownMultiplier extends cc.Component {
 
     resetMultiplier() {
         this.listMultiplier.forEach((item) => {
-            item.string = "";
+            item.destroyAllChildren();
         });
     }
 
     renderMultiplier(multiplier: any) {
-        const choice = this.listMultiplier.find((choice) => choice.node.name === multiplier.choice);
-        choice.string = `${multiplier.value}x`;
-    }
-
-    animRollingMultiplier() {
-        const moveDownDuration = 0.25;
-        const moveUpDuration = 0.35;
-        const normalSpinDuration = 2 - moveUpDuration - moveDownDuration;
-
-        const offset = 100;
-        cc.tween(this.node)
-            .to(moveDownDuration, { position: cc.v2(this.node.x, -300) }, { easing: "backIn" })
-            .to(normalSpinDuration, { position: cc.v2(this.node.x, offset + 300) })
-            .parallel(cc.tween().to(moveUpDuration, { position: cc.v2(this.node.x, offset) }, { easing: "backOut" }))
-            .start();
+        const choice = this.listMultiplier.find((choice) => choice.name === multiplier.choice);
+        const multiplierNode = cc.instantiate(this.pfbMultiplier);
+        const comp = multiplierNode.getComponent(SevenUpDownMultiplierAnim);
+        comp.multiplierValue = multiplier.value;
+        choice.addChild(multiplierNode);
     }
 }

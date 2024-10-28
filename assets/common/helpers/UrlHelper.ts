@@ -29,7 +29,7 @@ export function buildGameGuideUrl() {
 }
 
 export function buildSharedResourceUrl(path: string) {
-    const url = buildUrl("http", "/shared-resources/");
+    const url = buildProxyUrl("/shared-resources/");
     return `${url}${path}`;
 }
 

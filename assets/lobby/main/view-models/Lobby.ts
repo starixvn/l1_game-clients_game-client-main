@@ -318,6 +318,12 @@ export default class Lobby extends cc.Component {
     initGameUIEvents() {
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
         uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
+        uiManager.emitterListener(InternalEvents.OPEN_GAME, this.openGameFromCenterBanner.bind(this), this);
+    }
+
+    openGameFromCenterBanner(gameId: number) {
+        AudioManager.getInstance().playClick();
+        GameUtils.openGame(gameId, this.miniPanel, null, true);
     }
 
     removeGameUIEvent() {

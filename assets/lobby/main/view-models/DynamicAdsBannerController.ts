@@ -16,6 +16,8 @@ export default class DynamicAdsBannerController extends BannerController {
     @property(cc.Prefab)
     adsSpineItemPrefab: cc.Prefab = null;
 
+    bannerAbortController = new AbortController();
+
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
     private isFirstLoad = false;
@@ -31,11 +33,17 @@ export default class DynamicAdsBannerController extends BannerController {
                 }
                 console.log("add banner------id---", gameId);
 
-                await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
+                await GameUtils.asyncExecuteNew(this?.node, this.createAdsItem(gameId), this.bannerAbortController.signal);
                 this.handleShowFirstPage(index);
                 index++;
             }
-        } catch (e) {}
+        } catch (e) {
+            if (e.message === "Operation cancelled") {
+                console.log("Promises were canceled.");
+            } else {
+                cc.warn("Error in setGameAds:", e);
+            }
+        }
     }
 
     handleShowFirstPage = (index: number) => {
@@ -90,7 +98,9 @@ export default class DynamicAdsBannerController extends BannerController {
     }
 
     destroyAllBanners() {
+        this.bannerAbortController.abort();
         this.node.removeAllChildren();
+        this.bannerAbortController = new AbortController();
     }
 
     private createBanner(id: number, spriteFrame: cc.SpriteFrame, item: cc.Node) {

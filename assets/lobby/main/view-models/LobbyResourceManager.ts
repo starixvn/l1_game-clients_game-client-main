@@ -1,5 +1,5 @@
 import GameUtils from "../../../common/GameUtils";
-import { buildShareResourceGameUrl } from "../../../common/helpers/UrlHelper";
+import { buildShareResource } from "../../../common/helpers/UrlHelper";
 import { uiManager } from "../../../managers/GameUIManager";
 
 export interface IInfoShareResource {
@@ -77,7 +77,7 @@ export default class LobbyResourceManager {
     public static isUseTheme() {
         return this.getInstance().isUseTheme();
     }
-    
+
     public static getThemePath() {
         return this.getInstance().getThemePath();
     }
@@ -106,8 +106,8 @@ export default class LobbyResourceManager {
     }
 
     public remoteShareLobbyResourceUrl(pathResource: string) {
-        const url = buildShareResourceGameUrl();
-        return `${url}/lobbies/${this.getTheme()}/${pathResource}`;
+        const url = buildShareResource();
+        return `${url}/lobbies/themes/${this.getTheme()}/${pathResource}`;
     }
 
     protected loadPrefab(path: string): Promise<cc.Prefab> {

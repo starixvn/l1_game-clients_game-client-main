@@ -103,6 +103,6 @@ export function getEnvironment() {
     return envStr;
 }
 
-export function buildShareResourceGameUrl() {
+export function buildShareResource() {
     return buildProxyUrl(`/shared-resources`);
 }

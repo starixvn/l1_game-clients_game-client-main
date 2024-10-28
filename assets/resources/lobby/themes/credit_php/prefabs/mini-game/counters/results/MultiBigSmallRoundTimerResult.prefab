@@ -92,7 +92,7 @@
         "__id__": 3
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 17
@@ -111,8 +111,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 170,
-      "height": 75
+      "width": 148,
+      "height": 66
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -428,7 +428,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -453,6 +452,8 @@
     "_enabled": true,
     "gameId": 50,
     "nameImage": "mini_panel_big",
+    "enableCustomizePath": false,
+    "customizePath": "",
     "_id": ""
   },
   {
@@ -706,7 +707,7 @@
         "__id__": 20
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 34
@@ -725,8 +726,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 170,
-      "height": 75
+      "width": 148,
+      "height": 66
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1042,7 +1043,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -1067,6 +1067,8 @@
     "_enabled": true,
     "gameId": 50,
     "nameImage": "mini_panel_small",
+    "enableCustomizePath": false,
+    "customizePath": "",
     "_id": ""
   },
   {

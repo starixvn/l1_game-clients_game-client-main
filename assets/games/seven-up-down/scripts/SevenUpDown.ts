@@ -55,7 +55,7 @@ export default class SevenUpDown extends MiniGameBase {
     private resultComp: SevenUpDownResult = null;
 
     protected betHistory: SevenUpDownBetHistory;
-    startRoundDuration = 3;
+    startRoundDuration = 0;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
     private doLaterPayOutCallback = () => {

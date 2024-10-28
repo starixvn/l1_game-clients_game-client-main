@@ -29,6 +29,7 @@ export default class DynamicAdsBannerController extends BannerController {
                 if (uiManager.isPauseLoadingIcons) {
                     return;
                 }
+                console.log("add banner------id---", gameId);
 
                 await GameUtils.asyncExecute(this?.node, this.createAdsItem(gameId));
                 this.handleShowFirstPage(index);

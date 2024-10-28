@@ -144,7 +144,7 @@ export default class SkeletonIcon extends cc.Component {
 
     public async loadAnimation(id: number, categoryIndex = 0) {
         const gameConfiguration = getGameConfiguration(id);
-        const gameNode = gameConfiguration.isMicrosite ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
+        const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
         if (gameNode) {
             this.hideSkeleton();
             this.gameContent?.addChild(gameNode);

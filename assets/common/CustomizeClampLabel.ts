@@ -3,7 +3,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class CustomizeClampLabel extends cc.Label {
     @property()
-    paddingX = 0;
+    paddingRight = 0;
 
     @property({
         override: true
@@ -35,9 +35,9 @@ export default class CustomizeClampLabel extends cc.Label {
     updateWidth() {
         const currentWidth = this.node?.width;
         if (currentWidth !== this.prevWidth) {
-            this.prevWidth = currentWidth + this.paddingX;
+            this.prevWidth = currentWidth + this.paddingRight;
             this.overflow = cc.Label.Overflow.CLAMP;
-            this.node.width = currentWidth + this.paddingX;
+            this.node.width = currentWidth + this.paddingRight;
         }
     }
 }

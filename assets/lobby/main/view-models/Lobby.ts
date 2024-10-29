@@ -583,10 +583,11 @@ export default class Lobby extends cc.Component {
             await GameUtils.asyncExecute(this?.node, this.renderLuckyWheelIcon());
             if (this.luckyWheelIcon && userManager.availSpins) {
                 this.luckyWheelIcon.openGame();
+                return;
             }
-        } else {
-            this.showCenterBanner();
         }
+
+        this.showCenterBanner();
     }
 
     async showSignName() {

@@ -55,7 +55,7 @@ export default class SevenUpDown extends MiniGameBase {
     private resultComp: SevenUpDownResult = null;
 
     protected betHistory: SevenUpDownBetHistory;
-    startRoundDuration = 0;
+    startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
     private doLaterPayOutCallback = () => {
@@ -112,9 +112,11 @@ export default class SevenUpDown extends MiniGameBase {
 
     initGameDataEvents() {
         super.initGameDataEvents();
-        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, handleBeginStarting);
+        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, () => () => {
+            handleBeginStarting(this)();
+            showStartBetMessage(this)({ duration: 0 });
+        });
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
-        this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_STARTING_ROUND, showStartBetMessage);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
     }

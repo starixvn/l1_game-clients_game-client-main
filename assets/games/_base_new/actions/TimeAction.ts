@@ -114,13 +114,12 @@ export const clearRoundData = (game: MiniGameBase) => () => {
 
 export const showStartBetMessage =
     (game: MiniGameBase) =>
-    ({}) => {
-        if (true) {
-            game.scheduleOnce(() => {
-                game.getPromptMessageComponent()?.showStartBetMessage();
-                (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("start-betting"));
-            }, 2);
-        }
+    ({ duration = 2 } = {}) => {
+        game.scheduleOnce(() => {
+            game.getPromptMessageComponent()?.showStartBetMessage();
+
+            (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("start-betting"));
+        }, duration);
     };
 
 export const showStopBetMessage =

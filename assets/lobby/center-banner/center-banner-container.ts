@@ -1,6 +1,7 @@
 import { lazyInject } from "../../Application";
 import GameUtils from "../../common/GameUtils";
 import { userManager } from "../../common/user/UserManager";
+import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { StorageManager } from "../../managers/StorageManager";
@@ -19,6 +20,9 @@ export default class CenterBannerContainer extends cc.Component {
 
     private readonly storageKey = "center-banner-dont-show-again";
     onLoad() {
+        if (appManager.hasShowedCenterBanner) {
+            return;
+        }
         uiManager.emitterListener(InternalEvents.CENTER_BANNER_SHOW, this.initCenterBanner.bind(this), this);
     }
 
@@ -27,6 +31,9 @@ export default class CenterBannerContainer extends cc.Component {
     }
 
     async initCenterBanner() {
+        if (appManager.hasShowedCenterBanner) {
+            return;
+        }
         const offerBannerIds = this.lobbyMenuConfig.bannerAds.filter((id) => userManager.offerGames.includes(id));
         const list = offerBannerIds.slice(0, 1); //only first banner
         const dontShowAgainStorage = StorageManager.get(this.storageKey);
@@ -77,5 +84,7 @@ export default class CenterBannerContainer extends cc.Component {
 
         const banner = node.getComponent(CenterBanner);
         banner.init(gameId, spriteFrame, this.storageKey);
+
+        appManager.hasShowedCenterBanner = true;
     }
 }

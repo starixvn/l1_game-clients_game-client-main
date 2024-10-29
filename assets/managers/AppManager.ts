@@ -48,6 +48,7 @@ class AppManager {
     urlParams: URLSearchParams;
 
     ssoGameId = GameId.UNKNOWN;
+    hasShowedCenterBanner = false;
 
     get autoGenerateNickname() {
         return this.isDirectMode || this.isAppMode || this.isPFF;

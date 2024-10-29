@@ -26,7 +26,7 @@ export default class CenterBannerContainer extends cc.Component {
     }
 
     async initCenterBanner() {
-        const list = this.lobbyMenuConfig.bannerAds;
+        const list = this.lobbyMenuConfig.bannerAds.slice(0, 1); //only first banner
         const dontShowAgainStorage = StorageManager.get(this.storageKey);
 
         const filterList = list.filter((id) => {

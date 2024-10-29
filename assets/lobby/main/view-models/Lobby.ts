@@ -118,7 +118,11 @@ export default class Lobby extends cc.Component {
     }
 
     showCenterBanner() {
-        uiManager.emitter.emit(InternalEvents.CENTER_BANNER_SHOW);
+        cc.log("Lobby show center banner");
+        // call in schedule to fix bug, not yet register listener in child's onLoad
+        this.scheduleOnce(() => {
+            uiManager.emitter.emit(InternalEvents.CENTER_BANNER_SHOW);
+        }, 0.3);
     }
 
     async initUIs() {
@@ -364,8 +368,10 @@ export default class Lobby extends cc.Component {
     }
 
     onSignIn() {
+        cc.log("Lobby onSignIn");
         this.isSSOToGame = appManager.ssoGameId > 0;
         if (this.isSSOToGame) {
+            cc.log("Lobby onSignIn - isSSOToGame");
             this.loadLobby(false);
             this.openGameSSO(() => {
                 this.openLuckyWheel();
@@ -374,12 +380,14 @@ export default class Lobby extends cc.Component {
         }
 
         if (sessionManager.getInRoomGameId()) {
+            cc.log("Lobby onSignIn - reload game room");
             this.loadLobby(false);
             this.reloadCurrentRoomGame();
             return;
         }
 
         if (window.isSSO) {
+            cc.log("Lobby onSignIn - isSSO");
             this.openLuckyWheel();
         } else {
             this.showCenterBanner();

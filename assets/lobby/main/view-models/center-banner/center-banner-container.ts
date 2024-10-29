@@ -45,7 +45,7 @@ export default class CenterBannerContainer extends cc.Component {
                 if (data) {
                     const languages = [window.i18n.curLang, "en", "vi"];
                     for (const lang of languages) {
-                        const fileName = `${lang}.jpg`;
+                        const fileName = `${lang}.webp`;
                         if (data.json[fileName]) {
                             const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${path}/${fileName}`);
                             if (imageAsset) {

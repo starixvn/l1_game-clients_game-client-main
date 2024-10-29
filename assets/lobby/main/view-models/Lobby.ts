@@ -585,7 +585,7 @@ export default class Lobby extends cc.Component {
                 this.luckyWheelIcon.openGame();
             }
         } else {
-            uiManager.emitter.emit(InternalEvents.AFTER_LUCKY_WHEEL);
+            this.showCenterBanner();
         }
     }
 

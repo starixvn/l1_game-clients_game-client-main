@@ -1,4 +1,3 @@
-import AudioManager from "../../../../common/audio/AudioManager";
 import { getString12HourByTime, getStringDate1 } from "../../../../common/helpers/DateTimeHelper";
 import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
 import SocketIOHistoryItemBase from "../../../_base/view-models/SocketIOHistoryItemBase";
@@ -19,7 +18,7 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
     @property(cc.SpriteAtlas)
     mainAtlas: cc.SpriteAtlas = null;
 
-    public showTicketDetail = (data: any) => {};
+    public showTicketDetail = (data) => {};
 
     protected data: any;
 
@@ -42,8 +41,7 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
         });
     }
 
-    openTicketDetail() {
-        AudioManager.getInstance().playClick();
+    openNewBetDetails() {
         this.showTicketDetail(this.data);
     }
 }

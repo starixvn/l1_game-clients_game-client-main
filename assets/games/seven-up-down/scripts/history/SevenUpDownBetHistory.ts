@@ -6,29 +6,27 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SevenUpDownBetHistory extends SocketIOGameHistoryBase {
-    @property(cc.Prefab)
-    ticketDetailPrefab: cc.Prefab = null;
     public headerTitleColor = "#EDBB02";
 
-    public handleBetHistory = (roundId: number) => {};
     bindItemRowData(betLog, index) {
         const itemNode = cc.instantiate(this.itemPrefab);
         const item = itemNode.getComponent(SevenUpDownHistoryItem);
         item.setData(betLog, index);
         this.content.addChild(itemNode);
-        item.openTicketDetail = () => {
+        item.showTicketDetail = (betLog) => {
             AudioManager.getInstance().playClick();
-            this.showTicketDetail();
+            this.getBetDetailURL(betLog);
         };
         item.init(this.socket);
     }
 
-    openBetHistory(roundId: number) {
-        this.handleBetHistory(roundId);
-    }
-
-    showTicketDetail() {
-        const node = cc.instantiate(this.ticketDetailPrefab);
-        this.node.addChild(node);
+    getBetDetailURL(betLog) {
+        this.socket?.connected &&
+            this.socket.emit("betDetails", {
+                roundId: betLog.roundId,
+                mode: "dark",
+                language: window.i18n.curLang,
+                timeZoneOffset: -new Date().getTimezoneOffset() / 60
+            });
     }
 }

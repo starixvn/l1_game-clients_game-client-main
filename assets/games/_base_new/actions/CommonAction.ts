@@ -5,6 +5,7 @@ import { appManager } from "../../../managers/AppManager";
 import { GameState } from "../../_base/GameState";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
 import MiniGameBase from "../view-models/MiniGameBase";
+import NewTicketDetailBase from "../view-models/NewTicketDetailBase";
 import { showCurrentRoundId, showLastRoundId } from "./TimeAction";
 
 export const onUM = (game: MiniGameBase) => (data) => {
@@ -142,3 +143,14 @@ export const handleAfterSettlementResult =
         game.disableRebetButton();
         game.handleAfterSettlementResult(settlement, animated);
     };
+
+export const showBetDetailsUrl = (game: MiniGameBase) => (data) => {
+    if (!game.ticketDetailPrefab) {
+        return;
+    }
+    const dialog = cc.instantiate(game.ticketDetailPrefab);
+    game.currentMiniPanel.addDialog(dialog);
+    const ticketDetailComponent = dialog.getComponent(NewTicketDetailBase);
+    ticketDetailComponent.setURL(data);
+    ticketDetailComponent.loadWebView();
+};

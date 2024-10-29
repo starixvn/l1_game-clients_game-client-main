@@ -10,17 +10,7 @@ import { Durations } from "../../_new/_base/game-data-management/models/duration
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
 import { TotalBets } from "../../_new/_base/game-data-management/models/total-bets";
 import NewMiniGameBase from "../../_new/_base/NewMiniGameBase";
-import {
-    changeBetPercentage,
-    handleFlyOwnChipFake,
-    handlePayChips,
-    placeBetFailed,
-    placeBetSuccess,
-    placeOwnChipsFake,
-    updateOwnBets,
-    updatePreviousBets,
-    updateTotalBets
-} from "../actions/BetAction";
+import { changeBetPercentage, handleFlyOwnChipFake, handlePayChips, placeBetFailed, placeBetSuccess, placeOwnChipsFake, updateOwnBets, updatePreviousBets, updateTotalBets } from "../actions/BetAction";
 import {
     changeGameRound,
     checkToOffUM,
@@ -35,21 +25,12 @@ import {
     handleShowStatus,
     handleWinningStreak,
     onUM,
+    showBetDetailsUrl,
     showHashAtPlacingBet,
     updateMD5String
 } from "../actions/CommonAction";
-import {
-    clearRoundData,
-    handleForceTimeOut,
-    showLastRoundId,
-    startGameLoop,
-    stopGameLoop,
-    updateLockBet,
-    updatePlacingBet,
-    updateStartingRound,
-    updateTimeOut,
-    updateWaiting
-} from "../actions/TimeAction";
+import { clearRoundData, handleForceTimeOut, showLastRoundId, startGameLoop, stopGameLoop, updateLockBet, updatePlacingBet, updateStartingRound, updateTimeOut, updateWaiting } from "../actions/TimeAction";
+import { BetDetailsUrl } from "../models/BetDetailsUrl";
 import { BetModel } from "../models/BetModel";
 import { BoostedChoicesModel } from "../models/BoostedChoicesModel";
 import { BoostedOddsModel } from "../models/BoostedOddsModel";
@@ -83,6 +64,9 @@ export default class MiniGameBase extends NewMiniGameBase {
 
     @property(cc.Node)
     tableGameBg: cc.Node = null;
+
+    @property(cc.Prefab)
+    ticketDetailPrefab: cc.Prefab = null;
 
     protected managedByContainer = false;
 
@@ -315,6 +299,8 @@ export default class MiniGameBase extends NewMiniGameBase {
         this.emitterListener(this.gameData.settlement, Settlement.Events.FORCE_TIMEOUT, handleForceTimeOut);
         this.emitterListener(this.gameData.boostedOddsModel, BoostedOddsModel.Events.CHANGE, handleBoostedOdds);
         this.emitterListener(this.gameData.boostedChoicesModel, BoostedChoicesModel.Events.CHANGE, handleBoostedChoices);
+
+        this.emitterListener(this.gameData.betDetailsUrl, BetDetailsUrl.Events.CHANGE, showBetDetailsUrl);
     }
 
     checkShowUmMessage(data: any) {

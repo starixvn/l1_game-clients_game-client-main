@@ -119,6 +119,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
+
     }
 
     getBetChoiceString(choice: string): string {

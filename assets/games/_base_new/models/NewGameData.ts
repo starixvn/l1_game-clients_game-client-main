@@ -3,6 +3,7 @@ import { BaseEventHandler } from "../../_new/_base/game-data-management/event-ha
 import { TimeEventHandler } from "../../_new/_base/game-data-management/event-handlers/time-handler";
 import { TotalBetsEventHandler } from "../../_new/_base/game-data-management/event-handlers/total-bets-handler";
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
+import { BetDetailsUrlHandler } from "../handlers/BetDetailsUrlHandler";
 import { BetHandler } from "../handlers/BetHandler";
 import { GameConfigHandler } from "../handlers/GameConfigHandler";
 import { MultiplierHandler } from "../handlers/MultiplierHandler";
@@ -12,6 +13,7 @@ import { ResultHashHandler } from "../handlers/ResultHashHandler";
 import { RoundHistoryHandler } from "../handlers/RoundHistoryHandler";
 import { SettlemenHandler } from "../handlers/SettlementHandler";
 import { UMHandler } from "../handlers/UMHandler";
+import { BetDetailsUrl } from "./BetDetailsUrl";
 import { BetModel } from "./BetModel";
 import { BoostedChoicesModel } from "./BoostedChoicesModel";
 import { BoostedOddsModel } from "./BoostedOddsModel";
@@ -44,7 +46,7 @@ export default class NewGameData extends GameData {
     boostedChoicesModel: BoostedChoicesModel;
     boostedOddsModel: BoostedOddsModel;
     multiplier: Multiplier;
-
+    betDetailsUrl: BetDetailsUrl;
     roundId: number;
 
     constructor() {
@@ -68,7 +70,8 @@ export default class NewGameData extends GameData {
             this.resultHash,
             this.boostedChoicesModel,
             this.boostedOddsModel,
-            this.multiplier
+            this.multiplier,
+            this.betDetailsUrl
         ];
         this.eventEmitters.push(...models);
     }
@@ -85,6 +88,7 @@ export default class NewGameData extends GameData {
         this.boostedChoicesModel = new BoostedChoicesModel();
         this.boostedOddsModel = new BoostedOddsModel();
         this.multiplier = new Multiplier();
+        this.betDetailsUrl = new BetDetailsUrl();
     }
 
     changeRoundId(roundId: number) {
@@ -113,7 +117,8 @@ export default class NewGameData extends GameData {
             BetHandler,
             NoticeHandler,
             SettlemenHandler,
-            OddsHandler
+            OddsHandler,
+            BetDetailsUrlHandler
         ];
         this.eventHandlers.push(...handlers.map((Handler) => new Handler(this)));
     }

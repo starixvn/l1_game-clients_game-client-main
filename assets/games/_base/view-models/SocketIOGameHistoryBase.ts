@@ -1,9 +1,9 @@
 import { Socket } from "socket.io-client";
 
 import { i18n } from "../../../ClientModules";
+import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import BaseComponent from "../../../common/BaseComponent";
 import GameUtils from "../../../common/GameUtils";
-import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import PaginationCommon from "../../../common/helpers/Pagination/PaginationCommon";
 import HistoryFrame from "../../../common/new-history/HistoryFrame";
@@ -182,5 +182,15 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
 
         this.wrapperContent.parent = mainFrame;
         this.historyFrame.updateSizeFrame(this.content.width, this.HEIGHT_CONTENT, this.AUTO_SCALE_NODE_WIDTH);
+    }
+
+    getBetDetailURL(betLog) {
+        this.socket?.connected &&
+            this.socket.emit("betDetails", {
+                roundId: betLog.roundId,
+                mode: "dark",
+                language: window.i18n.curLang,
+                timeZoneOffset: -new Date().getTimezoneOffset() / 60
+            });
     }
 }

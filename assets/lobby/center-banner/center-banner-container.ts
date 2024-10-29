@@ -1,5 +1,6 @@
 import { lazyInject } from "../../Application";
 import GameUtils from "../../common/GameUtils";
+import { userManager } from "../../common/user/UserManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { StorageManager } from "../../managers/StorageManager";
@@ -26,7 +27,8 @@ export default class CenterBannerContainer extends cc.Component {
     }
 
     async initCenterBanner() {
-        const list = this.lobbyMenuConfig.bannerAds.slice(0, 1); //only first banner
+        const offerBannerIds = this.lobbyMenuConfig.bannerAds.filter((id) => userManager.offerGames.includes(id));
+        const list = offerBannerIds.slice(0, 1); //only first banner
         const dontShowAgainStorage = StorageManager.get(this.storageKey);
 
         const filterList = list.filter((id) => {

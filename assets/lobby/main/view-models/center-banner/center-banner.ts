@@ -31,7 +31,7 @@ export default class CenterBanner extends cc.Component {
     }
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
-        const storage = StorageManager.get(this.storageKey);
+        const storage = StorageManager.get(this.storageKey) ?? {};
         if (storage) {
             storage[this.gameId] = toggle.isChecked;
             StorageManager.set(this.storageKey, storage);

@@ -35,8 +35,8 @@ export default class CenterBannerContainer extends cc.Component {
             }
             return !dontShowAgainStorage[id];
         });
-        try {
-            for (const gameId of filterList) {
+        for (const gameId of filterList) {
+            try {
                 const path = `center-banners/${gameId}`;
                 const versionsPath = `${path}/versions.json`;
                 const data = await GameUtils.loadRemoteFromSharedResource<any>(versionsPath);
@@ -63,8 +63,10 @@ export default class CenterBannerContainer extends cc.Component {
                         break;
                     }
                 }
+            } catch (e) {
+                continue;
             }
-        } catch (e) {}
+        }
     }
 
     showBanner(gameId: number, spriteFrame: cc.SpriteFrame) {

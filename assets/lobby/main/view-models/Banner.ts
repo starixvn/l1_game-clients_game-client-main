@@ -161,7 +161,6 @@ export default class Banner extends cc.Component {
     }
 
     switchBanner(showJackpot: boolean, reset = false, rightDirection = true) {
-        console.log("switchBanner----rightDirection---", rightDirection);
         cc.tween(this.node)
             .delay(0.1)
             .call(() => {

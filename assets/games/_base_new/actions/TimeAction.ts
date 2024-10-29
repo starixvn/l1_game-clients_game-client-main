@@ -117,7 +117,6 @@ export const showStartBetMessage =
     ({ duration = 2 } = {}) => {
         game.scheduleOnce(() => {
             game.getPromptMessageComponent()?.showStartBetMessage();
-
             (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("start-betting"));
         }, duration);
     };

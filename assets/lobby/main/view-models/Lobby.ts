@@ -115,9 +115,6 @@ export default class Lobby extends cc.Component {
         this.initScrollListener();
 
         this.trackOnLoadEvents();
-
-        //test centerbanner
-        this.scheduleOnce(this.showCenterBanner.bind(this), 1);
     }
 
     showCenterBanner() {
@@ -319,6 +316,7 @@ export default class Lobby extends cc.Component {
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
         uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
         uiManager.emitterListener(InternalEvents.OPEN_GAME, this.openGameFromCenterBanner.bind(this), this);
+        uiManager.emitterListener(InternalEvents.AFTER_LUCKY_WHEEL, this.showCenterBanner.bind(this), this);
     }
 
     openGameFromCenterBanner(gameId: number) {
@@ -372,13 +370,21 @@ export default class Lobby extends cc.Component {
             this.openGameSSO(() => {
                 this.openLuckyWheel();
             });
-        } else if (sessionManager.getInRoomGameId()) {
+            return;
+        }
+
+        if (sessionManager.getInRoomGameId()) {
             this.loadLobby(false);
             this.reloadCurrentRoomGame();
-        } else {
-            window.isSSO && this.openLuckyWheel();
-            this.loadLobby(true);
+            return;
         }
+
+        if (window.isSSO) {
+            this.openLuckyWheel();
+        } else {
+            this.showCenterBanner();
+        }
+        this.loadLobby(true);
     }
 
     loadLobby(loadAllBanners: boolean) {
@@ -570,6 +576,8 @@ export default class Lobby extends cc.Component {
             if (this.luckyWheelIcon && userManager.availSpins) {
                 this.luckyWheelIcon.openGame();
             }
+        } else {
+            uiManager.emitter.emit(InternalEvents.AFTER_LUCKY_WHEEL);
         }
     }
 

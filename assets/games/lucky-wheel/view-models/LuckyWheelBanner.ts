@@ -1,6 +1,7 @@
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
+import { InternalEvents } from "../../../managers/InternalEvents";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import { SedieId } from "../../sedie/view-models/Sedie";
 
@@ -23,5 +24,6 @@ export default class LuckyWheelBanner extends cc.Component {
 
     onDisable() {
         this.node.destroy();
+        uiManager.emitter.emit(InternalEvents.AFTER_LUCKY_WHEEL);
     }
 }

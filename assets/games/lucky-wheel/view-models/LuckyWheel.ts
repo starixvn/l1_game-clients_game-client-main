@@ -9,6 +9,8 @@ import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import { userManager } from "../../../common/user/UserManager";
 import NoticeUtil from "../../../common/utils/NoticeUtil";
 import WebViewGuide from "../../../common/webview-guide/WebViewGuide";
+import { uiManager } from "../../../managers/GameUIManager";
+import { InternalEvents } from "../../../managers/InternalEvents";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import SocketIOMiniGameBase from "../../_base/SocketIOMiniGameBase";
 import LuckyWheelHistory from "./LuckyWheelHistory";
@@ -365,6 +367,8 @@ export default class LuckyWheel extends SocketIOMiniGameBase {
         if (userManager.scoins) {
             const bannerNode = cc.instantiate(this.bannerPrefab);
             this.currentMiniPanel.addDialog(bannerNode);
+        } else {
+            uiManager.emitter.emit(InternalEvents.AFTER_LUCKY_WHEEL);
         }
 
         this.umNotice.hide();

@@ -245,24 +245,22 @@ export default class GameUtils {
         });
     }
 
-    public static async asyncExecuteNew<T>(node: cc.Node, promiseValue: Promise<T>, abortSignal: AbortSignal): Promise<T> {
+    public static async asyncExecuteAbortSignal<T>(node: cc.Node, promiseValue: Promise<T>, abortSignal: AbortSignal): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             const errorMessage = "Node is not valid!";
             if (!node?.isValid || abortSignal.aborted) {
-                console.log("!node?.isValid || abortSignal.aborted reject");
                 return reject(new Error(errorMessage));
             }
 
             // Listen for the abort signal to reject the promise if canceled
             abortSignal.addEventListener("abort", () => {
-                console.log("abortSignal.addEventListener reject");
-                reject(new Error("Operation cancelled"));
+                cc.warn("Operation cancelled");
+                reject(new Error(errorMessage));
             });
 
             promiseValue
                 .then((result) => {
                     if (!node?.isValid || abortSignal.aborted) {
-                        console.log("promiseValue !node?.isValid || abortSignal.aborted reject");
                         reject(new Error(errorMessage));
                     } else {
                         resolve(result);

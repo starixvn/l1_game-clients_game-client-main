@@ -91,7 +91,6 @@ export default class Banner extends cc.Component {
             }
 
             const filterList: number[] = this.getGameIdOfferBanner(needLoadAllBanners);
-            console.log("list banner----", filterList);
             this.adsBannerController.setGameAds(filterList);
         } catch (e) {
             console.warn("Catch error after await method", e.message);

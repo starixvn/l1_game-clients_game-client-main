@@ -31,18 +31,13 @@ export default class DynamicAdsBannerController extends BannerController {
                 if (uiManager.isPauseLoadingIcons) {
                     return;
                 }
-                console.log("add banner------id---", gameId);
 
-                await GameUtils.asyncExecuteNew(this?.node, this.createAdsItem(gameId), this.bannerAbortController.signal);
+                await GameUtils.asyncExecuteAbortSignal(this?.node, this.createAdsItem(gameId), this.bannerAbortController.signal);
                 this.handleShowFirstPage(index);
                 index++;
             }
         } catch (e) {
-            if (e.message === "Operation cancelled") {
-                console.log("Promises were canceled.");
-            } else {
-                cc.warn("Error in setGameAds:", e);
-            }
+            cc.warn("Error in setGameAds:", e);
         }
     }
 

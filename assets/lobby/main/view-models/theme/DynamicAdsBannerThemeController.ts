@@ -10,7 +10,6 @@ export default class DynamicAdsBannerThemeController extends DynamicAdsBannerCon
     protected override async createAdsItem(id: number) {
         try {
             if (this.adsSpineItemPrefab && id > 0) {
-                console.log("createAdsItem--id-", id);
                 const item = cc.instantiate(this.adsSpineItemPrefab);
                 if (item) {
                     await this.createBannerWithAnimation(id, item);

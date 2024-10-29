@@ -1,9 +1,9 @@
-import { lazyInject } from "../../../../Application";
-import GameUtils from "../../../../common/GameUtils";
-import { uiManager } from "../../../../managers/GameUIManager";
-import { InternalEvents } from "../../../../managers/InternalEvents";
-import { StorageManager } from "../../../../managers/StorageManager";
-import LobbyMenuConfig from "../LobbyMenuConfig";
+import { lazyInject } from "../../Application";
+import GameUtils from "../../common/GameUtils";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
+import { StorageManager } from "../../managers/StorageManager";
+import LobbyMenuConfig from "../main/view-models/LobbyMenuConfig";
 import CenterBanner from "./center-banner";
 
 const { ccclass, property } = cc._decorator;

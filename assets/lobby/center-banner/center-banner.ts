@@ -1,7 +1,7 @@
-import CommonDialog from "../../../../common/_base/view-models/CommonDialog";
-import { uiManager } from "../../../../managers/GameUIManager";
-import { InternalEvents } from "../../../../managers/InternalEvents";
-import { StorageManager } from "../../../../managers/StorageManager";
+import CommonDialog from "../../common/_base/view-models/CommonDialog";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
+import { StorageManager } from "../../managers/StorageManager";
 
 const { ccclass, property } = cc._decorator;
 

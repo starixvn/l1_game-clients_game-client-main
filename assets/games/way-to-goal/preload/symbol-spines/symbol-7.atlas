@@ -4,143 +4,122 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-BG
+bg
   rotate: false
-  xy: 17, 352
-  size: 152, 152
-  orig: 152, 152
+  xy: 124, 631
+  size: 142, 142
+  orig: 142, 142
   offset: 0, 0
   index: -1
-bonus text
-  rotate: true
-  xy: 203, 496
-  size: 114, 36
-  orig: 114, 36
+freespin
+  rotate: false
+  xy: 355, 4
+  size: 135, 36
+  orig: 135, 36
   offset: 0, 0
   index: -1
-c￲i
-  rotate: true
-  xy: 384, 1633
-  size: 102, 78
-  orig: 102, 78
+giay
+  rotate: false
+  xy: 1213, 689
+  size: 138, 125
+  orig: 138, 125
   offset: 0, 0
   index: -1
 khung
   rotate: false
-  xy: 1710, 387
-  size: 152, 152
-  orig: 152, 152
+  xy: 415, 1621
+  size: 142, 142
+  orig: 142, 142
   offset: 0, 0
   index: -1
-vfx/10
+light
   rotate: true
-  xy: 360, 393
-  size: 35, 35
-  orig: 35, 35
+  xy: 1290, 227
+  size: 54, 51
+  orig: 54, 51
   offset: 0, 0
   index: -1
-vfx/11
+vfx1/1
   rotate: true
-  xy: 150, 718
-  size: 41, 38
-  orig: 41, 38
+  xy: 378, 344
+  size: 29, 27
+  orig: 29, 27
   offset: 0, 0
   index: -1
-vfx/12
-  rotate: true
-  xy: 212, 829
-  size: 51, 49
-  orig: 51, 49
-  offset: 0, 0
-  index: -1
-vfx/13
+vfx1/10
   rotate: false
-  xy: 773, 2
-  size: 64, 59
-  orig: 64, 59
+  xy: 1189, 1056
+  size: 145, 119
+  orig: 145, 119
   offset: 0, 0
   index: -1
-vfx/14
-  rotate: true
-  xy: 1635, 502
-  size: 83, 71
-  orig: 83, 71
-  offset: 0, 0
-  index: -1
-vfx/15
-  rotate: true
-  xy: 1548, 325
-  size: 113, 93
-  orig: 113, 93
-  offset: 0, 0
-  index: -1
-vfx/16
-  rotate: true
-  xy: 1573, 632
-  size: 111, 92
-  orig: 111, 92
-  offset: 0, 0
-  index: -1
-vfx/17
-  rotate: true
-  xy: 3, 2
-  size: 1709, 388
-  orig: 1709, 388
-  offset: 0, 0
-  index: -1
-vfx/18
-  rotate: true
-  xy: 1192, 841
-  size: 127, 123
-  orig: 127, 123
-  offset: 0, 0
-  index: -1
-vfx/19
-  rotate: true
-  xy: 1183, 568
-  size: 124, 122
-  orig: 124, 122
-  offset: 0, 0
-  index: -1
-vfx/20
-  rotate: true
-  xy: 520, 1166
-  size: 116, 121
-  orig: 116, 121
-  offset: 0, 0
-  index: -1
-vfx/21
-  rotate: true
-  xy: 602, 878
-  size: 311, 1059
-  orig: 311, 1059
-  offset: 0, 0
-  index: -1
-vfx/22
-  rotate: true
-  xy: 675, 606
-  size: 1120, 979
-  orig: 1120, 979
-  offset: 0, 0
-  index: -1
-vfx/23
-  rotate: true
-  xy: 2, 2
-  size: 383, 1194
-  orig: 383, 1194
-  offset: 0, 0
-  index: -1
-vfx/24
+vfx1/11
   rotate: false
-  xy: 2, 2
-  size: 521, 644
-  orig: 521, 644
+  xy: 215, 1076
+  size: 443, 539
+  orig: 443, 539
   offset: 0, 0
   index: -1
-vfx/9
+vfx1/12
+  rotate: true
+  xy: 1323, 1131
+  size: 145, 106
+  orig: 145, 106
+  offset: 0, 0
+  index: -1
+vfx1/13
   rotate: false
-  xy: 619, 342
-  size: 32, 30
-  orig: 32, 30
+  xy: 380, 1088
+  size: 564, 233
+  orig: 564, 233
+  offset: 0, 0
+  index: -1
+vfx1/15
+  rotate: true
+  xy: 186, 323
+  size: 278, 908
+  orig: 278, 908
+  offset: 0, 0
+  index: -1
+vfx1/2
+  rotate: false
+  xy: 629, 832
+  size: 35, 36
+  orig: 35, 36
+  offset: 0, 0
+  index: -1
+vfx1/4
+  rotate: true
+  xy: 1388, 358
+  size: 715, 220
+  orig: 715, 220
+  offset: 0, 0
+  index: -1
+vfx1/5
+  rotate: true
+  xy: 1334, 70
+  size: 157, 105
+  orig: 157, 105
+  offset: 0, 0
+  index: -1
+vfx1/6
+  rotate: true
+  xy: 1162, 259
+  size: 153, 108
+  orig: 153, 108
+  offset: 0, 0
+  index: -1
+vfx1/8
+  rotate: false
+  xy: 1066, 12
+  size: 150, 113
+  orig: 150, 113
+  offset: 0, 0
+  index: -1
+vfx1/9
+  rotate: true
+  xy: 1081, 1007
+  size: 144, 113
+  orig: 144, 113
   offset: 0, 0
   index: -1

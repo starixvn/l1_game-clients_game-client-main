@@ -3,6 +3,7 @@ import { i18n } from "../../ClientModules";
 import { OperatorAlias } from "../../ISystem";
 import SocketIOController from "../../SocketIOController";
 import GameUtils from "../../common/GameUtils";
+import LobbyUtils from "../../common/LobbyUtils";
 import * as sessionManager from "../../common/auth/SessionManager";
 import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
@@ -217,7 +218,7 @@ export default class MainSplash extends cc.Component {
     preloadLobbyScene() {
         this.loadSceneTimeout = setTimeout(
             function () {
-                GameUtils.gotoLobbyScene(this.onProgress.bind(this), this.lobbyMenuConfig, this.splashConfig);
+                LobbyUtils.gotoLobbyScene(this.onProgress.bind(this), this.lobbyMenuConfig, this.splashConfig);
             }.bind(this),
             100
         );

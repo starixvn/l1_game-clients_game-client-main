@@ -5,11 +5,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 import { lodash } from "../ClientModules";
 import * as SessionManager from "../common/auth/SessionManager";
 import { GameConfiguration, getGameConfiguration, isGatewayGame, isUsingRemoteBundle } from "../configs/GameConfigurations";
-import { TotalPreloadGameIcon } from "../constants";
 import IGameBase from "../games/_base/IGameBase";
-import LobbyManager from "../lobby/main/view-models/LobbyManager";
-import LobbyResourceManager from "../lobby/main/view-models/LobbyResourceManager";
-import SkeletonBannerTheme from "../lobby/main/view-models/theme/SkeletonBannerTheme";
 import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../managers/AppManager";
 import { uiManager } from "../managers/GameUIManager";
@@ -32,11 +28,6 @@ import SetStaticFontSizeLabel from "./SetStaticFontSizeLabel";
 import { userManager } from "./user/UserManager";
 
 export const MINI_GAMES_SCALE_ON_DESKTOP = 0.8;
-export const MICRO_GAMES_NOT_OFFER_BANNER = [9, 48, 49, 50];
-export enum BannerType {
-    SingleImage = "singleImage",
-    Prefab = "prefab"
-}
 
 declare global {
     interface Window {
@@ -134,53 +125,6 @@ export default class GameUtils {
         const gameConfiguration = getGameConfiguration(gameId);
         const isMicrosite = GameUtils.isMicroSite(gameConfiguration);
         return !!isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
-    }
-
-    public static async preloadRemoteIcon(gameId: number) {
-        try {
-            const versions = await GameUtils.getRemoteVersion(gameId);
-            const loadRemoteIconData = async (resource) => {
-                const url = `${GameUtils.remoteGameResourceUrl(gameId, "icon")}/${resource}?v=${versions?.icon}`;
-                const data: any = await GameUtils.loadRemote(url);
-                return data;
-            };
-
-            const skeletonData = new sp.SkeletonData();
-            skeletonData.skeletonJson = (await loadRemoteIconData("icon-game.json")).json;
-            skeletonData.atlasText = (await loadRemoteIconData("icon-game.atlas")).text;
-            skeletonData.textures = [await loadRemoteIconData("icon-game.png")];
-            skeletonData["textureNames"] = [`icon-game.png`];
-
-            uiManager.remoteIconCache[gameId] = { skeletonData: skeletonData, configFile: await loadRemoteIconData("config.json") };
-        } catch (error) {
-            console.log("preloadRemoteIcon error", error.message);
-        }
-    }
-
-    public static async loadGameIcon(gameId: number, systemPath = ""): Promise<cc.Prefab> {
-        const category = StorageManager.get("current_game_category") ?? 0;
-        const gameConfiguration = getGameConfiguration(gameId);
-        const gameSetting = LobbyManager.getInstance().getGame(gameId, category);
-
-        let prefab: cc.Prefab;
-        if (!!gameConfiguration?.remoteBundle) {
-            const directory = systemPath === "" ? "icons" : `icons/${systemPath}`;
-            const path = `${GameUtils.isMicroSite(gameConfiguration) ? gameId + "/" : ""}${directory}/${
-                gameSetting?.bigSize ? "Big" : "Small"
-            }`;
-            prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
-                bundleId: gameId.toString(),
-                path: path,
-                type: cc.Prefab
-            });
-        } else {
-            const directory = systemPath === "" ? "lobby/games" : `lobby/games/${systemPath}`;
-            const path = `${directory}/${gameId}`;
-            prefab = await this.loadResource(path);
-        }
-
-        uiManager.prefabCache.lobbyIcons[gameId] = prefab;
-        return prefab;
     }
 
     public static async loadMiniPanelGameIcon(gameId: number): Promise<cc.Prefab> {
@@ -1036,32 +980,6 @@ export default class GameUtils {
         return `No banner for game ${id}`;
     }
 
-    public static getBannerTypeByGameId(id: number | string): string {
-        const gameConfiguration = getGameConfiguration(id);
-        return gameConfiguration?.bannerType;
-    }
-
-    public static async getStaticBanner(id: number, systemPath = "") {
-        const gameConfiguration = getGameConfiguration(id);
-        if (GameUtils.isMicroSite(gameConfiguration)) {
-            return this.getRemoteBanner(id);
-        }
-
-        return this.getResourceBanner({
-            id,
-            remoteBundle: gameConfiguration.remoteBundle,
-            systemPath
-        });
-    }
-
-    public static getBannerSpriteFrame(gameId: number, imageName: string): Promise<cc.SpriteFrame> {
-        return new Promise<cc.SpriteFrame>((resolve) => {
-            cc.resources.load<cc.SpriteFrame>(`lobby/banner/textures/${gameId}/${imageName}`, cc.SpriteFrame, (err, spriteFrame) => {
-                resolve(spriteFrame);
-            });
-        });
-    }
-
     public static isMiniGame(gameId: string | number): boolean {
         const gameConfiguration = getGameConfiguration(gameId);
         return +gameId !== 0 && !!gameConfiguration?.mini;
@@ -1294,162 +1212,5 @@ export default class GameUtils {
                 hideTimer();
             })
             .start();
-    }
-    private static bannerLoaded = false;
-    private static gameIconPreloaded = false;
-    public static gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
-        const onLoaded = async () => {
-            try {
-                const startLoadTime = Date.now();
-                console.log(`SplashScreen - Start i&b: ${new Date(startLoadTime).toLocaleString()}`);
-                await Promise.all([this.preLoadBanner(lobbyMenuConfig), this.preLoadGameIcons(lobbyMenuConfig, splashConfig)]);
-                const endLoadTime = Date.now();
-                console.log(
-                    `SplashScreen - End i&b: ${new Date(endLoadTime).toLocaleString()}`,
-                    `Total time: ${(endLoadTime - startLoadTime) / 1000}`
-                );
-            } catch (e) {
-                console.log(e);
-            }
-
-            this.preloadDir();
-        };
-
-        cc.director.preloadScene("Lobby", onProgress, onLoaded);
-    }
-
-    private static preloadDir() {
-        const themePath = LobbyResourceManager.isUseTheme() ? LobbyResourceManager.getThemePath() : "lobby/games";
-
-        const iconPath = `${themePath}/prefabs/skeleton-icon`;
-
-        cc.resources.loadDir(iconPath, () => {
-            cc.director.loadScene("Lobby");
-        });
-    }
-
-    private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {
-        try {
-            const offerGames = userManager.offerGames ?? [];
-            let firstCategoryGames = lobbyMenuConfig.firstCategoryList;
-            let preLoadGameIds = [];
-
-            // Filter offer games
-            if (offerGames.length > 0 && firstCategoryGames?.length > 0) {
-                firstCategoryGames = firstCategoryGames.filter((gameId) => offerGames.includes(gameId));
-            }
-            preLoadGameIds =
-                firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
-
-            if (LobbyResourceManager.isUseTheme()) {
-                const preloadGameInMain = preLoadGameIds.filter(
-                    (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
-                );
-                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => LobbyResourceManager?.getInstance()?.loadGameIcon(gameId));
-                await Promise.all([preLoadGameAwaiters]);
-
-                console.log(`SplashScreen - Completed load game icons`, [
-                    {
-                        name: "main",
-                        ids: preloadGameInMain.join(",")
-                    }
-                ]);
-
-                return;
-            }
-
-            // Load game icon custom by system
-
-            const preloadGameInMain = preLoadGameIds.filter((gameId) => !GameUtils.isMicroSite(getGameConfiguration(gameId)));
-            const preLoadGameAwaiters = preloadGameInMain.map((gameId) => GameUtils.loadGameIcon(gameId));
-
-            // Load game icon custom by system
-            const preLoadGameBySystemIds = preLoadGameIds.filter((gameId) => lobbyMenuConfig.customGameIconBySystem.includes(gameId));
-            const preLoadGameBySystemAwaiters = preLoadGameBySystemIds.map((gameId) =>
-                GameUtils.loadGameIcon(gameId, splashConfig.customPath)
-            );
-
-            // Load game icon through remote site
-            const preloadRemoteGameIds = preLoadGameIds.filter((id) => GameUtils.isMicroSite(getGameConfiguration(id)));
-            const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => GameUtils.preloadRemoteIcon(gameId));
-
-            // Wait all
-            await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
-
-            console.log(`SplashScreen - Completed load game icons`, [
-                {
-                    name: "main",
-                    ids: preloadGameInMain.join(",")
-                },
-                {
-                    name: "custom-by-system",
-                    ids: preLoadGameBySystemIds.join(",")
-                },
-                {
-                    name: "remote",
-                    ids: preloadRemoteGameIds.join(",")
-                }
-            ]);
-        } catch (ex) {
-            console.log(ex);
-        }
-    }
-
-    private static async preLoadBanner(lobbyMenuConfig) {
-        try {
-            if (this.bannerLoaded) {
-                return;
-            }
-
-            const offerGames = userManager.offerGames ?? [];
-            let bannerGameIds = lobbyMenuConfig.bannerAds ?? [];
-
-            // Filter offer games
-            if (offerGames.length > 0) {
-                bannerGameIds = bannerGameIds.filter((gameId) => offerGames.includes(gameId));
-            }
-
-            if (bannerGameIds.length == 0) {
-                return;
-            }
-
-            const bannerId = bannerGameIds[0];
-
-            if (LobbyResourceManager.isUseTheme() && bannerId > 0) {
-                const node = new cc.Node();
-                const bannerComp = node.addComponent(SkeletonBannerTheme);
-
-                // Load banner and container concurrently
-                await Promise.all([
-                    bannerComp.createRemoteIconNode(bannerId),
-                    new Promise((resolve) =>
-                        cc.resources.load(`${LobbyResourceManager.getThemePath()}/prefabs/banner/bannerContainer`, resolve)
-                    )
-                ]);
-
-                // Cleanup and set banner loaded flag
-                node.destroy();
-                this.bannerLoaded = true;
-
-                return;
-            }
-
-            let bannerAwaiters: Promise<unknown>;
-            const bannerType = GameUtils.getBannerTypeByGameId(bannerId);
-            if (bannerType === BannerType.Prefab) {
-                bannerAwaiters = GameUtils.getAnimationBanner(bannerId);
-            } else {
-                bannerAwaiters = GameUtils.getStaticBanner(bannerId);
-            }
-
-            const bannerContainerAwaiters = new Promise((resolve) => {
-                cc.resources.load("lobby/banner/bannerContainer", resolve);
-            });
-
-            await Promise.all([bannerAwaiters, bannerContainerAwaiters]);
-            this.bannerLoaded = true;
-        } catch (ex) {
-            console.log(ex);
-        }
     }
 }

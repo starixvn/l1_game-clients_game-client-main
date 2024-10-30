@@ -1,5 +1,6 @@
 import { lazyInject } from "../../../Application";
 import GameUtils from "../../../common/GameUtils";
+import LobbyUtils from "../../../common/LobbyUtils";
 import RemoteSpine from "../../../common/RemoteSpine";
 import { getLocale } from "../../../common/auth/SessionManager";
 import { FormationHandler } from "../../../common/i18n/FormationHandler";
@@ -73,6 +74,7 @@ export default class SkeletonIcon extends cc.Component {
         const cachedGameIcon = GameUtils.cachedGameIcon(id);
 
         if (!!cachedGameIcon) {
+            cc.log(`Cached game icon found---: ${id}`);
             this.loadAnimation(id, categoryIndex);
         } else {
             addListIconObscure(this);
@@ -85,9 +87,9 @@ export default class SkeletonIcon extends cc.Component {
             if (uiManager.prefabCache.lobbyIcons[id]) {
                 prefab = uiManager.prefabCache.lobbyIcons[id];
             } else {
-                prefab = await GameUtils.loadGameIcon(id);
+                prefab = await LobbyUtils.loadGameIcon(id);
                 if (!prefab) {
-                    prefab = await GameUtils.loadGameIcon(id, this.splashConfig.customPath);
+                    prefab = await LobbyUtils.loadGameIcon(id, this.splashConfig.customPath);
                 }
             }
             return cc.instantiate(prefab);

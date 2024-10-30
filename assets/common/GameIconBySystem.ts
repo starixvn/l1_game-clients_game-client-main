@@ -1,6 +1,6 @@
 import { SystemType } from "../ISystem";
 import { ComponentSystem, ICashSystem, ICreditSystem } from "../System";
-import GameUtils from "./GameUtils";
+import LobbyUtils from "./LobbyUtils";
 
 const { ccclass, property, menu } = cc._decorator;
 
@@ -21,7 +21,7 @@ export default class GameIconBySystem extends ComponentSystem implements ICredit
     }
 
     onLoad() {
-        GameUtils.loadGameIcon(this.gameId, this.system).then((prefab) => {
+        LobbyUtils.loadGameIcon(this.gameId, this.system).then((prefab) => {
             const node = cc.instantiate(prefab);
             this.node?.addChild(node);
         });

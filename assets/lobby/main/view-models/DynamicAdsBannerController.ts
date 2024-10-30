@@ -1,5 +1,6 @@
 import { lazyInject } from "../../../Application";
-import GameUtils, { BannerType } from "../../../common/GameUtils";
+import GameUtils from "../../../common/GameUtils";
+import LobbyUtils, { BannerType } from "../../../common/LobbyUtils";
 import { uiManager } from "../../../managers/GameUIManager";
 import BannerController from "./BannerController";
 import BannerItem from "./BannerItem";
@@ -61,7 +62,7 @@ export default class DynamicAdsBannerController extends BannerController {
 
     protected async createAdsItem(id: number) {
         try {
-            const bannerType = GameUtils.getBannerTypeByGameId(id);
+            const bannerType = LobbyUtils.getBannerTypeByGameId(id);
             if (bannerType === BannerType.Prefab) {
                 if (this.adsSpineItemPrefab) {
                     const item = cc.instantiate(this.adsSpineItemPrefab);
@@ -71,7 +72,7 @@ export default class DynamicAdsBannerController extends BannerController {
                     }
                 }
             } else {
-                const bannerSpriteFrame = await GameUtils.asyncExecute(this?.node, GameUtils.getStaticBanner(id));
+                const bannerSpriteFrame = await GameUtils.asyncExecute(this?.node, LobbyUtils.getStaticBanner(id));
                 if (bannerSpriteFrame && this.adsItemPrefab) {
                     const item = cc.instantiate(this.adsItemPrefab);
                     if (item) {

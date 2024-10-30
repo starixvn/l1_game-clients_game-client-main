@@ -1,5 +1,6 @@
 import { lazyInject } from "../../../Application";
 import GameUtils from "../../../common/GameUtils";
+import LobbyUtils from "../../../common/LobbyUtils";
 import RemoteSpine, { Type } from "../../../common/RemoteSpine";
 import Loading from "../../../common/loading/view-models/Loading";
 import { GameConfiguration, getGameConfiguration } from "../../../configs/GameConfigurations";
@@ -86,14 +87,14 @@ export default class SkeletonBanner extends cc.Component {
             if (uiManager.prefabCache.lobbyBanners[config.id]) {
                 prefab = uiManager.prefabCache.lobbyBanners[config.id];
             } else {
-                prefab = await GameUtils.getBannerPrefab({
+                prefab = await LobbyUtils.getBannerPrefab({
                     id: config.id,
                     remoteBundle: config.remoteBundle,
                     systemPath: ""
                 });
 
                 if (!prefab) {
-                    prefab = await GameUtils.getBannerPrefab({
+                    prefab = await LobbyUtils.getBannerPrefab({
                         id: config.id,
                         remoteBundle: config.remoteBundle,
                         systemPath: this.splashConfig.customPath

@@ -18,7 +18,7 @@ export default class OperatorLogoSprite extends cc.Component {
 
     async loadLogo() {
         try {
-            const operatorName = sessionManager.getOperator();
+            const operatorName = sessionManager.getOperator().toLowerCase();
             const fileName = `operator-logo/${this.scaleValue}/${operatorName}.png`;
             const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${fileName}`);
             if (imageAsset) {

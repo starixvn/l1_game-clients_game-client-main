@@ -15,9 +15,13 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(sp.Skeleton)
     spineMultiplier: sp.Skeleton = null;
 
-    public listMultiplier = [2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8];
+    private MULTIPLIER_NUMBER = 30;
+
+    public listMultiplierOrgin = [];
+    private listMultiplier = [];
+
     public multiplierValue = 0;
-    private OFFSET_MULTIPLIER = 864;
+    private OFFSET_MULTIPLIER = 1224;
 
     onLoad() {
         this.handleSpineMultiplier("show");
@@ -34,6 +38,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     appendMultiplier() {
+        this.appendListMultiplierAnim();
         this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
         for (let i = 0; i < this.listMultiplier.length; i++) {
             const item = this.renderMultiplierValue(this.listMultiplier[i]);
@@ -55,5 +60,18 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     async handleSpineMultiplier(anim: string) {
         await AnimationUtils.playSpine(this.spineMultiplier, anim);
+    }
+
+    appendListMultiplierAnim() {
+        const reverseList = this.listMultiplierOrgin.slice().reverse();
+        const length = this.listMultiplierOrgin.length;
+        const mod = this.MULTIPLIER_NUMBER % length;
+        const countLoop = Math.floor(this.MULTIPLIER_NUMBER / length);
+        for (let i = 0; i < countLoop; i++) {
+            this.listMultiplier = [...this.listMultiplier, ...reverseList];
+        }
+        if (mod > 0) {
+            this.listMultiplier = [...this.listMultiplier, ...reverseList.slice(0, mod)];
+        }
     }
 }

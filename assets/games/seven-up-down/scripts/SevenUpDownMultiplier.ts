@@ -26,11 +26,12 @@ export default class SevenUpDownMultiplier extends cc.Component {
         });
     }
 
-    renderMultiplier(multiplier: any) {
+    renderMultiplier(multiplier: any, listMultipliers: number[]) {
         const choice = this.listMultiplier.find((choice) => choice.name === multiplier.choice);
         const multiplierNode = cc.instantiate(this.pfbMultiplier);
         this.multiplierAnim = multiplierNode.getComponent(SevenUpDownMultiplierChoice);
         this.multiplierAnim.multiplierValue = multiplier.value;
+        this.multiplierAnim.listMultiplierOrgin = listMultipliers;
         choice.addChild(multiplierNode);
     }
 }

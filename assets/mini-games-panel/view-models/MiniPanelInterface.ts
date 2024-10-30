@@ -77,10 +77,6 @@ export default interface MiniPanelInterface {
     createPromotionAnnouncementPrefab();
     showPromotionAnnouncements();
 
-    createPromotionTournamentPrefab();
-
-    showPromotionTournament();
-
     handleAPIError(error);
 
     showErrorNotice(error);

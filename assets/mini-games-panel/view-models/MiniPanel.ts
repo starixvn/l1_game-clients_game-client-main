@@ -22,7 +22,6 @@ import LobbyResourceManager from "../../lobby/main/view-models/LobbyResourceMana
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
-import { PromotionTournamentEvents, promotionTournamentHandler } from "../../lobby/promotions/PromotionTournamentHandler";
 import { Promotions, PromotionsEvent } from "../../lobby/promotions/Promotions";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -90,7 +89,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     private readonly reloadKey = "reload";
     private readonly authKey = "auth";
     private promotionAnnouncementPrefab: cc.Prefab;
-    private promotionTournamentPrefab: cc.Prefab;
     public boostedOdds: BoostedOdds;
     public promotionAnnouncement: PromotionAnnouncements;
     private readonly preloadFolderPercent = 25;
@@ -207,7 +205,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
                 this.showPromotionAnnouncements.bind(this)
             );
             Promotions.getInstance().on(PromotionsEvent.SHOW_BOOSTED_ODDS, () => this.showBoostedOdds());
-            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT, this.showPromotionTournament.bind(this));
         } catch (error) {
             cc.warn("Failed to init boosted odds - " + error);
         }
@@ -496,26 +493,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         this.addDialog(node);
     }
 
-    async createPromotionTournamentPrefab() {
-        const key = "promotionTournament";
-        if (!uiManager.prefabCache.miniPanelIcons[key]) {
-            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
-                this.node,
-                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
-            );
-            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
-        } else {
-            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
-        }
-    }
-
-    async showPromotionTournament() {
-        if (!this.promotionTournamentPrefab) {
-            await this.createPromotionTournamentPrefab();
-        }
-        const node = cc.instantiate(this.promotionTournamentPrefab);
-        this.addDialog(node);
-    }
 
     handleAPIError(error) {
         const errorCode = error.errorCode.toString();

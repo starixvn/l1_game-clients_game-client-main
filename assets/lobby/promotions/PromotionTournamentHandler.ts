@@ -61,15 +61,14 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         }
     }
 
-    async checkTournamentPromotionsBeforeSignIn() {
+    async checkTournamentPromotionsBeforeSignIn(checkExistedNickname = false) {
         try {
             if (configs.systemType.toUpperCase() == "SC1" || sessionManager.getCheckedTournamentPromotionFirstSso()) {
                 return this.emitSignInEvent();
             }
 
-            const existNewOrRunningPromotionTournament = await this.getPromotionData(
-                endpointConstants.existNewOrRunningTournamentPromotion
-            );
+            const url = `${buildPromotionSiteUrl()}/notification/${endpointConstants.existNewOrRunningTournamentPromotion}?${this.getQueryString()}&checkExistedNickname=${checkExistedNickname}`;
+            const existNewOrRunningPromotionTournament = await this.getPromotionData(url);
 
             existNewOrRunningPromotionTournament
                 ? this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT)
@@ -80,7 +79,8 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
     }
 
     async isExistPromotionTournament() {
-        return await this.getPromotionData(endpointConstants.existTournamentPromotionNotification);
+        const url = `${buildPromotionSiteUrl()}/notification/${endpointConstants.existTournamentPromotionNotification}?${this.getQueryString()}`;
+        return await this.getPromotionData(url);
     }
 
     toggleIcon(isActive: boolean) {
@@ -99,10 +99,8 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         this.intervalId = null;
     }
 
-    private async getPromotionData(action: string) {
+    private async getPromotionData(url: string) {
         try {
-            const queryString = this.getQueryString();
-            const url = `${buildPromotionSiteUrl()}/notification/${action}?${queryString}`;
             const response = await axios.get(url);
 
             return response.data;

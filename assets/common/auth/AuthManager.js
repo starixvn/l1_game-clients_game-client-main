@@ -97,6 +97,22 @@ function checkSignOut(urlParams, session) {
     return isSessionExpired && !urlParams.has("token");
 }
 
+export function checkHasTokenWhenOpenMicroGame(urlParams) {
+    window.isSSO = true;
+    window.appType = getAppType(urlParams);
+    UserService.getInstance()
+        .auth.sso(urlParams.get("token"), getAppType(urlParams))
+        .then((response) => {
+            if (checkUM(response)) {
+                return;
+            }
+
+            if (response.isAuthenticated) {
+                sessionManager.storeSessionData(response);
+            } 
+        })
+}
+
 function checkHasToken(urlParams, onSuccessFunc) {
     window.isSSO = true;
     window.appType = getAppType(urlParams);

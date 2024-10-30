@@ -105,13 +105,9 @@ export default class Lobby extends cc.Component {
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
         await this.initUIs();
-        this.loadCategory();
         this.initGameUIEvents();
         this.checkToShowSignName();
-
-        this.onLoadLobby();
         MusicPlayer.getInstance().init();
-
         this.initScrollListener();
 
         this.trackOnLoadEvents();
@@ -128,12 +124,14 @@ export default class Lobby extends cc.Component {
     async initUIs() {
         this.initMiniPanel();
         await this.loadBackgroundUI();
-        await this.loadPrefabCategoryContainer();
-        await this.loadLobbyCenterContainer();
-        await this.loadHeader();
-        await this.loadButtonArrow();
-        await this.loadButtons();
-        await this.loadMarquee();
+        await Promise.all([this.loadPrefabCategoryContainer(), this.loadLobbyCenterContainer()]);
+        Promise.all([
+            this.loadPrefabCategoryContainer(),
+            this.loadHeader(),
+            this.loadButtonArrow(),
+            this.loadButtons(),
+            this.loadMarquee()
+        ]);
     }
 
     async loadBackgroundUI() {
@@ -160,6 +158,7 @@ export default class Lobby extends cc.Component {
                 if (header) {
                     this.headerComp = header?.getComponent(Header);
                     this.headerContainer?.addChild(header);
+                    this.onLoadLobby();
                 }
             }
         } catch (err) {}
@@ -250,6 +249,7 @@ export default class Lobby extends cc.Component {
                         this.lobbyCenterComp?.onCategoryChanged(index);
                     };
                     this.categoryContainer.addChild(categoryContainer);
+                    this.loadCategory();
                 }
             }
         } catch (err) {}

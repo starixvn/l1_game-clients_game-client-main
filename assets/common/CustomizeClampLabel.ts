@@ -15,7 +15,7 @@ export default class CustomizeClampLabel extends cc.Label {
     set string(value: string) {
         if (this._string !== value) {
             this.overflow = cc.Label.Overflow.NONE;
-            let oldValue = this._string;
+            const oldValue = this._string;
             this._string = "" + value;
 
             if (this.string !== oldValue) {

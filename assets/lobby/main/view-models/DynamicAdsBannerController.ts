@@ -22,6 +22,11 @@ export default class DynamicAdsBannerController extends BannerController {
     private readonly lobbyMenuConfig: LobbyMenuConfig;
     private isFirstLoad = false;
 
+    onDestroy() {
+        super.onDestroy();
+        this.bannerAbortController = null;
+    }
+
     async setGameAds(games: number[]) {
         let index = 0;
         this.destroyAllBanners();

@@ -94,9 +94,12 @@ export default class GameUtils {
         return this.loadRemote<T>(this.remoteGameResourceUrl(gameId, pathResource));
     }
 
-    public static loadRemoteFromSharedResource<T>(pathResource: string) {
-        const url = buildSharedResourceUrl(pathResource);
-        return this.loadRemote<T>(url);
+    public static loadRemoteFromSharedResource<T>(pathResource: string, latest = false) {
+        let rawUrl = buildSharedResourceUrl(pathResource);
+        if (latest) {
+            rawUrl += `?v=${Date.now()}`;
+        }
+        return this.loadRemote<T>(rawUrl);
     }
 
     public static loadRemote<T>(url: string): Promise<T> {

@@ -48,7 +48,7 @@ export default class CenterBannerContainer extends cc.Component {
             try {
                 const path = `center-banners/${gameId}`;
                 const versionsPath = `${path}/versions.json`;
-                const data = await GameUtils.loadRemoteFromSharedResource<any>(versionsPath);
+                const data = await GameUtils.loadRemoteFromSharedResource<any>(versionsPath, true);
 
                 let success = false;
                 if (data) {
@@ -56,7 +56,7 @@ export default class CenterBannerContainer extends cc.Component {
                     for (const lang of languages) {
                         const fileName = `${lang}.webp`;
                         if (data.json[fileName]) {
-                            const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${path}/${fileName}`);
+                            const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${path}/${fileName}`, true);
                             if (imageAsset) {
                                 const spriteFrame = new cc.SpriteFrame();
                                 spriteFrame.setTexture(imageAsset);

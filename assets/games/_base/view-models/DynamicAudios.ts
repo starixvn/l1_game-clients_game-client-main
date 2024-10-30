@@ -1,4 +1,5 @@
-import AudioUtils, { TAudioConfigs, TAudioValue } from "../../../common/AudioUtils";
+import { TAudioConfigs, TAudioValue } from "../../../common/AudioInterface";
+import AudioUtils from "../../../common/AudioUtils";
 import AudioManager from "../../../common/audio/AudioManager";
 import GameAudios from "./GameAudios";
 

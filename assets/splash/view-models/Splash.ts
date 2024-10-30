@@ -37,7 +37,7 @@ export default class Splash extends cc.Component {
     @lazyInject(SocketIOController)
     private readonly socketIOControler: SocketIOController;
 
-    private href = `${window.location.origin}/splash-resources`;
+    private readonly href = `${window.location.origin}/splash-resources`;
 
     protected onLoad(): void {
         appManager.init();

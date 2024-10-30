@@ -293,7 +293,9 @@ export default class LobbyUtils {
 
     private static async preLoadBanner(lobbyMenuConfig) {
         try {
-            if (this.bannerLoaded) return;
+            if (this.bannerLoaded) {
+                return;
+            }
 
             const offerGames = userManager.offerGames ?? [];
             let bannerGameIds = lobbyMenuConfig.bannerAds ?? [];
@@ -303,7 +305,9 @@ export default class LobbyUtils {
                 bannerGameIds = bannerGameIds.filter((gameId) => offerGames.includes(gameId));
             }
 
-            if (bannerGameIds.length === 0) return;
+            if (bannerGameIds.length === 0) {
+                return;
+            }
 
             const bannerId = bannerGameIds[0];
 

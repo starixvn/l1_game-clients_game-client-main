@@ -623,7 +623,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     unCacheAndHideGameLoading(loadingComp: Loading, gameId: number) {
         loadingComp?.setLoadingVisibility(false);
         uiManager.unCacheIconLoading(gameId);
-        //uiManager.isPauseLoadingIcons = false;
     }
 
     getGameLoadingComp(gameId: number): Loading {

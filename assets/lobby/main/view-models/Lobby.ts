@@ -125,13 +125,7 @@ export default class Lobby extends cc.Component {
         this.initMiniPanel();
         await this.loadBackgroundUI();
         await Promise.all([this.loadPrefabCategoryContainer(), this.loadLobbyCenterContainer()]);
-        Promise.all([
-            this.loadPrefabCategoryContainer(),
-            this.loadHeader(),
-            this.loadButtonArrow(),
-            this.loadButtons(),
-            this.loadMarquee()
-        ]);
+        Promise.all([this.loadHeader(), this.loadButtonArrow(), this.loadButtons(), this.loadMarquee()]);
     }
 
     async loadBackgroundUI() {

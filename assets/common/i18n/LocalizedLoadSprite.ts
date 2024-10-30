@@ -37,8 +37,6 @@ export default class LocalizedLoadSprite extends cc.Component {
             this.sprite = sprite;
             this.updateSprite({ language: window.i18n.curLang, name: this.nameImage, gameId: this.gameId });
         }
-
-        null;
     }
 
     public async getSpriteFrameByLang(lang: string, name: string, gameId: number) {

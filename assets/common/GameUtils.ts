@@ -556,8 +556,8 @@ export default class GameUtils {
             return;
         }
 
-        onOpenMiniGame?.();
         uiManager.emitter.emit(InternalEvents.MINI_PANEL_OPEN_MINI_GAME, null, gameId);
+        onOpenMiniGame?.();
     }
 
     private static async preloadGameAssets(gameConfiguration: GameConfiguration, miniPanel: MiniPanelInterface, gameId: number) {

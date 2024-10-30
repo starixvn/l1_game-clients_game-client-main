@@ -119,7 +119,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
-
     }
 
     getBetChoiceString(choice: string): string {
@@ -146,6 +145,10 @@ export default class SevenUpDown extends MiniGameBase {
 
         const { result, roundId } = this.gameData.roundHistory.roundHistory[0];
         this.resultComp.showResultNoAnim(result, roundId);
+
+        if (this.isShowingResultLastRound()) {
+            this.resultComp.displayTotalPoints(result);
+        }
     }
 
     resetDataAndUI() {

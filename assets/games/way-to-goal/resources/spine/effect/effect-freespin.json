@@ -1,11 +1,11 @@
 {
 "skeleton": {
-	"hash": "29d3imT8PbVJ8xw7YCTHg1+GfDg",
+	"hash": "Z18eiukMqIlkTEhf6z5lak4UZic",
 	"spine": "3.8.99",
-	"x": -206.88,
-	"y": -208.48,
-	"width": 452.63,
-	"height": 417.6,
+	"x": -201.31,
+	"y": -202.19,
+	"width": 447.06,
+	"height": 401.58,
 	"images": "./images/",
 	"audio": "D:/L5/DJClub/Graphic/replace-assets/resources/spine/effect"
 },
@@ -44,13 +44,13 @@
 	{ "name": "flare-fly11", "parent": "flare-total", "x": -51.04, "y": 96.57 },
 	{ "name": "symbol", "parent": "root", "y": 44, "scaleX": 1.6, "scaleY": 1.6 },
 	{ "name": "text-free-glitch", "parent": "text", "y": -142 },
-	{ "name": "bg-magic2", "parent": "bg-magic" }
+	{ "name": "bg-magic2", "parent": "bg-magic", "scaleX": 0.8, "scaleY": 0.8 }
 ],
 "slots": [
 	{ "name": "bg", "bone": "root" },
 	{ "name": "light2", "bone": "light2", "blend": "additive" },
-	{ "name": "light3", "bone": "light3", "attachment": "bg-magic3", "blend": "additive" },
-	{ "name": "light4", "bone": "light4", "attachment": "bg-magic4", "blend": "additive" },
+	{ "name": "light3", "bone": "light3", "blend": "additive" },
+	{ "name": "light4", "bone": "light4", "blend": "additive" },
 	{ "name": "flare2", "bone": "flare2", "attachment": "flare", "blend": "additive" },
 	{ "name": "flare3", "bone": "flare3", "attachment": "flare", "blend": "additive" },
 	{ "name": "flare6", "bone": "flare6", "attachment": "flare", "blend": "additive" },
@@ -72,7 +72,7 @@
 	{ "name": "flare-fly11", "bone": "flare-fly11", "attachment": "flare", "blend": "additive" },
 	{ "name": "flare-fly4", "bone": "flare-fly4", "attachment": "flare", "blend": "additive" },
 	{ "name": "flare-fly5", "bone": "flare-fly5", "attachment": "flare", "blend": "additive" },
-	{ "name": "bg-magic", "bone": "bg-magic2", "attachment": "bg-magic2" },
+	{ "name": "bg-magic", "bone": "bg-magic2" },
 	{ "name": "symbol", "bone": "symbol" },
 	{ "name": "symbol2", "bone": "symbol", "blend": "additive" },
 	{ "name": "text-free", "bone": "text-free", "attachment": "freespin-title" },
@@ -83,7 +83,6 @@
 		"name": "default",
 		"attachments": {
 			"bg-magic": {
-				"bg-magic2": { "path": "bg-magic", "x": 0.2, "y": 0.2, "width": 259, "height": 261 },
 				"magic-bg": { "x": 0.2, "y": 0.2, "width": 459, "height": 430 }
 			},
 			"flare": {
@@ -149,12 +148,6 @@
 			"flare10": {
 				"flare": { "x": 0.8, "y": -0.35, "width": 99, "height": 98 }
 			},
-			"light3": {
-				"bg-magic3": { "path": "bg-magic", "scaleX": 1.0833, "width": 259, "height": 261 }
-			},
-			"light4": {
-				"bg-magic4": { "path": "bg-magic", "scaleX": 0.8667, "scaleY": 0.8667, "width": 259, "height": 261 }
-			},
 			"symbol": {
 				"symbol-00": { "y": 0.5, "width": 292, "height": 222 }
 			},
@@ -173,6 +166,11 @@
 "animations": {
 	"show": {
 		"slots": {
+			"bg-magic": {
+				"attachment": [
+					{ "name": "magic-bg" }
+				]
+			},
 			"flare": {
 				"color": [
 					{ "color": "ffffff00", "curve": "stepped" },
@@ -393,10 +391,6 @@
 					{ "time": 0.5, "color": "ffffff00", "curve": 0.311, "c2": 0.25, "c3": 0.757 },
 					{ "time": 1.5, "color": "ffffffff", "curve": 0.243, "c3": 0.649, "c4": 0.6 },
 					{ "time": 2, "color": "ffffff48" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.1667, "name": "bg-magic3" }
 				]
 			},
 			"light4": {
@@ -405,10 +399,6 @@
 					{ "time": 0.6667, "color": "ffffff00", "curve": 0.311, "c2": 0.25, "c3": 0.757 },
 					{ "time": 1.6667, "color": "ffffffff", "curve": 0.25, "c3": 0.625, "c4": 0.5 },
 					{ "time": 2, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": null },
-					{ "time": 0.1667, "name": "bg-magic4" }
 				]
 			},
 			"symbol": {

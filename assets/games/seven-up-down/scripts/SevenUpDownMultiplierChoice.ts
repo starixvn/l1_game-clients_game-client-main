@@ -15,13 +15,13 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(sp.Skeleton)
     spineMultiplier: sp.Skeleton = null;
 
-    private MULTIPLIER_NUMBER = 30;
+    private MULTIPLIER_NUMBER = 29;
 
     public listMultiplierOrgin = [];
     private listMultiplier = [];
 
     public multiplierValue = 0;
-    private OFFSET_MULTIPLIER = 1224;
+    private OFFSET_MULTIPLIER = 1093;
 
     onLoad() {
         this.handleSpineMultiplier("show");

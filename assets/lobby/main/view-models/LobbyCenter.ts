@@ -129,7 +129,7 @@ export default class LobbyCenter extends cc.Component {
 
     onCategoryChanged(categoryIndex: number) {
         AudioManager.getInstance().playClick();
-        this.lobbyMenu?.setCategory(+categoryIndex);
+        this.setMenuCategory(+categoryIndex);
         this.updateArrowVisibility();
     }
 

@@ -134,10 +134,8 @@ export default class Lobby extends cc.Component {
                 this.backgroundUIPrefab = await LobbyResourceManager.loadPrefab("background-ui");
             }
 
-            if (this.backgroundUIPrefab) {
-                const backgroundUI = cc.instantiate(this.backgroundUIPrefab);
-                backgroundUI && this.backgroundUIContainer?.addChild(backgroundUI);
-            }
+            const backgroundUI = cc.instantiate(this.backgroundUIPrefab);
+            backgroundUI && this.backgroundUIContainer?.addChild(backgroundUI);
         } catch (err) {}
     }
 
@@ -147,13 +145,11 @@ export default class Lobby extends cc.Component {
                 this.headerPrefab = await LobbyResourceManager.loadPrefab("header");
             }
 
-            if (this.headerPrefab) {
-                const header = cc.instantiate(this.headerPrefab);
-                if (header) {
-                    this.headerComp = header?.getComponent(Header);
-                    this.headerContainer?.addChild(header);
-                    this.onLoadLobby();
-                }
+            const header = cc.instantiate(this.headerPrefab);
+            if (header) {
+                this.headerComp = header?.getComponent(Header);
+                this.headerContainer?.addChild(header);
+                this.onLoadLobby();
             }
         } catch (err) {}
     }
@@ -164,12 +160,10 @@ export default class Lobby extends cc.Component {
                 this.marqueePrefab = await LobbyResourceManager.loadPrefab("marquee");
             }
 
-            if (this.marqueePrefab) {
-                const marquee = cc.instantiate(this.marqueePrefab);
-                if (marquee) {
-                    this.newsContentsComp = marquee?.getComponent(NewsContent);
-                    this.marqueeContainer?.addChild(marquee);
-                }
+            const marquee = cc.instantiate(this.marqueePrefab);
+            if (marquee) {
+                this.newsContentsComp = marquee?.getComponent(NewsContent);
+                this.marqueeContainer?.addChild(marquee);
             }
         } catch (err) {}
     }
@@ -180,13 +174,11 @@ export default class Lobby extends cc.Component {
                 this.lobbyCenterPrefab = await LobbyResourceManager.loadPrefab("lobby-center");
             }
 
-            if (this.lobbyCenterPrefab) {
-                const lobbyCenter = cc.instantiate(this.lobbyCenterPrefab);
-                if (lobbyCenter) {
-                    this.lobbyCenterComp = lobbyCenter?.getComponent(LobbyCenter);
-                    this.lobbyCenterComp.setMiniPanel(this.miniPanel);
-                    this.lobbyCenterContainer?.addChild(lobbyCenter);
-                }
+            const lobbyCenter = cc.instantiate(this.lobbyCenterPrefab);
+            if (lobbyCenter) {
+                this.lobbyCenterComp = lobbyCenter?.getComponent(LobbyCenter);
+                this.lobbyCenterComp.setMiniPanel(this.miniPanel);
+                this.lobbyCenterContainer?.addChild(lobbyCenter);
             }
         } catch (err) {}
     }
@@ -197,16 +189,14 @@ export default class Lobby extends cc.Component {
                 this.buttonArrowPrefab = await LobbyResourceManager.loadPrefab("button-arrow");
             }
 
-            if (this.buttonArrowPrefab) {
-                const buttonArrow = cc.instantiate(this.buttonArrowPrefab);
-                if (buttonArrow) {
-                    this.buttonArrowComp = buttonArrow?.getComponent(ButtonArrow);
-                    this.lobbyCenterComp?.setButtonArrowComp(this.buttonArrowComp);
-                    this.buttonArrowComp?.button?.node?.on("click", () => {
-                        this.lobbyCenterComp?.onFastScrollClick();
-                    });
-                    this.buttonArrowContainer?.addChild(buttonArrow);
-                }
+            const buttonArrow = cc.instantiate(this.buttonArrowPrefab);
+            if (buttonArrow) {
+                this.buttonArrowComp = buttonArrow?.getComponent(ButtonArrow);
+                this.lobbyCenterComp?.setButtonArrowComp(this.buttonArrowComp);
+                this.buttonArrowComp?.button?.node?.on("click", () => {
+                    this.lobbyCenterComp?.onFastScrollClick();
+                });
+                this.buttonArrowContainer?.addChild(buttonArrow);
             }
         } catch (err) {}
     }
@@ -217,14 +207,12 @@ export default class Lobby extends cc.Component {
                 this.containerButtonsPrefabs = await LobbyResourceManager.loadPrefab("buttons");
             }
 
-            if (this.containerButtonsPrefabs) {
-                const buttons = cc.instantiate(this.containerButtonsPrefabs);
-                if (buttons) {
-                    const compButtonsLobby = buttons?.getComponent(ButtonsLobby);
-                    compButtonsLobby.initClickEven(compButtonsLobby.downloadApp, this.node, "Lobby", "redirectToDownloadPage");
-                    compButtonsLobby.initClickEven(compButtonsLobby.settingMenu, this.node, "Lobby", "openSettingMenu");
-                    this.buttonsContainer.addChild(buttons);
-                }
+            const buttons = cc.instantiate(this.containerButtonsPrefabs);
+            if (buttons) {
+                const compButtonsLobby = buttons?.getComponent(ButtonsLobby);
+                compButtonsLobby.initClickEven(compButtonsLobby.downloadApp, this.node, "Lobby", "redirectToDownloadPage");
+                compButtonsLobby.initClickEven(compButtonsLobby.settingMenu, this.node, "Lobby", "openSettingMenu");
+                this.buttonsContainer.addChild(buttons);
             }
         } catch (err) {}
     }
@@ -235,16 +223,14 @@ export default class Lobby extends cc.Component {
                 this.categoryContainerPrefab = await LobbyResourceManager.loadPrefab("category-container");
             }
 
-            if (this.categoryContainerPrefab) {
-                const categoryContainer = cc.instantiate(this.categoryContainerPrefab);
-                if (categoryContainer) {
-                    this.categoryListComp = categoryContainer?.getComponent(CategoryList);
-                    this.categoryListComp.onCategoryChanged = (index: number) => {
-                        this.lobbyCenterComp?.onCategoryChanged(index);
-                    };
-                    this.categoryContainer.addChild(categoryContainer);
-                    this.loadCategory();
-                }
+            const categoryContainer = cc.instantiate(this.categoryContainerPrefab);
+            if (categoryContainer) {
+                this.categoryListComp = categoryContainer?.getComponent(CategoryList);
+                this.categoryListComp.onCategoryChanged = (index: number) => {
+                    this.lobbyCenterComp?.onCategoryChanged(index);
+                };
+                this.categoryContainer.addChild(categoryContainer);
+                this.loadCategory();
             }
         } catch (err) {}
     }
@@ -256,22 +242,18 @@ export default class Lobby extends cc.Component {
                 this.settingMenuPrefab = await LobbyResourceManager.loadPrefab("setting-menu");
             }
 
-            if (this.settingMenuPrefab) {
-                const settingMenu = cc.instantiate(this.settingMenuPrefab);
-                settingMenu.on(SettingMenuEvents.LOGOUT, async () => {
-                    try {
-                        if (!this.logoutPrefab) {
-                            this.logoutPrefab = await GameUtils.loadResource("prefabs/LogoutPopup");
-                        }
+            const settingMenu = cc.instantiate(this.settingMenuPrefab);
+            settingMenu.on(SettingMenuEvents.LOGOUT, async () => {
+                try {
+                    if (!this.logoutPrefab) {
+                        this.logoutPrefab = await GameUtils.loadResource("prefabs/LogoutPopup");
+                    }
 
-                        if (this.logoutPrefab) {
-                            const dialog = cc.instantiate(this.logoutPrefab);
-                            this.miniPanel.addDialog(dialog);
-                        }
-                    } catch (err) {}
-                });
-                this.miniPanel.addDialog(settingMenu);
-            }
+                    const dialog = cc.instantiate(this.logoutPrefab);
+                    this.miniPanel.addDialog(dialog);
+                } catch (err) {}
+            });
+            this.miniPanel.addDialog(settingMenu);
         } catch (err) {}
     }
 

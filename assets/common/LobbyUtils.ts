@@ -16,6 +16,12 @@ export enum BannerType {
 }
 
 export default class LobbyUtils {
+    public static cachedGameIcon(gameId: number) {
+        const gameConfiguration = getGameConfiguration(gameId);
+        const isMicrosite = GameUtils.isMicroSite(gameConfiguration);
+        return !!isMicrosite ? uiManager.remoteIconCache[gameId] : uiManager.prefabCache.lobbyIcons[gameId];
+    }
+
     public static async getBannerPrefab(data: { id: number; remoteBundle; systemPath: string }) {
         const { id, remoteBundle, systemPath } = data;
         let banner: cc.Prefab;
@@ -149,15 +155,15 @@ export default class LobbyUtils {
     }
 
     private static createBannerNameOptions(id: number, isMicrosite: boolean): string[] {
+        const currentLang = GameUtils.getCurrentLanguage();
         if (isMicrosite) {
-            const currentLang = GameUtils.getCurrentLanguage();
             const name1 = `${currentLang}`;
             const defaultName = `en`;
 
             return [name1, defaultName];
         } else {
-            const currentLang = GameUtils.getCurrentLanguage() !== "vi" ? `_${GameUtils.getCurrentLanguage()}` : "";
-            const name1 = `${id}${currentLang}`;
+            const suffix = currentLang !== "vi" ? `_${currentLang}` : "";
+            const name1 = `${id}${suffix}`;
             const name2 = `${id}`;
 
             return [name1, name2];

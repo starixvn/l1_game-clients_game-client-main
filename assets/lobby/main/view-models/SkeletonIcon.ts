@@ -71,7 +71,7 @@ export default class SkeletonIcon extends cc.Component {
     static listGameWithoutHide = [];
 
     setGameContent(id: number, gameIconIndex: number, categoryIndex: number, addListIconObscure: (icon: SkeletonIcon) => void) {
-        const cachedGameIcon = GameUtils.cachedGameIcon(id);
+        const cachedGameIcon = LobbyUtils.cachedGameIcon(id);
 
         if (!!cachedGameIcon) {
             cc.log(`Cached game icon found---: ${id}`);

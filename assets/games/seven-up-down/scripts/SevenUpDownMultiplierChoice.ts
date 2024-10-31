@@ -21,10 +21,10 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     private listMultiplier = [];
 
     public multiplierValue = 0;
-    private OFFSET_MULTIPLIER = 1093;
+    private OFFSET_MULTIPLIER = 1090;
 
     onLoad() {
-        this.handleSpineMultiplier("show");
+        this.showMultiplier();
         this.appendMultiplier();
         this.animRollingMultiplier();
     }
@@ -58,8 +58,13 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         return multiplierItem;
     }
 
-    async handleSpineMultiplier(anim: string) {
-        await AnimationUtils.playSpine(this.spineMultiplier, anim);
+    async showMultiplier() {
+        await AnimationUtils.playSpine(this.spineMultiplier, "show");
+    }
+
+    async hideMultiplier() {
+        cc.tween(this.lblMultiplier).to(0.3, { opacity: 0 }, { easing: "sineOut" }).start();
+        await AnimationUtils.playSpine(this.spineMultiplier, "hide");
     }
 
     appendListMultiplierAnim() {

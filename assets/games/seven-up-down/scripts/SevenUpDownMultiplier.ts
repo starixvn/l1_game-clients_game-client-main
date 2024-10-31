@@ -20,7 +20,8 @@ export default class SevenUpDownMultiplier extends cc.Component {
         this.listMultiplier.forEach(async (item) => {
             if (item.children.length > 0) {
                 const comp = item.children[0].getComponent(SevenUpDownMultiplierChoice);
-                await comp.handleSpineMultiplier("hide");
+                await comp.hideMultiplier();
+
                 item.destroyAllChildren();
             }
         });

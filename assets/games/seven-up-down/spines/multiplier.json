@@ -1,10 +1,11 @@
 {
-"skeleton": { "hash": "mTjUOIZDw7w0zZvS9zBeV+xlHw4", "spine": "3.8.99" },
+"skeleton": { "hash": "pcj+4m6PPfXP9cSHUv/n9nCH+ow", "spine": "3.8.99", "x": -35.91, "y": -29.58, "width": 70, "height": 52 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "anim", "parent": "root" },
-	{ "name": "multiplier-animation", "parent": "anim" },
+	{ "name": "multiplier-value", "parent": "anim" },
 	{ "name": "mask-mk", "parent": "root" },
+	{ "name": "frame", "parent": "root", "y": 0.86 },
 	{ "name": "frame-circle-light", "parent": "anim" },
 	{ "name": "star", "parent": "anim", "x": 0.01, "y": 20.18 },
 	{ "name": "FX_SweerpCircle_03", "parent": "anim", "scaleX": 1.2352, "scaleY": 0.7508 },
@@ -12,13 +13,15 @@
 ],
 "slots": [
 	{ "name": "frame-circle-light", "bone": "frame-circle-light", "color": "f9ff40ff", "blend": "additive" },
-	{ "name": "frame-circle", "bone": "anim" },
+	{ "name": "frame-circle", "bone": "anim", "attachment": "frame-circle" },
+	{ "name": "frame", "bone": "frame" },
 	{ "name": "star", "bone": "star" },
 	{ "name": "mask", "bone": "anim", "attachment": "mask" },
+	{ "name": "value", "bone": "multiplier-value" },
 	{ "name": "mask-mk", "bone": "mask-mk" },
 	{ "name": "FX_SweerpCircle_03", "bone": "FX_SweerpCircle_03" },
 	{ "name": "star_1", "bone": "star_1", "color": "fff901ff" },
-	{ "name": "frame-circle-border", "bone": "anim" }
+	{ "name": "frame-circle-border", "bone": "anim", "attachment": "frame-circle-border" }
 ],
 "skins": [
 	{
@@ -33,6 +36,9 @@
 				"FX_SweerpCircle_08": { "width": 90, "height": 90 },
 				"FX_SweerpCircle_09": { "width": 90, "height": 90 },
 				"FX_SweerpCircle_10": { "width": 90, "height": 90 }
+			},
+			"frame": {
+				"frame": { "width": 84, "height": 50 }
 			},
 			"frame-circle": {
 				"frame-circle": { "x": -0.91, "y": -3.58, "width": 70, "height": 52 }
@@ -78,9 +84,6 @@
 				"color": [
 					{ "color": "ffffffff" },
 					{ "time": 0.4, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "frame-circle" }
 				]
 			},
 			"frame-circle-border": {
@@ -90,6 +93,12 @@
 				]
 			},
 			"star": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				]
+			},
+			"value": {
 				"color": [
 					{ "color": "ffffffff" },
 					{ "time": 0.4, "color": "ffffff00" }
@@ -107,16 +116,6 @@
 	},
 	"show": {
 		"slots": {
-			"frame-circle": {
-				"attachment": [
-					{ "name": "frame-circle" }
-				]
-			},
-			"frame-circle-border": {
-				"attachment": [
-					{ "name": "frame-circle-border" }
-				]
-			},
 			"frame-circle-light": {
 				"color": [
 					{ "color": "f9ff3f00", "curve": 0.25, "c3": 0.75 },
@@ -156,14 +155,6 @@
 					{ "x": 1.4, "y": 1.4, "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.1667, "x": 1.5, "y": 1.5, "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.3333, "x": 1.1, "y": 1.1 }
-				]
-			},
-			"multiplier-animation": {
-				"translate": [
-					{ "y": -324, "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.1667, "y": -320, "curve": 0, "c2": 0.4, "c3": 0.461 },
-					{ "time": 2.8, "y": -1068.89, "curve": "stepped" },
-					{ "time": 4, "y": -1068.89 }
 				]
 			},
 			"star": {

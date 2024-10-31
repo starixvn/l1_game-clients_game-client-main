@@ -1,5 +1,6 @@
 import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
+import GameUtils from "../../../common/GameUtils";
 import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import { userManager } from "../../../common/user/UserManager";
 import AnimationUtils from "../../../common/utils/AnimationUtils";
@@ -185,7 +186,9 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
-        return Object.keys(result).find((key) => result[key] === true);
+        const choiceWin = Object.keys(result).find((key) => result[key] === true);
+        const language = GameUtils.getCurrentLanguage() || "en";
+        return `${choiceWin}_win_${language}`;
     }
 
     handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {

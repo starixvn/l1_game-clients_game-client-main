@@ -50,6 +50,7 @@ class AppManager {
     ssoGameId = GameId.UNKNOWN;
     hasShowedCenterBanner = false;
     didSsoLobby = false;
+    autoOpenLuckyWheel = true;
 
     get autoGenerateNickname() {
         return this.isDirectMode || this.isAppMode || this.isPFF;

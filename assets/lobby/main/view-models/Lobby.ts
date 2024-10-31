@@ -591,7 +591,7 @@ export default class Lobby extends cc.Component {
     async openLuckyWheel() {
         if (userManager.userName) {
             await GameUtils.asyncExecute(this?.node, this.renderLuckyWheelIcon());
-            if (this.luckyWheelIcon && userManager.availSpins) {
+            if (this.luckyWheelIcon && userManager.availSpins && appManager.autoOpenLuckyWheel) {
                 this.luckyWheelIcon.openGame();
                 return;
             }

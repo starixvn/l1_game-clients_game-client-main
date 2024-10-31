@@ -1,4 +1,5 @@
 import SafeDraggableItem from "../../../common/draggable-layout/view-models/SafeDraggableItem";
+import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import { LuckyWheelId } from "./LuckyWheel";
@@ -34,6 +35,7 @@ export default class LuckyWheelIcon extends SafeDraggableItem {
         if (this.isOpen) {
             return;
         }
+        appManager.autoOpenLuckyWheel = false;
         this.isOpen = true;
         this.scheduleOnce(() => {
             this.isOpen = false;

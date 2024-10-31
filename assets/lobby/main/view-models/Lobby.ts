@@ -321,6 +321,8 @@ export default class Lobby extends cc.Component {
         uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
         uiManager.emitterListener(InternalEvents.OPEN_GAME, this.openGameFromCenterBanner.bind(this), this);
         uiManager.emitterListener(InternalEvents.AFTER_LUCKY_WHEEL, this.showCenterBanner.bind(this), this);
+        uiManager.emitterListener(InternalEvents.NOT_EXIST_MINI_GAMES, this.handleSsoLobby.bind(this), this);
+        uiManager.emitterListener(InternalEvents.CLOSE_GAME, this.checkExistGameMini.bind(this), this);
     }
 
     openGameFromCenterBanner(gameId: number) {
@@ -373,9 +375,7 @@ export default class Lobby extends cc.Component {
         if (this.isSSOToGame) {
             cc.log("Lobby onSignIn - isSSOToGame");
             this.loadLobby(false);
-            this.openGameSSO(() => {
-                this.openLuckyWheel();
-            });
+            this.openGameSSO();
             return;
         }
 
@@ -386,13 +386,23 @@ export default class Lobby extends cc.Component {
             return;
         }
 
-        if (window.isSSO) {
-            cc.log("Lobby onSignIn - isSSO");
-            this.openLuckyWheel();
-        } else {
-            this.showCenterBanner();
-        }
+        this.handleSsoLobby();
         this.loadLobby(true);
+    }
+
+    handleSsoLobby() {
+        if (appManager.didSsoLobby) {
+            return;
+        }
+        cc.log("Lobby handleSsoLobby");
+        appManager.didSsoLobby = true;
+        this.openLuckyWheel();
+    }
+    checkExistGameMini() {
+        const activeMiniGame = this.miniPanel?.miniGames?.children.find((child) => child.active);
+        if (!activeMiniGame) {
+            uiManager.emitter.emit(InternalEvents.NOT_EXIST_MINI_GAMES);
+        }
     }
 
     loadLobby(loadAllBanners: boolean) {
@@ -519,7 +529,7 @@ export default class Lobby extends cc.Component {
         this.miniPanel && this.miniPanel.onSignIn();
     }
 
-    openGameSSO(onComplete: () => void) {
+    openGameSSO(onComplete?: () => void) {
         const gameId = appManager.ssoGameId;
         GameUtils.clearGameSetting(gameId);
         GameUtils.openGame(gameId, this.miniPanel, onComplete, true);

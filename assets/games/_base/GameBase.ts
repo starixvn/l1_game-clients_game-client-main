@@ -312,6 +312,7 @@ export default class GameBase extends GameViewBase implements IGameBase {
     }
 
     closeGame() {
+        uiManager.emitter.emit(InternalEvents.CLOSE_GAME, this.gameId);
         this.playClick();
         this.node.active = false;
         this.md5Component && this.md5Component.resetMd5();

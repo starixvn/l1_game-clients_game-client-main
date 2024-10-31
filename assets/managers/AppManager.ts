@@ -49,6 +49,7 @@ class AppManager {
 
     ssoGameId = GameId.UNKNOWN;
     hasShowedCenterBanner = false;
+    didSsoLobby = false;
 
     get autoGenerateNickname() {
         return this.isDirectMode || this.isAppMode || this.isPFF;

@@ -58,6 +58,7 @@ export default class CategoryList extends cc.Component {
                     this.onCategoryChanged(category);
                 };
                 this.content?.addChild(categoryNode);
+                console.log("Done load UI category---------");
             });
     }
 

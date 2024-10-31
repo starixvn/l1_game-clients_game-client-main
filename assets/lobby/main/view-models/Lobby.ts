@@ -409,6 +409,8 @@ export default class Lobby extends cc.Component {
         if (userManager.offerGames.length === 0) {
             this.showNotice({ text: i18n.t("messages.noGameOffer") });
         }
+
+        console.log("Start initLobbyCategoryBanner---------");
         this.lobbyCenterComp?.initLobbyMenu();
         this.initCategory();
         this.lobbyCenterComp?.initBanners(loadAllBanners);

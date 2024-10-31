@@ -28,6 +28,7 @@ export default abstract class GameIconMenu extends BaseComponent {
     }
 
     async initItems() {
+        console.log("Start loading icons---------");
         this.listIconObscure = [];
         const gameIds = this.getList();
         this.loadingGameIds = gameIds;

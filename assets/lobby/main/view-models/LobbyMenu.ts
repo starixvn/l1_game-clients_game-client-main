@@ -146,6 +146,7 @@ export default class LobbyMenu extends GameIconMenu {
             this.clearRow();
         }
         iconNode.name = `${id}`;
+        console.log("Done add Icon game: ", id);
         return iconNode;
     }
 

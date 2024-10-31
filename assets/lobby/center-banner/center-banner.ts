@@ -1,3 +1,4 @@
+import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../analytics/AnalyticsManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -17,10 +18,18 @@ export default class CenterBanner extends cc.Component {
     private storageKey = "";
     private gameId = 0;
 
+    private readonly TRACKING_OBJECT_NAME = "Center Banner";
+
     onLoad() {
         this.dialog = this.getComponentInChildren(CommonDialog);
         this.dialog.addOnDidHide(() => {
             this.node.destroy();
+        });
+
+        AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
+            location: cc.director.getScene().name,
+            action: TrackingAction.Show,
+            object_name: this.TRACKING_OBJECT_NAME
         });
     }
 
@@ -36,6 +45,12 @@ export default class CenterBanner extends cc.Component {
             storage[this.gameId] = toggle.isChecked;
             StorageManager.set(this.storageKey, storage);
         }
+
+        AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
+            location: cc.director.getScene().name,
+            action: toggle.isChecked ? TrackingAction.ToggleOn : TrackingAction.ToggleOff,
+            object_name: this.TRACKING_OBJECT_NAME
+        });
     }
 
     closeBanner() {
@@ -45,5 +60,10 @@ export default class CenterBanner extends cc.Component {
     playNow() {
         this.closeBanner();
         uiManager.emitter.emit(InternalEvents.OPEN_GAME, this.gameId);
+        AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
+            location: cc.director.getScene().name,
+            action: TrackingAction.Click,
+            object_name: this.TRACKING_OBJECT_NAME
+        });
     }
 }

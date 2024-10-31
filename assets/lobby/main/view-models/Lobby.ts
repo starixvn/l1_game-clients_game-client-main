@@ -104,8 +104,9 @@ export default class Lobby extends cc.Component {
         document.cookie = "redT=1702;path=/";
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
-        await this.initUIs();
         this.initGameUIEvents();
+        await this.initUIs();
+
         this.checkToShowSignName();
         MusicPlayer.getInstance().init();
         this.initScrollListener();
@@ -123,8 +124,7 @@ export default class Lobby extends cc.Component {
 
     async initUIs() {
         this.initMiniPanel();
-        await this.loadBackgroundUI();
-        await Promise.all([this.loadPrefabCategoryContainer(), this.loadLobbyCenterContainer()]);
+        await Promise.all([this.loadBackgroundUI(), this.loadPrefabCategoryContainer(), this.loadLobbyCenterContainer()]);
         Promise.all([this.loadHeader(), this.loadButtonArrow(), this.loadButtons(), this.loadMarquee()]);
     }
 

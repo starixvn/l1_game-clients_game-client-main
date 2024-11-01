@@ -102,16 +102,14 @@ export default class Lobby extends cc.Component {
 
     async onLoad() {
         document.cookie = "redT=1702;path=/";
+        this.trackOnLoadEvents();
+
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
         this.initGameUIEvents();
         await this.initUIs();
-
         this.checkToShowSignName();
         MusicPlayer.getInstance().init();
-        this.initScrollListener();
-
-        this.trackOnLoadEvents();
     }
 
     showCenterBanner() {
@@ -178,6 +176,8 @@ export default class Lobby extends cc.Component {
             if (lobbyCenter) {
                 this.lobbyCenterComp = lobbyCenter?.getComponent(LobbyCenter);
                 this.lobbyCenterComp.setMiniPanel(this.miniPanel);
+                this.lobbyCenterComp.initScrollListener();
+
                 this.lobbyCenterContainer?.addChild(lobbyCenter);
             }
         } catch (err) {}
@@ -230,7 +230,7 @@ export default class Lobby extends cc.Component {
                     this.lobbyCenterComp?.onCategoryChanged(index);
                 };
                 this.categoryContainer.addChild(categoryContainer);
-                this.loadCategory();
+                this.categoryListComp?.loadCategory();
             }
         } catch (err) {}
     }
@@ -310,14 +310,6 @@ export default class Lobby extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    initScrollListener() {
-        this.lobbyCenterComp?.initScrollListener();
-    }
-
-    loadCategory() {
-        this.categoryListComp?.loadCategory();
-    }
-
     initMiniPanel() {
         const miniPanelNode = cc.instantiate(this.miniPanelPrefab);
         this.miniPanel = miniPanelNode.getComponent(MiniPanel);
@@ -392,21 +384,15 @@ export default class Lobby extends cc.Component {
             this.showNotice({ text: i18n.t("messages.noGameOffer") });
         }
 
-        console.log("Start initLobbyCategoryBanner---------");
+        cc.log("Start initLobbyCategoryBanner---------");
+        this.categoryListComp?.activeBgNewOnCategory();
+
         this.lobbyCenterComp?.initLobbyMenu();
-        this.initCategory();
+        const category = !window.isSSO ? this.categoryListComp.activeCategoryFromStorage() : 0;
+        this.lobbyCenterComp?.setMenuCategory(category);
         this.lobbyCenterComp?.initBanners(loadAllBanners);
 
         this.initializedLobby = true;
-    }
-
-    initCategory() {
-        let category = 0;
-        if (!window.isSSO) {
-            category = this.categoryListComp.activeCategoryFromStorage();
-        }
-        this.categoryListComp?.activeBgNewOnCategory();
-        this.lobbyCenterComp?.setMenuCategory(category);
     }
 
     outRoomGame() {
@@ -548,33 +534,31 @@ export default class Lobby extends cc.Component {
         this.miniPanel.openResultPage();
     }
 
-    renderLuckyWheelIcon() {
-        return new Promise<void>((resolve) => {
+    async renderLuckyWheelIcon() {
+        try {
             if (!this.luckyWheelIcon && userManager.availSpins > 0) {
-                GameUtils.loadResource(`games/lucky-wheel/LuckyWheelIcon`).then((prefab) => {
-                    if (!this.luckyWheelIcon) {
-                        const node = cc.instantiate(prefab);
-                        this.redhat?.insertChild(node, 0);
-                        this.luckyWheelIcon = node.getComponent(LuckyWheelIcon);
-                        this.luckyWheelIcon.init(this.miniPanel);
-                    }
-                    resolve();
-                });
-            } else {
-                resolve();
+                cc.log("download lucky wheel");
+                const prefab = await GameUtils.loadResource(`games/lucky-wheel/LuckyWheelIcon`);
+                cc.log("download lucky wheel END");
+                if (!this.luckyWheelIcon) {
+                    const node = cc.instantiate(prefab);
+                    this.redhat?.insertChild(node, 0);
+                    this.luckyWheelIcon = node.getComponent(LuckyWheelIcon);
+                    this.luckyWheelIcon.init(this.miniPanel);
+                }
             }
-        });
+        } catch (e) {}
     }
 
     async openLuckyWheel() {
         if (userManager.userName) {
+            cc.log("openLuckyWheel ----------------------------");
             await GameUtils.asyncExecute(this?.node, this.renderLuckyWheelIcon());
             if (this.luckyWheelIcon && userManager.availSpins && appManager.autoOpenLuckyWheel) {
                 this.luckyWheelIcon.openGame();
                 return;
             }
         }
-
         this.showCenterBanner();
     }
 

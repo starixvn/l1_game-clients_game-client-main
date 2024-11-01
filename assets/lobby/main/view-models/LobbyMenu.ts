@@ -37,7 +37,8 @@ export default class LobbyMenu extends GameIconMenu {
         this.spacing = spacing;
     }
 
-    async loadHiddenIcons() {
+    loadHiddenIcons() {
+        cc.log("loadHiddenIcons");
         this.handleLoadHiddenIcons();
     }
 
@@ -116,6 +117,7 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     onItemsChanged() {
+        cc.log("LobbyMenu onItemsChanged");
         this.loadHiddenIcons();
     }
 
@@ -146,7 +148,6 @@ export default class LobbyMenu extends GameIconMenu {
             this.clearRow();
         }
         iconNode.name = `${id}`;
-        console.log("Done add Icon game: ", id);
         return iconNode;
     }
 

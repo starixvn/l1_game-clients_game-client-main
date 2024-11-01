@@ -28,13 +28,15 @@ export default abstract class GameIconMenu extends BaseComponent {
     }
 
     async initItems() {
-        console.log("Start loading icons---------");
+        cc.log("Start loading icons---------");
         this.listIconObscure = [];
         const gameIds = this.getList();
         this.loadingGameIds = gameIds;
 
         for (const id of gameIds) {
+            cc.log("loading icon id ", id);
             const prefab = await GameUtils.asyncExecute(this?.node, this.loadPrefab(id));
+            cc.log("loading icon id ", id, " done");
             if (this.loadingGameIds !== gameIds) {
                 this.content && this.content.destroyAllChildren();
                 return;

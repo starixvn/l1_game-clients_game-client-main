@@ -4,9 +4,9 @@ export const phrases = {
     SevenUpDown: {
         game_icon_name: "7 Up 7 Down",
         game_name: "7 Up 7 Down",
-        glossary_up: "Up",
-        glossary_down: "Down",
-        glossary_seven: "Seven",
+        glossary_up: "Trên",
+        glossary_down: "Dưới",
+        glossary_seven: "Bảy",
         you_win: "Bạn vừa thắng"
     },
     Common: {

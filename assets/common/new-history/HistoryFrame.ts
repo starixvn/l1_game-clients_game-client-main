@@ -42,10 +42,15 @@ export default class HistoryFrame extends cc.Component {
     updateSizeFrame(widthContent: number, heightContent: number, autoScaleNodeWidth: number) {
         const mainFrameWidth = widthContent + this.PADDING * 2;
         const mainFrameHeight = heightContent + this.PADDING + this.PADDING_TOP_HEIGHT;
-        this.mainFrame.children.forEach((child) => {
-            child.width = mainFrameWidth / 2;
-            child.height = mainFrameHeight;
-        });
+        if (this.mainFrame.children.length > 0) {
+            this.mainFrame.children.forEach((child) => {
+                child.width = mainFrameWidth / 2;
+                child.height = mainFrameHeight;
+            });
+        } else {
+            this.mainFrame.height = mainFrameHeight;
+        }
+
         this.tableBg.width = widthContent;
         this.tableBg.height = heightContent;
         this.backWrapper.width = mainFrameWidth;

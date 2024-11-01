@@ -1,6 +1,7 @@
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import SevenUpDownDice from "./SevenUpDownDice";
-import { ISevenUpDownResult, SevenUpDownChoice } from "./SevenUpDownTypes";
+import { calcTotalPoints, determineWinningChoice } from "./SevenUpDownHelper";
+import { ISevenUpDownResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
 
@@ -78,27 +79,15 @@ export default class SevenUpDownResult extends cc.Component {
         cc.tween(this.nodeResult).to(0.2, { scale: 1.2 }, { easing: "bounceOut" }).to(0.3, { scale: 1, opacity: 255 }).start();
     }
 
-    private determineWinningChoice(totalPoints: number): string {
-        if (totalPoints === 7) {
-            return "7";
-        }
-
-        return totalPoints > 6 ? `${totalPoints} - ${SevenUpDownChoice.UP}` : `${totalPoints} - ${SevenUpDownChoice.DOWN}`;
-    }
-
     displayTotalPoints(result: ISevenUpDownResult) {
         this.setResultNodeVisibility(true);
 
-        const totalPoints = this.calcTotalPoints(result);
-        const choiceWin = this.determineWinningChoice(totalPoints);
+        const totalPoints = calcTotalPoints(result);
+        const choiceWin = determineWinningChoice(totalPoints);
 
         if (this.lblResult) {
             this.lblResult.string = choiceWin.toUpperCase();
         }
-    }
-
-    calcTotalPoints(result: ISevenUpDownResult): number {
-        return ["dice1", "dice2"].map((key) => result[key]).reduce((sum, value) => sum + value, 0);
     }
 
     async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {

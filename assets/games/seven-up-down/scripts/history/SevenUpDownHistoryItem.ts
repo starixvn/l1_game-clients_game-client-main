@@ -1,6 +1,7 @@
 import { getString12HourByTime, getStringDate1 } from "../../../../common/helpers/DateTimeHelper";
 import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
 import SocketIOHistoryItemBase from "../../../_base/view-models/SocketIOHistoryItemBase";
+import { calcTotalPoints, determineWinningChoice } from "../SevenUpDownHelper";
 
 const { ccclass, property } = cc._decorator;
 
@@ -17,6 +18,9 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
 
     @property(cc.SpriteAtlas)
     mainAtlas: cc.SpriteAtlas = null;
+
+    @property(cc.Label)
+    result: cc.Label = null;
 
     public showTicketDetail = (data) => {};
 
@@ -39,6 +43,9 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
             const spriteName = `scoreboard_dice_${result[`dice${index + 1}`]}`;
             dice.spriteFrame = this.mainAtlas.getSpriteFrame(spriteName);
         });
+
+        const totalPoints = calcTotalPoints(result);
+        this.result.string = determineWinningChoice(totalPoints);
     }
 
     openNewBetDetails() {

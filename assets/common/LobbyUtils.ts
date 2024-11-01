@@ -201,7 +201,9 @@ export default class LobbyUtils {
                 await Promise.all([
                     this.preLoadBanner(lobbyMenuConfig),
                     this.preLoadGameIcons(lobbyMenuConfig, splashConfig),
-                    this.preLoadBackgroundUI()
+                    this.preLoadBackgroundUI(),
+                    this.preLoadCategoryUI(),
+                    this.preLoadLobbyCenterUI()
                 ]);
                 const endLoadTime = Date.now();
                 console.log(
@@ -385,7 +387,20 @@ export default class LobbyUtils {
         await Promise.all([bannerLoader, this.preloadResource("lobby/banner/bannerContainer")]);
     }
 
+    private static async preLoadLobbyUI(uiType: "background-ui" | "category-container" | "lobby-center") {
+        const path = `${LobbyResourceManager.getThemePath()}/prefabs/${uiType}`;
+        return this.preloadResource(path);
+    }
+
     private static async preLoadBackgroundUI() {
-        return this.preloadResource(`${LobbyResourceManager.getThemePath()}/prefabs/background-ui`);
+        return this.preLoadLobbyUI("background-ui");
+    }
+
+    private static async preLoadCategoryUI() {
+        return this.preLoadLobbyUI("category-container");
+    }
+
+    private static async preLoadLobbyCenterUI() {
+        return this.preLoadLobbyUI("lobby-center");
     }
 }

@@ -873,7 +873,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -889,15 +888,17 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 20
     },
     "_enabled": true,
-    "path": "jackpot",
+    "gameId": 0,
     "nameImage": "txt-jackpot-prizes",
+    "enableCustomizePath": true,
+    "customizePath": "jackpot",
     "_id": ""
   },
   {
@@ -3642,8 +3643,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 187,
-      "height": 107
+      "width": 192,
+      "height": 48
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3694,7 +3695,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "491f94a4-8be4-4ce2-a19e-c11a441f14e5"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -3710,15 +3713,17 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 97
     },
     "_enabled": true,
-    "path": "jackpot",
+    "gameId": 0,
     "nameImage": "txt-no-jackpot-user",
+    "enableCustomizePath": true,
+    "customizePath": "jackpot",
     "_id": ""
   },
   {
@@ -3923,8 +3928,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
-      "height": 50
+      "width": 187,
+      "height": 107
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3975,7 +3980,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "e7ef4e8f-e710-42e2-9737-1b577eadec4f"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -3991,15 +3998,17 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 105
     },
     "_enabled": true,
-    "path": "jackpot",
+    "gameId": 0,
     "nameImage": "txt-jackpot-winner",
+    "enableCustomizePath": true,
+    "customizePath": "jackpot",
     "_id": ""
   },
   {

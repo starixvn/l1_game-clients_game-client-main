@@ -822,6 +822,9 @@
     "_enabled": true,
     "gameId": 47,
     "nameImage": "cascading",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
     "_id": ""
   },
   {
@@ -1208,15 +1211,18 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 29
     },
     "_enabled": true,
-    "path": "lobby/free-spin",
+    "gameId": 0,
     "nameImage": "freespin",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {
@@ -1328,15 +1334,18 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 33
     },
     "_enabled": true,
-    "path": "lobby/free-spin",
+    "gameId": 0,
     "nameImage": "playnow",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {

@@ -107,8 +107,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1775,
-      "height": 645.15
+      "width": 274,
+      "height": 448
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -192,7 +192,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "caQIihrfVBhaMIc0mMx4By",
     "sync": false
@@ -370,7 +370,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "03eJLsR0lO5aaZ+Nvsa5VB",
     "sync": false
@@ -540,15 +540,18 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 10
     },
     "_enabled": true,
-    "path": "lobby/free-spin",
+    "gameId": 0,
     "nameImage": "freespin",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {
@@ -557,7 +560,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "46bxLgbvNKKa7Ym697X4sh",
     "sync": false
@@ -660,15 +663,18 @@
     "_id": ""
   },
   {
-    "__type__": "b1b3eTDaWlKmbijKGWkR1fo",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 14
     },
     "_enabled": true,
-    "path": "lobby/free-spin",
+    "gameId": 0,
     "nameImage": "playnow",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {
@@ -677,7 +683,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "45STc9heFIi4bHyDsuWaFC",
     "sync": false
@@ -688,7 +694,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "13fGTFgfROvJDifIK1ewq0",
     "sync": false
@@ -718,7 +724,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "aea1Uccn9Ghqj7nmUdF1Gw",
     "sync": false
@@ -744,7 +750,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "fde55fe9-6577-4212-bd0b-e56030c10a8f"
+      "__uuid__": "a616fbe1-6a01-457d-bd6f-f2c30d9ae122"
     },
     "fileId": "",
     "sync": false

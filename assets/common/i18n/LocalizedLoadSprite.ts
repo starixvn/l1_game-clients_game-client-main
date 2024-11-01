@@ -25,6 +25,13 @@ export default class LocalizedLoadSprite extends cc.Component {
     })
     customizePath = "";
 
+    @property({
+        visible: function (this: LocalizedLoadSprite) {
+            return this.enableCustomizePath;
+        }
+    })
+    isLoadShareResource = false;
+
     protected sprite: cc.Sprite;
 
     onLoad() {
@@ -53,7 +60,7 @@ export default class LocalizedLoadSprite extends cc.Component {
             });
         };
 
-        if (gameConfiguration && !gameConfiguration.remoteBundle) {
+        if ((gameConfiguration && !gameConfiguration.remoteBundle) || this.isLoadShareResource) {
             return loadFromResources();
         } else {
             const bundleManager = BundleManager.getInstance();

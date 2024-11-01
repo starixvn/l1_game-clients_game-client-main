@@ -6,7 +6,7 @@ export const phrases = {
         game_name: "7 Up 7 Down",
         glossary_up: "Up",
         glossary_down: "Down",
-        glossary_seven: "Seven",
+        glossary_seven: "",
         you_win: "KAMU MENANG"
     },
     Common: {

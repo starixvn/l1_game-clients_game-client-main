@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "5GuRy4RAzY/htvi3FojDCDrJWeo", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
+"skeleton": { "hash": "T9rJXIxL1pZdghgirklEFQ4ESgA", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "icon-game", "parent": "root" },
@@ -11,7 +11,7 @@
 	{ "name": "star", "parent": "root", "x": 80.05, "y": -2.27, "scaleX": 0.8, "scaleY": 0.8 },
 	{ "name": "star2", "parent": "root", "x": 49.39, "y": -56.91 },
 	{ "name": "star3", "parent": "root", "x": -61.84, "y": 58.75, "scaleX": 1.1, "scaleY": 1.1 },
-	{ "name": "multiplier-value", "parent": "root", "x": -59.33, "y": -39.43 },
+	{ "name": "multiplier-value", "parent": "root", "x": -59.33, "y": -31.56 },
 	{ "name": "rolling", "parent": "multiplier-value", "x": 1.33, "y": 1.34 },
 	{ "name": "multiplier", "parent": "rolling" },
 	{ "name": "2x", "parent": "multiplier" },

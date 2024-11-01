@@ -29,6 +29,8 @@ export default class LobbyMenu extends GameIconMenu {
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
+    private loadingTimePoint = 0;
+
     onLoad() {
         //override super
     }
@@ -38,7 +40,6 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     loadHiddenIcons() {
-        cc.log("loadHiddenIcons");
         this.handleLoadHiddenIcons();
     }
 
@@ -183,15 +184,21 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     async handleLoadHiddenIcons() {
+        const currentTimePoint = Date.now();
+        this.loadingTimePoint = currentTimePoint;
+        cc.log("---------handleLoadHiddenIcons---------- ", currentTimePoint);
+
         for (const icon of this.listIconObscure) {
-            if (uiManager.isPauseLoadingIcons) {
+            if (uiManager.isPauseLoadingIcons || this.loadingTimePoint !== currentTimePoint) {
+                cc.log("Stop loading icons --------- ", currentTimePoint);
                 break;
             }
 
             try {
                 const idGame = +icon.node.name;
+
                 await icon.loadAnimation(idGame);
-                cc.log(`Loaded game icon: ${idGame}`);
+                cc.log(`Loaded game icon: ${idGame} - ${currentTimePoint}`);
             } catch (e) {
                 cc.log(`Cannot load game icon game`, e);
             }

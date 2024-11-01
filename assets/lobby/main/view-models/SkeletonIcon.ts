@@ -144,8 +144,15 @@ export default class SkeletonIcon extends cc.Component {
     }
 
     public async loadAnimation(id: number, categoryIndex = 0) {
+        if (this.gameContent.children.length > 0) {
+            return;
+        }
         const gameConfiguration = getGameConfiguration(id);
         const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
+        if (this.gameContent.children.length > 0) {
+            cc.log(`game id ${id} ---- load DUPLICATE --------------`);
+            return;
+        }
         if (gameNode) {
             this.hideSkeleton();
             this.gameContent?.addChild(gameNode);

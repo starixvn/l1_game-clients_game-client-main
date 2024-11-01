@@ -837,9 +837,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "3475ec71-7531-4f1e-b343-5366f749df48"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -851,24 +848,21 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 20
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
-    "prefix": "winning_text",
+    "gameId": 0,
+    "nameImage": "winning_text",
+    "enableCustomizePath": true,
+    "customizePath": "lucky-wheel",
     "_id": ""
   },
   {

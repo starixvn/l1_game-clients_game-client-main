@@ -232,9 +232,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "fbae6bd4-d5e7-4504-b268-23c2909d70c1"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -246,24 +243,21 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 3
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
-    "prefix": "good_luck_rattiec",
+    "gameId": 0,
+    "nameImage": "good_luck_rattiec",
+    "enableCustomizePath": true,
+    "customizePath": "lucky-wheel",
     "_id": ""
   },
   {
@@ -359,9 +353,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "13766b4b-86bc-4d5b-a1a0-0bc8546d2732"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -373,24 +364,21 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 7
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "7d2f1d75-5206-4348-8305-fe552cf25f62"
-    },
-    "prefix": "good_luck_text",
+    "gameId": 0,
+    "nameImage": "good_luck_text",
+    "enableCustomizePath": true,
+    "customizePath": "lucky-wheel",
     "_id": ""
   },
   {
@@ -660,7 +648,7 @@
     "asset": {
       "__uuid__": "059b782d-1d8f-43f7-8940-b1c5e95fb88c"
     },
-    "fileId": "96soxH5zxAv620Uh0cIc0x",
+    "fileId": "",
     "sync": false
   }
 ]

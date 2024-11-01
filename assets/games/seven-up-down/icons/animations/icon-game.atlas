@@ -1,34 +1,216 @@
 
-icon-game.png
-size: 512,256
+icon-game.webp
+size: 512,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+2x
+  rotate: false
+  xy: 296, 142
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+2x-b
+  rotate: false
+  xy: 406, 737
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+3x
+  rotate: false
+  xy: 406, 667
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+3x-b
+  rotate: false
+  xy: 406, 597
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+4x
+  rotate: false
+  xy: 406, 527
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+4x-b
+  rotate: false
+  xy: 406, 457
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+5x
+  rotate: false
+  xy: 406, 387
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+5x-b
+  rotate: false
+  xy: 406, 317
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+6x
+  rotate: false
+  xy: 406, 247
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+6x-b
+  rotate: false
+  xy: 366, 142
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+7x
+  rotate: false
+  xy: 328, 72
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+7x-b
+  rotate: false
+  xy: 398, 72
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+8x
+  rotate: false
+  xy: 328, 2
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+8x-b
+  rotate: false
+  xy: 398, 2
+  size: 68, 68
+  orig: 68, 68
+  offset: 0, 0
+  index: -1
+FX_SweerpCircle_06
+  rotate: false
+  xy: 204, 120
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
 bg
   rotate: false
-  xy: 2, 27
+  xy: 2, 818
   size: 202, 202
   orig: 202, 202
   offset: 0, 0
   index: -1
 dice-bottom
   rotate: false
-  xy: 206, 65
+  xy: 204, 48
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 dice-top
   rotate: false
-  xy: 206, 137
+  xy: 408, 928
   size: 90, 92
   orig: 90, 92
   offset: 0, 0
   index: -1
+frame-circle
+  rotate: false
+  xy: 408, 807
+  size: 70, 52
+  orig: 70, 52
+  offset: 0, 0
+  index: -1
+frame-circle-border
+  rotate: true
+  xy: 274, 48
+  size: 70, 52
+  orig: 70, 52
+  offset: 0, 0
+  index: -1
+frame-circle-light
+  rotate: false
+  xy: 408, 861
+  size: 88, 65
+  orig: 88, 65
+  offset: 0, 0
+  index: -1
 star
   rotate: false
-  xy: 2, 2
+  xy: 406, 222
   size: 23, 23
   orig: 23, 23
+  offset: 0, 0
+  index: -1
+star_1
+  rotate: false
+  xy: 2, 616
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_2
+  rotate: false
+  xy: 206, 820
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_3
+  rotate: false
+  xy: 2, 414
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_4
+  rotate: false
+  xy: 2, 212
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_5
+  rotate: false
+  xy: 2, 10
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_6
+  rotate: false
+  xy: 204, 616
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_7
+  rotate: false
+  xy: 204, 414
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+star_8
+  rotate: false
+  xy: 204, 212
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1

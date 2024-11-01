@@ -296,8 +296,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1.1368683772161603e-13,
-        19.265499999999918,
+        0,
+        0,
         1000,
         0,
         0,
@@ -358,7 +358,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0.49783885060243194
     },
     "_trs": {
       "__type__": "TypedArray",
@@ -552,7 +552,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "prefix",
+    "_name": "title",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5

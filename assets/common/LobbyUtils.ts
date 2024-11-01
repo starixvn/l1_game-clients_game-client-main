@@ -219,7 +219,7 @@ export default class LobbyUtils {
     }
 
     private static preloadDir() {
-        const themePath = LobbyResourceManager.isUseTheme() ? LobbyResourceManager.getThemePath() : "lobby/games";
+        const themePath = LobbyResourceManager.getThemePath();
 
         const iconPath = `${themePath}/prefabs/skeleton-icon`;
 

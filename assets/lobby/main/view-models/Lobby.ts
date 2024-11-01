@@ -332,8 +332,6 @@ export default class Lobby extends cc.Component {
             this.headerComp.setBalance(this.formatUserCurrency(userManager.balance));
             this.headerComp.setAvatar(userManager.avatarId);
             (userManager.availSpins || userManager.scoins) && this.headerComp.showScoins(userManager.scoins);
-
-            this.renderLuckyWheelIcon();
         }
     }
 
@@ -354,6 +352,7 @@ export default class Lobby extends cc.Component {
             return;
         }
 
+        this.renderLuckyWheelIcon();
         this.handleSsoLobby();
         this.loadLobby(true);
     }
@@ -468,10 +467,6 @@ export default class Lobby extends cc.Component {
         if (data.availSpins || data.scoins) {
             this.headerComp.showScoins(data.scoins);
         }
-
-        if (data.availSpins) {
-            this.renderLuckyWheelIcon();
-        }
     }
 
     signOut() {
@@ -551,15 +546,17 @@ export default class Lobby extends cc.Component {
     }
 
     async openLuckyWheel() {
-        if (userManager.userName) {
-            cc.log("openLuckyWheel ----------------------------");
-            await GameUtils.asyncExecute(this?.node, this.renderLuckyWheelIcon());
-            if (this.luckyWheelIcon && userManager.availSpins && appManager.autoOpenLuckyWheel) {
-                this.luckyWheelIcon.openGame();
-                return;
+        try {
+            if (userManager.userName) {
+                cc.log("openLuckyWheel ----------------------------");
+                await GameUtils.waitUntil(() => this.luckyWheelIcon, 100, 60000);
+                if (this.luckyWheelIcon && userManager.availSpins && appManager.autoOpenLuckyWheel) {
+                    this.luckyWheelIcon.openGame();
+                    return;
+                }
             }
-        }
-        this.showCenterBanner();
+            this.showCenterBanner();
+        } catch (e) {}
     }
 
     async showSignName() {

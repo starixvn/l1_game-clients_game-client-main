@@ -547,10 +547,10 @@ export default class Lobby extends cc.Component {
 
     async openLuckyWheel() {
         try {
-            if (userManager.userName) {
+            if (userManager.userName && userManager.availSpins) {
                 cc.log("openLuckyWheel ----------------------------");
                 await GameUtils.waitUntil(() => this.luckyWheelIcon, 100, 60000);
-                if (this.luckyWheelIcon && userManager.availSpins && appManager.autoOpenLuckyWheel) {
+                if (this.luckyWheelIcon && appManager.autoOpenLuckyWheel) {
                     this.luckyWheelIcon.openGame();
                     return;
                 }

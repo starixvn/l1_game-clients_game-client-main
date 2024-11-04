@@ -58,9 +58,9 @@ export default class SevenUpDownResult extends cc.Component {
     showResultNoAnim(result: ISevenUpDownResult, roundId: number) {
         this.diceSkeleton && AnimationUtils.pauseSpineAnimation(this.diceSkeleton, 1, this.getDiceAnimationName(roundId));
         this.dicesComponent.forEach((dice, index) => {
-            dice.setFrame(
-                this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${result[`dice${index + 1}`]}-${this.DICE_END_FRAME}`)
-            );
+            const endPos = result[`dice${index + 1}`];
+
+            dice.setFrame(this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${endPos}-${this.DICE_END_FRAME}`));
         });
     }
 
@@ -107,11 +107,10 @@ export default class SevenUpDownResult extends cc.Component {
 
     private setResultDiceFrames(prevResult: ISevenUpDownResult, result: ISevenUpDownResult) {
         for (let i = 0; i < this.dicesComponent.length; i++) {
-            const files = [
-                `start-${prevResult[`dice${i + 1}`]}`,
-                `loop-${this.getRandomNumber(this.LOOP_NUMBER)}`,
-                `end-${result[`dice${i + 1}`]}`
-            ];
+            const startPos = prevResult[`dice${i + 1}`];
+            const endPos = result[`dice${i + 1}`];
+            const files = [`start-${startPos}`, `loop-${this.getRandomNumber(this.LOOP_NUMBER)}`, `end-${endPos}`];
+
             for (const file of files) {
                 const matchingFrames = this.diceSpriteFrames.filter((frame) => frame.name.startsWith(file));
                 this.resultDiceFrames[`dice${i + 1}`].push(...matchingFrames);

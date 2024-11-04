@@ -40,7 +40,8 @@ export default class SevenUpDownHistoryItem extends SocketIOHistoryItemBase {
         this.winLoss.node.color = winloss >= 0 ? cc.Color.WHITE.fromHEX("#F1E344") : cc.Color.WHITE.fromHEX("#EB3D26");
 
         this.dicesFrame.forEach((dice, index) => {
-            const spriteName = `scoreboard_dice_${result[`dice${index + 1}`]}`;
+            const diceResult = result[`dice${index + 1}`];
+            const spriteName = `scoreboard_dice_${diceResult}`;
             dice.spriteFrame = this.mainAtlas.getSpriteFrame(spriteName);
         });
 

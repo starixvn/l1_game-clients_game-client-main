@@ -15,13 +15,12 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(sp.Skeleton)
     spineMultiplier: sp.Skeleton = null;
 
-    private MULTIPLIER_NUMBER = 29;
-
-    public listMultiplierOrgin = [];
+    private readonly MULTIPLIER_NUMBER = 29;
+    private readonly OFFSET_MULTIPLIER = 1090;
     private listMultiplier = [];
 
+    public listMultiplierOrgin = [];
     public multiplierValue = 0;
-    private OFFSET_MULTIPLIER = 1090;
 
     onLoad() {
         this.showMultiplier();
@@ -40,8 +39,9 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     appendMultiplier() {
         this.appendListMultiplierAnim();
         this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
-        for (let i = 0; i < this.listMultiplier.length; i++) {
-            const item = this.renderMultiplierValue(this.listMultiplier[i]);
+
+        for (const multiplier of this.listMultiplier) {
+            const item = this.renderMultiplierValue(multiplier);
             this.lblMultiplier.addChild(item);
         }
 

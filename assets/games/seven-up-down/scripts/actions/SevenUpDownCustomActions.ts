@@ -18,3 +18,7 @@ export const clearRoundData = (game: SevenUpDown) => () => {
     game.multiplierComp?.resetMultiplier();
     game.resultComp?.setResultNodeVisibility(false);
 };
+
+export const checkShowReachMaxWin = (game: SevenUpDown) => (statusData) => {
+    game.handleReachMaxWin(statusData);
+};

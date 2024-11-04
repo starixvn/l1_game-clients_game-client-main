@@ -12,9 +12,16 @@ import ProvablyFairComponent from "../../_base/view-models/provably-fair/Provabl
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
 import { Multiplier } from "../../_base_new/models/Multiplier";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
+import { Settlement } from "../../_base_new/models/Settlement";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { clearRoundData, handleBeginStarting, handlePlacingBet, showMultiplier } from "./actions/SevenUpDownCustomActions";
+import {
+    checkShowReachMaxWin,
+    clearRoundData,
+    handleBeginStarting,
+    handlePlacingBet,
+    showMultiplier
+} from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -50,6 +57,9 @@ export default class SevenUpDown extends MiniGameBase {
 
     @property(SevenUpDownMultiplier)
     multiplierComp: SevenUpDownMultiplier = null;
+
+    @property(cc.Node)
+    nodeReachMaxWin: cc.Node = null;
 
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
@@ -121,6 +131,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
+        this.emitterListener(this.gameData.settlement, Settlement.Events.RECEIVED_LOGIN_PLAYER_STATUS, checkShowReachMaxWin);
     }
 
     getBetChoiceString(choice: string): string {
@@ -266,5 +277,14 @@ export default class SevenUpDown extends MiniGameBase {
         this.historyComponent = dialog.getComponent(SevenUpDownBetHistory);
         this.historyComponent.init(this.socket);
         this.currentMiniPanel.addDialog(dialog);
+    }
+
+    handleReachMaxWin(statusData: any) {
+        if (statusData.reachMaxWin) {
+            const notice = cc.instantiate(this.miniNoticePrefab);
+            const noticeComponent = notice.getComponent("mini_warning");
+            this.updateMiniWarningContent(noticeComponent, i18n.t(`Common.you_reach_max_win`));
+            this.nodeReachMaxWin.addChild(notice);
+        }
     }
 }

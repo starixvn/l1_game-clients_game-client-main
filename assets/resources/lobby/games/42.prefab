@@ -299,7 +299,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "0b67f45b-266b-4ae1-bdfd-34d4e1b547db"
+      "__uuid__": "7638a4ba-b6bc-4ca1-a0cd-4a9f2a1abf0e"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -312,9 +312,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "3625b9c8-6f1b-4d7c-9236-6ab0b163ebd2"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -477,9 +475,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "c2d54bd1-aaa7-4c1a-9e12-68d8d5502652"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -491,25 +487,22 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "3625b9c8-6f1b-4d7c-9236-6ab0b163ebd2"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 8
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "3625b9c8-6f1b-4d7c-9236-6ab0b163ebd2"
-    },
-    "prefix": "playnow",
-    "defaultLocalized": "",
+    "gameId": 0,
+    "nameImage": "playnow",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {
@@ -605,9 +598,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "b09f0db7-a028-40b9-9d78-76333e11db6d"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -619,25 +610,22 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "3625b9c8-6f1b-4d7c-9236-6ab0b163ebd2"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 12
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "3625b9c8-6f1b-4d7c-9236-6ab0b163ebd2"
-    },
-    "prefix": "unfinished",
-    "defaultLocalized": "",
+    "gameId": 0,
+    "nameImage": "unfinished",
+    "enableCustomizePath": true,
+    "customizePath": "lobby/free-spin",
+    "isLoadShareResource": true,
     "_id": ""
   },
   {

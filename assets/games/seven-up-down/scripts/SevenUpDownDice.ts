@@ -5,6 +5,8 @@ export default class SevenUpDownDice extends cc.Component {
     @property(cc.Sprite)
     diceSprite: cc.Sprite = null;
 
+    private diceAnimation: cc.Tween = null;
+
     onLoad() {
         this.setOpacity(0);
     }
@@ -18,11 +20,16 @@ export default class SevenUpDownDice extends cc.Component {
         this.diceSprite.spriteFrame = spriteFrame;
     }
 
+    stopAnimation() {
+        this.diceAnimation?.stop();
+    }
+
     runAnimation(resultDiceFrames: cc.SpriteFrame[], duration: number) {
         let index = 0;
-        const diceFramesNumber = resultDiceFrames.length - 1;
+        const diceFramesNumber = resultDiceFrames.length;
 
-        cc.tween(this.diceSprite.node)
+        this.diceAnimation = cc
+            .tween(this.diceSprite.node)
             .repeat(
                 diceFramesNumber,
                 cc

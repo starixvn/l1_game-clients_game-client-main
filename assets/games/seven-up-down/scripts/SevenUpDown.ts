@@ -159,13 +159,6 @@ export default class SevenUpDown extends MiniGameBase {
     public updateRoundHistory() {
         super.updateRoundHistory();
         this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
-
-        const { result, roundId } = this.gameData.roundHistory.roundHistory[0];
-        this.resultComp.showResultNoAnim(result, roundId);
-
-        if (this.isShowingResultLastRound()) {
-            this.resultComp.displayTotalPoints(result);
-        }
     }
 
     resetDataAndUI() {
@@ -218,6 +211,13 @@ export default class SevenUpDown extends MiniGameBase {
             this.scheduleOnce(this.doLaterPayOutCallback, this.delayPayoutDuration);
         } else {
             this.doLaterPayOutCallback();
+
+            const { result, roundId } = settlement;
+            this.resultComp.showResultNoAnim(result, roundId);
+
+            if (this.isShowingResultLastRound()) {
+                this.resultComp.displayTotalPoints(result);
+            }
         }
     }
 

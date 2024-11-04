@@ -48,6 +48,10 @@ export default class SevenUpDownResult extends cc.Component {
         this.resultDiceFrames = { dice1: [], dice2: [] };
     }
 
+    private stopAllDiceAnimation() {
+        this.dicesComponent.forEach((dice) => dice.stopAnimation());
+    }
+
     private getDiceAnimationName(roundId: number): string {
         const position = roundId % this.DICE_POSITION_NUMBER || this.DICE_POSITION_NUMBER;
         const nextPosition = (position % this.DICE_POSITION_NUMBER) + 1;
@@ -56,11 +60,13 @@ export default class SevenUpDownResult extends cc.Component {
     }
 
     showResultNoAnim(result: ISevenUpDownResult, roundId: number) {
+        this.stopAllDiceAnimation();
         this.diceSkeleton && AnimationUtils.pauseSpineAnimation(this.diceSkeleton, 1, this.getDiceAnimationName(roundId));
         this.dicesComponent.forEach((dice, index) => {
             const endPos = result[`dice${index + 1}`];
+            const frame = this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${endPos}-${this.DICE_END_FRAME}`);
 
-            dice.setFrame(this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${endPos}-${this.DICE_END_FRAME}`));
+            dice.setFrame(frame);
         });
     }
 
@@ -92,6 +98,7 @@ export default class SevenUpDownResult extends cc.Component {
 
     async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
         this.resetResultDiceFrames();
+        this.stopAllDiceAnimation();
         this.setResultDiceFrames(prevResult, result);
         this.diceSkeleton && AnimationUtils.playSpine(this.diceSkeleton, this.getDiceAnimationName(roundId), false, this.RESULT_DURATION);
         this.dicesComponent.forEach((dice, index) => {

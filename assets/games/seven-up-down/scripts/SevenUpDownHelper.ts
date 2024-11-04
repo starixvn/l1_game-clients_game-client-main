@@ -7,7 +7,7 @@ export const findWinningChoice = (settlementResult: any): string => {
 
 export const determineWinningChoice = (totalPoints: number): string => {
     if (totalPoints === 7) {
-        return "7";
+        return SevenUpDownChoice.SEVEN;
     }
     const winChoice = totalPoints > 6 ? `${SevenUpDownChoice.UP}` : `${SevenUpDownChoice.DOWN}`;
 

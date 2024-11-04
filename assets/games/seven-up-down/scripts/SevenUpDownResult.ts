@@ -28,10 +28,10 @@ export default class SevenUpDownResult extends cc.Component {
 
     private resultDiceFrames: IResultDiceFrames;
     private diceSpriteFrames: cc.SpriteFrame[] = [];
-    private DICE_POSITION_NUMBER = 7;
-    RESULT_DURATION = 1.3;
-    LOOP_NUMBER = 2;
-    DICE_END_FRAME = 11;
+    private readonly DICE_POSITION_NUMBER = 7;
+    private readonly LOOP_NUMBER = 2;
+    private readonly DICE_END_FRAME = 11;
+    RESULT_DURATION = 1.4;
 
     onLoad() {
         this.setResultNodeVisibility(false);

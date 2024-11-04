@@ -1,11 +1,12 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
+    gameNames: {
+        103: "7 上 7 下"
+    },
     SevenUpDown: {
-        game_icon_name: "7 Up 7 Down",
-        game_name: "7 Up 7 Down",
-        glossary_up: "Up",
-        glossary_down: "Down",
+        glossary_up: "上",
+        glossary_down: "下",
         glossary_seven: "7",
         you_win: "你赢了"
     },
@@ -148,12 +149,6 @@ export const phrases = {
         win_loss: "赢 输",
         you_reach_max_win: "您达到了最大胜利",
         sha256: "SHA-256"
-    },
-    lobbyNames: {
-        "103": "7 Up 7 Down"
-    },
-    gameNames: {
-        "103": "7 Up 7 Down"
     }
 };
 

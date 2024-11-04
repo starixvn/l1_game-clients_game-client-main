@@ -30,7 +30,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     animRollingMultiplier() {
-        const normalSpinDuration = 2.85;
+        const normalSpinDuration = 3;
         cc.tween(this.lblMultiplier)
             .delay(0.2)
             .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })

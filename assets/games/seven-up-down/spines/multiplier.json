@@ -1,15 +1,15 @@
 {
-"skeleton": { "hash": "pcj+4m6PPfXP9cSHUv/n9nCH+ow", "spine": "3.8.99", "x": -35.91, "y": -29.58, "width": 70, "height": 52 },
+"skeleton": { "hash": "e/uuLeN219XP2EwRPXRUTehUGdo", "spine": "3.8.99", "x": -35.91, "y": -29.58, "width": 70, "height": 52 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "anim", "parent": "root" },
-	{ "name": "multiplier-value", "parent": "anim" },
 	{ "name": "mask-mk", "parent": "root" },
 	{ "name": "frame", "parent": "root", "y": 0.86 },
 	{ "name": "frame-circle-light", "parent": "anim" },
 	{ "name": "star", "parent": "anim", "x": 0.01, "y": 20.18 },
 	{ "name": "FX_SweerpCircle_03", "parent": "anim", "scaleX": 1.2352, "scaleY": 0.7508 },
-	{ "name": "star_1", "parent": "root", "x": 0.75, "y": 20.89, "scaleX": 1.4, "scaleY": 1.4 }
+	{ "name": "star_1", "parent": "root", "x": 0.75, "y": 20.89, "scaleX": 1.4, "scaleY": 1.4 },
+	{ "name": "star_2", "parent": "root", "x": 0.75, "y": 20.89, "scaleX": 1.4, "scaleY": 1.4 }
 ],
 "slots": [
 	{ "name": "frame-circle-light", "bone": "frame-circle-light", "color": "f9ff40ff", "blend": "additive" },
@@ -17,10 +17,10 @@
 	{ "name": "frame", "bone": "frame" },
 	{ "name": "star", "bone": "star" },
 	{ "name": "mask", "bone": "anim", "attachment": "mask" },
-	{ "name": "value", "bone": "multiplier-value" },
 	{ "name": "mask-mk", "bone": "mask-mk" },
 	{ "name": "FX_SweerpCircle_03", "bone": "FX_SweerpCircle_03" },
 	{ "name": "star_1", "bone": "star_1", "color": "fff901ff" },
+	{ "name": "star_2", "bone": "star_2", "color": "fff901ff" },
 	{ "name": "frame-circle-border", "bone": "anim", "attachment": "frame-circle-border" }
 ],
 "skins": [
@@ -73,6 +73,17 @@
 				"star_7": { "width": 200, "height": 200 },
 				"star_8": { "width": 200, "height": 200 },
 				"star_9": { "width": 200, "height": 200 }
+			},
+			"star_2": {
+				"star_1": { "width": 200, "height": 200 },
+				"star_2": { "width": 200, "height": 200 },
+				"star_3": { "width": 200, "height": 200 },
+				"star_4": { "width": 200, "height": 200 },
+				"star_5": { "width": 200, "height": 200 },
+				"star_6": { "width": 200, "height": 200 },
+				"star_7": { "width": 200, "height": 200 },
+				"star_8": { "width": 200, "height": 200 },
+				"star_9": { "width": 200, "height": 200 }
 			}
 		}
 	}
@@ -97,12 +108,6 @@
 					{ "color": "ffffffff" },
 					{ "time": 0.4, "color": "ffffff00" }
 				]
-			},
-			"value": {
-				"color": [
-					{ "color": "ffffffff" },
-					{ "time": 0.4, "color": "ffffff00" }
-				]
 			}
 		},
 		"bones": {
@@ -120,8 +125,8 @@
 				"color": [
 					{ "color": "f9ff3f00", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.0667, "color": "f9ff3fff", "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.3333, "color": "f9ff40ff", "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.5333, "color": "f9ff3f00" }
+					{ "time": 0.4, "color": "f9ff40ff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.8, "color": "f9ff3f00" }
 				],
 				"attachment": [
 					{ "name": "frame-circle-light" }
@@ -140,21 +145,36 @@
 					{ "time": 0.9, "name": "star_9" },
 					{ "time": 1.0333, "name": null }
 				]
+			},
+			"star_2": {
+				"attachment": [
+					{ "time": 0.5, "name": "star_1" },
+					{ "time": 0.5667, "name": "star_2" },
+					{ "time": 0.6333, "name": "star_3" },
+					{ "time": 0.7, "name": "star_4" },
+					{ "time": 0.8, "name": "star_5" },
+					{ "time": 0.9, "name": "star_6" },
+					{ "time": 1, "name": "star_7" },
+					{ "time": 1.1, "name": "star_8" },
+					{ "time": 1.2333, "name": "star_9" },
+					{ "time": 1.3667, "name": null }
+				]
 			}
 		},
 		"bones": {
 			"anim": {
 				"scale": [
 					{ "x": 2.5, "y": 2.5, "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.1333, "x": 0.6, "y": 0.6, "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.2333 }
+					{ "time": 0.2, "x": 0.5, "y": 0.5, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": 1.2, "y": 1.2 },
+					{ "time": 0.5333 }
 				]
 			},
 			"frame-circle-light": {
 				"scale": [
 					{ "x": 1.4, "y": 1.4, "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.1667, "x": 1.5, "y": 1.5, "curve": 0.25, "c3": 0.75 },
-					{ "time": 0.3333, "x": 1.1, "y": 1.1 }
+					{ "time": 0.2, "x": 1.5, "y": 1.5, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": 1.1, "y": 1.1 }
 				]
 			},
 			"star": {

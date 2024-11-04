@@ -13,3 +13,8 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
 export const showMultiplier = (game: SevenUpDown) => (data) => {
     game.multiplierComp.renderMultiplier(data, game.gameConfigs?.multipliers || []);
 };
+
+export const clearRoundData = (game: SevenUpDown) => () => {
+    game.multiplierComp?.resetMultiplier();
+    game.resultComp?.setResultNodeVisibility(false);
+};

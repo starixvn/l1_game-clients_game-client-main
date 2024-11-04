@@ -7,11 +7,11 @@ export const findWinningChoice = (settlementResult: any): string => {
 
 export const determineWinningChoice = (totalPoints: number): string => {
     if (totalPoints === 7) {
-        return `${i18n.t(`SevenUpDown.glossary_${SevenUpDownChoice.SEVEN}`)}`;
+        return i18n.t(`SevenUpDown.glossary_${SevenUpDownChoice.SEVEN}`);
     }
     const winChoice = totalPoints > 6 ? `${SevenUpDownChoice.UP}` : `${SevenUpDownChoice.DOWN}`;
-
-    return `${totalPoints} - ${i18n.t(`SevenUpDown.glossary_${winChoice}`)}`;
+    const choiceName = `SevenUpDown.glossary_${winChoice}`;
+    return `${totalPoints} - ${i18n.t(choiceName)}`;
 };
 
 export const calcTotalPoints = (result: ISevenUpDownResult): number => {

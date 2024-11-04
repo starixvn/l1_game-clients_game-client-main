@@ -14,7 +14,7 @@ import { Multiplier } from "../../_base_new/models/Multiplier";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { handleBeginStarting, handlePlacingBet, showMultiplier } from "./actions/SevenUpDownCustomActions";
+import { clearRoundData, handleBeginStarting, handlePlacingBet, showMultiplier } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -53,7 +53,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
-    private resultComp: SevenUpDownResult = null;
+    public resultComp: SevenUpDownResult = null;
 
     protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 1;
@@ -117,6 +117,7 @@ export default class SevenUpDown extends MiniGameBase {
             handleBeginStarting(this)();
             showStartBetMessage(this)({ duration: 0 });
         });
+        this.emitterListener(this.gameData.durations, this.startRoundEvent, clearRoundData);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
@@ -140,6 +141,10 @@ export default class SevenUpDown extends MiniGameBase {
         });
     }
 
+    isShowingResultLastRound() {
+        return this.gameData.durations.isWaiting() || this.gameData.durations.isBeingSpecificPhase(Durations.Events.SHOW_ANIMATION);
+    }
+
     public updateRoundHistory() {
         super.updateRoundHistory();
         this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
@@ -155,8 +160,6 @@ export default class SevenUpDown extends MiniGameBase {
     resetDataAndUI() {
         super.resetDataAndUI();
         this.clearWinningBet();
-        this.multiplierComp.resetMultiplier();
-        this.resultComp?.setResultNodeVisibility(false);
     }
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {

@@ -65,7 +65,6 @@ export default class SevenUpDownResult extends cc.Component {
         this.dicesComponent.forEach((dice, index) => {
             const endPos = result[`dice${index + 1}`];
             const frame = this.diceSpriteFrames.find((spriteFrame) => spriteFrame.name === `end-${endPos}-${this.DICE_END_FRAME}`);
-
             dice.setFrame(frame);
         });
     }

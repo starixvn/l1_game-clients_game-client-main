@@ -15,13 +15,7 @@ import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import { Settlement } from "../../_base_new/models/Settlement";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import {
-    checkShowReachMaxWin,
-    clearRoundData,
-    handleBeginStarting,
-    handlePlacingBet,
-    showMultiplier
-} from "./actions/SevenUpDownCustomActions";
+import { checkShowReachMaxWin, clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet, showMultiplier } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -132,6 +126,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
         this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
         this.emitterListener(this.gameData.settlement, Settlement.Events.RECEIVED_LOGIN_PLAYER_STATUS, checkShowReachMaxWin);
+        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.FIRST_LOAD, handleFirstLoadRoundHistory);
     }
 
     getBetChoiceString(choice: string): string {
@@ -214,10 +209,7 @@ export default class SevenUpDown extends MiniGameBase {
 
             const { result, roundId } = settlement;
             this.resultComp.showResultNoAnim(result, roundId);
-
-            if (this.isShowingResultLastRound()) {
-                this.resultComp.displayTotalPoints(result);
-            }
+            this.resultComp.displayTotalPoints(result);
         }
     }
 

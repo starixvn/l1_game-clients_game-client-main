@@ -20,10 +20,6 @@ export const clearRoundData = (game: SevenUpDown) => () => {
     game.resultComp?.setResultNodeVisibility(false);
 };
 
-export const checkShowReachMaxWin = (game: SevenUpDown) => (statusData) => {
-    game.handleReachMaxWin(statusData);
-};
-
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
     if (game.gameData.durations.isPlacingBet() && roundHistory.length > 0) {
         const { result, roundId } = roundHistory[0];

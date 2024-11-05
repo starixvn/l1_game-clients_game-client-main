@@ -175,7 +175,7 @@ export const payChipsToOtherPlayers = (info: PayChipInfo) => {
 };
 
 export const payChipsToInGamePlayers = (info: PayChipInfo) => {
-    const { mainRoomGame, winBetItems, payChipsDuration, winningDuration } = info;
+    const { mainRoomGame } = info;
     let winningPlayers = info.winningPlayers;
 
     if (mainRoomGame.gameData) {
@@ -189,7 +189,11 @@ export const payChipsToInGamePlayers = (info: PayChipInfo) => {
             mainRoomGame.winnersData = null;
         }
     }
+    handleWinningPlayers(info, winningPlayers);
+};
 
+function handleWinningPlayers(info: PayChipInfo, winningPlayers: any) {
+    const { mainRoomGame, winBetItems, payChipsDuration, winningDuration } = info;
     if (!winningPlayers) {
         return;
     }
@@ -214,7 +218,7 @@ export const payChipsToInGamePlayers = (info: PayChipInfo) => {
         });
         showWinningEffectForPlayerSlot(playerSlot, bet, rate, winningDuration, mainRoomGame);
     });
-};
+}
 
 function showWinningEffectForPlayerSlot(
     playerSlot: any,

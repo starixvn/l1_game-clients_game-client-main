@@ -16,29 +16,44 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     spineMultiplier: sp.Skeleton = null;
 
     private readonly MULTIPLIER_NUMBER = 29;
+    private readonly noAnimMultiplierPosY = 16;
     private readonly OFFSET_MULTIPLIER = 1090;
     private listMultiplier = [];
+    private rollingTween: cc.Tween = null;
 
     public listMultiplierOrgin = [];
     public multiplierValue = 0;
 
-    onLoad() {
-        this.showMultiplier();
-        this.appendMultiplier();
-        this.animRollingMultiplier();
+    showMultiplier(animated: boolean) {
+        this.rollingTween?.stop();
+        this.runMultiplierAnimation(animated);
+        if (animated) {
+            this.appendMultiplier();
+            this.animRollingMultiplier();
+        } else {
+            this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
+            this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+        }
     }
 
     animRollingMultiplier() {
         const normalSpinDuration = 3;
-        cc.tween(this.lblMultiplier)
+        this.lblMultiplier.position.y = 0;
+
+        this.rollingTween = cc
+            .tween(this.lblMultiplier)
             .delay(0.2)
             .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
             .start();
     }
 
+    setFinalMultiplier() {
+        this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+    }
+
     appendMultiplier() {
         this.appendListMultiplierAnim();
-        this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+        this.setFinalMultiplier();
 
         for (const multiplier of this.listMultiplier) {
             const item = this.renderMultiplierValue(multiplier);
@@ -58,12 +73,17 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         return multiplierItem;
     }
 
-    async showMultiplier() {
-        await AnimationUtils.playSpine(this.spineMultiplier, "show");
+    runMultiplierAnimation(animated: boolean) {
+        if (animated) {
+            AnimationUtils.playSpine(this.spineMultiplier, "show");
+        } else {
+            AnimationUtils.pauseSpineAnimation(this.spineMultiplier, 1, "show");
+        }
     }
 
     async hideMultiplier() {
-        cc.tween(this.lblMultiplier).to(0.3, { opacity: 0 }, { easing: "sineOut" }).start();
+        const hideDurationTime = 0.2;
+        cc.tween(this.lblMultiplier).to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" }).start();
         await AnimationUtils.playSpine(this.spineMultiplier, "hide");
     }
 

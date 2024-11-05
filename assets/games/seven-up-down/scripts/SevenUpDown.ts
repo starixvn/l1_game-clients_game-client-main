@@ -215,6 +215,7 @@ export default class SevenUpDown extends MiniGameBase {
             const { result, roundId } = settlement;
             this.resultComp.showResultNoAnim(result, roundId);
             this.resultComp.displayTotalPoints(result);
+            this.multiplierComp?.renderMultiplier(result?.multiplier, [], false);
         }
     }
 

@@ -35,13 +35,15 @@ export default class CenterBannerContainer extends cc.Component {
             return;
         }
 
-        const filterList = this.getFilteredBannerIds();
-        for (const gameId of filterList) {
-            const success = await this.loadAndShowBanner(gameId);
-            if (success) {
-                break;
+        try {
+            const filterList = this.getFilteredBannerIds();
+            for (const gameId of filterList) {
+                const success = await this.loadAndShowBanner(gameId);
+                if (success) {
+                    break;
+                }
             }
-        }
+        } catch (error) {}
     }
 
     private getFilteredBannerIds(): number[] {
@@ -64,6 +66,7 @@ export default class CenterBannerContainer extends cc.Component {
         } catch (e) {
             // Handle errors if needed
         }
+
         return false;
     }
 

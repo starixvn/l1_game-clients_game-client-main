@@ -3,12 +3,12 @@ import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import { Settlement } from "../../_base_new/models/Settlement";
 import NewGameRoomBase from "../../_new/_base/NewGameRoomBase";
 import SlotGameSongs from "../../_slotgame_base/SlotGameSongs";
-import { CountdownAnimationType } from "../FootballSlotType";
 import { FootballSlotFinishModel, handleAfterSettlementResult, handleShowResult } from "../actions/FootballSlotFinishActions";
 import { FootballSlotBetHandler } from "../event-handlers/FootballSlotBetHandler";
 import FootballSlotTimeHandler from "../event-handlers/FootballSlotTimeHandler";
-import FootballSlotGameData from "../event-models/FootballGameData";
+import FootballGameData from "../event-models/FootballGameData";
 import { FootballSlotRoundHistory } from "../event-models/FootballSlotRoundHistory";
+import { CountdownAnimationType } from "../FootballSlotType";
 import FootballSlotAnimatedTimer from "./FootballSlotAnimatedTimer";
 import FootballSlotBetItem from "./FootballSlotBetItem";
 import FootballSlotBetOptionsUI from "./FootballSlotBetOptionsUI";
@@ -55,7 +55,7 @@ export default class FootballSlot extends NewGameRoomBase {
     @property(SlotGameSongs)
     gameSongList: SlotGameSongs = null;
 
-    public gameData: FootballSlotGameData = null;
+    public gameData: FootballGameData = null;
     public config: FootballSlotConfig;
     public betOptionsUI: FootballSlotBetOptionsUI = null;
     public miniRoundHistory: FootballSlotMiniRoundHistory = null;
@@ -84,7 +84,7 @@ export default class FootballSlot extends NewGameRoomBase {
     }
 
     onLoad() {
-        this.gameData = new FootballSlotGameData();
+        this.gameData = new FootballGameData();
         super.onLoad();
         this.initStatistic();
         this.registerRoundHistoryEvents();

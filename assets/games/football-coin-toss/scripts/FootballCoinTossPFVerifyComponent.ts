@@ -1,6 +1,6 @@
 import GameRoundBasePFVerifyComponent from "../../_base/view-models/provably-fair/GameRoundBasePFVerifyComponent";
 import { OPEN_PROVABLY_FAIR_VERIFY } from "../../_base/view-models/provably-fair/ProvablyFairVerifyComponent";
-import FootballCoinTossResultBodyItem from "./FootballCoinTossResultBodyItemPF";
+import FootballCoinTossResultBodyItemPF from "./FootballCoinTossResultBodyItemPF";
 
 const { ccclass } = cc._decorator;
 export interface IRoundProvablyFairVerify {
@@ -20,7 +20,7 @@ export default class FootballCoinTossPFVerifyComponent extends GameRoundBasePFVe
     updateProvablyFairVerify(verification: IRoundProvablyFairVerify) {
         this.provablyFair = verification;
         const { serverSeed, serverSeedHash, mergeClientSeed, finalHash, clientSeeds, result, roundId, match } = verification;
-        this.lblRoundId.string = roundId?.toString() ?? ""; 
+        this.lblRoundId.string = roundId?.toString() ?? "";
         result && this.renderRoundResult(result, match);
         if (!this.node.activeInHierarchy && this.node?.isValid) {
             this.serverSeedLbl.string = this.truncateString(serverSeed ?? "".toString());
@@ -53,7 +53,7 @@ export default class FootballCoinTossPFVerifyComponent extends GameRoundBasePFVe
 
     private renderRoundResult(result: any, match: any) {
         if (this.nodeResult) {
-            const resultComp = this.nodeResult?.getComponentInChildren(FootballCoinTossResultBodyItem);
+            const resultComp = this.nodeResult?.getComponentInChildren(FootballCoinTossResultBodyItemPF);
             resultComp.setData(result, match);
         }
     }

@@ -1,8 +1,9 @@
 import { i18n } from "../../../ClientModules";
 import { findWinningChoice } from "./FootballCoinTossHelper";
+
 const { ccclass, property } = cc._decorator;
 @ccclass
-export default class FootballCoinTossResultBodyItem extends cc.Component {
+export default class FootballCoinTossResultBodyItemPF extends cc.Component {
     @property(cc.Label)
     lblResult: cc.Label = null;
 

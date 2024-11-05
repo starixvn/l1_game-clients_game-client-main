@@ -2,7 +2,6 @@ import { i18n } from "../../../../ClientModules";
 import GameUtils from "../../../../common/GameUtils";
 import { numberWithCommas } from "../../../../common/helpers/NumberHelper";
 import NoticeUtil from "../../../../common/utils/NoticeUtil";
-import { appManager } from "../../../../managers/AppManager";
 import { Durations } from "../../../_new/_base/game-data-management/models/durations";
 import FootballCoinToss from "../FootballCoinToss";
 import { BetChoice } from "../FootballCoinTossConstant";

@@ -18,11 +18,6 @@ export default class StandarSlotGuide extends WebViewGuide {
     ) {
         const domain = buildGameGuideUrl();
         const displayName = GameUtils.getGameNameString(gameId);
-        //let jackpotConfigsUrl = "";
-
-        // if (this.enableJackpot) {
-        //     jackpotConfigsUrl = `&jackpotConfigs=${this.jackpotConfigs}`;
-        // }
 
         const url = `${domain}/${language}?gId=${gameId}&displayName=${displayName}&jackpot=${this.enableJackpot}&t=${
             this.themeName

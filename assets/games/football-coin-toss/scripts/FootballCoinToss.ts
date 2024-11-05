@@ -1,5 +1,6 @@
 import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
+import GameUtils from "../../../common/GameUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
@@ -10,31 +11,24 @@ import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
 import { BetModel } from "../../_base_new/models/BetModel";
+import { NoticeModel } from "../../_base_new/models/NoticeModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
+import { Settlement } from "../../_base_new/models/Settlement";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
+import { addMatchToRoundHistory, handleBeginStarting, handleNotice, handlePlacingBet, handleUserBetPercentage } from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetItem from "./FootballCoinTossBetItem";
-import { FootballCoinTossId, footballCoinTossConfigs } from "./FootballCoinTossConfigs";
+import { footballCoinTossConfigs, FootballCoinTossId } from "./FootballCoinTossConfigs";
+import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
 import FootballCoinTossLedLight from "./FootballCoinTossLedLight";
 import FootballCoinTossRoundHistory from "./FootballCoinTossRoundHistory";
 import { IFootballCoinTossResult, IFootballCoinTossSettlement } from "./FootballCoinTossTypes";
 import { FootballCoinTossWinningResult } from "./FootballCoinTossWinningResult";
-import {
-    handleBeginStarting,
-    handleNotice,
-    handlePlacingBet,
-    addMatchToRoundHistory,
-    handleUserBetPercentage
-} from "./actions/FootballCoinTossCustomActions";
-import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
-import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
-import MatchConfigHandler from "./handlers/MatchConfigHandler";
-import GameUtils from "../../../common/GameUtils";
-import { Settlement } from "../../_base_new/models/Settlement";
 import { FootballFlipCoin } from "./FootballFlipCoin";
 import { FootballHighlightResult } from "./FootballHighLightResult";
 import FootballCoinTossConfigsHandler from "./handlers/FootballCoinTossConfigsHandler";
-import { NoticeModel } from "../../_base_new/models/NoticeModel";
+import MatchConfigHandler from "./handlers/MatchConfigHandler";
+import FootballCoinTossBetHistory from "./history/FootballCoinTossBetHistory";
 
 const { ccclass, property } = cc._decorator;
 export const HOME_AWAY_NAME = "HOME-AWAY";
@@ -381,11 +375,11 @@ export default class FootballCoinToss extends MiniGameBase {
 
     handleLastMatch(roundHistories: any) {
         if (roundHistories && roundHistories.length > 0) {
-            const parsedMatch = (roundHistories[0] as any).match;
+            const { match, roundId } = roundHistories[0];
             const lastMatch = {
-                home: parsedMatch.home,
-                away: parsedMatch.away,
-                roundId: roundHistories[0].roundId
+                home: match?.home,
+                away: match?.away,
+                roundId
             };
             this.lastMatch = lastMatch;
         }
@@ -425,7 +419,7 @@ export default class FootballCoinToss extends MiniGameBase {
     }
     private async loadSkeletonData(path: string): Promise<sp.SkeletonData | null> {
         try {
-            const skeletonData = (await GameUtils?.loadAssetsFromBundle(this.BUNDLE_NAME, path, sp.SkeletonData, null)) as sp.SkeletonData;
+            const skeletonData = await GameUtils?.loadAssetsFromBundle<sp.SkeletonData>(this.BUNDLE_NAME, path, sp.SkeletonData, null);
 
             return (
                 skeletonData ?? (await GameUtils?.loadAssetsFromBundle(this.BUNDLE_NAME, this.pathAnimTossDefault, sp.SkeletonData, null))

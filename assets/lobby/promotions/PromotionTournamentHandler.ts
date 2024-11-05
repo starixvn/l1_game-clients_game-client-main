@@ -1,12 +1,13 @@
 import axios from "axios";
+
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
+import configs = require("../../configs/Configs");
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
-import configs = require("../../configs/Configs");
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
@@ -22,7 +23,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
     private static instance: PromotionTournamentHandler;
 
     private intervalId: NodeJS.Timer = null;
-    private intervalTime = 1000 * 60 * 10;
+    private readonly intervalTime = 1000 * 60 * 10;
 
     public static getInstance(): PromotionTournamentHandler {
         if (!this.instance) {
@@ -63,7 +64,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
 
     async checkTournamentPromotionsBeforeSignIn() {
         try {
-            if (configs.systemType.toUpperCase() == "SC1" || sessionManager.getCheckedTournamentPromotionFirstSso()) {
+            if (configs.systemType.toUpperCase() === "SC1" || sessionManager.getCheckedTournamentPromotionFirstSso()) {
                 return this.emitSignInEvent();
             }
 

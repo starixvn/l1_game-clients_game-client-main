@@ -123,11 +123,9 @@ export const showStartBetMessage =
 
 export const showStopBetMessage =
     (game: MiniGameBase) =>
-    ({}) => {
-        if (true) {
-            game.scheduleOnce(() => {
-                game.getPromptMessageComponent()?.showStopBetMessage();
-                (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("stop-betting"));
-            }, 0);
-        }
+    ({ duration = 0 } = {}) => {
+        game.scheduleOnce(() => {
+            game.getPromptMessageComponent()?.showStopBetMessage();
+            (game.gameAudios as DynamicAudios).playSFXAudio(GameUtils.getAudioKeyForLanguage("stop-betting"));
+        }, duration);
     };

@@ -1,8 +1,9 @@
 import * as _ from "lodash";
+
+import AudioManager from "../../../../common/audio/AudioManager";
 import GameUtils from "../../../../common/GameUtils";
 import ClientSeedManualPopup from "./ClientSeedManualPopup";
 import ProvablyFairComponent from "./ProvablyFairComponent";
-import AudioManager from "../../../../common/audio/AudioManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -56,7 +57,7 @@ export default class ClientSeedNumberInput extends ProvablyFairComponent {
     nodeWarningText: cc.Node = null;
 
     private localStorageKeys: string;
-    private pfSetting: PFSetting = {
+    private readonly pfSetting: PFSetting = {
         manualClientSeed: "",
         randomClientSeed: "",
         randomClientSeedEnabled: true

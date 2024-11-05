@@ -177,6 +177,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
+        this.gameAudios?.playSFXAudio("dice_shake");
         this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
 
         await AnimationUtils.delayTime(this.resultComp?.RESULT_DURATION);

@@ -11,7 +11,8 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
 };
 
 export const showMultiplier = (game: SevenUpDown) => (data) => {
-    game.multiplierComp.renderMultiplier(data, game.gameConfigs?.multipliers || []);
+    game.gameAudios?.playSFXAudio("multiplier");
+    game.multiplierComp?.renderMultiplier(data, game.gameConfigs?.multipliers || []);
 };
 
 export const clearRoundData = (game: SevenUpDown) => () => {
@@ -26,7 +27,8 @@ export const checkShowReachMaxWin = (game: SevenUpDown) => (statusData) => {
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
     if (game.gameData.durations.isPlacingBet() && roundHistory.length > 0) {
         const { result, roundId } = roundHistory[0];
-        game.resultComp.showResultNoAnim(result, roundId);
+        game.resultComp?.showResultNoAnim(result, roundId);
         game.resultComp?.setResultNodeVisibility(false);
+        game.multiplierComp?.resetMultiplier();
     }
 };

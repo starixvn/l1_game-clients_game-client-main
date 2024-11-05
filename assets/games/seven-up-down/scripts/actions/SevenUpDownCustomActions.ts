@@ -27,5 +27,6 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
     if (game.gameData.durations.isPlacingBet() && roundHistory.length > 0) {
         const { result, roundId } = roundHistory[0];
         game.resultComp.showResultNoAnim(result, roundId);
+        game.resultComp?.setResultNodeVisibility(false);
     }
 };

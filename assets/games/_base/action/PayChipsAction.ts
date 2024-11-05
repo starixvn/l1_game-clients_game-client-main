@@ -298,7 +298,13 @@ const payChipToLoginPlayerMiniGame = (main: any, statusData: any, ownBets: any, 
     const filteredItems = main.betItems.filter((item) => betItems[betItemLowercaseObjectKeys[item.node.name.toLowerCase()]]);
 
     filteredItems.forEach((item) => {
-        const winBet = betItems[item.node.name] - ownBets[item.node.name];
+        let winBet = 0;
+        if (statusData?.reachMaxWin && statusData.reachMaxWin) {
+            winBet = statusData.bet - ownBets[item.node.name];
+        } else {
+            winBet = betItems[item.node.name] - ownBets[item.node.name];
+        }
+
         main.betChips.payChipsToWinningBetItemWithAmount(item.chipNode, main.dealerChipBox, winBet);
     });
 };

@@ -10,12 +10,12 @@ export default class LocalizedMaskSplash extends LocalizedMask {
         const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
         try {
             cc.resources.load<cc.SpriteFrame>(`splash/images/tagline_${system}_${lang}`, cc.SpriteFrame, (err, frame) => {
-                if (frame) {
-                    this.spriteFrame = frame;
-                }
+                this.spriteFrame = frame;
+
+                return frame ?? null;
             });
-        } catch (e) {
-            return null;
-        }
+        } catch (e) {}
+
+        return null;
     }
 }

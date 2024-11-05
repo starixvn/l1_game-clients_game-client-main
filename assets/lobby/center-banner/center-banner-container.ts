@@ -34,48 +34,54 @@ export default class CenterBannerContainer extends cc.Component {
         if (appManager.hasShowedCenterBanner) {
             return;
         }
-        const offerBannerIds = this.lobbyMenuConfig.bannerAds.filter((id) => userManager.offerGames.includes(id));
-        const list = offerBannerIds.slice(0, 1); //only first banner
-        const dontShowAgainStorage = StorageManager.get(this.storageKey);
 
-        const filterList = list.filter((id) => {
-            if (!dontShowAgainStorage) {
-                return true;
-            }
-            return !dontShowAgainStorage[id];
-        });
+        const filterList = this.getFilteredBannerIds();
         for (const gameId of filterList) {
-            try {
-                const path = `center-banners/${gameId}`;
-                const versionsPath = `${path}/versions.json`;
-                const data = await GameUtils.loadRemoteFromSharedResource<any>(versionsPath, true);
-
-                let success = false;
-                if (data) {
-                    const languages = [window.i18n.curLang, "en", "vi"];
-                    for (const lang of languages) {
-                        const fileName = `${lang}.webp`;
-                        if (data.json[fileName]) {
-                            const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${path}/${fileName}`, true);
-                            if (imageAsset) {
-                                const spriteFrame = new cc.SpriteFrame();
-                                spriteFrame.setTexture(imageAsset);
-
-                                this.showBanner(gameId, spriteFrame);
-                                success = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (success) {
-                        break;
-                    }
-                }
-            } catch (e) {
-                continue;
+            const success = await this.loadAndShowBanner(gameId);
+            if (success) {
+                break;
             }
         }
+    }
+
+    private getFilteredBannerIds(): number[] {
+        const offerBannerIds = this.lobbyMenuConfig.bannerAds.filter((id) => userManager.offerGames.includes(id));
+        const list = offerBannerIds.slice(0, 1); // only first banner
+        const dontShowAgainStorage = StorageManager.get(this.storageKey);
+
+        return list.filter((id) => !dontShowAgainStorage || !dontShowAgainStorage[id]);
+    }
+
+    private async loadAndShowBanner(gameId: number): Promise<boolean> {
+        try {
+            const path = `center-banners/${gameId}`;
+            const versionsPath = `${path}/versions.json`;
+            const data = await GameUtils.loadRemoteFromSharedResource<any>(versionsPath, true);
+
+            if (data) {
+                return await this.loadBannerImage(data, gameId, path);
+            }
+        } catch (e) {
+            // Handle errors if needed
+        }
+        return false;
+    }
+
+    private async loadBannerImage(data: any, gameId: number, path: string): Promise<boolean> {
+        const languages = [window.i18n.curLang, "en", "vi"];
+        for (const lang of languages) {
+            const fileName = `${lang}.webp`;
+            if (data.json[fileName]) {
+                const imageAsset = await GameUtils.loadRemoteFromSharedResource<cc.Texture2D>(`${path}/${fileName}`, true);
+                if (imageAsset) {
+                    const spriteFrame = new cc.SpriteFrame();
+                    spriteFrame.setTexture(imageAsset);
+                    this.showBanner(gameId, spriteFrame);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     showBanner(gameId: number, spriteFrame: cc.SpriteFrame) {

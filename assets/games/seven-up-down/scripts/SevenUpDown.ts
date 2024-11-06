@@ -192,7 +192,7 @@ export default class SevenUpDown extends MiniGameBase {
         if (multiplier) {
             this.spineExtraPaid.node.active = true;
             AnimationUtils.playSpine(this.spineExtraPaid, "show");
-            await AnimationUtils.delayTime(2.5);
+            await AnimationUtils.delayTime(2.8);
             this.gameAudios?.playSFXAudio("multiplier");
             this.multiplierComp.renderMultiplier(multiplier, this.gameConfigs?.multipliers || []);
             await AnimationUtils.delayTime(this.SHOW_MULTIPLIER_DURATION);

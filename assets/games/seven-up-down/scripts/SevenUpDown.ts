@@ -105,9 +105,9 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     closeGame() {
+        super.closeGame();
         this.clearWinningBet();
         this.unschedule(this.doLaterPayOutCallback);
-        super.closeGame();
     }
 
     onGameHide(): void {

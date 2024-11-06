@@ -161,7 +161,8 @@ export const phrases = {
         win: "ชนะ",
         win_loss: "ชนะ แพ้",
         you_reach_max_win: "คุณถึงยอดชนะสูงสุด",
-        sha256: "SHA-256"
+        sha256: "SHA-256",
+        multiplier_time: "Multiplier"
     }
 };
 

@@ -60,6 +60,9 @@ export default class SevenUpDown extends MiniGameBase {
     @property(cc.Node)
     nodeReachMaxWin: cc.Node = null;
 
+    @property(sp.Skeleton)
+    spineExtraPaid: sp.Skeleton = null;
+
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
     public resultComp: SevenUpDownResult = null;
@@ -68,6 +71,8 @@ export default class SevenUpDown extends MiniGameBase {
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
+    showResultDuration = 6;
+    private readonly SHOW_MULTIPLIER_DURATION = 3;
     private doLaterPayOutCallback = () => {
         // callback
     };
@@ -180,9 +185,20 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
+        const { result } = settlement;
+        const multiplier = result?.multiplier;
         const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
+
+        if (multiplier) {
+            this.spineExtraPaid.node.active = true;
+            AnimationUtils.playSpine(this.spineExtraPaid, "show");
+            await AnimationUtils.delayTime(1.7);
+            this.gameAudios?.playSFXAudio("multiplier");
+            this.multiplierComp.renderMultiplier(multiplier, this.gameConfigs?.multipliers || []);
+            await AnimationUtils.delayTime(this.SHOW_MULTIPLIER_DURATION);
+        }
         this.gameAudios?.playSFXAudio("dice_shake");
-        this.resultComp.showResultAnim(prevResult, settlement.result, roundId);
+        this.resultComp.showResultAnim(prevResult, result, roundId);
 
         await AnimationUtils.delayTime(this.resultComp?.RESULT_DURATION);
 

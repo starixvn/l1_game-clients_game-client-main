@@ -163,7 +163,8 @@ export const phrases = {
         win: "Thắng",
         win_loss: "Thắng Thua",
         you_reach_max_win: "Bạn Đã Đạt Mức Tiền Thắng Tối Đa",
-        sha256: "SHA-256"
+        sha256: "SHA-256",
+        multiplier_time: "Multiplier"
     }
 };
 

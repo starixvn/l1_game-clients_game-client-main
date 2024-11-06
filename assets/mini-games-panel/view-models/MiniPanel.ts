@@ -357,6 +357,10 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     }
 
     openNewSocketMiniGame(e, id) {
+        if (!this.node.activeInHierarchy) {
+            return;
+        }
+
         this.loadGame(id, () => {
             this.gameMiniInitializers?.openNewSocket(id);
             Object.values(this.chartsWebView).forEach((chartWebView: LoadWebView) => {
@@ -367,7 +371,12 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     }
 
     openNewSocketTableGame(event, gameId) {
+        if (!this.node.activeInHierarchy) {
+            return;
+        }
+
         cc.log("openNewSocketTableGame ", gameId);
+
         this.loadGame(gameId, () => {
             this.socketIOGameInitializers?.openGame(gameId);
         });

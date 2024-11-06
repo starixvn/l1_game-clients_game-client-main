@@ -24,14 +24,14 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 237
+        "__id__": 238
       },
       {
-        "__id__": 238
+        "__id__": 239
       }
     ],
     "_prefab": {
-      "__id__": 239
+      "__id__": 240
     },
     "_opacity": 255,
     "_color": {
@@ -143,7 +143,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 236
+      "__id__": 237
     },
     "_opacity": 255,
     "_color": {
@@ -8122,17 +8122,17 @@
     "_active": false,
     "_components": [
       {
-        "__id__": 232
-      },
-      {
         "__id__": 233
       },
       {
         "__id__": 234
+      },
+      {
+        "__id__": 235
       }
     ],
     "_prefab": {
-      "__id__": 235
+      "__id__": 236
     },
     "_opacity": 255,
     "_color": {
@@ -8144,8 +8144,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 522,
-      "height": 262
+      "width": 542,
+      "height": 263.06
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8199,10 +8199,13 @@
       },
       {
         "__id__": 230
+      },
+      {
+        "__id__": 231
       }
     ],
     "_prefab": {
-      "__id__": 231
+      "__id__": 232
     },
     "_opacity": 255,
     "_color": {
@@ -8214,8 +8217,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 532.49,
-      "height": 47.36
+      "width": 534.49,
+      "height": 49.36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8261,7 +8264,7 @@
     "_enabled": true,
     "_materials": [
       {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+        "__uuid__": "f54d2ec4-9fb5-410c-bd02-85ab659aa66b"
       }
     ],
     "_srcBlendFactor": 770,
@@ -8300,6 +8303,35 @@
     "_id": ""
   },
   {
+    "__type__": "6215e8GqApMKIX8k+YlD4Ht",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 227
+    },
+    "_enabled": true,
+    "originMaterial": {
+      "__uuid__": "f54d2ec4-9fb5-410c-bd02-85ab659aa66b"
+    },
+    "type": 0,
+    "albedoTexture": null,
+    "topColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 249,
+      "b": 144,
+      "a": 122
+    },
+    "bottomColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 207,
+      "b": 40,
+      "a": 95
+    },
+    "_id": ""
+  },
+  {
     "__type__": "cc.LabelOutline",
     "_name": "",
     "_objFlags": 0,
@@ -8309,12 +8341,12 @@
     "_enabled": true,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
+      "r": 72,
+      "g": 36,
       "b": 0,
       "a": 255
     },
-    "_width": 1,
+    "_width": 2,
     "_id": ""
   },
   {
@@ -8390,7 +8422,7 @@
     },
     "_enabled": true,
     "skeleton": {
-      "__id__": 233
+      "__id__": 234
     },
     "boneName": "text",
     "_id": ""
@@ -8526,7 +8558,7 @@
       "__id__": 223
     },
     "spineExtraPaid": {
-      "__id__": 233
+      "__id__": 234
     },
     "_id": ""
   },

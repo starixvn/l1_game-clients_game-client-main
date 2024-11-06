@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "XS1AidW7nKGdcI3axxng4+svcsE", "spine": "3.8.99", "x": -261, "y": -131, "width": 522, "height": 262 },
+"skeleton": { "hash": "35gVLktdfyQTq77So7sfKFvUpk4", "spine": "3.8.99", "x": -271, "y": -132.06, "width": 542, "height": 263.06 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "show-multiplier", "parent": "root" },
@@ -10,13 +10,12 @@
 	{ "name": "light-halo", "parent": "root" }
 ],
 "slots": [
+	{ "name": "light3", "bone": "light-halo", "color": "ffffff4c", "attachment": "light-halo" },
 	{ "name": "bg-multiplier", "bone": "bg-multiplier", "attachment": "bg-multiplier" },
-	{ "name": "bg-0", "bone": "bg-0" },
-	{ "name": "text", "bone": "text" },
 	{ "name": "light", "bone": "light" },
-	{ "name": "light3", "bone": "light-halo", "color": "ffffff4c", "blend": "additive" },
 	{ "name": "light2", "bone": "light", "blend": "additive" },
-	{ "name": "text2", "bone": "root" }
+	{ "name": "bg-0", "bone": "bg-0" },
+	{ "name": "text", "bone": "text" }
 ],
 "skins": [
 	{
@@ -30,16 +29,16 @@
 				"bg-4": { "y": -1.7, "width": 338, "height": 122 }
 			},
 			"bg-multiplier": {
-				"bg-multiplier": { "width": 522, "height": 262 }
+				"bg-multiplier": { "width": 542, "height": 262 }
 			},
 			"light": {
-				"light": { "color": "fdff00ff", "x": -3.58, "y": -3.06, "width": 145, "height": 145 }
+				"light": { "x": -3.58, "y": -3.06, "width": 145, "height": 145 }
 			},
 			"light2": {
 				"light": { "color": "fdff00ff", "x": -3.58, "y": -3.06, "width": 145, "height": 145 }
 			},
 			"light3": {
-				"light": { "color": "fdff00ff", "x": -3.58, "y": -3.06, "width": 145, "height": 145 }
+				"light-halo": { "color": "fcffccff", "x": -3.58, "y": -3.06, "width": 261, "height": 258 }
 			}
 		}
 	}
@@ -49,25 +48,25 @@
 		"slots": {
 			"bg-0": {
 				"color": [
-					{ "time": 0.3333, "color": "ffffffff" },
-					{ "time": 0.8333, "color": "ffffff77" },
-					{ "time": 1, "color": "ffffff00" }
+					{ "time": 0.6667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2, "color": "ffffff4c", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.6333, "color": "ffffff00" }
 				],
 				"attachment": [
-					{ "time": 0.3333, "name": "bg-0" },
-					{ "time": 0.4333, "name": "bg-1" },
-					{ "time": 0.5333, "name": "bg-2" },
-					{ "time": 0.6333, "name": "bg-3" },
-					{ "time": 0.7333, "name": "bg-4" },
-					{ "time": 0.8333, "name": "bg-0" }
+					{ "time": 0.6667, "name": "bg-0" },
+					{ "time": 0.8, "name": "bg-1" },
+					{ "time": 0.9333, "name": "bg-2" },
+					{ "time": 1.0667, "name": "bg-3" },
+					{ "time": 1.2, "name": "bg-4" },
+					{ "time": 1.3667, "name": "bg-0" }
 				]
 			},
 			"bg-multiplier": {
 				"color": [
-					{ "color": "ffffff00" },
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.5, "color": "ffffffff", "curve": "stepped" },
-					{ "time": 1.2, "color": "ffffffff" },
-					{ "time": 1.7, "color": "ffffff00" }
+					{ "time": 2, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.8, "color": "ffffff00" }
 				]
 			},
 			"light": {
@@ -89,12 +88,10 @@
 			},
 			"light3": {
 				"color": [
-					{ "color": "ffffff00" },
-					{ "time": 0.5, "color": "ffffff3f" },
-					{ "time": 1, "color": "ffffff00" }
-				],
-				"attachment": [
-					{ "name": "light" }
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5, "color": "ffffff3f", "curve": 0.25, "c3": 0.75 },
+					{ "time": 2, "color": "ffffff00" }
 				]
 			},
 			"text": {
@@ -102,8 +99,8 @@
 					{ "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": 0.263, "c3": 0.618, "c4": 0.43 },
 					{ "time": 0.5333, "color": "ffffffff", "curve": "stepped" },
-					{ "time": 1.2, "color": "ffffffff" },
-					{ "time": 1.7, "color": "ffffff00" }
+					{ "time": 2, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.8, "color": "ffffff00" }
 				]
 			}
 		},
@@ -141,9 +138,14 @@
 				]
 			},
 			"light-halo": {
-				"scale": [
+				"rotate": [
 					{},
-					{ "time": 1, "x": 4, "y": 4 }
+					{ "time": 2, "angle": 180 }
+				],
+				"scale": [
+					{ "x": 0.5, "y": 0.5, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "x": 2, "y": 2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2 }
 				]
 			}
 		}

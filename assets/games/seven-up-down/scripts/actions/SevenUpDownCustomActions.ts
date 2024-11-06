@@ -16,7 +16,7 @@ export const showMultiplier = (game: SevenUpDown) => (data) => {
 };
 
 export const clearRoundData = (game: SevenUpDown) => () => {
-    game.multiplierComp?.resetMultiplier();
+    game.multiplierComp?.resetMultiplier(true);
     game.resultComp?.setResultNodeVisibility(false);
 };
 
@@ -25,6 +25,6 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
         const { result, roundId } = roundHistory[0];
         game.resultComp?.showResultNoAnim(result, roundId);
         game.resultComp?.setResultNodeVisibility(false);
-        game.multiplierComp?.resetMultiplier();
+        game.multiplierComp?.resetMultiplier(false);
     }
 };

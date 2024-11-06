@@ -13,17 +13,20 @@ export default class SevenUpDownMultiplier extends cc.Component {
     private multiplierAnim: SevenUpDownMultiplierChoice = null;
 
     onLoad() {
-        this.resetMultiplier();
+        this.resetMultiplier(false);
     }
 
-    resetMultiplier() {
+    onEnable() {
+        this.resetMultiplier(false);
+    }
+
+    resetMultiplier(animated: boolean) {        
         this.listMultiplier.forEach(async (item) => {
-            if (item.children.length > 0) {
+            if (animated && item.children.length > 0) {
                 const comp = item.children[0].getComponent(SevenUpDownMultiplierChoice);
                 await comp.hideMultiplier();
-
-                item.destroyAllChildren();
             }
+            item.destroyAllChildren();
         });
     }
 

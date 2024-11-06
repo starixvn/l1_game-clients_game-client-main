@@ -71,7 +71,7 @@ export default class SevenUpDown extends MiniGameBase {
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
-    showResultDuration = 7;
+    showResultDuration = 8;
     private readonly SHOW_MULTIPLIER_DURATION = 3;
     private doLaterPayOutCallback = () => {
         // callback
@@ -105,9 +105,9 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     closeGame() {
-        super.closeGame();
         this.clearWinningBet();
         this.unschedule(this.doLaterPayOutCallback);
+        super.closeGame();
     }
 
     onGameHide(): void {
@@ -192,7 +192,7 @@ export default class SevenUpDown extends MiniGameBase {
         if (multiplier) {
             this.spineExtraPaid.node.active = true;
             AnimationUtils.playSpine(this.spineExtraPaid, "show");
-            await AnimationUtils.delayTime(2);
+            await AnimationUtils.delayTime(2.5);
             this.gameAudios?.playSFXAudio("multiplier");
             this.multiplierComp.renderMultiplier(multiplier, this.gameConfigs?.multipliers || []);
             await AnimationUtils.delayTime(this.SHOW_MULTIPLIER_DURATION);

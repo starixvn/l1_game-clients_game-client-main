@@ -1,6 +1,6 @@
 
-bg-multiplier.webp
-size: 1024,512
+bg-multiplier.png
+size: 2048,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -20,21 +20,21 @@ bg-1
   index: -1
 bg-2
   rotate: false
-  xy: 526, 273
+  xy: 682, 10
   size: 338, 122
   orig: 338, 122
   offset: 0, 0
   index: -1
 bg-3
   rotate: false
-  xy: 526, 149
+  xy: 806, 273
   size: 338, 122
   orig: 338, 122
   offset: 0, 0
   index: -1
 bg-4
-  rotate: true
-  xy: 866, 57
+  rotate: false
+  xy: 806, 149
   size: 338, 122
   orig: 338, 122
   offset: 0, 0
@@ -42,14 +42,21 @@ bg-4
 bg-multiplier
   rotate: false
   xy: 2, 133
-  size: 522, 262
-  orig: 522, 262
+  size: 542, 262
+  orig: 542, 262
   offset: 0, 0
   index: -1
 light
   rotate: false
-  xy: 682, 2
+  xy: 1022, 2
   size: 145, 145
   orig: 145, 145
+  offset: 0, 0
+  index: -1
+light-halo
+  rotate: true
+  xy: 546, 134
+  size: 261, 258
+  orig: 261, 258
   offset: 0, 0
   index: -1

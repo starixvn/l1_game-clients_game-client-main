@@ -229,33 +229,11 @@ export default class Splash extends cc.Component {
         });
     }
 
-    private loadIcon(position: "top" | "bottom") {
-        const imagePath = `${this.href}/${position === "top" ? "top" : "bot"}.webp`;
-
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
-            if (err) {
-                console.error(`Failed to load image: ${imagePath}`, err);
-                return;
-            }
-
-            try {
-                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-                if (position === "top") {
-                    this.iconTop.spriteFrame = spriteFrameTmp;
-                } else {
-                    this.iconBottom.spriteFrame = spriteFrameTmp;
-                }
-            } catch (e) {
-                console.error(`Error setting sprite frame for ${position}`, e);
-            }
-        });
-    }
-
     private loadIconTop() {
-        this.loadIcon("top");
+        // handle after
     }
 
     private loadIconBottom() {
-        this.loadIcon("bottom");
+        // handle after
     }
 }

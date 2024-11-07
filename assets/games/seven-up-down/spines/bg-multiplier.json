@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "TKaKRflLpFUsHMPAnfW+nn3dH2o", "spine": "3.8.99", "x": -271, "y": -132.06, "width": 542, "height": 263.06 },
+"skeleton": { "hash": "F6TUfgvuLGW13Y/95Z/vkEHsiXc", "spine": "3.8.99", "x": -765.66, "y": -401.13, "width": 1398, "height": 786 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "show-multiplier", "parent": "root" },
@@ -76,9 +76,9 @@
 			},
 			"bg-overlay": {
 				"color": [
-					{ "color": "ffffff00", "curve": 0.284, "c3": 0.625, "c4": 0.38 },
-					{ "time": 0.1667, "color": "ffffff85", "curve": 0.304, "c2": 0.24, "c3": 0.685, "c4": 0.73 },
-					{ "time": 2, "color": "ffffffce", "curve": 0.379, "c2": 0.6, "c3": 0.723 },
+					{ "color": "ffffff00", "curve": 0.313, "c3": 0.648, "c4": 0.35 },
+					{ "time": 0.1333, "color": "ffffffab", "curve": 0.277, "c2": 0.12, "c3": 0.754 },
+					{ "time": 2, "color": "ffffffce", "curve": 0.25, "c3": 0.75 },
 					{ "time": 2.8, "color": "ffffff00" }
 				],
 				"attachment": [
@@ -166,7 +166,7 @@
 			},
 			"bg-overlay": {
 				"scale": [
-					{ "x": 0.4, "y": 0.4, "curve": 0.25, "c3": 0.75 },
+					{ "x": 0.8, "y": 0.8, "curve": 0.25, "c3": 0.75 },
 					{ "time": 2.8 }
 				]
 			}

@@ -106,10 +106,10 @@ export default class SevenUpDown extends MiniGameBase {
 
     closeGame() {
         this.clearWinningBet();
-        _.forEach(this.betItems, (item) => {
-            item.clearBet();
-            item.resetHighlight();
-        });
+        // _.forEach(this.betItems, (item) => {
+        //     item.clearBet();
+        //     item.resetHighlight();
+        // });
         this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
     }

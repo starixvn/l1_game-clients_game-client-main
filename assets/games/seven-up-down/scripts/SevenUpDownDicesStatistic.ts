@@ -60,6 +60,10 @@ export default class SevenUpDownDicesStatistic extends cc.Component {
     }
 
     updatePercentages(dataLogs: any[]) {
+        if (dataLogs.length === 0) {
+            return;
+        }
+
         const percentage = GameUtils.calculateWinPercentage(this.getChoices, dataLogs);
         this.itemPercentList.forEach((item) => {
             item.string = `${percentage[item.node.name]}%`;

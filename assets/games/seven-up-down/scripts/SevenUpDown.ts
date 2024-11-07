@@ -249,18 +249,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.betItems.forEach((betItem) => betItem.setHighlight(settlement.settlementResult[betItem.node.name.toLowerCase()], true));
     }
 
-    initMiniRoundHistory(node: cc.Node) {
-        this.miniRoundHistory = node.getComponent(MiniRoundHistory);
-        this.miniRoundHistory.managedByParent = true;
-
-        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-            this.miniRoundHistory.nextItemActive = false;
-        });
-        this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-            this.miniRoundHistory.nextItemActive = true;
-        });
-    }
-
     initRoundHistory(node: cc.Node) {
         this.statisticHistory = node.getComponent(SevenUpDownDicesStatistic);
         this.statisticHistory.logView.managedByParent = true;

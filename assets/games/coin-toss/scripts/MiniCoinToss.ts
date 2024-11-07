@@ -1,5 +1,6 @@
 import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
+import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
@@ -17,7 +18,7 @@ import { FlipCoin } from "./FlipCoin";
 import { HighlightResult } from "./HighLightResult";
 import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
 import { CoinTossId, coinTossConfigs } from "./MiniCoinTossConfigs";
-import MiniCoinTossLedLight from "./MiniCoinTossLedLight";
+
 import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { ICoinTossResult, ICoinTossSettlement } from "./MiniCoinTossTypes";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
@@ -74,7 +75,6 @@ export default class MiniCoinToss extends MiniGameBase {
     public flipCoin: FlipCoin = null;
     public highlightResult: HighlightResult = null;
     public statisticHistory: MiniCoinTossRoundHistory = null;
-    public miniRoundHistory: MiniCoinTossLedLight = null;
 
     protected betHistory: MiniCoinTossBetHistory;
     startRoundDuration = 3;
@@ -269,18 +269,6 @@ export default class MiniCoinToss extends MiniGameBase {
 
     highlightAndPayout(settlement: any) {
         this.betItems.forEach((betItem) => betItem.setHighlight(settlement.settlementResult[betItem.node.name.toLowerCase()], true));
-    }
-
-    initMiniRoundHistory(node: cc.Node) {
-        this.miniRoundHistory = node.getComponent(MiniCoinTossLedLight);
-        this.miniRoundHistory.managedByParent = true;
-
-        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-            this.miniRoundHistory.nextItemActive = false;
-        });
-        this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-            this.miniRoundHistory.nextItemActive = true;
-        });
     }
 
     initRoundHistory(node: cc.Node) {

@@ -16,11 +16,16 @@ import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import { Settlement } from "../../_base_new/models/Settlement";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { addMatchToRoundHistory, handleBeginStarting, handleNotice, handlePlacingBet, handleUserBetPercentage } from "./actions/FootballCoinTossCustomActions";
+import {
+    addMatchToRoundHistory,
+    handleBeginStarting,
+    handleNotice,
+    handlePlacingBet,
+    handleUserBetPercentage
+} from "./actions/FootballCoinTossCustomActions";
 import FootballCoinTossBetItem from "./FootballCoinTossBetItem";
 import { footballCoinTossConfigs, FootballCoinTossId } from "./FootballCoinTossConfigs";
 import { LastMatchConfig, MatchConfig } from "./FootballCoinTossConstant";
-import FootballCoinTossLedLight from "./FootballCoinTossLedLight";
 import FootballCoinTossRoundHistory from "./FootballCoinTossRoundHistory";
 import { IFootballCoinTossResult, IFootballCoinTossSettlement } from "./FootballCoinTossTypes";
 import { FootballCoinTossWinningResult } from "./FootballCoinTossWinningResult";
@@ -80,7 +85,6 @@ export default class FootballCoinToss extends MiniGameBase {
     public flipCoin: FootballFlipCoin = null;
     public highlightResult: FootballHighlightResult = null;
     public statisticHistory: FootballCoinTossRoundHistory = null;
-    public miniRoundHistory: FootballCoinTossLedLight = null;
     protected betHistory: FootballCoinTossBetHistory;
     startRoundDuration = 3;
     protected delayPayoutDuration = 0.5;
@@ -301,18 +305,6 @@ export default class FootballCoinToss extends MiniGameBase {
 
     highlightAndPayout(settlement: any) {
         this.betItems.forEach((betItem) => betItem.setHighlight(settlement.settlementResult[betItem.node.name.toLowerCase()], true));
-    }
-
-    initMiniRoundHistory(node: cc.Node) {
-        this.miniRoundHistory = node.getComponent(FootballCoinTossLedLight);
-        this.miniRoundHistory.managedByParent = true;
-
-        this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.CHANGE, () => () => {
-            this.miniRoundHistory.nextItemActive = false;
-        });
-        this.emitterListener(this.gameData.durations, Durations.Events.LOCKING_BET, () => () => {
-            this.miniRoundHistory.nextItemActive = true;
-        });
     }
 
     initRoundHistory(node: cc.Node) {

@@ -253,6 +253,7 @@ export default class GatewayGame extends BaseComponent {
         });
 
         this.socketIOController.closeSocket(this.gameId);
+        this.socket.disconnect();
         this.socket = null;
     }
 

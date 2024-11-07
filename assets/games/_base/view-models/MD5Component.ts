@@ -142,8 +142,10 @@ export default class MD5Component extends cc.Component {
 
     generateMD5Result(data: MD5Type) {
         const value = data?.hashValue || data?.rawValue;
-        const formatValue = value.length > this.maximumStringAllowed ? value.slice(0, this.lengthOfMd5) + "..." : value;
-        this.md5Value.string = `${formatValue}`;
+        if (value) {
+            const formatValue = value.length > this.maximumStringAllowed ? value.slice(0, this.lengthOfMd5) + "..." : value;
+            this.md5Value.string = `${formatValue}`;
+        }
     }
 
     resetMd5() {

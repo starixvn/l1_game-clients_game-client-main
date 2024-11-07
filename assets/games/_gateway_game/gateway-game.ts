@@ -8,6 +8,7 @@ import CategoryController from "../../common/category/category-controller";
 import { CategoryEvent } from "../../common/category/category-events";
 import CategoryItem from "../../common/category/category-item";
 import GameUtils from "../../common/GameUtils";
+import { buildSharedResourceUrl } from "../../common/helpers/UrlHelper";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UserProfile from "../../common/user-profile/UserProfile";
 import { userManager } from "../../common/user/UserManager";
@@ -32,11 +33,10 @@ interface GameConfigJson {
     durations: DurationsJson;
 }
 
+const DEFAULT_PATH_CONFIG_GATEWAY = "gateway/102/info.json";
+
 @ccclass
 export default class GatewayGame extends BaseComponent {
-    @property(cc.JsonAsset)
-    protected configs: cc.JsonAsset = null;
-
     @property(cc.Prefab)
     protected gamePrefab: cc.Prefab = null;
 
@@ -48,6 +48,8 @@ export default class GatewayGame extends BaseComponent {
 
     @lazyInject(SocketIOController)
     protected readonly socketIOController: SocketIOController;
+
+    protected configs: GameConfigJson = null;
     protected socket: Socket;
     protected gameId = 0;
     protected gameIds: number[] = [];
@@ -63,12 +65,13 @@ export default class GatewayGame extends BaseComponent {
     }
     protected readonly CategoryFilter = "category-filter";
 
-    onLoad() {
+    async onLoad() {
         //for room game
         appManager.currentScene = this;
 
         this.ensureEnableMusicPlayer();
         this.loadUserData();
+        await this.getGatewayConfig();
         this.loadConfigs();
 
         if (this.checkReloadOpenedGame()) {
@@ -84,6 +87,16 @@ export default class GatewayGame extends BaseComponent {
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
 
         uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
+    }
+
+    async getGatewayConfig() {
+        try {
+            const configUrl = buildSharedResourceUrl(`${DEFAULT_PATH_CONFIG_GATEWAY}?v=${Date.now()}`);
+            const jsonAsset = await GameUtils.loadRemote<cc.JsonAsset>(configUrl);
+            this.configs = (jsonAsset?.json as GameConfigJson) ?? null;
+        } catch (error) {
+            cc.log("Get Gateway config failed!");
+        }
     }
 
     checkReloadOpenedGame() {
@@ -108,7 +121,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     loadConfigs() {
-        const configs = this.configs.json as GameConfigJson;
+        const configs = this.configs;
         this.gameId = configs.gameId;
         this.gameIds = Object.keys(configs.games)
             .map((key) => +key)

@@ -11,32 +11,30 @@ export default class SevenUpDownMultiplier extends cc.Component {
     listMultiplier: cc.Node[] = [];
 
     private multiplierAnim: SevenUpDownMultiplierChoice = null;
-
-    onLoad() {
-        this.resetMultiplier(false);
-    }
+    multipliersConfigs = [];
 
     onEnable() {
         this.resetMultiplier(false);
     }
 
-    resetMultiplier(animated: boolean) {        
-        this.listMultiplier.forEach(async (item) => {
-            if (animated && item.children.length > 0) {
-                const comp = item.children[0].getComponent(SevenUpDownMultiplierChoice);
-                await comp.hideMultiplier();
+    resetMultiplier(animated: boolean) {
+        this.listMultiplier.forEach((item) => {
+            if (animated) {
+                const comp = item.getComponent(SevenUpDownMultiplierChoice);
+                comp.hideMultiplier(animated);
             }
-            item.destroyAllChildren();
         });
     }
 
-    renderMultiplier(multiplier: any, listMultipliers: number[], animated = true) {
+    renderMultiplier(multiplier: any, animated = true) {
+        if (!multiplier) {
+            return;
+        }
         const choice = this.listMultiplier.find((choice) => choice.name === multiplier.choice);
-        const multiplierNode = cc.instantiate(this.pfbMultiplier);
-        this.multiplierAnim = multiplierNode.getComponent(SevenUpDownMultiplierChoice);
+        this.multiplierAnim = choice.getComponent(SevenUpDownMultiplierChoice);
         this.multiplierAnim.multiplierValue = multiplier.value;
-        this.multiplierAnim.listMultiplierOrgin = listMultipliers;
-        choice.addChild(multiplierNode);
+        this.multiplierAnim.listMultiplierOrgin = this.multipliersConfigs;
+        choice.active = true;
         this.multiplierAnim.showMultiplier(animated);
     }
 }

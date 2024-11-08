@@ -10,17 +10,10 @@ import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
-import { Multiplier } from "../../_base_new/models/Multiplier";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import {
-    clearRoundData,
-    handleBeginStarting,
-    handleFirstLoadRoundHistory,
-    handlePlacingBet,
-    showMultiplier
-} from "./actions/SevenUpDownCustomActions";
+import { clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -90,6 +83,7 @@ export default class SevenUpDown extends MiniGameBase {
 
     onEnable(): void {
         super.onEnable();
+        this.betItems.forEach((betItem) => betItem.resetHighlight());
         this.statisticHistory.node.active = true;
     }
 
@@ -138,7 +132,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.emitterListener(this.gameData.durations, this.startRoundEvent, clearRoundData);
         this.emitterListener(this.gameData.durations, Durations.Events.PLACING_BET, handlePlacingBet);
         this.emitterListener(this.gameData.durations, Durations.Events.BEGIN_LOCKING_BET, showStopBetMessage);
-        this.emitterListener(this.gameData.multiplier, Multiplier.Events.CHANGE, showMultiplier);
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.FIRST_LOAD, handleFirstLoadRoundHistory);
     }
 
@@ -196,9 +189,10 @@ export default class SevenUpDown extends MiniGameBase {
         if (multiplier) {
             this.spineExtraPaid.node.active = true;
             AnimationUtils.playSpine(this.spineExtraPaid, "show");
-            await AnimationUtils.delayTime(2.8);
+            await AnimationUtils.delayTime(2.5);
             this.gameAudios?.playSFXAudio("multiplier");
-            this.multiplierComp.renderMultiplier(multiplier, this.gameConfigs?.multipliers || []);
+            this.multiplierComp.multipliersConfigs = this.gameConfigs?.multipliers;
+            this.multiplierComp.renderMultiplier(multiplier, true);
             await AnimationUtils.delayTime(this.SHOW_MULTIPLIER_DURATION);
         }
         this.gameAudios?.playSFXAudio("dice_shake");
@@ -235,7 +229,7 @@ export default class SevenUpDown extends MiniGameBase {
             const { result, roundId } = settlement;
             this.resultComp.showResultNoAnim(result, roundId);
             this.resultComp.displayTotalPoints(result);
-            this.multiplierComp?.renderMultiplier(result?.multiplier, [], false);
+            this.multiplierComp?.renderMultiplier(result?.multiplier, false);
         }
     }
 

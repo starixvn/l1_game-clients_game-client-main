@@ -1,4 +1,3 @@
-import SpineAttachmentNode from "../../../common/SpineAttachmentNode";
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import SevenUpDownMultiplierItem from "./SevenUpDownMultiplierItem";
 
@@ -18,16 +17,13 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     private readonly MULTIPLIER_NUMBER = 29;
     private readonly noAnimMultiplierPosY = 16;
     private readonly OFFSET_MULTIPLIER = 1090;
-    private listMultiplier = [];
-    private rollingTween: cc.Tween = null;
 
     public listMultiplierOrgin = [];
     public multiplierValue = 0;
 
     showMultiplier(animated: boolean) {
-        this.rollingTween?.stop();
-        this.runMultiplierAnimation(animated);
         if (animated) {
+            AnimationUtils.playSpine(this.spineMultiplier, "show");
             this.appendMultiplier();
             this.animRollingMultiplier();
         } else {
@@ -37,11 +33,10 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     animRollingMultiplier() {
+        this.lblMultiplier.position = cc.v3(this.lblMultiplier.position.x, -this.noAnimMultiplierPosY, 0);
+        this.lblMultiplier.opacity = 255;
         const normalSpinDuration = 3;
-        this.lblMultiplier.position.y = 0;
-
-        this.rollingTween = cc
-            .tween(this.lblMultiplier)
+        cc.tween(this.lblMultiplier)
             .delay(0.2)
             .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
             .start();
@@ -52,10 +47,11 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     appendMultiplier() {
-        this.appendListMultiplierAnim();
+        this.lblMultiplier.destroyAllChildren();
+        const listMultipliers = this.genarateRandomMultipliers();
         this.setFinalMultiplier();
 
-        for (const multiplier of this.listMultiplier) {
+        for (const multiplier of listMultipliers) {
             const item = this.renderMultiplierValue(multiplier);
             this.lblMultiplier.addChild(item);
         }
@@ -66,37 +62,41 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     renderMultiplierValue(value: number) {
         const multiplierItem = cc.instantiate(this.pfbMultiplier);
         const comp = multiplierItem.getComponent(SevenUpDownMultiplierItem);
-        const spineAttachment = multiplierItem.addComponent(SpineAttachmentNode);
-        spineAttachment.skeleton = this.spineMultiplier;
-        spineAttachment.boneName = "value";
         comp.multiplierValue = value;
         return multiplierItem;
     }
 
-    runMultiplierAnimation(animated: boolean) {
-        if (animated) {
-            AnimationUtils.playSpine(this.spineMultiplier, "show");
-        } else {
-            AnimationUtils.pauseSpineAnimation(this.spineMultiplier, 1, "show");
+    hideMultiplier(animated: boolean) {
+        if (!animated) {
+            this.node.active = false;
+            return;
         }
-    }
-
-    async hideMultiplier() {
         const hideDurationTime = 0.2;
-        cc.tween(this.lblMultiplier).to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" }).start();
-        await AnimationUtils.playSpine(this.spineMultiplier, "hide");
+        cc.tween(this.lblMultiplier)
+            .to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" })
+            .call(() => {
+                this.node.active = false;
+            })
+            .start();
+        AnimationUtils.playSpine(this.spineMultiplier, "hide");
     }
 
-    appendListMultiplierAnim() {
+    genarateRandomMultipliers() {
+        if (!this.listMultiplierOrgin || this.listMultiplierOrgin.length === 0) {
+            return;
+        }
+        let listMultiplier = [];
+
         const reverseList = this.listMultiplierOrgin.slice().reverse();
         const length = this.listMultiplierOrgin.length;
         const mod = this.MULTIPLIER_NUMBER % length;
         const countLoop = Math.floor(this.MULTIPLIER_NUMBER / length);
         for (let i = 0; i < countLoop; i++) {
-            this.listMultiplier = [...this.listMultiplier, ...reverseList];
+            listMultiplier = [...listMultiplier, ...reverseList];
         }
         if (mod > 0) {
-            this.listMultiplier = [...this.listMultiplier, ...reverseList.slice(0, mod)];
+            listMultiplier = [...listMultiplier, ...reverseList.slice(0, mod)];
         }
+        return listMultiplier;
     }
 }

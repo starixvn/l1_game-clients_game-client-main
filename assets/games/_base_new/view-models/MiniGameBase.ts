@@ -10,7 +10,17 @@ import { Durations } from "../../_new/_base/game-data-management/models/duration
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
 import { TotalBets } from "../../_new/_base/game-data-management/models/total-bets";
 import NewMiniGameBase from "../../_new/_base/NewMiniGameBase";
-import { changeBetPercentage, handleFlyOwnChipFake, handlePayChips, placeBetFailed, placeBetSuccess, placeOwnChipsFake, updateOwnBets, updatePreviousBets, updateTotalBets } from "../actions/BetAction";
+import {
+    changeBetPercentage,
+    handleFlyOwnChipFake,
+    handlePayChips,
+    placeBetFailed,
+    placeBetSuccess,
+    placeOwnChipsFake,
+    updateOwnBets,
+    updatePreviousBets,
+    updateTotalBets
+} from "../actions/BetAction";
 import {
     changeGameRound,
     checkToOffUM,
@@ -29,7 +39,18 @@ import {
     showHashAtPlacingBet,
     updateMD5String
 } from "../actions/CommonAction";
-import { clearRoundData, handleForceTimeOut, showLastRoundId, startGameLoop, stopGameLoop, updateLockBet, updatePlacingBet, updateStartingRound, updateTimeOut, updateWaiting } from "../actions/TimeAction";
+import {
+    clearRoundData,
+    handleForceTimeOut,
+    showLastRoundId,
+    startGameLoop,
+    stopGameLoop,
+    updateLockBet,
+    updatePlacingBet,
+    updateStartingRound,
+    updateTimeOut,
+    updateWaiting
+} from "../actions/TimeAction";
 import { BetDetailsUrl } from "../models/BetDetailsUrl";
 import { BetModel } from "../models/BetModel";
 import { BoostedChoicesModel } from "../models/BoostedChoicesModel";
@@ -289,7 +310,7 @@ export default class MiniGameBase extends NewMiniGameBase {
         this.emitterListener(this.gameData.roundHistory, RoundHistory.Events.WINNING_STREAK, handleWinningStreak);
 
         this.emitterListener(this.gameData, NewGameData.Events.CHANGE_ROUND_ID, changeGameRound);
-        this.emitterListener(this.gameData.resultHash, ResultHash.Events.CHANGE, updateMD5String);
+
         this.emitterListener(this.gameData.settlement, Settlement.Events.RECEIVED_LOGIN_PLAYER_STATUS, onReceiveLoginPlayerStatus);
         this.emitterListener(this.gameData.settlement, Settlement.Events.RECEIVED_OTHERS_STATUS, onReceiveOthersStatus);
         this.emitterListener(this.gameData.settlement, Settlement.Events.SHOW_STATUS, handleShowStatus);
@@ -301,6 +322,11 @@ export default class MiniGameBase extends NewMiniGameBase {
         this.emitterListener(this.gameData.boostedChoicesModel, BoostedChoicesModel.Events.CHANGE, handleBoostedChoices);
 
         this.emitterListener(this.gameData.betDetailsUrl, BetDetailsUrl.Events.CHANGE, showBetDetailsUrl);
+        this.initResultHashDataEvent();
+    }
+
+    initResultHashDataEvent() {
+        this.emitterListener(this.gameData.resultHash, ResultHash.Events.CHANGE, updateMD5String);
     }
 
     checkShowUmMessage(data: any) {

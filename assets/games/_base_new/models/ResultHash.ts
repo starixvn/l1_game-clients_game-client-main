@@ -7,6 +7,10 @@ export class ResultHash extends EventEmitterBase {
 
     protected hash: any;
 
+    get resultHash() {
+        return this.hash;
+    }
+
     change(resultHash: any) {
         this.hash = resultHash;
         this.emit(ResultHash.Events.CHANGE, this.hash);

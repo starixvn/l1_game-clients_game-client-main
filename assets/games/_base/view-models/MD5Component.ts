@@ -136,15 +136,19 @@ export default class MD5Component extends cc.Component {
         if (this.node && this.node.isValid) {
             this.setCaptionAndHintForMD5(!!data?.rawValue);
             this.generateMD5Result(data);
-            this.setCopyString(data?.hashValue || data?.rawValue);
         }
     }
 
     generateMD5Result(data: MD5Type) {
         const value = data?.hashValue || data?.rawValue;
+        this.updateValue(value);
+    }
+
+    updateValue(value: string) {
         if (value) {
             const formatValue = value.length > this.maximumStringAllowed ? value.slice(0, this.lengthOfMd5) + "..." : value;
             this.md5Value.string = `${formatValue}`;
+            this.setCopyString(value);
         }
     }
 

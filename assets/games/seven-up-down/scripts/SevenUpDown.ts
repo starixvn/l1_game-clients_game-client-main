@@ -10,17 +10,18 @@ import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
+import { ResultHash } from "../../_base_new/models/ResultHash";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet } from "./actions/SevenUpDownCustomActions";
+import { clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet, updateMD5String } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
 import { findWinningChoice } from "./SevenUpDownHelper";
 import SevenUpDownMultiplier from "./SevenUpDownMultiplier";
 import SevenUpDownResult from "./SevenUpDownResult";
-import { ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
+import { ISevenUpDownResult, ISevenUpDownSettlement, ISevenUpDownSettlementResult } from "./SevenUpDownTypes";
 
 const { ccclass, property } = cc._decorator;
 
@@ -64,8 +65,12 @@ export default class SevenUpDown extends MiniGameBase {
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
-    showResultDuration = 8;
+    multiplierTween: cc.Tween = null;
+    showResultDuration = 7;
+
+    private readonly SHOW_EXTRA_PAY_DURATION = 2;
     private readonly SHOW_MULTIPLIER_DURATION = 3;
+    private readonly TOTAL_SHOW_MULTIPLIER_DURATION = 5;
     private doLaterPayOutCallback = () => {
         // callback
     };
@@ -100,12 +105,8 @@ export default class SevenUpDown extends MiniGameBase {
 
     closeGame() {
         this.clearWinningBet();
-        // _.forEach(this.betItems, (item) => {
-        //     item.clearBet();
-        //     item.resetHighlight();
-        // });
-        this.unschedule(this.doLaterPayOutCallback);
         super.closeGame();
+        this.unschedule(this.doLaterPayOutCallback);
     }
 
     onGameHide(): void {
@@ -121,6 +122,19 @@ export default class SevenUpDown extends MiniGameBase {
         super.initMiniPanel(miniPanel);
         this.gameId = SevenUpDownId;
         this.setConfig(sevenUpDownConfigs);
+    }
+
+    initGameDataDurations() {
+        super.initGameDataDurations();
+
+        this.gameData.durations.addEvent(Durations.Events.END_EXTRA_ANIMATION, {
+            startTimePoint: this.config.fullTime,
+            endTimePoint: this.config.fullTime - this.TOTAL_SHOW_MULTIPLIER_DURATION
+        });
+    }
+
+    initResultHashDataEvent() {
+        this.emitterListener(this.gameData.resultHash, ResultHash.Events.CHANGE, updateMD5String);
     }
 
     initGameDataEvents() {
@@ -164,6 +178,8 @@ export default class SevenUpDown extends MiniGameBase {
 
     resetDataAndUI() {
         super.resetDataAndUI();
+        this.multiplierTween?.stop();
+        this.spineExtraPaid.node.active = false;
         this.clearWinningBet();
     }
 
@@ -184,26 +200,45 @@ export default class SevenUpDown extends MiniGameBase {
     async handleAnimResult(settlement: ISevenUpDownSettlement, roundId: number) {
         const { result } = settlement;
         const multiplier = result?.multiplier;
-        const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
 
-        if (multiplier) {
-            this.spineExtraPaid.node.active = true;
-            AnimationUtils.playSpine(this.spineExtraPaid, "show");
-            await AnimationUtils.delayTime(2.5);
-            this.gameAudios?.playSFXAudio("multiplier");
-            this.multiplierComp.multipliersConfigs = this.gameConfigs?.multipliers;
-            this.multiplierComp.renderMultiplier(multiplier, true);
-            await AnimationUtils.delayTime(this.SHOW_MULTIPLIER_DURATION);
-        }
+        const extraPayMessageDelayTime = !!multiplier ? this.SHOW_EXTRA_PAY_DURATION : 0;
+        const multiplierDelayTime = !!multiplier ? this.SHOW_MULTIPLIER_DURATION : 0;
+
+        this.multiplierTween?.stop();
+        this.multiplierTween = cc
+            .tween(this.node)
+            .call(() => {
+                if (multiplier) {
+                    this.spineExtraPaid.node.active = true;
+                    AnimationUtils.playSpine(this.spineExtraPaid, "show");
+                }
+            })
+            .delay(extraPayMessageDelayTime)
+            .call(() => {
+                if (multiplier) {
+                    this.gameAudios?.playSFXAudio("multiplier");
+                    this.multiplierComp.multipliersConfigs = this.gameConfigs?.multipliers;
+                    this.multiplierComp.renderMultiplier(multiplier, true);
+                }
+            })
+            .delay(multiplierDelayTime)
+            .call(async () => {
+                await this.showResultAnim(result, roundId);
+
+                if (this.gameData?.settlement?.settlement) {
+                    this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
+                    this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
+                }
+            })
+            .start();
+    }
+
+    async showResultAnim(result: ISevenUpDownResult, roundId: number) {
         this.gameAudios?.playSFXAudio("dice_shake");
+        const prevResult = this.gameData.roundHistory.roundHistory[0]?.result;
         this.resultComp.showResultAnim(prevResult, result, roundId);
 
         await AnimationUtils.delayTime(this.resultComp?.RESULT_DURATION);
-
-        if (this.gameData?.settlement?.settlement) {
-            this.gameAudios?.playSFXAudio(this.generateWinningKey(settlement));
-            this.gameData?.settlement?.finishShowResult(this.gameData?.settlement?.settlement, true);
-        }
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
@@ -212,7 +247,7 @@ export default class SevenUpDown extends MiniGameBase {
         return `${choiceWin}_win_${language}`;
     }
 
-    handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
+    async handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
         this.showWinChoiceAndUpdateHistory(settlement);
         const doLaterPayOut = () => {
             this.highlightWonItems(settlement?.settlementResult);
@@ -226,10 +261,16 @@ export default class SevenUpDown extends MiniGameBase {
         } else {
             this.doLaterPayOutCallback();
 
+            const needAnimation = this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION);
             const { result, roundId } = settlement;
-            this.resultComp.showResultNoAnim(result, roundId);
-            this.resultComp.displayTotalPoints(result);
-            this.multiplierComp?.renderMultiplier(result?.multiplier, false);
+
+            if (needAnimation) {
+                await this.showResultAnim(result, roundId);
+            } else {
+                this.resultComp.showResultNoAnim(result, roundId);
+                this.resultComp.displayTotalPoints(result);
+                this.multiplierComp?.renderMultiplier(result?.multiplier, false);
+            }
         }
     }
 

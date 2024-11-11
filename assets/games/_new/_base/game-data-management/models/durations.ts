@@ -20,6 +20,7 @@ export class Durations extends EventEmitterBase {
         WAITING: "waiting",
         CHANGE_REMAINING_TIME: "changeRemainingTime",
         SHOW_ANIMATION: "showAnimation",
+        END_EXTRA_ANIMATION: "showEndExtraAnimation",
         BEGIN_SHOW_ANIMATION: "beginShowAnimation",
         BEGIN_LOCKING_BET: "beginLockingBet",
         BEGIN_WAITING: "beginWaiting",

@@ -14,19 +14,24 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(sp.Skeleton)
     spineMultiplier: sp.Skeleton = null;
 
-    private readonly MULTIPLIER_NUMBER = 29;
+    @property(sp.Skeleton)
+    spineParticle: sp.Skeleton = null;
+
+    private readonly MULTIPLIER_NUMBER = 27;
     private readonly noAnimMultiplierPosY = 16;
-    private readonly OFFSET_MULTIPLIER = 1090;
+    private readonly OFFSET_MULTIPLIER = 1016;
 
     public listMultiplierOrgin = [];
     public multiplierValue = 0;
 
-    showMultiplier(animated: boolean) {
+    async showMultiplier(animated: boolean) {
         this.lblMultiplier.opacity = 255;
         if (animated) {
-            AnimationUtils.playSpine(this.spineMultiplier, "show");
             this.appendMultiplier();
             this.animRollingMultiplier();
+            console.timeEnd("check --------");
+            AnimationUtils.playSpine(this.spineMultiplier, "show");
+            AnimationUtils.playSpine(this.spineParticle, "show");
         } else {
             this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
             this.setFinalMultiplier();
@@ -35,10 +40,10 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     animRollingMultiplier() {
         this.lblMultiplier.position = cc.v3(this.lblMultiplier.position.x, -this.noAnimMultiplierPosY, 0);
-        const normalSpinDuration = 3;
+        const normalSpinDuration = 4;
         cc.tween(this.lblMultiplier)
-            .delay(0.2)
-            .to(normalSpinDuration - 0.13 * 3, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
+            .to(normalSpinDuration - 0.13 * 3 - 0.26, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) })
+            .delay(0.26)
             .call(() => {
                 const lastNode = this.lblMultiplier.children[0];
                 cc.tween(lastNode).to(0.13, { scale: 1.3 }).to(0.13, { scale: 0.8 }).to(0.13, { scale: 1 }).start();

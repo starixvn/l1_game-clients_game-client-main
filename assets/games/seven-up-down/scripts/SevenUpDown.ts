@@ -67,9 +67,9 @@ export default class SevenUpDown extends MiniGameBase {
     multiplierTween: cc.Tween = null;
     showResultDuration = 7;
 
-    private readonly SHOW_EXTRA_PAY_DURATION = 2;
-    private readonly SHOW_MULTIPLIER_DURATION = 3;
-    private readonly TOTAL_SHOW_MULTIPLIER_DURATION = 5;
+    private readonly SHOW_EXTRA_PAY_DURATION = 2.46;
+    private readonly SHOW_MULTIPLIER_DURATION = 4;
+    private readonly TOTAL_SHOW_MULTIPLIER_DURATION = 6;
     private doLaterPayOutCallback = () => {
         // callback
     };
@@ -205,6 +205,7 @@ export default class SevenUpDown extends MiniGameBase {
             .call(() => {
                 if (multiplier) {
                     this.spineExtraPaid.node.active = true;
+                    console.time("check --------");
                     AnimationUtils.playSpine(this.spineExtraPaid, "show");
                 }
             })

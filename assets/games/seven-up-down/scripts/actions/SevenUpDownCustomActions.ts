@@ -28,7 +28,11 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => async (roundHi
 
     const latestRound = roundHistory[0];
 
-    if (game.gameData.durations.isPlacingBet()) {
+    if (
+        game.gameData.durations.isPlacingBet() ||
+        game.gameData.durations.isLocking() ||
+        game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND)
+    ) {
         handlePlacingBetPhase(game, latestRound);
     }
 

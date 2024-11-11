@@ -10,11 +10,10 @@ import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
-import { ResultHash } from "../../_base_new/models/ResultHash";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
-import { clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet, updateMD5String } from "./actions/SevenUpDownCustomActions";
+import { clearRoundData, handleBeginStarting, handleFirstLoadRoundHistory, handlePlacingBet } from "./actions/SevenUpDownCustomActions";
 import SevenUpDownBetHistory from "./history/SevenUpDownBetHistory";
 import { sevenUpDownConfigs, SevenUpDownId } from "./SevenUpDownConfigs";
 import SevenUpDownDicesStatistic from "./SevenUpDownDicesStatistic";
@@ -131,10 +130,6 @@ export default class SevenUpDown extends MiniGameBase {
             startTimePoint: this.config.fullTime,
             endTimePoint: this.config.fullTime - this.TOTAL_SHOW_MULTIPLIER_DURATION
         });
-    }
-
-    initResultHashDataEvent() {
-        this.emitterListener(this.gameData.resultHash, ResultHash.Events.CHANGE, updateMD5String);
     }
 
     initGameDataEvents() {

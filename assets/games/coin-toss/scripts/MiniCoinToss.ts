@@ -1,6 +1,5 @@
 import { i18n } from "../../../ClientModules";
 import AudioManager from "../../../common/audio/AudioManager";
-import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
@@ -14,16 +13,15 @@ import { BetModel } from "../../_base_new/models/BetModel";
 import { RoundHistory } from "../../_base_new/models/RoundHistory";
 import MiniGameBase from "../../_base_new/view-models/MiniGameBase";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
+import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
 import { FlipCoin } from "./FlipCoin";
 import { HighlightResult } from "./HighLightResult";
+import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
 import MiniCoinTossBetItem from "./MiniCoinTossBetItem";
-import { CoinTossId, coinTossConfigs } from "./MiniCoinTossConfigs";
-
+import { coinTossConfigs, CoinTossId } from "./MiniCoinTossConfigs";
 import MiniCoinTossRoundHistory from "./MiniCoinTossRoundHistory";
 import { ICoinTossResult, ICoinTossSettlement } from "./MiniCoinTossTypes";
 import { MiniCoinTossWinningResult } from "./MiniCoinTossWinningResult";
-import { handleBeginStarting, handlePlacingBet, handleUserBetPercentage } from "./actions/MiniCoinTossCustomActions";
-import MiniCoinTossBetHistory from "./history/MiniCoinTossBetHistory";
 
 const { ccclass, property } = cc._decorator;
 

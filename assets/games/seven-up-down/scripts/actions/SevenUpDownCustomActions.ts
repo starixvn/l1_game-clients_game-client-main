@@ -53,7 +53,7 @@ export const updateMD5String = (game: SevenUpDown) => (data) => {
         !game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION) &&
         game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING)
     ) {
-        return game.md5Component.updateValue(data?.rawValue);
+        game.md5Component.updateValue(data?.rawValue);
     } else {
         game.md5Component.updateMD5Data(data);
     }

@@ -22,23 +22,27 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     public multiplierValue = 0;
 
     showMultiplier(animated: boolean) {
+        this.lblMultiplier.opacity = 255;
         if (animated) {
             AnimationUtils.playSpine(this.spineMultiplier, "show");
             this.appendMultiplier();
             this.animRollingMultiplier();
         } else {
             this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
-            this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+            this.setFinalMultiplier();
         }
     }
 
     animRollingMultiplier() {
         this.lblMultiplier.position = cc.v3(this.lblMultiplier.position.x, -this.noAnimMultiplierPosY, 0);
-        this.lblMultiplier.opacity = 255;
         const normalSpinDuration = 3;
         cc.tween(this.lblMultiplier)
             .delay(0.2)
-            .to(normalSpinDuration, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
+            .to(normalSpinDuration - 0.13 * 3, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) }, { easing: "sineOut" })
+            .call(() => {
+                const lastNode = this.lblMultiplier.children[0];
+                cc.tween(lastNode).to(0.13, { scale: 1.3 }).to(0.13, { scale: 0.8 }).to(0.13, { scale: 1 }).start();
+            })
             .start();
     }
 
@@ -47,7 +51,6 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     appendMultiplier() {
-        this.lblMultiplier.destroyAllChildren();
         const listMultipliers = this.genarateRandomMultipliers();
         this.setFinalMultiplier();
 
@@ -68,17 +71,23 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     hideMultiplier(animated: boolean) {
         if (!animated) {
-            this.node.active = false;
+            this.resetMultiplierChoice();
             return;
         }
         const hideDurationTime = 0.2;
         cc.tween(this.lblMultiplier)
             .to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" })
             .call(() => {
-                this.node.active = false;
+                this.resetMultiplierChoice();
             })
             .start();
         AnimationUtils.playSpine(this.spineMultiplier, "hide");
+    }
+
+    resetMultiplierChoice() {
+        this.node.active = false;
+        this.lblMultiplier.destroyAllChildren();
+        this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
     }
 
     genarateRandomMultipliers() {

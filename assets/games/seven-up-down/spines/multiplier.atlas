@@ -1,167 +1,27 @@
 
-multiplier.webp
-size: 1024,512
+multiplier.png
+size: 512,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-FX_SweerpCircle_03
-  rotate: false
-  xy: 424, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_04
-  rotate: false
-  xy: 516, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_05
-  rotate: false
-  xy: 608, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_06
-  rotate: false
-  xy: 700, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_07
-  rotate: false
-  xy: 94, 342
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_08
-  rotate: false
-  xy: 792, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_09
-  rotate: false
-  xy: 884, 406
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-FX_SweerpCircle_10
-  rotate: false
-  xy: 2, 354
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-frame
-  rotate: false
-  xy: 34, 446
-  size: 84, 50
-  orig: 84, 50
-  offset: 0, 0
-  index: -1
 frame-circle
-  rotate: false
-  xy: 120, 444
-  size: 70, 52
-  orig: 70, 52
-  offset: 0, 0
-  index: -1
-frame-circle-border
-  rotate: false
-  xy: 192, 444
+  rotate: true
+  xy: 265, 100
   size: 70, 52
   orig: 70, 52
   offset: 0, 0
   index: -1
 frame-circle-light
-  rotate: false
-  xy: 264, 431
+  rotate: true
+  xy: 265, 172
   size: 88, 65
   orig: 88, 65
   offset: 0, 0
   index: -1
-mask
+light-halo
   rotate: false
-  xy: 354, 428
-  size: 68, 68
-  orig: 68, 68
-  offset: 0, 0
-  index: -1
-star
-  rotate: false
-  xy: 2, 466
-  size: 30, 30
-  orig: 30, 30
-  offset: 0, 0
-  index: -1
-star_1
-  rotate: false
-  xy: 196, 226
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_2
-  rotate: false
-  xy: 398, 204
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_3
-  rotate: false
-  xy: 600, 204
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_4
-  rotate: false
-  xy: 802, 204
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_5
-  rotate: false
-  xy: 2, 24
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_6
-  rotate: false
-  xy: 204, 2
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_7
-  rotate: false
-  xy: 406, 2
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_8
-  rotate: false
-  xy: 608, 2
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-star_9
-  rotate: false
-  xy: 810, 2
-  size: 200, 200
-  orig: 200, 200
+  xy: 2, 2
+  size: 261, 258
+  orig: 261, 258
   offset: 0, 0
   index: -1

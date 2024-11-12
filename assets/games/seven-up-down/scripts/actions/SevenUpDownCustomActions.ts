@@ -13,8 +13,7 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
 };
 
 export const clearRoundData = (game: SevenUpDown) => () => {
-    game.multiplierComp?.resetMultiplier(true);
-    game.resultComp?.setResultTextVisibility(false);
+    game.resetMultiplierAndResultText();
 };
 
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
@@ -28,7 +27,7 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
         game.gameData.durations.isLocking() ||
         game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND)
     ) {
-        showPrevResult(game, latestRound);
+        showPrevResultAndResetData(game, latestRound);
         return;
     }
 
@@ -53,11 +52,10 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
     }
 };
 
-const showPrevResult = (game: SevenUpDown, latestRound: any) => {
+const showPrevResultAndResetData = (game: SevenUpDown, latestRound: any) => {
     const { result, roundId } = latestRound;
     game.resultComp?.showResultNoAnim(result, roundId);
-    game.resultComp?.setResultTextVisibility(false);
-    game.multiplierComp?.resetMultiplier(false);
+    game.resetMultiplierAndResultText();
 };
 
 const handleMd5Component = async (game: SevenUpDown, settlementResult: any) => {

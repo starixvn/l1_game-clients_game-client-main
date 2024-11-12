@@ -339,4 +339,9 @@ export default class SevenUpDown extends MiniGameBase {
             }
         }
     }
+
+    resetMultiplierAndResultText() {
+        this.multiplierComp?.resetMultiplier(true);
+        this.resultComp?.setResultTextVisibility(false);
+    }
 }

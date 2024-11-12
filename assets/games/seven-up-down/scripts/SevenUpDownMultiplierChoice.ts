@@ -6,7 +6,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(cc.Node)
-    lblMultiplier: cc.Node = null;
+    nodeMultiplier: cc.Node = null;
 
     @property(cc.Prefab)
     pfbMultiplier: cc.Prefab = null;
@@ -18,14 +18,14 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     spineParticle: sp.Skeleton = null;
 
     private readonly MULTIPLIER_NUMBER = 27;
-    private readonly noAnimMultiplierPosY = 16;
+    private readonly NO_ANIM_MULTIPLIER = 16;
     private readonly OFFSET_MULTIPLIER = 1016;
 
-    public listMultiplierOrgin = [];
+    public listMultiplierOrigin = [];
     public multiplierValue = 0;
 
     async showMultiplier(animated: boolean) {
-        this.lblMultiplier.opacity = 255;
+        this.nodeMultiplier.opacity = 255;
         AnimationUtils.playSpine(this.spineParticle, "show", true);
         if (animated) {
             this.appendMultiplier();
@@ -34,37 +34,37 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         } else {
             AnimationUtils.playSpine(this.spineMultiplier, "idle", false);
             this.setFinalMultiplier();
-            this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
+            this.nodeMultiplier.position.y = -this.NO_ANIM_MULTIPLIER;
         }
     }
 
     animRollingMultiplier() {
-        this.lblMultiplier.position = cc.v3(this.lblMultiplier.position.x, -this.noAnimMultiplierPosY, 0);
+        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
         const normalSpinDuration = 4;
-        cc.tween(this.lblMultiplier)
-            .to(normalSpinDuration - 0.13 * 3 - 0.26, { position: cc.v2(this.lblMultiplier.x, -this.OFFSET_MULTIPLIER) })
+        cc.tween(this.nodeMultiplier)
+            .to(normalSpinDuration - 0.13 * 3 - 0.26, { position: cc.v2(this.nodeMultiplier.x, -this.OFFSET_MULTIPLIER) })
             .delay(0.26)
             .call(() => {
-                const lastNode = this.lblMultiplier.children[0];
+                const lastNode = this.nodeMultiplier.children[0];
                 cc.tween(lastNode).to(0.13, { scale: 1.3 }).to(0.13, { scale: 0.8 }).to(0.13, { scale: 1 }).start();
             })
             .start();
     }
 
     setFinalMultiplier() {
-        this.lblMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+        this.nodeMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
     }
 
     appendMultiplier() {
-        const listMultipliers = this.genarateRandomMultipliers();
+        const listMultipliers = this.generateRandomMultipliers();
         this.setFinalMultiplier();
 
         for (const multiplier of listMultipliers) {
             const item = this.renderMultiplierValue(multiplier);
-            this.lblMultiplier.addChild(item);
+            this.nodeMultiplier.addChild(item);
         }
 
-        this.lblMultiplier.getComponent(cc.Layout).updateLayout();
+        this.nodeMultiplier.getComponent(cc.Layout).updateLayout();
     }
 
     renderMultiplierValue(value: number) {
@@ -80,7 +80,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
             return;
         }
         const hideDurationTime = 0.2;
-        cc.tween(this.lblMultiplier)
+        cc.tween(this.nodeMultiplier)
             .to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" })
             .call(() => {
                 this.resetMultiplierChoice();
@@ -91,18 +91,18 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     resetMultiplierChoice() {
         this.node.active = false;
-        this.lblMultiplier.destroyAllChildren();
-        this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
+        this.nodeMultiplier.destroyAllChildren();
+        this.nodeMultiplier.position.y = -this.NO_ANIM_MULTIPLIER;
     }
 
-    genarateRandomMultipliers() {
-        if (!this.listMultiplierOrgin || this.listMultiplierOrgin.length === 0) {
+    generateRandomMultipliers() {
+        if (!this.listMultiplierOrigin || this.listMultiplierOrigin.length === 0) {
             return;
         }
         let listMultiplier = [];
 
-        const reverseList = this.listMultiplierOrgin.slice().reverse();
-        const length = this.listMultiplierOrgin.length;
+        const reverseList = this.listMultiplierOrigin.slice().reverse();
+        const length = this.listMultiplierOrigin.length;
         const mod = this.MULTIPLIER_NUMBER % length;
         const countLoop = Math.floor(this.MULTIPLIER_NUMBER / length);
         for (let i = 0; i < countLoop; i++) {

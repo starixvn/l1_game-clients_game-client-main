@@ -4,18 +4,11 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SevenUpDownMultiplier extends cc.Component {
-    @property(cc.Prefab)
-    pfbMultiplier: cc.Prefab = null;
-
     @property(cc.Node)
     listMultiplier: cc.Node[] = [];
 
     private multiplierAnim: SevenUpDownMultiplierChoice = null;
     multipliersConfigs = [];
-
-    onLoad() {
-        this.resetMultiplier(false);
-    }
 
     onEnable() {
         this.resetMultiplier(false);
@@ -35,7 +28,7 @@ export default class SevenUpDownMultiplier extends cc.Component {
         const choice = this.listMultiplier.find((choice) => choice.name === multiplier.choice);
         this.multiplierAnim = choice.getComponent(SevenUpDownMultiplierChoice);
         this.multiplierAnim.multiplierValue = multiplier.value;
-        this.multiplierAnim.listMultiplierOrgin = this.multipliersConfigs;
+        this.multiplierAnim.listMultiplierOrigin = this.multipliersConfigs;
         choice.active = true;
         this.multiplierAnim.showMultiplier(animated);
     }

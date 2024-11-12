@@ -12,11 +12,6 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
     game.highlightLastResult();
 };
 
-export const showMultiplier = (game: SevenUpDown) => (data) => {
-    game.gameAudios?.playSFXAudio("multiplier");
-    game.multiplierComp?.renderMultiplier(data, game.gameConfigs?.multipliers || []);
-};
-
 export const clearRoundData = (game: SevenUpDown) => () => {
     game.multiplierComp?.resetMultiplier(true);
     game.resultComp?.setResultNodeVisibility(false);

@@ -205,7 +205,6 @@ export default class SevenUpDown extends MiniGameBase {
             .call(() => {
                 if (multiplier) {
                     this.spineExtraPaid.node.active = true;
-                    console.time("check --------");
                     AnimationUtils.playSpine(this.spineExtraPaid, "show");
                 }
             })
@@ -259,13 +258,12 @@ export default class SevenUpDown extends MiniGameBase {
 
             const needAnimation = this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION);
             const { result, roundId } = settlement;
-
+            this.multiplierComp?.renderMultiplier(result?.multiplier, false);
             if (needAnimation) {
                 await this.showResultAnim(result, roundId);
             } else {
                 this.resultComp.showResultNoAnim(result, roundId);
                 this.resultComp.displayTotalPoints(result);
-                this.multiplierComp?.renderMultiplier(result?.multiplier, false);
             }
         }
     }

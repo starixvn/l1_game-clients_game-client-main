@@ -29,10 +29,10 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         if (animated) {
             this.appendMultiplier();
             this.animRollingMultiplier();
-            console.timeEnd("check --------");
             AnimationUtils.playSpine(this.spineMultiplier, "show");
-            AnimationUtils.playSpine(this.spineParticle, "show");
+            AnimationUtils.playSpine(this.spineParticle, "show", true);
         } else {
+            AnimationUtils.playSpine(this.spineMultiplier, "idle", false);
             this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
             this.setFinalMultiplier();
         }

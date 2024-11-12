@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "w2ol/DfvLoy2f309tJUyw2M6f6Q", "spine": "3.8.99" },
+"skeleton": { "hash": "oF3yC4EfgZPgjyVkKi1FVhhzGzc", "spine": "3.8.99" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "multipflier-value", "parent": "root" },
@@ -54,6 +54,15 @@
 				"scale": [
 					{},
 					{ "time": 0.4, "x": 0.1, "y": 0.1 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"frame-circle": {
+				"attachment": [
+					{ "name": "frame-circle" }
 				]
 			}
 		}

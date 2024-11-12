@@ -17,7 +17,7 @@ export const clearRoundData = (game: SevenUpDown) => () => {
     game.resultComp?.setResultTextVisibility(false);
 };
 
-export const handleFirstLoadRoundHistory = (game: SevenUpDown) => async (roundHistory) => {
+export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
     const hasRoundHistory = roundHistory.length > 0;
     if (!hasRoundHistory) return;
 
@@ -29,13 +29,26 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => async (roundHi
         game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND)
     ) {
         handlePlacingBetPhase(game, latestRound);
+        return;
     }
 
     if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION)) {
-        await handleEndExtraAnimationPhase(game, latestRound);
-    } else if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING)) {
+        if (game.isDisableGame) {
+            const { result, roundId } = latestRound;
+            game.resultComp?.showResultNoAnim(result, roundId);
+            game.resultComp?.showResultText(result);
+            return;
+        }
+
+        handleEndExtraAnimationPhase(game, latestRound);
+
+        return;
+    }
+
+    if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING)) {
         const { rawValue } = game.gameData.resultHash.resultHash;
         game.md5Component.updateValue(rawValue);
+        return;
     }
 };
 

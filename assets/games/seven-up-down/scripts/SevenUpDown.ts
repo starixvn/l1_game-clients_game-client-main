@@ -263,8 +263,8 @@ export default class SevenUpDown extends MiniGameBase {
             if (needAnimation) {
                 await this.showResultAnim(result, roundId);
             } else {
-                this.resultComp.showResultNoAnim(result, roundId);
-                this.resultComp.showResultText(result);
+                this.resultComp?.showResultNoAnim(result, roundId);
+                this.resultComp?.showResultText(result);
             }
         }
     }

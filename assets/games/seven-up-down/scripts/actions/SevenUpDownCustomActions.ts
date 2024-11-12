@@ -14,7 +14,7 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
 
 export const clearRoundData = (game: SevenUpDown) => () => {
     game.multiplierComp?.resetMultiplier(true);
-    game.resultComp?.setResultNodeVisibility(false);
+    game.resultComp?.setResultTextVisibility(false);
 };
 
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => async (roundHistory) => {
@@ -42,7 +42,7 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => async (roundHi
 const handlePlacingBetPhase = (game: SevenUpDown, latestRound: any) => {
     const { result, roundId } = latestRound;
     game.resultComp?.showResultNoAnim(result, roundId);
-    game.resultComp?.setResultNodeVisibility(false);
+    game.resultComp?.setResultTextVisibility(false);
     game.multiplierComp?.resetMultiplier(false);
 };
 

@@ -34,7 +34,7 @@ export default class SevenUpDownResult extends cc.Component {
     RESULT_DURATION = 1.4;
 
     onLoad() {
-        this.setResultNodeVisibility(false);
+        this.setResultTextVisibility(false);
         this.resetResultDiceFrames();
         this.initDiceSpriteFrames();
     }
@@ -69,7 +69,7 @@ export default class SevenUpDownResult extends cc.Component {
         });
     }
 
-    setResultNodeVisibility(isShow: boolean) {
+    setResultTextVisibility(isShow: boolean) {
         if (!this.nodeResult) {
             return;
         }
@@ -84,15 +84,18 @@ export default class SevenUpDownResult extends cc.Component {
         cc.tween(this.nodeResult).to(0.2, { scale: 1.2 }, { easing: "bounceOut" }).to(0.3, { scale: 1, opacity: 255 }).start();
     }
 
-    displayTotalPoints(result: ISevenUpDownResult) {
-        this.setResultNodeVisibility(true);
+    showResultText(result: ISevenUpDownResult) {
+        const choiceWin = determineWinningChoice(calcTotalPoints(result));
+        this.setResultText(choiceWin.toUpperCase());
+        this.setResultTextVisibility(true);
+    }
 
-        const totalPoints = calcTotalPoints(result);
-        const choiceWin = determineWinningChoice(totalPoints);
-
-        if (this.lblResult) {
-            this.lblResult.string = choiceWin.toUpperCase();
+    setResultText(value: string) {
+        if (!this.lblResult || !value) {
+            return;
         }
+
+        this.lblResult.string = value;
     }
 
     async showResultAnim(prevResult: ISevenUpDownResult, result: ISevenUpDownResult, roundId: number) {
@@ -104,7 +107,7 @@ export default class SevenUpDownResult extends cc.Component {
             dice.runAnimation(this.resultDiceFrames[`dice${index + 1}`], this.RESULT_DURATION);
         });
         await AnimationUtils.delayTime(this.RESULT_DURATION);
-        this.displayTotalPoints(result);
+        this.showResultText(result);
     }
 
     private getRandomNumber(max: number): number {

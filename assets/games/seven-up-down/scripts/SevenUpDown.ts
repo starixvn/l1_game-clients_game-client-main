@@ -176,6 +176,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.multiplierTween?.stop();
         this.spineExtraPaid.node.active = false;
         this.clearWinningBet();
+        this.resultComp?.setResultTextVisibility(false);
     }
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {
@@ -263,7 +264,7 @@ export default class SevenUpDown extends MiniGameBase {
                 await this.showResultAnim(result, roundId);
             } else {
                 this.resultComp.showResultNoAnim(result, roundId);
-                this.resultComp.displayTotalPoints(result);
+                this.resultComp.showResultText(result);
             }
         }
     }

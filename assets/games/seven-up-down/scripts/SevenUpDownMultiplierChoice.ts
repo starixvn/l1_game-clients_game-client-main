@@ -26,15 +26,15 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     async showMultiplier(animated: boolean) {
         this.lblMultiplier.opacity = 255;
+        AnimationUtils.playSpine(this.spineParticle, "show", true);
         if (animated) {
             this.appendMultiplier();
             this.animRollingMultiplier();
             AnimationUtils.playSpine(this.spineMultiplier, "show");
-            AnimationUtils.playSpine(this.spineParticle, "show", true);
         } else {
             AnimationUtils.playSpine(this.spineMultiplier, "idle", false);
-            this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
             this.setFinalMultiplier();
+            this.lblMultiplier.position.y = -this.noAnimMultiplierPosY;
         }
     }
 

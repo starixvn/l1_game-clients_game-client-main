@@ -28,38 +28,39 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
         game.gameData.durations.isLocking() ||
         game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND)
     ) {
-        handlePlacingBetPhase(game, latestRound);
+        showPrevResult(game, latestRound);
         return;
     }
+
+    const { rawValue } = game.gameData.resultHash.resultHash;
 
     if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION)) {
         if (game.isDisableGame) {
             const { result, roundId } = latestRound;
             game.resultComp?.showResultNoAnim(result, roundId);
             game.resultComp?.showResultText(result);
+            game.md5Component?.updateValue(rawValue);
             return;
         }
 
-        handleEndExtraAnimationPhase(game, latestRound);
-
+        handleMd5Component(game, latestRound);
         return;
     }
 
     if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING)) {
-        const { rawValue } = game.gameData.resultHash.resultHash;
-        game.md5Component.updateValue(rawValue);
+        game.md5Component?.updateValue(rawValue);
         return;
     }
 };
 
-const handlePlacingBetPhase = (game: SevenUpDown, latestRound: any) => {
+const showPrevResult = (game: SevenUpDown, latestRound: any) => {
     const { result, roundId } = latestRound;
     game.resultComp?.showResultNoAnim(result, roundId);
     game.resultComp?.setResultTextVisibility(false);
     game.multiplierComp?.resetMultiplier(false);
 };
 
-const handleEndExtraAnimationPhase = async (game: SevenUpDown, settlementResult: any) => {
+const handleMd5Component = async (game: SevenUpDown, settlementResult: any) => {
     game.gameData.settlement.finishShowResult(settlementResult, false);
 
     const { hashValue, rawValue } = game.gameData.resultHash.resultHash;

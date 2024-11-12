@@ -45,7 +45,7 @@ export type MicrositeGameParams = {
     splashEnabled?: boolean;
     isUserGesture?: boolean;
     operator?: string;
-    loadStorage?: { keys: string[] };
+    loadStorage?: { key: string };
     saveStorage?: { [key: string]: any };
 };
 
@@ -164,13 +164,13 @@ export default class BaseMicrositeGame extends cc.Component {
     };
 
     private handleLoadStorage(data: MicrositeGameParams) {
-        const { keys } = data.loadStorage;
-        console.log("microsite load storage ", keys);
-        for (const key of keys) {
-            this.postMessageToMicrosite({
+        const { key } = data.loadStorage;
+        console.log("microsite load storage ", key);
+        this.postMessageToMicrosite({
+            loadStorage: {
                 key: StorageManager.get(key)
-            });
-        }
+            }
+        });
     }
 
     private handleSaveStorage(data: MicrositeGameParams) {

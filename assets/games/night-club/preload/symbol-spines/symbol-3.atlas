@@ -1,13 +1,20 @@
 
 exportAtlas.png
-size: 1024,1024
+size: 2048,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-k
+halo
+  rotate: true
+  xy: 1032, 309
+  size: 87, 87
+  orig: 87, 87
+  offset: 0, 0
+  index: -1
+item-3
   rotate: false
-  xy: 769, 493
-  size: 121, 113
-  orig: 121, 113
+  xy: 796, 783
+  size: 122, 119
+  orig: 122, 119
   offset: 0, 0
   index: -1

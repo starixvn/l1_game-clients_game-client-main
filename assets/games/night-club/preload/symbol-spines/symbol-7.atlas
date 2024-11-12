@@ -1,62 +1,125 @@
 
 exportAtlas.png
-size: 1024,1024
+size: 2048,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bubble_large
-  rotate: false
-  xy: 532, 422
-  size: 153, 152
-  orig: 153, 152
-  offset: 0, 0
-  index: -1
-circle_inside
-  rotate: false
-  xy: 248, 531
-  size: 55, 55
-  orig: 55, 55
-  offset: 0, 0
-  index: -1
-circle_outside
-  rotate: false
-  xy: 649, 175
-  size: 152, 152
-  orig: 152, 152
-  offset: 0, 0
-  index: -1
-eff_dust
-  rotate: false
-  xy: 2, 3
-  size: 872, 866
-  orig: 872, 866
-  offset: 0, 0
-  index: -1
-halo
+item-10/blink
   rotate: true
-  xy: 238, 2
-  size: 711, 632
-  orig: 711, 632
+  xy: 4, 990
+  size: 24, 43
+  orig: 24, 43
   offset: 0, 0
   index: -1
-light
+item-7
   rotate: false
-  xy: 715, 61
-  size: 17, 112
-  orig: 17, 112
+  xy: 796, 501
+  size: 138, 138
+  orig: 138, 138
   offset: 0, 0
   index: -1
-text_en
+item-7-effect
   rotate: false
-  xy: 772, 608
-  size: 122, 78
-  orig: 122, 78
+  xy: 1035, 406
+  size: 70, 70
+  orig: 70, 70
   offset: 0, 0
   index: -1
-wheel_inside
+item-7-text
   rotate: false
-  xy: 38, 252
-  size: 549, 395
-  orig: 549, 395
+  xy: 939, 577
+  size: 135, 32
+  orig: 135, 32
+  offset: 0, 0
+  index: -1
+item-7/ball_00000
+  rotate: false
+  xy: 1014, 672
+  size: 63, 64
+  orig: 63, 64
+  offset: 0, 0
+  index: -1
+item-7/ball_00003
+  rotate: false
+  xy: 1028, 739
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00006
+  rotate: false
+  xy: 1045, 927
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00009
+  rotate: false
+  xy: 1057, 619
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00012
+  rotate: false
+  xy: 1080, 846
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+item-7/ball_00015
+  rotate: false
+  xy: 1017, 867
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00018
+  rotate: false
+  xy: 984, 957
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00021
+  rotate: false
+  xy: 1076, 694
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+item-7/ball_00024
+  rotate: false
+  xy: 1120, 40
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+item-7/ball_00027
+  rotate: false
+  xy: 1084, 100
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00030
+  rotate: false
+  xy: 1074, 538
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00033
+  rotate: false
+  xy: 1027, 804
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+item-7/ball_00035
+  rotate: false
+  xy: 1034, 485
+  size: 63, 63
+  orig: 63, 63
   offset: 0, 0
   index: -1

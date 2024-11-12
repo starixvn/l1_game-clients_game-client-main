@@ -53,6 +53,7 @@ const handleEndExtraAnimationPhase = async (game: SevenUpDown, settlementResult:
 
     if (hashValue) {
         game.md5Component.updateValue(hashValue);
+        game.md5Component.setCaptionAndHintForMD5(false);
     }
 
     if (hashValue && rawValue) {
@@ -61,5 +62,6 @@ const handleEndExtraAnimationPhase = async (game: SevenUpDown, settlementResult:
 
     if (rawValue) {
         game.md5Component.updateValue(rawValue);
+        game.md5Component.setCaptionAndHintForMD5(true);
     }
 };

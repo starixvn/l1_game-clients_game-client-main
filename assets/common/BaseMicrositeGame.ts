@@ -45,6 +45,8 @@ export type MicrositeGameParams = {
     splashEnabled?: boolean;
     isUserGesture?: boolean;
     operator?: string;
+    loadStorage?: { keys: string[] };
+    saveStorage?: { [key: string]: any };
 };
 
 const WebviewEventType = {
@@ -69,7 +71,7 @@ export default class BaseMicrositeGame extends cc.Component {
         this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();
-        window.addEventListener("message", this.handleEvent);
+        window.addEventListener("message", this.handleEventFromMicrosite);
         this.webview?.node.on(
             WebviewEventType.LOADING,
             () => {
@@ -85,7 +87,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected onDestroy(): void {
         window.microsite = {};
-        window.removeEventListener("message", this.handleEvent);
+        window.removeEventListener("message", this.handleEventFromMicrosite);
     }
 
     protected stopMainAction() {
@@ -105,7 +107,7 @@ export default class BaseMicrositeGame extends cc.Component {
         this.webview && (this.webview.url = `${this.micrositeUrl}/${queryString}`);
     }
 
-    handleEvent = async ({ data }: { data: MicrositeGameParams }) => {
+    handleEventFromMicrosite = async ({ data }: { data: MicrositeGameParams }) => {
         if (data.replaceUrl) {
             window.location.replace(data.replaceUrl);
         }
@@ -148,11 +150,37 @@ export default class BaseMicrositeGame extends cc.Component {
             AudioManager.getInstance().isUserGesture = true;
             window.isUserGesture = true;
         }
+        if (data.loadStorage) {
+            this.handleLoadStorage(data);
+        }
+
+        if (data.saveStorage) {
+            this.handleSaveStorage(data);
+        }
 
         this.handleOperator();
 
         this.handleChangeAudio(data);
     };
+
+    private handleLoadStorage(data: MicrositeGameParams) {
+        const { keys } = data.loadStorage;
+        console.log("microsite load storage ", keys);
+        for (const key of keys) {
+            this.postMessageToMicrosite({
+                key: StorageManager.get(key)
+            });
+        }
+    }
+
+    private handleSaveStorage(data: MicrositeGameParams) {
+        const storage = data.saveStorage;
+        const keys = Object.keys(storage);
+        console.log("microsite save storage ", keys);
+        for (const key of Object.keys(storage)) {
+            StorageManager.set(key, storage[key]);
+        }
+    }
 
     protected getMicrositeGameQueryString() {
         return "";

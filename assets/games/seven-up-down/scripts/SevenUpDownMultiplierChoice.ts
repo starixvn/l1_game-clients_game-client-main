@@ -121,7 +121,6 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         this.nodeMultiplier.destroyAllChildren();
         this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
         this.nodeMultiplier.scale = 1;
-        this.nodeMultiplier.getComponent(cc.Layout).updateLayout();
     }
 
     generateRandomMultipliers() {

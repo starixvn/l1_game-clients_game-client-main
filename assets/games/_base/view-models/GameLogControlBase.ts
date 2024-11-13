@@ -49,6 +49,7 @@ export default class GameLogControlBase extends cc.Component {
     set nextItemActive(value: boolean) {
         this._nextItemActive = value;
         this.updateDisplayNextItem();
+        this.node.getComponent(cc.ScrollView).scrollToRight();
     }
 
     updateDisplayNextItem() {
@@ -131,6 +132,7 @@ export default class GameLogControlBase extends cc.Component {
 
     protected addNextMark(rowMax, row, col, nextCol, start) {
         const max = rowMax.hasOwnProperty(col) ? rowMax[col] : this.RowMax;
+
         if (row < max - 1) {
             row++;
         } else {

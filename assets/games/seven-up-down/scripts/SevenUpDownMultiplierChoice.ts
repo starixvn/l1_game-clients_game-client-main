@@ -40,9 +40,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
             AnimationUtils.playSpine(this.spineMultiplier, "show");
         } else {
             AnimationUtils.playSpine(this.spineMultiplier, "idle", false);
-            this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
             this.setFinalMultiplier();
-            this.nodeMultiplier.getComponent(cc.Layout).updateLayout();
         }
     }
 
@@ -108,7 +106,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     resetMultiplierChoice() {
         this.node.active = false;
         this.nodeMultiplier.destroyAllChildren();
-        this.nodeMultiplier.getComponent(cc.Layout).updateLayout();
+        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
     }
 
     generateRandomMultipliers() {

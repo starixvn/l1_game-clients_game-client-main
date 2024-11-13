@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "oF3yC4EfgZPgjyVkKi1FVhhzGzc", "spine": "3.8.99" },
+"skeleton": { "hash": "2/BAW8umgc7YvGlc+kD4ojFAsEA", "spine": "3.8.99" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "multipflier-value", "parent": "root" },
@@ -46,14 +46,19 @@
 				"color": [
 					{ "color": "ffffffff" },
 					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "frame-circle" }
 				]
 			}
 		},
 		"bones": {
 			"frame-multipflier": {
 				"scale": [
-					{},
-					{ "time": 0.4, "x": 0.1, "y": 0.1 }
+					{ "time": 0.0667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1333, "x": 1.2, "y": 1.2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": 0.5, "y": 0.5 }
 				]
 			}
 		}

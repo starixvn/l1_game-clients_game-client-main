@@ -46,20 +46,22 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     animRollingMultiplier() {
         this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
-        const normalSpinDuration = 4;
+        const spinDuration = 4;
+        const scaleDuration = 0.13;
+        const waitingDuration = 0.26;
         this.multiplierTween?.stop();
         this.multiplierTween = cc
             .tween(this.nodeMultiplier)
-            .to(normalSpinDuration - 0.13 * 3 - 0.26, { position: cc.v2(this.nodeMultiplier.x, -this.OFFSET_MULTIPLIER) })
-            .delay(0.26)
+            .to(spinDuration - scaleDuration * 3 - waitingDuration, { position: cc.v2(this.nodeMultiplier.x, -this.OFFSET_MULTIPLIER) })
+            .delay(waitingDuration)
             .call(() => {
-                const lastNode = this.nodeMultiplier.children[0];
+                const lastNode = this.getFinalMultiplier();
                 this.lastMultiplierTween?.stop();
                 this.lastMultiplierTween = cc
                     .tween(lastNode)
-                    .to(0.13, { scale: 1.3 })
-                    .to(0.13, { scale: 0.8 })
-                    .to(0.13, { scale: 1 })
+                    .to(scaleDuration, { scale: 1.3 })
+                    .to(scaleDuration, { scale: 0.8 })
+                    .to(scaleDuration, { scale: 1 })
                     .start();
             })
             .start();
@@ -67,6 +69,10 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
 
     setFinalMultiplier() {
         this.nodeMultiplier.addChild(this.renderMultiplierValue(this.multiplierValue));
+    }
+
+    getFinalMultiplier() {
+        return this.nodeMultiplier.children[0];
     }
 
     appendMultiplier() {
@@ -93,9 +99,16 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
             this.resetMultiplierChoice();
             return;
         }
-        const hideDurationTime = 0.2;
-        cc.tween(this.nodeMultiplier)
-            .to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" })
+        const hideDurationTime = 0.4;
+        const t = cc.tween;
+        t(this.nodeMultiplier)
+            .parallel(
+                t().to(hideDurationTime, { opacity: 0 }, { easing: "sineOut" }),
+                t().call(() => {
+                    const lastNode = this.getFinalMultiplier();
+                    cc.tween(lastNode).to(0.06, { scale: 1.2 }).to(0.06, { scale: 1 }).to(0.2, { scale: 0.5 }).start();
+                })
+            )
             .call(() => {
                 this.resetMultiplierChoice();
             })
@@ -107,6 +120,8 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         this.node.active = false;
         this.nodeMultiplier.destroyAllChildren();
         this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
+        this.nodeMultiplier.scale = 1;
+        this.nodeMultiplier.getComponent(cc.Layout).updateLayout();
     }
 
     generateRandomMultipliers() {

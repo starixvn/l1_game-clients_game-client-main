@@ -1,215 +1,229 @@
 
 icon-game.webp
-size: 512,1024
+size: 2048,512
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 2x
   rotate: false
-  xy: 296, 142
+  xy: 729, 26
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 2x-b
   rotate: false
-  xy: 406, 737
+  xy: 799, 26
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 3x
   rotate: false
-  xy: 406, 667
+  xy: 869, 26
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 3x-b
   rotate: false
-  xy: 406, 597
+  xy: 939, 26
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 4x
   rotate: false
-  xy: 406, 527
+  xy: 1009, 26
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 4x-b
   rotate: false
-  xy: 406, 457
+  xy: 1014, 228
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 5x
   rotate: false
-  xy: 406, 387
+  xy: 1014, 158
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 5x-b
   rotate: false
-  xy: 406, 317
+  xy: 1079, 88
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 6x
   rotate: false
-  xy: 406, 247
+  xy: 1079, 18
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 6x-b
   rotate: false
-  xy: 366, 142
+  xy: 1070, 430
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 7x
   rotate: false
-  xy: 328, 72
+  xy: 1070, 360
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 7x-b
   rotate: false
-  xy: 398, 72
+  xy: 1084, 290
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 8x
   rotate: false
-  xy: 328, 2
+  xy: 1140, 430
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 8x-b
   rotate: false
-  xy: 398, 2
+  xy: 1140, 360
   size: 68, 68
   orig: 68, 68
   offset: 0, 0
   index: -1
 FX_SweerpCircle_06
   rotate: false
-  xy: 204, 120
+  xy: 500, 4
   size: 90, 90
   orig: 90, 90
   offset: 0, 0
   index: -1
 bg
   rotate: false
-  xy: 2, 818
+  xy: 2, 33
   size: 202, 202
   orig: 202, 202
   offset: 0, 0
   index: -1
 dice-bottom
   rotate: false
-  xy: 204, 48
+  xy: 659, 24
   size: 68, 70
   orig: 68, 70
   offset: 0, 0
   index: -1
 dice-top
   rotate: false
-  xy: 408, 928
+  xy: 408, 2
   size: 90, 92
   orig: 90, 92
   offset: 0, 0
   index: -1
 frame-circle
   rotate: false
-  xy: 408, 807
+  xy: 262, 244
   size: 70, 52
   orig: 70, 52
   offset: 0, 0
   index: -1
 frame-circle-border
-  rotate: true
-  xy: 274, 48
+  rotate: false
+  xy: 334, 244
   size: 70, 52
   orig: 70, 52
   offset: 0, 0
   index: -1
 frame-circle-light
-  rotate: false
-  xy: 408, 861
+  rotate: true
+  xy: 592, 6
   size: 88, 65
   orig: 88, 65
   offset: 0, 0
   index: -1
+light-halo
+  rotate: true
+  xy: 2, 237
+  size: 261, 258
+  orig: 261, 258
+  offset: 0, 0
+  index: -1
+scatter
+  rotate: false
+  xy: 27, 11
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
 star
   rotate: false
-  xy: 406, 222
+  xy: 2, 8
   size: 23, 23
   orig: 23, 23
   offset: 0, 0
   index: -1
 star_1
   rotate: false
-  xy: 2, 616
+  xy: 206, 35
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_2
   rotate: false
-  xy: 206, 820
+  xy: 262, 298
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_3
   rotate: false
-  xy: 2, 414
+  xy: 408, 96
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_4
   rotate: false
-  xy: 2, 212
+  xy: 464, 298
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_5
   rotate: false
-  xy: 2, 10
+  xy: 610, 96
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_6
   rotate: false
-  xy: 204, 616
+  xy: 666, 298
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_7
   rotate: false
-  xy: 204, 414
+  xy: 812, 96
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 star_8
   rotate: false
-  xy: 204, 212
+  xy: 868, 298
   size: 200, 200
   orig: 200, 200
   offset: 0, 0

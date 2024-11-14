@@ -1,0 +1,35 @@
+{
+"skeleton": { "hash": "Ql+wQE2709J4SF+Suu4P58QrUVU", "spine": "3.8.99", "x": -699, "y": -393, "width": 1398, "height": 787.51 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "vfx-plasma", "parent": "root", "scaleX": 5, "scaleY": 5 },
+	{ "name": "light", "parent": "root", "y": 1.51 }
+],
+"slots": [
+	{ "name": "HUD-2", "bone": "root" },
+	{ "name": "bg", "bone": "root", "attachment": "bg" },
+	{ "name": "light", "bone": "light" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"bg": {
+				"bg": { "y": 1.51, "width": 1398, "height": 786 }
+			}
+		}
+	}
+],
+"animations": {
+	"transition": {
+		"slots": {
+			"bg": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.3333, "color": "ffffffff" }
+				]
+			}
+		}
+	}
+}
+}

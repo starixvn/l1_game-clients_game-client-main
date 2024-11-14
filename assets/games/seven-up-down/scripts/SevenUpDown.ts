@@ -59,13 +59,13 @@ export default class SevenUpDown extends MiniGameBase {
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
     public resultComp: SevenUpDownResult = null;
-
+    public isFinishDiceAnim = false;
     protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
     multiplierTween: cc.Tween = null;
-    showResultDuration = 7;
+    showResultDuration = 8;
 
     private readonly SHOW_EXTRA_PAY_DURATION = 2.46;
     private readonly SHOW_MULTIPLIER_DURATION = 4;
@@ -167,8 +167,14 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     public updateRoundHistory() {
-        super.updateRoundHistory();
-        this.statisticHistory && this.statisticHistory.setData(this.currentDataLogs);
+        let dataLogs = this.currentDataLogs;
+
+        if (this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION) && !this.isFinishDiceAnim) {
+            dataLogs = this.currentDataLogs.filter((log) => log.roundId !== this.roundId);
+        }
+
+        this.miniRoundHistory && this.miniRoundHistory.setData(dataLogs);
+        this.statisticHistory && this.statisticHistory.setData(dataLogs);
     }
 
     resetDataAndUI() {
@@ -177,6 +183,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.spineExtraPaid.node.active = false;
         this.clearWinningBet();
         this.resultComp?.setResultTextVisibility(false);
+        this.isFinishDiceAnim = false;
     }
 
     showSettlementResult(settlement: ISevenUpDownSettlement) {
@@ -235,6 +242,8 @@ export default class SevenUpDown extends MiniGameBase {
         this.resultComp.showResultAnim(prevResult, result, roundId);
 
         await AnimationUtils.delayTime(this.resultComp?.RESULT_DURATION);
+
+        this.isFinishDiceAnim = true;
     }
 
     generateMusicWinningKey(result: ISevenUpDownSettlementResult): string {
@@ -244,7 +253,16 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     async handleAfterSettlementResult(settlement: ISevenUpDownSettlement, animated: boolean) {
-        this.showWinChoiceAndUpdateHistory(settlement);
+        const isExtraAnimation = this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION);
+        const { result, roundId } = settlement;
+
+        this.multiplierComp?.renderMultiplier(result?.multiplier, false);
+        if (isExtraAnimation) {
+            await this.showResultAnim(result, roundId);
+        }
+
+        this.showWinChoiceAndUpdateHistory();
+
         const doLaterPayOut = () => {
             this.highlightWonItems(settlement?.settlementResult);
             animated && this.gameAudios?.playSFXAudio(this.generateMusicWinningKey(settlement?.settlementResult));
@@ -256,23 +274,21 @@ export default class SevenUpDown extends MiniGameBase {
             this.scheduleOnce(this.doLaterPayOutCallback, this.delayPayoutDuration);
         } else {
             this.doLaterPayOutCallback();
-
-            const needAnimation = this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION);
-            const { result, roundId } = settlement;
-            this.multiplierComp?.renderMultiplier(result?.multiplier, false);
-            if (needAnimation) {
-                await this.showResultAnim(result, roundId);
-            } else {
+            if (!isExtraAnimation) {
                 this.resultComp?.showResultNoAnim(result, roundId);
                 this.resultComp?.showResultText(result);
             }
         }
     }
 
-    showWinChoiceAndUpdateHistory(settlement: ISevenUpDownSettlement) {
+    showWinChoiceAndUpdateHistory() {
         this.gameData.roundHistory.update();
         this.updateRoundHistory();
-        this.gameData.resultHash.updateUI();
+
+        const { hashValue, rawValue } = this.gameData.resultHash.resultHash;
+        if (!hashValue && rawValue) {
+            this.gameData.resultHash.updateUI();
+        }
     }
 
     highlightAndPayout(settlement: any) {
@@ -341,7 +357,10 @@ export default class SevenUpDown extends MiniGameBase {
     }
 
     resetMultiplierAndResultText() {
-        this.multiplierComp?.resetMultiplier(true);
-        this.resultComp?.setResultTextVisibility(false);
+        if (!this.multiplierComp || !this.resultComp) {
+            return;
+        }
+        this.multiplierComp.resetMultiplier(true);
+        this.resultComp.setResultTextVisibility(false);
     }
 }

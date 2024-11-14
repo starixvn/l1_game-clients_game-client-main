@@ -18,7 +18,8 @@ export const clearRoundData = (game: SevenUpDown) => () => {
 
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
     const hasRoundHistory = roundHistory.length > 0;
-    if (!hasRoundHistory) return;
+
+    if (!hasRoundHistory || !game.resultComp || !game.md5Component) return;
 
     const latestRound = roundHistory[0];
 
@@ -36,29 +37,33 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
     if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION)) {
         if (game.isDisableGame) {
             const { result, roundId } = latestRound;
-            game.resultComp?.showResultNoAnim(result, roundId);
-            game.resultComp?.showResultText(result);
-            game.md5Component?.updateValue(rawValue);
+            game.resultComp.showResultNoAnim(result, roundId);
+            game.resultComp.showResultText(result);
+            game.md5Component.updateValue(rawValue);
             return;
         }
 
-        handleMd5Component(game, latestRound);
+        handleResultAndMd5(game, latestRound);
         return;
     }
 
-    if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING)) {
-        game.md5Component?.updateValue(rawValue);
+    if (
+        game.gameData.durations.isBeingSpecificPhase(Durations.Events.WAITING) ||
+        game.gameData.durations.isBeingSpecificPhase(Durations.Events.STARTING_ROUND)
+    ) {
+        game.md5Component.updateValue(rawValue);
+        game.md5Component.setCaptionAndHintForMD5(true);
         return;
     }
 };
 
 const showPrevResultAndResetData = (game: SevenUpDown, latestRound: any) => {
     const { result, roundId } = latestRound;
-    game.resultComp?.showResultNoAnim(result, roundId);
+    game.resultComp.showResultNoAnim(result, roundId);
     game.resetMultiplierAndResultText();
 };
 
-const handleMd5Component = async (game: SevenUpDown, settlementResult: any) => {
+const handleResultAndMd5 = async (game: SevenUpDown, settlementResult: any) => {
     game.gameData.settlement.finishShowResult(settlementResult, false);
 
     const { hashValue, rawValue } = game.gameData.resultHash.resultHash;

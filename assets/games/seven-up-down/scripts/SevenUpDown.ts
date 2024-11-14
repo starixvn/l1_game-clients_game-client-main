@@ -59,13 +59,13 @@ export default class SevenUpDown extends MiniGameBase {
     public statisticHistory: SevenUpDownDicesStatistic = null;
     public miniRoundHistory: MiniRoundHistory = null;
     public resultComp: SevenUpDownResult = null;
-    public isFinishDiceAnim = false;
     protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
     multiplierTween: cc.Tween = null;
     showResultDuration = 8;
+    isFinishDiceAnim = false;
 
     private readonly SHOW_EXTRA_PAY_DURATION = 2.46;
     private readonly SHOW_MULTIPLIER_DURATION = 4;
@@ -257,7 +257,7 @@ export default class SevenUpDown extends MiniGameBase {
         const { result, roundId } = settlement;
 
         this.multiplierComp?.renderMultiplier(result?.multiplier, false);
-        if (isExtraAnimation) {
+        if (!this.isFinishDiceAnim && isExtraAnimation) {
             await this.showResultAnim(result, roundId);
         }
 

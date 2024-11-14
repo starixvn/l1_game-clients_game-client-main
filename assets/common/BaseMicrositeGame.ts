@@ -193,6 +193,7 @@ export default class BaseMicrositeGame extends cc.Component {
         AudioManager.getInstance().initDefaultStorage();
 
         if (data.gameId > 0) {
+            await this.handleBackFromMicrositeGame();
             this.onClickJoinGame(data.gameId);
             return;
         }

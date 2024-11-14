@@ -1,10 +1,10 @@
 {
-"skeleton": { "hash": "cIz0+3kBzuV4zjaLiYtS2K0/6wM", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
+"skeleton": { "hash": "1DgOiliwlgZpFxYqpNe+lpEcchs", "spine": "3.8.99", "x": -101, "y": -101, "width": 202, "height": 202 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "icon-game", "parent": "root" },
 	{ "name": "bg", "parent": "icon-game" },
-	{ "name": "bone", "parent": "root", "x": 38.34, "y": -21.78 },
+	{ "name": "bone", "parent": "root", "x": 41.83, "y": -18.99 },
 	{ "name": "dice-bottom", "parent": "bone", "x": 0.22, "y": 1.01 },
 	{ "name": "move-leftright", "parent": "root", "x": -31.54, "y": 12.58 },
 	{ "name": "move-updown", "parent": "move-leftright", "x": -10.47, "y": 9.64 },
@@ -253,7 +253,7 @@
 				"bg": { "width": 202, "height": 202 }
 			},
 			"dice-bottom": {
-				"dice-bottom": { "x": -3.57, "y": 2.27, "width": 68, "height": 70 }
+				"dice-bottom": { "x": -3.57, "y": 2.27, "width": 72, "height": 74 }
 			},
 			"dice-top": {
 				"dice-top": { "x": 10.42, "y": -2.48, "width": 90, "height": 92 }

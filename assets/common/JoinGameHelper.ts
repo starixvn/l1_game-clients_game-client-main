@@ -7,7 +7,7 @@ export default class JoinGameHelper {
     public async joinGameIsNotMiniGame(gameId: number, socketIOControler: SocketIOController) {
         const gameConfiguration = getGameConfiguration(gameId);
         if (!!gameConfiguration?.isMicrosite) {
-            GameUtils.openGameMicrosite(gameId);
+            await GameUtils.openGameMicrosite(gameId);
             return;
         }
         await GameUtils.tryOpenGameDirect(gameId, socketIOControler);

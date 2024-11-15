@@ -125,6 +125,11 @@ export function isGatewayGame(gameId: number) {
     return gameConfiguration?.gateway;
 }
 
+export function isMicroSite(gameId: number) {
+    const gameConfiguration = getGameConfiguration(gameId);
+    return !!gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
+}
+
 export function getAllGameConfigurations() {
     if (CC_EDITOR) {
         return [];

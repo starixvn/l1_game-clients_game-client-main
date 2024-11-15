@@ -1,7 +1,7 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lazyInject } from "../Application";
-import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame } from "../configs/GameConfigurations";
+import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame, isMicroSite } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
 import { StorageManager } from "../managers/StorageManager";
 import SocketIOController from "../SocketIOController";
@@ -96,7 +96,7 @@ export default class BaseMicrositeGame extends cc.Component {
         audio.stopAllSFX();
         const musicPlayer = MusicPlayer.getInstance();
         musicPlayer.stopBackgroundAudio();
-
+        cc.log("stop main action -------------");
         NotificationService.getInstance().forceKickedOut();
         AuthManager.removeRecheckInInterval();
     }
@@ -193,8 +193,10 @@ export default class BaseMicrositeGame extends cc.Component {
         AudioManager.getInstance().initDefaultStorage();
 
         if (data.gameId > 0) {
-            await this.handleBackFromMicrositeGame();
-            this.onClickJoinGame(data.gameId);
+            await this.onClickJoinGame(data.gameId);
+            if (!isMicroSite(data.gameId)) {
+                await this.handleBackFromMicrositeGame();
+            }
             return;
         }
 
@@ -259,12 +261,12 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected async onClickJoinGame(gameId: number) {
         const joinGameHelper = new JoinGameHelper();
-        if (!GameUtils.isMiniGame(gameId.toString())) {
-            await joinGameHelper.joinGameIsNotMiniGame(gameId, this.socketIOControler);
-        } else {
+        if (GameUtils.isMiniGame(gameId.toString())) {
             cc.director.loadScene("Lobby", () => {
                 GameUtils.openGame(joinGameHelper.getGameId(gameId), appManager.miniPanel);
             });
+        } else {
+            await joinGameHelper.joinGameIsNotMiniGame(gameId, this.socketIOControler);
         }
     }
 

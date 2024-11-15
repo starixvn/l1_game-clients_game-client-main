@@ -74,20 +74,22 @@ export default class GatewayGame extends BaseComponent {
 
         this.ensureEnableMusicPlayer();
         this.loadUserData();
-        await this.getGatewayConfig();
-        this.loadConfigs();
+        try {
+            await this.getGatewayConfig();
+            this.loadConfigs();
 
-        if (this.checkReloadOpenedGame()) {
-            return;
-        }
+            if (this.checkReloadOpenedGame()) {
+                return;
+            }
 
-        this.initSocket();
-        this.initItems();
-        this.initEventForInGameMenu();
-        cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
-        cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
+            this.initSocket();
+            this.initItems();
+            this.initEventForInGameMenu();
+            cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
+            cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
 
-        uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
+            uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
+        } catch (e) {}
     }
 
     async getGatewayConfig() {

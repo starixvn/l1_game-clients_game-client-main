@@ -256,7 +256,7 @@ export default class SevenUpDown extends MiniGameBase {
         const isExtraAnimation = this.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION);
         const { result, roundId } = settlement;
 
-        this.multiplierComp?.renderMultiplier(result?.multiplier, false);
+        !animated && this.multiplierComp?.renderMultiplier(result?.multiplier, false);
         if (!this.isFinishDiceAnim && isExtraAnimation) {
             await this.showResultAnim(result, roundId);
         }

@@ -11,7 +11,6 @@ import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBas
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { GameState } from "../_base/GameState";
-import LineView from "../AHCL/scripts/LineView";
 import { FourGuardiansSlotConfigs } from "../four-guardians/scripts/FourGuardiansSlotConfigs";
 import AutoSpinSettingDialog from "./AutoSpinSettingDialog";
 import BigWinAnimation from "./BigWinAnimation";
@@ -25,6 +24,7 @@ import SlotGameIngameHandler from "./handlers/SlotGameIngameHandler";
 import SlotGameJackpotHandler from "./handlers/SlotGameJackpotHandler";
 import SlotGameSettlementHandler from "./handlers/SlotGameSettlementHandler";
 import LineSelectionDialog from "./LineSelectionDialog";
+import LineView from "./LineView";
 import SlotBoard from "./SlotBoard";
 import { SlotGameBaseConfigs } from "./SlotGameBaseConfigs";
 import { SlotNotification } from "./SlotGameBottomMessage";

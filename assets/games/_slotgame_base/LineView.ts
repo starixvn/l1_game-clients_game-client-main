@@ -1,4 +1,4 @@
-import SlotBoard from "../../_slotgame_base/SlotBoard";
+import SlotBoard from "./SlotBoard";
 
 const { ccclass, property } = cc._decorator;
 

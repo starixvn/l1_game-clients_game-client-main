@@ -37,6 +37,9 @@ const DEFAULT_PATH_CONFIG_GATEWAY = "gateway/102/info.json";
 
 @ccclass
 export default class GatewayGame extends BaseComponent {
+    @property
+    protected gameId = 0;
+
     @property(cc.Prefab)
     protected gamePrefab: cc.Prefab = null;
 
@@ -51,7 +54,6 @@ export default class GatewayGame extends BaseComponent {
 
     protected configs: GameConfigJson = null;
     protected socket: Socket;
-    protected gameId = 0;
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
     protected categoryJson: CategoryJson;
@@ -68,6 +70,7 @@ export default class GatewayGame extends BaseComponent {
     async onLoad() {
         //for room game
         appManager.currentScene = this;
+        sessionManager.storeInRoomGameId(this.gameId);
 
         this.ensureEnableMusicPlayer();
         this.loadUserData();
@@ -77,8 +80,6 @@ export default class GatewayGame extends BaseComponent {
         if (this.checkReloadOpenedGame()) {
             return;
         }
-
-        sessionManager.storeInRoomGameId(this.gameId);
 
         this.initSocket();
         this.initItems();
@@ -122,7 +123,6 @@ export default class GatewayGame extends BaseComponent {
 
     loadConfigs() {
         const configs = this.configs;
-        this.gameId = configs.gameId;
         this.gameIds = Object.keys(configs.games)
             .map((key) => +key)
             .filter((gameId) => userManager.offerGamesIncludeSubGames.includes(gameId) && isGatewayGame(gameId));

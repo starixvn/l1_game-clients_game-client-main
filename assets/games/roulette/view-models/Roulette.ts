@@ -20,6 +20,7 @@ import RouletteBetHandler from "./handlers/RouletteBetHandler";
 import RouletteFinishHandler from "./handlers/RouletteFinishHandler";
 import RouletteLogsHandler from "./handlers/RouletteLogsHandler";
 import RouletteTimeHandler from "./handlers/RouletteTimeHandler";
+import * as sessionManager from "../../../common/auth/SessionManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -101,6 +102,7 @@ export default class Roulette extends SocketIOTableGameBase {
 
     onLoad() {
         this.roundIdContainer.opacity = 0;
+        sessionManager.storeInRoomGameId(RouletteId); // fix bug hide the back-to-lobby button when SSO direct (ref = d_direct) to game.
         this.initMain().then(() => {
             this.initBetBoard();
             super.onLoad();

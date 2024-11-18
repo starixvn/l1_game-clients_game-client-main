@@ -165,7 +165,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
     private handleLoadStorage(data: MicrositeGameParams) {
         const { key } = data.loadStorage;
-        console.log("microsite load storage ", key);
+        cc.log("microsite load storage ", key);
         this.postMessageToMicrosite({
             loadStorage: {
                 key: StorageManager.get(key)
@@ -176,7 +176,7 @@ export default class BaseMicrositeGame extends cc.Component {
     private handleSaveStorage(data: MicrositeGameParams) {
         const storage = data.saveStorage;
         const keys = Object.keys(storage);
-        console.log("microsite save storage ", keys);
+        cc.log("microsite save storage ", keys);
         for (const key of Object.keys(storage)) {
             StorageManager.set(key, storage[key]);
         }

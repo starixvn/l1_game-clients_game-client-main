@@ -244,6 +244,7 @@ export default class BannerController extends cc.Component {
 
     openGame(e, gameId) {
         AudioManager.getInstance().playClick();
+        appManager.isDirectMode = false;
         GameUtils.clearGameSetting(gameId);
         GameUtils.unCacheAndHideGameLoading(uiManager.getCurrentGameId());
         GameUtils.openGame(+gameId, appManager.miniPanel, null, true);

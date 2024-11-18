@@ -15,8 +15,8 @@ export default class MicrositeGameWebView extends BaseMicrositeGame {
         const urlParams = appManager.urlParams;
         if (urlParams.has("token")) {
             const mainUrl = EncryptUtils.base64Encode(window.location.href);
-            const returnMainLobbyUrl =
-                urlParams.has(UrlInfo.Ref) && appManager.checkDirectModeRefData(urlParams.get(UrlInfo.Ref)) ? "" : `&rurl=${mainUrl}`;
+            const existDirectModeInfo = urlParams.has(UrlInfo.Ref) && appManager.checkDirectModeRefData(urlParams.get(UrlInfo.Ref));
+            const returnMainLobbyUrl = existDirectModeInfo ? "" : `&rurl=${mainUrl}`;
             return `?${urlParams.toString()}${returnMainLobbyUrl}&purl=${mainUrl}`;
         } else {
             return "";

@@ -17,7 +17,7 @@ export default class MicrositeGame extends BaseMicrositeGame {
         const directMode = SessionManager.getDirectMode();
         const operator = SessionManager.getOperator();
         const audio = AudioManager.getInstance();
-        const validDirectMode = this.gameId === appManager.directGameId;
+        const validDirectMode = appManager.isDirectMode;
         cc.log("========================= validDirectMode     ", validDirectMode);
         const params = {
             ss: auData.ss,

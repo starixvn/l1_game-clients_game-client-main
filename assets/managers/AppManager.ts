@@ -38,7 +38,7 @@ class AppManager {
     urlInfo = {};
     authorized = false;
 
-    _directMode = false;
+    _isDirectMode = false;
     _appMode = false;
 
     _PFF = false;
@@ -92,7 +92,11 @@ class AppManager {
     }
 
     get isDirectMode() {
-        return this._directMode;
+        return this._isDirectMode;
+    }
+
+    set isDirectMode(value) {
+        this._isDirectMode = value;
     }
 
     get isDirectModeInRoomGame() {
@@ -187,7 +191,7 @@ class AppManager {
                 if (urlParams.has("rurl") && urlParams.get("rurl") !== "") {
                     this.urlInfo[UrlInfo.ReturnUrl] = urlParams.get("rurl");
                 }
-                this._directMode = true;
+                this.isDirectMode = true;
             }
 
             if (this.checkPFFData(refData)) {
@@ -218,7 +222,7 @@ class AppManager {
                 this.urlInfo[UrlInfo.Ref] = data[UrlInfo.Ref];
                 this.urlInfo[UrlInfo.ReturnUrl] = data[UrlInfo.ReturnUrl];
                 this.urlInfo[UrlInfo.DirectGameId] = data[UrlInfo.DirectGameId];
-                this._directMode = true;
+                this.isDirectMode = true;
             }
         }
     }

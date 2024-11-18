@@ -4,6 +4,7 @@ import * as SessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { FormationHandler } from "../../../common/i18n/FormationHandler";
 import { userManager } from "../../../common/user/UserManager";
+import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
@@ -290,6 +291,7 @@ export default class LobbyMenu extends GameIconMenu {
 
     itemPressed(id: number, node: cc.Node) {
         AudioManager.getInstance().playClick();
+        appManager.isDirectMode = false;
         GameUtils.clearGameSetting(id);
         GameUtils.unCacheAndHideGameLoading(uiManager.getCurrentGameId());
         uiManager.setCurrentGameId(id);

@@ -4,8 +4,8 @@ import configs = require("../configs/Configs");
 const { ccclass, property } = cc._decorator;
 
 export enum SystemName {
-    SC1 = "SABA.Games",
-    SC2 = "VGaming"
+    SC1 = "SABA.games",
+    SC2 = "Vgaming"
 }
 @ccclass
 export default class SystemActiveNode extends cc.Component {

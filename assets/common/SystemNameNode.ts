@@ -8,7 +8,7 @@ export enum SystemName {
     SC2 = "Vgaming"
 }
 @ccclass
-export default class SystemActiveNode extends cc.Component {
+export default class SystemNameNode extends cc.Component {
     onLoad() {
         let systemName = SystemName.SC1;
         if (configs.systemType === SystemType.SC2) {

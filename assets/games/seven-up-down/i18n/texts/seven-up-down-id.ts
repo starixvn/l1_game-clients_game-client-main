@@ -165,7 +165,7 @@ export const phrases = {
         win_loss: "Menang Kalah",
         you_reach_max_win: "Anda mencapai Maksimal Menang",
         sha256: "SHA-256",
-        multiplier_time: "Multiplier"
+        multiplier_time: "Winning Boost!"
     }
 };
 

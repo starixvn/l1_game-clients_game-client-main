@@ -149,7 +149,7 @@ export const phrases = {
         win_loss: "赢 输",
         you_reach_max_win: "您达到了最大胜利",
         sha256: "SHA-256",
-        multiplier_time: "Multiplier"
+        multiplier_time: "Winning Boost!"
     }
 };
 

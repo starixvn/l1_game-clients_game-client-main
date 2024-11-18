@@ -147,7 +147,7 @@ export const phrases = {
         win_loss: "贏 輸",
         you_reach_max_win: "您達到了最大勝利",
         sha256: "SHA-256",
-        multiplier_time: "Multiplier"
+        multiplier_time: "Winning Boost!"
     }
 };
 

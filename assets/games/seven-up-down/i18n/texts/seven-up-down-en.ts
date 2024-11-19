@@ -164,7 +164,7 @@ export const phrases = {
         win_loss: "Win Loss",
         you_reach_max_win: "You reached the max win",
         sha256: "SHA-256",
-        multiplier_time: "Winning Boost!"
+        multiplier_time: "WINNING BOOST!"
     }
 };
 

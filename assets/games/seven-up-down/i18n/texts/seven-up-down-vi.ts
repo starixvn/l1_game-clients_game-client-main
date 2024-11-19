@@ -164,7 +164,7 @@ export const phrases = {
         win_loss: "Thắng Thua",
         you_reach_max_win: "Bạn Đã Đạt Mức Tiền Thắng Tối Đa",
         sha256: "SHA-256",
-        multiplier_time: "Gấp Bội Thắng!"
+        multiplier_time: "GẤP BỘI THẮNG!"
     }
 };
 

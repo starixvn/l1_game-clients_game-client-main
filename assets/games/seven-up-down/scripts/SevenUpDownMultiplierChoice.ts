@@ -45,7 +45,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     animRollingMultiplier() {
-        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, 8, 0);
+        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, 26, 0);
         const waitingDuration = 0.26;
         this.multiplierTween?.stop();
         this.multiplierTween = cc

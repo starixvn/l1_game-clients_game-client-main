@@ -10,7 +10,17 @@ import { Durations } from "../../_new/_base/game-data-management/models/duration
 import { GameData } from "../../_new/_base/game-data-management/models/game-data";
 import { TotalBets } from "../../_new/_base/game-data-management/models/total-bets";
 import NewMiniGameBase from "../../_new/_base/NewMiniGameBase";
-import { changeBetPercentage, handleFlyOwnChipFake, handlePayChips, placeBetFailed, placeBetSuccess, placeOwnChipsFake, updateOwnBets, updatePreviousBets, updateTotalBets } from "../actions/BetAction";
+import {
+    changeBetPercentage,
+    handleFlyOwnChipFake,
+    handlePayChips,
+    placeBetFailed,
+    placeBetSuccess,
+    placeOwnChipsFake,
+    updateOwnBets,
+    updatePreviousBets,
+    updateTotalBets
+} from "../actions/BetAction";
 import {
     changeGameRound,
     checkToOffUM,
@@ -29,7 +39,18 @@ import {
     showHashAtPlacingBet,
     updateMD5String
 } from "../actions/CommonAction";
-import { clearRoundData, handleForceTimeOut, showLastRoundId, startGameLoop, stopGameLoop, updateLockBet, updatePlacingBet, updateStartingRound, updateTimeOut, updateWaiting } from "../actions/TimeAction";
+import {
+    clearRoundData,
+    handleForceTimeOut,
+    showLastRoundId,
+    startGameLoop,
+    stopGameLoop,
+    updateLockBet,
+    updatePlacingBet,
+    updateStartingRound,
+    updateTimeOut,
+    updateWaiting
+} from "../actions/TimeAction";
 import { BetDetailsUrl } from "../models/BetDetailsUrl";
 import { BetModel } from "../models/BetModel";
 import { BoostedChoicesModel } from "../models/BoostedChoicesModel";
@@ -175,6 +196,7 @@ export default class MiniGameBase extends NewMiniGameBase {
 
     resetDataAndUI() {
         super.resetDataAndUI();
+        this.isShowingSettlementOnUI = false;
         this.betPercentage && this.betPercentage.forEach((label) => (label.string = `0%`));
     }
 

@@ -64,12 +64,12 @@ export default class SevenUpDown extends MiniGameBase {
     protected delayPayoutDuration = 0.5;
     public gameAudios: DynamicAudios;
     multiplierTween: cc.Tween = null;
-    showResultDuration = 8;
+    showResultDuration = 7;
     isFinishDiceAnim = false;
 
-    private readonly SHOW_EXTRA_PAY_DURATION = 2.46;
-    private readonly SHOW_MULTIPLIER_DURATION = 4;
-    private readonly TOTAL_SHOW_MULTIPLIER_DURATION = 6;
+    private readonly SHOW_EXTRA_PAY_DURATION = 2.07;
+    private readonly SHOW_MULTIPLIER_DURATION = 3.66;
+    private readonly TOTAL_SHOW_MULTIPLIER_DURATION = 5;
     private doLaterPayOutCallback = () => {
         // callback
     };

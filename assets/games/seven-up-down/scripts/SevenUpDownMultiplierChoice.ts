@@ -17,9 +17,9 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     @property(sp.Skeleton)
     spineParticle: sp.Skeleton = null;
 
-    private readonly MULTIPLIER_NUMBER = 27;
+    private readonly MULTIPLIER_NUMBER = 13;
     private readonly NO_ANIM_MULTIPLIER = 16;
-    private readonly OFFSET_MULTIPLIER = 1016;
+    private readonly OFFSET_MULTIPLIER = 510;
 
     public listMultiplierOrigin = [];
     public multiplierValue = 0;
@@ -45,25 +45,15 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     }
 
     animRollingMultiplier() {
-        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, -this.NO_ANIM_MULTIPLIER, 0);
-        const spinDuration = 4;
-        const scaleDuration = 0.13;
+        this.nodeMultiplier.position = cc.v3(this.nodeMultiplier.position.x, 8, 0);
         const waitingDuration = 0.26;
         this.multiplierTween?.stop();
         this.multiplierTween = cc
             .tween(this.nodeMultiplier)
-            .to(spinDuration - scaleDuration * 3 - waitingDuration, { position: cc.v2(this.nodeMultiplier.x, -this.OFFSET_MULTIPLIER) })
             .delay(waitingDuration)
-            .call(() => {
-                const lastNode = this.getFinalMultiplier();
-                this.lastMultiplierTween?.stop();
-                this.lastMultiplierTween = cc
-                    .tween(lastNode)
-                    .to(scaleDuration, { scale: 1.3 })
-                    .to(scaleDuration, { scale: 0.8 })
-                    .to(scaleDuration, { scale: 1 })
-                    .start();
-            })
+            .to(1.2, { position: cc.v2(this.nodeMultiplier.x, -238) })
+            .to(1.83, { position: cc.v2(this.nodeMultiplier.x, -this.OFFSET_MULTIPLIER) })
+            .to(0.67, { position: cc.v2(this.nodeMultiplier.x, -498) })
             .start();
     }
 

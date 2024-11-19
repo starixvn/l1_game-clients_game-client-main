@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "xWeGY5T0AFEKbCnpmmpB7SWOM8U", "spine": "3.8.99", "x": -271, "y": -132.06, "width": 542, "height": 263.06 },
+"skeleton": { "hash": "UR0wlZYV047jQoWMz0sZM5xQOT4", "spine": "3.8.99", "x": -271, "y": -132.06, "width": 542, "height": 263.06 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "show-multiplier", "parent": "root" },
@@ -142,6 +142,14 @@
 				"scale": [
 					{ "x": 0.5, "y": 0.5 },
 					{ "time": 0.3333 }
+				]
+			},
+			"bg-multiplier": {
+				"scale": [
+					{ "time": 2.1333 },
+					{ "time": 2.2333, "x": 1.2, "y": 1.2 },
+					{ "time": 2.3333 },
+					{ "time": 2.5, "x": 0.1, "y": 0.1 }
 				]
 			},
 			"text": {

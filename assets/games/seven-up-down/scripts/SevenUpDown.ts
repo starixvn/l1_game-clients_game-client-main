@@ -89,7 +89,6 @@ export default class SevenUpDown extends MiniGameBase {
         super.onEnable();
         this.betItems.forEach((betItem) => betItem.resetHighlight());
         this.statisticHistory.node.active = true;
-        this.multiplierComp.node.children.forEach((choice) => (choice.active = false));
     }
 
     initOnStart() {
@@ -107,6 +106,7 @@ export default class SevenUpDown extends MiniGameBase {
         this.clearWinningBet();
         super.closeGame();
         this.unschedule(this.doLaterPayOutCallback);
+        this.multiplierComp.node.children.forEach((choice) => (choice.active = false));
     }
 
     onGameHide(): void {

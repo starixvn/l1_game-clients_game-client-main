@@ -5,7 +5,6 @@ import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import DataHandler from "../../_base/handlers/DataHandler";
 import GameBaseProvablyFairHandler from "../../_base/handlers/GameBaseProvablyFairHandler";
-import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
@@ -66,9 +65,6 @@ export default class MiniCoinToss extends MiniGameBase {
     @property(cc.Node)
     nodePercentageLayout: cc.Node = null;
 
-    @property(cc.JsonAsset)
-    gameAudioConfig: cc.JsonAsset = null;
-
     public winningResult: MiniCoinTossWinningResult = null;
     public flipCoin: FlipCoin = null;
     public highlightResult: HighlightResult = null;
@@ -77,7 +73,6 @@ export default class MiniCoinToss extends MiniGameBase {
     protected betHistory: MiniCoinTossBetHistory;
     startRoundDuration = 3;
     protected delayPayoutDuration = 0.5;
-    public gameAudios: DynamicAudios;
     private doLaterPayOutCallback = () => {
         // callback
     };
@@ -104,12 +99,6 @@ export default class MiniCoinToss extends MiniGameBase {
     onEnable(): void {
         super.onEnable();
         this.statisticHistory.node.active = true;
-    }
-
-    initOnStart() {
-        if (this?.gameAudios) {
-            this.gameAudios?.initConfigsAudios(this?.gameAudioConfig, this.gameId);
-        }
     }
 
     onDisconnected() {

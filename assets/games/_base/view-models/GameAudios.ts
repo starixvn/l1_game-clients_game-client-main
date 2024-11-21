@@ -35,4 +35,7 @@ export default class GameAudios extends cc.Component {
     stopAllAudio() {
         // handle
     }
+
+    initConfigsAudios(gameAudioConfig: cc.JsonAsset) {}
+    playSFXAudio(id) {}
 }

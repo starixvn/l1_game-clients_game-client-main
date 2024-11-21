@@ -89,6 +89,9 @@ export default class MiniGameBase extends NewMiniGameBase {
     @property(cc.Prefab)
     ticketDetailPrefab: cc.Prefab = null;
 
+    @property(cc.JsonAsset)
+    gameAudioConfig: cc.JsonAsset = null;
+
     protected managedByContainer = false;
 
     isShowingSettlementOnUI = false;
@@ -162,7 +165,15 @@ export default class MiniGameBase extends NewMiniGameBase {
         super.onData(data);
     }
 
-    initOnStart() {}
+    initOnStart() {
+        this.initDynamicAudios();
+    }
+
+    initDynamicAudios() {
+        if (this?.gameAudios && this?.gameAudioConfig) {
+            this.gameAudios?.initConfigsAudios(this?.gameAudioConfig);
+        }
+    }
 
     onGameHide() {
         super.onGameHide();

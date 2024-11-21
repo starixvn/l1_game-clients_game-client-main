@@ -15,6 +15,7 @@ export default class DynamicAudios extends GameAudios {
 
     protected audioIds = [];
     gameId = 0;
+    private audioConfig;
 
     playAudio(clip: cc.AudioClip) {
         const audioId = AudioManager?.getInstance()?.playSFX(clip);
@@ -28,19 +29,22 @@ export default class DynamicAudios extends GameAudios {
         this.audioIds = [];
     }
 
-    public initConfigsAudios(gameAudioConfig: cc.JsonAsset, gameId: number) {
-        this.gameId = gameId;
-        const audioConfigs = AudioManager?.audioConfigs();
-        audioConfigs[this.gameId] = {
+    public initConfigsAudios(gameAudioConfig: cc.JsonAsset) {
+        this.audioConfig = {
             ...this.sharedAudioConfig?.json,
             ...gameAudioConfig?.json
         };
-        AudioManager?.audioConfigs(audioConfigs);
+        this.removeEmptyKey(this.audioConfig);
         this.preloadAudioConfigs();
     }
 
-    getAudioConfigsForGame() {
-        return AudioManager?.audioConfigs()[this.gameId];
+    private removeEmptyKey(configs) {
+        if (!configs || typeof configs !== "object") {
+            return;
+        }
+
+        const emptyValueKeys = Object.keys(configs).filter((key) => Object.keys(configs[key]).length === 0);
+        emptyValueKeys.forEach((key) => delete configs[key]);
     }
 
     public async playSFXAudio(id: string) {
@@ -61,7 +65,7 @@ export default class DynamicAudios extends GameAudios {
     }
 
     protected async getAudioClip(id: string) {
-        const audioValue = this.getAudioConfigsForGame()[id];
+        const audioValue = this.audioConfig[id];
         if (!audioValue) {
             return;
         }
@@ -87,7 +91,7 @@ export default class DynamicAudios extends GameAudios {
     };
 
     public preloadAudioConfigs() {
-        const audioConfigs: TAudioConfigs = this.getAudioConfigsForGame();
+        const audioConfigs: TAudioConfigs = this.audioConfig;
         for (const [audioKey, value] of Object.entries(audioConfigs)) {
             if (value?.isLazyLoad !== true) {
                 const { bundle, path } = AudioUtils.getAudioInfo(value, audioKey);

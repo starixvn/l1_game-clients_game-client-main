@@ -6,7 +6,6 @@ import { userManager } from "../../../common/user/UserManager";
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import { appManager } from "../../../managers/AppManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
-import DynamicAudios from "../../_base/view-models/DynamicAudios";
 import MD5Component from "../../_base/view-models/MD5Component";
 import ProvablyFairComponent from "../../_base/view-models/provably-fair/ProvablyFairComponent";
 import { showStartBetMessage, showStopBetMessage } from "../../_base_new/actions/TimeAction";
@@ -44,9 +43,6 @@ export default class SevenUpDown extends MiniGameBase {
     @property({ type: cc.Label, visible: false, override: true })
     betPercentage: cc.Label[] = [];
 
-    @property(cc.JsonAsset)
-    gameAudioConfig: cc.JsonAsset = null;
-
     @property(SevenUpDownMultiplier)
     multiplierComp: SevenUpDownMultiplier = null;
 
@@ -62,7 +58,6 @@ export default class SevenUpDown extends MiniGameBase {
     protected betHistory: SevenUpDownBetHistory;
     startRoundDuration = 1;
     protected delayPayoutDuration = 0.5;
-    public gameAudios: DynamicAudios;
     multiplierTween: cc.Tween = null;
     showResultDuration = 8;
     isFinishDiceAnim = false;
@@ -90,12 +85,6 @@ export default class SevenUpDown extends MiniGameBase {
         this.betItems.forEach((betItem) => betItem.resetHighlight());
         this.statisticHistory.node.active = true;
         this.multiplierComp.resetMultiplier(false);
-    }
-
-    initOnStart() {
-        if (this?.gameAudios) {
-            this.gameAudios?.initConfigsAudios(this?.gameAudioConfig, this.gameId);
-        }
     }
 
     onDisconnected() {

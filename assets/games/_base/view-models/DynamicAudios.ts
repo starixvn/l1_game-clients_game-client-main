@@ -14,7 +14,6 @@ export default class DynamicAudios extends GameAudios {
     sharedAudioConfig: cc.JsonAsset = null;
 
     protected audioIds = [];
-    gameId = 0;
     private audioConfig;
 
     playAudio(clip: cc.AudioClip) {

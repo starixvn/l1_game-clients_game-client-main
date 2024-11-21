@@ -1,6 +1,5 @@
 import { StorageManager } from "../../managers/StorageManager";
 import AnimationUtils from "../utils/AnimationUtils";
-import { TAudioConfigGames } from "./../AudioInterface";
 
 export default class AudioManager {
     public static getInstance(): AudioManager {
@@ -18,7 +17,6 @@ export default class AudioManager {
     private touchStart = false;
     private readonly MusicStorageKey = "SOUND_BACKGROUND";
     private readonly SFXStorageKey = "SOUND_GAME";
-    private audioConfigGames: TAudioConfigGames = {};
 
     // The AudioContext was not allowed to start.
     // It must be resumed (or created) after a user gesture on the page
@@ -154,24 +152,5 @@ export default class AudioManager {
         if (!value) {
             this.stopAllSFX();
         }
-    }
-
-    static audioConfigs(configs?: TAudioConfigGames) {
-        const instance = AudioManager?.getInstance();
-        if (configs) {
-            this.removeEmptyKey(configs);
-            instance && (instance.audioConfigGames = configs);
-        }
-
-        return instance?.audioConfigGames;
-    }
-
-    private static removeEmptyKey(configs) {
-        if (!configs || typeof configs !== "object") {
-            return;
-        }
-
-        const emptyValueKeys = Object.keys(configs).filter((key) => Object.keys(configs[key]).length === 0);
-        emptyValueKeys.forEach((key) => delete configs[key]);
     }
 }

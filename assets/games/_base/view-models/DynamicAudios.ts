@@ -14,6 +14,7 @@ export default class DynamicAudios extends GameAudios {
     sharedAudioConfig: cc.JsonAsset = null;
 
     protected audioIds = [];
+    gameId = 0;
 
     playAudio(clip: cc.AudioClip) {
         const audioId = AudioManager?.getInstance()?.playSFX(clip);
@@ -27,13 +28,19 @@ export default class DynamicAudios extends GameAudios {
         this.audioIds = [];
     }
 
-    public loadAudios(gameAudioConfig: cc.JsonAsset) {
-        const audioConfigs: TAudioConfigs = {
+    public initConfigsAudios(gameAudioConfig: cc.JsonAsset, gameId: number) {
+        this.gameId = gameId;
+        const audioConfigs = AudioManager?.audioConfigs();
+        audioConfigs[this.gameId] = {
             ...this.sharedAudioConfig?.json,
             ...gameAudioConfig?.json
         };
-
         AudioManager?.audioConfigs(audioConfigs);
+        this.preloadAudioConfigs();
+    }
+
+    getAudioConfigsForGame() {
+        return AudioManager?.audioConfigs()[this.gameId];
     }
 
     public async playSFXAudio(id: string) {
@@ -54,7 +61,7 @@ export default class DynamicAudios extends GameAudios {
     }
 
     protected async getAudioClip(id: string) {
-        const audioValue = AudioManager?.audioConfigs()?.[id];
+        const audioValue = this.getAudioConfigsForGame()[id];
         if (!audioValue) {
             return;
         }
@@ -80,7 +87,7 @@ export default class DynamicAudios extends GameAudios {
     };
 
     public preloadAudioConfigs() {
-        const audioConfigs = AudioManager?.audioConfigs() || {};
+        const audioConfigs: TAudioConfigs = this.getAudioConfigsForGame();
         for (const [audioKey, value] of Object.entries(audioConfigs)) {
             if (value?.isLazyLoad !== true) {
                 const { bundle, path } = AudioUtils.getAudioInfo(value, audioKey);

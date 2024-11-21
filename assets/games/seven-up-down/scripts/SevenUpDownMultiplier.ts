@@ -10,10 +10,6 @@ export default class SevenUpDownMultiplier extends cc.Component {
     private multiplierAnim: SevenUpDownMultiplierChoice = null;
     multipliersConfigs = [];
 
-    onEnable() {
-        this.resetMultiplier(false);
-    }
-
     resetMultiplier(animated: boolean) {
         this.listMultiplier.forEach((item) => {
             const comp = item.getComponent(SevenUpDownMultiplierChoice);

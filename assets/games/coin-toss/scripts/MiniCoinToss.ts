@@ -108,8 +108,7 @@ export default class MiniCoinToss extends MiniGameBase {
 
     initOnStart() {
         if (this?.gameAudios) {
-            this.gameAudios?.loadAudios(this?.gameAudioConfig);
-            this.gameAudios?.preloadAudioConfigs();
+            this.gameAudios?.initConfigsAudios(this?.gameAudioConfig, this.gameId);
         }
     }
 

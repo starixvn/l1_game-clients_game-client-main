@@ -14,3 +14,7 @@ export type TAudioValue = {
 export type TAudioConfigs = {
     [key: string]: TAudioValue;
 };
+
+export type TAudioConfigGames = {
+    [gameId: number]: TAudioConfigs;
+};

@@ -89,12 +89,12 @@ export default class SevenUpDown extends MiniGameBase {
         super.onEnable();
         this.betItems.forEach((betItem) => betItem.resetHighlight());
         this.statisticHistory.node.active = true;
+        this.multiplierComp.resetMultiplier(false);
     }
 
     initOnStart() {
         if (this?.gameAudios) {
-            this.gameAudios?.loadAudios(this?.gameAudioConfig);
-            this.gameAudios?.preloadAudioConfigs();
+            this.gameAudios?.initConfigsAudios(this?.gameAudioConfig, this.gameId);
         }
     }
 
@@ -106,12 +106,13 @@ export default class SevenUpDown extends MiniGameBase {
         this.clearWinningBet();
         super.closeGame();
         this.unschedule(this.doLaterPayOutCallback);
-        this.multiplierComp.node.children.forEach((choice) => (choice.active = false));
+        this.multiplierComp.resetMultiplier(false);
     }
 
     onGameHide(): void {
         super.onGameHide();
         this.unschedule(this.doLaterPayOutCallback);
+        this.multiplierComp.resetMultiplier(false);
     }
 
     public toggleShowStatistic() {
@@ -357,11 +358,11 @@ export default class SevenUpDown extends MiniGameBase {
         }
     }
 
-    resetMultiplierAndResultText() {
+    resetMultiplierAndResultText(animated: boolean) {
         if (!this.multiplierComp || !this.resultComp) {
             return;
         }
-        this.multiplierComp.resetMultiplier(true);
+        this.multiplierComp.resetMultiplier(animated);
         this.resultComp.setResultTextVisibility(false);
     }
 }

@@ -13,7 +13,7 @@ export const handleBeginStarting = (game: SevenUpDown) => () => {
 };
 
 export const clearRoundData = (game: SevenUpDown) => () => {
-    game.resetMultiplierAndResultText();
+    game.resetMultiplierAndResultText(true);
 };
 
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
@@ -33,6 +33,13 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
     }
 
     const { rawValue } = game.gameData.resultHash.resultHash;
+    if (
+        game.gameData.durations.isBeingSpecificPhase(Durations.Events.SHOW_ANIMATION) &&
+        !game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION)
+    ) {
+        game.md5Component.updateValue(rawValue);
+        return;
+    }
 
     if (game.gameData.durations.isBeingSpecificPhase(Durations.Events.END_EXTRA_ANIMATION)) {
         if (game.isDisableGame) {
@@ -60,7 +67,7 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
 const showPrevResultAndResetData = (game: SevenUpDown, latestRound: any) => {
     const { result, roundId } = latestRound;
     game.resultComp.showResultNoAnim(result, roundId);
-    game.resetMultiplierAndResultText();
+    game.resetMultiplierAndResultText(false);
 };
 
 const handleResultAndMd5 = async (game: SevenUpDown, settlementResult: any) => {

@@ -1,54 +1,61 @@
 
 symbol-3.png
-size: 163,271
+size: 482,125
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bg
-  rotate: true
-  xy: 2, 148
-  size: 121, 124
+  rotate: false
+  xy: 127, 7
+  size: 116, 116
   orig: 150, 150
-  offset: 14, 13
+  offset: 17, 17
   index: -1
 bird_leg
-  rotate: true
-  xy: 117, 101
+  rotate: false
+  xy: 399, 32
   size: 45, 8
   orig: 45, 8
   offset: 0, 0
   index: -1
 body-bird
-  rotate: false
-  xy: 2, 72
+  rotate: true
+  xy: 245, 10
   size: 113, 74
   orig: 113, 74
   offset: 0, 0
   index: -1
-cloud1
+border
   rotate: true
-  xy: 128, 105
+  xy: 2, 2
+  size: 121, 123
+  orig: 150, 150
+  offset: 14, 13
+  index: -1
+cloud1
+  rotate: false
+  xy: 321, 2
   size: 76, 33
   orig: 76, 33
   offset: 0, 0
   index: -1
 cloud2
   rotate: true
-  xy: 128, 183
+  xy: 321, 37
   size: 86, 30
   orig: 86, 30
   offset: 0, 0
   index: -1
 wing-bottom
-  rotate: false
-  xy: 85, 13
+  rotate: true
+  xy: 423, 65
   size: 58, 57
   orig: 58, 57
   offset: 0, 0
   index: -1
 wing-top
-  rotate: false
-  xy: 2, 2
+  rotate: true
+  xy: 353, 42
   size: 81, 68
   orig: 81, 68
   offset: 0, 0

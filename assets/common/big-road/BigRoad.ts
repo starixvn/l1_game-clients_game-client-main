@@ -50,6 +50,10 @@ export default abstract class BigRoad extends cc.Component {
             .map((round) => round.settlementResult);
 
         this.bigRoad.initialize(clonedData);
+        this.updateRenderBoard();
+    }
+
+    protected updateRenderBoard() {
         this.bigRoadData = this.bigRoad.rows();
         this.updateScoreBoardUI(this.bigRoadData);
     }
@@ -61,8 +65,7 @@ export default abstract class BigRoad extends cc.Component {
 
         this.firstRender = false;
         this.bigRoad.fifo(cloneDeep(round));
-        this.bigRoadData = this.bigRoad.rows();
-        this.updateScoreBoardUI(this.bigRoadData);
+        this.updateRenderBoard();
         this.isRenderedNext = false;
     }
 

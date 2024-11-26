@@ -1,18 +1,62 @@
-import { BigRoadScoreboard, BigRoadScoreboardPoint, Converter } from "sc-scoreboards";
+import {
+    BigRoadScoreboard,
+    BigRoadScoreboardOptions,
+    BigRoadScoreboardPoint,
+    ColumnLengthPattern,
+    Converter,
+    GoodRoad,
+    GoodRoadColumnLengthDetectorDetector
+} from "sc-scoreboards";
 import BigRoad from "../../../common/big-road/BigRoad";
 import { BaccaratSettlementResult } from "../../baccarat/view-models/event-models/BaccaratSettlementResult";
 import BaccaratBigRoadItem from "./BaccaratBigRoadItem";
-const { ccclass } = cc._decorator;
+import { DEFAULT_PATTERNS } from "./baccarat-big-road-good-road-patterns";
+import { ScoreboardGoodRoad } from "./scoreboard-good-road";
+const { ccclass, property } = cc._decorator;
 
 class BaccaratBigRoadConverter extends Converter<BaccaratSettlementResult> {}
 
 @ccclass
 export default abstract class BaccaratBigRoad extends BigRoad {
+    @property(ScoreboardGoodRoad)
+    goodRoad: ScoreboardGoodRoad = null;
+
+    @property
+    noRender = false;
+
+    currentGoodRoad: GoodRoad = null;
+
+    private defaultPatterns: ColumnLengthPattern[] = DEFAULT_PATTERNS;
+    private columnLengthDetectorDetector = new GoodRoadColumnLengthDetectorDetector({ patterns: this.defaultPatterns });
+
+    get enableGoodRoad() {
+        return this.goodRoad !== null;
+    }
+
     initialBigRoad = () => {
         const converter = new BaccaratBigRoadConverter();
+        const goodRoadDetectors = [this.columnLengthDetectorDetector];
+        const options = { height: 6, converter } as BigRoadScoreboardOptions<BaccaratSettlementResult>;
+        if (this.enableGoodRoad) {
+            options.goodRoadDetectors = goodRoadDetectors;
+        }
 
-        return new BigRoadScoreboard({ height: 6, converter });
+        return new BigRoadScoreboard(options);
     };
+
+    updatePatterns(patterns: ColumnLengthPattern[]) {
+        this.columnLengthDetectorDetector.updatePatterns(patterns);
+    }
+
+    protected updateRenderBoard() {
+        if (!this.noRender) {
+            super.updateRenderBoard();
+        }
+        if (this.enableGoodRoad) {
+            this.currentGoodRoad = this.bigRoad.getGoodRoad();
+            this.goodRoad.render(this.currentGoodRoad);
+        }
+    }
 
     public renderNextNode() {
         super.renderNextNode();

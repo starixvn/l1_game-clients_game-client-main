@@ -64,6 +64,11 @@ export default abstract class BaccaratBigRoad extends BigRoad {
         }
     }
 
+    private clearGoodRoad() {
+        this.currentGoodRoad = null;
+        this.goodRoad?.render(this.currentGoodRoad);
+    }
+
     public renderNextNode() {
         super.renderNextNode();
         let lastCol = 0;
@@ -124,6 +129,7 @@ export default abstract class BaccaratBigRoad extends BigRoad {
     }
 
     public resetBoard() {
+        this.clearGoodRoad();
         this.isRenderedNext = false;
         this.bigRoadData = [];
         this.updateContentChild(this.minColumn - this.content.childrenCount);

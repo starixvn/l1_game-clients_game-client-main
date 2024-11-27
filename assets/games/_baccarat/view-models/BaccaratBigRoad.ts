@@ -46,12 +46,18 @@ export default abstract class BaccaratBigRoad extends BigRoad {
 
     updatePatterns(patterns: ColumnLengthPattern[]) {
         this.columnLengthDetectorDetector.updatePatterns(patterns);
+
+        this.updateRenderGoodRoad();
     }
 
     protected updateRenderBoard() {
         if (!this.noRender) {
             super.updateRenderBoard();
         }
+        this.updateRenderGoodRoad();
+    }
+
+    private updateRenderGoodRoad() {
         if (this.enableGoodRoad) {
             this.currentGoodRoad = this.bigRoad.getGoodRoad();
             this.goodRoad.render(this.currentGoodRoad);

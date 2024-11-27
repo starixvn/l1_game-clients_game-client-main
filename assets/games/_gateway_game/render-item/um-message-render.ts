@@ -25,7 +25,6 @@ export default class UmMessageRender extends RenderItem {
     }
 
     onChangeDisabledGame = (data: boolean) => {
-        cc.log("onChangeDisabledGame", data);
         this.node.active = data;
     };
 

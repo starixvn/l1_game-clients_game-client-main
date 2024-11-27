@@ -24,7 +24,6 @@ export default class ConnectionErrorRender extends RenderItem {
     }
 
     onChangeConnectionFailed = (isFailed: boolean) => {
-        cc.log("onChangeConnectionFailed", isFailed);
         this.node.active = isFailed;
 
         const label = this.getComponentInChildren(cc.Label);

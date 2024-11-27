@@ -10,7 +10,7 @@ import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
 import LobbyManager from "./LobbyManager";
 import LobbyMenuConfig from "./LobbyMenuConfig";
-import LobbyResourceManager from "./LobbyResourceManager";
+import { lobbyResourceManager } from "./LobbyResourceManager";
 import SkeletonIcon from "./SkeletonIcon";
 
 const { ccclass, property } = cc._decorator;
@@ -156,13 +156,13 @@ export default class LobbyMenu extends GameIconMenu {
     loadPrefab(gameId: number): Promise<cc.Prefab> {
         let skeletonIconPath = "";
         const isBigSize = this.lobbyMenuConfig.isBigSize(gameId, this.currentCategory);
-        if (LobbyResourceManager.isUseTheme()) {
+        if (lobbyResourceManager?.isUseTheme()) {
             skeletonIconPath = isBigSize ? `skeleton-icon/icon-big` : `skeleton-icon/icon-small`;
 
-            return LobbyResourceManager.loadPrefab(skeletonIconPath);
+            return lobbyResourceManager?.loadPrefab(skeletonIconPath);
         }
 
-        const folder = `${LobbyResourceManager.getThemePath()}/prefabs/skeleton-icon`;
+        const folder = `${lobbyResourceManager.getThemePath()}/prefabs/skeleton-icon`;
         skeletonIconPath = isBigSize ? `${folder}/icon-big` : `${folder}/icon-small`;
 
         return GameUtils.loadResource(skeletonIconPath);

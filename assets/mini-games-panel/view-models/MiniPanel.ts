@@ -18,7 +18,6 @@ import ScaleActiveController from "../../common/scale-active-item/ScaleActiveCon
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { getGameId, isMiniGame, isUsingRemoteBundle } from "../../configs/GameConfigurations";
 import CircleMenu from "../../lobby/main/view-models/CircleMenu";
-import LobbyResourceManager from "../../lobby/main/view-models/LobbyResourceManager";
 import BoostedOdds from "../../lobby/promotions/BoostedOdds";
 import PromotionAnnouncements from "../../lobby/promotions/PromotionAnnouncements";
 import PromotionNotificationsHandler, { PromotionNotificationsEvent } from "../../lobby/promotions/PromotionNotificationsHandler";
@@ -35,6 +34,7 @@ import MiniPanelInterface from "./MiniPanelInterface";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
+import { lobbyResourceManager } from "../../lobby/main/view-models/LobbyResourceManager";
 
 type NewLayerCallback = () => void;
 
@@ -173,8 +173,8 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
             return;
         }
 
-        const loadPromise = LobbyResourceManager.isUseTheme()
-            ? LobbyResourceManager.loadPrefab("mini-game/popup-mini-game")
+        const loadPromise = lobbyResourceManager?.isUseTheme()
+            ? lobbyResourceManager?.loadPrefab("mini-game/popup-mini-game")
             : GameUtils.loadResource(`minipanel/popup-mini-game/PopUpMiniGame`);
 
         loadPromise

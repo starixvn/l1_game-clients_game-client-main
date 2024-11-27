@@ -10,7 +10,7 @@ import { userManager } from "../common/user/UserManager";
 import EncryptUtils from "../common/utils/EncryptUtils";
 import { isMiniGameByGameId } from "../configs/GameConfigurations";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
-import LobbyResourceManager from "../lobby/main/view-models/LobbyResourceManager";
+import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
 import { delayTime } from "../utils";
@@ -177,7 +177,7 @@ class AppManager {
             currencyGroup = StorageManager.get("currency_group");
         }
 
-        LobbyResourceManager.init(currencyGroup);
+        lobbyResourceManager.init(currencyGroup);
     }
 
     private handleAppMode() {

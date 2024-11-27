@@ -1,6 +1,6 @@
 import GameUtils from "../../../../common/GameUtils";
 import { uiManager } from "../../../../managers/GameUIManager";
-import LobbyResourceManager from "../LobbyResourceManager";
+import { lobbyResourceManager } from "../LobbyResourceManager";
 import CircleMenu from "./../CircleMenu";
 import SkeletonMiniIcon from "./SkeletonMiniIcon";
 
@@ -16,13 +16,13 @@ export default class CircleMenuTheme extends CircleMenu {
         try {
             const skeletonMiniIcon = node?.getComponent(SkeletonMiniIcon);
             const cachedSprite = uiManager.spriteFrameCache.miniPanelIcons[gameId]?.spriteFrame;
-            const spriteFrame = cachedSprite || (await LobbyResourceManager.getInstance().loadMiniGameIcon(gameId));
+            const spriteFrame = cachedSprite || (await lobbyResourceManager.loadMiniGameIcon(gameId));
             if (spriteFrame) {
                 skeletonMiniIcon.iconSprite.spriteFrame = spriteFrame;
                 skeletonMiniIcon.hideSkeleton();
                 const prefabCounter = await GameUtils.asyncExecute<cc.Prefab>(
                     this?.node,
-                    LobbyResourceManager.loadPrefab(`mini-game/counters/${gameId}`)
+                    lobbyResourceManager.loadPrefab(`mini-game/counters/${gameId}`)
                 );
                 prefabCounter && skeletonMiniIcon.containerCounter.addChild(cc.instantiate(prefabCounter));
             }

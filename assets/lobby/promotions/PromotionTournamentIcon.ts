@@ -2,9 +2,9 @@ import { SystemType } from "../../ISystem";
 import GameUtils from "../../common/GameUtils";
 import AudioManager from "../../common/audio/AudioManager";
 import { uiManager } from "../../managers/GameUIManager";
-import LobbyResourceManager from "../main/view-models/LobbyResourceManager";
 import { PromotionTournamentEvents, promotionTournamentHandler } from "./PromotionTournamentHandler";
 import configs = require("../../configs/Configs");
+import { lobbyResourceManager } from "../main/view-models/LobbyResourceManager";
 
 const { ccclass } = cc._decorator;
 
@@ -58,8 +58,8 @@ export default class PromotionTournamentIcon extends cc.Component {
     loadIcon() {
         return GameUtils.asyncExecute<cc.Prefab>(
             this.node,
-            LobbyResourceManager.isUseTheme()
-                ? LobbyResourceManager.loadPrefab("promotion-tournament/icon")
+            lobbyResourceManager?.isUseTheme()
+                ? lobbyResourceManager?.loadPrefab("promotion-tournament/icon")
                 : GameUtils.loadResource("promotion-tournament/views/icon")
         );
     }

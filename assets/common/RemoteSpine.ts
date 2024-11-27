@@ -1,4 +1,4 @@
-import LobbyResourceManager, { IInfoShareResourceBanner } from "../lobby/main/view-models/LobbyResourceManager";
+import { IInfoShareResourceBanner, lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
 import { SkeletonCache } from "../managers/GameUIManager";
 import GameUtils from "./GameUtils";
 
@@ -90,15 +90,13 @@ export default class RemoteSpine extends cc.Component {
             this.spine.skeletonData = this.cache[this.id].skeletonData;
         } else {
             const spineRes = [];
-            const version = config?.version || LobbyResourceManager?.getInstance()?.infoShareResource?.versionBanner;
+            const version = config?.version || lobbyResourceManager?.infoShareResource?.versionBanner;
 
             for (const ext of this.getResourceExtensions()) {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${version}`;
                     const langPath = config?.languages[window.i18n.curLang] ? window.i18n.curLang : "en";
-                    const data = await LobbyResourceManager.getInstance().loadRemoteSharedResource(
-                        `banners/${this.id}/${langPath}/${resName}`
-                    );
+                    const data = await lobbyResourceManager.loadRemoteSharedResource(`banners/${this.id}/${langPath}/${resName}`);
                     if (data) {
                         spineRes.push(data);
                     }

@@ -4,6 +4,11 @@ import { uiManager } from "../../../managers/GameUIManager";
 
 export interface IInfoLobbyTheme {
     theme: string;
+    currencyGroups?: {
+        [currency: string]: {
+            theme: string;
+        };
+    };
 }
 
 export interface IInfoShareResource {
@@ -44,11 +49,7 @@ interface IGameNamesFontSize {
 
 export default class LobbyResourceManager {
     private static instance: LobbyResourceManager;
-    private readonly supportGroupCurrencies: string[] = ["Credit_PHP", "Cash_PHP"];
-    private readonly themes = {
-        Credit_PHP: "credit_php",
-        Cash_PHP: "credit_php"
-    };
+    private readonly DEFAULT_CURRENCY_GROUP_THEME = "credit_php";
 
     public infoShareResource: IInfoShareResource = {
         versionBanner: 1,
@@ -60,10 +61,18 @@ export default class LobbyResourceManager {
     };
 
     public infoLobbyTheme = {
-        theme: "default"
+        theme: "default",
+        currencyGroups: {
+            Credit_PHP: {
+                theme: this.DEFAULT_CURRENCY_GROUP_THEME
+            },
+            Cash_PHP: {
+                theme: this.DEFAULT_CURRENCY_GROUP_THEME
+            }
+        }
     };
 
-    private readonly defaultPath = "lobby/themes";
+    private readonly DEFAULT_PATH = "lobby/themes";
     private currentGroupCurrency = "";
 
     public static getInstance(): LobbyResourceManager {
@@ -72,22 +81,6 @@ export default class LobbyResourceManager {
         }
 
         return this.instance;
-    }
-
-    public static init(groupCurrency: string) {
-        return this.getInstance().init(groupCurrency);
-    }
-
-    public static loadPrefab(path: string): Promise<cc.Prefab> {
-        return this.getInstance().loadPrefab(path);
-    }
-
-    public static isUseTheme() {
-        return this.getInstance().isUseTheme();
-    }
-
-    public static getThemePath() {
-        return this.getInstance().getThemePath();
     }
 
     public getIgnoreCapitalizeGameNames() {
@@ -102,14 +95,19 @@ export default class LobbyResourceManager {
         return this.infoShareResource.gameNamesFontSize?.[gameId]?.[lang];
     }
 
-    protected init(groupCurrency?: string) {
-        this.getInfoTheme();
-        if (groupCurrency) {
-            this.currentGroupCurrency = groupCurrency;
-            if (this.isUseTheme()) {
-                this.getRemoteVersion();
-            }
-        }
+    public init(groupCurrency?: string) {
+        this.getInfoTheme()
+            .then(() => {
+                if (groupCurrency) {
+                    this.currentGroupCurrency = groupCurrency;
+                    if (this.isUseTheme()) {
+                        this.getRemoteVersion();
+                    }
+                }
+            })
+            .catch((err) => {
+                cc.error("Failed to get info theme:", err);
+            });
     }
 
     public loadRemoteSharedResource<T>(pathResource: string) {
@@ -121,7 +119,7 @@ export default class LobbyResourceManager {
         return `${url}/lobbies/themes/${this.getTheme()}/${pathResource}`;
     }
 
-    protected loadPrefab(path: string): Promise<cc.Prefab> {
+    public loadPrefab(path: string): Promise<cc.Prefab> {
         return new Promise((resolve) => {
             cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
                 resolve(prefab);
@@ -129,16 +127,19 @@ export default class LobbyResourceManager {
         });
     }
 
-    protected getThemePath() {
-        if (this.supportGroupCurrencies.includes(this.currentGroupCurrency)) {
-            return `${this.defaultPath}/${this.getTheme()}`;
+    public getThemePath() {
+        // Check if current currency group exists in lobby theme config
+        // If yes, return path with theme from currency group
+        // Example: lobby/themes/credit_php for Credit_PHP currency
+        if (this.currentGroupCurrency in this.infoLobbyTheme.currencyGroups) {
+            return `${this.DEFAULT_PATH}/${this.getTheme()}`;
         }
 
-        return `${this.defaultPath}/${this.infoLobbyTheme.theme}`;
+        return `${this.DEFAULT_PATH}/${this.infoLobbyTheme.theme}`;
     }
 
-    protected isUseTheme() {
-        return this.supportGroupCurrencies.includes(this.currentGroupCurrency);
+    public isUseTheme() {
+        return this.currentGroupCurrency in this.infoLobbyTheme.currencyGroups;
     }
 
     protected async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
@@ -178,10 +179,12 @@ export default class LobbyResourceManager {
     }
 
     private getTheme() {
-        return this.themes[this.currentGroupCurrency];
+        return this.infoLobbyTheme.currencyGroups[this.currentGroupCurrency].theme ?? this.DEFAULT_CURRENCY_GROUP_THEME;
     }
 
     public loadRemoteInfoBanner(gameId: number) {
         return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`);
     }
 }
+
+export const lobbyResourceManager = LobbyResourceManager.getInstance();

@@ -1,8 +1,8 @@
-import EventEmitterBase from "../../../common/emitter/EventEmitterBase";
 import { BaseEventHandler } from "../../_new/_base/game-data-management/event-handlers/base-handler";
 import { StoreBase } from "./definitions";
+import { GameDataBase } from "./game-data-base";
 
-export class GameData extends EventEmitterBase {
+export class GameData extends GameDataBase {
     protected readonly stores: StoreBase[] = [];
     protected readonly eventHandlers: BaseEventHandler<any>[] = [];
 
@@ -24,5 +24,9 @@ export class GameData extends EventEmitterBase {
 
     reset() {
         this.stores.forEach((store) => store.reset());
+    }
+
+    clearStoreListeners(): void {
+        this.stores.forEach((store) => store.clearAllListeners());
     }
 }

@@ -1,6 +1,5 @@
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import { EmitterEvents, Store } from "../models/definitions";
-import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 
@@ -18,20 +17,19 @@ export default class GameInfoRender extends RenderItem {
     @property(cc.Label)
     labelMaxBet: cc.Label = null;
 
-    private _gameData: GameData = null;
-    init(data: GameData) {
-        this._gameData = data;
+    onLoad() {
+        const data = this._gameData;
         const store = data.getStore(Store.GameInfo);
-        store?.addListener(EmitterEvents.RtpChange, this.onChangeRTP);
-        store?.addListener(EmitterEvents.TotalOnlineChange, this.onChangeTotalOnlineUser);
-        store?.addListener(EmitterEvents.BetLimitChange, this.onChangeBetLimit);
+        store?.addListener(EmitterEvents.RtpChange, this.onChangeRTP, this);
+        store?.addListener(EmitterEvents.TotalOnlineChange, this.onChangeTotalOnlineUser, this);
+        store?.addListener(EmitterEvents.BetLimitChange, this.onChangeBetLimit, this);
+
+        store?.wakeUp();
     }
 
-    onDestroy() {
+    clearRenderListeners() {
         const store = this._gameData?.getStore(Store.GameInfo);
-        store?.removeListener(EmitterEvents.RtpChange, this.onChangeRTP);
-        store?.removeListener(EmitterEvents.TotalOnlineChange, this.onChangeTotalOnlineUser);
-        store?.removeListener(EmitterEvents.BetLimitChange, this.onChangeBetLimit);
+        store?.removeAll(this);
     }
 
     onChangeBetLimit = (data: { minBet: number; maxBet: number }) => {

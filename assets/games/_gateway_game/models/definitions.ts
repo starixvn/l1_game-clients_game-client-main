@@ -7,6 +7,10 @@ export const EmitterEvents = {
     TimeChange: "TimeChange",
     StartRound: "StartRound",
     LockingBet: "LockingBet",
+    PlacingBet: "PlacingBet",
+    Settling: "Settling",
+    TimeStateChange: "TimeStateChange",
+
     BetLimitChange: "BetLimitChange",
     ActiveNewShoe: "ActiveNewShoe",
     DisabledGame: "DisabledGame",

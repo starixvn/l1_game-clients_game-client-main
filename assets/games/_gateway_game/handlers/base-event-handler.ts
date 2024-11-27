@@ -1,9 +1,9 @@
-import { GameData } from "../models/gateway-game-data";
+import { GameDataBase } from "../models/game-data-base";
 
 export class BaseEventHandler<Event> {
-    protected readonly gameData: GameData;
+    protected readonly gameData: GameDataBase;
 
-    constructor(gameData: GameData) {
+    constructor(gameData: GameDataBase) {
         this.gameData = gameData;
     }
 

@@ -1,27 +1,23 @@
 import { EmitterEvents, Store } from "../models/definitions";
-import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class UmMessageRender extends RenderItem {
-    private _gameData: GameData = null;
-
-    init(data: GameData) {
+    onLoad() {
         this.node.active = false;
 
-        this._gameData = data;
+        const data = this._gameData;
         const store = data.getStore(Store.DisableGame);
-        store?.addListener(EmitterEvents.UmMessage, this.onChangeUmMessage);
-        store?.addListener(EmitterEvents.DisabledGame, this.onChangeDisabledGame);
+        store?.addListener(EmitterEvents.UmMessage, this.onChangeUmMessage, this);
+        store?.addListener(EmitterEvents.DisabledGame, this.onChangeDisabledGame, this);
 
         store?.wakeUp();
     }
 
-    onDestroy() {
+    clearRenderListeners() {
         const store = this._gameData?.getStore(Store.DisableGame);
-        store?.removeListener(EmitterEvents.UmMessage, this.onChangeUmMessage);
-        store?.removeListener(EmitterEvents.DisabledGame, this.onChangeDisabledGame);
+        store?.removeAll(this);
     }
 
     onChangeDisabledGame = (data: boolean) => {

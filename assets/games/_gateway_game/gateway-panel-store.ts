@@ -1,4 +1,4 @@
-import { ColumnLengthPattern } from "sc-scoreboards";
+import { ColumnLengthPattern, GoodRoad } from "sc-scoreboards";
 import { StorageManager } from "../../managers/StorageManager";
 import {
     DEFAULT_PATTERNS,
@@ -23,6 +23,9 @@ interface GoodRoadSettingStorage {
 
 @ccclass
 export class GatewayPanelStore extends cc.Component {
+    @property
+    currentGameId = 0;
+
     @property
     lobbyId = 0;
 
@@ -110,5 +113,51 @@ export class GatewayPanelStore extends cc.Component {
             .filter((pattern) => !!pattern);
 
         this.node.emit(GatewayPanelStoreEvent.ChangedGoodRoadPattern, this.patterns);
+    }
+
+    setCounter(counter: number) {
+        if (counter !== this.counter) {
+            this.counter = counter;
+        }
+    }
+
+    updateGoodRoadGames(goodRoadGames: { id: number; goodRoad: GoodRoad }[]) {
+        goodRoadGames.sort((a, b) => {
+            const getIndex = (goodRoad: GoodRoad) => {
+                const index = this.config.findIndex((config) => goodRoad.name === config.pattern.name);
+                return index;
+            };
+
+            return getIndex(a.goodRoad) - getIndex(b.goodRoad);
+        });
+
+        const goodRoads = goodRoadGames.map((game) => game.id);
+
+        if (JSON.stringify(this.goodRoads) !== JSON.stringify(goodRoads)) {
+            this.goodRoads = goodRoads;
+            this.setCounter(this.goodRoads.length);
+        }
+    }
+
+    saveCategoryFilter(categoryFilter: string[]) {
+        this.categoryFilter = categoryFilter;
+        this.saveStorage();
+    }
+
+    saveAllGamesFilter(allGamesFilter: boolean) {
+        this.allGamesFilter = allGamesFilter;
+        this.saveStorage();
+    }
+
+    callGameSignIn(gameId: number) {
+        this.eventGameSignIn = {
+            gameId
+        };
+
+        this.node.emit(GatewayPanelStoreEvent.ChangeEventGameSignIn, this.eventGameSignIn);
+    }
+
+    updateOrderGameIds(orderGameIds: number[]) {
+        this.orderGameIds = orderGameIds;
     }
 }

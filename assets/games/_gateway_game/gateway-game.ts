@@ -3,6 +3,7 @@ import { lazyInject } from "../../Application";
 import AudioManager from "../../common/audio/AudioManager";
 import MusicPlayer from "../../common/audio/MusicPlayer";
 import * as sessionManager from "../../common/auth/SessionManager";
+import { getSession } from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import CategoryController from "../../common/category/category-controller";
 import { CategoryEvent } from "../../common/category/category-events";
@@ -19,7 +20,15 @@ import { InternalEvents } from "../../managers/InternalEvents";
 import SocketIOController from "../../SocketIOController";
 import { loadUserData } from "../_base/action/GameRoomActions";
 import GatewayGameItem from "./gateway-game-item";
+import { DisableGameHandler } from "./handlers/disable-game-handler";
+import { GameInfoHandler } from "./handlers/game-info-handler";
+import { RoundHistoryHandler } from "./handlers/round-history-handler";
+import { EmitterEvents } from "./models/definitions";
+import { DisableGameStore } from "./models/disable-game-store";
 import { Durations } from "./models/durations-interface";
+import { GameInfoStore } from "./models/game-info-store";
+import { GameData } from "./models/gateway-game-data";
+import { RoundHistoryStore } from "./models/round-history-store";
 const { ccclass, property } = cc._decorator;
 
 type CategoryJson = { [key: string]: string[] };
@@ -52,7 +61,7 @@ export default class GatewayGame extends BaseComponent {
     @lazyInject(SocketIOController)
     protected readonly socketIOController: SocketIOController;
 
-    protected configs: GameConfigJson = null;
+    protected gatewayConfig: GameConfigJson = null;
     protected socket: Socket;
     protected gameIds: number[] = [];
     protected receivedEvents: string[] = [];
@@ -66,12 +75,15 @@ export default class GatewayGame extends BaseComponent {
         return getGameName(this.gameId);
     }
     protected readonly CategoryFilter = "category-filter";
-
+    ///////
+    dataGames = {}; //gameId : gameData
+    offerGames = [];
     async onLoad() {
         //for room game
         appManager.currentScene = this;
         sessionManager.storeInRoomGameId(this.gameId);
 
+        this.offerGames = userManager.offerGamesIncludeSubGames;
         this.ensureEnableMusicPlayer();
         this.loadUserData();
         try {
@@ -83,6 +95,7 @@ export default class GatewayGame extends BaseComponent {
             }
 
             this.initSocket();
+            this.createGameDatas();
             this.initItems();
             this.initEventForInGameMenu();
             cc.game.on(cc.game.EVENT_HIDE, this.onGameHide, this);
@@ -91,17 +104,119 @@ export default class GatewayGame extends BaseComponent {
             uiManager.emitterListener(InternalEvents.GATEWAY_OPEN_GAME, this.handleOpenGame.bind(this), this);
         } catch (e) {}
     }
+    /////begin
+    getFilterGames() {
+        if (this.offerGames.length === 0) {
+            cc.warn("offerGames is empty!");
+            return [];
+        }
+        const games = Object.keys(this.gatewayConfig?.games)
+            .map((gameId) => +gameId)
+            .filter((gameId) => gameId !== this.gameId && this.offerGames.includes(gameId));
+        return games;
+    }
+
+    createGameDatas() {
+        const games = this.getFilterGames();
+        games.forEach((gameId) => {
+            this.dataGames[gameId] = this.createGameData(gameId);
+        });
+    }
+
+    createGameData(gameId: number) {
+        const durations = this.getDurations(gameId);
+        const gameData = new GameData();
+        gameData.initHandlers([RoundHistoryHandler, GameInfoHandler, DisableGameHandler]);
+
+        const infoStore = new GameInfoStore();
+        infoStore.durations = durations;
+        const disableGameStore = new DisableGameStore();
+        disableGameStore.addListener(EmitterEvents.GetLobbyData, () => this.sendSignInEachGame(gameId), this);
+        gameData.addStores([new RoundHistoryStore(), infoStore, disableGameStore]);
+        return gameData;
+    }
+
+    sendSignInEachGame(gameId: number) {
+        const data = {
+            gameName: this.getGameName(gameId),
+            receivedEvents: this.gatewayConfig?.receivedEvents,
+            session: getSession()
+        };
+        const serviceName = this.getServiceName(gameId);
+        if (serviceName !== "") {
+            data["serviceName"] = serviceName;
+        }
+        this.socket.emit("signIn", data);
+    }
 
     async getGatewayConfig() {
         try {
-            const configUrl = buildSharedResourceUrl(`${DEFAULT_PATH_CONFIG_GATEWAY}?v=${Date.now()}`);
+            const configUrl = buildSharedResourceUrl(`gateway/${this.gameId}/info.json?v=${Date.now()}`);
             const jsonAsset = await GameUtils.loadRemote<cc.JsonAsset>(configUrl);
-            this.configs = (jsonAsset?.json as GameConfigJson) ?? null;
+            this.gatewayConfig = (jsonAsset?.json as GameConfigJson) ?? null;
         } catch (error) {
             cc.log("Get Gateway config failed!");
         }
     }
 
+    getGameName(gameId: number) {
+        if (gameId === 27) {
+            return "VipBaccarat";
+        }
+        if (gameId === 48) {
+            return "BlockchainBaccarat";
+        }
+        return `Bac${gameId}`;
+    }
+
+    sendSignInAllGames() {
+        const games = this.getFilterGames();
+        games.forEach((gameId) => {
+            this.sendSignInEachGame(+gameId);
+        });
+    }
+
+    filterDataGame = (event: string, data: any) => {
+        const eventLowerCase = event.toLocaleLowerCase();
+
+        if (eventLowerCase === "message") {
+            const gameName = data.gameName?.toLocaleLowerCase();
+            this.onData(data, gameName);
+        } else {
+            this.onData(data, eventLowerCase);
+        }
+    };
+
+    onData(data: any, gameName: string) {
+        if (data.signedIn) {
+            this.onSignedIn(gameName);
+            return;
+        }
+        const gameId = this.convertGameNameToId(gameName);
+        // this.handleDataRtp(data, gameId);
+        this.publishDataEachGame(data, gameId);
+    }
+
+    convertGameNameToId(gameName: string) {
+        const games = this.getFilterGames();
+        return games.find((gameId) => this.getGameName(gameId).toLowerCase() === gameName);
+    }
+
+    publishDataEachGame(data: any, gameId: number) {
+        const gameData = this.dataGames[gameId];
+        if (gameData) {
+            gameData.receiveData(data);
+        }
+    }
+
+    onSignedIn(gameName: string) {
+        this.getLobbyData(gameName);
+    }
+
+    getLobbyData(gameName: string) {
+        this.socket.emit("getLobbyData", { gameName: gameName });
+    }
+    /////end
     checkReloadOpenedGame() {
         const roomGameId = +sessionManager.getInRoomGameId();
         cc.log("checkReloadOpenedGame id", roomGameId);
@@ -124,7 +239,7 @@ export default class GatewayGame extends BaseComponent {
     }
 
     loadConfigs() {
-        const configs = this.configs;
+        const configs = this.gatewayConfig;
         this.gameIds = Object.keys(configs.games)
             .map((key) => +key)
             .filter((gameId) => userManager.offerGamesIncludeSubGames.includes(gameId) && isGatewayGame(gameId));
@@ -150,25 +265,18 @@ export default class GatewayGame extends BaseComponent {
         return this.durationsJson[type].value;
     }
 
-    forceSignIn() {
-        this.container.children.forEach((child) => {
-            const item = child.getComponent(GatewayGameItem);
-            item.resetGameData();
-            item.sendSignIn();
-        });
-    }
+    forceSignIn() {}
 
     initItems() {
         let allCatogories = [];
         this.gameIds.forEach((gameId) => {
             const node = cc.instantiate(this.gamePrefab);
-            this.container.addChild(node);
 
             const item = node.getComponent(GatewayGameItem);
-            const serviceName = this.getServiceName(gameId);
-            const durations = this.getDurations(gameId);
-            item.init({ gameId, serviceName, durations, socket: this.socket });
-            item.setReceiveEvents(this.receivedEvents);
+            const gameData = this.dataGames[gameId];
+            const gameName = this.getGameName(gameId);
+            item.init({ gameId, gameData, gameName });
+            this.container.addChild(node);
 
             const categories = this.getCategory(gameId);
             allCatogories.push(...categories);
@@ -208,6 +316,9 @@ export default class GatewayGame extends BaseComponent {
     initSocketListeners() {
         this.socket.off("message");
         this.socket.on("disconnect", this.onDisconnected.bind(this));
+        this.socket.onAny(this.filterDataGame);
+
+        this.sendSignInAllGames();
     }
 
     onDisconnected() {
@@ -262,10 +373,6 @@ export default class GatewayGame extends BaseComponent {
         }
 
         this.socket.removeAllListeners();
-        this.container?.children?.forEach((child) => {
-            const item = child.getComponent(GatewayGameItem);
-            item.removeSocketListeners();
-        });
 
         this.socketIOController.closeSocket(this.gameId);
         this.socket.disconnect();

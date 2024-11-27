@@ -1,6 +1,5 @@
 import BaccaratBigRoad from "../../_baccarat/view-models/BaccaratBigRoad";
 import { EmitterEvents, Store } from "../models/definitions";
-import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 
@@ -9,22 +8,23 @@ export default class ScoreboardRender extends RenderItem {
     @property(BaccaratBigRoad)
     scoreboard: BaccaratBigRoad = null;
 
-    private _gameData: GameData = null;
-    init(data: GameData) {
-        this._gameData = data;
+    onLoad() {
+        const data = this._gameData;
         const store = data.getStore(Store.RoundHistory);
-        store?.addListener(EmitterEvents.RoundHistoryChange, this.onData);
+        store?.addListener(EmitterEvents.RoundHistoryChange, this.onData, this);
 
         const infoStore = data.getStore(Store.GameInfo);
-        infoStore?.addListener(EmitterEvents.LockingBet, this.showNextNode);
+        infoStore?.addListener(EmitterEvents.LockingBet, this.showNextNode, this);
+
+        store?.wakeUp();
     }
 
-    onDestroy() {
+    clearRenderListeners() {
         const store = this._gameData?.getStore(Store.RoundHistory);
-        store?.removeListener(EmitterEvents.RoundHistoryChange, this.onData);
+        store?.removeAll(this);
 
         const infoStore = this._gameData?.getStore(Store.GameInfo);
-        infoStore?.removeListener(EmitterEvents.LockingBet, this.showNextNode);
+        infoStore?.removeAll(this);
     }
 
     showNextNode = () => {

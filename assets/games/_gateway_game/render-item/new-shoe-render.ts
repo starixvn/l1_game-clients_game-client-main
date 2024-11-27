@@ -1,26 +1,24 @@
 import AnimationUtils from "../../../common/utils/AnimationUtils";
 import { EmitterEvents, Store } from "../models/definitions";
-import { GameData } from "../models/gateway-game-data";
 import RenderItem from "./render-item";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewShoeRender extends RenderItem {
-    private _gameData: GameData = null;
-
-    init(data: GameData) {
+    onLoad() {
         this.node.active = false;
 
-        this._gameData = data;
+        const data = this._gameData;
         const store = data.getStore(Store.GameInfo);
-        store?.addListener(EmitterEvents.StartRound, this.onStartRound);
-        store?.addListener(EmitterEvents.ActiveNewShoe, this.onActiveNewShoe);
+        store?.addListener(EmitterEvents.StartRound, this.onStartRound, this);
+        store?.addListener(EmitterEvents.ActiveNewShoe, this.onActiveNewShoe, this);
+
+        store?.wakeUp();
     }
 
-    onDestroy() {
+    clearRenderListeners() {
         const store = this._gameData?.getStore(Store.GameInfo);
-        store?.removeListener(EmitterEvents.StartRound, this.onStartRound);
-        store?.removeListener(EmitterEvents.ActiveNewShoe, this.onActiveNewShoe);
+        store?.removeAll(this);
     }
 
     onActiveNewShoe = async (show: boolean) => {

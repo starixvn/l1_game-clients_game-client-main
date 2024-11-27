@@ -14,6 +14,7 @@ export default class CategoryController extends cc.Component {
 
     categories: string[] = [];
     allCategories: string[] = [];
+    extraFilter = (item: cc.Node) => true;
 
     get items(): cc.Node[] {
         if (this._items.length === 0) {
@@ -36,8 +37,12 @@ export default class CategoryController extends cc.Component {
         this.changeCategory(categoryItem.category, isChecked);
     }
 
-    initCategories(categories: string[], storageCategories: string[]) {
+    setAllCategories(categories: string[]) {
         this.allCategories = categories;
+    }
+
+    initCategories(allCategories: string[], storageCategories: string[]) {
+        allCategories && (this.allCategories = allCategories);
         this.categories = storageCategories;
 
         this.toggles.forEach((toggle) => {
@@ -50,7 +55,6 @@ export default class CategoryController extends cc.Component {
     }
 
     changeCategory(category: string, checked: boolean) {
-        cc.log(`changeCategory ${category} `, checked);
         if (checked) {
             this.categories.push(category);
             this.removeDuplicateCategory();
@@ -64,6 +68,19 @@ export default class CategoryController extends cc.Component {
         this.updateSortOrder();
     }
 
+    updateVisibility() {
+        this.updateItemVisibility();
+    }
+
+    changeExtraFilter(filter: (item: cc.Node) => boolean) {
+        if (filter) {
+            this.extraFilter = filter;
+        } else {
+            this.extraFilter = () => true;
+        }
+        this.updateVisibility();
+    }
+
     private removeDuplicateCategory() {
         this.categories = this.categories.filter(
             (iterator, index, categories) => categories?.findIndex((category) => category === iterator) === index
@@ -72,10 +89,10 @@ export default class CategoryController extends cc.Component {
 
     updateItemVisibility() {
         const categories = this.categories.length > 0 ? this.categories : this.allCategories;
-        cc.log("updateItemVisibility  ---- category: ", categories);
-        this.items.forEach((item) => {
+        const items = this.container.children;
+        items.forEach((item) => {
             const comps = item.getComponents(CategoryItem);
-            item.active = comps.some((comp) => categories.includes(comp.category));
+            item.active = comps.some((comp) => categories.includes(comp.category) && this.extraFilter(item));
         });
     }
 

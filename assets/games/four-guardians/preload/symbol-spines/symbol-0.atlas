@@ -1,62 +1,41 @@
 
 symbol-0.png
-size: 1138,154
+size: 194,131
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-border
+Layer 1
+  rotate: true
+  xy: 139, 98
+  size: 31, 51
+  orig: 33, 53
+  offset: 1, 1
+  index: -1
+Layer 1 copy
   rotate: false
   xy: 2, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  size: 135, 127
+  orig: 137, 129
+  offset: 1, 1
   index: -1
-border-blur
-  rotate: false
-  xy: 154, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-effect/effect0
-  rotate: false
-  xy: 306, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-effect/effect1
-  rotate: false
-  xy: 458, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-effect/effect4
-  rotate: false
-  xy: 610, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-symbol
+Layer 2
   rotate: true
-  xy: 914, 18
-  size: 134, 122
-  orig: 136, 159
-  offset: 1, 24
+  xy: 139, 64
+  size: 32, 44
+  orig: 34, 46
+  offset: 1, 1
   index: -1
-symbol-blank
-  rotate: false
-  xy: 762, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-symbol-blur
+dui
   rotate: true
-  xy: 1038, 26
-  size: 126, 98
-  orig: 128, 98
-  offset: 1, 0
+  xy: 139, 9
+  size: 25, 49
+  orig: 27, 52
+  offset: 1, 2
+  index: -1
+dui 2
+  rotate: true
+  xy: 139, 36
+  size: 26, 53
+  orig: 28, 55
+  offset: 1, 1
   index: -1

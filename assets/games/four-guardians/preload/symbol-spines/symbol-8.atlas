@@ -1,90 +1,55 @@
 
 symbol-8.png
-size: 1627,154
+size: 311,154
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-border
+BONUS
+  rotate: false
+  xy: 154, 3
+  size: 122, 24
+  orig: 124, 26
+  offset: 1, 1
+  index: -1
+light
   rotate: false
   xy: 2, 2
   size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  orig: 152, 152
+  offset: 1, 1
   index: -1
-border-blur
+light1
   rotate: false
-  xy: 154, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 269, 112
+  size: 40, 40
+  orig: 48, 48
+  offset: 3, 4
   index: -1
-effect/7
-  rotate: true
-  xy: 1208, 5
-  size: 147, 133
-  orig: 150, 150
-  offset: 3, 8
-  index: -1
-effect/effect0
-  rotate: true
-  xy: 458, 2
-  size: 150, 148
-  orig: 150, 150
-  offset: 0, 1
-  index: -1
-effect/effect1
-  rotate: true
-  xy: 608, 2
-  size: 150, 148
-  orig: 150, 150
-  offset: 0, 1
-  index: -1
-effect/effect2
-  rotate: true
-  xy: 758, 2
-  size: 150, 148
-  orig: 150, 150
-  offset: 0, 1
-  index: -1
-effect/effect3
-  rotate: true
-  xy: 908, 2
-  size: 150, 148
-  orig: 150, 150
-  offset: 0, 1
-  index: -1
-effect/effect4
-  rotate: true
-  xy: 1058, 2
-  size: 150, 148
-  orig: 150, 150
-  offset: 0, 1
-  index: -1
-symbol
+light1 copy
   rotate: false
-  xy: 1343, 23
-  size: 128, 129
-  orig: 128, 129
-  offset: 0, 0
+  xy: 269, 76
+  size: 33, 34
+  orig: 40, 40
+  offset: 3, 3
   index: -1
-symbol-blank
+light1 copy 2
   rotate: false
-  xy: 306, 2
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 269, 76
+  size: 33, 34
+  orig: 40, 40
+  offset: 3, 3
   index: -1
-symbol-blur
-  rotate: true
-  xy: 1473, 30
-  size: 122, 103
-  orig: 128, 129
-  offset: 3, 13
+light1 copy 3
+  rotate: false
+  xy: 269, 76
+  size: 33, 34
+  orig: 40, 40
+  offset: 3, 3
   index: -1
-text
+ruong
   rotate: true
-  xy: 1578, 3
-  size: 149, 47
-  orig: 150, 150
-  offset: 0, 0
+  xy: 154, 29
+  size: 123, 113
+  orig: 126, 116
+  offset: 1, 1
   index: -1

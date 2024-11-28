@@ -1,104 +1,97 @@
 
 symbol-10.jackpot.vi-VN.png
-size: 255,1052
+size: 1201,137
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-blue light
+effect/1
+  rotate: false
+  xy: 1134, 23
+  size: 65, 62
+  orig: 82, 73
+  offset: 9, 4
+  index: -1
+effect/10
   rotate: true
-  xy: 154, 883
-  size: 167, 92
-  orig: 173, 104
-  offset: 2, 4
+  xy: 551, 18
+  size: 117, 105
+  orig: 150, 132
+  offset: 17, 7
   index: -1
-border
-  rotate: false
-  xy: 2, 900
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+effect/11
+  rotate: true
+  xy: 658, 22
+  size: 113, 101
+  orig: 145, 128
+  offset: 16, 9
   index: -1
-border-blur
+effect/13
   rotate: false
-  xy: 2, 748
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 869, 31
+  size: 100, 104
+  orig: 133, 135
+  offset: 16, 12
   index: -1
-effect/effect0
+effect/14
   rotate: false
-  xy: 2, 596
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 971, 33
+  size: 62, 102
+  orig: 95, 136
+  offset: 17, 15
   index: -1
-effect/effect1
+effect/2
   rotate: false
-  xy: 2, 444
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 464, 7
+  size: 85, 128
+  orig: 94, 136
+  offset: 5, 0
   index: -1
-effect/effect4
+effect/3
   rotate: false
-  xy: 2, 292
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  xy: 272, 6
+  size: 71, 129
+  orig: 80, 136
+  offset: 5, 7
+  index: -1
+effect/5
+  rotate: false
+  xy: 345, 7
+  size: 117, 128
+  orig: 131, 131
+  offset: 7, 0
+  index: -1
+effect/7
+  rotate: true
+  xy: 1035, 14
+  size: 71, 97
+  orig: 103, 132
+  offset: 16, 15
+  index: -1
+effect/8
+  rotate: false
+  xy: 761, 26
+  size: 106, 109
+  orig: 129, 138
+  offset: 11, 12
   index: -1
 symbol
   rotate: true
-  xy: 2, 2
-  size: 136, 141
+  xy: 141, 2
+  size: 133, 129
   orig: 150, 150
-  offset: 8, 3
-  index: -1
-symbol-blank
-  rotate: false
-  xy: 2, 140
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
+  offset: 9, 10
   index: -1
 symbol-blur
-  rotate: false
-  xy: 145, 3
-  size: 108, 119
+  rotate: true
+  xy: 2, 2
+  size: 133, 137
   orig: 150, 150
-  offset: 22, 15
+  offset: 9, 7
   index: -1
-text-VN
-  rotate: true
-  xy: 154, 124
-  size: 132, 59
-  orig: 132, 59
-  offset: 0, 0
-  index: -1
-tornado lightning/tornado lightning 1
-  rotate: true
-  xy: 154, 715
-  size: 166, 85
-  orig: 168, 87
-  offset: 1, 1
-  index: -1
-tornado lightning/tornado lightning 2
-  rotate: true
-  xy: 154, 560
-  size: 153, 85
-  orig: 154, 87
-  offset: 0, 1
-  index: -1
-tornado lightning/tornado lightning 3
-  rotate: true
-  xy: 154, 258
-  size: 146, 85
-  orig: 147, 87
-  offset: 0, 1
-  index: -1
-tornado lightning/tornado lightning 4
-  rotate: true
-  xy: 154, 406
-  size: 152, 86
-  orig: 153, 87
-  offset: 1, 0
+text
+  rotate: false
+  xy: 1035, 87
+  size: 140, 48
+  orig: 150, 150
+  offset: 4, 11
   index: -1

@@ -9,6 +9,7 @@ describe("LineView", () => {
         comp = node.addComponent(LineView);
         comp.label = new cc.Node();
         comp.board = new cc.Node().addComponent(SlotBoard);
+        comp.light = new cc.Node();
     });
 
     describe("playLightAnimation", () => {

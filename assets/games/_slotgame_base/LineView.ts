@@ -19,7 +19,7 @@ export default class LineView extends cc.Component {
     @property
     isLabelLeft = true;
 
-    private light: cc.Node = null;
+    public light: cc.Node = null;
     private subLines = {};
 
     onLoad() {

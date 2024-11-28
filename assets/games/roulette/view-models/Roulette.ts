@@ -3,6 +3,7 @@ import * as _ from "lodash";
 
 import GameUtils from "../../../common/GameUtils";
 import AudioManager from "../../../common/audio/AudioManager";
+import * as sessionManager from "../../../common/auth/SessionManager";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import { InGameMenuEvents } from "../../../common/in-game-menu/InGameMenu";
 import { userManager } from "../../../common/user/UserManager";
@@ -20,7 +21,6 @@ import RouletteBetHandler from "./handlers/RouletteBetHandler";
 import RouletteFinishHandler from "./handlers/RouletteFinishHandler";
 import RouletteLogsHandler from "./handlers/RouletteLogsHandler";
 import RouletteTimeHandler from "./handlers/RouletteTimeHandler";
-import * as sessionManager from "../../../common/auth/SessionManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -102,6 +102,8 @@ export default class Roulette extends SocketIOTableGameBase {
 
     onLoad() {
         this.roundIdContainer.opacity = 0;
+        cc.director.on(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
+
         sessionManager.storeInRoomGameId(RouletteId); // fix bug hide the back-to-lobby button when SSO direct (ref = d_direct) to game.
         this.initMain().then(() => {
             this.initBetBoard();
@@ -109,25 +111,22 @@ export default class Roulette extends SocketIOTableGameBase {
             this.updateTotalBetLabel();
             this.updateBetStatus(true);
             this.schedule(this.updateBetStatus, 0.3, cc.macro.REPEAT_FOREVER, 1);
-
             this.joinGame();
-            this.setDefaultPositionForMiniMenu();
-
             this.rouletteMain.board.betChips = this.betChips;
         });
     }
 
     setDefaultPositionForMiniMenu() {
-        if (!this.currentMiniPanel.popupMiniGame || !this.currentMiniPanel.boostedOdds) {
-            this.scheduleOnce(this.setDefaultPositionForMiniMenu, 0.1);
+        if (!this.currentMiniPanel?.popupMiniGame || !this.rouletteMain.newMenuPosition) {
             return;
         }
 
         const wPosition = this.rouletteMain.newMenuPosition.convertToWorldSpaceAR(cc.v2(0, 0));
         const localPosition = this.currentMiniPanel.miniMenu.convertToNodeSpaceAR(wPosition);
-        const node = this.currentMiniPanel.popupMiniGame.node;
-        const promotionNode = this.currentMiniPanel.boostedOdds.node;
-        node.position = promotionNode.position = cc.v3(node.x, localPosition.y);
+        const defaultPosition = cc.v3(localPosition);
+
+        this.currentMiniPanel.popupMiniGame.setDefaultPosition(defaultPosition);
+        cc.director.off(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
     }
 
     setGameRound(gameRoundId) {
@@ -136,6 +135,7 @@ export default class Roulette extends SocketIOTableGameBase {
     }
 
     onDestroy() {
+        cc.director.off(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
         super.onDestroy();
         this.unschedule(this.updateBetStatus);
     }

@@ -35,15 +35,13 @@ export default class PopupMinigames extends cc.Component {
     private ttOffset2 = cc.v2(0, 0);
     protected toggleRuning = false;
     public background: cc.Node = null;
-    protected prevPosition;
+    protected defaultPosition: cc.Vec3;
+    protected prevPosition: cc.Vec3;
     private jackpotWinner: JackpotWinner = null;
 
-    onLoad() {
-        if (appManager.popupMiniGamesLastPosition) {
-            this.node.position = appManager.popupMiniGamesLastPosition;
-        }
+    protected readonly durationBackToPrePosition = 0.2;
 
-        this.prevPosition = this.node.position;
+    onLoad() {
         this.list.active = false;
         this.list.scale = 0;
 
@@ -52,6 +50,26 @@ export default class PopupMinigames extends cc.Component {
         this.initJackpotEvents();
 
         cc.game.on(cc.game.EVENT_SHOW, this.onGameShow, this);
+        cc.director.on(cc.Director.EVENT_BEFORE_DRAW, this.initPrevPosition, this);
+    }
+
+    setDefaultPosition(position: cc.Vec3) {
+        this.defaultPosition = position;
+    }
+
+    setBeginPosition(beginPosition: cc.Vec3) {
+        const position = this.defaultPosition ? this.defaultPosition : beginPosition;
+
+        this.node.position = position;
+        this.prevPosition = this.node.position;
+    }
+
+    initPrevPosition() {
+        if (appManager.popupMiniGamesLastPosition) {
+            this.node.position = appManager.popupMiniGamesLastPosition;
+        }
+        this.setBeginPosition(this.node.position);
+        cc.director.off(cc.Director.EVENT_BEFORE_DRAW, this.initPrevPosition, this);
     }
 
     async initDefaultGameRoundTimer() {
@@ -156,7 +174,9 @@ export default class PopupMinigames extends cc.Component {
         posY = Math.min(maxY - fixTopPadding, posY);
 
         cc.tween(this.node).to(0.1, { x: posX, y: posY }, { easing: "sineOut" }).start();
-        appManager.popupMiniGamesLastPosition = cc.v3(posX, posY);
+        const destinationPosition = cc.v3(posX, posY);
+        appManager.popupMiniGamesLastPosition = destinationPosition;
+        this.prevPosition = destinationPosition;
     }
 
     eventEnd(e) {
@@ -254,7 +274,7 @@ export default class PopupMinigames extends cc.Component {
 
     hideListGame() {
         cc.tween(this.node)
-            .to(0.2, { scale: 0, opacity: 0, position: this.prevPosition }, { easing: "sineIn" })
+            .to(this.durationBackToPrePosition, { scale: 0, opacity: 0, position: this.prevPosition }, { easing: "sineIn" })
             .call(() => {
                 this.background.active = false;
                 this.toggleRuning = false;

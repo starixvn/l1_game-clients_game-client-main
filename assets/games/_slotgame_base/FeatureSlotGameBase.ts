@@ -108,7 +108,8 @@ export default abstract class FeatureSlotGameBase extends NewGameRoomBase {
 
     onLoad() {
         super.onLoad();
-        this.setDefaultPositionForMiniMenu();
+        cc.director.on(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
+
         this.initForHoldActionButton();
         this.currentMiniPanel.skipShowApiErrorGameIds.push(this.gameId);
         this.trackOnLoadEvents();
@@ -148,6 +149,7 @@ export default abstract class FeatureSlotGameBase extends NewGameRoomBase {
     }
 
     onDestroy() {
+        cc.director.off(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
         super.onDestroy();
         const audioManager = AudioManager.getInstance();
         audioManager.removeMusicChanged(`${this.gameId}`);
@@ -361,14 +363,15 @@ export default abstract class FeatureSlotGameBase extends NewGameRoomBase {
 
     setDefaultPositionForMiniMenu() {
         if (!this.currentMiniPanel.popupMiniGame) {
-            this.scheduleOnce(this.setDefaultPositionForMiniMenu, 0.1);
             return;
         }
 
         const node = this.currentMiniPanel.popupMiniGame.node;
         const wPosition = this.defaultMiniMenu.convertToWorldSpaceAR(cc.v2(0, 0));
         const localPosition = node.parent.convertToNodeSpaceAR(wPosition);
-        node.position = cc.v3(node.x, localPosition.y);
+        this.currentMiniPanel.popupMiniGame.setDefaultPosition(cc.v3(localPosition));
+
+        cc.director.off(cc.Director.EVENT_BEFORE_DRAW, this.setDefaultPositionForMiniMenu, this);
     }
 
     initShowBottomMessage(node: cc.Node) {

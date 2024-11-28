@@ -11,7 +11,6 @@ import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBas
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import { GameState } from "../_base/GameState";
-import { FourGuardiansSlotConfigs } from "../four-guardians/scripts/FourGuardiansSlotConfigs";
 import AutoSpinSettingDialog from "./AutoSpinSettingDialog";
 import BigWinAnimation from "./BigWinAnimation";
 import BonusDialog from "./BonusDialog";
@@ -285,7 +284,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     initSlotGameConfig() {
-        this.slotGameConfigs = new FourGuardiansSlotConfigs();
+        //this.slotGameConfigs = new FourGuardiansSlotConfigs();
     }
 
     loadSlotGameConfig() {

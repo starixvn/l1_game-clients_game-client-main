@@ -1,34 +1,104 @@
 
 winning-animation.png
-size: 320,336
+size: 1218,345
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Layer 1
-  rotate: false
-  xy: 2, 165
-  size: 175, 169
-  orig: 185, 192
-  offset: 4, 5
-  index: -1
-bui
-  rotate: false
-  xy: 2, 6
-  size: 159, 157
-  orig: 163, 162
-  offset: 2, 2
-  index: -1
-sang
+Layer 1 copy
   rotate: true
-  xy: 179, 189
-  size: 145, 139
-  orig: 157, 151
-  offset: 3, 10
+  xy: 1079, 57
+  size: 135, 127
+  orig: 137, 129
+  offset: 1, 1
   index: -1
-tiasang
+eff/winning_effect_anim_1
   rotate: false
-  xy: 163, 2
-  size: 155, 161
-  orig: 185, 182
-  offset: 14, 15
+  xy: 226, 2
+  size: 169, 169
+  orig: 200, 200
+  offset: 16, 12
+  index: -1
+eff/winning_effect_anim_10
+  rotate: true
+  xy: 910, 179
+  size: 164, 163
+  orig: 200, 200
+  offset: 18, 15
+  index: -1
+eff/winning_effect_anim_2
+  rotate: true
+  xy: 226, 173
+  size: 170, 169
+  orig: 200, 200
+  offset: 15, 12
+  index: -1
+eff/winning_effect_anim_3
+  rotate: false
+  xy: 397, 174
+  size: 169, 169
+  orig: 200, 200
+  offset: 16, 12
+  index: -1
+eff/winning_effect_anim_4
+  rotate: false
+  xy: 397, 3
+  size: 169, 169
+  orig: 200, 200
+  offset: 16, 12
+  index: -1
+eff/winning_effect_anim_5
+  rotate: false
+  xy: 568, 174
+  size: 169, 169
+  orig: 200, 200
+  offset: 16, 12
+  index: -1
+eff/winning_effect_anim_6
+  rotate: false
+  xy: 568, 3
+  size: 169, 169
+  orig: 200, 200
+  offset: 16, 12
+  index: -1
+eff/winning_effect_anim_7
+  rotate: false
+  xy: 739, 3
+  size: 168, 169
+  orig: 200, 200
+  offset: 17, 12
+  index: -1
+eff/winning_effect_anim_8
+  rotate: false
+  xy: 739, 174
+  size: 169, 169
+  orig: 200, 200
+  offset: 17, 12
+  index: -1
+eff/winning_effect_anim_9
+  rotate: false
+  xy: 909, 3
+  size: 168, 169
+  orig: 200, 200
+  offset: 17, 12
+  index: -1
+eff/winning_effect_background
+  rotate: true
+  xy: 2, 110
+  size: 233, 222
+  orig: 239, 241
+  offset: 0, 14
+  index: -1
+eff/winning_effect_light
+  rotate: false
+  xy: 1075, 194
+  size: 141, 149
+  orig: 240, 240
+  offset: 57, 46
+  index: -1
+starParticle
+  rotate: false
+  xy: 2, 77
+  size: 31, 31
+  orig: 37, 34
+  offset: 3, 0
   index: -1

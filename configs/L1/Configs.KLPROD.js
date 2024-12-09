@@ -20,5 +20,6 @@ window.envConfig = {
     enableMsgpackParserAllGames: true,
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "connect",
-    AppDownloadSubDomain: "https://www.taisaba.com"
+    AppDownloadSubDomain: "https://www.taisaba.com",
+    clientSubDomain: "client"
 };

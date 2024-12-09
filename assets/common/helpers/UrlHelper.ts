@@ -59,11 +59,28 @@ export function buildProxyUrl(path) {
     const envPath = configs.env === "" ? "" : `/${configs.env}`;
     const fullPath = `${envPath}${path}`;
 
-    return buildUrl("http", fullPath, configs.clientSubDomain);
+    return buildUrl("http", fullPath);
+}
+
+export function getClientRootDomain() {
+    const hostName = window.location.hostname;
+    return (!!configs.clientDomainMapper && configs.clientDomainMapper[hostName]) || extractDomainFromHostName(hostName);
+}
+
+export function buildClientUrl(path, overrideSubDomain = "") {
+    const ssl = configs.ssl;
+    const domain = getClientRootDomain();
+    const envPath = configs.env === "" ? "" : `/${configs.env}`;
+    const fullPath = `${envPath}${path}`;
+    const subDomainConfig = configs.clientSubDomain ?? configs.subDomain;
+    const subDomain = overrideSubDomain !== "" ? overrideSubDomain : subDomainConfig;
+    const subDomainText = subDomain == null ? "" : `${subDomain}.`;
+
+    return `http${ssl ? "s" : ""}://${subDomain === "" ? "" : subDomainText}${domain}${fullPath}`;
 }
 
 export function buildMicrositeGameUrl(gameId) {
-    return buildProxyUrl(`/site-${gameId}`);
+    return buildClientUrl(`/site-${gameId}`);
 }
 
 export function getTrialSocket(gameId) {
@@ -104,7 +121,7 @@ export function getEnvironment() {
 }
 
 export function buildShareResource() {
-    return buildProxyUrl(`/shared-resources`);
+    return buildClientUrl(`/shared-resources`);
 }
 
 export function buildSharedResourceUrl(path: string) {

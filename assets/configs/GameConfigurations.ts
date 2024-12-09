@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { buildProxyUrl } from "../common/helpers/UrlHelper";
+import { buildClientUrl } from "../common/helpers/UrlHelper";
 import { uiManager } from "../managers/GameUIManager";
 import { InternalEvents } from "../managers/InternalEvents";
 import { delayTime } from "../utils";
@@ -31,7 +31,7 @@ declare global {
 }
 
 export async function initialize() {
-    const url = buildProxyUrl("/game/configurations/");
+    const url = buildClientUrl("/game/configurations/");
     let configurations;
     let retryCount = 0;
 
@@ -78,7 +78,7 @@ function initializeBundleInfos() {
 
     const productionMode = games.reduce((result, configs) => {
         result[configs.gameId] = {
-            url: buildProxyUrl(`/game-client-${configs.gameId}`),
+            url: buildClientUrl(`/game-client-${configs.gameId}`),
             name: configs.gameId,
             useMd5Cache: true,
             dependencies: configs.dependsOn

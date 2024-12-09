@@ -13,3 +13,4 @@ export const AppDownloadSubDomain: string;
 export const clientSubDomain: string;
 export const subPromotionDomain: string;
 export const gatewaySubDomain: string;
+export const clientDomainMapper: { [key: string]: string };

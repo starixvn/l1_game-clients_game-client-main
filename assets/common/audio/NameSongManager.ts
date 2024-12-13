@@ -9,6 +9,7 @@ export default class NameSongManager {
     set songs(data: any) {
         this._songs = data;
     }
+
     constructor(data: any) {
         this._songs = data;
     }

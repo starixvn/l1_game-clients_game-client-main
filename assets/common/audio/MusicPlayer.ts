@@ -1,7 +1,31 @@
 import { SystemType } from "../../ISystem";
+import GameUtils from "../GameUtils";
+import { buildShareResource } from "../helpers/UrlHelper";
 import { sentryLogger } from "../logger";
 import AudioManager from "./AudioManager";
 import NameSongManager from "./NameSongManager";
+
+export type IRemoteSoundConfigs = {
+    version: number;
+    defaultTheme: string;
+    backgroundMusic: {
+        version: number;
+    };
+    themes: string[];
+};
+
+export type TAudioConfigs = {
+    [key: string]: TAudioValue;
+};
+
+export type TAudioValue = {
+    bundle?: string;
+    path: string;
+    type: string;
+    isMusicGame?: boolean;
+    isLazyLoad?: boolean;
+    isRemote?: boolean;
+};
 
 export default class MusicPlayer {
     private nameSongManager: NameSongManager;
@@ -19,16 +43,45 @@ export default class MusicPlayer {
     readonly stepIntervalVolume = (this.duration * 1000) / (this.volume / this.stepVolume);
     private static instanceMusic: MusicPlayer;
     private lastLoadSongTask: { promise: Promise<cc.AudioClip>; cancel: () => void };
+    protected remoteSoundConfigs: IRemoteSoundConfigs = {
+        version: 1,
+        defaultTheme: "original",
+        backgroundMusic: {
+            version: 1
+        },
+        themes: []
+    };
+
+    protected remoteAudioConfigs: TAudioConfigs = null;
+    private defaultListSong = ["SC1/song1", "SC1/song2", "SC1/song3", "SC1/song4", "SC1/song5", "SC1/song6", "SC1/song7"];
+    private remoteBgMusicPrefix = "remoteBgMusic";
 
     public static getInstance(): MusicPlayer {
         if (!this.instanceMusic) {
             this.instanceMusic = new MusicPlayer();
-            this.instanceMusic.nameSongManager = new NameSongManager({
-                [SystemType.SC1]: ["SC1/song1", "SC1/song2", "SC1/song3", "SC1/song4", "SC1/song5", "SC1/song6", "SC1/song7"]
-            });
         }
 
         return this.instanceMusic;
+    }
+
+    private async initNameSongManager() {
+        if (!this.nameSongManager) {
+            await this.getRemoteSoundConfigs();
+            await this.getRemoteAudioConfig();
+            this.nameSongManager = new NameSongManager({
+                [SystemType.SC1]: this.getRemoteSongNames() ?? this.defaultListSong
+            });
+        }
+    }
+
+    protected getRemoteSongNames() {
+        const result = [];
+        for (const key in this.remoteAudioConfigs) {
+            if (this.remoteAudioConfigs[key].isRemote) {
+                result.push(`${this.remoteBgMusicPrefix}/${key}`);
+            }
+        }
+        return result;
     }
 
     private get audioManager() {
@@ -42,16 +95,18 @@ export default class MusicPlayer {
         this.bgMusicId = -1;
     }
 
-    private getRandomNameSong() {
+    private async getRandomNameSong() {
+        await this.initNameSongManager();
         return this.nameSongManager.getSongName();
     }
 
-    private playBgAudio(play: boolean) {
+    private async playBgAudio(play: boolean) {
         this.clearIntervalSetVolume();
         this.isJoinRoomMusic && this.audioManager.removeMusicChanged(this.musicChangedKey);
 
         if (play && !this.isJoinRoomMusic) {
-            this.loadResourceAudio(this.getRandomNameSong());
+            const songName = await this.getRandomNameSong();
+            this.loadResourceAudio(songName);
             this.isPlayBgMusic = true;
         } else {
             this.stopBackgroundAudio();
@@ -75,12 +130,32 @@ export default class MusicPlayer {
         };
     }
 
+    private loadRemoteAudio(songId: string) {
+        let reject;
+        const url = `${this.getRemoteSoundPath()}/${this.remoteSoundConfigs.defaultTheme}/${this.remoteAudioConfigs[songId].path}.mp3?v=${
+            this.remoteSoundConfigs.version
+        }`;
+        const promise = new Promise<cc.AudioClip>((resolve, rejectInPromise) => {
+            reject = rejectInPromise;
+            cc.assetManager.loadRemote(url, cc.AudioClip, (err, audioClip: cc.AudioClip) => {
+                resolve(audioClip);
+            });
+        });
+
+        return {
+            promise,
+            cancel: () => {
+                reject && reject(new Error(`${sentryLogger.ignoreErrorsPrefix} cancel load audio`));
+            }
+        };
+    }
+
     private async loadResourceAudio(song: string) {
         try {
             if (this.lastLoadSongTask) {
                 this.lastLoadSongTask.cancel();
             }
-            this.lastLoadSongTask = this.loadAudio(song);
+            this.lastLoadSongTask = this.getAudioClip(song);
 
             const audioClip = await this.lastLoadSongTask.promise;
             if (this.isPlayBgMusic) {
@@ -95,6 +170,14 @@ export default class MusicPlayer {
         } catch (err) {
             cc.warn(err.message);
         }
+    }
+
+    protected getAudioClip(song: string) {
+        if (song.includes(this.remoteBgMusicPrefix)) {
+            return this.loadRemoteAudio(song.replace(`${this.remoteBgMusicPrefix}/`, ""));
+        }
+
+        return this.loadAudio(song);
     }
 
     playAudioClip(audioClip: cc.AudioClip) {
@@ -159,5 +242,29 @@ export default class MusicPlayer {
                 this.volume >= 0.7 && clearInterval(this.intervalVolIncrease);
             }, this.stepIntervalVolume);
         }
+    }
+
+    protected async getRemoteSoundConfigs() {
+        try {
+            const configUrl = `${this.getRemoteSoundPath()}/info.json?v=${Date.now()}`;
+            const jsonAsset = (await GameUtils.loadRemote(configUrl)) as cc.JsonAsset;
+            this.remoteSoundConfigs = (jsonAsset?.json as IRemoteSoundConfigs) ?? null;
+        } catch (error) {
+            cc.log("Get config remote sounds failed!");
+        }
+    }
+
+    protected async getRemoteAudioConfig() {
+        try {
+            const configUrl = `${this.getRemoteSoundPath()}/${this.remoteSoundConfigs.defaultTheme}/info.json?v=${Date.now()}`;
+            const jsonAsset = (await GameUtils.loadRemote(configUrl)) as cc.JsonAsset;
+            this.remoteAudioConfigs = (jsonAsset?.json as TAudioConfigs) ?? null;
+        } catch (error) {
+            cc.log("Get remote audio config failed!");
+        }
+    }
+
+    protected getRemoteSoundPath() {
+        return `${buildShareResource()}/sounds/themes`;
     }
 }

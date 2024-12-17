@@ -162,7 +162,7 @@ export default class LobbyMenu extends GameIconMenu {
             return LobbyResourceManager.loadPrefab(skeletonIconPath);
         }
 
-        const folder = `lobby/themes/default/prefabs/skeleton-icon`;
+        const folder = `${LobbyResourceManager.getThemePath()}/prefabs/skeleton-icon`;
         skeletonIconPath = isBigSize ? `${folder}/icon-big` : `${folder}/icon-small`;
 
         return GameUtils.loadResource(skeletonIconPath);

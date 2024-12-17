@@ -2,6 +2,10 @@ import GameUtils from "../../../common/GameUtils";
 import { buildShareResource } from "../../../common/helpers/UrlHelper";
 import { uiManager } from "../../../managers/GameUIManager";
 
+export interface IInfoLobbyTheme {
+    theme: string;
+}
+
 export interface IInfoShareResource {
     versionBanner: number;
     versionGameIcon: number;
@@ -55,6 +59,10 @@ export default class LobbyResourceManager {
         gameNamesFontSize: {}
     };
 
+    public infoLobbyTheme = {
+        theme: "default"
+    };
+
     private readonly defaultPath = "lobby/themes";
     private currentGroupCurrency = "";
 
@@ -96,6 +104,7 @@ export default class LobbyResourceManager {
 
     protected init(groupCurrency: string) {
         this.currentGroupCurrency = groupCurrency;
+        this.getInfoTheme();
         if (this.isUseTheme()) {
             this.getRemoteVersion();
         }
@@ -123,7 +132,7 @@ export default class LobbyResourceManager {
             return `${this.defaultPath}/${this.getTheme()}`;
         }
 
-        return `${this.defaultPath}/default`;
+        return `${this.defaultPath}/${this.infoLobbyTheme.theme}`;
     }
 
     protected isUseTheme() {
@@ -153,10 +162,17 @@ export default class LobbyResourceManager {
         return this.loadIcon(gameId, "mini-game", uiManager.spriteFrameCache.miniPanelIcons);
     }
 
-    public async getRemoteVersion() {
+    protected async getRemoteVersion() {
         const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
 
         versions && (this.infoShareResource = versions.json);
+    }
+
+    protected async getInfoTheme() {
+        const url = `${buildShareResource()}/lobbies/themes/info.json?v=${Date.now()}`;
+        const infoTheme = await GameUtils.loadRemote<cc.JsonAsset>(url);
+
+        infoTheme && (this.infoLobbyTheme = infoTheme.json);
     }
 
     private getTheme() {

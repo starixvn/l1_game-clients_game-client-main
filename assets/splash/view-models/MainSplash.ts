@@ -27,8 +27,8 @@ export default class MainSplash extends cc.Component {
     @property(cc.Asset)
     manifestUrl: cc.Asset = null;
 
-    @property(cc.ProgressBar)
-    progressBar: cc.ProgressBar = null;
+    @property(cc.Node)
+    containerProgressBar: cc.Node = null;
 
     @property(cc.Node)
     sloganSC1: cc.Node = null;
@@ -60,22 +60,24 @@ export default class MainSplash extends cc.Component {
     private loadSceneTimeout: any;
 
     private noticePrefab: cc.Prefab = null;
+    private progressBar: cc.ProgressBar = null;
 
     protected onLoad(): void {
         this.initUIListeners();
         this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
+        this.progressBar = this.containerProgressBar.getComponentInChildren(cc.ProgressBar);
     }
 
     private setPositionProgressBarAndMessage() {
         const operator = sessionManager.getOperator()?.toUpperCase();
         const spPosition =
             operator === OperatorAlias.TIP88
-                ? { progressBar: cc.v2(this.progressBar?.node?.x, -242), messageComp: cc.v2(0, -270) }
-                : { progressBar: cc.v2(this.progressBar?.node?.x, -307), messageComp: cc.v2(0, -331) };
+                ? { progressBar: cc.v2(this.containerProgressBar.x, -242), messageComp: cc.v2(0, -270) }
+                : { progressBar: cc.v2(this.containerProgressBar?.x, -307), messageComp: cc.v2(0, -331) };
 
-        this.progressBar.node.setPosition(spPosition.progressBar);
+        this.containerProgressBar.setPosition(spPosition.progressBar);
         this.messageComp.node.setPosition(spPosition.messageComp);
     }
 

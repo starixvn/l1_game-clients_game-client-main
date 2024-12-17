@@ -102,11 +102,13 @@ export default class LobbyResourceManager {
         return this.infoShareResource.gameNamesFontSize?.[gameId]?.[lang];
     }
 
-    protected init(groupCurrency: string) {
-        this.currentGroupCurrency = groupCurrency;
+    protected init(groupCurrency?: string) {
         this.getInfoTheme();
-        if (this.isUseTheme()) {
-            this.getRemoteVersion();
+        if (groupCurrency) {
+            this.currentGroupCurrency = groupCurrency;
+            if (this.isUseTheme()) {
+                this.getRemoteVersion();
+            }
         }
     }
 

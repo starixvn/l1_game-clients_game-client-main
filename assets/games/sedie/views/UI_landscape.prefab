@@ -275,7 +275,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "d89dab9c-5000-492f-a7b4-bce2f98942c8"
+      "__uuid__": "bfde576a-d61f-4890-908c-884288b54c44"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -17130,8 +17130,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 167,
-      "height": 63
+      "width": 156,
+      "height": 45
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -17182,6 +17182,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "7a6d0169-95bf-4ace-b0c4-1a71ff131c6b"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -17249,6 +17252,9 @@
     "_enabled": true,
     "gameId": 2,
     "nameImage": "sedie_text_even",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
     "_id": ""
   },
   {
@@ -19554,8 +19560,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 73,
-      "height": 59
+      "width": 127,
+      "height": 45
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -19606,6 +19612,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "3598af8d-49cd-4fd0-9fc0-60d8e584a822"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -19673,6 +19682,9 @@
     "_enabled": true,
     "gameId": 2,
     "nameImage": "sedie_text_odd",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
     "_id": ""
   },
   {
@@ -32458,12 +32470,14 @@
     "processWarningPrefab": {
       "__uuid__": "fd5fde1e-3092-4df5-b560-35786915c6e2"
     },
+    "promptMessagePrefab": null,
     "miniNoticePrefab": {
       "__uuid__": "33b0ebea-3392-4bf8-aa8c-7ea614252597"
     },
     "noticeNode": {
       "__id__": 621
     },
+    "promptMessageContainer": null,
     "umNotice": null,
     "timeWaitNode": {
       "__id__": 601
@@ -32475,6 +32489,7 @@
       "__id__": 596
     },
     "md5Component": null,
+    "provablyFairComponent": null,
     "gameRound": {
       "__id__": 19
     },

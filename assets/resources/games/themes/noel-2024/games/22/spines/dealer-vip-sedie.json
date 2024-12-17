@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "qdBasywvRHSf3tNR9EwQoJMuKO8", "spine": "3.8.99", "x": -80.42, "y": -88.31, "width": 156.2, "height": 286.94 },
+"skeleton": { "hash": "0bKm5/X8iakvotCLfe5oxjpyWXI", "spine": "3.8.99", "x": -95.72, "y": -144, "width": 188, "height": 342.63 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "main", "parent": "root", "y": -56.51, "scaleX": 0.068, "scaleY": 0.068 },
@@ -85,9 +85,11 @@
 	{ "name": "head-band12", "parent": "head-band11", "length": 88.61, "rotation": -9.4, "x": 115.49, "y": -0.68 },
 	{ "name": "head-band13", "parent": "head-band12", "length": 60.66, "rotation": -9.67, "x": 90.25, "y": -1.58 },
 	{ "name": "right-hand", "parent": "main", "rotation": -0.42, "x": -9.08, "y": 13.69 },
-	{ "name": "left-hand", "parent": "main" }
+	{ "name": "left-hand", "parent": "main" },
+	{ "name": "dealer-chair", "parent": "root", "x": -1.72 }
 ],
 "slots": [
+	{ "name": "dealer-chair", "bone": "dealer-chair", "attachment": "dealer-chair" },
 	{ "name": "back-hair", "bone": "back-hair", "attachment": "back-hair" },
 	{ "name": "neck-shoulder", "bone": "neck-shoulder", "attachment": "neck-shoulder" },
 	{ "name": "abominal", "bone": "main", "attachment": "abominal" },
@@ -144,6 +146,9 @@
 					"hull": 123
 				},
 				"chest2": { "path": "chest", "x": -49, "y": 1615, "width": 1302, "height": 1322 }
+			},
+			"dealer-chair": {
+				"dealer-chair": { "width": 188, "height": 288 }
 			},
 			"eyes": {
 				"closed-eyes": { "x": -28, "y": -13.5, "width": 610, "height": 177 },

@@ -15,7 +15,7 @@ export default class MiniSedieMultiplay extends MultiplayGame {
     }
     onLoad() {
         super.onLoad();
-        this.node && (this.node.y = -60); // customize for theme noel 2024
+        this.node && (this.node.y = -75); // customize for theme noel 2024
     }
 
     createSubGameUI(gameId: number, location: number): cc.Node {

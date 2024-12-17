@@ -13,6 +13,10 @@ export default class MiniSedieMultiplay extends MultiplayGame {
         super();
         this.gameId = MiniSedie1Id;
     }
+    onLoad() {
+        super.onLoad();
+        this.node && (this.node.y = -60); // customize for theme noel 2024
+    }
 
     createSubGameUI(gameId: number, location: number): cc.Node {
         const node = super.createSubGameUI(gameId, location);
@@ -23,7 +27,7 @@ export default class MiniSedieMultiplay extends MultiplayGame {
 
     addSubGameUI(gameId: number, location: number) {
         const subGameNode = super.addSubGameUI(gameId, location);
-        if(subGameNode) {
+        if (subGameNode) {
             const multiplaySingle = subGameNode.getComponent(MiniSedieSubGame);
             multiplaySingle.miniRoundHistory && (multiplaySingle.miniRoundHistory.tip.node.opacity = 0);
             multiplaySingle.isMainGame = false;

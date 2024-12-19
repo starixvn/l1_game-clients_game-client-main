@@ -1,6 +1,7 @@
 html {
     -ms-touch-action: none;
     /* height: 100%; */
+    background-color: #10223f;
 }
 
 body,
@@ -71,7 +72,6 @@ body {
     border: 0;
     margin: 0;
     position: fixed;
-    z-index: -1;
 }
 
 .container-themes {

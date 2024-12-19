@@ -448,15 +448,15 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -12
+      "y": -8
     },
     "speed": 0,
-    "speedVar": 75,
+    "speedVar": 0,
     "tangentialAccel": 0,
     "tangentialAccelVar": 0,
     "radialAccel": 0,
     "radialAccelVar": 0,
-    "rotationIsDir": true,
+    "rotationIsDir": false,
     "startRadius": 0,
     "startRadiusVar": 0,
     "endRadius": 0,
@@ -570,7 +570,7 @@
     "totalParticles": 100,
     "duration": -1,
     "emissionRate": 12,
-    "life": 5,
+    "life": 7,
     "lifeVar": 1,
     "_startColor": {
       "__type__": "cc.Color",
@@ -604,7 +604,7 @@
     "angleVar": 0,
     "startSize": 4,
     "startSizeVar": 32,
-    "endSize": 32,
+    "endSize": 25,
     "endSizeVar": 0,
     "startSpin": 0,
     "startSpinVar": 120,
@@ -626,7 +626,7 @@
     "gravity": {
       "__type__": "cc.Vec2",
       "x": -10,
-      "y": -30
+      "y": -18
     },
     "speed": 0,
     "speedVar": 0,

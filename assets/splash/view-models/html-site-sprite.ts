@@ -23,6 +23,9 @@ export default class HtmlSiteSprite extends cc.Component {
     @property
     originalSize = true;
 
+    @property({ type: cc.Sprite.Type })
+    type = cc.Sprite.Type.SIMPLE;
+
     protected sprite: cc.Sprite = null;
 
     async onLoad() {
@@ -40,6 +43,7 @@ export default class HtmlSiteSprite extends cc.Component {
             if (this.originalSize) {
                 this.sprite.sizeMode = cc.Sprite.SizeMode.RAW;
             }
+            this.sprite.type = this.type;
         } catch (e) {}
     }
 

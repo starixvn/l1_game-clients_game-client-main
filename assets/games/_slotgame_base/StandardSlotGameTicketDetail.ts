@@ -45,14 +45,20 @@ export default class StandardSlotGameTicketDetail extends SlotGameTicketDetail {
     }
 
     protected setSymbolFrame(symbolNumber: number) {
-        if (symbolNumber === this.jackpotSymbolNumber && configs.systemType === SystemType.SC2) {
+        let spriteFrame;
+
+        if (
+            symbolNumber === this.jackpotSymbolNumber &&
+            ((configs.systemType === SystemType.SC2 && this.gameId === 29) || this.enableJackpot)
+        ) {
             const language = getLocale();
             const suffix = language === "vi-VN" ? `.${language}` : "";
-            const spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}.jackpot${suffix}`);
-            return spriteFrame;
+            spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}.jackpot${suffix}`);
+        } else {
+            spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}`);
         }
 
-        return this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}`);
+        return spriteFrame;
     }
 
     protected createFailPaylines(data, winningArray: number[], order: number) {

@@ -571,7 +571,7 @@
       "__uuid__": "7c6d319c-bab0-4bcb-8514-1b7e1e91a608"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 300,
@@ -627,8 +627,8 @@
       "x": 500,
       "y": 262
     },
-    "_positionType": 0,
-    "positionType": 0,
+    "_positionType": 1,
+    "positionType": 1,
     "emitterMode": 0,
     "gravity": {
       "__type__": "cc.Vec2",
@@ -749,7 +749,7 @@
       "__uuid__": "9485b941-2350-4a4e-b06e-9d19fcc94f0b"
     },
     "_texture": null,
-    "_stopped": true,
+    "_stopped": false,
     "playOnLoad": true,
     "autoRemoveOnFinish": false,
     "totalParticles": 64,
@@ -805,8 +805,8 @@
       "x": 500,
       "y": 7
     },
-    "_positionType": 0,
-    "positionType": 0,
+    "_positionType": 1,
+    "positionType": 1,
     "emitterMode": 0,
     "gravity": {
       "__type__": "cc.Vec2",

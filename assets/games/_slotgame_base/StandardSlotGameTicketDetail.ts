@@ -1,6 +1,8 @@
 import { getLocale } from "../../common/auth/SessionManager";
+import { SystemType } from "../../ISystem";
 import { uiManager } from "../../managers/GameUIManager";
 import SlotGameTicketDetail from "./SlotGameTicketDetail";
+import configs = require("../../configs/Configs");
 
 const { ccclass, property } = cc._decorator;
 
@@ -43,16 +45,14 @@ export default class StandardSlotGameTicketDetail extends SlotGameTicketDetail {
     }
 
     protected setSymbolFrame(symbolNumber: number) {
-        let spriteFrame;
-        if (this.enableJackpot && symbolNumber === this.jackpotSymbolNumber) {
+        if (symbolNumber === this.jackpotSymbolNumber && configs.systemType === SystemType.SC2) {
             const language = getLocale();
             const suffix = language === "vi-VN" ? `.${language}` : "";
-            spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}.jackpot${suffix}`);
-        } else {
-            spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}`);
+            const spriteFrame = this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}.jackpot${suffix}`);
+            return spriteFrame;
         }
 
-        return spriteFrame;
+        return this.mainAtlas.getSpriteFrame(`symbol-${symbolNumber}`);
     }
 
     protected createFailPaylines(data, winningArray: number[], order: number) {

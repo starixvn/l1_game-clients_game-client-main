@@ -155,7 +155,7 @@ class AppManager {
 
     async ssoAndAuthorize() {
         this.handleAppMode();
-        this.handleCurrencyGroup();
+        await this.handleCurrencyGroup();
         await this.requestSSO();
         await getLobbyConfigs();
         if (window.authData && this.isDirectMode) {
@@ -167,7 +167,7 @@ class AppManager {
         await this.initNotificationService();
     }
 
-    private handleCurrencyGroup() {
+    private async handleCurrencyGroup() {
         const urlParams = new URLSearchParams(window.location.search);
         let currencyGroup: string;
         if (urlParams.has("cg")) {
@@ -177,7 +177,7 @@ class AppManager {
             currencyGroup = StorageManager.get("currency_group");
         }
 
-        lobbyResourceManager.init(currencyGroup);
+        await lobbyResourceManager.init(currencyGroup);
     }
 
     private handleAppMode() {

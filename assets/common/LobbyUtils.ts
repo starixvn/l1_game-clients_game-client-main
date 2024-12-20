@@ -221,7 +221,7 @@ export default class LobbyUtils {
     }
 
     private static preloadDir() {
-        const themePath = lobbyResourceManager.getThemePath();
+        const themePath = lobbyResourceManager?.themeManager?.getThemePath();
 
         const iconPath = `${themePath}/prefabs/skeleton-icon`;
 
@@ -247,11 +247,11 @@ export default class LobbyUtils {
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
 
-            if (lobbyResourceManager.isUseTheme()) {
+            if (lobbyResourceManager?.themeManager?.isUseTheme()) {
                 const preloadGameInMain = preLoadGameIds.filter(
                     (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );
-                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => lobbyResourceManager?.loadGameIcon(gameId));
+                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => lobbyResourceManager?.gameIconLoader?.loadGameIcon(gameId));
                 await Promise.all([preLoadGameAwaiters]);
 
                 console.log(`SplashScreen - Completed load game icons`, [
@@ -320,7 +320,7 @@ export default class LobbyUtils {
             const bannerId = bannerGameIds[0];
 
             // Load themed banner if applicable
-            if (lobbyResourceManager.isUseTheme() && bannerId > 0) {
+            if (lobbyResourceManager?.themeManager?.isUseTheme() && bannerId > 0) {
                 await this.loadThemedBanner(bannerId);
             } else {
                 await this.loadStandardBanner(bannerId);
@@ -338,7 +338,7 @@ export default class LobbyUtils {
 
         await Promise.all([
             bannerComp.createRemoteIconNode(bannerId),
-            this.preloadResource(`${lobbyResourceManager.getThemePath()}/prefabs/banner/bannerContainer`)
+            this.preloadResource(`${lobbyResourceManager?.themeManager?.getThemePath()}/prefabs/banner/bannerContainer`)
         ]);
 
         node.destroy();
@@ -388,7 +388,7 @@ export default class LobbyUtils {
     }
 
     private static async preLoadLobbyUI(uiType: "background-ui" | "category-container" | "lobby-center") {
-        const path = `${lobbyResourceManager.getThemePath()}/prefabs/${uiType}`;
+        const path = `${lobbyResourceManager?.themeManager?.getThemePath()}/prefabs/${uiType}`;
         return this.preloadResource(path);
     }
 

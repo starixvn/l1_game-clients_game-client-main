@@ -16,13 +16,13 @@ export default class CircleMenuTheme extends CircleMenu {
         try {
             const skeletonMiniIcon = node?.getComponent(SkeletonMiniIcon);
             const cachedSprite = uiManager.spriteFrameCache.miniPanelIcons[gameId]?.spriteFrame;
-            const spriteFrame = cachedSprite || (await lobbyResourceManager.loadMiniGameIcon(gameId));
+            const spriteFrame = cachedSprite || (await lobbyResourceManager?.gameIconLoader?.loadMiniGameIcon(gameId));
             if (spriteFrame) {
                 skeletonMiniIcon.iconSprite.spriteFrame = spriteFrame;
                 skeletonMiniIcon.hideSkeleton();
                 const prefabCounter = await GameUtils.asyncExecute<cc.Prefab>(
                     this?.node,
-                    lobbyResourceManager.loadPrefab(`mini-game/counters/${gameId}`)
+                    lobbyResourceManager?.resourceLoader?.loadPrefab(`mini-game/counters/${gameId}`)
                 );
                 prefabCounter && skeletonMiniIcon.containerCounter.addChild(cc.instantiate(prefabCounter));
             }

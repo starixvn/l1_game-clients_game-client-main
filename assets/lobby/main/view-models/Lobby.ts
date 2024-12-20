@@ -129,7 +129,7 @@ export default class Lobby extends cc.Component {
     async loadBackgroundUI() {
         try {
             if (!this.backgroundUIPrefab) {
-                this.backgroundUIPrefab = await lobbyResourceManager?.loadPrefab("background-ui");
+                this.backgroundUIPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("background-ui");
             }
 
             const backgroundUI = cc.instantiate(this.backgroundUIPrefab);
@@ -140,7 +140,7 @@ export default class Lobby extends cc.Component {
     async loadHeader() {
         try {
             if (!this.headerPrefab) {
-                this.headerPrefab = await lobbyResourceManager?.loadPrefab("header");
+                this.headerPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("header");
             }
 
             const header = cc.instantiate(this.headerPrefab);
@@ -155,7 +155,7 @@ export default class Lobby extends cc.Component {
     async loadMarquee() {
         try {
             if (!this.marqueePrefab) {
-                this.marqueePrefab = await lobbyResourceManager?.loadPrefab("marquee");
+                this.marqueePrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("marquee");
             }
 
             const marquee = cc.instantiate(this.marqueePrefab);
@@ -169,7 +169,7 @@ export default class Lobby extends cc.Component {
     async loadLobbyCenterContainer() {
         try {
             if (!this.lobbyCenterPrefab) {
-                this.lobbyCenterPrefab = await lobbyResourceManager?.loadPrefab("lobby-center");
+                this.lobbyCenterPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("lobby-center");
             }
 
             const lobbyCenter = cc.instantiate(this.lobbyCenterPrefab);
@@ -186,7 +186,7 @@ export default class Lobby extends cc.Component {
     async loadButtonArrow() {
         try {
             if (!this.buttonArrowPrefab) {
-                this.buttonArrowPrefab = await lobbyResourceManager?.loadPrefab("button-arrow");
+                this.buttonArrowPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("button-arrow");
             }
 
             const buttonArrow = cc.instantiate(this.buttonArrowPrefab);
@@ -204,7 +204,7 @@ export default class Lobby extends cc.Component {
     async loadButtons() {
         try {
             if (!this.containerButtonsPrefabs) {
-                this.containerButtonsPrefabs = await lobbyResourceManager?.loadPrefab("buttons");
+                this.containerButtonsPrefabs = await lobbyResourceManager?.resourceLoader?.loadPrefab("buttons");
             }
 
             const buttons = cc.instantiate(this.containerButtonsPrefabs);
@@ -220,7 +220,7 @@ export default class Lobby extends cc.Component {
     async loadPrefabCategoryContainer() {
         try {
             if (!this.categoryContainerPrefab) {
-                this.categoryContainerPrefab = await lobbyResourceManager?.loadPrefab("category-container");
+                this.categoryContainerPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("category-container");
             }
 
             const categoryContainer = cc.instantiate(this.categoryContainerPrefab);
@@ -239,7 +239,7 @@ export default class Lobby extends cc.Component {
         try {
             AudioManager.getInstance().playClick();
             if (!this.settingMenuPrefab) {
-                this.settingMenuPrefab = await lobbyResourceManager?.loadPrefab("setting-menu");
+                this.settingMenuPrefab = await lobbyResourceManager?.resourceLoader?.loadPrefab("setting-menu");
             }
 
             const settingMenu = cc.instantiate(this.settingMenuPrefab);

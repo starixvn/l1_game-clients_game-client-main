@@ -1,15 +1,9 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResource } from "../../../common/helpers/UrlHelper";
-import { uiManager } from "../../../managers/GameUIManager";
-
-export interface IInfoLobbyTheme {
-    theme: string;
-    currencyGroups?: {
-        [currency: string]: {
-            theme: string;
-        };
-    };
-}
+import { GameIconLoader } from "./theme/GameIconLoader";
+import { GameNameManager } from "./theme/GameNameManager";
+import { ResourceLoader } from "./theme/ResourceLoader";
+import { ThemeManager } from "./theme/ThemeManager";
 
 export interface IInfoShareResource {
     versionBanner: number;
@@ -72,8 +66,10 @@ export default class LobbyResourceManager {
         }
     };
 
-    private readonly DEFAULT_PATH = "lobby/themes";
-    private currentGroupCurrency = "";
+    public themeManager: ThemeManager;
+    public resourceLoader: ResourceLoader;
+    public gameIconLoader: GameIconLoader;
+    public gameNameManager: GameNameManager;
 
     public static getInstance(): LobbyResourceManager {
         if (!this.instance) {
@@ -83,92 +79,27 @@ export default class LobbyResourceManager {
         return this.instance;
     }
 
-    public getIgnoreCapitalizeGameNames() {
-        return this.infoShareResource.ignoreCapitalizeGameNames;
-    }
+    public async init(groupCurrency?: string) {
+        try {
+            await this.getInfoTheme();
+            this.themeManager = new ThemeManager(this.infoLobbyTheme, this.DEFAULT_CURRENCY_GROUP_THEME);
+            this.resourceLoader = new ResourceLoader(this.themeManager);
+            this.gameIconLoader = new GameIconLoader(this);
 
-    public getGameNameBreakLine(gameId: number, lang: string) {
-        return this.infoShareResource.gameNamesBreakLine?.[gameId]?.[lang];
-    }
-
-    public getGameNamesFontSize(gameId: number, lang: string) {
-        return this.infoShareResource.gameNamesFontSize?.[gameId]?.[lang];
-    }
-
-    public init(groupCurrency?: string) {
-        this.getInfoTheme()
-            .then(() => {
-                if (groupCurrency) {
-                    this.currentGroupCurrency = groupCurrency;
-                    if (this.isUseTheme()) {
-                        this.getRemoteVersion();
+            if (groupCurrency) {
+                this.themeManager?.setCurrentGroupCurrency(groupCurrency);
+                if (this.themeManager?.isUseTheme()) {
+                    try {
+                        await this.getRemoteVersion();
+                        this.gameNameManager = new GameNameManager(this.infoShareResource);
+                    } catch (err) {
+                        cc.error("Failed to initialize game name manager:", err);
                     }
                 }
-            })
-            .catch((err) => {
-                cc.error("Failed to get info theme:", err);
-            });
-    }
-
-    public loadRemoteSharedResource<T>(pathResource: string) {
-        return GameUtils.loadRemote<T>(this.remoteShareLobbyResourceUrl(pathResource));
-    }
-
-    public remoteShareLobbyResourceUrl(pathResource: string) {
-        const url = buildShareResource();
-        return `${url}/lobbies/themes/${this.getTheme()}/${pathResource}`;
-    }
-
-    public loadPrefab(path: string): Promise<cc.Prefab> {
-        return new Promise((resolve) => {
-            cc.resources.load(`${this.getThemePath()}/prefabs/${path}`, (err, prefab: cc.Prefab) => {
-                resolve(prefab);
-            });
-        });
-    }
-
-    public getThemePath() {
-        // Check if current currency group exists in lobby theme config
-        // If yes, return path with theme from currency group
-        // Example: lobby/themes/credit_php for Credit_PHP currency
-        if (this.currentGroupCurrency in this.infoLobbyTheme.currencyGroups) {
-            return `${this.DEFAULT_PATH}/${this.getTheme()}`;
+            }
+        } catch (err) {
+            cc.error("Failed to initialize lobby resource manager:", err);
         }
-
-        return `${this.DEFAULT_PATH}/${this.infoLobbyTheme.theme}`;
-    }
-
-    public isUseTheme() {
-        return this.currentGroupCurrency in this.infoLobbyTheme.currencyGroups;
-    }
-
-    protected async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
-        const version = this.infoShareResource[type === "game" ? "versionGameIcon" : "versionMiniGameIcon"];
-        const resourcePath = `${type}-icons/${gameId}/en.webp?v=${version}`;
-        const remoteTexture = await this.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
-        const spriteFrame = new cc.SpriteFrame(remoteTexture);
-        cache[gameId] = { spriteFrame };
-
-        if (spriteFrame) {
-            return spriteFrame;
-        }
-
-        cc.log(`Not get ${type === "game" ? "Game" : "Mini Game"} Icon from shared resource: ${gameId}`);
-        return null;
-    }
-
-    public async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
-        return this.loadIcon(gameId, "game", uiManager.spriteFrameCache.lobbyIcons);
-    }
-
-    public async loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame> {
-        return this.loadIcon(gameId, "mini-game", uiManager.spriteFrameCache.miniPanelIcons);
-    }
-
-    protected async getRemoteVersion() {
-        const versions = await this.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
-
-        versions && (this.infoShareResource = versions.json);
     }
 
     protected async getInfoTheme() {
@@ -178,12 +109,10 @@ export default class LobbyResourceManager {
         infoTheme && (this.infoLobbyTheme = infoTheme.json);
     }
 
-    private getTheme() {
-        return this.infoLobbyTheme.currencyGroups[this.currentGroupCurrency].theme ?? this.DEFAULT_CURRENCY_GROUP_THEME;
-    }
+    protected async getRemoteVersion() {
+        const versions = await this.resourceLoader?.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
 
-    public loadRemoteInfoBanner(gameId: number) {
-        return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`);
+        versions && (this.infoShareResource = versions.json);
     }
 }
 

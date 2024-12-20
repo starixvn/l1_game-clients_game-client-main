@@ -119,11 +119,12 @@ export default class NotificationService {
     }
 
     async emitEvent(eventName, data) {
-        if (!this.socket || !this.socket.connected) {
-            cc.log("notification not ready ---------------------------------");
-            await GameUtils.waitUntil(() => this.socket?.connected, 50, 1000);
-        }
         try {
+            if (!this.socket || !this.socket.connected) {
+                cc.log("notification not ready ---------------------------------");
+                await GameUtils.waitUntil(() => this.socket?.connected, 50, 1000);
+            }
+
             this.socket.emit(eventName, data);
         } catch (error) {
             sentryLogger.logError(error);

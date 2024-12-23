@@ -284,7 +284,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     initSlotGameConfig() {
-        //this.slotGameConfigs = new FourGuardiansSlotConfigs();
+        //empty
     }
 
     loadSlotGameConfig() {

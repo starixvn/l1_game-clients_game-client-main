@@ -1,5 +1,6 @@
 import GameUtils from "../../common/GameUtils";
 import { lobbyResourceManager } from "../../lobby/main/view-models/LobbyResourceManager";
+import { themeResourceLoader } from "../../lobby/main/view-models/theme/ResourceLoader";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import RoundTime from "./RoundTime";
@@ -45,8 +46,8 @@ export default class MiniGameRoundTimer extends cc.Component {
     async initRoundTime() {
         const prefab = await GameUtils.asyncExecute<cc.Prefab>(
             this.node,
-            lobbyResourceManager?.themeManager?.isUseTheme()
-                ? lobbyResourceManager?.resourceLoader?.loadPrefab("mini-game/round-time")
+            lobbyResourceManager?.hasCurrencyGroup()
+                ? themeResourceLoader?.loadPrefab("mini-game/round-time")
                 : GameUtils.loadResource(`minipanel/popup-mini-game/RoundTime`)
         );
 

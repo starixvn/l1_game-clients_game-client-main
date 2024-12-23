@@ -1,6 +1,7 @@
 import RemoteSpine, { Type } from "../../../../common/RemoteSpine";
-import { IInfoShareResourceBanner, lobbyResourceManager } from "../LobbyResourceManager";
+import { IInfoShareResourceBanner } from "../LobbyResourceManager";
 import SkeletonBanner from "../SkeletonBanner";
+import { themeResourceLoader } from "./ResourceLoader";
 
 const { ccclass, property } = cc._decorator;
 
@@ -12,9 +13,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
     public override async createRemoteIconNode(id: number) {
         const node = new cc.Node();
         try {
-            const configFile = this.cache[id]
-                ? this.cache[id].configFile
-                : await lobbyResourceManager?.resourceLoader?.loadRemoteInfoBanner(id);
+            const configFile = this.cache[id] ? this.cache[id].configFile : await themeResourceLoader?.loadRemoteInfoBanner(id);
 
             const iconConfig: IInfoShareResourceBanner = configFile?.json;
 

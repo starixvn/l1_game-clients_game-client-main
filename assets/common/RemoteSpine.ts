@@ -1,4 +1,5 @@
 import { IInfoShareResourceBanner, lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
+import { themeResourceLoader } from "../lobby/main/view-models/theme/ResourceLoader";
 import { SkeletonCache } from "../managers/GameUIManager";
 import GameUtils from "./GameUtils";
 
@@ -96,9 +97,7 @@ export default class RemoteSpine extends cc.Component {
                 try {
                     const resName = `${this.spineName}.${ext}?v=${version}`;
                     const langPath = config?.languages[window.i18n.curLang] ? window.i18n.curLang : "en";
-                    const data = await lobbyResourceManager?.resourceLoader?.loadRemoteSharedResource(
-                        `banners/${this.id}/${langPath}/${resName}`
-                    );
+                    const data = await themeResourceLoader?.loadRemoteSharedResource(`banners/${this.id}/${langPath}/${resName}`);
                     if (data) {
                         spineRes.push(data);
                     }

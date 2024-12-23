@@ -1,19 +1,19 @@
 import Banner from "../Banner";
-import { lobbyResourceManager } from "../LobbyResourceManager";
+import { themeResourceLoader } from "./ResourceLoader";
 
 const { ccclass } = cc._decorator;
 
 @ccclass
 export default class BannerTheme extends Banner {
     protected override getPrefabBannerContainer() {
-        return lobbyResourceManager?.resourceLoader?.loadPrefab("banner/bannerContainer");
+        return themeResourceLoader?.loadPrefab("banner/bannerContainer");
     }
 
     protected override getPathJackpotContainer() {
-        return lobbyResourceManager?.resourceLoader?.loadPrefab("banner/jackpotController");
+        return themeResourceLoader?.loadPrefab("banner/jackpotController");
     }
 
     protected override getPathJackpotNavigation() {
-        return lobbyResourceManager?.resourceLoader?.loadPrefab("banner/jackpotNavigation");
+        return themeResourceLoader?.loadPrefab("banner/jackpotNavigation");
     }
 }

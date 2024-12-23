@@ -2,12 +2,14 @@ import { BundleManager } from "bundle-management";
 import { getGameConfiguration } from "../configs/GameConfigurations";
 import { TotalPreloadGameIcon } from "../constants";
 import LobbyManager from "../lobby/main/view-models/LobbyManager";
+import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
+import { themeGameIconLoader } from "../lobby/main/view-models/theme/GameIconLoader";
 import SkeletonBannerTheme from "../lobby/main/view-models/theme/SkeletonBannerTheme";
+import { DEFAULT_THEME_LOCAL_PATH, themeManager } from "../lobby/main/view-models/theme/ThemeManager";
 import { uiManager } from "../managers/GameUIManager";
 import { StorageManager } from "../managers/StorageManager";
 import GameUtils from "./GameUtils";
 import { userManager } from "./user/UserManager";
-import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
 
 export const MICRO_GAMES_NOT_OFFER_BANNER = [9, 48, 49, 50];
 export enum BannerType {
@@ -221,9 +223,9 @@ export default class LobbyUtils {
     }
 
     private static preloadDir() {
-        const themePath = lobbyResourceManager?.themeManager?.getThemePath();
+        const path = lobbyResourceManager?.hasCurrencyGroup() ? themeManager?.getPath() : DEFAULT_THEME_LOCAL_PATH;
 
-        const iconPath = `${themePath}/prefabs/skeleton-icon`;
+        const iconPath = `${path}/prefabs/skeleton-icon`;
 
         cc.resources.loadDir(iconPath, () => {
             cc.director.loadScene("Lobby");
@@ -247,11 +249,11 @@ export default class LobbyUtils {
             preLoadGameIds =
                 firstCategoryGames?.length >= TotalPreloadGameIcon ? firstCategoryGames.slice(0, TotalPreloadGameIcon) : firstCategoryGames;
 
-            if (lobbyResourceManager?.themeManager?.isUseTheme()) {
+            if (lobbyResourceManager?.hasCurrencyGroup()) {
                 const preloadGameInMain = preLoadGameIds.filter(
                     (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );
-                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => lobbyResourceManager?.gameIconLoader?.loadGameIcon(gameId));
+                const preLoadGameAwaiters = preloadGameInMain.map((gameId) => themeGameIconLoader?.loadGameIcon(gameId));
                 await Promise.all([preLoadGameAwaiters]);
 
                 console.log(`SplashScreen - Completed load game icons`, [
@@ -320,7 +322,7 @@ export default class LobbyUtils {
             const bannerId = bannerGameIds[0];
 
             // Load themed banner if applicable
-            if (lobbyResourceManager?.themeManager?.isUseTheme() && bannerId > 0) {
+            if (lobbyResourceManager?.hasCurrencyGroup() && bannerId > 0) {
                 await this.loadThemedBanner(bannerId);
             } else {
                 await this.loadStandardBanner(bannerId);
@@ -338,7 +340,7 @@ export default class LobbyUtils {
 
         await Promise.all([
             bannerComp.createRemoteIconNode(bannerId),
-            this.preloadResource(`${lobbyResourceManager?.themeManager?.getThemePath()}/prefabs/banner/bannerContainer`)
+            this.preloadResource(`${themeManager?.getPath()}/prefabs/banner/bannerContainer`)
         ]);
 
         node.destroy();
@@ -388,7 +390,7 @@ export default class LobbyUtils {
     }
 
     private static async preLoadLobbyUI(uiType: "background-ui" | "category-container" | "lobby-center") {
-        const path = `${lobbyResourceManager?.themeManager?.getThemePath()}/prefabs/${uiType}`;
+        const path = `${themeManager?.getPathPreloadPrefab(uiType)}/prefabs/${uiType}`;
         return this.preloadResource(path);
     }
 

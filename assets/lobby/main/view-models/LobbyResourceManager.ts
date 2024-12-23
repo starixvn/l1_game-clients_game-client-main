@@ -1,9 +1,17 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResource } from "../../../common/helpers/UrlHelper";
-import { GameIconLoader } from "./theme/GameIconLoader";
-import { GameNameManager } from "./theme/GameNameManager";
-import { ResourceLoader } from "./theme/ResourceLoader";
-import { ThemeManager } from "./theme/ThemeManager";
+import { IGameNamesBreakLine, IGameNamesFontSize } from "./theme/GameNameManager";
+import { themeResourceLoader } from "./theme/ResourceLoader";
+import { THEME_REMOTE_PATH, themeManager } from "./theme/ThemeManager";
+
+export interface IInfoLobbyTheme {
+    theme: string;
+    currencyGroups?: {
+        [currency: string]: {
+            theme: string;
+        };
+    };
+}
 
 export interface IInfoShareResource {
     versionBanner: number;
@@ -29,22 +37,12 @@ interface LanguagesConfig {
     zh_tw?: boolean;
 }
 
-interface IGameNamesBreakLine {
-    [gameId: string]: {
-        [languageCode: string]: string;
-    };
-}
-
-interface IGameNamesFontSize {
-    [gameId: string]: {
-        [languageCode: string]: number;
-    };
-}
+export const DEFAULT_THEME_CURRENCY_GROUP = "credit_php";
 
 export default class LobbyResourceManager {
-    private static instance: LobbyResourceManager;
-    private readonly DEFAULT_CURRENCY_GROUP_THEME = "credit_php";
+    private static _instance: LobbyResourceManager;
 
+    public currencyGroup = "";
     public infoShareResource: IInfoShareResource = {
         versionBanner: 1,
         versionGameIcon: 1,
@@ -53,66 +51,77 @@ export default class LobbyResourceManager {
         gameNamesBreakLine: {},
         gameNamesFontSize: {}
     };
-
-    public infoLobbyTheme = {
+    public infoLobbyTheme: IInfoLobbyTheme = {
         theme: "default",
         currencyGroups: {
             Credit_PHP: {
-                theme: this.DEFAULT_CURRENCY_GROUP_THEME
+                theme: DEFAULT_THEME_CURRENCY_GROUP
             },
             Cash_PHP: {
-                theme: this.DEFAULT_CURRENCY_GROUP_THEME
+                theme: DEFAULT_THEME_CURRENCY_GROUP
             }
         }
     };
 
-    public themeManager: ThemeManager;
-    public resourceLoader: ResourceLoader;
-    public gameIconLoader: GameIconLoader;
-    public gameNameManager: GameNameManager;
-
     public static getInstance(): LobbyResourceManager {
-        if (!this.instance) {
-            this.instance = new LobbyResourceManager();
+        if (!this._instance) {
+            this._instance = new LobbyResourceManager();
         }
 
-        return this.instance;
+        return this._instance;
     }
 
-    public async init(groupCurrency?: string) {
+    public async init(currencyGroup?: string) {
         try {
-            await this.getInfoTheme();
-            this.themeManager = new ThemeManager(this.infoLobbyTheme, this.DEFAULT_CURRENCY_GROUP_THEME);
-            this.resourceLoader = new ResourceLoader(this.themeManager);
-            this.gameIconLoader = new GameIconLoader(this);
+            await this.getRemoteInfoTheme();
 
-            if (groupCurrency) {
-                this.themeManager?.setCurrentGroupCurrency(groupCurrency);
-                if (this.themeManager?.isUseTheme()) {
-                    try {
-                        await this.getRemoteVersion();
-                        this.gameNameManager = new GameNameManager(this.infoShareResource);
-                    } catch (err) {
-                        cc.error("Failed to initialize game name manager:", err);
-                    }
-                }
-            }
+            const finalTheme = currencyGroup
+                ? this.infoLobbyTheme?.currencyGroups[currencyGroup]?.theme || this.infoLobbyTheme?.theme
+                : this.infoLobbyTheme?.theme;
+
+            await themeManager?.setTheme(finalTheme);
+            this.initializeCurrencyGroupTheme(currencyGroup);
         } catch (err) {
             cc.error("Failed to initialize lobby resource manager:", err);
         }
     }
 
-    protected async getInfoTheme() {
-        const url = `${buildShareResource()}/lobbies/themes/info.json?v=${Date.now()}`;
+    protected async initializeCurrencyGroupTheme(currencyGroup: string) {
+        this.currencyGroup = currencyGroup;
+        await this.initializeCurrencyGroup();
+    }
+
+    protected async initializeCurrencyGroup(): Promise<void> {
+        if (themeManager?.hasCurrencyGroup()) {
+            try {
+                await this.getRemoteVersion();
+            } catch (err) {
+                cc.error("Failed to initialize game name manager:", err);
+            }
+        }
+    }
+
+    protected async getRemoteInfoTheme() {
+        const url = `${buildShareResource()}/${THEME_REMOTE_PATH}/info.json?v=${Date.now()}`;
         const infoTheme = await GameUtils.loadRemote<cc.JsonAsset>(url);
 
         infoTheme && (this.infoLobbyTheme = infoTheme.json);
     }
 
     protected async getRemoteVersion() {
-        const versions = await this.resourceLoader?.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
+        const versions = await themeResourceLoader?.loadRemoteSharedResource<cc.JsonAsset>(`info.json?v=${Date.now()}`);
 
         versions && (this.infoShareResource = versions.json);
+    }
+
+    public hasCurrencyGroup(): boolean {
+        try {
+            return (
+                !!this?.currencyGroup && !!this?.infoLobbyTheme?.currencyGroups && this.currencyGroup in this.infoLobbyTheme.currencyGroups
+            );
+        } catch {
+            return false;
+        }
     }
 }
 

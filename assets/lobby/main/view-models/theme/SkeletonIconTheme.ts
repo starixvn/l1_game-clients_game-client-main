@@ -5,6 +5,8 @@ import { lobbyResourceManager } from "../LobbyResourceManager";
 import GameNotification from "./../GameNotification";
 import JackpotPoolInfo from "./../JackpotPoolInfo";
 import SkeletonIcon from "./../SkeletonIcon";
+import { themeGameIconLoader } from "./GameIconLoader";
+import { themeGameNameManager } from "./GameNameManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -35,7 +37,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
     public override async loadAnimation(id: number, categoryIndex = 0) {
         const cachedSprite = uiManager.spriteFrameCache.lobbyIcons[id]?.spriteFrame;
-        const spriteFrame = cachedSprite || (await lobbyResourceManager?.gameIconLoader?.loadGameIcon(id));
+        const spriteFrame = cachedSprite || (await themeGameIconLoader?.loadGameIcon(id));
 
         if (spriteFrame) {
             this.hideSkeleton();
@@ -59,14 +61,14 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
     protected getGameNamesBreakLine(gameId: number, currentGameName: string): string {
         const lang = window.i18n.curLang ?? "en";
-        const gameName = lobbyResourceManager?.gameNameManager?.getGameNameBreakLine(gameId, lang);
+        const gameName = themeGameNameManager?.getGameNameBreakLine(gameId, lang);
 
         return gameName ?? currentGameName;
     }
 
     protected handleFontSize(gameId: number) {
         const lang = window.i18n.curLang ?? "en";
-        const fontSize = lobbyResourceManager?.gameNameManager?.getGameNamesFontSize(gameId, lang);
+        const fontSize = themeGameNameManager?.getGameNamesFontSize(gameId, lang);
 
         if (fontSize && fontSize > 0) {
             this.gameName.fontSize = fontSize;

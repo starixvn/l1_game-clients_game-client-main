@@ -1,13 +1,22 @@
 import { uiManager } from "../../../../managers/GameUIManager";
-import LobbyResourceManager from "../LobbyResourceManager";
+import { lobbyResourceManager } from "../LobbyResourceManager";
+import { themeResourceLoader } from "./ResourceLoader";
 
 export interface IGameIconLoader {
     loadGameIcon(gameId: number): Promise<cc.SpriteFrame>;
     loadMiniGameIcon(gameId: number): Promise<cc.SpriteFrame>;
 }
 
-export class GameIconLoader implements IGameIconLoader {
-    constructor(private lobbyResource: LobbyResourceManager) {}
+export class ThemeGameIconLoader implements IGameIconLoader {
+    private static _instance: ThemeGameIconLoader;
+
+    public static getInstance(): ThemeGameIconLoader {
+        if (!this._instance) {
+            this._instance = new ThemeGameIconLoader();
+        }
+
+        return this._instance;
+    }
 
     public async loadGameIcon(gameId: number): Promise<cc.SpriteFrame> {
         return this.loadIcon(gameId, "game", uiManager.spriteFrameCache.lobbyIcons);
@@ -18,9 +27,9 @@ export class GameIconLoader implements IGameIconLoader {
     }
 
     private async loadIcon(gameId: number, type: "game" | "mini-game", cache: any): Promise<cc.SpriteFrame> {
-        const version = this.lobbyResource.infoShareResource[type === "game" ? "versionGameIcon" : "versionMiniGameIcon"];
+        const version = lobbyResourceManager.infoShareResource[type === "game" ? "versionGameIcon" : "versionMiniGameIcon"];
         const resourcePath = `${type}-icons/${gameId}/en.webp?v=${version}`;
-        const remoteTexture = await this.lobbyResource?.resourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
+        const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
         const spriteFrame = new cc.SpriteFrame(remoteTexture);
         cache[gameId] = { spriteFrame };
 
@@ -32,3 +41,5 @@ export class GameIconLoader implements IGameIconLoader {
         return null;
     }
 }
+
+export const themeGameIconLoader = ThemeGameIconLoader.getInstance();

@@ -4,6 +4,7 @@ import GameUtils from "../../../common/GameUtils";
 import { userManager } from "../../../common/user/UserManager";
 import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
 import { lobbyResourceManager } from "../../../lobby/main/view-models/LobbyResourceManager";
+import { themeResourceLoader } from "../../../lobby/main/view-models/theme/ResourceLoader";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
@@ -75,8 +76,8 @@ export default class PopupMinigames extends cc.Component {
     async initDefaultGameRoundTimer() {
         const mainGameId = this.lobbyMenuConfig.roundTimerGame?.main;
         let prefab: cc.Prefab;
-        if (lobbyResourceManager?.themeManager?.isUseTheme()) {
-            prefab = await lobbyResourceManager?.resourceLoader?.loadPrefab(`mini-game/counters/${mainGameId}`);
+        if (lobbyResourceManager?.hasCurrencyGroup()) {
+            prefab = await themeResourceLoader?.loadPrefab(`mini-game/counters/${mainGameId}`);
         } else {
             prefab = await GameUtils.asyncExecute<cc.Prefab>(this.node, GameUtils.loadMiniPanelGameIcon(mainGameId));
         }

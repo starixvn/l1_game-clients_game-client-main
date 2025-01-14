@@ -87,6 +87,10 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected onDestroy(): void {
         window.microsite = {};
+        this.removeMicrositeListeners();
+    }
+
+    private removeMicrositeListeners() {
         window.removeEventListener("message", this.handleEventFromMicrosite);
     }
 
@@ -126,6 +130,7 @@ export default class BaseMicrositeGame extends cc.Component {
         }
         if (data.sessionTimeout) {
             this.handleSignOut();
+            this.removeMicrositeListeners();
             return;
         }
 

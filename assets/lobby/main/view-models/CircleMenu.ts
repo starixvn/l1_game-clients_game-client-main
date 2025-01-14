@@ -107,7 +107,7 @@ export default class CircleMenu extends GameIconMenu {
 
     itemPressed(id: number, node: cc.Node) {
         AudioManager.getInstance().playClick();
-        if (id === 0) {
+        if (id === 0) {       
             this.closeGame();
         } else {
             GameUtils.clearGameSetting(id);
@@ -126,7 +126,6 @@ export default class CircleMenu extends GameIconMenu {
         const lobbySceneName = "Lobby";
 
         if (cc.director.getScene().name !== lobbySceneName) {
-            removeInRoomGameId();
             appManager.currentScene.onCloseGameClick();
         } else {
             this.miniMenu.getComponent(PopupMinigames).hideListGame();

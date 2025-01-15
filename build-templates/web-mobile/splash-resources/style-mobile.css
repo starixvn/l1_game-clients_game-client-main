@@ -63,8 +63,8 @@ body {
     overflow: hidden;
 }
 
-.bg-snow {
-    background: url(./background-snow.webp?v=2);
+.bg-firework {
+    background: url(./bg-firework.webp?v=4) center;
     background-size: auto 100vh;
     width: 100%;
     height: 100%;
@@ -206,11 +206,11 @@ p.footer {
 
 .icon-bottom {
     position: absolute;
-    top: 59.41vh;
-    /* background: url(./bot.webp) no-repeat center; */
-    background-size: auto 24.55vh;
+    top: 39.82vh;
+    background: url(./bottom.webp) no-repeat center; 
+    background-size: auto 51.27vh;
     width: 100%;
-    height: 24.55vh;
+    height: 51.27vh;
 }
 
 .splash {

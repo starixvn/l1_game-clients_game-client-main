@@ -372,6 +372,13 @@ function updateLocalizedImages() {
     setTitleAndFavicon(title, favicon);
     setSplashTextClass(language);
     setSplashPoweredByClass(language);
+    setImagesThemeSeason();
+}
+
+function setImagesThemeSeason() {
+    const bottom = document.getElementById("icon-bottom");
+    const className = getOperator().toUpperCase() === "TIP88" ? "tip88" : "";
+    bottom.className += className;
 }
 
 function setTitleAndFavicon(title, favicon) {

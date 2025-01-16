@@ -377,7 +377,7 @@ function updateLocalizedImages() {
 
 function setImagesThemeSeason() {
     const bottom = document.getElementById("icon-bottom");
-    const className = getOperator().toUpperCase() === "TIP88" ? "tip88" : "";
+    const className = getOperator().toUpperCase() === "TIP88" ? " tip88" : "";
     bottom.className += className;
 }
 

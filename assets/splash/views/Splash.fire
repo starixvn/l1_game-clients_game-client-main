@@ -743,7 +743,7 @@
     "folder": "splash-resources",
     "key": "bg-firework",
     "extension": "webp",
-    "versionId": 1,
+    "versionId": 2,
     "localization": false,
     "originalSize": false,
     "type": 0,
@@ -985,8 +985,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 480,
-      "height": 403
+      "width": 676,
+      "height": 269
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -998,7 +998,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -198.5,
+        -224.5,
         0,
         0,
         0,
@@ -1037,7 +1037,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "6abda9b5-9a67-4911-b806-d3638a639ea8"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -1065,7 +1067,7 @@
     "_alignFlags": 1,
     "_left": 0,
     "_right": 0,
-    "_top": 390,
+    "_top": 483,
     "_bottom": 0,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,

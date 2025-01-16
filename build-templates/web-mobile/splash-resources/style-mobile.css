@@ -45,7 +45,7 @@ body {
     padding: 0;
     border: 0;
     margin: 0;
-    background: url(./background.jpg) !important;
+    background: url(./background.jpg);
     background-size: auto 100vh;
 
     cursor: default;
@@ -63,15 +63,22 @@ body {
     overflow: hidden;
 }
 
-.bg-firework {
-    background: url(./bg-firework.webp?v=4) center;
-    background-size: auto 100vh;
+.bg-theme {    
+    background-size: auto 100vh !important;
     width: 100%;
     height: 100%;
     padding: 0;
     border: 0;
     margin: 0;
     position: fixed;
+}
+
+.bg-theme.firework {
+    background: url(./bg-firework.webp?v=4) center;
+}
+
+.bg-main {
+    background: url(./bg-theme.jpg?v=2);
 }
 
 .container-themes {

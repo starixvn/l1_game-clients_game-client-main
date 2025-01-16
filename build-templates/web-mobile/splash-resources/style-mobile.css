@@ -150,6 +150,15 @@ p.footer {
         background-size: 100vh auto;
     }
 
+    .bg-theme {
+        background-size: 100vh auto !important;
+    }
+
+    .bg-main  {
+        background: url(./bg-theme-90.jpg?v=2) repeat-y !important;
+        
+    }
+
     .splash-container {
         height: 100vw;
         width: 100vh;

@@ -223,7 +223,7 @@ p.footer {
 .icon-bottom {
     position: absolute;
     top: 61.45vh;
-    background: url(./bottom.webp) no-repeat center; 
+    background: url(./bottom.webp?v=2) no-repeat center; 
     background-size: auto 34.22vh;
     width: 100%;
     height: 34.22vh;
@@ -444,9 +444,12 @@ p.footer {
     }
 
     .icon-bottom {
-        top: 59.41vw;
-        background-size: auto 24.55vw;
-        height: 24.55vw;
+        top: 61.45vw;
+        background-size: auto 34.22vw;
+        height: 34.22vw;
+    }
+    .icon-bottom.tip88 {
+        top:  52.93vw;
     }
 
     .splash {

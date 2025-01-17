@@ -546,8 +546,10 @@ p.footer {
         height: 6.1vw;
     }
     .firework {
-        background-size: 100vw auto;
+        background-size: 100vh 100vw;
         height: 100vw;
+        width: 100vh;
+        transform: translateX(-22%);
     }
 }
 

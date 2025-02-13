@@ -63,25 +63,6 @@ body {
     overflow: hidden;
 }
 
-.bg-theme {    
-    background-size: auto 100vh !important;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: 0;
-    margin: 0;
-    position: fixed;
-}
-
-.firework {
-    background: url(./bg-firework.webp?v=7) center no-repeat;
-    background-size: auto 100vh;
-    height: 100vh;
-}
-
-.bg-main {
-    background: url(./bg-theme.jpg?v=2);
-}
 
 .container-themes {
     position: relative;
@@ -152,15 +133,6 @@ p.footer {
         background-size: 100vh auto;
     }
 
-    .bg-theme {
-        background-size: 100vh auto !important;
-    }
-
-    .bg-main  {
-        background: url(./bg-theme-90.jpg?v=2) repeat-y !important;
-        
-    }
-
     .splash-container {
         height: 100vw;
         width: 100vh;
@@ -222,19 +194,6 @@ p.footer {
     background-size: auto 20.23vh;
     width: 100%;
     height: 20.23vh;
-}
-
-.icon-bottom {
-    position: absolute;
-    top: 61.45vh;
-    background: url(./bottom.webp?v=3) no-repeat center; 
-    background-size: auto 34.22vh;
-    width: 100%;
-    height: 34.22vh;
-}
-
-.icon-bottom.tip88 {
-    top:  52.93vh;
 }
 
 .splash {
@@ -544,12 +503,6 @@ p.footer {
         top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
-    }
-    .firework {
-        background-size: 100vh 100vw;
-        height: 100vw;
-        width: 100vh;
-        transform: translateX(-22%);
     }
 }
 

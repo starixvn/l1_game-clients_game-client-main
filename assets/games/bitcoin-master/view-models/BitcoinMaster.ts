@@ -147,6 +147,8 @@ export default class BitcoinMaster extends BalancedBettingPoolGameBase {
     readonly choices = ["up", "down", "even", "odd"];
     isPhone = false;
 
+    override usingNewSettlement = true;
+
     initMiniPanel(miniPanel: MiniPanel) {
         super.initMiniPanel(miniPanel);
         this.gameId = BitcoinMasterId;
@@ -272,7 +274,6 @@ export default class BitcoinMaster extends BalancedBettingPoolGameBase {
         this.logsHandler = new BitcoinMasterLogsHandler(this);
         this.finishHandler = new BitcoinMasterFinishHandler(this);
         this.betHandler = new BitCoinMasterBetHandler(this);
-        this.statusHandler.enableDelayShowStatus = false;
     }
 
     dragMiniGame() {

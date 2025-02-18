@@ -10,12 +10,10 @@ export const TurboOddEvenId = 6;
 @ccclass
 export default class TurboOddEven extends BigSmall {
     readonly choices = ["odd", "even"];
-    override usingNewSettlement = false;
 
     initHandlers() {
         super.initHandlers();
         this.timeHandler = new TurboBigSmallTimeHandler(this);
-        this.statusHandler.enableDelayShowStatus = false;
     }
 
     initMiniPanel(miniPanel: MiniPanel) {

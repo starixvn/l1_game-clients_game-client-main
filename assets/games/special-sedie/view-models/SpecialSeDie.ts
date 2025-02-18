@@ -83,7 +83,7 @@ export default class SpecialSeDie extends BalancedBettingPoolGameBase {
 
     @property(cc.Node)
     randomPosNode: cc.Node = null;
-
+    override usingNewSettlement = true;
     private roundHistory: SedieRoundHistory = null;
     private miniRoundHistory: SpecialSedieRoundHistory;
     private betHistory: SpecialSedieBetHistory;
@@ -154,7 +154,6 @@ export default class SpecialSeDie extends BalancedBettingPoolGameBase {
         this.logsHandler = new SpecialSeDieLogsHandler(this);
         this.finishHandler = new SpecialSeDieFinishHandler(this);
         this.betHandler = new SpecialSeDieBetHandler(this);
-        this.statusHandler.enableDelayShowStatus = false;
     }
 
     initRoundHistory() {

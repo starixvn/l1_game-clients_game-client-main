@@ -8,7 +8,7 @@ const { ccclass } = cc._decorator;
 @ccclass
 export default class StandardSlotGameTopWinnerItem extends SlotGameTopWinnerItem {
     setOtherValues(player: any, showBigWin: boolean) {
-        const { freeSpin, totalAmount, winningAmount, exchangeRateCode, rate, baseTotalAmount, baseWinAmount, pool } = player;
+        const { freeSpin, totalAmount, winningAmount, exchangeRateCode, rate, baseTotalAmount, baseWinningAmount, pool } = player;
 
         let amountValue = "";
 
@@ -22,7 +22,7 @@ export default class StandardSlotGameTopWinnerItem extends SlotGameTopWinnerItem
 
         this.amount.string = amountValue;
 
-        const winValue = showBigWin ? baseWinAmount ?? winningAmount * rate : winningAmount;
+        const winValue = showBigWin ? baseWinningAmount ?? winningAmount * rate : winningAmount;
         this.win.string = numberWithCommas(GameUtils.getValueByExchangeRateCode(winValue, exchangeRateCode), 2);
     }
 }

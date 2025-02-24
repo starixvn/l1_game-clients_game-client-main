@@ -29,7 +29,6 @@ export default class VipSedieWar extends VipSedie {
     betChoicesNode: cc.Node = null;
 
     expandableMenu: ExpandableMenu = null;
-    override usingNewSettlement = false;
 
     protected internalInit() {
         this.gameId = VipSedieWarId;

@@ -43,6 +43,8 @@ export default class UnbalancedBigSmall extends MultiplayGameSingle {
     config = new BigSmallConfigs();
     public statisticHistory: BigSmallDicesStatistic;
 
+    override usingNewSettlement = true;
+
     constructor() {
         super();
         this.gameId = UnbalancedBigSmall1Id;

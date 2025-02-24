@@ -31,6 +31,8 @@ export default class MegaKeno extends TableGameBase {
     settlementResultAnimation: MegaKenoSettlementResult;
     settlementEndResult: MegaKenoSettlementResult;
 
+    override usingNewSettlement = true;
+
     constructor() {
         super();
         this.gameId = MegaKeno1Id;

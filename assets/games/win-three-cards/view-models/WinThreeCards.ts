@@ -60,6 +60,8 @@ export default class WinThreeCards extends NewGameRoomBase {
     public betPercentHandler: WinThreeCardsBetPercentHandler;
     override syncShowingMD5WithResult = true;
 
+    override usingNewSettlement = true;
+
     constructor() {
         super();
         this.gameId = WinThreeCardsId;

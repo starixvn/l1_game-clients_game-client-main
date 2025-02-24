@@ -60,6 +60,8 @@ export default class ThreeCards extends SocketIOTableGameBase {
     miniRoundHistory: MiniRoundHistory;
     openCardsAnimation: cc.Tween = null;
     showResultDuration = 2;
+
+    override usingNewSettlement = true;
     constructor() {
         super();
         this.gameId = ThreeCardsId;

@@ -17,6 +17,7 @@ export default class UnbalancedBigSmallSubGame extends UnbalancedBigSmall {
             this.highlightAndPayout(settlement);
             this.setBlurDishAndHideDices();
             this.gameData.settlement.showStatus();
+            this.inSettlementSequence = false;
         };
         if (animated) {
             this.scheduleOnce(doLater, 3);

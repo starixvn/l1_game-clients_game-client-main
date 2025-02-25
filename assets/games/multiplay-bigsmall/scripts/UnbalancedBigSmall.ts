@@ -122,6 +122,7 @@ export default class UnbalancedBigSmall extends MultiplayGameSingle {
         if (!!settlement) {
             this.showWinChoiceAndUpdateHistory(settlement);
             this.highlightAndPayout(settlement);
+            this.inSettlementSequence = false;
             if (!animated) {
                 this.showDicesAndPlates();
                 this.gameData.settlement.showStatus();

@@ -68,6 +68,8 @@ export default class FruitSlot extends NewGameRoomBase {
     showResultDuration = 3;
 
     previousRoundBetChoices: any = {};
+
+    override usingNewSettlement = true;
     constructor() {
         super();
         this.gameId = FruitSlotGameId;

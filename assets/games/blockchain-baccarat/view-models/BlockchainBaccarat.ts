@@ -79,6 +79,8 @@ export default class BlockchainBaccarat extends NewGameRoomBase {
     public timeHandler: BlockchainBaccaratTimeHandler;
     private isFirstRender = true;
 
+    override usingNewSettlement = true;
+
     constructor() {
         super();
         this.gameId = BlockchainBaccaratId;

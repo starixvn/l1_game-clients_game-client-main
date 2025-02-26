@@ -64,6 +64,8 @@ export default class FootballSlot extends NewGameRoomBase {
     public animatedTime: FootballSlotAnimatedTimer = null;
     public isShowAnimSettlement = false;
 
+    override usingNewSettlement = true;
+
     currentBetChoices: any = {};
     betChoicesStack = [];
     tempBetChoices: any = {};

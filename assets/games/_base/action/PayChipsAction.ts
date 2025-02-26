@@ -234,6 +234,10 @@ function showWinningEffectForPlayerSlot(
 }
 
 export const showWinningEffectForPlayers = (mainRoomGame, winningPlayers) => {
+    if (!winningPlayers || typeof winningPlayers !== "object") {
+        return;
+    }
+
     const winningPlayerIds = Object.keys(winningPlayers);
 
     if (!winningPlayerIds.length) {

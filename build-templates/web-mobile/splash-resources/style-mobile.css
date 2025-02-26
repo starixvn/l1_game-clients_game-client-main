@@ -301,7 +301,8 @@ p.footer {
 
 .loading_icon {
     position: absolute;
-    top: 80%;
+    top: 80vh;
+    height: 9.67vh;
     left: 50%;
     transform: translateX(-50%);
     background: no-repeat center;
@@ -406,6 +407,11 @@ p.footer {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+    .loading_icon {
+        top: 80vw;
+        height: 9.67vw;
+    }
+
     .icon-top {
         top: 0vw;
         background-size: auto 20.23vw;

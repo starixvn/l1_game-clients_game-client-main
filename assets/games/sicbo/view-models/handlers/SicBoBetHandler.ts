@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 
+import { userManager } from "../../../../common/user/UserManager";
 import GameBaseBetHandler from "../../../_base/handlers/GameBaseBetHandler";
 import SicBo from "../SicBo";
 
@@ -12,7 +13,9 @@ export default class SicBoBetHandler extends GameBaseBetHandler {
         super.handle(data);
 
         if (data.chips && this.main.currentTimeRemaining < this.main.config.betTime) {
-            this.placeTotalChips(data.chips);
+            const chips = {};
+            chips[userManager.rate] = data.chips;
+            this.placeTotalChips(chips);
         }
 
         return true;

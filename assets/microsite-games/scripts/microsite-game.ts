@@ -33,7 +33,8 @@ export default class MicrositeGame extends BaseMicrositeGame {
             musicEnable: audio.musicEnabled,
             sfxEnable: audio.sfxEnabled,
             isUserGesture: audio.isUserGesture,
-            op: operator
+            op: operator,
+            isStandalone: false
         };
 
         const searchParams = new URLSearchParams();

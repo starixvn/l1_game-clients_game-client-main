@@ -1,5 +1,6 @@
 import axios from "axios";
 import i18n from "i18n/runtime-scripts/LanguageData";
+import EncryptUtils from "../../common/utils/EncryptUtils";
 import configs from "../../configs/Configs";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -50,7 +51,21 @@ export function checkSSO(onSuccessFunc) {
         return;
     }
 
-    const session = sessionManager.getSession();
+    let session;
+    if (urlParams.has("session")) {
+        try {
+            session = JSON.parse(EncryptUtils.base64Decode(urlParams.get("session")));
+            console.log("session-parse---", session);
+            sessionManager.storeSessionData(session);
+            clearQueryStringOnUrl();
+        } catch (error) {
+            sentryLogger.logError(error);
+            session = sessionManager.getSession();
+        }
+    } else {
+        session = sessionManager.getSession();
+    }
+
     if (checkSignOut(urlParams, session)) {
         signOut();
         return;

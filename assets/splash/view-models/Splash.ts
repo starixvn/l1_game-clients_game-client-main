@@ -70,8 +70,13 @@ export default class Splash extends cc.Component {
         const hasToken = urlParams.has("token");
         const hasGameId = urlParams.has("gameId");
         const gameId = +urlParams.get("gameId");
+        const session = urlParams.get("session");
 
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
+        if (session) {
+            // clear microsite game id when back from standalone microsite game
+            SessionManager.storeMicrositeGameId(0);
+        }
 
         if (ssoToGame) {
             if (isGatewayGame(gameId)) {

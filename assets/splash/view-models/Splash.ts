@@ -73,21 +73,21 @@ export default class Splash extends cc.Component {
         const session = urlParams.get("session");
 
         const ssoToGame = hasToken && hasGameId && gameId !== 0;
+        const isGatewayGame = this.handleGatewayGame(gameId);
+
+        // handle back from standalone microsite game
         if (session) {
-            // clear microsite game id when back from standalone microsite game
+            // clear microsite game id
             SessionManager.storeMicrositeGameId(0);
+            if (isGatewayGame) {
+                this.handleGatewayGame(gameId);
+                return;
+            }
         }
 
         if (ssoToGame) {
-            if (isGatewayGame(gameId)) {
-                cc.log("Open gateway at Splash");
-                const gameConfiguration = getGameConfiguration(gameId);
-                const mainId = gameConfiguration.gateway?.id;
-                if (mainId === gameId) {
-                    GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
-                    appManager.clearSSOGameId();
-                    return;
-                }
+            if (isGatewayGame && this.handleGatewayGame(+gameId)) {
+                return;
             } else if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);
                 await this.enableMicrositeGameIframe(gameId);
@@ -240,5 +240,17 @@ export default class Splash extends cc.Component {
 
     private loadIconBottom() {
         // handle after
+    }
+
+    private handleGatewayGame(gameId: number): boolean {
+        cc.log("Open gateway at Splash");
+        const gameConfiguration = getGameConfiguration(gameId);
+        const mainId = gameConfiguration.gateway?.id;
+        if (mainId === gameId) {
+            GameUtils.openSocketGatewayGame(mainId, this.socketIOControler);
+            appManager.clearSSOGameId();
+            return true;
+        }
+        return false;
     }
 }

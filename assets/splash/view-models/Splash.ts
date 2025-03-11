@@ -67,29 +67,29 @@ export default class Splash extends cc.Component {
 
     private async handleSplashScene() {
         const urlParams = appManager.urlParams;
-        const hasToken = urlParams.has("token");
-        const hasGameId = urlParams.has("gameId");
         const gameId = +urlParams.get("gameId");
         const session = urlParams.get("session");
+        const lobbyId = urlParams.get("lobbyId");
 
-        const ssoToGame = hasToken && hasGameId && gameId !== 0;
-        const isGatewayGame = this.handleGatewayGame(gameId);
-
-        // handle back from standalone microsite game
+        // Handle session from standalone micro-site game
         if (session) {
-            if (isGatewayGame) {
-                this.handleGatewayGame(gameId);
-                return;
+            // clear micro-site game id when returning from session
+            SessionManager.removeMicrositeGameId();
+
+            if (isGatewayGame(gameId) || (lobbyId && +lobbyId > 0)) {
+                return this.handleGatewayGame(+lobbyId);
             }
 
-            // clear microsite game id
-            SessionManager.storeMicrositeGameId(0);
+            return this.loadToLobbyOrDirectGame();
         }
 
-        if (ssoToGame) {
-            if (isGatewayGame && this.handleGatewayGame(+gameId)) {
+        // Handle SSO game launch
+        const isSSOGameLaunch = urlParams.has("token") && urlParams.has("gameId") && gameId !== 0;
+        if (isSSOGameLaunch) {
+            if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
                 return;
-            } else if (this.isMicrositeGame(gameId)) {
+            }
+            if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);
                 await this.enableMicrositeGameIframe(gameId);
                 appManager.clearSSOGameId();
@@ -97,13 +97,13 @@ export default class Splash extends cc.Component {
             }
         }
 
+        // Handle reload from micro-site game
         const micrositeGameId = +SessionManager.getMicrositeGameId();
-        const isReloadFromMicrositeGame = !hasToken && micrositeGameId > 0;
-        if (isReloadFromMicrositeGame) {
-            await this.enableMicrositeGameIframe(micrositeGameId);
-            return;
+        if (!urlParams.has("token") && micrositeGameId > 0) {
+            return this.enableMicrositeGameIframe(micrositeGameId);
         }
 
+        // Default: load to lobby or direct game
         this.loadToLobbyOrDirectGame();
     }
 

@@ -77,12 +77,13 @@ export default class Splash extends cc.Component {
 
         // handle back from standalone microsite game
         if (session) {
-            // clear microsite game id
-            SessionManager.storeMicrositeGameId(0);
             if (isGatewayGame) {
                 this.handleGatewayGame(gameId);
                 return;
             }
+
+            // clear microsite game id
+            SessionManager.storeMicrositeGameId(0);
         }
 
         if (ssoToGame) {

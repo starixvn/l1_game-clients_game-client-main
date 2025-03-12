@@ -55,7 +55,6 @@ export function checkSSO(onSuccessFunc) {
     if (urlParams.has("session")) {
         try {
             session = JSON.parse(EncryptUtils.base64Decode(urlParams.get("session")));
-            console.log("session-parse---", session);
             sessionManager.storeSessionData(session);
             clearQueryStringOnUrl();
         } catch (error) {

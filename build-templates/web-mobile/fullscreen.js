@@ -113,7 +113,7 @@ function getMiniNavigationBarHeight() {
 
 function updateViewport() {
     if (userAgent.match(/iphone|ipad|ipod/i)) {
-        let width = screen.width;
+        let width = window.innerWidth;
         if (window.innerWidth > window.innerHeight) {
             width = window.innerHeight;
         }

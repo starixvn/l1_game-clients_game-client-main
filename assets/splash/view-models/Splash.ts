@@ -69,15 +69,15 @@ export default class Splash extends cc.Component {
         const urlParams = appManager.urlParams;
         const gameId = +urlParams.get("gameId");
         const session = urlParams.get("session");
-        const lobbyId = urlParams.get("lobbyId");
+        const gatewayId = urlParams.get("gatewayId");
 
         // Handle session from standalone micro-site game
         if (session) {
             // clear micro-site game id when returning from session
             SessionManager.removeMicrositeGameId();
 
-            if (isGatewayGame(gameId) || (lobbyId && +lobbyId > 0)) {
-                return this.handleGatewayGame(+lobbyId);
+            if (isGatewayGame(gameId) || (gatewayId && +gatewayId > 0)) {
+                return this.handleGatewayGame(+gatewayId);
             }
 
             return this.loadToLobbyOrDirectGame();

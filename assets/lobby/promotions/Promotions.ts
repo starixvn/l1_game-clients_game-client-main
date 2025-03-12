@@ -33,7 +33,7 @@ export class Promotions extends EventEmitterBase {
     public isShowBoostedOdds = true;
     protected timeout: any;
     private readonly minutesToMillisecond = 60 * 1000;
-    private readonly delayTime = 15 * this.minutesToMillisecond;
+    private readonly delayTime = 1 * this.minutesToMillisecond;
     protected promotions: Promotion[] = [promotion];
 
     public static getInstance(): Promotions {

@@ -15,7 +15,7 @@ export default class CustomerResultBodyItemPF extends BaseResultBodyItem {
     symbolSprites: cc.SpriteFrame[] = [];
 
     setData(result: any, settlementResult: any) {
-        const key = findWinningChoice(settlementResult);
+        const key = findWinningChoice(settlementResult);      
         this.resultImg.spriteFrame = this.symbolSprites.find((sprite) => sprite.name === `result-${key}`);
         this.lblResult.string = i18n.t(`CoinToss.glossary_${key}`).toUpperCase();
     }

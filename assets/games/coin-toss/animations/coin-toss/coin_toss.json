@@ -1,8 +1,8 @@
 {
-"skeleton": { "hash": "PAuHZ59FH3x2J+ze+CCFSyP/uAQ=", "spine": "3.8.75" },
+"skeleton": { "hash": "NLSeb05afekCDotrBLPRzDsnUT4=", "spine": "3.8.75" },
 "bones": [
 	{ "name": "coin_toss" },
-	{ "name": "flip", "parent": "coin_toss", "x": 5.23 },
+	{ "name": "flip", "parent": "coin_toss" },
 	{ "name": "settle", "parent": "coin_toss" }
 ],
 "slots": [
@@ -94,7 +94,7 @@
 		"name": "biden",
 		"attachments": {
 			"settle biden/settle_0": {
-				"settle biden/settle_0": { "x": 22, "y": -0.5, "rotation": 0.42, "width": 468, "height": 220 },
+				"settle biden/settle_0": { "x": 22, "y": -0.5, "width": 468, "height": 220 },
 				"settle biden/settle_1": { "x": 22, "y": -0.5, "width": 468, "height": 220 },
 				"settle biden/settle_2": { "x": 22, "y": -0.5, "width": 468, "height": 220 },
 				"settle biden/settle_3": { "x": 22, "y": -0.5, "width": 468, "height": 220 },
@@ -293,6 +293,15 @@
 					{ "time": 2.9167, "name": "flip coin/flip_70" },
 					{ "time": 2.9583, "name": "flip coin/flip_71" },
 					{ "time": 3, "name": "flip coin/flip_72" }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"flip coin/flip_0": {
+				"attachment": [
+					{ "name": "flip coin/flip_72" }
 				]
 			}
 		}

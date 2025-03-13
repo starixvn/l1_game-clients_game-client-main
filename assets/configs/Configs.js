@@ -1,11 +1,11 @@
 const defaultConfig = {
-    systemType: "SC2",
+    systemType: "SG",
     ssl: true,
     serverDomainMapper: {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l2-proxy1",
+    subDomain: "l1-proxy1",
     env: "",
     sentry: {
         url: "",
@@ -16,7 +16,7 @@ const defaultConfig = {
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
     gatewaySubDomain: "l2-gw",
-    subGuideDomain: "l2-guide-1",
+    subGuideDomain: "l1-guide-1",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     subPromotionDomain: "l1-promotion1"

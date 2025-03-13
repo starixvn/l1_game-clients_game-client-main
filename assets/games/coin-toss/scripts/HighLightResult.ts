@@ -3,10 +3,10 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export class HighlightResult extends cc.Component {
     @property(cc.Node)
-    biden: cc.Node = null;
+    heads: cc.Node = null;
 
     @property(cc.Node)
-    trump: cc.Node = null;
+    tails: cc.Node = null;
 
     protected onLoad(): void {
         this.hide();
@@ -17,14 +17,14 @@ export class HighlightResult extends cc.Component {
     }
 
     hide() {
-        this.setStatusNode(this.biden, false);
-        this.setStatusNode(this.trump, false);
+        this.setStatusNode(this.heads, false);
+        this.setStatusNode(this.tails, false);
     }
 
     show(result: any) {
         const isHead = result?.head;
 
-        this.setStatusNode(this.biden, isHead);
-        this.setStatusNode(this.trump, !isHead);
+        this.setStatusNode(this.heads, isHead);
+        this.setStatusNode(this.tails, !isHead);
     }
 }

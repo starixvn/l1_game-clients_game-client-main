@@ -343,7 +343,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "harris",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -655,7 +655,7 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "trump",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -666,7 +666,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "trump",
+    "_animationName": "show",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
@@ -712,10 +712,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "biden": {
+    "heads": {
       "__id__": 2
     },
-    "trump": {
+    "tails": {
       "__id__": 10
     },
     "_id": ""

@@ -2,5 +2,9 @@ export enum UrlInfo {
     ReturnUrl = "returnUrl",
     Ref = "ref",
 
-    DirectGameId = "directGameId"
+    DirectGameId = "directGameId",
+    isTouchedScreen = "isTouchedScreen",
+    music = "music",
+    sfx = "sfx",
+    session = "session"
 }

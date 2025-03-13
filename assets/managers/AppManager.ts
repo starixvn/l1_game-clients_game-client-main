@@ -203,6 +203,26 @@ class AppManager {
         if (urlParams.has(UrlInfo.Ref) && this.checkAppModeRefData(urlParams.get(UrlInfo.Ref))) {
             this._appMode = true;
         }
+
+        if (!urlParams.has(UrlInfo.session)) {
+            return;
+        }
+
+        if (urlParams.has(UrlInfo.isTouchedScreen)) {
+            const isTouchedScreen = urlParams.get(UrlInfo.isTouchedScreen);
+            AudioManager.getInstance().isUserGesture = isTouchedScreen === "true";
+            window.isUserGesture = isTouchedScreen === "true";
+        }
+
+        if (urlParams.has(UrlInfo.sfx)) {
+            const isSfx = urlParams.get(UrlInfo.sfx);
+            AudioManager.getInstance().sfxEnabled = isSfx === "true";
+        }
+
+        if (urlParams.has(UrlInfo.music)) {
+            const isMusic = urlParams.get(UrlInfo.music);
+            AudioManager.getInstance().musicEnabled = isMusic === "true";
+        }
     }
 
     private saveDirectModeInfo() {

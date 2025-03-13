@@ -108,7 +108,8 @@ export default class BaseMicrositeGame extends cc.Component {
     protected loadMicrositeGame() {
         this.micrositeUrl = buildMicrositeGameUrl(this.gameId);
         const queryString = this.getMicrositeGameQueryString();
-        this.webview && (this.webview.url = `${this.micrositeUrl}/${queryString}`);
+
+        this.webview && (this.webview.url = `${this.micrositeUrl}/${queryString}&hideFullscreen=true`);
     }
 
     handleEventFromMicrosite = async ({ data }: { data: MicrositeGameParams }) => {

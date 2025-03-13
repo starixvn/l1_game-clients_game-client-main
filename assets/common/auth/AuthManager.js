@@ -16,6 +16,7 @@ import NotificationService from "./NotificationService";
 import * as SGConnectAPI from "./SGConnectAPI";
 import * as sessionManager from "./SessionManager";
 import UserService from "./UserService";
+import UrlParamsService from "../utils/UrlParamsService";
 
 const sentryLogger = logger();
 const sessionExpiredTimeoutMinutes = 19.8;
@@ -61,6 +62,16 @@ export function checkSSO(onSuccessFunc) {
             sentryLogger.logError(error);
             session = sessionManager.getSession();
         }
+    } else if (urlParams.has("params")) {
+        const params = UrlParamsService.getInstance().parseAndCache(UrlInfo.params);
+        session.ss = params?.ss;
+        session.isAuthenticated = params?.isAuthenticated ?? false;
+        session.memberName = params?.memberName;
+        session.language = params?.language;
+        session.system = params?.system;
+        session.umInfo = params?.umInfo;
+        sessionManager.storeSessionData(session);
+        clearQueryStringOnUrl();
     } else {
         session = sessionManager.getSession();
     }

@@ -6,5 +6,6 @@ export enum UrlInfo {
     isTouchedScreen = "isTouchedScreen",
     music = "music",
     sfx = "sfx",
-    session = "session"
+    session = "session",
+    params = "params"
 }

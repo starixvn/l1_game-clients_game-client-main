@@ -19,11 +19,30 @@ import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
 import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
+import UrlParamsService from "../common/utils/UrlParamsService";
 
 const sentryLogger = logger();
 enum GameId {
     UNKNOWN = -9999
 }
+
+export interface ISessionParams {
+    ss: string;
+    time: number;
+    username: string;
+    isAuthenticated: boolean;
+    memberName: string;
+    language: string;
+
+    system: any;
+
+    isUM: boolean;
+    umInfo: any;
+    music: boolean;
+    sfx: boolean;
+    isTouchedScreen: boolean;
+}
+
 class AppManager {
     GAME_IS_SHOWED = true;
     font = {
@@ -222,6 +241,26 @@ class AppManager {
         if (urlParams.has(UrlInfo.music)) {
             const isMusic = urlParams.get(UrlInfo.music);
             AudioManager.getInstance().musicEnabled = isMusic === "true";
+        }
+
+        if (!urlParams.has(UrlInfo.params)) {
+            return;
+        }
+
+        const params = UrlParamsService.getInstance().parseAndCache(UrlInfo.params) as ISessionParams;
+        console.log("params parseAndCache", params);
+
+        if (params?.isTouchedScreen !== undefined) {
+            AudioManager.getInstance().isUserGesture = params.isTouchedScreen;
+            window.isUserGesture = params.isTouchedScreen;
+        }
+
+        if (params?.sfx !== undefined) {
+            AudioManager.getInstance().sfxEnabled = params?.sfx;
+        }
+
+        if (params?.music !== undefined) {
+            AudioManager.getInstance().musicEnabled = params?.music;
         }
     }
 

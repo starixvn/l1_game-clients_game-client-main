@@ -63,13 +63,15 @@ export function checkSSO(onSuccessFunc) {
             session = sessionManager.getSession();
         }
     } else if (urlParams.has("params")) {
-        const params = UrlParamsService.getInstance().parseAndCache(UrlInfo.params);
+        session = sessionManager.getSession() || {};
+        const params = UrlParamsService.getInstance().parseAndCache("params");
         session.ss = params?.ss;
         session.isAuthenticated = params?.isAuthenticated ?? false;
         session.memberName = params?.memberName;
         session.language = params?.language;
         session.system = params?.system;
         session.umInfo = params?.umInfo;
+        session.time = params?.time;
         sessionManager.storeSessionData(session);
         clearQueryStringOnUrl();
     } else {

@@ -52,10 +52,11 @@ export interface CategoryConfig {
 }
 
 export async function getLobbyConfigs() {
-    const session = getSession();
     let retryCount = 0;
     let lobby;
     while (!lobby && retryCount < 3) {
+        const session = getSession();
+        console.log("get session in getLobbyConfigs", session);
         cc.log("Try get lobby configs ", retryCount + 1);
         lobby = await UserService.getInstance()
             .lobby.getLobbyConfigs(session.ss, session.username)

@@ -62,6 +62,7 @@ export function checkSSO(onSuccessFunc) {
                 session.ss = params.ss;
                 session.isAuthenticated = params.isAuthenticated ?? false;
                 session.memberName = params.memberName;
+                session.username = params.username;
                 session.language = params.language;
                 session.system = params.system;
                 session.umInfo = params.umInfo;

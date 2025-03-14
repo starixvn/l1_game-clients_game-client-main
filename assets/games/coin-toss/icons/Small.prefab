@@ -100,8 +100,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 215,
-      "height": 215
+      "width": 217,
+      "height": 217
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -152,18 +152,18 @@
     ],
     "paused": false,
     "defaultSkin": "default",
-    "defaultAnimation": "animation",
+    "defaultAnimation": "show",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
-    "premultipliedAlpha": true,
+    "premultipliedAlpha": false,
     "timeScale": 1,
     "_accTime": 0,
     "_playCount": 0,
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "animation",
+    "_animationName": "show",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,

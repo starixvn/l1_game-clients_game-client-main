@@ -68,11 +68,11 @@ export default class Splash extends cc.Component {
     private async handleSplashScene() {
         const urlParams = appManager.urlParams;
         const gameId = +urlParams.get("gameId");
-        const session = urlParams.get("session");
+        const params = urlParams.get("params");
         const gatewayId = urlParams.get("gatewayId");
 
-        // Handle session from standalone micro-site game
-        if (session) {
+        // Handle from standalone micro-site game
+        if (params) {
             // clear micro-site game id when returning from session
             SessionManager.removeMicrositeGameId();
 

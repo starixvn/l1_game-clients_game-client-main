@@ -28,17 +28,16 @@ export default class BalancedBettingPoolBetItemBase extends GameTicketDetailItem
         GameUtils.setFontSizeLabelsInNode(this.node);
     }
 
-    setData(data: any, userRate: number, multiplier, index: number) {
+    setData(data: any, userRate: number, index: number) {
         const isLoginUser = userManager.isLoginUser(data.name);
         this.highlight.active = isLoginUser;
         this.time.string = getStringHourByTime(data.time);
         this.username.string = isLoginUser ? data.name : shortenName(data.name);
 
-        const rate = data.rate || multiplier;
-        const convertValue = GameUtils.getTicketValueByCurrency(data.baseAmount, userRate, rate);
+        const convertValue = GameUtils.getTicketValueByCurrency(data.baseAmount, userRate);
         this.betAmount.string = numberWithCommas(convertValue, 2);
 
-        const convertRefund = GameUtils.getTicketValueByCurrency(data.baseRefund, userRate, rate);
+        const convertRefund = GameUtils.getTicketValueByCurrency(data.baseRefund, userRate);
         this.refund.string = numberWithCommas(convertRefund, 2);
         this.setBackground(index);
     }

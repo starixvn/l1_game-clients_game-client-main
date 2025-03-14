@@ -699,15 +699,11 @@ export default class GameUtils {
         return (value * otherRate) / userManager.rate;
     }
 
-    public static getTicketValueByCurrency(value: number, userRate?: number, otherRate?: number): number {
-        if (!otherRate) {
-            otherRate = 1;
-        }
-
+    public static getTicketValueByCurrency(value: number, userRate?: number): number {
         if (!userRate) {
             userRate = userManager.rate;
         }
-        return (value * otherRate) / userRate;
+        return value / userRate;
     }
 
     public static getValueByExchangeRateCode(value: number, exchangeRateCode) {

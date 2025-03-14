@@ -77,11 +77,10 @@ export default class GameBalancedBettingHistoryBase extends GameTicketDetailBase
         this.main.socket.emit("getRound", { roundId });
     }
 
-    addItem(data: any, userRate: number, isOldTicketData = false, index: number) {
+    addItem(data: any, userRate: number, index: number) {
         const item = cc.instantiate(this.itemPrefab);
         const itemComponent = item.getComponent(BalancedBettingPoolBetItemBase);
-        const multiplier = this.getMultiplierForTicket(isOldTicketData);
-        itemComponent.setData(data, userRate, multiplier, index);
+        itemComponent.setData(data, userRate, index);
         return item;
     }
 
@@ -109,26 +108,22 @@ export default class GameBalancedBettingHistoryBase extends GameTicketDetailBase
     }
 
     loadData(choice: string, containerNode: cc.Node, betAmountLabel: cc.Label, refundLabel: cc.Label) {
-        let isOldTicketData = false;
         if (this.data[choice] && this.itemPrefab) {
             this.data[choice].forEach((user, index) => {
-                if (user.rate === undefined) {
-                    isOldTicketData = true;
-                }
 
-                const item = this.addItem(user, this.data.playerRate, isOldTicketData, index);
+                const item = this.addItem(user, this.data.playerRate, index);
                 containerNode.addChild(item);
             });
         }
 
-        this.setAmount(this.data.total[choice], betAmountLabel, refundLabel, this.data.playerRate, isOldTicketData);
+        this.setAmount(this.data.total[choice], betAmountLabel, refundLabel, this.data.playerRate);
     }
 
     private getMultiplierForTicket(isOldTicketData = false) {
         return systemType === SystemType.SC2 && isOldTicketData ? 1000 : 1;
     }
 
-    setAmount(total: any, betAmountLabel: cc.Label, refundLabel: cc.Label, userRate: number, isOldTicketData = false) {
+    setAmount(total: any, betAmountLabel: cc.Label, refundLabel: cc.Label, userRate: number) {
         let betAmount = 0;
         let refund = 0;
 
@@ -137,9 +132,8 @@ export default class GameBalancedBettingHistoryBase extends GameTicketDetailBase
             refund = total.refund;
         }
 
-        const multiplier = this.getMultiplierForTicket(isOldTicketData);
-        const convertBetAmount = GameUtils.getTicketValueByCurrency(betAmount || 0, userRate, 1 * multiplier);
-        const convertRefund = GameUtils.getTicketValueByCurrency(refund || 0, userRate, 1 * multiplier);
+        const convertBetAmount = GameUtils.getTicketValueByCurrency(betAmount || 0, userRate);
+        const convertRefund = GameUtils.getTicketValueByCurrency(refund || 0, userRate);
         betAmountLabel.string = numberWithCommas(convertBetAmount, 2);
         refundLabel.string = numberWithCommas(convertRefund, 2);
     }

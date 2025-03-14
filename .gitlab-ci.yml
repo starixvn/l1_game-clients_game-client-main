@@ -7,7 +7,7 @@
 
 include:
     - project: "ci/core-cicd"
-      ref: main
+      ref: enhance-cocos-build-job
       file: "luminet.gitlab-ci.yml"
 
     - local: "ci/*.yml"

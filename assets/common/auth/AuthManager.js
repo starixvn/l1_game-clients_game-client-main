@@ -47,50 +47,46 @@ export function getChipSetting() {
 }
 
 export function checkSSO(onSuccessFunc) {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (checkUMSSO(urlParams) || checkTimeOut(urlParams)) {
-        return;
-    }
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (checkUMSSO(urlParams) || checkTimeOut(urlParams)) {
+            return;
+        }
 
-    let session;
-    if (urlParams.has("session")) {
-        try {
-            session = JSON.parse(EncryptUtils.base64Decode(urlParams.get("session")));
-            sessionManager.storeSessionData(session);
-            clearQueryStringOnUrl();
-        } catch (error) {
-            sentryLogger.logError(error);
+        let session;
+        if (urlParams.has("params")) {
+            session = sessionManager.getSession() || {};
+            const params = UrlParamsService.getInstance().parseAndCache("params");
+
+            if (params) {
+                session.ss = params.ss;
+                session.isAuthenticated = params.isAuthenticated ?? false;
+                session.memberName = params.memberName;
+                session.language = params.language;
+                session.system = params.system;
+                session.umInfo = params.umInfo;
+                session.time = params.time;
+                sessionManager.storeSessionData(session);
+                clearQueryStringOnUrl();
+            }
+        } else {
             session = sessionManager.getSession();
         }
-    } else if (urlParams.has("params")) {
-        session = sessionManager.getSession() || {};
-        const params = UrlParamsService.getInstance().parseAndCache("params");
-        session.ss = params?.ss;
-        session.isAuthenticated = params?.isAuthenticated ?? false;
-        session.memberName = params?.memberName;
-        session.language = params?.language;
-        session.system = params?.system;
-        session.umInfo = params?.umInfo;
-        session.time = params?.time;
-        sessionManager.storeSessionData(session);
-        clearQueryStringOnUrl();
-    } else {
-        session = sessionManager.getSession();
-    }
 
-    if (checkSignOut(urlParams, session)) {
-        signOut();
-        return;
-    }
+        if (checkSignOut(urlParams, session)) {
+            signOut();
+            return;
+        }
 
-    if (urlParams.has("token")) {
-        checkHasToken(urlParams, onSuccessFunc);
-    } else {
-        if (session?.isAuthenticated && session?.ss) {
+        if (urlParams.has("token")) {
+            checkHasToken(urlParams, onSuccessFunc);
+        } else if (session?.isAuthenticated && session?.ss) {
             setAuthorizeInfo(session);
             sessionManager.updateLanguage(session);
             onSuccessFunc();
         }
+    } catch (error) {
+        console.error("Error in checkSSO:", error);
     }
 }
 

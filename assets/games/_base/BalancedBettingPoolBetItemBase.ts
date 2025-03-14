@@ -35,10 +35,10 @@ export default class BalancedBettingPoolBetItemBase extends GameTicketDetailItem
         this.username.string = isLoginUser ? data.name : shortenName(data.name);
 
         const rate = data.rate || multiplier;
-        const convertValue = GameUtils.getTicketValueByCurrency(data.amount, userRate, rate);
+        const convertValue = GameUtils.getTicketValueByCurrency(data.baseAmount, userRate, rate);
         this.betAmount.string = numberWithCommas(convertValue, 2);
 
-        const convertRefund = GameUtils.getTicketValueByCurrency(data.refund, userRate, rate);
+        const convertRefund = GameUtils.getTicketValueByCurrency(data.baseRefund, userRate, rate);
         this.refund.string = numberWithCommas(convertRefund, 2);
         this.setBackground(index);
     }

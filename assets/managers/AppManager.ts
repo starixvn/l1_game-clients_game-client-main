@@ -38,9 +38,9 @@ export interface ISessionParams {
 
     isUM: boolean;
     umInfo: any;
-    music: boolean;
-    sfx: boolean;
-    isTouchedScreen: boolean;
+    musicEnable: boolean;
+    sfxEnable: boolean;
+    isUserGesture: boolean;
 }
 
 class AppManager {
@@ -230,17 +230,17 @@ class AppManager {
         const params = UrlParamsService.getInstance().parseAndCache(UrlInfo.params) as ISessionParams;
         console.log("params parseAndCache", params);
 
-        if (params?.isTouchedScreen !== undefined) {
-            AudioManager.getInstance().isUserGesture = params.isTouchedScreen;
-            window.isUserGesture = params.isTouchedScreen;
+        if (params?.isUserGesture !== undefined) {
+            AudioManager.getInstance().isUserGesture = params.isUserGesture;
+            window.isUserGesture = params.isUserGesture;
         }
 
-        if (params?.sfx !== undefined) {
-            AudioManager.getInstance().sfxEnabled = params?.sfx;
+        if (params?.sfxEnable !== undefined) {
+            AudioManager.getInstance().sfxEnabled = params?.sfxEnable;
         }
 
-        if (params?.music !== undefined) {
-            AudioManager.getInstance().musicEnabled = params?.music;
+        if (params?.musicEnable !== undefined) {
+            AudioManager.getInstance().musicEnabled = params?.musicEnable;
         }
     }
 

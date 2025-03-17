@@ -228,7 +228,6 @@ class AppManager {
         }
 
         const params = UrlParamsService.getInstance().parseAndCache(UrlInfo.params) as ISessionParams;
-        console.log("params parseAndCache", params);
 
         if (params?.isUserGesture !== undefined) {
             AudioManager.getInstance().isUserGesture = params.isUserGesture;

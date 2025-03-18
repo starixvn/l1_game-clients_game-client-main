@@ -2,8 +2,12 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "หัวชนะ",
         "game_icon_name": "โยนเหรียญ",
         "game_name": "โยนเหรียญ",
+        "glossary_head": "หัว",
+        "glossary_tail": "ก้อย",
+        "trump_win": "ก้อยชนะ",
         "you_win": "คุณชนะ"
     },
     "Common": {

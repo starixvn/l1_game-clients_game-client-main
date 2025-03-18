@@ -5,8 +5,8 @@ export const phrases = {
         "Biden_win": "Ngửa thắng",
         "game_icon_name": "Tung Đồng Xu",
         "game_name": "Tung Đồng Xu",
-        "glossary_head": "Heads",
-        "glossary_tail": "Tails",
+        "glossary_head": "Ngửa",
+        "glossary_tail": "Sấp",
         "trump_win": "Sấp thắng",
         "you_win": "Bạn vừa thắng"
     },

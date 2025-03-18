@@ -2,8 +2,12 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "CoinToss": {
+        "Biden_win": "Kepala menang",
         "game_icon_name": "Lempar Koin",
         "game_name": "Lempar Koin",
+        "glossary_head": "Kepala",
+        "glossary_tail": "Ekor",
+        "trump_win": "Ekor menang",
         "you_win": "KAMU MENANG"
     },
     "Common": {

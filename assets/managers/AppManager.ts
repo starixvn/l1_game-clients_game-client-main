@@ -33,9 +33,7 @@ export interface ISessionParams {
     isAuthenticated: boolean;
     memberName: string;
     language: string;
-
     system: any;
-
     isUM: boolean;
     umInfo: any;
     musicEnable: boolean;

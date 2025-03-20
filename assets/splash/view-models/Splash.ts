@@ -75,8 +75,8 @@ export default class Splash extends cc.Component {
             // clear micro-site game id when returning from session
             SessionManager.removeMicrositeGameId();
 
-            if (isGatewayGame(gameId)) {
-                return this.handleGatewayGame(gameId);
+            if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
+                return;
             }
 
             return this.loadToLobbyOrDirectGame();
@@ -85,8 +85,8 @@ export default class Splash extends cc.Component {
         // Handle SSO game launch
         const isSSOGameLaunch = urlParams.has("token") && urlParams.has("gameId") && gameId !== 0;
         if (isSSOGameLaunch) {
-            if (isGatewayGame(gameId)) {
-                return this.handleGatewayGame(gameId);
+            if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
+                return;
             }
             if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);

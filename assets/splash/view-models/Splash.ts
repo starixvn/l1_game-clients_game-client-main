@@ -69,15 +69,14 @@ export default class Splash extends cc.Component {
         const urlParams = appManager.urlParams;
         const gameId = +urlParams.get("gameId");
         const params = urlParams.get("params");
-        const gatewayId = urlParams.get("gatewayId");
 
         // Handle from standalone micro-site game
         if (params) {
             // clear micro-site game id when returning from session
             SessionManager.removeMicrositeGameId();
 
-            if (isGatewayGame(gameId) || (gatewayId && +gatewayId > 0)) {
-                return this.handleGatewayGame(+gatewayId);
+            if (isGatewayGame(gameId)) {
+                return this.handleGatewayGame(gameId);
             }
 
             return this.loadToLobbyOrDirectGame();
@@ -86,8 +85,8 @@ export default class Splash extends cc.Component {
         // Handle SSO game launch
         const isSSOGameLaunch = urlParams.has("token") && urlParams.has("gameId") && gameId !== 0;
         if (isSSOGameLaunch) {
-            if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
-                return;
+            if (isGatewayGame(gameId)) {
+                return this.handleGatewayGame(gameId);
             }
             if (this.isMicrositeGame(gameId)) {
                 cc.log("Open game microsite at Splash ", gameId);

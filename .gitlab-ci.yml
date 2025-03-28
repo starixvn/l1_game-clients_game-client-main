@@ -39,3 +39,7 @@ unit_test_js:
 sonar_js:
     needs:
     dependencies:
+
+build_cocos_env:
+  tags:
+  - cocos-test

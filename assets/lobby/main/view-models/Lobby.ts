@@ -29,6 +29,7 @@ import ButtonsLobby from "./ButtonsLobby";
 import Header from "./Header";
 import LobbyCenter from "./LobbyCenter";
 import { themeResourceLoader } from "./theme/ResourceLoader";
+import LobbyManager from "./LobbyManager";
 
 const socketIOController = appContainer.get(SocketIOController);
 const sentryLogger = logger();
@@ -339,10 +340,18 @@ export default class Lobby extends cc.Component {
         cc.log("Lobby onSignIn");
         this.isSSOToGame = appManager.ssoGameId > 0;
         if (this.isSSOToGame) {
-            cc.log("Lobby onSignIn - isSSOToGame");
-            this.loadLobby(false);
-            this.openGameSSO();
-            return;
+            try {
+                const offerGames = LobbyManager.getInstance().getAllGameIds();
+
+                if (offerGames.includes(appManager.ssoGameId)) {
+                    cc.log("Lobby onSignIn - isSSOToGame");
+                    this.loadLobby(false);
+                    this.openGameSSO();
+                    return;
+                }
+            } catch (error) {
+                console.log("An error occurred in onSignIn:" + appManager.ssoGameId.toString(), error);
+            }
         }
 
         if (sessionManager.getInRoomGameId()) {

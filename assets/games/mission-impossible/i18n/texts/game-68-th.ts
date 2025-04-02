@@ -2,10 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     gameNames: {
-        68: "ภารกิจที่เป็นไปไม่ได้"
+        68: "ปฏิบัติการขั้นสูงสุด"
     },
     lobbyNames: {
-        68: "ภารกิจที่\nเป็นไปไม่ได้"
+        68: "ปฏิบัติการขั้นสูงสุด"
     }
 };
 

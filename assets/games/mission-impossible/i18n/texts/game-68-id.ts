@@ -2,10 +2,10 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     gameNames: {
-        68: "Misi Yang Mustahil"
+        68: "Operasi Tertinggi"
     },
     lobbyNames: {
-        68: "Misi Yang\n Mustahil"
+        68: "Operasi Tertinggi"
     }
 };
 

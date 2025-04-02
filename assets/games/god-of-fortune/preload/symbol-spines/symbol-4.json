@@ -1,0 +1,252 @@
+{
+"skeleton": { "hash": "oofwt46lElkiIGQoaYdL3531OYU", "spine": "3.8.99", "x": -42.5, "y": -58.58, "width": 91, "height": 110.1 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "coin-chain", "parent": "root" },
+	{ "name": "bg1", "parent": "root" },
+	{ "name": "bg2", "parent": "root" },
+	{ "name": "VFX-explose", "parent": "root" },
+	{ "name": "VFX-star", "parent": "root" },
+	{ "name": "Light", "parent": "root" },
+	{ "name": "coin-chain2", "parent": "coin-chain", "length": 39.02, "rotation": 150.52, "x": 32.32, "y": 16.19 },
+	{ "name": "coin-chain3", "parent": "coin-chain2", "length": 43.54, "rotation": 84.94, "x": 39.02 },
+	{ "name": "coin-chain4", "parent": "coin-chain3", "length": 22.84, "rotation": 71.25, "x": 43.37, "y": -0.12 },
+	{ "name": "coin-chain5", "parent": "coin-chain4", "length": 50.68, "rotation": 48.87, "x": 22.84 }
+],
+"slots": [
+	{ "name": "bg1", "bone": "bg1" },
+	{ "name": "bg2", "bone": "bg2" },
+	{ "name": "coin-chain", "bone": "coin-chain", "attachment": "coin-chain" },
+	{ "name": "VFX-explose", "bone": "VFX-explose", "blend": "additive" },
+	{ "name": "VFX-star", "bone": "VFX-star" },
+	{ "name": "light", "bone": "Light", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"VFX-explose": {
+				"VFX-explose 1/vfx-s0-00": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-01": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-02": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-03": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-04": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-05": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-06": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-07": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-08": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-09": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-10": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-11": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-12": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-13": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-14": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 }
+			},
+			"VFX-star": {
+				"VFX-star/explosion-star-01": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-02": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-03": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-04": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-05": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-06": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-07": { "width": 142, "height": 144 }
+			},
+			"bg1": {
+				"background/bg1": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"bg2": {
+				"background/bg2": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"coin-chain": {
+				"coin-chain": {
+					"type": "mesh",
+					"uvs": [ 1, 0.14842, 1, 0.30189, 0.87351, 0.3945, 0.64752, 0.43684, 0.53974, 0.3945, 0.47021, 0.48182, 0.37981, 0.52151, 0.50845, 0.51622, 0.63361, 0.53739, 0.82483, 0.47653, 0.92645, 0.4233, 1, 0.4633, 1, 1, 0.55017, 1, 0.28942, 0.8258, 0, 0.53474, 0, 0.23045, 0.352, 0, 0.68924, 0, 0.1121, 0.60089 ],
+					"triangles": [ 13, 8, 12, 8, 9, 12, 12, 9, 11, 9, 10, 11, 13, 14, 8, 8, 14, 7, 14, 6, 7, 14, 19, 6, 19, 15, 6, 15, 19, 14, 15, 16, 6, 5, 6, 4, 4, 6, 16, 16, 17, 4, 3, 4, 2, 4, 18, 2, 4, 17, 18, 1, 2, 0, 2, 18, 0 ],
+					"vertices": [ 1, 7, -0.6, -21.66, 1, 1, 7, -9.14, -6.56, 1, 3, 7, -4.81, 7.9, 0.99349, 8, 4, 44.36, 0.0065, 9, 24.92, 53.92, 2.0E-5, 3, 7, 9.75, 21.63, 0.8049, 8, 18.96, 31.06, 0.18246, 9, 18.75, 34.88, 0.01265, 4, 7, 20.17, 22.02, 0.44969, 8, 20.27, 20.72, 0.48164, 9, 9.81, 29.52, 0.06736, 10, 13.67, 29.23, 0.0013, 3, 7, 20.52, 33.55, 0.15172, 8, 31.79, 21.39, 0.78795, 10, 9.37, 18.52, 0.06033, 2, 7, 25.09, 41.28, 0.07032, 8, 39.89, 17.52, 0.92968, 1, 10, 13.24, 15.22, 1, 2, 9, 27.78, 27.88, 0.01151, 10, 24.25, 14.61, 0.98849, 1, 10, 39.36, 24.07, 1, 1, 10, 47.01, 31.42, 1, 1, 10, 53.99, 27.99, 1, 1, 10, 63.83, -31.85, 1, 1, 10, 25.66, -38.14, 1, 1, 10, 0.34, -22.35, 1, 1, 8, 59.64, -8.54, 1, 1, 8, 31.32, -28.03, 1, 2, 7, 56.17, -8.84, 0.22023, 8, -7.29, -17.86, 0.77977, 2, 7, 30.92, -23.11, 0.99977, 8, -23.74, 6.03, 2.3E-4, 1, 9, 10.26, -14.03, 1 ],
+					"hull": 19
+				}
+			},
+			"light": {
+				"light": { "width": 232, "height": 196 }
+			}
+		}
+	}
+],
+"animations": {
+	"explode": {
+		"slots": {
+			"VFX-explose": {
+				"attachment": [
+					{ "name": "VFX-explose 1/vfx-s0-14" },
+					{ "time": 0.0667, "name": "VFX-explose 1/vfx-s0-01" },
+					{ "time": 0.1333, "name": "VFX-explose 1/vfx-s0-02" },
+					{ "time": 0.1667, "name": "VFX-explose 1/vfx-s0-03" },
+					{ "time": 0.2333, "name": "VFX-explose 1/vfx-s0-04" },
+					{ "time": 0.3, "name": "VFX-explose 1/vfx-s0-05" },
+					{ "time": 0.3667, "name": "VFX-explose 1/vfx-s0-06" },
+					{ "time": 0.4667, "name": "VFX-explose 1/vfx-s0-08" },
+					{ "time": 0.5333, "name": "VFX-explose 1/vfx-s0-09" },
+					{ "time": 0.6, "name": "VFX-explose 1/vfx-s0-10" },
+					{ "time": 0.6333, "name": "VFX-explose 1/vfx-s0-11" },
+					{ "time": 0.7, "name": "VFX-explose 1/vfx-s0-12" },
+					{ "time": 0.7667, "name": "VFX-explose 1/vfx-s0-13" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffffff" },
+					{ "time": 0.3667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "VFX-star/explosion-star-07" },
+					{ "time": 0.1333, "name": "VFX-star/explosion-star-02" },
+					{ "time": 0.2667, "name": "VFX-star/explosion-star-03" },
+					{ "time": 0.4, "name": "VFX-star/explosion-star-04" },
+					{ "time": 0.5667, "name": "VFX-star/explosion-star-05" },
+					{ "time": 0.7, "name": "VFX-star/explosion-star-06" },
+					{ "time": 0.8333, "name": "VFX-star/explosion-star-07" }
+				]
+			},
+			"bg1": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "background/bg1" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "background/bg2" }
+				]
+			},
+			"coin-chain": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "color": "ffffff3b", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "light" }
+				]
+			}
+		},
+		"bones": {
+			"VFX-explose": {
+				"scale": [
+					{ "x": 0.4, "y": 0.4 },
+					{ "time": 0.1667 }
+				]
+			},
+			"VFX-star": {
+				"scale": [
+					{ "x": 0.5, "y": 0.5 },
+					{ "time": 0.1333, "x": 1.2, "y": 1.2 },
+					{ "time": 0.3667, "x": 1.5, "y": 1.5 }
+				]
+			},
+			"Light": {
+				"scale": [
+					{ "x": 0, "y": 0, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"highlight": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg1": {
+				"attachment": [
+					{ "name": "background/bg1" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.3, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffffff" },
+					{ "time": 0.8333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "background/bg2" }
+				]
+			}
+		},
+		"bones": {
+			"coin-chain": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2, "y": 3.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5333, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "y": 0.98, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5 }
+				]
+			},
+			"bg2": {
+				"translate": [
+					{ "x": 0.46 }
+				]
+			},
+			"coin-chain2": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "angle": -3.31, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1, "angle": 0.1, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5 }
+				]
+			},
+			"coin-chain5": {
+				"rotate": [
+					{ "angle": 0.08, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "angle": -7.54, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9, "angle": 10.43, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.4, "angle": 0.1, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5, "angle": 0.08 }
+				]
+			},
+			"coin-chain4": {
+				"rotate": [
+					{ "angle": 0.04, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2333, "angle": -5.89, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.7333, "angle": -3.31, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.2333, "angle": 0.1, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5, "angle": 0.04 }
+				]
+			},
+			"coin-chain3": {
+				"rotate": [
+					{ "angle": 0.03, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1333, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6333, "angle": -3.31, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1333, "angle": 0.1, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5, "angle": 0.03 }
+				]
+			}
+		}
+	},
+	"idle": {}
+}
+}

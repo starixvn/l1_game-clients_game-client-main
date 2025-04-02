@@ -1,0 +1,267 @@
+{
+"skeleton": {
+	"hash": "7VyY7BNU7TeA3vf3I/Kgse8r2VE",
+	"spine": "3.8.99",
+	"x": -116,
+	"y": -98,
+	"width": 232,
+	"height": 197,
+	"images": "./images/",
+	"audio": "D:/Lumi/game/Godoffortune/GOF anims/symbol 0"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "pearl", "parent": "root" },
+	{ "name": "bg1", "parent": "root" },
+	{ "name": "bg2", "parent": "root" },
+	{ "name": "VFX-explose", "parent": "root" },
+	{ "name": "VFX-star", "parent": "root" },
+	{ "name": "Light", "parent": "root" },
+	{ "name": "pearl2", "parent": "pearl", "length": 55.69, "rotation": -107.65, "x": 16.17, "y": 47.66 },
+	{ "name": "pearl3", "parent": "pearl2", "length": 21.63, "rotation": -15.6, "x": 55.69 },
+	{ "name": "pearl4", "parent": "pearl3", "length": 24.89, "rotation": -5.2, "x": 21.63 }
+],
+"slots": [
+	{ "name": "bg1", "bone": "bg1", "attachment": "background/bg1" },
+	{ "name": "bg2", "bone": "bg2", "attachment": "background/bg2" },
+	{ "name": "pearl", "bone": "pearl", "attachment": "pearl" },
+	{ "name": "VFX-explose", "bone": "VFX-explose", "attachment": "VFX-explose 1/vfx-s0-14", "blend": "screen" },
+	{ "name": "VFX-star", "bone": "VFX-star", "attachment": "VFX-star/explosion-star-07" },
+	{ "name": "light", "bone": "Light", "attachment": "light", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"VFX-explose": {
+				"VFX-explose 1/vfx-s0-00": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-01": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-02": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-03": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-04": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-05": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-06": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-07": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-08": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-09": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-10": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-11": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-12": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-13": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-14": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 }
+			},
+			"VFX-star": {
+				"VFX-star/explosion-star-01": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-02": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-03": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-04": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-05": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-06": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-07": { "width": 142, "height": 144 }
+			},
+			"bg1": {
+				"background/bg1": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"bg2": {
+				"background/bg2": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"light": {
+				"light": { "width": 232, "height": 196 }
+			},
+			"pearl": {
+				"pearl": {
+					"type": "mesh",
+					"uvs": [ 0.93691, 0.13542, 1, 0.29519, 1, 0.41201, 0.82472, 0.55288, 0.68449, 0.5735, 0.70085, 0.66799, 0.591, 0.72468, 0.71721, 0.89819, 0.35728, 0.96863, 0.07682, 0.89132, 0, 0.81573, 0, 0.67314, 0.2077, 0.66112, 0.27548, 0.6216, 0.30586, 0.53399, 0.4087, 0.50822, 0.29184, 0.41201, 0.23809, 0.24709, 0.3269, 0.09076, 0.57231, 0.02719, 0.74292, 0, 0.8294, 0, 0.77564, 0.06155 ],
+					"triangles": [ 9, 12, 8, 8, 12, 6, 8, 6, 7, 9, 10, 12, 10, 11, 12, 6, 12, 13, 15, 6, 13, 13, 14, 15, 6, 4, 5, 6, 15, 4, 1, 4, 15, 3, 4, 1, 22, 19, 20, 16, 19, 22, 2, 3, 1, 15, 22, 1, 22, 15, 16, 18, 19, 17, 1, 22, 0, 19, 16, 17, 22, 21, 0, 22, 20, 21 ],
+					"vertices": [ 1, 7, 1.78, 23.56, 1, 1, 7, 17.95, 34.4, 1, 2, 7, 30.98, 38.54, 0.99925, 8, -34.16, 30.48, 7.5E-4, 2, 7, 51.25, 29.17, 0.90028, 8, -12.11, 26.91, 0.09972, 2, 7, 57.21, 18.41, 0.99322, 9, -26.65, 15.8, 0.00678, 1, 8, 4.99, 25.38, 1, 1, 8, 15.72, 21.12, 1, 1, 9, 1.35, 41.62, 1, 1, 9, 27.05, 22.5, 1, 1, 9, 34.96, -2.02, 1, 1, 9, 32.14, -12.69, 1, 1, 9, 19.08, -23.06, 1, 1, 9, 6.87, -9.95, 1, 2, 8, 20.51, -8.19, 0.58527, 9, -0.38, -8.25, 0.41473, 3, 7, 62.68, -14.02, 0.01717, 8, 10.5, -11.62, 0.98103, 9, -10.03, -12.58, 0.0018, 1, 7, 57.12, -6.5, 1, 1, 7, 49.44, -19.49, 1, 1, 7, 32.46, -29.75, 1, 1, 7, 12.71, -28.02, 1, 1, 7, -0.77, -10.16, 1, 1, 7, -8.26, 2.86, 1, 1, 7, -10.51, 9.94, 1, 1, 7, -2.25, 7.72, 1 ],
+					"hull": 22,
+					"edges": [ 22, 24, 24, 26, 26, 28, 28, 30, 30, 32, 32, 34, 34, 36, 36, 38, 38, 40, 40, 42, 42, 44, 44, 0, 0, 2, 2, 4, 4, 6, 6, 8, 8, 10, 10, 12, 12, 14, 14, 16, 16, 18, 20, 22, 18, 20, 42, 0 ],
+					"width": 86,
+					"height": 117
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"explode": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "5fffa5ff" }
+				],
+				"attachment": [
+					{ "name": "VFX-explose 1/vfx-s0-00" },
+					{ "time": 0.0667, "name": "VFX-explose 1/vfx-s0-01" },
+					{ "time": 0.1333, "name": "VFX-explose 1/vfx-s0-02" },
+					{ "time": 0.1667, "name": "VFX-explose 1/vfx-s0-03" },
+					{ "time": 0.2333, "name": "VFX-explose 1/vfx-s0-04" },
+					{ "time": 0.3, "name": "VFX-explose 1/vfx-s0-05" },
+					{ "time": 0.3667, "name": "VFX-explose 1/vfx-s0-06" },
+					{ "time": 0.4667, "name": "VFX-explose 1/vfx-s0-08" },
+					{ "time": 0.5333, "name": "VFX-explose 1/vfx-s0-09" },
+					{ "time": 0.6, "name": "VFX-explose 1/vfx-s0-10" },
+					{ "time": 0.6333, "name": "VFX-explose 1/vfx-s0-11" },
+					{ "time": 0.7, "name": "VFX-explose 1/vfx-s0-12" },
+					{ "time": 0.7667, "name": "VFX-explose 1/vfx-s0-13" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffffff" },
+					{ "time": 0.3667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "VFX-star/explosion-star-01" },
+					{ "time": 0.1333, "name": "VFX-star/explosion-star-02" },
+					{ "time": 0.2667, "name": "VFX-star/explosion-star-03" },
+					{ "time": 0.4, "name": "VFX-star/explosion-star-04" },
+					{ "time": 0.5667, "name": "VFX-star/explosion-star-05" },
+					{ "time": 0.7, "name": "VFX-star/explosion-star-06" },
+					{ "time": 0.8333, "name": "VFX-star/explosion-star-07" }
+				]
+			},
+			"bg1": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "color": "ffffff3b", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "color": "ffffff00" }
+				]
+			},
+			"pearl": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"VFX-explose": {
+				"scale": [
+					{ "x": 0.4, "y": 0.4 },
+					{ "time": 0.1667 }
+				]
+			},
+			"VFX-star": {
+				"scale": [
+					{ "x": 0.5, "y": 0.5 },
+					{ "time": 0.1333, "x": 1.2, "y": 1.2 },
+					{ "time": 0.3667, "x": 1.5, "y": 1.5 }
+				]
+			},
+			"Light": {
+				"scale": [
+					{ "x": 0, "y": 0, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"highlight": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.3333, "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffffff" },
+					{ "time": 0.8333, "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"bg2": {
+				"translate": [
+					{ "x": 0.46 }
+				]
+			},
+			"pearl2": {
+				"rotate": [
+					{},
+					{ "time": 0.3667, "angle": -9.02 },
+					{ "time": 0.7667, "angle": 3.84 },
+					{ "time": 1.1333, "angle": -5 },
+					{ "time": 1.5 }
+				]
+			},
+			"pearl4": {
+				"rotate": [
+					{ "angle": 2.96 },
+					{ "time": 0.3333, "angle": -20.39 },
+					{ "time": 0.7333, "angle": 22.55 },
+					{ "time": 1.1, "angle": -9.02 },
+					{ "time": 1.4667, "angle": 3.84 },
+					{ "time": 1.5, "angle": 2.96 }
+				]
+			},
+			"pearl3": {
+				"rotate": [
+					{ "angle": -2.5, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5667, "angle": 11.19, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.9333, "angle": -6.7, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.3333, "angle": 8.59, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5, "angle": -2.5 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg1": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

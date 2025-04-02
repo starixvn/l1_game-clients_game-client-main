@@ -1,0 +1,214 @@
+{
+"skeleton": {
+	"hash": "RcwQ/ReHMrn+dutf9ciwjjhI2Jw",
+	"spine": "3.8.99",
+	"x": -98.05,
+	"y": -215.06,
+	"width": 196.32,
+	"height": 429.06,
+	"images": "./images/",
+	"audio": "D:/Lumi/game/Godoffortune/GOF anims/icon-game/images"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "mascot", "parent": "root", "x": 31.93, "y": 11.27, "scaleX": 0.7, "scaleY": 0.7 },
+	{ "name": "firework", "parent": "root", "y": 110.18, "scaleX": 0.4, "scaleY": 0.4 },
+	{ "name": "cloud1", "parent": "root" },
+	{ "name": "coin2", "parent": "root", "x": -96.6, "y": 108.19 },
+	{ "name": "coin", "parent": "root", "x": 78.25, "y": -159.39 },
+	{ "name": "circle light", "parent": "root" },
+	{ "name": "mask", "parent": "root" }
+],
+"slots": [
+	{ "name": "mask", "bone": "mask", "attachment": "mask" },
+	{ "name": "circle light", "bone": "circle light", "attachment": "circle light" },
+	{ "name": "background", "bone": "root", "attachment": "background" },
+	{ "name": "firework", "bone": "firework", "attachment": "firework 5/final_16", "blend": "additive" },
+	{ "name": "cloud1", "bone": "cloud1", "attachment": "cloud1" },
+	{ "name": "cloud2", "bone": "root", "attachment": "cloud2" },
+	{ "name": "lixi", "bone": "root", "attachment": "lixi" },
+	{ "name": "coin2", "bone": "coin2", "attachment": "coin" },
+	{ "name": "mascot", "bone": "mascot", "attachment": "GOF/gof_29" },
+	{ "name": "coin", "bone": "coin", "attachment": "coin" },
+	{ "name": "highlight", "bone": "root", "attachment": "highlight", "blend": "screen" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"background": {
+				"background": { "y": -0.5, "width": 196, "height": 429 }
+			},
+			"circle light": {
+				"circle light": { "x": 2.43, "y": 0.5, "width": 515, "height": 509 }
+			},
+			"cloud1": {
+				"cloud1": { "x": -65, "y": 167, "width": 81, "height": 37 }
+			},
+			"cloud2": {
+				"cloud2": { "x": 4.07, "y": -137.86, "width": 90, "height": 44 }
+			},
+			"coin": {
+				"coin": { "x": 7.53, "y": -8.2, "width": 112, "height": 120 }
+			},
+			"coin2": {
+				"coin": { "x": 7.1, "y": -1.6, "scaleX": 0.5, "scaleY": 0.5, "width": 112, "height": 120 }
+			},
+			"firework": {
+				"firework 5/final_00": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_01": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_02": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_03": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_04": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_05": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_06": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_07": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_08": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_09": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_10": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_11": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_12": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_13": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_14": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_15": { "y": 0.5, "width": 600, "height": 339 },
+				"firework 5/final_16": { "y": 0.5, "width": 600, "height": 339 }
+			},
+			"highlight": {
+				"highlight": { "y": -0.5, "width": 196, "height": 429 }
+			},
+			"lixi": {
+				"lixi": { "x": 90.78, "y": 163.44, "width": 82, "height": 86 }
+			},
+			"mascot": {
+				"GOF/gof_00": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_01": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_02": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_03": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_04": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_05": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_06": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_07": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_08": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_09": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_10": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_11": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_12": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_13": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_14": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_15": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_16": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_17": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_18": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_19": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_20": { "y": 0.5, "width": 421, "height": 547 },
+				"GOF/gof_21": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_22": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_23": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_24": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_25": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_26": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_27": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_28": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 },
+				"GOF/gof_29": { "x": 0.71, "y": 0.71, "width": 421, "height": 547 }
+			},
+			"mask": {
+				"mask": {
+					"type": "clipping",
+					"end": "mask",
+					"vertexCount": 22,
+					"vertices": [ -98.04, 198.31, -97.87, 205.05, -96.81, 207.66, -94.36, 210.51, -91.53, 212.92, -88.44, 213.99, 85.88, 214.01, 90.07, 213.99, 94.69, 211.22, 97.16, 208.11, 97.97, 206.06, 98, 200.07, 98.27, -203.86, 96.54, -208.7, 94.04, -211.93, 90.53, -214.38, 87.15, -215, -88.32, -215.06, -92.01, -213.51, -95.33, -211.18, -97.7, -208.01, -98.05, -206.16 ],
+					"color": "ce3a3aff"
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"show": {
+		"slots": {
+			"firework": {
+				"attachment": [
+					{ "name": "firework 5/final_00" },
+					{ "time": 0.1667, "name": "firework 5/final_01" },
+					{ "time": 0.4, "name": "firework 5/final_02" },
+					{ "time": 0.5667, "name": "firework 5/final_03" },
+					{ "time": 0.8, "name": "firework 5/final_04" },
+					{ "time": 0.9667, "name": "firework 5/final_05" },
+					{ "time": 1.1667, "name": "firework 5/final_06" },
+					{ "time": 1.3667, "name": "firework 5/final_07" },
+					{ "time": 1.5667, "name": "firework 5/final_08" },
+					{ "time": 1.7333, "name": "firework 5/final_09" },
+					{ "time": 1.9667, "name": "firework 5/final_10" },
+					{ "time": 2.1333, "name": "firework 5/final_11" },
+					{ "time": 2.3667, "name": "firework 5/final_12" },
+					{ "time": 2.5333, "name": "firework 5/final_13" },
+					{ "time": 2.7, "name": "firework 5/final_14" },
+					{ "time": 2.9333, "name": "firework 5/final_15" },
+					{ "time": 3.1, "name": "firework 5/final_16" }
+				]
+			},
+			"mascot": {
+				"attachment": [
+					{ "name": "GOF/gof_00" },
+					{ "time": 0.1667, "name": "GOF/gof_01" },
+					{ "time": 0.3333, "name": "GOF/gof_02" },
+					{ "time": 0.5, "name": "GOF/gof_03" },
+					{ "time": 0.6667, "name": "GOF/gof_04" },
+					{ "time": 0.8333, "name": "GOF/gof_05" },
+					{ "time": 1, "name": "GOF/gof_06" },
+					{ "time": 1.1667, "name": "GOF/gof_07" },
+					{ "time": 1.3333, "name": "GOF/gof_08" },
+					{ "time": 1.5, "name": "GOF/gof_09" },
+					{ "time": 1.6667, "name": "GOF/gof_10" },
+					{ "time": 1.8333, "name": "GOF/gof_11" },
+					{ "time": 2, "name": "GOF/gof_12" },
+					{ "time": 2.1667, "name": "GOF/gof_13" },
+					{ "time": 2.3333, "name": "GOF/gof_14" },
+					{ "time": 2.5, "name": "GOF/gof_15" },
+					{ "time": 2.6667, "name": "GOF/gof_16" },
+					{ "time": 2.8333, "name": "GOF/gof_17" },
+					{ "time": 3, "name": "GOF/gof_18" },
+					{ "time": 3.1667, "name": "GOF/gof_19" },
+					{ "time": 3.3333, "name": "GOF/gof_20" },
+					{ "time": 3.5, "name": "GOF/gof_21" },
+					{ "time": 3.6667, "name": "GOF/gof_22" },
+					{ "time": 3.8333, "name": "GOF/gof_23" },
+					{ "time": 4, "name": "GOF/gof_24" },
+					{ "time": 4.1667, "name": "GOF/gof_25" },
+					{ "time": 4.3333, "name": "GOF/gof_26" },
+					{ "time": 4.5, "name": "GOF/gof_27" },
+					{ "time": 4.6667, "name": "GOF/gof_28" },
+					{ "time": 4.8333, "name": "GOF/gof_29" }
+				]
+			}
+		},
+		"bones": {
+			"cloud1": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.3333, "y": 5.41, "curve": 0.25, "c3": 0.75 },
+					{ "time": 4.8333 }
+				]
+			},
+			"coin2": {
+				"translate": [
+					{ "time": 0.8333, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.2667, "x": -8.69, "y": 7.73, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.7333 }
+				]
+			},
+			"coin": {
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.7667, "y": 2.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5667 },
+					{ "time": 2.4333, "y": -7.73, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.2667 },
+					{ "time": 4.0667, "y": -7.73, "curve": 0.25, "c3": 0.75 },
+					{ "time": 4.8333 }
+				]
+			}
+		}
+	}
+}
+}

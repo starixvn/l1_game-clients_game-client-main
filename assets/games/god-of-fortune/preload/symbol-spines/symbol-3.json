@@ -1,0 +1,328 @@
+{
+"skeleton": {
+	"hash": "YWYxlktT8fn9QiWEW5YKC36kDdA",
+	"spine": "3.8.99",
+	"x": -116,
+	"y": -98,
+	"width": 232,
+	"height": 197,
+	"images": "./images/",
+	"audio": "D:/Lumi/game/Godoffortune/GOF anims/symbol 0"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "firecracker", "parent": "root" },
+	{ "name": "bg1", "parent": "root" },
+	{ "name": "bg2", "parent": "root" },
+	{ "name": "VFX-explose", "parent": "root" },
+	{ "name": "VFX-star", "parent": "root" },
+	{ "name": "Light", "parent": "root" },
+	{ "name": "coin 1", "parent": "root" },
+	{ "name": "coin2", "parent": "root", "rotation": 0.03, "x": 14.11, "y": -36.96 },
+	{ "name": "coin3", "parent": "root", "x": -26.6, "y": -31.92 },
+	{ "name": "firecracker2", "parent": "firecracker", "length": 92.34, "rotation": 89.53, "x": -1.69, "y": -45.54 },
+	{
+		"name": "fire",
+		"parent": "firecracker2",
+		"rotation": -89.53,
+		"x": 83.84,
+		"y": -26.31,
+		"scaleX": 0.2,
+		"scaleY": 0.2
+	}
+],
+"slots": [
+	{ "name": "bg1", "bone": "bg1", "attachment": "background/bg1" },
+	{ "name": "bg2", "bone": "bg2", "attachment": "background/bg2" },
+	{ "name": "coin 1", "bone": "coin 1", "attachment": "coin 1" },
+	{ "name": "coin3", "bone": "coin3", "attachment": "coin3" },
+	{ "name": "firecracker", "bone": "firecracker", "attachment": "firecracker" },
+	{ "name": "VFX-explose", "bone": "VFX-explose", "attachment": "VFX-explose 1/vfx-s0-14", "blend": "screen" },
+	{ "name": "VFX-star", "bone": "VFX-star", "attachment": "VFX-star/explosion-star-07" },
+	{ "name": "light", "bone": "Light", "attachment": "light", "blend": "additive" },
+	{ "name": "coin2", "bone": "coin2", "attachment": "coin2" },
+	{ "name": "fire", "bone": "fire", "attachment": "Firesimulator/explosion-star-04", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"VFX-explose": {
+				"VFX-explose 1/vfx-s0-00": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-01": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-02": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-03": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-04": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-05": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-06": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-07": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-08": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-09": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-10": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-11": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-12": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-13": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 },
+				"VFX-explose 1/vfx-s0-14": { "x": 0.5, "y": 0.5, "width": 175, "height": 197 }
+			},
+			"VFX-star": {
+				"VFX-star/explosion-star-01": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-02": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-03": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-04": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-05": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-06": { "width": 142, "height": 144 },
+				"VFX-star/explosion-star-07": { "width": 142, "height": 144 }
+			},
+			"bg1": {
+				"background/bg1": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"bg2": {
+				"background/bg2": { "x": 0.5, "width": 110, "height": 110 }
+			},
+			"coin 1": {
+				"coin 1": { "x": 26.6, "y": -24.32, "width": 26, "height": 26 }
+			},
+			"coin2": {
+				"coin2": { "x": 3.77, "y": -3.19, "width": 34, "height": 25 }
+			},
+			"coin3": {
+				"coin3": { "x": 0.5, "y": 0.5, "width": 33, "height": 25 }
+			},
+			"fire": {
+				"Firesimulator/explosion-star-01": { "width": 142, "height": 144 },
+				"Firesimulator/explosion-star-02": { "width": 142, "height": 144 },
+				"Firesimulator/explosion-star-03": { "width": 142, "height": 144 },
+				"Firesimulator/explosion-star-04": { "width": 142, "height": 144 }
+			},
+			"firecracker": {
+				"firecracker": {
+					"type": "mesh",
+					"uvs": [ 1, 0.12517, 0.8994, 0.21276, 0.88819, 0.52683, 0.87974, 0.76383, 1, 0.81127, 1, 0.94083, 0.72732, 1, 0.08078, 1, 0.06993, 0.54846, 0.06111, 0.18174, 0.40036, 0.06496, 0.5159, 0, 0.92644, 0, 0.47411, 0.56311, 0.4692, 0.23831 ],
+					"triangles": [ 1, 11, 12, 1, 12, 0, 14, 10, 11, 14, 11, 1, 9, 10, 14, 2, 14, 1, 8, 9, 14, 13, 14, 2, 8, 14, 13, 3, 13, 2, 3, 4, 5, 7, 8, 13, 6, 13, 3, 6, 3, 5, 7, 13, 6 ],
+					"vertices": [ 1, 10, 80.27, -37.53, 1, 1, 10, 71.72, -30.36, 1, 1, 10, 41.25, -29.8, 1, 1, 10, 18.25, -29.38, 1, 1, 10, 13.72, -38.08, 1, 1, 10, 1.16, -38.18, 1, 1, 10, -4.74, -18.6, 1, 1, 10, -5.13, 27.95, 1, 1, 10, 38.66, 29.09, 1, 1, 10, 74.23, 30.02, 1, 1, 10, 85.76, 5.69, 1, 1, 10, 92.13, -2.58, 1, 1, 10, 92.37, -32.14, 1, 1, 10, 37.48, -0.02, 1, 1, 10, 68.98, 0.59, 1 ],
+					"hull": 13,
+					"edges": [ 18, 20, 20, 22, 22, 24, 24, 0, 0, 2, 6, 8, 8, 10, 12, 14, 10, 12, 14, 16, 16, 18, 2, 4, 4, 6 ],
+					"width": 72,
+					"height": 97
+				}
+			},
+			"light": {
+				"light": { "width": 232, "height": 196 }
+			}
+		}
+	}
+],
+"animations": {
+	"explode": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ff1e1eff" }
+				],
+				"attachment": [
+					{ "name": "VFX-explose 1/vfx-s0-00" },
+					{ "time": 0.0667, "name": "VFX-explose 1/vfx-s0-01" },
+					{ "time": 0.1333, "name": "VFX-explose 1/vfx-s0-02" },
+					{ "time": 0.1667, "name": "VFX-explose 1/vfx-s0-03" },
+					{ "time": 0.2333, "name": "VFX-explose 1/vfx-s0-04" },
+					{ "time": 0.3, "name": "VFX-explose 1/vfx-s0-05" },
+					{ "time": 0.3667, "name": "VFX-explose 1/vfx-s0-06" },
+					{ "time": 0.4667, "name": "VFX-explose 1/vfx-s0-08" },
+					{ "time": 0.5333, "name": "VFX-explose 1/vfx-s0-09" },
+					{ "time": 0.6, "name": "VFX-explose 1/vfx-s0-10" },
+					{ "time": 0.6333, "name": "VFX-explose 1/vfx-s0-11" },
+					{ "time": 0.7, "name": "VFX-explose 1/vfx-s0-12" },
+					{ "time": 0.7667, "name": "VFX-explose 1/vfx-s0-13" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffffff" },
+					{ "time": 0.3667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "VFX-star/explosion-star-01" },
+					{ "time": 0.1333, "name": "VFX-star/explosion-star-02" },
+					{ "time": 0.2667, "name": "VFX-star/explosion-star-03" },
+					{ "time": 0.4, "name": "VFX-star/explosion-star-04" },
+					{ "time": 0.5667, "name": "VFX-star/explosion-star-05" },
+					{ "time": 0.7, "name": "VFX-star/explosion-star-06" },
+					{ "time": 0.8333, "name": "VFX-star/explosion-star-07" }
+				]
+			},
+			"bg1": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"coin 1": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"coin2": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"coin3": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"fire": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"firecracker": {
+				"color": [
+					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "color": "ffffff3b", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"VFX-explose": {
+				"scale": [
+					{ "x": 0.4, "y": 0.4 },
+					{ "time": 0.1667 }
+				]
+			},
+			"VFX-star": {
+				"scale": [
+					{ "x": 0.5, "y": 0.5 },
+					{ "time": 0.1333, "x": 1.2, "y": 1.2 },
+					{ "time": 0.3667, "x": 1.5, "y": 1.5 }
+				]
+			},
+			"Light": {
+				"scale": [
+					{ "x": 0, "y": 0, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"highlight": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.3, "color": "ffffff00" },
+					{ "time": 0.5333, "color": "ffffffff" },
+					{ "time": 0.8333, "color": "ffffff00" }
+				]
+			},
+			"fire": {
+				"attachment": [
+					{ "name": "Firesimulator/explosion-star-01" },
+					{ "time": 0.3333, "name": "Firesimulator/explosion-star-02" },
+					{ "time": 0.6667, "name": "Firesimulator/explosion-star-03" },
+					{ "time": 1, "name": "Firesimulator/explosion-star-04" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"bg2": {
+				"translate": [
+					{ "x": 0.46 }
+				]
+			},
+			"firecracker2": {
+				"rotate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4667, "angle": 3.76, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.0333, "angle": -1.98, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.4, "x": 0.912, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.8, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.1667, "x": 0.966, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.5 }
+				]
+			},
+			"coin2": {
+				"rotate": [
+					{ "angle": 13.73 },
+					{ "time": 0.5 }
+				],
+				"translate": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "y": 5.15, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3, "y": 2.02, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3667 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"VFX-explose": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"VFX-star": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg1": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"bg2": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"fire": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"light": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}

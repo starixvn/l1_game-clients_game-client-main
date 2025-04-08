@@ -1,48 +1,41 @@
 
 exportAtlas.png
-size: 2048,1024
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 flare
   rotate: false
-  xy: 991, 342
-  size: 55, 54
-  orig: 55, 54
+  xy: 907, 81
+  size: 44, 44
+  orig: 44, 44
   offset: 0, 0
   index: -1
 light
   rotate: false
-  xy: 248, 893
-  size: 249, 66
-  orig: 249, 66
+  xy: 365, 819
+  size: 162, 56
+  orig: 162, 56
   offset: 0, 0
   index: -1
 singer
   rotate: false
-  xy: 262, 745
-  size: 134, 107
-  orig: 134, 107
+  xy: 18, 324
+  size: 158, 109
+  orig: 158, 109
   offset: 0, 0
   index: -1
 stage
   rotate: false
   xy: 2, 2
-  size: 197, 185
-  orig: 197, 185
-  offset: 0, 0
-  index: -1
-stage-front
-  rotate: false
-  xy: 450, 5
-  size: 455, 551
-  orig: 455, 551
+  size: 181, 175
+  orig: 181, 175
   offset: 0, 0
   index: -1
 text-wild
-  rotate: false
-  xy: 9, 905
-  size: 134, 48
-  orig: 134, 48
+  rotate: true
+  xy: 881, 539
+  size: 133, 49
+  orig: 133, 49
   offset: 0, 0
   index: -1

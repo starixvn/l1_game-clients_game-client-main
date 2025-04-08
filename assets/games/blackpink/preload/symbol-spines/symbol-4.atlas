@@ -1,68 +1,54 @@
 
 exportAtlas.png
-size: 2048,1024
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 character
-  rotate: false
-  xy: 820, 6
-  size: 131, 145
-  orig: 131, 145
-  offset: 0, 0
-  index: -1
-frame
-  rotate: false
-  xy: 676, 786
-  size: 138, 121
-  orig: 138, 121
-  offset: 0, 0
-  index: -1
-frame-border
-  rotate: false
-  xy: 914, 621
-  size: 152, 144
-  orig: 152, 144
+  rotate: true
+  xy: 329, 12
+  size: 138, 139
+  orig: 138, 139
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_00
   rotate: false
-  xy: 438, 225
+  xy: 303, 306
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_02
   rotate: false
-  xy: 566, 13
+  xy: 15, 437
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_04
   rotate: false
-  xy: 5, 479
+  xy: 143, 437
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_06
   rotate: false
-  xy: 522, 657
+  xy: 137, 565
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_08
   rotate: false
-  xy: 650, 657
+  xy: 265, 565
   size: 124, 124
   orig: 124, 124
   offset: 0, 0
   index: -1
 ice_explode_particle_loop_10
   rotate: false
-  xy: 5, 743
+  xy: 393, 565
   size: 124, 124
   orig: 124, 124
   offset: 0, 0

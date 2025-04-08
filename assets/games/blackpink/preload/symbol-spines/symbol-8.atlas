@@ -1,41 +1,34 @@
 
 exportAtlas.png
-size: 2048,1024
+size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 flare
   rotate: false
-  xy: 1055, 44
-  size: 55, 54
-  orig: 55, 54
+  xy: 847, 443
+  size: 44, 44
+  orig: 44, 44
   offset: 0, 0
   index: -1
 frame
   rotate: false
-  xy: 2, 188
-  size: 152, 152
-  orig: 152, 152
-  offset: 0, 0
-  index: -1
-light
-  rotate: false
-  xy: 189, 6
-  size: 277, 86
-  orig: 277, 86
+  xy: 800, 394
+  size: 144, 143
+  orig: 144, 143
   offset: 0, 0
   index: -1
 logo-pink
-  rotate: true
-  xy: 773, 533
-  size: 127, 151
-  orig: 127, 151
+  rotate: false
+  xy: 136, 832
+  size: 130, 114
+  orig: 130, 114
   offset: 0, 0
   index: -1
 text-bonus
-  rotate: false
-  xy: 734, 940
-  size: 151, 48
-  orig: 151, 48
+  rotate: true
+  xy: 838, 538
+  size: 151, 45
+  orig: 151, 45
   offset: 0, 0
   index: -1

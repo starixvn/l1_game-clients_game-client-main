@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "0JWUYUDj3xXPEvayS+Ko1Dq5gbo", "spine": "3.8.99", "x": -115.37, "y": -115.37, "width": 230.74, "height": 230.74 },
+"skeleton": { "hash": "h5j4rEQYHwmhu5Q+s4krMvFiQLY", "spine": "3.8.99" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "button", "parent": "root" },
@@ -14,16 +14,16 @@
 	{ "name": "disable-black-overlay", "parent": "root", "scaleX": 1.0046, "scaleY": 1.0046 }
 ],
 "slots": [
-	{ "name": "hover", "bone": "hover", "color": "ffffff00", "attachment": "hover", "blend": "additive" },
-	{ "name": "Layer 1", "bone": "spin-bg", "color": "ffffff00", "attachment": "Layer 1" },
-	{ "name": "3 - Copy", "bone": "light", "color": "ff787800", "dark": "000000", "attachment": "3 - Copy", "blend": "additive" },
-	{ "name": "button", "bone": "button", "color": "ffffff00", "attachment": "3" },
-	{ "name": "1", "bone": "dercor-1", "color": "ffffff00", "attachment": "1" },
-	{ "name": "1 copy", "bone": "decor-2", "color": "ffffff00", "attachment": "1 copy" },
-	{ "name": "4", "bone": "arrow", "color": "ffffff00", "attachment": "4" },
-	{ "name": "5", "bone": "arrow-blur", "color": "ffffff00", "attachment": "5" },
+	{ "name": "hover", "bone": "hover", "color": "ffffff00", "blend": "additive" },
+	{ "name": "Layer 1", "bone": "spin-bg", "color": "ffffff00" },
+	{ "name": "3 - Copy", "bone": "light", "color": "ff787800", "dark": "000000", "blend": "additive" },
+	{ "name": "button", "bone": "button", "color": "ffffff00" },
+	{ "name": "1", "bone": "dercor-1", "color": "ffffff00" },
+	{ "name": "1 copy", "bone": "decor-2", "color": "ffffff00" },
+	{ "name": "4", "bone": "arrow", "color": "ffffff00" },
+	{ "name": "5", "bone": "arrow-blur", "color": "ffffff00" },
 	{ "name": "vfx/vfx-00", "bone": "vfx-idle", "color": "ffffff00", "blend": "additive" },
-	{ "name": "black-72-disable", "bone": "disable-black-overlay", "attachment": "black-72-disable" }
+	{ "name": "black-72-disable", "bone": "disable-black-overlay" }
 ],
 "skins": [
 	{
@@ -48,7 +48,7 @@
 				"Layer 1": { "x": -0.15, "y": -0.53, "width": 190, "height": 190 }
 			},
 			"black-72-disable": {
-				"black-72-disable": { "scaleX": 1.0949, "scaleY": 1.0949, "width": 190, "height": 190 }
+				"black-72-disable": { "scaleX": 1.0949, "scaleY": 1.0949, "rotation": -0.12, "width": 190, "height": 190 }
 			},
 			"button": {
 				"3": { "x": 0.74, "y": 0.97, "width": 145, "height": 145 }
@@ -78,19 +78,25 @@
 	}
 ],
 "animations": {
-	"disable": {},
-	"hover": {
+	"disable": {
 		"slots": {
 			"black-72-disable": {
-				"color": [
-					{ "color": "ffffff00" }
+				"attachment": [
+					{ "name": "black-72-disable" }
 				]
-			},
+			}
+		}
+	},
+	"hover": {
+		"slots": {
 			"hover": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.4333, "color": "ffffff88" },
 					{ "time": 0.9, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "hover" }
 				]
 			}
 		},
@@ -109,21 +115,33 @@
 			"1": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1" }
 				]
 			},
 			"1 copy": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1 copy" }
 				]
 			},
 			"3 - Copy": {
 				"twoColor": [
 					{ "light": "ff7878ff", "dark": "000000" }
+				],
+				"attachment": [
+					{ "name": "3 - Copy" }
 				]
 			},
 			"4": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "4" }
 				]
 			},
 			"5": {
@@ -134,16 +152,17 @@
 			"Layer 1": {
 				"color": [
 					{ "color": "ffffffff" }
-				]
-			},
-			"black-72-disable": {
-				"color": [
-					{ "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "Layer 1" }
 				]
 			},
 			"button": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "3" }
 				]
 			}
 		},
@@ -171,42 +190,58 @@
 			"1": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1" }
 				]
 			},
 			"1 copy": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1 copy" }
 				]
 			},
 			"3 - Copy": {
 				"twoColor": [
 					{ "light": "ff7878ff", "dark": "000000" }
+				],
+				"attachment": [
+					{ "name": "3 - Copy" }
 				]
 			},
 			"4": {
 				"color": [
 					{ "color": "ffffffff" },
 					{ "time": 0.2333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "4" }
 				]
 			},
 			"5": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "5" }
 				]
 			},
 			"Layer 1": {
 				"color": [
 					{ "color": "ffffffff" }
-				]
-			},
-			"black-72-disable": {
-				"color": [
-					{ "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "Layer 1" }
 				]
 			},
 			"button": {
 				"color": [
 					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "3" }
 				]
 			}
 		},
@@ -263,11 +298,6 @@
 	},
 	"spin-extra": {
 		"slots": {
-			"black-72-disable": {
-				"color": [
-					{ "color": "ffffff00" }
-				]
-			},
 			"vfx/vfx-00": {
 				"color": [
 					{ "color": "ffffffff" }

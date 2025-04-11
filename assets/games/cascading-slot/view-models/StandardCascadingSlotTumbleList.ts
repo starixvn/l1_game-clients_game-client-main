@@ -4,6 +4,9 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class StandardCascadingSlotTumbleList extends CascadingSlotTumbleList {
+    @property({ type: cc.Prefab, override: true, visible: false })
+    tumbleItem: cc.Prefab = null;
+
     @property(cc.Node)
     maskNode: cc.Node = null;
 

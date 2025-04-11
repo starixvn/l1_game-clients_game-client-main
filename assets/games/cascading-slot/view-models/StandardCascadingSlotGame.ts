@@ -84,6 +84,7 @@ export default class StandardCascadingSlotGame extends CascadingSlotBase {
     tumbleListPrefab: cc.Prefab;
     totalMultiplierPrefab: cc.Prefab;
     tumbleWinFramePrefab: cc.Prefab;
+    tumbleItemPrefab: cc.Prefab;
     board: StandardCascadingSlotBoard;
     tumbleList: StandardCascadingSlotTumbleList;
     topMessage: StandardSlotGameTopMessage = null;
@@ -141,6 +142,7 @@ export default class StandardCascadingSlotGame extends CascadingSlotBase {
 
             "tumble-win-frame": "tumbleWinFramePrefab",
             "tumble-list": "tumbleListPrefab",
+            "tumble-item": "tumbleItemPrefab",
 
             "preview-symbol-left": "previewSymbolLeft",
             "preview-symbol-right": "previewSymbolRight",
@@ -328,6 +330,7 @@ export default class StandardCascadingSlotGame extends CascadingSlotBase {
         this.tumbleListNode.addChild(node);
         this.tumbleList = node.getComponent(StandardCascadingSlotTumbleList);
         this.tumbleList.mainAtlas = uiManager.prefabCache.gameAtlas[this.gameId];
+        this.tumbleList.tumbleItem = this.tumbleItemPrefab;
     }
 
     initTumbleWinFrame() {

@@ -5023,22 +5023,25 @@
     "_id": "69phRqQAdE3IDXMtr8ll65"
   },
   {
-    "__type__": "2aa89SjKxZNhZGiq4fg66rF",
+    "__type__": "5c198zOmCxGuKwZ0j6+Hv6Y",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 111
     },
     "_enabled": true,
-    "prefab": {
-      "__uuid__": "79c034b0-376e-4912-8136-5c5c0ff3f5d3"
-    },
+    "prefab": null,
     "initializationEventHandlers": [
       {
         "__id__": 113
       }
     ],
-    "_id": "09Tbb8oXJBIZpKhvCuyK0/"
+    "nodeGameBase": {
+      "__id__": 2
+    },
+    "prefabPath": "preload/prefabs",
+    "prefabName": "expandable-menu",
+    "_id": "6cm1ZFDiVNX62wnnBn7rmc"
   },
   {
     "__type__": "cc.ClickEvent",

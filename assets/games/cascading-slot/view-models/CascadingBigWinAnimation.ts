@@ -1,3 +1,4 @@
+import { BundleManager } from "bundle-management";
 import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 import BigWinAnimation from "../../_slotgame_base/BigWinAnimation";
@@ -6,12 +7,6 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class CascadingBigWinAnimation extends BigWinAnimation {
-    @property(cc.Prefab)
-    megaWinPrefab: cc.Prefab = null;
-
-    @property(cc.Prefab)
-    superWinPrefab: cc.Prefab = null;
-
     @property(sp.Skeleton)
     mainSpine: sp.Skeleton = null;
 
@@ -20,6 +15,10 @@ export default class CascadingBigWinAnimation extends BigWinAnimation {
 
     @property(cc.Node)
     bigWinNode: cc.Node = null;
+
+    megaWinPrefab: cc.Prefab = null;
+
+    superWinPrefab: cc.Prefab = null;
 
     private isChangeLevelSuper = true;
     private isChangeLevelMega = true;
@@ -39,11 +38,33 @@ export default class CascadingBigWinAnimation extends BigWinAnimation {
 
     async setAnimationChangeSuper() {
         this.isChangeLevelSuper = false;
+        if (!this.superWinPrefab) {
+            this.superWinPrefab = await this.loadPrefab("effect-super-win");
+        }
         await this.changeLevelAnimation(this.mainSpine, "hide", this.superWinPrefab);
+    }
+
+    async loadPrefab(prefabName: string) {
+        const path = `preload/prefabs/${prefabName}`;
+        const devPath = `../games/*/${path}`;
+        try {
+            return await BundleManager.getInstance().loadAsset<cc.Prefab>({
+                bundleId: this.gameId.toString(),
+                path: path,
+                pathForDevMode: devPath,
+                type: cc.Prefab
+            });
+        } catch (e) {
+            console.warn(`Missing prefab for ${path} `, e);
+            return null;
+        }
     }
 
     async setAnimationChangeMega() {
         this.isChangeLevelMega = false;
+        if (!this.megaWinPrefab) {
+            this.megaWinPrefab = await this.loadPrefab("effect-mega-win");
+        }
         await this.changeLevelAnimation(this.mainSpine, "hide", this.megaWinPrefab);
     }
 

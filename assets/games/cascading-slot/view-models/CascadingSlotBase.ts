@@ -533,6 +533,7 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
         const callbackAnim = effect.getComponent(CallbackLoopAnimation);
         callbackAnim.setDuration(this.getCustomDuration("bigWin"));
         const bigWinAnimation = effect.getComponent(BigWinAnimation);
+        bigWinAnimation.gameId = this.gameId;
 
         if (this.isTurboMode()) {
             this.bigWinForTurBoMode(betWin, bigWinAnimation);

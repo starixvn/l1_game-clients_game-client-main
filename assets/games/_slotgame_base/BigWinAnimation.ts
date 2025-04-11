@@ -14,6 +14,8 @@ export default class BigWinAnimation extends cc.Component {
     @property(cc.Label)
     amountLabel: cc.Label = null;
 
+    gameId = -1;
+
     setAmount(data: BigWinType) {
         const { amount } = data;
         const duration = data.duration ?? 0;

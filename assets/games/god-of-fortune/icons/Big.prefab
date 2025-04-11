@@ -110,8 +110,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 196.32,
-      "height": 429.07
+      "width": 196.31,
+      "height": 429.03
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -179,7 +179,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "a6f2ba2a-0d93-4461-ade2-b97c58bbdce1"
+      "__uuid__": "f31998d1-8feb-45b3-8a60-e6025b569509"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -282,6 +282,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -369,7 +370,7 @@
       "ctor": "Float64Array",
       "array": [
         -2.997,
-        28.899,
+        -71.879,
         0,
         0,
         0,
@@ -649,7 +650,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "c30ebf11-8886-44ed-ad77-6455e12015af"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -772,7 +775,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "6d2152e8-2a60-49ad-8df5-55c9a2edc1cf"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,

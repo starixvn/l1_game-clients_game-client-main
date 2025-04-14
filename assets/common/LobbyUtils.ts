@@ -197,53 +197,80 @@ export default class LobbyUtils {
     private static bannerLoaded = false;
 
     static preloadedLobby = false;
-    public static gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
+    public static async gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
         if (LobbyUtils.preloadedLobby) {
+            onProgress(100, 100);
             cc.director.loadScene("Lobby");
             return;
         }
-        const onLoaded = async () => {
-            try {
-                const startLoadTime = Date.now();
-                console.log(`SplashScreen - Start i&b: ${new Date(startLoadTime).toLocaleString()}`);
-                await Promise.all([
-                    this.preLoadBanner(lobbyMenuConfig),
-                    this.preLoadGameIcons(lobbyMenuConfig, splashConfig),
-                    this.preLoadBackgroundUI(),
-                    this.preLoadCategoryUI(),
-                    this.preLoadLobbyCenterUI()
-                ]);
-                const endLoadTime = Date.now();
-                console.log(
-                    `SplashScreen - End i&b: ${new Date(endLoadTime).toLocaleString()}`,
-                    `Total time: ${(endLoadTime - startLoadTime) / 1000}`
-                );
-            } catch (e) {
-                console.log(e);
-            }
 
-            this.preloadDir();
-            LobbyUtils.preloadedLobby = true;
+        const progressInfo: { [key: string]: { finish?: number; total: number } } = {
+            bgUI: { total: 0 },
+            gameIcon: { total: 0 },
+            banner: { total: 0 },
+            centerUI: { total: 0 },
+            skeletonIcon: { total: 0 },
+            sceneLobby: { total: 0 },
+            categoryUI: { total: 0 }
+        };
+        const updateProgress = () => {
+            const values = Object.values(progressInfo);
+            const finish = values.reduce((pre, cur) => (pre += cur?.finish || 0), 0);
+            const fakeTotal = 300;
+            const total = values.some((cur) => cur.total === 0) ? fakeTotal : values.reduce((pre, cur) => (pre += cur.total), 0);
+            // cc.log(`updateProgress ${finish}/`, total);
+            onProgress(finish, total);
         };
 
-        cc.director.preloadScene("Lobby", onProgress, onLoaded);
+        const updateProgressKey = (key, finish, total) => {
+            progressInfo[key] = { finish, total };
+            cc.log(`updateProgressKey ${key} ${finish}/`, total);
+            updateProgress();
+        };
+
+        try {
+            const startLoadTime = Date.now();
+            console.log(`SplashScreen - Start i&b: ${new Date(startLoadTime).toLocaleString()}`);
+            await Promise.all([
+                LobbyUtils.preLoadBanner(lobbyMenuConfig, (finish, total) => updateProgressKey("banner", finish, total)),
+                LobbyUtils.preLoadGameIcons(lobbyMenuConfig, splashConfig, (finish, total) => updateProgressKey("gameIcon", finish, total)),
+                LobbyUtils.preLoadBackgroundUI((finish, total) => updateProgressKey("bgUI", finish, total)),
+                LobbyUtils.preLoadCategoryUI((finish, total) => updateProgressKey("categoryUI", finish, total)),
+                LobbyUtils.preLoadLobbyCenterUI((finish, total) => updateProgressKey("centerUI", finish, total)),
+                LobbyUtils.preloadSkeletonIconDir((finish, total) => updateProgressKey("skeletonIcon", finish, total)),
+                LobbyUtils.preloadSceneLobby((finish, total) => updateProgressKey("sceneLobby", finish, total))
+            ]);
+            const endLoadTime = Date.now();
+            console.log(
+                `SplashScreen - End i&b: ${new Date(endLoadTime).toLocaleString()}`,
+                `Total time: ${(endLoadTime - startLoadTime) / 1000}`
+            );
+            LobbyUtils.preloadedLobby = true;
+            cc.director.loadScene("Lobby");
+        } catch (e) {
+            console.log(e);
+        }
     }
 
-    private static preloadDir() {
-        const path = lobbyResourceManager?.hasCurrencyGroup() ? themeManager?.getPath() : DEFAULT_THEME_LOCAL_PATH;
-
-        const iconPath = `${path}/prefabs/skeleton-icon`;
-
-        cc.resources.loadDir(iconPath, () => {
-            cc.director.loadScene("Lobby");
+    private static preloadSceneLobby(onProgress: (finish: number, total: number, item: any) => void) {
+        return new Promise((resolve) => {
+            cc.director.preloadScene("Lobby", onProgress, resolve);
         });
     }
 
-    private static preloadResource(path: any): Promise<any> {
-        return new Promise((resolve) => cc.resources.load(path, resolve));
+    private static preloadSkeletonIconDir(onProgress: (finish, total) => void) {
+        return new Promise((resolve) => {
+            const path = lobbyResourceManager?.hasCurrencyGroup() ? themeManager?.getPath() : DEFAULT_THEME_LOCAL_PATH;
+            const iconPath = `${path}/prefabs/skeleton-icon`;
+            cc.resources.loadDir(iconPath, onProgress, resolve);
+        });
     }
 
-    private static async preLoadGameIcons(lobbyMenuConfig, splashConfig) {
+    private static preloadResource(path: any, onProgress: (finish, total) => void): Promise<any> {
+        return new Promise((resolve) => cc.resources.load(path, onProgress, resolve));
+    }
+
+    private static async preLoadGameIcons(lobbyMenuConfig, splashConfig, onProgress: (finish, total) => void) {
         try {
             const offerGames = userManager.offerGames ?? [];
             let firstCategoryGames = lobbyMenuConfig.firstCategoryList;
@@ -261,7 +288,13 @@ export default class LobbyUtils {
                     (gameId) => getGameConfiguration(gameId) || lobbyMenuConfig.customGameIconBySystem.includes(gameId)
                 );
                 const preLoadGameAwaiters = preloadGameInMain.map((gameId) => themeGameIconLoader?.loadGameIcon(gameId));
-                await Promise.all([preLoadGameAwaiters]);
+
+                const total = preLoadGameAwaiters.length;
+                for (let index = 0; index < total; index++) {
+                    const waiter = preLoadGameAwaiters[index];
+                    await Promise.all([waiter]);
+                    onProgress(index + 1, total);
+                }
 
                 console.log(`SplashScreen - Completed load game icons`, [
                     {
@@ -287,7 +320,14 @@ export default class LobbyUtils {
             const preloadRemoteGameAwaiters = preloadRemoteGameIds.map((gameId) => this.preloadRemoteIcon(gameId));
 
             // Wait all
-            await Promise.all([...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters]);
+
+            const preloadWaiters = [...preLoadGameAwaiters, ...preLoadGameBySystemAwaiters, ...preloadRemoteGameAwaiters];
+            const total = preloadWaiters.length;
+            for (let index = 0; index < total; index++) {
+                const waiter = preloadWaiters[index];
+                await Promise.all([waiter]);
+                onProgress(index + 1, total);
+            }
 
             console.log(`SplashScreen - Completed load game icons`, [
                 {
@@ -308,7 +348,7 @@ export default class LobbyUtils {
         }
     }
 
-    private static async preLoadBanner(lobbyMenuConfig) {
+    private static async preLoadBanner(lobbyMenuConfig, onProgress: (finish, total) => void) {
         try {
             if (this.bannerLoaded) {
                 return;
@@ -330,9 +370,9 @@ export default class LobbyUtils {
 
             // Load themed banner if applicable
             if (lobbyResourceManager?.hasCurrencyGroup() && bannerId > 0) {
-                await this.loadThemedBanner(bannerId);
+                await this.loadThemedBanner(bannerId, onProgress);
             } else {
-                await this.loadStandardBanner(bannerId);
+                await this.loadStandardBanner(bannerId, onProgress);
             }
 
             this.bannerLoaded = true;
@@ -341,13 +381,13 @@ export default class LobbyUtils {
         }
     }
 
-    private static async loadThemedBanner(bannerId: number) {
+    private static async loadThemedBanner(bannerId: number, onProgress: (finish, total) => void) {
         const node = new cc.Node();
         const bannerComp = node.addComponent(SkeletonBannerTheme);
 
         await Promise.all([
             bannerComp.createRemoteIconNode(bannerId),
-            this.preloadResource(`${themeManager?.getPath()}/prefabs/banner/bannerContainer`)
+            this.preloadResource(`${themeManager?.getPath()}/prefabs/banner/bannerContainer`, onprogress)
         ]);
 
         node.destroy();
@@ -389,27 +429,30 @@ export default class LobbyUtils {
         return frame;
     }
 
-    private static async loadStandardBanner(bannerId: number) {
+    private static async loadStandardBanner(bannerId: number, onProgress: (finish, total) => void) {
         const bannerType = this.getBannerTypeByGameId(bannerId);
         const bannerLoader = bannerType === BannerType.Prefab ? this.getAnimationBanner(bannerId) : this.getStaticBanner(bannerId);
 
-        await Promise.all([bannerLoader, this.preloadResource("lobby/banner/bannerContainer")]);
+        await Promise.all([bannerLoader, this.preloadResource("lobby/banner/bannerContainer", onProgress)]);
     }
 
-    private static async preLoadLobbyUI(uiType: "background-ui" | "category-container" | "lobby-center") {
+    private static async preLoadLobbyUI(
+        uiType: "background-ui" | "category-container" | "lobby-center",
+        onProgress: (finish, total) => void
+    ) {
         const path = `${themeManager?.getPathPreloadPrefab(uiType)}/prefabs/${uiType}`;
-        return this.preloadResource(path);
+        return this.preloadResource(path, onProgress);
     }
 
-    private static async preLoadBackgroundUI() {
-        return this.preLoadLobbyUI("background-ui");
+    private static async preLoadBackgroundUI(onProgress: (finish, total) => void) {
+        return this.preLoadLobbyUI("background-ui", onProgress);
     }
 
-    private static async preLoadCategoryUI() {
-        return this.preLoadLobbyUI("category-container");
+    private static async preLoadCategoryUI(onProgress: (finish, total) => void) {
+        return this.preLoadLobbyUI("category-container", onProgress);
     }
 
-    private static async preLoadLobbyCenterUI() {
-        return this.preLoadLobbyUI("lobby-center");
+    private static async preLoadLobbyCenterUI(onProgress: (finish, total) => void) {
+        return this.preLoadLobbyUI("lobby-center", onProgress);
     }
 }

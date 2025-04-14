@@ -51,26 +51,39 @@ export interface CategoryConfig {
     index: number;
 }
 
-export async function getLobbyConfigs() {
-    const session = getSession();
-    let retryCount = 0;
-    let lobby;
-    while (!lobby && retryCount < 3) {
-        cc.log("Try get lobby configs ", retryCount + 1);
-        lobby = await UserService.getInstance()
-            .lobby.getLobbyConfigs(session.ss, session.username)
-            .catch(() => null);
+const MAX_RETRY_ATTEMPTS = 3;
+const RETRY_DELAY_SECONDS = 3;
 
-        await delayTime(3);
-        retryCount++;
-    }
+export async function getLobbyConfigs(): Promise<void> {
+    const session = getSession();
+    const lobby = await retryGetLobbyConfigs(session);
 
     if (lobby?.lobbyConfigs) {
-        LobbyManager.getInstance().storeLobby(lobby?.lobbyConfigs);
+        LobbyManager.getInstance().storeLobby(lobby.lobbyConfigs);
     } else {
         uiManager.emitter.emit(InternalEvents.SSO_ERROR);
         throw new Error("Can not get lobby configs");
     }
+}
+
+async function retryGetLobbyConfigs(session: { ss: string; username: string }) {
+    let retryCount = 0;
+
+    while (retryCount < MAX_RETRY_ATTEMPTS) {
+        cc.log(`Try get lobby configs: ${retryCount + 1}`);
+
+        try {
+            const lobby = await UserService.getInstance().lobby.getLobbyConfigs(session.ss, session.username);
+            if (lobby) return lobby;
+        } catch (error) {
+            cc.warn(`Can not get lobby configs: ${error.message}`);
+        }
+
+        await delayTime(RETRY_DELAY_SECONDS);
+        retryCount++;
+    }
+
+    return null;
 }
 
 export default class LobbyManager {

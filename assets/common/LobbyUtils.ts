@@ -195,7 +195,13 @@ export default class LobbyUtils {
     }
 
     private static bannerLoaded = false;
+
+    static preloadedLobby = false;
     public static gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig) {
+        if (LobbyUtils.preloadedLobby) {
+            cc.director.loadScene("Lobby");
+            return;
+        }
         const onLoaded = async () => {
             try {
                 const startLoadTime = Date.now();
@@ -217,6 +223,7 @@ export default class LobbyUtils {
             }
 
             this.preloadDir();
+            LobbyUtils.preloadedLobby = true;
         };
 
         cc.director.preloadScene("Lobby", onProgress, onLoaded);

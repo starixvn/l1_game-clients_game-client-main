@@ -1,11 +1,16 @@
+import { appContainer } from "../../../Application";
 import MusicPlayer from "../../../common/audio/MusicPlayer";
 import * as sessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { truncateFixedDecimals } from "../../../common/helpers/NumberHelper";
+import Loading from "../../../common/loading/view-models/Loading";
+import LobbyUtils from "../../../common/LobbyUtils";
 import UserProfile from "../../../common/user-profile/UserProfile";
 import { getGameConfiguration, isGatewayGame } from "../../../configs/GameConfigurations";
+import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
+import SplashConfig from "../../../splash/view-models/SplashConfig";
 
 export const loadMiniPanel = (game: any) => () => {
     if (!game.miniPanelPrefab) {
@@ -124,7 +129,16 @@ export const closeGame = (game: any) => () => {
                 return;
             }
 
-            cc.director.loadScene("Lobby");
+            // cc.director.loadScene("Lobby");
+            const lobbyMenuConfig = appContainer.get(LobbyMenuConfig);
+            const splashConfig = appContainer.get(SplashConfig);
+            const loading = game?.loading?.getComponent(Loading);
+            const onProgress = loading
+                ? (completed, total) => {
+                      loading.onProgress(completed, total);
+                  }
+                : null;
+            LobbyUtils.gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig);
         }
     });
 };

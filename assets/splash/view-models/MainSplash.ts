@@ -1,4 +1,4 @@
-import { appContainer, lazyInject } from "../../Application";
+import { lazyInject } from "../../Application";
 import { i18n } from "../../ClientModules";
 import { OperatorAlias } from "../../ISystem";
 import SocketIOController from "../../SocketIOController";
@@ -8,14 +8,13 @@ import * as sessionManager from "../../common/auth/SessionManager";
 import { sentryLogger } from "../../common/logger";
 import Notice from "../../common/notice/view-models/Notice";
 import NoticeUtil from "../../common/utils/NoticeUtil";
+import { isMiniGameByGameId } from "../../configs/GameConfigurations";
 import LobbyMenuConfig from "../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import RandomWaitingMessage from "./RandonWaitingMessage";
 import SplashConfig from "./SplashConfig";
-
-const splashConfig = appContainer.get(SplashConfig);
 
 const { ccclass, property } = cc._decorator;
 
@@ -56,6 +55,9 @@ export default class MainSplash extends cc.Component {
 
     @lazyInject(SocketIOController)
     private readonly socketIOController: SocketIOController;
+
+    @lazyInject(SplashConfig)
+    private readonly splashConfig: SplashConfig;
 
     private loadSceneTimeout: any;
 
@@ -112,8 +114,8 @@ export default class MainSplash extends cc.Component {
     }
 
     private activateOtherSlogans(): void {
-        this.setSloganActiveState("sloganOtherVG", !splashConfig.enabledSC1);
-        this.setSloganActiveState("sloganOtherSG", splashConfig.enabledSC1);
+        this.setSloganActiveState("sloganOtherVG", !this.splashConfig.enabledSC1);
+        this.setSloganActiveState("sloganOtherSG", this.splashConfig.enabledSC1);
     }
 
     private setSloganActiveState(slogan: string, isActive: boolean): void {
@@ -190,9 +192,12 @@ export default class MainSplash extends cc.Component {
         try {
             this.updateProgress(0);
 
-            if (appManager.isDirectMode) {
-                cc.log("Main Splash : loadGameDirectly");
-                await this.loadGameDirectly();
+            const ssoGameRoomId = appManager.ssoGameId && !isMiniGameByGameId(appManager.ssoGameId) ? appManager.ssoGameId : 0;
+            const gameId = sessionManager.getInRoomGameId() || appManager.directGameId || ssoGameRoomId;
+
+            if (gameId > 0) {
+                cc.log("Main Splash : loadGameDirectly ", gameId);
+                await this.loadGameDirectly(gameId);
                 appManager.clearSSOGameId();
             } else {
                 cc.log("Main Splash : Goto Lobby");
@@ -203,8 +208,7 @@ export default class MainSplash extends cc.Component {
         }
     }
 
-    async loadGameDirectly() {
-        const gameId = sessionManager.getInRoomGameId() || appManager.directGameId;
+    async loadGameDirectly(gameId) {
         const updateProgress = ({ progress, total }) => {
             this.onProgress(progress, total);
         };

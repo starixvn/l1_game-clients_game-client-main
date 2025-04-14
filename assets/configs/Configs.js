@@ -5,7 +5,7 @@ const defaultConfig = {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l2-proxy2",
+    subDomain: "l1-proxy",
     env: "",
     sentry: {
         url: "",
@@ -16,11 +16,11 @@ const defaultConfig = {
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
     gatewaySubDomain: "l2-gw",
-    subGuideDomain: "l2-guide-2",
+    subGuideDomain: "l1-guide",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
-    subPromotionDomain: "l1-promotion1"
-    //clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
+    subPromotionDomain: "l1-promotion1",
+    clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
 };
 
 const domainMapper = window.envConfig ? undefined : defaultConfig.serverDomainMapper;

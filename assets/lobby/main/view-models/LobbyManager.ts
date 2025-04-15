@@ -71,6 +71,9 @@ async function retryGetLobbyConfigs(session: { ss: string; username: string }) {
 
     while (retryCount < MAX_RETRY_ATTEMPTS) {
         cc.log(`Try get lobby configs: ${retryCount + 1}`);
+        if (retryCount > 0) {
+            await delayTime(RETRY_DELAY_SECONDS);
+        }
 
         try {
             const lobby = await UserService.getInstance().lobby.getLobbyConfigs(session.ss, session.username);
@@ -79,7 +82,6 @@ async function retryGetLobbyConfigs(session: { ss: string; username: string }) {
             cc.warn(`Can not get lobby configs: ${error.message}`);
         }
 
-        await delayTime(RETRY_DELAY_SECONDS);
         retryCount++;
     }
 

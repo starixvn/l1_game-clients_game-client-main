@@ -523,4 +523,9 @@ export default class StandardCascadingSlotGame extends CascadingSlotBase {
         this.saveSettingKey("autoSpin", this.autoSpinToggle.isChecked);
         super.onAutoSpinChanged();
     }
+
+    initShowBottomMessage(node: cc.Node) {
+        super.initShowBottomMessage(node);
+        this.bottomMessage?.updateColor(this.colorConfig.noticeTextColor, this.colorConfig.noticeHighlightTextColor);
+    }
 }

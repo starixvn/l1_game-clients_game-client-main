@@ -8,7 +8,7 @@ import logger from "../common/logger";
 import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
 import EncryptUtils from "../common/utils/EncryptUtils";
-import { isMiniGameByGameId } from "../configs/GameConfigurations";
+import UrlParamsService from "../common/utils/UrlParamsService";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
@@ -19,7 +19,6 @@ import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
 import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
-import UrlParamsService from "../common/utils/UrlParamsService";
 
 const sentryLogger = logger();
 enum GameId {
@@ -203,7 +202,7 @@ class AppManager {
             const gameId = urlParams.get("gameId");
             const refData = urlParams.get(UrlInfo.Ref);
 
-            if (this.checkDirectModeRefData(refData) && !isMiniGameByGameId(gameId)) {
+            if (this.checkDirectModeRefData(refData)) {
                 this.urlInfo[UrlInfo.Ref] = refData;
                 this.urlInfo[UrlInfo.DirectGameId] = gameId;
                 if (urlParams.has("rurl") && urlParams.get("rurl") !== "") {

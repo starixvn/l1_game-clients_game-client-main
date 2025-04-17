@@ -96,6 +96,32 @@ export function storeInRoomGameId(gameId) {
     }
 }
 
+const StorageKeyDummyRoom = "dummy-room";
+
+export function storeDummyRoom(gameId) {
+    cc.log("---------------------------store dummy room", gameId);
+    const session = getSession();
+    const ss = session.ss;
+    if (ss) {
+        const data = { ss, gameId };
+        StorageManager.set(StorageKeyDummyRoom, data);
+    }
+}
+
+export function getDummyRoomStorage() {
+    const session = getSession();
+    const ss = session.ss;
+    if (ss) {
+        const data = StorageManager.get(StorageKeyDummyRoom);
+        if (data) {
+            if (data.ss === ss) {
+                return { gameId: data.gameId };
+            }
+        }
+    }
+    return null;
+}
+
 export function getInRoomGameId(checkValid = true) {
     const data = getInRoomGameIdStorage();
     if (checkValid) {

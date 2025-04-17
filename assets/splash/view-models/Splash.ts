@@ -3,7 +3,12 @@ import * as SessionManager from "../../common/auth/SessionManager";
 import GameUtils from "../../common/GameUtils";
 import { userManager } from "../../common/user/UserManager";
 import NoticeUtil from "../../common/utils/NoticeUtil";
-import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame } from "../../configs/GameConfigurations";
+import {
+    getGameConfiguration,
+    initialize as initGameConfiguration,
+    isGatewayGame,
+    isMiniGameByGameId
+} from "../../configs/GameConfigurations";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -78,7 +83,6 @@ export default class Splash extends cc.Component {
             if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
                 return;
             }
-
             return this.loadToLobbyOrDirectGame();
         }
 
@@ -96,6 +100,10 @@ export default class Splash extends cc.Component {
             }
         }
 
+        if (this.handleOpenDummyRoom(isSSOGameLaunch)) {
+            return;
+        }
+
         // Handle reload from micro-site game
         const micrositeGameId = +SessionManager.getMicrositeGameId();
         if (!urlParams.has("token") && micrositeGameId > 0) {
@@ -104,6 +112,20 @@ export default class Splash extends cc.Component {
 
         // Default: load to lobby or direct game
         this.loadToLobbyOrDirectGame();
+    }
+
+    handleOpenDummyRoom(isSSOToGame) {
+        const ssoDirectModeGameId =
+            isSSOToGame && appManager.isDirectMode && isMiniGameByGameId(appManager.directGameId) ? appManager.directGameId : -1;
+        const dummyRoomStorage = SessionManager.getDummyRoomStorage();
+        const dummyRoomGameId = ssoDirectModeGameId > 0 ? ssoDirectModeGameId : dummyRoomStorage ? dummyRoomStorage.gameId : -1;
+        if (dummyRoomGameId > 0) {
+            SessionManager.storeDummyRoom(dummyRoomGameId);
+            cc.director.loadScene("dummy_room");
+            return true;
+        }
+
+        return false;
     }
 
     async onMicrositeBackToLobby() {

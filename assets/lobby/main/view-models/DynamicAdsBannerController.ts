@@ -32,15 +32,23 @@ export default class DynamicAdsBannerController extends BannerController {
         let index = 0;
         this.destroyAllBanners();
         this.clearAutoChange();
+
         try {
             for (const gameId of games) {
                 if (uiManager.isPauseLoadingIcons) {
                     return;
                 }
 
-                await GameUtils.asyncExecuteAbortSignal(this?.node, this.createAdsItem(gameId), this.bannerAbortController.signal);
-                this.handleShowFirstPage(index);
-                index++;
+                const result = await GameUtils.asyncExecuteAbortSignal(
+                    this?.node,
+                    this.createAdsItem(gameId),
+                    this.bannerAbortController.signal
+                );
+
+                if (result) {
+                    this.handleShowFirstPage(index);
+                    index++;
+                }
             }
         } catch (e) {
             cc.warn("Error in setGameAds:", e);
@@ -69,6 +77,7 @@ export default class DynamicAdsBannerController extends BannerController {
                     if (item) {
                         await this.createBannerWithAnimation(id, item);
                         this.setupButtonAndHandleShowBanner(item, id);
+                        return true;
                     }
                 }
             } else {
@@ -78,9 +87,11 @@ export default class DynamicAdsBannerController extends BannerController {
                     if (item) {
                         this.createBanner(id, bannerSpriteFrame, item);
                         this.setupButtonAndHandleShowBanner(item, id);
+                        return true;
                     }
                 }
             }
+            return false;
         } catch (e) {
             console.warn("Catch error after await method", e.message);
         }

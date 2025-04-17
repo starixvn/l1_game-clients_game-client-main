@@ -225,6 +225,9 @@ export default class Splash extends cc.Component {
     }
 
     private loadBackground() {
+        if (CC_EDITOR) {
+            return;
+        }
         const imagePath = `${window.location.origin}/splash-resources/background.jpg`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "jpg") => {
             try {

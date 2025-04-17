@@ -29,6 +29,9 @@ export default class HtmlSiteSprite extends cc.Component {
     protected sprite: cc.Sprite = null;
 
     async onLoad() {
+        if (CC_EDITOR) {
+            return;
+        }
         this.sprite = this.getComponent(cc.Sprite);
 
         try {

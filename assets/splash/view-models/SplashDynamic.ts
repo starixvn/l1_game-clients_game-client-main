@@ -27,6 +27,9 @@ export default class SplashDynamic extends cc.Component {
     private readonly href = `${window.location.origin}/splash-resources`;
 
     onLoad() {
+        if (CC_EDITOR) {
+            return;
+        }
         this.loadLogoOperator();
         this.loadTagPower();
         this.loadTagline();

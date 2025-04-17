@@ -18,15 +18,21 @@ export default class StandardCascadingSlotTumbleList extends CascadingSlotTumble
     gameId: number;
 
     setHeightContent(isTrialMode: boolean) {
-        const scrollViewNode = this.scrollView.node;
+        this.updateScrollViewHeight(isTrialMode);
+        this.updateMaskSprite(isTrialMode);
+    }
+
+    private updateScrollViewHeight(isTrialMode: boolean) {
+        const height = isTrialMode ? this.HEIGHT_CONTENT_TRIAL_MODE : this.HEIGHT_CONTENT_REAL_MODE;
+        this.scrollView.node.height = height;
+    }
+
+    private updateMaskSprite(isTrialMode: boolean) {
         const mask = this.maskNode.getComponent(cc.Mask);
-        if (isTrialMode) {
-            scrollViewNode.height = this.HEIGHT_CONTENT_TRIAL_MODE;
-            mask.spriteFrame = this.mainAtlas.getSpriteFrame("tumble-win-mask-trial");
-        } else {
-            scrollViewNode.height = this.HEIGHT_CONTENT_REAL_MODE;
-            mask.spriteFrame = this.mainAtlas.getSpriteFrame("tumble-win-mask-real");
-        }
+        if (!mask.spriteFrame) return;
+
+        const spriteFrameName = isTrialMode ? "tumble-win-mask-trial" : "tumble-win-mask-real";
+        mask.spriteFrame = this.mainAtlas.getSpriteFrame(spriteFrameName);
     }
 
     getTumbleItemComp(tumbleNode: cc.Node) {

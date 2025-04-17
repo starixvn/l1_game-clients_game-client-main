@@ -112,21 +112,18 @@
       },
       {
         "__id__": 127
-      },
-      {
-        "__id__": 129
       }
     ],
     "_active": true,
     "_components": [
       {
+        "__id__": 140
+      },
+      {
+        "__id__": 141
+      },
+      {
         "__id__": 142
-      },
-      {
-        "__id__": 143
-      },
-      {
-        "__id__": 144
       }
     ],
     "_prefab": null,
@@ -5585,100 +5582,6 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Slotgame-godoffortune",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 2
-    },
-    "_children": [],
-    "_active": false,
-    "_components": [
-      {
-        "__id__": 128
-      }
-    ],
-    "_prefab": null,
-    "_opacity": 100,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 1398,
-      "height": 786
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_trs": {
-      "__type__": "TypedArray",
-      "ctor": "Float64Array",
-      "array": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
-    "_id": "e65esaPoxAnJS6skE5tSpc"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 127
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "ef8d8678-4c0f-4e0f-98cd-7d08aa7e1bec"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "69K7Un0cRO8qsg0QcksbAs"
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "Loading",
     "_objFlags": 0,
     "_parent": {
@@ -5686,28 +5589,28 @@
     },
     "_children": [
       {
-        "__id__": 130
+        "__id__": 128
       },
       {
-        "__id__": 133
+        "__id__": 131
       },
       {
-        "__id__": 136
+        "__id__": 134
       }
     ],
     "_active": false,
     "_components": [
       {
+        "__id__": 136
+      },
+      {
+        "__id__": 137
+      },
+      {
         "__id__": 138
       },
       {
         "__id__": 139
-      },
-      {
-        "__id__": 140
-      },
-      {
-        "__id__": 141
       }
     ],
     "_prefab": null,
@@ -5763,16 +5666,16 @@
     "_name": "Spinner1",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 129
+      "__id__": 127
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 131
+        "__id__": 129
       },
       {
-        "__id__": 132
+        "__id__": 130
       }
     ],
     "_prefab": null,
@@ -5828,7 +5731,7 @@
     "_name": "Spinner1<Sprite>",
     "_objFlags": 0,
     "node": {
-      "__id__": 130
+      "__id__": 128
     },
     "_enabled": true,
     "_materials": [
@@ -5862,7 +5765,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 130
+      "__id__": 128
     },
     "_enabled": true,
     "_defaultClip": {
@@ -5881,16 +5784,16 @@
     "_name": "Spinner0",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 129
+      "__id__": 127
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 134
+        "__id__": 132
       },
       {
-        "__id__": 135
+        "__id__": 133
       }
     ],
     "_prefab": null,
@@ -5946,7 +5849,7 @@
     "_name": "Spinner0<Sprite>",
     "_objFlags": 0,
     "node": {
-      "__id__": 133
+      "__id__": 131
     },
     "_enabled": true,
     "_materials": [
@@ -5980,7 +5883,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 133
+      "__id__": 131
     },
     "_enabled": true,
     "_defaultClip": {
@@ -5999,13 +5902,13 @@
     "_name": "Percent",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 129
+      "__id__": 127
     },
     "_children": [],
     "_active": false,
     "_components": [
       {
-        "__id__": 137
+        "__id__": 135
       }
     ],
     "_prefab": null,
@@ -6061,7 +5964,7 @@
     "_name": "Percent<Label>",
     "_objFlags": 0,
     "node": {
-      "__id__": 136
+      "__id__": 134
     },
     "_enabled": true,
     "_materials": [
@@ -6096,7 +5999,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 129
+      "__id__": 127
     },
     "_enabled": true,
     "alignMode": 1,
@@ -6123,7 +6026,7 @@
     "_name": "Loading<Sprite>",
     "_objFlags": 0,
     "node": {
-      "__id__": 129
+      "__id__": 127
     },
     "_enabled": true,
     "_materials": [
@@ -6155,7 +6058,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 129
+      "__id__": 127
     },
     "_enabled": true,
     "_normalMaterial": null,
@@ -6223,11 +6126,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 129
+      "__id__": 127
     },
     "_enabled": true,
     "percent": {
-      "__id__": 137
+      "__id__": 135
     },
     "_id": "48GRkGPY5Ixa0QQdwioqd9"
   },
@@ -6325,7 +6228,7 @@
       "__uuid__": "783d3aa3-f636-4101-9128-02611882f625"
     },
     "loading": {
-      "__id__": 129
+      "__id__": 127
     },
     "winningPlayerEffectPrefab": null,
     "musicBg": null,

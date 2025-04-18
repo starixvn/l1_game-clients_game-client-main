@@ -15,6 +15,10 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
             const node = new cc.Node();
             const configFile = this.cache[id] ? this.cache[id].configFile : await themeResourceLoader?.loadRemoteInfoBanner(id);
 
+            if (!configFile) {
+                return null;
+            }
+
             const iconConfig: IInfoShareResourceBanner = configFile?.json;
 
             node.addComponent(sp.Skeleton);

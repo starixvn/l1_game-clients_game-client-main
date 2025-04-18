@@ -3,6 +3,7 @@ import MusicPlayer from "../../common/audio/MusicPlayer";
 import * as SessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import GameUtils from "../../common/GameUtils";
+import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UserProfile from "../../common/user-profile/UserProfile";
 import { appManager } from "../../managers/AppManager";
 import MiniPanel from "../../mini-games-panel/view-models/MiniPanel";
@@ -24,6 +25,7 @@ export default class DummyRoom extends BaseComponent {
     backgroundCount = 3;
 
     onLoad() {
+        this.initEventForInGameMenu();
         this.loadRandomBackground();
         appManager.currentScene = this;
         const dummyRoomStorage = SessionManager.getDummyRoomStorage();
@@ -31,6 +33,14 @@ export default class DummyRoom extends BaseComponent {
         GameUtils.openGame(gameId, this.currentMiniPanel);
 
         MusicPlayer.getInstance().init();
+    }
+
+    initEventForInGameMenu() {
+        const inGameMenu = cc.director.getScene().getComponentInChildren(InGameMenu);
+        if (inGameMenu) {
+            const node = inGameMenu.node;
+            node.on(InGameMenuEvents.GO_TO_LOBBY, this.goToLobbyScene, this);
+        }
     }
 
     loadRandomBackground() {
@@ -47,6 +57,10 @@ export default class DummyRoom extends BaseComponent {
                 cc.log("Can not set background ", spriteName);
             }
         });
+    }
+
+    private goToLobbyScene() {
+        appManager.redirectToLobby();
     }
 
     loadUserData(user) {

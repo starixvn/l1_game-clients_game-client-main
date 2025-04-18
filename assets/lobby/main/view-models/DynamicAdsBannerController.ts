@@ -68,18 +68,23 @@ export default class DynamicAdsBannerController extends BannerController {
         }
     }
 
+    protected async createAdsSpine(id: number) {
+        if (this.adsSpineItemPrefab) {
+            const item = cc.instantiate(this.adsSpineItemPrefab);
+            if (item) {
+                const success = await this.createBannerWithAnimation(id, item);
+                success && this.setupButtonAndHandleShowBanner(item, id);
+                return success;
+            }
+        }
+        return false;
+    }
+
     protected async createAdsItem(id: number) {
         try {
             const bannerType = LobbyUtils.getBannerTypeByGameId(id);
             if (bannerType === BannerType.Prefab) {
-                if (this.adsSpineItemPrefab) {
-                    const item = cc.instantiate(this.adsSpineItemPrefab);
-                    if (item) {
-                        await this.createBannerWithAnimation(id, item);
-                        this.setupButtonAndHandleShowBanner(item, id);
-                        return true;
-                    }
-                }
+                return await this.createAdsSpine(id);
             } else {
                 const bannerSpriteFrame = await GameUtils.asyncExecute(this?.node, LobbyUtils.getStaticBanner(id));
                 if (bannerSpriteFrame && this.adsItemPrefab) {
@@ -142,7 +147,8 @@ export default class DynamicAdsBannerController extends BannerController {
             bannerItem.displayTime = 4;
         }
         const skeletonBannerIcon = item.getComponent(SkeletonBanner);
-        await skeletonBannerIcon.loadAnimation(id);
+        const success = await skeletonBannerIcon.loadAnimation(id);
+        return success;
     }
 
     onLoad() {

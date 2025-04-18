@@ -11,8 +11,8 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
     lightTop: cc.Node = null;
 
     public override async createRemoteIconNode(id: number) {
-        const node = new cc.Node();
         try {
+            const node = new cc.Node();
             const configFile = this.cache[id] ? this.cache[id].configFile : await themeResourceLoader?.loadRemoteInfoBanner(id);
 
             const iconConfig: IInfoShareResourceBanner = configFile?.json;
@@ -26,12 +26,12 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
             remoteSpine.useWebp = true;
             await remoteSpine.initLoadSharedResource(this.cache, iconConfig);
             node.active = false;
+            return node;
         } catch (error) {
             cc.log("No banner for game " + id);
-            return null;
         }
 
-        return node;
+        return null;
     }
 
     public override async loadAnimation(id: number) {
@@ -40,6 +40,9 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
             this.hideSkeleton();
             this.gameContent?.childrenCount === 0 && (gameNode.active = true);
             this.gameContent?.addChild(gameNode);
+            return true;
         }
+
+        return false;
     }
 }

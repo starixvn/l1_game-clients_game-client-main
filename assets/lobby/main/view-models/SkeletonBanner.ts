@@ -44,8 +44,8 @@ export default class SkeletonBanner extends cc.Component {
     readonly resourceExts = ["atlas", "json", "png"];
 
     protected async createRemoteIconNode(id: number) {
-        const node = new cc.Node();
         try {
+            const node = new cc.Node();
             const configFile = this.cache[id]
                 ? this.cache[id].configFile
                 : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `banner/${GameUtils.getCurrentLanguage()}/config.json`);
@@ -62,11 +62,11 @@ export default class SkeletonBanner extends cc.Component {
             remoteSpine.type = Type.Banner;
             await remoteSpine.init(this.cache);
             node.active = false;
+            return node;
         } catch (error) {
             cc.log("No banner for game " + id);
-            return null;
         }
-        return node;
+        return null;
     }
 
     async loadAnimation(id: number) {
@@ -77,7 +77,9 @@ export default class SkeletonBanner extends cc.Component {
             this.hideSkeleton();
             this.gameContent?.childrenCount === 0 && (gameNode.active = true);
             this.gameContent?.addChild(gameNode);
+            return true;
         }
+        return false;
     }
 
     async createIconNode(config: GameConfiguration) {

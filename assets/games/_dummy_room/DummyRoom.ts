@@ -60,14 +60,16 @@ export default class DummyRoom extends BaseComponent {
     }
 
     private goToLobbyScene() {
-        appManager.redirectToLobby();
+        this.outRoomGame();
     }
 
     loadUserData(user) {
         loadUserData(this)(user);
     }
 
-    outRoomGame() {}
+    outRoomGame() {
+        appManager.redirectToLobby();
+    }
 
     onCloseGame() {
         this.outRoomGame();

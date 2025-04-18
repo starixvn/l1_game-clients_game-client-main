@@ -91,10 +91,10 @@ export default class DynamicAdsBannerController extends BannerController {
                     }
                 }
             }
-            return false;
         } catch (e) {
             console.warn("Catch error after await method", e.message);
         }
+        return false;
     }
 
     protected setupButtonAndHandleShowBanner(item: cc.Node, id: number) {

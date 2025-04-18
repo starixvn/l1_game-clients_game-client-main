@@ -14,10 +14,13 @@ export default class DynamicAdsBannerThemeController extends DynamicAdsBannerCon
                 if (item) {
                     await this.createBannerWithAnimation(id, item);
                     this.setupButtonAndHandleShowBanner(item, id);
+                    return true;
                 }
             }
         } catch (e) {
             console.warn("Catch error after await method", e.message);
         }
+
+        return false;
     }
 }

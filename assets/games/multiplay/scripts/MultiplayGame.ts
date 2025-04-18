@@ -182,12 +182,13 @@ export default class MultiplayGame extends GameViewBase {
             const gameName = GameUtils.getGameNameString(gameId);
             if (!socket) {
                 socket = this.currentMiniPanel.gameMiniInitializers.createMiniGameSocket(gameId, false);
+                this.currentMiniPanel.gameMiniInitializers.initMiniGameSocketListeners(socket, gameId, gameName, null);
             } else {
                 socket.removeAllListeners();
+                this.currentMiniPanel.gameMiniInitializers.initMiniGameSocketListeners(socket, gameId, gameName, null);
                 socket.connect();
             }
 
-            this.currentMiniPanel.gameMiniInitializers.initMiniGameSocketListeners(socket, gameId, gameName, null);
             socket.on("signedIn", () => {
                 this.initForSingle(gameId);
             });

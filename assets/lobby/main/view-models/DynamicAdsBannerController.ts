@@ -136,8 +136,6 @@ export default class DynamicAdsBannerController extends BannerController {
     }
 
     protected async createBannerWithAnimation(id: number, item: cc.Node) {
-        this.node?.addChild(item);
-
         const bannerItem = item.getComponent(BannerItem);
         const adsInfo = this.lobbyMenuConfig.getBannerInfo(id);
 
@@ -148,6 +146,7 @@ export default class DynamicAdsBannerController extends BannerController {
         }
         const skeletonBannerIcon = item.getComponent(SkeletonBanner);
         const success = await skeletonBannerIcon.loadAnimation(id);
+        success && this.node?.addChild(item);
         return success;
     }
 

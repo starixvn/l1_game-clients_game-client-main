@@ -1,6 +1,7 @@
 import { Socket } from "socket.io-client";
 
 import GameUtils from "../../common/GameUtils";
+import { isMultiplayGame } from "../../common/mutliplay-utils";
 import { getGameConfiguration } from "../../configs/GameConfigurations";
 import GameViewBase from "../../games/_base/GameViewBase";
 import { uiManager } from "../../managers/GameUIManager";
@@ -91,7 +92,7 @@ export default class MiniPanelMiniGameInitializers extends MiniPanelSocketIOInit
         if (socket && socket.connected) {
             this.openMiniGame(gameId);
         } else {
-            const multiplay = this.socketIOController.isMultiplayGame(gameId);
+            const multiplay = isMultiplayGame(gameId);
             if (socket && multiplay) {
                 socket.removeAllListeners();
                 socket.connect();

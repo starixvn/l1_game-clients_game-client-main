@@ -2,6 +2,7 @@ import { getGameConfiguration } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
 import SocketIOController from "../SocketIOController";
 import GameUtils from "./GameUtils";
+import { getMainMultiplayGame, isMultiplayGame } from "./mutliplay-utils";
 
 export default class JoinGameHelper {
     public async joinGameIsNotMiniGame(gameId: number, socketIOControler: SocketIOController) {
@@ -19,7 +20,7 @@ export default class JoinGameHelper {
     }
 
     public getGameId(gameId: number) {
-        const miniSedieIds = [9, 56, 57, 58];
-        return miniSedieIds.includes(gameId) ? miniSedieIds[0] : gameId;
+        const isMultiplay = isMultiplayGame(gameId);
+        return !isMultiplay ? gameId : getMainMultiplayGame(gameId);
     }
 }

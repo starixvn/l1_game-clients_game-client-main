@@ -8,6 +8,7 @@ import { getSession } from "./common/auth/SessionManager";
 import GameUtils from "./common/GameUtils";
 import { buildGatewayUrl, buildServerUrl, getProxyRoute } from "./common/helpers/UrlHelper";
 import { sentryLogger } from "./common/logger.js";
+import { isMultiplayGame } from "./common/mutliplay-utils";
 import { userManager } from "./common/user/UserManager";
 import { enableMsgpackParserAllGames } from "./configs/Configs.js";
 import { getGameConfiguration, isUsingRemoteBundle } from "./configs/GameConfigurations";
@@ -69,7 +70,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
     public openNewGameRoomSocket(gameId: number) {
         this.closeSocket(gameId);
         let socket: Socket = this.getSocketGame(gameId);
-        const multiplay = this.isMultiplayGame(gameId);
+        const multiplay = isMultiplayGame(gameId);
         if (socket && !socket.connected && multiplay) {
             socket.removeAllListeners();
             socket.connect();
@@ -118,10 +119,6 @@ export default class SocketIOController implements SocketIOControllerInterface {
         this.initBaseListeners(socket, listenerOptions);
     }
 
-    isMultiplayGame(gameId: number): boolean {
-        return this.multiplayGames.includes(+gameId);
-    }
-
     public async openGameSocket(gameId: number) {
         return new Promise<void>(async (resolve, reject) => {
             if (isUsingRemoteBundle(gameId)) {
@@ -132,7 +129,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
             const isMiniGame = GameUtils.isMiniGame(gameId.toString());
             this.closeSocket(gameId);
             let socket: Socket = this.getSocketGame(gameId);
-            const multiplay = this.isMultiplayGame(gameId);
+            const multiplay = isMultiplayGame(gameId);
             if (socket && !socket.connected && multiplay) {
                 socket.removeAllListeners();
                 socket.connect();
@@ -263,7 +260,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
         gameId: any;
     }): Socket => {
         const { socketUri, proxyRoute, forceNew, enableMsgpackParser, gameId } = option;
-        const multiplay = this.isMultiplayGame(gameId);
+        const multiplay = isMultiplayGame(gameId);
         const socketOptions: Partial<ManagerOptions & SocketOptions> = {
             forceNew: !multiplay && forceNew,
             transports: ["websocket"],
@@ -327,7 +324,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
     closeSocket(gameId) {
         const socket: Socket = this.gameSockets[gameId];
         socket && socket.disconnect();
-        const multiplay = this.isMultiplayGame(gameId);
+        const multiplay = isMultiplayGame(gameId);
         if (!multiplay) {
             this.deleteCachedSocket(gameId);
         }

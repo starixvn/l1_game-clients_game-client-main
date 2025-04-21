@@ -5,6 +5,7 @@ import * as SessionManager from "../../common/auth/SessionManager";
 import BaseComponent from "../../common/BaseComponent";
 import GameUtils from "../../common/GameUtils";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
+import { isSubMultiplayGame } from "../../common/mutliplay-utils";
 import UserProfile from "../../common/user-profile/UserProfile";
 import PromotionTournamentHandler from "../../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../../managers/AppManager";
@@ -35,7 +36,10 @@ export default class DummyRoom extends BaseComponent {
         appManager.currentScene = this;
         const dummyRoomStorage = SessionManager.getDummyRoomStorage();
         const gameId = dummyRoomStorage.gameId;
-        GameUtils.openGame(gameId, this.currentMiniPanel);
+
+        if (!isSubMultiplayGame(gameId)) {
+            GameUtils.openGame(gameId, this.currentMiniPanel);
+        }
 
         MusicPlayer.getInstance().init();
         PromotionTournamentHandler.getInstance().getPromotionTournament();

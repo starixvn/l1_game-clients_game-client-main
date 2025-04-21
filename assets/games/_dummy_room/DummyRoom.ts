@@ -5,6 +5,7 @@ import BaseComponent from "../../common/BaseComponent";
 import GameUtils from "../../common/GameUtils";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import UserProfile from "../../common/user-profile/UserProfile";
+import PromotionTournamentHandler from "../../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../../managers/AppManager";
 import MiniPanel from "../../mini-games-panel/view-models/MiniPanel";
 import { loadUserData } from "../_base/action/GameRoomActions";
@@ -33,6 +34,7 @@ export default class DummyRoom extends BaseComponent {
         GameUtils.openGame(gameId, this.currentMiniPanel);
 
         MusicPlayer.getInstance().init();
+        PromotionTournamentHandler.getInstance().getPromotionTournament();
     }
 
     initEventForInGameMenu() {

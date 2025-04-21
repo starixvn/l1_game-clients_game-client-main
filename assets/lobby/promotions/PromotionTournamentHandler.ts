@@ -5,9 +5,9 @@ import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
-import configs = require("../../configs/Configs");
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import configs = require("../../configs/Configs");
 
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
@@ -59,6 +59,13 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
     onClosePromotionTournamentPopup() {
         if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
             this.initializeTournamentPromotionFirstSso();
+        }
+    }
+
+    async getPromotionTournament() {
+        const existNewOrRunningPromotionTournament = await this.getPromotionData(endpointConstants.existNewOrRunningTournamentPromotion);
+        if (existNewOrRunningPromotionTournament) {
+            this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
         }
     }
 

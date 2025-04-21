@@ -7,6 +7,7 @@ import GameUtils from "../../common/GameUtils";
 import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { isSubMultiplayGame } from "../../common/mutliplay-utils";
 import UserProfile from "../../common/user-profile/UserProfile";
+import { userManager } from "../../common/user/UserManager";
 import PromotionTournamentHandler from "../../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -44,6 +45,7 @@ export default class DummyRoom extends BaseComponent {
             GameUtils.openGame(gameId, this.currentMiniPanel);
         }
 
+        this.loadUserData(userManager.user);
         MusicPlayer.getInstance().init();
         PromotionTournamentHandler.getInstance().getPromotionTournament();
         this.loading.active = false;

@@ -106,12 +106,12 @@ export const closeGame = (game: any) => () => {
 
     const isGameShow = appManager.GAME_IS_SHOWED;
     game.outRoomGame().then(() => {
-        const isDirectModeInRoomGame = appManager.isDirectModeInRoomGame;
+        const isDirectMode = appManager.isDirectMode;
         if (!game.isGameHide) {
             sessionManager.removeInRoomGameId();
         }
 
-        if (isDirectModeInRoomGame) {
+        if (isDirectMode) {
             if (isGameShow && game?.closeGameByClick) {
                 appManager.backToOperatorLobby();
             } else if (!game.openOtherScene) {

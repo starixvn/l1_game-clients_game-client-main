@@ -1,7 +1,6 @@
 import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import { lazyInject } from "../../../Application";
 import AudioManager from "../../../common/audio/AudioManager";
-import { removeInRoomGameId } from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
@@ -107,7 +106,7 @@ export default class CircleMenu extends GameIconMenu {
 
     itemPressed(id: number, node: cc.Node) {
         AudioManager.getInstance().playClick();
-        if (id === 0) {       
+        if (id === 0) {
             this.closeGame();
         } else {
             GameUtils.clearGameSetting(id);
@@ -125,10 +124,13 @@ export default class CircleMenu extends GameIconMenu {
     closeGame() {
         const lobbySceneName = "Lobby";
 
-        if (cc.director.getScene().name !== lobbySceneName) {
-            appManager.currentScene.onCloseGameClick();
-        } else {
+        const currentScene = cc.director.getScene().name;
+        if (currentScene === lobbySceneName) {
             this.miniMenu.getComponent(PopupMinigames).hideListGame();
+        } else if (currentScene === "dummy_room") {
+            appManager.currentScene.goToLobbyScene();
+        } else {
+            appManager.currentScene.onCloseGameClick();
         }
     }
 }

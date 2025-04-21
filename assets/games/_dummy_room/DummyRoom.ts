@@ -1,3 +1,4 @@
+import { i18n } from "../../ClientModules";
 import AudioManager from "../../common/audio/AudioManager";
 import MusicPlayer from "../../common/audio/MusicPlayer";
 import * as SessionManager from "../../common/auth/SessionManager";
@@ -7,6 +8,8 @@ import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMe
 import UserProfile from "../../common/user-profile/UserProfile";
 import PromotionTournamentHandler from "../../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../../managers/AppManager";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
 import MiniPanel from "../../mini-games-panel/view-models/MiniPanel";
 import { loadUserData } from "../_base/action/GameRoomActions";
 const { ccclass, property } = cc._decorator;
@@ -26,6 +29,7 @@ export default class DummyRoom extends BaseComponent {
     backgroundCount = 3;
 
     onLoad() {
+        this.initEventListener();
         this.initEventForInGameMenu();
         this.loadRandomBackground();
         appManager.currentScene = this;
@@ -35,6 +39,33 @@ export default class DummyRoom extends BaseComponent {
 
         MusicPlayer.getInstance().init();
         PromotionTournamentHandler.getInstance().getPromotionTournament();
+    }
+
+    onDestroy() {
+        uiManager.removeListenersWithTarget(this);
+    }
+
+    initEventListener() {
+        uiManager.emitterListener(
+            InternalEvents.NOT_PERMITTED_TO_PLAY,
+            (eventMessage) => {
+                const { gameId } = eventMessage;
+                const gameName = GameUtils.getGameNameString(gameId);
+                const message = i18n.t("messages.gameExcluded", { gameName: gameName });
+                const data = {
+                    text: message,
+                    isInfo: true
+                };
+
+                uiManager.emitter.emit(InternalEvents.NOTICE, {
+                    data,
+                    onConfirm: null,
+                    onClose: () => appManager.backToOperatorLobby()
+                });
+                uiManager.isPauseLoadingIcons = false;
+            },
+            this
+        );
     }
 
     initEventForInGameMenu() {
@@ -62,16 +93,14 @@ export default class DummyRoom extends BaseComponent {
     }
 
     private goToLobbyScene() {
-        this.outRoomGame();
+        appManager.redirectToLobby();
     }
 
     loadUserData(user) {
         loadUserData(this)(user);
     }
 
-    outRoomGame() {
-        appManager.redirectToLobby();
-    }
+    outRoomGame() {}
 
     onCloseGame() {
         this.outRoomGame();

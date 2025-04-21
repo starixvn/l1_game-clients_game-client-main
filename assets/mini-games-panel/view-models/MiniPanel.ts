@@ -16,7 +16,7 @@ import Loading from "../../common/loading/view-models/Loading";
 import Notice, { NoticeData } from "../../common/notice/view-models/Notice";
 import ScaleActiveController from "../../common/scale-active-item/ScaleActiveController";
 import NoticeUtil from "../../common/utils/NoticeUtil";
-import { getGameId, isMiniGame, isUsingRemoteBundle } from "../../configs/GameConfigurations";
+import { getGameId, isMiniGame, isMiniGameByGameId, isUsingRemoteBundle } from "../../configs/GameConfigurations";
 import CircleMenu from "../../lobby/main/view-models/CircleMenu";
 import { lobbyResourceManager } from "../../lobby/main/view-models/LobbyResourceManager";
 import { themeResourceLoader } from "../../lobby/main/view-models/theme/ResourceLoader";
@@ -314,15 +314,16 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         });
     }
 
-    onForceReload(showNotice = true, message = i18n.t("messages.newUpdateAvailable")) {
-        let forceReload = () => {
-            location.reload();
-        };
-        if (appManager.isDirectModeInRoomGame && appManager.urlInfo[UrlInfo.ReturnUrl]) {
-            forceReload = () => {
+    onForceReload(showNotice = true, message = i18n.t("messages.newUpdateAvailable"), gameId = -1) {
+        const forceReload = () => {
+            if (appManager.isDirectMode && appManager.urlInfo[UrlInfo.ReturnUrl]) {
                 appManager.backToOperatorLobby();
-            };
-        }
+            } else {
+                if (gameId < 0 || !isMiniGameByGameId(gameId)) {
+                    location.reload();
+                }
+            }
+        };
 
         removeInRoomGameId();
         if (showNotice) {

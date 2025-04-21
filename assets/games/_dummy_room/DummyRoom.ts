@@ -26,6 +26,9 @@ export default class DummyRoom extends BaseComponent {
     @property(MiniPanel)
     currentMiniPanel: MiniPanel = null;
 
+    @property(cc.Node)
+    loading: cc.Node = null;
+
     @property
     backgroundCount = 3;
 
@@ -43,6 +46,7 @@ export default class DummyRoom extends BaseComponent {
 
         MusicPlayer.getInstance().init();
         PromotionTournamentHandler.getInstance().getPromotionTournament();
+        this.loading.active = false;
     }
 
     onDestroy() {
@@ -104,7 +108,11 @@ export default class DummyRoom extends BaseComponent {
         loadUserData(this)(user);
     }
 
-    outRoomGame() {}
+    outRoomGame() {
+        if (this.loading) {
+            this.loading.active = true;
+        }
+    }
 
     onCloseGame() {
         this.outRoomGame();

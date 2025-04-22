@@ -4,24 +4,136 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Item - background
+border
   rotate: false
-  xy: 157, 1620
+  xy: 54, 1875
+  size: 152, 152
+  orig: 152, 152
+  offset: 0, 0
+  index: -1
+border-blur
+  rotate: false
+  xy: 1780, 1452
+  size: 152, 152
+  orig: 152, 152
+  offset: 0, 0
+  index: -1
+effect/1
+  rotate: true
+  xy: 1378, 292
+  size: 1571, 309
+  orig: 1571, 309
+  offset: 0, 0
+  index: -1
+effect/10
+  rotate: false
+  xy: 4, 340
+  size: 1667, 1648
+  orig: 1667, 1648
+  offset: 0, 0
+  index: -1
+effect/11
+  rotate: false
+  xy: 136, 28
+  size: 1535, 1519
+  orig: 1535, 1519
+  offset: 0, 0
+  index: -1
+effect/12
+  rotate: true
+  xy: 209, 2
+  size: 1534, 1466
+  orig: 1534, 1466
+  offset: 0, 0
+  index: -1
+effect/13
+  rotate: true
+  xy: 560, 2
+  size: 1452, 1123
+  orig: 1452, 1123
+  offset: 0, 0
+  index: -1
+effect/14
+  rotate: true
+  xy: 67, 179
+  size: 1362, 1718
+  orig: 1362, 1718
+  offset: 0, 0
+  index: -1
+effect/2
+  rotate: true
+  xy: 1651, 1462
+  size: 151, 125
+  orig: 151, 125
+  offset: 0, 0
+  index: -1
+effect/3
+  rotate: true
+  xy: 4, 359
+  size: 1627, 1916
+  orig: 1627, 1916
+  offset: 0, 0
+  index: -1
+effect/4
+  rotate: false
+  xy: 589, 1148
+  size: 872, 725
+  orig: 872, 725
+  offset: 0, 0
+  index: -1
+effect/5
+  rotate: false
+  xy: 461, 2
+  size: 1205, 1737
+  orig: 1205, 1737
+  offset: 0, 0
+  index: -1
+effect/6
+  rotate: false
+  xy: 282, 602
+  size: 1249, 884
+  orig: 1249, 884
+  offset: 0, 0
+  index: -1
+effect/7
+  rotate: false
+  xy: 925, 3
+  size: 302, 1044
+  orig: 302, 1044
+  offset: 0, 0
+  index: -1
+effect/8
+  rotate: false
+  xy: 1224, 160
+  size: 363, 1170
+  orig: 363, 1170
+  offset: 0, 0
+  index: -1
+effect/9
+  rotate: false
+  xy: 5, 124
+  size: 1739, 1852
+  orig: 1739, 1852
+  offset: 0, 0
+  index: -1
+symbol
+  rotate: false
+  xy: 4, 1229
+  size: 146, 146
+  orig: 146, 146
+  offset: 0, 0
+  index: -1
+symbol-blank
+  rotate: false
+  xy: 156, 155
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
-light
+symbol-blur
   rotate: false
-  xy: 499, 598
-  size: 733, 156
-  orig: 733, 156
-  offset: 0, 0
-  index: -1
-symbol-3
-  rotate: false
-  xy: 1123, 543
-  size: 86, 104
-  orig: 86, 104
+  xy: 1230, 929
+  size: 146, 146
+  orig: 146, 146
   offset: 0, 0
   index: -1

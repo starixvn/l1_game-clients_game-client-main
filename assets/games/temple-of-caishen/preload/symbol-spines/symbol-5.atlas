@@ -4,136 +4,31 @@ size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-border
+3coins
   rotate: false
-  xy: 524, 1845
-  size: 152, 152
-  orig: 152, 152
+  xy: 1871, 1602
+  size: 125, 124
+  orig: 125, 124
   offset: 0, 0
   index: -1
-border-blur
+3coins-glow
   rotate: false
-  xy: 1787, 272
-  size: 152, 152
-  orig: 152, 152
+  xy: 713, 922
+  size: 142, 143
+  orig: 142, 143
   offset: 0, 0
   index: -1
-effect/1
-  rotate: true
-  xy: 2, 5
-  size: 1971, 1789
-  orig: 1971, 1789
-  offset: 0, 0
-  index: -1
-effect/10
+Item - background
   rotate: false
-  xy: 65, 658
-  size: 1602, 1134
-  orig: 1602, 1134
-  offset: 0, 0
-  index: -1
-effect/11
-  rotate: false
-  xy: 25, 4
-  size: 1770, 1790
-  orig: 1770, 1790
-  offset: 0, 0
-  index: -1
-effect/12
-  rotate: false
-  xy: 2, 3
-  size: 1801, 1997
-  orig: 1801, 1997
-  offset: 0, 0
-  index: -1
-effect/13
-  rotate: false
-  xy: 2, 2
-  size: 1821, 1842
-  orig: 1821, 1842
-  offset: 0, 0
-  index: -1
-effect/14
-  rotate: false
-  xy: 73, 2
-  size: 1766, 2008
-  orig: 1766, 2008
-  offset: 0, 0
-  index: -1
-effect/2
-  rotate: true
-  xy: 2, 2
-  size: 1847, 1845
-  orig: 1847, 1845
-  offset: 0, 0
-  index: -1
-effect/3
-  rotate: true
-  xy: 2, 2
-  size: 1851, 1849
-  orig: 1851, 1849
-  offset: 0, 0
-  index: -1
-effect/4
-  rotate: false
-  xy: 3, 226
-  size: 1837, 1567
-  orig: 1837, 1567
-  offset: 0, 0
-  index: -1
-effect/5
-  rotate: false
-  xy: 308, 2
-  size: 1547, 1826
-  orig: 1547, 1826
-  offset: 0, 0
-  index: -1
-effect/6
-  rotate: false
-  xy: 464, 618
-  size: 1200, 882
-  orig: 1200, 882
-  offset: 0, 0
-  index: -1
-effect/7
-  rotate: false
-  xy: 2, 769
+  xy: 1236, 620
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
-effect/8
+light
   rotate: false
-  xy: 2, 463
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-effect/9
-  rotate: false
-  xy: 175, 4
-  size: 1592, 1843
-  orig: 1592, 1843
-  offset: 0, 0
-  index: -1
-symbol
-  rotate: false
-  xy: 4, 1077
-  size: 148, 148
-  orig: 148, 148
-  offset: 0, 0
-  index: -1
-symbol-blank
-  rotate: false
-  xy: 923, 4
-  size: 150, 150
-  orig: 150, 150
-  offset: 0, 0
-  index: -1
-symbol-blur
-  rotate: false
-  xy: 1230, 629
-  size: 146, 146
-  orig: 146, 146
+  xy: 64, 837
+  size: 733, 156
+  orig: 733, 156
   offset: 0, 0
   index: -1

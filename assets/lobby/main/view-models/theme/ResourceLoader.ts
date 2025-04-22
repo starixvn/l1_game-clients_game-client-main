@@ -13,8 +13,8 @@ export class ThemeResourceLoader {
 
         return this._instance;
     }
-    public loadRemoteSharedResource<T>(pathResource: string) {
-        return GameUtils.loadRemote<T>(this.remoteShareLobbyResourceUrl(pathResource));
+    public loadRemoteSharedResource<T>(pathResource: string, options = { maxRetryCount: 3, retryInterval: 2000 }) {
+        return GameUtils.loadRemote<T>(this.remoteShareLobbyResourceUrl(pathResource), options);
     }
 
     protected remoteShareLobbyResourceUrl(pathResource: string) {
@@ -49,7 +49,10 @@ export class ThemeResourceLoader {
     }
 
     public async loadRemoteInfoBanner(gameId: number) {
-        return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`);
+        return this.loadRemoteSharedResource<cc.JsonAsset>(`banners/${gameId}/info.json?v=${Date.now()}`, {
+            maxRetryCount: 1,
+            retryInterval: 2000
+        });
     }
 }
 

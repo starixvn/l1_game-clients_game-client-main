@@ -93,14 +93,14 @@ export default class GameUtils {
         return this.loadRemote<T>(rawUrl);
     }
 
-    public static loadRemote<T>(url: string): Promise<T> {
+    public static loadRemote<T>(url: string, options = { maxRetryCount: 3, retryInterval: 2000 }): Promise<T> {
         return new Promise((resolve, reject) => {
-            cc.assetManager.loadRemote(url, (err, asset: T) => {
+            cc.assetManager.loadRemote(url, options, (err, asset) => {
                 if (err) {
                     reject(err);
                     return;
                 }
-                resolve(asset);
+                resolve(asset as T);
             });
         });
     }
@@ -777,7 +777,7 @@ export default class GameUtils {
         return cc.instantiate(prefab);
     }
 
-    /** 
+    /**
     DEPRECATED, should use AnimationUtils.delayTime
     */
     public static delayTime(time: number) {

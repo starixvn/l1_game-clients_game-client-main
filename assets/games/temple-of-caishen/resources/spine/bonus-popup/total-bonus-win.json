@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "OhTA6lGUuuaRJtlOkXOFftF58Ww", "spine": "3.8.99", "x": -484, "y": -360, "width": 968, "height": 720 },
+"skeleton": { "hash": "xTakohQJ635yFZ1fNazF9ymEtsU", "spine": "3.8.99", "x": -484, "y": -360, "width": 968, "height": 720 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "character", "parent": "root" },
@@ -187,8 +187,8 @@
 	{ "name": "eff_spot_5", "bone": "eff-spot5", "blend": "additive" },
 	{ "name": "frame", "bone": "frame", "attachment": "frame", "blend": "additive" },
 	{ "name": "frame-flare", "bone": "frame-flare", "attachment": "frame", "blend": "additive" },
-	{ "name": "text", "bone": "text", "attachment": "text-total-bonus-win2" },
-	{ "name": "text4", "bone": "text2", "attachment": "text-total-bonus-win", "blend": "additive" },
+	{ "name": "text", "bone": "text" },
+	{ "name": "text4", "bone": "text2", "blend": "additive" },
 	{ "name": "coin_A_00", "bone": "coin" },
 	{ "name": "coin_A_10", "bone": "coin11" },
 	{ "name": "coin_A_25", "bone": "coin1" },
@@ -220,7 +220,7 @@
 	{ "name": "coin_A_38", "bone": "coin3" },
 	{ "name": "coin_A_24", "bone": "coin25" },
 	{ "name": "coin_A_39", "bone": "coin2" },
-	{ "name": "value", "bone": "value", "attachment": "value" }
+	{ "name": "value", "bone": "value" }
 ],
 "skins": [
 	{
@@ -521,15 +521,6 @@
 			},
 			"fx_sparkle10": {
 				"fx_sparkle": { "width": 99, "height": 98 }
-			},
-			"text": {
-				"text-total-bonus-win2": { "path": "text-total-bonus-win", "width": 810, "height": 98 }
-			},
-			"text4": {
-				"text-total-bonus-win": { "width": 810, "height": 98 }
-			},
-			"value": {
-				"value": { "width": 264, "height": 106 }
 			}
 		}
 	}

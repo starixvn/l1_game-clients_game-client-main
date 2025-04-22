@@ -28,7 +28,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
             remoteSpine.premultipliedAlpha = iconConfig ? iconConfig.premultipliedAlpha : false;
             remoteSpine.type = Type.Banner;
             remoteSpine.useWebp = true;
-            await remoteSpine.initLoadSharedResource(this.cache, iconConfig);
+            await remoteSpine.initLoadSharedResource(this.cache, iconConfig, configFile);
             node.active = false;
             return node;
         } catch (error) {

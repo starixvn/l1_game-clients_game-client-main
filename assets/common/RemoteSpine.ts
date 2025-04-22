@@ -80,13 +80,13 @@ export default class RemoteSpine extends cc.Component {
         this.applySpineSettings();
     }
 
-    async initLoadSharedResource(cache: SkeletonCache, config: IInfoShareResourceBanner) {
+    async initLoadSharedResource(cache: SkeletonCache, config: IInfoShareResourceBanner, configFile: cc.JsonAsset) {
         this.cache = cache;
         this.spine = this.node.getComponent(sp.Skeleton);
-        await this.loadShareResources(config);
+        await this.loadShareResources(config, configFile);
     }
 
-    async loadShareResources(config: IInfoShareResourceBanner) {
+    async loadShareResources(config: IInfoShareResourceBanner, configFile: cc.JsonAsset) {
         if (this.cache?.[this.id]?.skeletonData) {
             this.spine.skeletonData = this.cache[this.id].skeletonData;
         } else {
@@ -108,6 +108,7 @@ export default class RemoteSpine extends cc.Component {
 
             this.cache[this.id] = {
                 ...this.cache[this.id],
+                configFile: configFile,
                 skeletonData
             };
         }

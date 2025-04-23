@@ -180,6 +180,10 @@ window.boot = function () {
 
         cc.director.once(cc.Director.EVENT_AFTER_SCENE_LAUNCH, function () {
             splash.style.display = "block";
+            const gameContainer = document.getElementById("Cocos2dGameContainer");
+            if (gameContainer) {
+                gameContainer.style.top = window.scrollY + "px";
+            }
             document.body.style.background = "#000";
             splash.style.transition = "opacity 0.2s ease-in-out";
             splash.style.opacity = 0;

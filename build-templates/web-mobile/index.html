@@ -36,17 +36,19 @@
         <!--<link rel="apple-touch-icon" href=".png" />-->
         <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
 
-        <link rel="stylesheet" type="text/css" href="./splash-resources/style-mobile.css?v=25" />
+        <link rel="stylesheet" type="text/css" href="./splash-resources/style-mobile.css" />
+        <link rel="stylesheet" type="text/css" href="./full-screen/style.css" />
         <link rel="icon" id="favicon" />
         <link rel="stylesheet" type="text/css" href="./loading-bar/loading-bar.min.css" />
     </head>
 
     <body>
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="0" width="1" height="1"></canvas>
-        <div id="myInstruction" class="instruction">
-            <div class="instruction-content">
-                <span class="close"></span>
-                <img class="img-sroll" src="fullscreen-drag.gif" />
+        <div id="ios-instruction" class="instruction">
+            <div class="instruction-bg"></div>
+            <div class="indicator">
+                <div class="arrow"></div>
+                <div class="hand"></div>
             </div>
         </div>
         <div id="splash" class="splash-container">
@@ -58,12 +60,9 @@
             <div id="powered-by"></div>
             <div id="waiting-message"></div>
         </div>
-        <!-- <div id="mockup-portrait"></div> -->
         <div class="ldBar label-center" data-value="0" data-preset="circle" style="width: 100%"></div>
         <div id="splash_powered" class="splash_powered"></div>
-        <div id="buttonFullAndroid" class="instructionAndroid">
-            <img class="img-sroll" src="fullscreen-click.gif" />
-        </div>
+        <div id="icon-fullscreen"></div>
         <script>
             if (window) {
                 window.loadingPageStartTime = new Date();
@@ -73,7 +72,8 @@
         <script type="text/javascript" src="./loading-bar/loading-bar.min.js"></script>
         <script src="src/settings.js" charset="utf-8"></script>
         <script src="main.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./fullscreen.js?v=9"></script>
+        <script type="text/javascript" src="./customize-splash.js"></script>
+        <script type="text/javascript" src="./full-screen/full-screen.js"></script>
         <script async data-id="pulse" data-trackid="nbk59qts" src="https://beacon.fusioncdn.com/pulse.js?trackid=nbk59qts"></script>
     </body>
 </html>

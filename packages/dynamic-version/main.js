@@ -10,14 +10,17 @@ function onBeforeBuildFinish(options, callback) {
 }
 
 function modifyHtmlTemplate(options) {
-    var indexHtmlFilePath = path.join(options.dest, "index.html");
-    var htmlContent = fs.readFileSync(indexHtmlFilePath, "utf8");
+    const indexHtmlFilePath = path.join(options.dest, "index.html");
+    const htmlContent = fs.readFileSync(indexHtmlFilePath, "utf8");
 
+    const getScriptTag = (src) => `<script type="text/javascript" src="${src}"></script>`;
+    const getCssTag = (src) => `<link rel="stylesheet" type="text/css" href="${src}" />`;
     const version = new Date().getTime();
-    const newHtmlContent = htmlContent.replace(
-        '<script type="text/javascript" src="./c/c.js"></script>',
-        `<script type="text/javascript" src="./c/c.js?v=${version}"></script>`
-    );
+    const newHtmlContent = htmlContent
+        .replace(getScriptTag("./c/c.js"), getScriptTag(`./c/c.js?v=${version}`))
+        .replace(getScriptTag("./full-screen/full-screen.js"), getScriptTag(`./full-screen/full-screen.js?v=${version}`))
+        .replace(getCssTag("./splash-resources/style-mobile.css"), getCssTag(`./splash-resources/style-mobile.css?v=${version}`))
+        .replace(getCssTag("./full-screen/style.css"), getCssTag(`./full-screen/style.css?v=${version}`));
 
     fs.writeFileSync(indexHtmlFilePath, newHtmlContent);
 }

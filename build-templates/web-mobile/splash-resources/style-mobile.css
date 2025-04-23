@@ -41,7 +41,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 200%;
     padding: 0;
     border: 0;
     margin: 0;
@@ -99,15 +99,6 @@ body {
     overflow-x: hidden !important;
 }
 
-#buttonFullAndroid {
-    display: none;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-}
-
 a:link,
 a:visited {
     color: #666;
@@ -132,7 +123,7 @@ p.footer {
         width: 100vh;
         transform: rotate(90deg) translateX(50%);
         transform-origin: right top;
-        top: 50% !important;
+        top: calc(var(--height-50vh, 50vh) + var(--scrollY, 0px)) !important;
         right: 0;
     }
 
@@ -189,39 +180,43 @@ p.footer {
 
 .splash {
     position: absolute;
-    top: 37.8vh;
+    --logo-height: calc(var(--vh, 1vh) * 11.99);
+    top: calc(var(--vh, 1vh) * 37.8);
     background: url(./logo_saba.webp) no-repeat center;
-    background-size: auto 11.99vh;
+    background-size: auto var(--logo-height);
     width: 100%;
-    height: 11.99vh;
+    height: var(--logo-height);
     left: -1px;
 }
 
 .splash_Vgaming {
     position: absolute;
-    top: 31.6vh;
+    --logo-height: calc(var(--vh, 1vh) * 18.32);
+    top: calc(var(--vh, 1vh) * 31.6);
     background: url(./logo_vgaming.webp) no-repeat center;
-    background-size: auto 18.32vh;
+    background-size: auto var(--logo-height);
     width: 100%;
-    height: 18.32vh;
+    height: var(--logo-height);
 }
 
 .splash_sabaplay {
     position: absolute;
-    top: 25.9vh;
+    --logo-height: calc(var(--vh, 1vh) * 23.85);
+    top: calc(var(--vh, 1vh) * 25.9);
     left: 1px;
     background: url(./logo_sabaplay.webp) no-repeat center;
-    background-size: auto 23.85vh;
+    background-size: auto var(--logo-height);
     width: 100%;
-    height: 23.85vh;
+    height: var(--logo-height);
 }
 
 .splash_other_sc2 {
     position: absolute;
-    top: 22.65vh;
-    background-size: auto 30.53vh;
+    --logo-height: calc(var(--vh, 1vh) * 30.53);
+    top: calc(var(--vh, 1vh) * 22.65);
+    background-size: auto var(--logo-height);
     width: 100%;
-    height: 30.53vh;
+    height: var(--logo-height);
 }
 
 .splash_text_other_sc2 {
@@ -252,21 +247,22 @@ p.footer {
 
 .splash_tip88 {
     position: absolute;
-    top: 25.85vh;
+    --logo-height: calc(var(--vh, 1vh) * 24.07);
+    top: calc(var(--vh, 1vh) * 25.85);
     left: -3px;
     background: url(./logo_soibet.webp) no-repeat center;
-    background-size: auto 24.07vh;
+    background-size: auto var(--logo-height);
     width: 100%;
-    height: 24.07vh;
+    height: var(--logo-height);
 }
 
 .splash_text {
     position: absolute;
-    top: 50.6vh;
+    top: calc(var(--vh, 1vh) * 50.6);
     background: no-repeat center;
-    background-size: auto 2.47vh;
+    background-size: auto calc(var(--vh, 1vh) * 2.47);
     width: 100%;
-    height: 3.44vh;
+    height: calc(var(--vh, 1vh) * 3.44);
 }
 
 .splash_text_vi {
@@ -295,13 +291,14 @@ p.footer {
 
 .loading_icon {
     position: absolute;
-    top: 60.17vh;
+    --loading-icon-height: calc(var(--vh, 1vh) * 0.76);
+    top: calc(var(--vh, 1vh) * 60.17);
     left: 50%;
     transform: translateX(-50%);
     background: url("loading-bar.gif?v=1") no-repeat center;
-    background-size: auto 0.76vh;
+    background-size: auto var(--loading-icon-height);
     width: 100%;
-    height: 0.76vh;
+    height: var(--loading-icon-height);
 }
 
 #powered-by {
@@ -311,21 +308,22 @@ p.footer {
 }
 
 #powered-by.powered-by {
+    --powered-by-height: calc(var(--vh, 1vh) * 4.07);
     background: url("powered_by.webp?v=1") no-repeat top center;
-    background-size: auto 4.07vh;
+    background-size: auto var(--powered-by-height);
     width: 100%;
-    height: 4.07vh;
-    top: 85.35vh;
+    height: var(--powered-by-height);
+    top: calc(var(--vh, 1vh) * 85.35);
 }
 
 #powered-by.powered-by_tip88 {
     width: 100%;
-    height: 4.85vh;
-    top: 84.4vh;
+    --powered-by-height: calc(var(--vh, 1vh) * 4.85);
+    height: var(--powered-by-height);
+    top: calc(var(--vh, 1vh) * 84.4);
     background: no-repeat center;
-    background-size: auto 4.85vh;
+    background-size: auto var(--powered-by-height);
 }
-
 
 #powered-by.powered-by_tip88.en {
     background-image: url("powered_by_Vgaming_en.webp?v=1");
@@ -354,11 +352,11 @@ p.footer {
 .waiting-message {
     font-family: Arial, Helvetica, sans-serif;
     position: absolute;
-    top: 91.9vh;
+    top: calc(var(--vh, 1vh) * 91.9);
     width: 100%;
     font-size: 2.65vh;
     opacity: 0;
-    color: #CCC7B4;
+    color: #ccc7b4;
     letter-spacing: -0.2px;
     transition: transform 1s ease;
     transform: translateY(20px);
@@ -543,26 +541,6 @@ p.footer {
     padding: 0px;
     width: 50%;
     border-radius: 3px;
-}
-
-.instructionAndroid {
-    display: none;
-    position: absolute;
-    z-index: 9999;
-    height: 110vh;
-    width: 100%;
-    padding-top: 10vh;
-    background: rgba(0, 0, 0, 1);
-}
-
-.instruction {
-    display: none;
-    position: absolute;
-    z-index: 9999;
-    height: 170vh;
-    width: 100%;
-    padding-top: 10vh;
-    background: rgba(0, 0, 0, 1);
 }
 
 .ldBar {

@@ -19,6 +19,11 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
                 return null;
             }
 
+            this.cache[id] = {
+                ...this.cache[id],
+                configFile: configFile
+            };
+
             const iconConfig: IInfoShareResourceBanner = configFile?.json;
 
             node.addComponent(sp.Skeleton);
@@ -28,7 +33,7 @@ export default class SkeletonBannerTheme extends SkeletonBanner {
             remoteSpine.premultipliedAlpha = iconConfig ? iconConfig.premultipliedAlpha : false;
             remoteSpine.type = Type.Banner;
             remoteSpine.useWebp = true;
-            await remoteSpine.initLoadSharedResource(this.cache, iconConfig, configFile);
+            await remoteSpine.initLoadSharedResource(this.cache, iconConfig);
             node.active = false;
             return node;
         } catch (error) {

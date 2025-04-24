@@ -1,124 +1,110 @@
 
 effect-big-win.png
-size: 1917,426
+size: 1849,473
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Coinbag
+Bigwin
   rotate: false
-  xy: 311, 83
+  xy: 1286, 333
+  size: 531, 138
+  orig: 544, 147
+  offset: 6, 4
+  index: -1
+Coinbag
+  rotate: true
+  xy: 2, 135
   size: 336, 341
   orig: 344, 354
   offset: 5, 0
   index: -1
-bg_coins_Lb
-  rotate: false
-  xy: 811, 84
-  size: 112, 57
-  orig: 114, 59
-  offset: 1, 1
-  index: -1
-bg_coins_Rb
-  rotate: true
-  xy: 1614, 101
-  size: 149, 43
-  orig: 150, 68
-  offset: 1, 18
-  index: -1
-bg_coins_f
-  rotate: false
-  xy: 583, 16
-  size: 309, 65
-  orig: 315, 77
-  offset: 5, 11
-  index: -1
 coin_A_00
-  rotate: false
-  xy: 1659, 122
+  rotate: true
+  xy: 160, 7
   size: 126, 128
   orig: 250, 250
   offset: 63, 60
   index: -1
 coin_A_01
-  rotate: true
-  xy: 1787, 134
+  rotate: false
+  xy: 1731, 197
   size: 116, 128
   orig: 250, 250
   offset: 68, 60
   index: -1
 coin_A_02
-  rotate: true
-  xy: 311, 4
+  rotate: false
+  xy: 667, 28
   size: 77, 134
   orig: 250, 250
   offset: 89, 58
   index: -1
 coin_A_03
-  rotate: true
-  xy: 2, 2
+  rotate: false
+  xy: 1819, 327
   size: 12, 144
   orig: 250, 250
   offset: 120, 55
   index: -1
 coin_A_04
   rotate: true
-  xy: 447, 4
+  xy: 1286, 254
   size: 77, 134
   orig: 250, 250
   offset: 88, 60
   index: -1
 coin_A_05
-  rotate: true
-  xy: 1787, 16
+  rotate: false
+  xy: 1731, 67
   size: 116, 128
   orig: 250, 250
   offset: 69, 60
   index: -1
 eff_spot_1
-  rotate: true
-  xy: 2, 16
+  rotate: false
+  xy: 345, 164
   size: 408, 307
   orig: 410, 307
   offset: 0, 0
   index: -1
 frame
   rotate: false
-  xy: 1056, 252
-  size: 849, 172
-  orig: 849, 172
+  xy: 755, 37
+  size: 729, 186
+  orig: 729, 186
   offset: 0, 0
   index: -1
 frameeffect-1
   rotate: false
-  xy: 925, 10
+  xy: 2, 2
   size: 156, 131
   orig: 180, 180
   offset: 10, 23
   index: -1
 fx_bloom
-  rotate: true
-  xy: 649, 104
+  rotate: false
+  xy: 345, 2
   size: 320, 160
   orig: 322, 162
   offset: 1, 1
   index: -1
 fx_glow01
   rotate: false
-  xy: 1083, 4
+  xy: 755, 225
   size: 529, 246
   orig: 529, 246
   offset: 0, 0
   index: -1
 fx_glow02
   rotate: true
-  xy: 811, 143
+  xy: 1486, 50
   size: 281, 243
   orig: 283, 245
   offset: 1, 1
   index: -1
 fx_sparkle
   rotate: true
-  xy: 1614, 56
+  xy: 290, 90
   size: 43, 40
   orig: 50, 51
   offset: 4, 6

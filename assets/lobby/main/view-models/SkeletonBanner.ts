@@ -1,8 +1,8 @@
 import { lazyInject } from "../../../Application";
 import GameUtils from "../../../common/GameUtils";
+import Loading from "../../../common/loading/view-models/Loading";
 import LobbyUtils from "../../../common/LobbyUtils";
 import RemoteSpine, { Type } from "../../../common/RemoteSpine";
-import Loading from "../../../common/loading/view-models/Loading";
 import { GameConfiguration, getGameConfiguration } from "../../../configs/GameConfigurations";
 import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
@@ -49,6 +49,15 @@ export default class SkeletonBanner extends cc.Component {
             const configFile = this.cache[id]
                 ? this.cache[id].configFile
                 : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `banner/${GameUtils.getCurrentLanguage()}/config.json`);
+
+            if (!configFile) {
+                return null;
+            }
+
+            this.cache[id] = {
+                ...this.cache[id],
+                configFile: configFile
+            };
 
             const iconConfig: RemoteResourceConfig = configFile?.json;
 

@@ -860,7 +860,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 243.39,
+      "width": 223.57,
       "height": 30
     },
     "_anchorPoint": {
@@ -912,8 +912,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "16.000.000.000",
-    "_N$string": "16.000.000.000",
+    "_string": "16,000,000.00",
+    "_N$string": "16,000,000.00",
     "_fontSize": 24,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -928,7 +928,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1413,7 +1413,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 243.39,
+      "width": 223.57,
       "height": 30
     },
     "_anchorPoint": {
@@ -1465,8 +1465,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "16.000.000.000",
-    "_N$string": "16.000.000.000",
+    "_string": "16,000,000.00",
+    "_N$string": "16,000,000.00",
     "_fontSize": 24,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -1966,7 +1966,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 243.39,
+      "width": 223.57,
       "height": 30
     },
     "_anchorPoint": {
@@ -2018,8 +2018,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "16.000.000.000",
-    "_N$string": "16.000.000.000",
+    "_string": "16,000,000.00",
+    "_N$string": "16,000,000.00",
     "_fontSize": 24,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -2154,8 +2154,8 @@
       }
     ],
     "paused": false,
-    "defaultSkin": "default",
-    "defaultAnimation": "animation",
+    "defaultSkin": "",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -2287,9 +2287,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "2c8785b2-9b4b-45ec-b81b-e2881aa07f2d"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {

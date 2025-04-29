@@ -1,19 +1,19 @@
 
 btn-spin.webp
-size: 823,192
+size: 815,192
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 arrow
   rotate: true
-  xy: 720, 8
+  xy: 712, 8
   size: 79, 80
   orig: 178, 178
   offset: 49, 48
   index: -1
 arrow-blur
   rotate: false
-  xy: 720, 89
+  xy: 712, 89
   size: 101, 101
   orig: 180, 180
   offset: 39, 40
@@ -27,7 +27,7 @@ black-72-disable
   index: -1
 blink
   rotate: false
-  xy: 802, 77
+  xy: 794, 77
   size: 10, 10
   orig: 12, 12
   offset: 1, 1
@@ -41,15 +41,15 @@ hover
   index: -1
 light
   rotate: false
-  xy: 552, 24
+  xy: 376, 24
   size: 166, 166
   orig: 166, 166
   offset: 0, 0
   index: -1
 spin-button-base-bg
   rotate: false
-  xy: 376, 16
-  size: 174, 174
-  orig: 208, 208
-  offset: 17, 17
+  xy: 544, 24
+  size: 166, 166
+  orig: 170, 170
+  offset: 2, 2
   index: -1

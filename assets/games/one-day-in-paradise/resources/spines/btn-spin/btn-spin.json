@@ -1,0 +1,327 @@
+{
+"skeleton": { "hash": "woo+I7Y6OZMUwGXqOZra/dJNf2I", "spine": "3.8.99" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "button", "parent": "root" },
+	{ "name": "spin-bg", "parent": "root" },
+	{ "name": "arrow", "parent": "root" },
+	{ "name": "decor-2", "parent": "root" },
+	{ "name": "dercor-1", "parent": "root" },
+	{ "name": "light", "parent": "root" },
+	{ "name": "arrow-blur", "parent": "root" },
+	{ "name": "vfx-idle", "parent": "root", "scaleX": 2, "scaleY": 2 },
+	{ "name": "hover", "parent": "root" },
+	{ "name": "disable-black-overlay", "parent": "root", "scaleX": 1.0046, "scaleY": 1.0046 }
+],
+"slots": [
+	{ "name": "hover", "bone": "hover", "color": "ffffff00", "blend": "additive" },
+	{ "name": "Layer 1", "bone": "spin-bg", "color": "ffffff00" },
+	{ "name": "3 - Copy", "bone": "light", "color": "ff787800", "dark": "000000", "blend": "additive" },
+	{ "name": "button", "bone": "button", "color": "ffffff00" },
+	{ "name": "1", "bone": "dercor-1", "color": "ffffff00" },
+	{ "name": "1 copy", "bone": "decor-2", "color": "ffffff00" },
+	{ "name": "4", "bone": "arrow", "color": "ffffff00" },
+	{ "name": "5", "bone": "arrow-blur", "color": "ffffff00" },
+	{ "name": "vfx/vfx-00", "bone": "vfx-idle", "color": "ffffff00", "blend": "additive" },
+	{ "name": "black-72-disable", "bone": "disable-black-overlay" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"1": {
+				"1": { "x": -49.26, "y": 18.97, "width": 87, "height": 145 }
+			},
+			"1 copy": {
+				"1 copy": { "x": 50.35, "y": -11.64, "width": 87, "height": 145 }
+			},
+			"3 - Copy": {
+				"3 - Copy": { "scaleX": 1.124, "scaleY": 1.124, "width": 145, "height": 145 }
+			},
+			"4": {
+				"4": { "width": 91, "height": 91 }
+			},
+			"5": {
+				"5": { "x": 0.5, "y": 0.5, "width": 91, "height": 91 }
+			},
+			"Layer 1": {
+				"Layer 1": { "x": -0.15, "y": -0.53, "width": 190, "height": 190 }
+			},
+			"black-72-disable": {
+				"black-72-disable": { "scaleX": 1.0949, "scaleY": 1.0949, "rotation": -0.12, "width": 190, "height": 190 }
+			},
+			"button": {
+				"3": { "x": 0.74, "y": 0.97, "width": 145, "height": 145 }
+			},
+			"hover": {
+				"hover": { "scaleX": 0.5735, "scaleY": 0.5735, "rotation": -0.33, "width": 400, "height": 400 }
+			},
+			"vfx/vfx-00": {
+				"vfx/vfx-00": { "width": 190, "height": 190 },
+				"vfx/vfx-01": { "width": 190, "height": 190 },
+				"vfx/vfx-02": { "width": 190, "height": 190 },
+				"vfx/vfx-03": { "width": 190, "height": 190 },
+				"vfx/vfx-04": { "width": 190, "height": 190 },
+				"vfx/vfx-05": { "width": 190, "height": 190 },
+				"vfx/vfx-06": { "width": 190, "height": 190 },
+				"vfx/vfx-07": { "width": 190, "height": 190 },
+				"vfx/vfx-08": { "width": 190, "height": 190 },
+				"vfx/vfx-09": { "width": 190, "height": 190 },
+				"vfx/vfx-10": { "width": 190, "height": 190 },
+				"vfx/vfx-11": { "width": 190, "height": 190 },
+				"vfx/vfx-12": { "width": 190, "height": 190 },
+				"vfx/vfx-13": { "width": 190, "height": 190 },
+				"vfx/vfx-14": { "width": 190, "height": 190 },
+				"vfx/vfx-15": { "width": 190, "height": 190 }
+			}
+		}
+	}
+],
+"animations": {
+	"disable": {
+		"slots": {
+			"black-72-disable": {
+				"attachment": [
+					{ "name": "black-72-disable" }
+				]
+			}
+		}
+	},
+	"hover": {
+		"slots": {
+			"hover": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.4333, "color": "ffffff88" },
+					{ "time": 0.9, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "hover" }
+				]
+			}
+		},
+		"bones": {
+			"hover": {
+				"scale": [
+					{ "x": 0.5, "y": 0.5 },
+					{ "time": 0.9, "x": 1.272, "y": 1.272 },
+					{ "time": 1.3333, "x": 0.5, "y": 0.5 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"1": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1" }
+				]
+			},
+			"1 copy": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1 copy" }
+				]
+			},
+			"3 - Copy": {
+				"twoColor": [
+					{ "light": "ff7878ff", "dark": "000000" }
+				],
+				"attachment": [
+					{ "name": "3 - Copy" }
+				]
+			},
+			"4": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "4" }
+				]
+			},
+			"5": {
+				"color": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"Layer 1": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "Layer 1" }
+				]
+			},
+			"button": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "3" }
+				]
+			}
+		},
+		"bones": {
+			"light": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.8333, "x": 0.9, "y": 0.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.6667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.5, "x": 0.9, "y": 0.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.3333 }
+				]
+			},
+			"arrow": {
+				"rotate": [
+					{ "angle": 1 },
+					{ "time": 1.6667, "angle": -88.54 },
+					{ "time": 3.3333, "angle": 180 }
+				]
+			}
+		}
+	},
+	"spin": {
+		"slots": {
+			"1": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1" }
+				]
+			},
+			"1 copy": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "1 copy" }
+				]
+			},
+			"3 - Copy": {
+				"twoColor": [
+					{ "light": "ff7878ff", "dark": "000000" }
+				],
+				"attachment": [
+					{ "name": "3 - Copy" }
+				]
+			},
+			"4": {
+				"color": [
+					{ "color": "ffffffff" },
+					{ "time": 0.2333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "4" }
+				]
+			},
+			"5": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "5" }
+				]
+			},
+			"Layer 1": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "Layer 1" }
+				]
+			},
+			"button": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "3" }
+				]
+			}
+		},
+		"bones": {
+			"light": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.8333, "x": 0.9, "y": 0.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 1.6667, "curve": 0.25, "c3": 0.75 },
+					{ "time": 2.5, "x": 0.9, "y": 0.9, "curve": 0.25, "c3": 0.75 },
+					{ "time": 3.3333 }
+				]
+			},
+			"arrow": {
+				"rotate": [
+					{},
+					{ "time": 0.3, "angle": 180 },
+					{ "time": 0.6 },
+					{ "time": 0.9, "angle": 180 },
+					{ "time": 1.2 },
+					{ "time": 1.5333, "angle": 180 },
+					{ "time": 1.8333 },
+					{ "time": 2.1333, "angle": 180 },
+					{ "time": 2.4333 },
+					{ "time": 2.7333, "angle": 180 },
+					{ "time": 3.0333 },
+					{ "time": 3.3333, "angle": 180 }
+				]
+			},
+			"button": {
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2, "x": 0.95, "y": 0.95, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333 }
+				]
+			},
+			"arrow-blur": {
+				"rotate": [
+					{},
+					{ "time": 0.3, "angle": 180 },
+					{ "time": 0.6 },
+					{ "time": 0.9, "angle": 180 },
+					{ "time": 1.2 },
+					{ "time": 1.5, "angle": 180 },
+					{ "time": 1.8 },
+					{ "time": 2.1333, "angle": 180 },
+					{ "time": 2.4333 },
+					{ "time": 2.7333, "angle": 180 },
+					{ "time": 3.0333 },
+					{ "time": 3.3333, "angle": 180 }
+				]
+			}
+		}
+	},
+	"spin-extra": {
+		"slots": {
+			"vfx/vfx-00": {
+				"color": [
+					{ "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "vfx/vfx-00" },
+					{ "time": 0.0667, "name": "vfx/vfx-01" },
+					{ "time": 0.1333, "name": "vfx/vfx-02" },
+					{ "time": 0.1667, "name": "vfx/vfx-03" },
+					{ "time": 0.2333, "name": "vfx/vfx-04" },
+					{ "time": 0.3, "name": "vfx/vfx-05" },
+					{ "time": 0.3667, "name": "vfx/vfx-06" },
+					{ "time": 0.4, "name": "vfx/vfx-07" },
+					{ "time": 0.4667, "name": "vfx/vfx-08" },
+					{ "time": 0.5333, "name": "vfx/vfx-09" },
+					{ "time": 0.5667, "name": "vfx/vfx-10" },
+					{ "time": 0.6, "name": "vfx/vfx-11" },
+					{ "time": 0.6667, "name": "vfx/vfx-12" },
+					{ "time": 0.7333, "name": "vfx/vfx-13" },
+					{ "time": 0.8, "name": "vfx/vfx-14" },
+					{ "time": 0.8333, "name": "vfx/vfx-15" }
+				]
+			}
+		}
+	}
+}
+}

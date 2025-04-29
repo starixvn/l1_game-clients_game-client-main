@@ -1,0 +1,161 @@
+{
+"skeleton": { "hash": "e4FTlwU0XnnAzGGW05j1ZFTQV6k", "spine": "3.8.99", "x": -257.08, "y": -113.56, "width": 600, "height": 337.5 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "firework", "parent": "root", "x": 42.92, "y": 55.19, "scaleX": 1.5, "scaleY": 1.5 },
+	{ "name": "firework 4", "parent": "root", "x": -60.44, "y": 58.69, "scaleX": 0.8, "scaleY": 0.8 },
+	{ "name": "firework 1", "parent": "root" }
+],
+"slots": [
+	{ "name": "firework", "bone": "firework", "color": "ffea19ff", "attachment": "firework 3/firework3 17", "blend": "additive" },
+	{ "name": "firework 4", "bone": "firework 4", "color": "ff4500ff", "attachment": "firework 4/firework4 17", "blend": "additive" },
+	{ "name": "firework 1", "bone": "firework 1", "attachment": "firework 1/firework1 21", "blend": "additive" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"firework": {
+				"firework 3/firework3 00": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 01": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 02": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 03": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 04": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 05": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 06": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 07": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 08": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 09": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 10": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 11": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 12": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 13": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 14": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 15": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 16": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 3/firework3 17": { "width": 400, "height": 225 }
+			},
+			"firework 1": {
+				"firework 1/firework1 00": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 01": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 02": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 03": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 04": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 05": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 06": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 07": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 08": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 09": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 10": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 11": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 12": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 13": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 14": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 15": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 16": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 17": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 18": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 19": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 20": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 1/firework1 21": { "y": 0.5, "width": 400, "height": 225 }
+			},
+			"firework 4": {
+				"firework 4/firework4 00": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 01": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 02": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 03": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 04": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 05": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 06": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 07": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 08": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 09": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 10": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 11": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 12": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 13": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 14": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 15": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 16": { "y": 0.5, "width": 400, "height": 225 },
+				"firework 4/firework4 17": { "y": 0.5, "width": 400, "height": 225 }
+			}
+		}
+	}
+],
+"animations": {
+	"firework 3": {
+		"slots": {
+			"firework": {
+				"attachment": [
+					{ "name": "firework 3/firework3 00" },
+					{ "time": 0.1667, "name": "firework 3/firework3 01" },
+					{ "time": 0.3333, "name": "firework 3/firework3 02" },
+					{ "time": 0.4667, "name": "firework 3/firework3 03" },
+					{ "time": 0.6333, "name": "firework 3/firework3 04" },
+					{ "time": 0.8, "name": "firework 3/firework3 05" },
+					{ "time": 0.9667, "name": "firework 3/firework3 06" },
+					{ "time": 1.1, "name": "firework 3/firework3 07" },
+					{ "time": 1.2667, "name": "firework 3/firework3 08" },
+					{ "time": 1.4333, "name": "firework 3/firework3 09" },
+					{ "time": 1.6, "name": "firework 3/firework3 10" },
+					{ "time": 1.7667, "name": "firework 3/firework3 11" },
+					{ "time": 1.9, "name": "firework 3/firework3 12" },
+					{ "time": 2.0667, "name": "firework 3/firework3 13" },
+					{ "time": 2.2333, "name": "firework 3/firework3 14" },
+					{ "time": 2.4, "name": "firework 3/firework3 15" },
+					{ "time": 2.5333, "name": "firework 3/firework3 16" },
+					{ "time": 2.6667, "name": "firework 3/firework3 17" }
+				]
+			},
+			"firework 1": {
+				"attachment": [
+					{ "time": 0.9333, "name": "firework 1/firework1 00" },
+					{ "time": 1.0333, "name": "firework 1/firework1 01" },
+					{ "time": 1.1667, "name": "firework 1/firework1 02" },
+					{ "time": 1.2667, "name": "firework 1/firework1 03" },
+					{ "time": 1.3667, "name": "firework 1/firework1 04" },
+					{ "time": 1.5, "name": "firework 1/firework1 05" },
+					{ "time": 1.6, "name": "firework 1/firework1 06" },
+					{ "time": 1.7, "name": "firework 1/firework1 07" },
+					{ "time": 1.8333, "name": "firework 1/firework1 08" },
+					{ "time": 1.9333, "name": "firework 1/firework1 09" },
+					{ "time": 2.0333, "name": "firework 1/firework1 10" },
+					{ "time": 2.1667, "name": "firework 1/firework1 11" },
+					{ "time": 2.2667, "name": "firework 1/firework1 12" },
+					{ "time": 2.3667, "name": "firework 1/firework1 13" },
+					{ "time": 2.4667, "name": "firework 1/firework1 14" },
+					{ "time": 2.6, "name": "firework 1/firework1 15" },
+					{ "time": 2.7, "name": "firework 1/firework1 16" },
+					{ "time": 2.8, "name": "firework 1/firework1 17" },
+					{ "time": 2.9333, "name": "firework 1/firework1 18" },
+					{ "time": 3.0333, "name": "firework 1/firework1 19" },
+					{ "time": 3.1333, "name": "firework 1/firework1 20" },
+					{ "time": 3.2667, "name": "firework 1/firework1 21" }
+				]
+			},
+			"firework 4": {
+				"attachment": [
+					{ "time": 0.7, "name": "firework 4/firework4 00" },
+					{ "time": 0.8, "name": "firework 4/firework4 01" },
+					{ "time": 0.8667, "name": "firework 4/firework4 02" },
+					{ "time": 0.9667, "name": "firework 4/firework4 03" },
+					{ "time": 1.0667, "name": "firework 4/firework4 04" },
+					{ "time": 1.1667, "name": "firework 4/firework4 05" },
+					{ "time": 1.2333, "name": "firework 4/firework4 06" },
+					{ "time": 1.3333, "name": "firework 4/firework4 07" },
+					{ "time": 1.4333, "name": "firework 4/firework4 08" },
+					{ "time": 1.5333, "name": "firework 4/firework4 09" },
+					{ "time": 1.6, "name": "firework 4/firework4 10" },
+					{ "time": 1.7, "name": "firework 4/firework4 11" },
+					{ "time": 1.7667, "name": "firework 4/firework4 12" },
+					{ "time": 1.8667, "name": "firework 4/firework4 13" },
+					{ "time": 1.9667, "name": "firework 4/firework4 14" },
+					{ "time": 2.0667, "name": "firework 4/firework4 15" },
+					{ "time": 2.1333, "name": "firework 4/firework4 16" },
+					{ "time": 2.2333, "name": "firework 4/firework4 17" }
+				]
+			}
+		}
+	}
+}
+}

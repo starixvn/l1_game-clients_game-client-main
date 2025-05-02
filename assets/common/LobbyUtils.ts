@@ -101,13 +101,16 @@ export default class LobbyUtils {
                 return data;
             };
 
+            const configFile = await loadRemoteIconData("config.json");
+            const useWebp = configFile?.json?.useWebp ?? false;
             const skeletonData = new sp.SkeletonData();
+            const atlasExt = useWebp ? "webp" : "png";
             skeletonData.skeletonJson = (await loadRemoteIconData("icon-game.json")).json;
-            skeletonData.atlasText = (await loadRemoteIconData("icon-game.atlas")).text;
-            skeletonData.textures = [await loadRemoteIconData("icon-game.png")];
-            skeletonData["textureNames"] = [`icon-game.png`];
+            skeletonData.atlasText = (await loadRemoteIconData(`icon-game.atlas`)).text;
+            skeletonData.textures = [await loadRemoteIconData(`icon-game.${atlasExt}`)];
+            skeletonData["textureNames"] = [`icon-game.${atlasExt}`];
 
-            uiManager.remoteIconCache[gameId] = { skeletonData: skeletonData, configFile: await loadRemoteIconData("config.json") };
+            uiManager.remoteIconCache[gameId] = { skeletonData: skeletonData, configFile};
         } catch (error) {
             console.log("preloadRemoteIcon error", error.message);
         }

@@ -22,6 +22,7 @@ interface GameNotificationConfig {
 interface RemoteIconConfig {
     gameNotification?: GameNotificationConfig;
     premultipliedAlpha: boolean;
+    useWebp: boolean;
 }
 
 @ccclass
@@ -117,7 +118,8 @@ export default class SkeletonIcon extends cc.Component {
             remoteSpine.id = id;
             remoteSpine.host = url;
             remoteSpine.spineName = "icon-game";
-            remoteSpine.premultipliedAlpha = iconConfig ? iconConfig.premultipliedAlpha : false;
+            remoteSpine.premultipliedAlpha = iconConfig?.premultipliedAlpha ?? false;
+            remoteSpine.useWebp = iconConfig?.useWebp ?? false;
             await remoteSpine.init(this.micrositeIconCache);
             if (iconConfig?.gameNotification) {
                 this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);

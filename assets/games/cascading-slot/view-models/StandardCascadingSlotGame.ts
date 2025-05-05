@@ -216,7 +216,11 @@ export default class StandardCascadingSlotGame extends CascadingSlotBase {
             if (prefabCache[index]) {
                 continue;
             }
-            const path = `preload/symbol-spines/symbol-${index}`;
+            let path = `preload/symbol-spines/symbol-${index}`;
+            const ramsesGameId = 123;
+            if (this.gameId === ramsesGameId) {
+                path = `preload/symbol-spines/symbol-${index.toString().padStart(2, "0")}`;
+            }
             const devPath = `../games/*/${path}`;
             try {
                 const data = await BundleManager.getInstance().loadAsset<sp.SkeletonData>({

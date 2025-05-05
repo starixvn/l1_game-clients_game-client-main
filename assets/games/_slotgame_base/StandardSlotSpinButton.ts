@@ -32,10 +32,12 @@ export default class StandardSlotSpinButton extends ClassicSpinButton {
     override playAnimationSpin() {
         this.iconSpinSkeleton && this.iconSpinSkeleton.setAnimation(0, "spin", true);
         this.iconSpinSkeleton && this.iconSpinSkeleton.setAnimation(3, "spin-extra", false);
+        this.iconSpinSkeleton.timeScale = 1;
     }
 
     override playAnimationIdle() {
         this.iconSpinSkeleton && this.iconSpinSkeleton.setAnimation(0, "idle", true);
+        this.iconSpinSkeleton.timeScale = 1;
     }
 
     override showAutoSpinMode() {}
@@ -43,5 +45,6 @@ export default class StandardSlotSpinButton extends ClassicSpinButton {
     override showNormalMode() {}
     override playAnimationSpinTurbo() {
         this.playAnimationSpin();
+        this.iconSpinSkeleton.timeScale = 2;
     }
 }

@@ -122,7 +122,7 @@ export default class SkeletonIcon extends cc.Component {
             remoteSpine.useWebp = iconConfig?.useWebp ?? false;
             await remoteSpine.init(this.micrositeIconCache);
             if (iconConfig?.gameNotification) {
-                this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
+                await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
         } catch (error) {
             cc.log(error);

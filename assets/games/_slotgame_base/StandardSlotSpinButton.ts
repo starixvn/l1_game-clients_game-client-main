@@ -41,4 +41,7 @@ export default class StandardSlotSpinButton extends ClassicSpinButton {
     override showAutoSpinMode() {}
     override hideAll() {}
     override showNormalMode() {}
+    override playAnimationSpinTurbo() {
+        this.playAnimationSpin();
+    }
 }

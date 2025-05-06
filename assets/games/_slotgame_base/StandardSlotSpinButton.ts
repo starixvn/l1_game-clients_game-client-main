@@ -30,8 +30,11 @@ export default class StandardSlotSpinButton extends ClassicSpinButton {
     }
 
     override playAnimationSpin() {
-        this.iconSpinSkeleton && this.iconSpinSkeleton.setAnimation(0, "spin", true);
-        this.iconSpinSkeleton && this.iconSpinSkeleton.setAnimation(3, "spin-extra", false);
+        if (!this.iconSpinSkeleton) {
+            return;
+        }
+        this.iconSpinSkeleton.setAnimation(0, "spin", true);
+        this.iconSpinSkeleton.setAnimation(3, "spin-extra", false);
         this.iconSpinSkeleton.timeScale = 1;
     }
 
@@ -45,6 +48,10 @@ export default class StandardSlotSpinButton extends ClassicSpinButton {
     override showNormalMode() {}
     override playAnimationSpinTurbo() {
         this.playAnimationSpin();
+
+        if (!this.iconSpinSkeleton) {
+            return;
+        }
         this.iconSpinSkeleton.timeScale = 2;
     }
 }

@@ -1,18 +1,18 @@
-exportAtlas.png
+exportAtlas.webp
 size: 4096,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 glow
   rotate: false
-  xy: 1427, 617
+  xy: 3135, 362
   size: 69, 70
   orig: 69, 70
   offset: 0, 0
   index: -1
 s4_ClayVasewithGoldcoins
   rotate: true
-  xy: 2469, 1785
+  xy: 2468, 1735
   size: 91, 104
   orig: 91, 104
   offset: 0, 0
@@ -26,14 +26,14 @@ sparkle-2
   index: -1
 smoke/smoke_02
   rotate: true
-  xy: 2205, 337
+  xy: 2190, 801
   size: 94, 109
   orig: 94, 109
   offset: 0, 0
   index: -1
 smoke/smoke_03
   rotate: true
-  xy: 1753, 909
+  xy: 1791, 542
   size: 121, 129
   orig: 121, 129
   offset: 0, 0
@@ -47,49 +47,49 @@ smoke/smoke_04
   index: -1
 smoke/smoke_05
   rotate: true
-  xy: 193, 1660
+  xy: 661, 1667
   size: 142, 147
   orig: 142, 147
   offset: 0, 0
   index: -1
 smoke/smoke_06
   rotate: true
-  xy: 1539, 1482
+  xy: 1565, 299
   size: 152, 156
   orig: 152, 156
   offset: 0, 0
   index: -1
 smoke/smoke_07
   rotate: false
-  xy: 21, 1357
+  xy: 363, 1349
   size: 161, 161
   orig: 161, 161
   offset: 0, 0
   index: -1
 smoke/smoke_08
   rotate: false
-  xy: 358, 1183
+  xy: 1261, 3
   size: 166, 165
   orig: 166, 165
   offset: 0, 0
   index: -1
 smoke/smoke_09
   rotate: false
-  xy: 909, 3
+  xy: 2, 1024
   size: 170, 165
   orig: 170, 165
   offset: 0, 0
   index: -1
 smoke/smoke_10
   rotate: false
-  xy: 1086, 536
+  xy: 1051, 342
   size: 172, 159
   orig: 172, 159
   offset: 0, 0
   index: -1
 s4_explode/s4_explode_00
   rotate: false
-  xy: 3004, 1041
+  xy: 3046, 1091
   size: 83, 94
   orig: 83, 94
   offset: 0, 0
@@ -138,127 +138,22 @@ s4_explode/s4_explode_06
   index: -1
 s4_explode/s4_explode_07
   rotate: true
-  xy: 1049, 1433
-  size: 184, 326
-  orig: 184, 326
+  xy: 662, 1451
+  size: 428, 529
+  orig: 428, 529
   offset: 0, 0
   index: -1
 s4_explode/s4_explode_08
   rotate: true
-  xy: 681, 90
-  size: 1676, 1259
-  orig: 1676, 1259
+  xy: 681, 40
+  size: 1726, 1055
+  orig: 1726, 1055
   offset: 0, 0
   index: -1
 s4_explode/s4_explode_09
   rotate: true
   xy: 2, 2
-  size: 1936, 3218
-  orig: 1936, 3218
+  size: 1936, 2713
+  orig: 1936, 2713
   offset: 0, 0
-  index: -1
-hightlight_particle/hightlight_particle_00
-  rotate: false
-  xy: 3096, 63
-  size: 1, 1
-  orig: 1, 1
-  offset: 0, 0
-  index: -1
-hightlight_particle/hightlight_particle_01
-  rotate: false
-  xy: 3092, 62
-  size: 2, 2
-  orig: 92, 97
-  offset: 46, 36
-  index: -1
-hightlight_particle/hightlight_particle_02
-  rotate: true
-  xy: 3219, 96
-  size: 44, 19
-  orig: 92, 97
-  offset: 40, 23
-  index: -1
-hightlight_particle/hightlight_particle_03
-  rotate: false
-  xy: 3201, 5
-  size: 49, 27
-  orig: 92, 97
-  offset: 38, 22
-  index: -1
-hightlight_particle/hightlight_particle_04
-  rotate: true
-  xy: 3201, 34
-  size: 51, 27
-  orig: 92, 97
-  offset: 37, 22
-  index: -1
-hightlight_particle/hightlight_particle_05
-  rotate: true
-  xy: 3092, 66
-  size: 74, 42
-  orig: 92, 97
-  offset: 16, 23
-  index: -1
-hightlight_particle/hightlight_particle_06
-  rotate: true
-  xy: 3002, 62
-  size: 78, 45
-  orig: 92, 97
-  offset: 13, 23
-  index: -1
-hightlight_particle/hightlight_particle_07
-  rotate: true
-  xy: 3049, 62
-  size: 78, 41
-  orig: 92, 97
-  offset: 12, 26
-  index: -1
-hightlight_particle/hightlight_particle_08
-  rotate: true
-  xy: 3179, 87
-  size: 53, 38
-  orig: 92, 97
-  offset: 12, 28
-  index: -1
-hightlight_particle/hightlight_particle_09
-  rotate: true
-  xy: 3002, 2
-  size: 58, 48
-  orig: 92, 97
-  offset: 12, 18
-  index: -1
-hightlight_particle/hightlight_particle_10
-  rotate: true
-  xy: 3052, 4
-  size: 56, 60
-  orig: 92, 97
-  offset: 16, 2
-  index: -1
-hightlight_particle/hightlight_particle_11
-  rotate: false
-  xy: 3114, 2
-  size: 43, 62
-  orig: 92, 97
-  offset: 30, 2
-  index: -1
-hightlight_particle/hightlight_particle_12
-  rotate: false
-  xy: 3136, 76
-  size: 41, 64
-  orig: 92, 97
-  offset: 33, 2
-  index: -1
-hightlight_particle/hightlight_particle_13
-  rotate: false
-  xy: 3159, 13
-  size: 40, 61
-  orig: 92, 97
-  offset: 35, 3
-  index: -1
-hightlight_particle/hightlight_particle_14
-  rotate: false
-  xy: 3159, 2
-  size: 36, 9
-  orig: 92, 97
-  offset: 38, 4
   index: -1

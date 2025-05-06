@@ -47,7 +47,18 @@ export type MicrositeGameParams = {
     operator?: string;
     loadStorage?: { key: string };
     saveStorage?: { [key: string]: any };
+    syncSession?: ISessionInfo;
 };
+
+interface ISessionInfo {
+    isAuthenticated: boolean;
+    username: string;
+    language: string;
+    session: string;
+    system: number;
+    memberName?: string;
+    ssoTime?: Date;
+}
 
 const WebviewEventType = {
     LOADING: "loading"
@@ -170,10 +181,31 @@ export default class BaseMicrositeGame extends cc.Component {
             this.handleSaveStorage(data);
         }
 
+        if (data.syncSession) {
+            this.syncSession(data.syncSession);
+        }
+
         this.handleOperator();
 
         this.handleChangeAudio(data);
     };
+
+    private syncSession(params: ISessionInfo) {
+        if (!params) {
+            return;
+        }
+        const session: any = SessionManager.getSession() || {};
+        console.log("current session ", JSON.stringify(session));
+        session.ss = params.session;
+        session.isAuthenticated = params.isAuthenticated ?? false;
+        session.memberName = params.memberName;
+        session.username = params.username;
+        session.language = params.language;
+        session.system = params.system;
+        session.time = params.ssoTime;
+        console.log("sync session --------------- ", JSON.stringify(session));
+        SessionManager.storeSessionData(session);
+    }
 
     private handleLoadStorage(data: MicrositeGameParams) {
         const { key } = data.loadStorage;

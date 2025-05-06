@@ -29,6 +29,9 @@ export default class MainSplash extends cc.Component {
     @property(cc.Node)
     containerProgressBar: cc.Node = null;
 
+    @property(cc.Label)
+    percentResourceLoad: cc.Label = null;
+
     @property(cc.Node)
     sloganSC1: cc.Node = null;
 
@@ -62,26 +65,25 @@ export default class MainSplash extends cc.Component {
     private loadSceneTimeout: any;
 
     private noticePrefab: cc.Prefab = null;
-    private progressBar: cc.ProgressBar = null;
+
 
     protected onLoad(): void {
         this.initUIListeners();
-        this.setPositionProgressBarAndMessage();
+        //this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
-        this.progressBar = this.containerProgressBar.getComponentInChildren(cc.ProgressBar);
     }
 
-    private setPositionProgressBarAndMessage() {
-        const operator = sessionManager.getOperator()?.toUpperCase();
-        const spPosition =
-            operator === OperatorAlias.TIP88
-                ? { progressBar: cc.v2(this.containerProgressBar.x, -242), messageComp: cc.v2(0, -270) }
-                : { progressBar: cc.v2(this.containerProgressBar?.x, -307), messageComp: cc.v2(0, -331) };
+    // private setPositionProgressBarAndMessage() {
+    //     const operator = sessionManager.getOperator()?.toUpperCase();
+    //     const spPosition =
+    //         operator === OperatorAlias.TIP88
+    //             ? { progressBar: cc.v2(this.containerProgressBar.x, -242), messageComp: cc.v2(0, -270) }
+    //             : { progressBar: cc.v2(this.containerProgressBar?.x, -307), messageComp: cc.v2(0, -331) };
 
-        this.containerProgressBar.setPosition(spPosition.progressBar);
-        this.messageComp.node.setPosition(spPosition.messageComp);
-    }
+    //     this.containerProgressBar.setPosition(spPosition.progressBar);
+    //     this.messageComp.node.setPosition(spPosition.messageComp);
+    // }
 
     private deactivateAllSlogans(): void {
         const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88"];
@@ -93,6 +95,7 @@ export default class MainSplash extends cc.Component {
 
     private activateSlogan(): void {
         const operator = sessionManager.getOperator()?.toUpperCase();
+        console.log("operator", operator);
         if (!operator) {
             this.activateOtherSlogans();
             return;
@@ -242,9 +245,7 @@ export default class MainSplash extends cc.Component {
     }
 
     updateProgressBar(progress) {
-        if (this.progressBar) {
-            this.progressBar.progress = progress;
-        }
+        this.percentResourceLoad && (this.percentResourceLoad.string = `${Math.round(progress * 100)}%`);
     }
 
     protected onDestroy(): void {

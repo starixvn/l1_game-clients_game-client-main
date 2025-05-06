@@ -45,7 +45,7 @@ body {
     padding: 0;
     border: 0;
     margin: 0;
-    background: url(./background.jpg);
+    background: #000;
     background-size: auto 100vh;
 
     cursor: default;
@@ -127,10 +127,6 @@ p.footer {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 1024px) and (orientation: portrait) {
-    body {
-        background: url(./background_90.jpg) repeat-y !important;
-        background-size: 100vh auto;
-    }
 
     .splash-container {
         height: 100vw;
@@ -167,6 +163,23 @@ p.footer {
         width: auto;
         height: 50.36vh;
     }
+
+    #powered-by.powered-by {
+        background-size: auto 4.07vw;
+        height: 4.07vw;
+        top: 84.35vw;
+    }
+
+    #powered-by.powered-by_tip88 {
+        height: 4.8vw;
+        bottom: 10.8vw;
+        background-size: auto 4.8vw;
+    }
+
+    .waiting-message {
+        bottom: 5.3vw;
+        font-size: 2.65vw;
+    }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
@@ -187,7 +200,6 @@ p.footer {
 .icon-top {
     position: absolute;
     top: 0vh;
-    /* background: url(./top.webp) no-repeat center; */
     background-size: auto 20.23vh;
     width: 100%;
     height: 20.23vh;
@@ -195,29 +207,30 @@ p.footer {
 
 .splash {
     position: absolute;
-    top: 22.64vh;
+    top: 37.8vh;
     background: url(./logo_saba.webp) no-repeat center;
-    background-size: auto 30.53vh;
+    background-size: auto 11.99vh;
     width: 100%;
-    height: 30.53vh;
+    height: 11.99vh;
+    left: -1px;
 }
 
 .splash_text {
     position: absolute;
-    top: 54.83vh;
+    top: 50.6vh;
     background: no-repeat center;
-    background-size: auto 6.1vh;
+    background-size: auto 2.5vh;
     width: 100%;
-    height: 6.1vh;
+    height: 3.44vh;
 }
 
 .splash_Vgaming {
     position: absolute;
-    top: 22.9vh;
+    top: 31.6vh;
     background: url(./logo_vgaming.webp) no-repeat center;
-    background-size: auto 30.53vh;
+    background-size: auto 18.32vh;
     width: 100%;
-    height: 30.53vh;
+    height: 18.32vh;
 }
 
 .splash_text_Vgaming {
@@ -231,11 +244,12 @@ p.footer {
 
 .splash_sabaplay {
     position: absolute;
-    top: 22.9vh;
+    top: 25.9vh;
+    left: 1px;
     background: url(./logo_sabaplay.webp) no-repeat center;
-    background-size: auto 30.53vh;
+    background-size: auto 23.79vh;
     width: 100%;
-    height: 30.53vh;
+    height: 23.79vh;
 }
 
 .splash_text_sabaplay {
@@ -283,11 +297,12 @@ p.footer {
 
 .splash_tip88 {
     position: absolute;
-    top: 22.65vh;
+    top: 25.9vh;
+    left: -3px;
     background: url(./logo_soibet.webp) no-repeat center;
-    background-size: auto 30.53vh;
+    background-size: auto 24.04vh;
     width: 100%;
-    height: 30.53vh;
+    height: 24.04vh;
 }
 
 .splash_text_tip88 {
@@ -316,6 +331,30 @@ p.footer {
     background-size: auto 4.7vh;
     width: 100%;
     height: 4.7vh;
+}
+
+.splash_text_vi {
+    background-image: url("splash_text_vi.webp?v=1");
+}
+
+.splash_text_en {
+    background-image: url("splash_text_en.webp?v=1");
+}
+
+.splash_text_th {
+    background-image: url("splash_text_th.webp?v=1");
+}
+
+.splash_text_id {
+    background-image: url("splash_text_id.webp?v=1");
+}
+
+.splash_text_zh_cn {
+    background-image: url("splash_text_zh_cn.webp?v=1");
+}
+
+.splash_text_zh_tw {
+    background-image: url("splash_text_zh_tw.webp?v=1");
 }
 
 .splash_text_sc1_vi {
@@ -388,6 +427,90 @@ p.footer {
 
 .splash_powered_sc2_zh_tw {
     background-image: url("powered_by_sc2_zh_tw.webp");
+}
+
+.loading_icon {
+    position: absolute;
+    top: 60.17vh;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url("loading-bar.gif?v=1") no-repeat center;
+    background-size: auto 0.76vh;
+    width: 100%;
+    height: 0.76vh;
+}
+
+#powered-by {
+    position: absolute;
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+
+#powered-by.powered-by {
+    background: url("powered_by.webp?v=1") no-repeat top center;
+    background-size: auto 4.07vh;
+    width: 100%;
+    height: 4.07vh;
+    top: 85.35vh;
+}
+
+#powered-by.powered-by_tip88 {
+    width: 100%;
+    height: 4.8vh;
+    bottom: 10.8vh;
+    background: no-repeat center;
+    background-size: auto 4.8vh;
+}
+
+
+#powered-by.powered-by_tip88.en {
+    background-image: url("powered_by_Vgaming_en.webp?v=1");
+}
+
+#powered-by.powered-by_tip88.vi {
+    background-image: url("powered_by_Vgaming_vi.webp?v=1");
+}
+
+#powered-by.powered-by_tip88.th {
+    background-image: url("powered_by_Vgaming_th.webp?v=1");
+}
+
+#powered-by.powered-by_tip88.id {
+    background-image: url("powered_by_Vgaming_id.webp?v=1");
+}
+
+#powered-by.powered-by_tip88.zh_cn {
+    background-image: url("powered_by_Vgaming_zh_cn.webp?v=1");
+}
+
+#powered-by.powered-by_tip88.zh_tw {
+    background-image: url("powered_by_Vgaming_zh_tw.webp?v=1");
+}
+
+.waiting-message {
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    bottom: 5.1vh;
+    width: 100%;
+    font-size: 2.65vh;
+    opacity: 0;
+    color: #CCC7B4;
+    letter-spacing: -0.2px;
+    transition: transform 1s ease;
+    transform: translateY(20px);
+    visibility: hidden;
+}
+
+.waiting-message.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.waiting-message.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
 }
 
 .conner-container {

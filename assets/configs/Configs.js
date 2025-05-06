@@ -1,22 +1,22 @@
 const defaultConfig = {
-    systemType: "VG",
+    systemType: "SC",
     ssl: true,
     serverDomainMapper: {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l2-proxy",
+    subDomain: "l1-proxy1",
     env: "",
     sentry: {
         url: "",
-        env: "LOCAL2"
+        env: "LOCAL1"
     },
     gameAnalytics: {
         clientId: "093146669bf12df12eeedd2d57ddb469",
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
-    gatewaySubDomain: "l2-gw",
-    subGuideDomain: "l2-guide",
+    gatewaySubDomain: "l1-gw",
+    subGuideDomain: "l1-guide1",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     subPromotionDomain: "l1-promotion"

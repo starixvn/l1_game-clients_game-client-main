@@ -165,8 +165,8 @@ window.boot = function () {
     const { RESOURCES, INTERNAL, MAIN, START_SCENE } = cc.AssetManager.BuiltinBundleName;
     function setLoadingDisplay() {
         // Loading splash scene
-        var splash = document.getElementById("splash");
-        var progressBar = splash.querySelector(".progress-bar span");
+        const splash = document.getElementById("splash");
+        // var progressBar = splash.querySelector(".progress-bar span");
         var loadingBar = new ldBar(".ldBar");
         onProgress = function (completedCount, totalCount, item) {
             var percent = (100 * completedCount) / totalCount;
@@ -176,11 +176,22 @@ window.boot = function () {
             // }
         };
         splash.style.display = "block";
-        progressBar.style.width = "0%";
+        // progressBar.style.width = "0%";
 
         cc.director.once(cc.Director.EVENT_AFTER_SCENE_LAUNCH, function () {
-            splash.style.display = "none";
+            splash.style.display = "block";
             document.body.style.background = "#000";
+            splash.style.transition = "opacity 0.2s ease-in-out";
+            splash.style.opacity = 0;
+            const progressBar = document.getElementById("loading_icon");
+            progressBar.style.display = "none";
+            const waitingMessage = document.getElementById("waiting-message");
+            waitingMessage.style.display = "none";
+            window.randomWaitingMessage?.clearInterval();
+
+            setTimeout(() => {
+                splash.style.display = "none";
+            }, 200);
         });
     }
 

@@ -1302,8 +1302,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 346.52,
-      "height": 544.63
+      "width": 796,
+      "height": 1582.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1314,15 +1314,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -498.319,
-        -309.059,
+        -529.414,
+        -79.802,
         0,
         0,
         0,
         0,
         1,
-        1,
-        1,
+        0.35,
+        0.35,
         1
       ]
     },
@@ -3249,7 +3249,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "idle",
+    "_animationName": "hover",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,

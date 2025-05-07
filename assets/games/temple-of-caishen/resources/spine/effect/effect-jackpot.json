@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "GNaO18Pgg5l2qsBsT2M9Zii2GXg", "spine": "3.8.99", "x": -335.27, "y": -135.36, "width": 673.33, "height": 325.36 },
+"skeleton": { "hash": "W9MqY3fJ5He5T5RgoUCFl2fkINg", "spine": "3.8.99", "x": -335.27, "y": -135.36, "width": 673.33, "height": 325.36 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "effect-big-win", "parent": "root", "y": -140 },
@@ -99,7 +99,7 @@
 	{ "name": "fx_rotcoin7", "bone": "fx_rotcoin8" },
 	{ "name": "fx_rotcoin13", "bone": "fx_rotcoin14" },
 	{ "name": "fx_rotcoin21", "bone": "fx_rotcoin22" },
-	{ "name": "title", "bone": "title", "attachment": "Jackpot" }
+	{ "name": "title", "bone": "title" }
 ],
 "skins": [
 	{
@@ -782,9 +782,6 @@
 				"coin/fx_coinA_16": { "width": 47, "height": 46 },
 				"coin/fx_coinA_17": { "width": 47, "height": 46 },
 				"coin/fx_coinA_18": { "width": 47, "height": 46 }
-			},
-			"title": {
-				"Jackpot": { "y": 0.5, "width": 544, "height": 147 }
 			}
 		}
 	}

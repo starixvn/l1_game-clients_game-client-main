@@ -197,15 +197,6 @@ p.footer {
     left: -1px;
 }
 
-.splash_text {
-    position: absolute;
-    top: 50.6vh;
-    background: no-repeat center;
-    background-size: auto 2.47vh;
-    width: 100%;
-    height: 3.44vh;
-}
-
 .splash_Vgaming {
     position: absolute;
     top: 31.6vh;
@@ -261,23 +252,21 @@ p.footer {
 
 .splash_tip88 {
     position: absolute;
-    top: 25.9vh;
+    top: 25.85vh;
     left: -3px;
     background: url(./logo_soibet.webp) no-repeat center;
-    background-size: auto 24.04vh;
+    background-size: auto 24.07vh;
     width: 100%;
-    height: 24.04vh;
+    height: 24.07vh;
 }
 
-
-.splash_powered {
+.splash_text {
     position: absolute;
-    top: 90.33vh;
-
+    top: 50.6vh;
     background: no-repeat center;
-    background-size: auto 4.7vh;
+    background-size: auto 2.47vh;
     width: 100%;
-    height: 4.7vh;
+    height: 3.44vh;
 }
 
 .splash_text_vi {
@@ -302,78 +291,6 @@ p.footer {
 
 .splash_text_zh_tw {
     background-image: url("splash_text_zh_tw.webp?v=1");
-}
-
-.splash_text_sc1_vi {
-    background-image: url("splash_text_sc1_vi.webp");
-}
-
-.splash_text_sc1_en {
-    background-image: url("splash_text_sc1_en.webp");
-}
-
-.splash_text_sc1_th {
-    background-image: url("splash_text_sc1_th.webp");
-}
-
-.splash_text_sc1_id {
-    background-image: url("splash_text_sc1_id.webp");
-}
-
-.splash_text_sc1_zh_cn {
-    background-image: url("splash_text_sc1_zh_cn.webp");
-}
-
-.splash_text_sc1_zh_tw {
-    background-image: url("splash_text_sc1_zh_tw.webp");
-}
-
-.splash_text_sc2_vi {
-    background-image: url("splash_text_sc2_vi.webp");
-}
-
-.splash_text_sc2_en {
-    background-image: url("splash_text_sc2_en.webp");
-}
-
-.splash_text_sc2_th {
-    background-image: url("splash_text_sc2_th.webp");
-}
-
-.splash_text_sc2_id {
-    background-image: url("splash_text_sc2_id.webp");
-}
-
-.splash_text_sc2_zh_cn {
-    background-image: url("splash_text_sc2_zh_cn.webp");
-}
-
-.splash_text_sc2_zh_tw {
-    background-image: url("splash_text_sc2_zh_tw.webp");
-}
-
-.splash_powered_sc2_vi {
-    background-image: url("powered_by_sc2_vi.webp");
-}
-
-.splash_powered_sc2_en {
-    background-image: url("powered_by_sc2_en.webp");
-}
-
-.splash_powered_sc2_th {
-    background-image: url("powered_by_sc2_th.webp");
-}
-
-.splash_powered_sc2_id {
-    background-image: url("powered_by_sc2_id.webp");
-}
-
-.splash_powered_sc2_zh_cn {
-    background-image: url("powered_by_sc2_zh_cn.webp");
-}
-
-.splash_powered_sc2_zh_tw {
-    background-image: url("powered_by_sc2_zh_tw.webp");
 }
 
 .loading_icon {
@@ -403,10 +320,10 @@ p.footer {
 
 #powered-by.powered-by_tip88 {
     width: 100%;
-    height: 4.8vh;
-    bottom: 10.8vh;
+    height: 4.85vh;
+    top: 84.4vh;
     background: no-repeat center;
-    background-size: auto 4.8vh;
+    background-size: auto 4.85vh;
 }
 
 
@@ -535,9 +452,10 @@ p.footer {
     }
 
     .splash_tip88 {
-        top: 25.9vw;
-        background-size: auto 24.04vw;
-        height: 24.04vw;
+        top: 25.85vw;
+        background-size: auto 24.06vw;
+        height: 24.06vw;
+        left: -1px;
     }
 
     .splash_text_tip88 {
@@ -595,13 +513,13 @@ p.footer {
     }
 
     #powered-by.powered-by_tip88 {
-        height: 4.8vw;
-        bottom: 10.8vw;
-        background-size: auto 4.8vw;
+        height: 4.85vw;
+        top: 84.4vw;
+        background-size: auto 4.85vw;
     }
 
     .waiting-message {
-        bottom: 91.9vw;
+        top: 91.9vw;
         font-size: 2.65vw;
     }
 }

@@ -195,7 +195,6 @@ export default class BaseMicrositeGame extends cc.Component {
             return;
         }
         const session: any = SessionManager.getSession() || {};
-        console.log("current session ", JSON.stringify(session));
         session.ss = params.session;
         session.isAuthenticated = params.isAuthenticated ?? false;
         session.memberName = params.memberName;
@@ -203,7 +202,6 @@ export default class BaseMicrositeGame extends cc.Component {
         session.language = params.language;
         session.system = params.system;
         session.time = params.ssoTime;
-        console.log("sync session --------------- ", JSON.stringify(session));
         SessionManager.storeSessionData(session);
     }
 

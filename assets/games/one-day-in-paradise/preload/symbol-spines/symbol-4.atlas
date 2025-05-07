@@ -1,188 +1,349 @@
 
-exportAtlas.webp
-size: 2048,1024
+exportAtlas.png
+size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-coin-chain
+OpticalFlares
   rotate: false
-  xy: 1094, 854
-  size: 69, 90
-  orig: 69, 90
+  xy: 179, 264
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-light
-  rotate: false
-  xy: 181, 665
-  size: 175, 147
-  orig: 175, 147
-  offset: 0, 0
-  index: -1
-background/bg1
-  rotate: false
-  xy: 893, 814
-  size: 88, 88
-  orig: 88, 88
-  offset: 0, 0
-  index: -1
-background/bg2
-  rotate: false
-  xy: 611, 687
-  size: 88, 88
-  orig: 88, 88
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-00
-  rotate: false
-  xy: 1103, 507
-  size: 40, 50
-  orig: 40, 50
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-01
+WaterDrop_single
   rotate: true
-  xy: 1462, 895
-  size: 68, 75
-  orig: 68, 75
+  xy: 1258, 2
+  size: 31, 61
+  orig: 31, 61
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-02
+WaterSplash-1
   rotate: false
-  xy: 1148, 512
-  size: 75, 87
-  orig: 75, 87
+  xy: 632, 345
+  size: 1288, 1637
+  orig: 1288, 1637
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-03
+WaterSplash-2
   rotate: false
-  xy: 89, 926
-  size: 80, 90
-  orig: 80, 90
+  xy: 4, 956
+  size: 1913, 956
+  orig: 1913, 956
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-04
+WaterSplash-3
+  rotate: false
+  xy: 43, 105
+  size: 1918, 1672
+  orig: 1918, 1672
+  offset: 0, 0
+  index: -1
+circle
+  rotate: false
+  xy: 17, 747
+  size: 116, 116
+  orig: 116, 116
+  offset: 0, 0
+  index: -1
+s4_Surfboard
   rotate: true
-  xy: 249, 3
-  size: 720, 1333
-  orig: 720, 1333
+  xy: 776, 1536
+  size: 73, 97
+  orig: 73, 97
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-05
-  rotate: false
-  xy: 281, 99
-  size: 1618, 918
-  orig: 1618, 918
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-06
-  rotate: false
-  xy: 2, 56
-  size: 1932, 837
-  orig: 1932, 837
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-07
-  rotate: false
-  xy: 3, 21
-  size: 1930, 987
-  orig: 1930, 987
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-08
-  rotate: false
-  xy: 332, 264
-  size: 1469, 526
-  orig: 1469, 526
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-09
-  rotate: false
-  xy: 2, 2
-  size: 1925, 1015
-  orig: 1925, 1015
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-10
+s4_Surfboard_glow
   rotate: true
-  xy: 2, 322
-  size: 626, 1919
-  orig: 626, 1919
+  xy: 1628, 309
+  size: 69, 92
+  orig: 69, 92
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-11
+WaterDrop/WaterDrop_01
   rotate: true
-  xy: 139, 2
-  size: 1019, 1795
-  orig: 1019, 1795
+  xy: 268, 615
+  size: 15, 12
+  orig: 15, 12
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-12
+WaterDrop/WaterDrop_02
   rotate: true
-  xy: 2, 2
-  size: 1012, 1925
-  orig: 1012, 1925
+  xy: 118, 653
+  size: 1133, 742
+  orig: 1133, 742
   offset: 0, 0
   index: -1
-VFX-explose 1/vfx-s0-13
-  rotate: true
-  xy: 257, 2
-  size: 667, 1548
-  orig: 667, 1548
-  offset: 0, 0
-  index: -1
-VFX-explose 1/vfx-s0-14
-  rotate: true
-  xy: 140, 2
-  size: 597, 1296
-  orig: 597, 1296
-  offset: 0, 0
-  index: -1
-VFX-star/explosion-star-01
-  rotate: true
-  xy: 1692, 729
-  size: 63, 64
-  orig: 63, 64
-  offset: 0, 0
-  index: -1
-VFX-star/explosion-star-02
+WaterDrop/WaterDrop_03
   rotate: false
-  xy: 1655, 309
-  size: 67, 67
-  orig: 67, 67
+  xy: 378, 20
+  size: 1609, 1130
+  orig: 1609, 1130
   offset: 0, 0
   index: -1
-VFX-star/explosion-star-03
+WaterDrop/WaterDrop_04
   rotate: false
-  xy: 1542, 833
-  size: 70, 69
-  orig: 70, 69
+  xy: 2, 412
+  size: 1985, 1537
+  orig: 1985, 1537
   offset: 0, 0
   index: -1
-VFX-star/explosion-star-04
+WaterDrop/WaterDrop_05
+  rotate: false
+  xy: 2, 307
+  size: 1640, 1640
+  orig: 1640, 1640
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_06
+  rotate: false
+  xy: 43, 241
+  size: 1918, 1735
+  orig: 1918, 1735
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_07
+  rotate: false
+  xy: 2, 144
+  size: 1959, 1808
+  orig: 1959, 1808
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_08
   rotate: true
-  xy: 269, 147
-  size: 236, 1235
-  orig: 236, 1235
+  xy: 389, 121
+  size: 1852, 1553
+  orig: 1852, 1553
   offset: 0, 0
   index: -1
-VFX-star/explosion-star-05
+WaterDrop/WaterDrop_09
   rotate: false
-  xy: 1355, 665
-  size: 90, 85
-  orig: 90, 85
+  xy: 43, 29
+  size: 1935, 1952
+  orig: 1935, 1952
   offset: 0, 0
   index: -1
-VFX-star/explosion-star-06
-  rotate: false
-  xy: 138, 705
-  size: 1227, 113
-  orig: 1227, 113
-  offset: 0, 0
-  index: -1
-VFX-star/explosion-star-07
+WaterDrop/WaterDrop_10
   rotate: true
-  xy: 2, 2
-  size: 586, 1800
-  orig: 586, 1800
+  xy: 2, 9
+  size: 1969, 1950
+  orig: 1969, 1950
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_11
+  rotate: true
+  xy: 2, 99
+  size: 1879, 1978
+  orig: 1879, 1978
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_12
+  rotate: true
+  xy: 23, 390
+  size: 1591, 1929
+  orig: 1591, 1929
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_13
+  rotate: true
+  xy: 2, 30
+  size: 1951, 1969
+  orig: 1951, 1969
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_14
+  rotate: false
+  xy: 532, 26
+  size: 1419, 1955
+  orig: 1419, 1955
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_15
+  rotate: false
+  xy: 842, 1024
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_09
+  rotate: true
+  xy: 13, 379
+  size: 1595, 1956
+  orig: 1595, 1956
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_10
+  rotate: true
+  xy: 360, 160
+  size: 1822, 1619
+  orig: 1822, 1619
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_11
+  rotate: true
+  xy: 2, 219
+  size: 1751, 1985
+  orig: 1751, 1985
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_12
+  rotate: true
+  xy: 129, 2
+  size: 1950, 1847
+  orig: 1950, 1847
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_13
+  rotate: true
+  xy: 75, 177
+  size: 1791, 1903
+  orig: 1791, 1903
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_14
+  rotate: true
+  xy: 504, 157
+  size: 1746, 1135
+  orig: 1746, 1135
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_15
+  rotate: true
+  xy: 203, 8
+  size: 977, 447
+  orig: 977, 447
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_16
+  rotate: true
+  xy: 41, 2
+  size: 1882, 1846
+  orig: 1882, 1846
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_17
+  rotate: false
+  xy: 172, 368
+  size: 1715, 1514
+  orig: 1715, 1514
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_18
+  rotate: false
+  xy: 505, 177
+  size: 1204, 1801
+  orig: 1204, 1801
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_19
+  rotate: false
+  xy: 223, 578
+  size: 1668, 1293
+  orig: 1668, 1293
+  offset: 0, 0
+  index: -1
+particle/particle_01
+  rotate: false
+  xy: 1491, 945
+  size: 14, 12
+  orig: 14, 12
+  offset: 0, 0
+  index: -1
+particle/particle_02
+  rotate: false
+  xy: 775, 561
+  size: 27, 24
+  orig: 27, 24
+  offset: 0, 0
+  index: -1
+particle/particle_03
+  rotate: false
+  xy: 347, 280
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+particle/particle_04
+  rotate: false
+  xy: 1049, 47
+  size: 52, 50
+  orig: 52, 50
+  offset: 0, 0
+  index: -1
+particle/particle_05
+  rotate: false
+  xy: 150, 1156
+  size: 1115, 775
+  orig: 1115, 775
+  offset: 0, 0
+  index: -1
+particle/particle_06
+  rotate: true
+  xy: 282, 6
+  size: 1951, 1657
+  orig: 1951, 1657
+  offset: 0, 0
+  index: -1
+particle/particle_07
+  rotate: true
+  xy: 29, 153
+  size: 1813, 1903
+  orig: 1813, 1903
+  offset: 0, 0
+  index: -1
+particle/particle_08
+  rotate: true
+  xy: 361, 2
+  size: 1953, 1565
+  orig: 1953, 1565
+  offset: 0, 0
+  index: -1
+particle/particle_09
+  rotate: false
+  xy: 2, 104
+  size: 1929, 1861
+  orig: 1929, 1861
+  offset: 0, 0
+  index: -1
+particle/particle_10
+  rotate: false
+  xy: 48, 429
+  size: 1921, 1537
+  orig: 1921, 1537
+  offset: 0, 0
+  index: -1
+particle/particle_11
+  rotate: false
+  xy: 25, 2
+  size: 1946, 1969
+  orig: 1946, 1969
+  offset: 0, 0
+  index: -1
+particle/particle_12
+  rotate: true
+  xy: 145, 67
+  size: 1916, 1834
+  orig: 1916, 1834
+  offset: 0, 0
+  index: -1
+particle/particle_13
+  rotate: false
+  xy: 55, 26
+  size: 1932, 1944
+  orig: 1932, 1944
+  offset: 0, 0
+  index: -1
+particle/particle_14
+  rotate: false
+  xy: 2, 49
+  size: 1985, 1934
+  orig: 1985, 1934
+  offset: 0, 0
+  index: -1
+particle/particle_15
+  rotate: false
+  xy: 138, 2
+  size: 752, 1102
+  orig: 752, 1102
   offset: 0, 0
   index: -1

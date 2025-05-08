@@ -142,7 +142,7 @@ export default class SkeletonIcon extends cc.Component {
         const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
         const versions = await GameUtils.getRemoteVersion(id);
         const versionType = versions?.icon;
-        const resName = `label-${labelGameType.type}-${window.i18n.curLang}.png?v=${versionType}`;
+        const resName = `${labelGameType.type}-label-${window.i18n.curLang}.png?v=${versionType}`;
         const url = `${host}/${resName}`;
         console.log("url image icon", url);
         const data = await GameUtils.loadRemote<cc.SpriteFrame>(url);

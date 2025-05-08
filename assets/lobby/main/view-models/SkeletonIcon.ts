@@ -139,6 +139,7 @@ export default class SkeletonIcon extends cc.Component {
         const labelPrefabName = `label-${labelGameType.type}`;
         const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/${labelPrefabName}`);
         const labelNode = cc.instantiate(prefab);
+        console.log("sprite----------", labelNode.getComponent(cc.Sprite));
         const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
         const versions = await GameUtils.getRemoteVersion(id);
         const versionType = versions?.icon;
@@ -146,8 +147,10 @@ export default class SkeletonIcon extends cc.Component {
         const url = `${host}/${resName}`;
         console.log("url image icon", url);
         const data = await GameUtils.loadRemote<cc.SpriteFrame>(url);
+        console.log("data spite -------", data);
         labelNode.getComponent(cc.Sprite).spriteFrame = data;
         node?.addChild(labelNode);
+        console.log("label node------", labelNode);
         labelNode.position = labelNode.position.add(cc.v3(labelGameType.x, labelGameType.y));
     }
 

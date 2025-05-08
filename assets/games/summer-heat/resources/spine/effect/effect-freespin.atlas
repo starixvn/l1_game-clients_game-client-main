@@ -1,244 +1,139 @@
 
-effect-freespin.png
-size: 715,523
+effect-freespin.webp
+size: 1588,786
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-cocktail
+bg-magic
+  rotate: true
+  xy: 1344, 275
+  size: 257, 161
+  orig: 259, 261
+  offset: 2, 51
+  index: -1
+flare
+  rotate: true
+  xy: 2, 2
+  size: 29, 33
+  orig: 99, 98
+  offset: 35, 36
+  index: -1
+symbol/speed00
   rotate: false
-  xy: 2, 179
-  size: 267, 342
-  orig: 267, 342
+  xy: 328, 534
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-flare1
+symbol/speed02
   rotate: false
-  xy: 2, 6
-  size: 14, 14
-  orig: 20, 22
-  offset: 3, 4
-  index: -1
-flare2
-  rotate: false
-  xy: 676, 489
-  size: 32, 32
-  orig: 40, 40
-  offset: 3, 4
-  index: -1
-free
-  rotate: false
-  xy: 271, 330
-  size: 321, 191
-  orig: 322, 193
-  offset: 0, 2
-  index: -1
-heart-effect/heart00
-  rotate: false
-  xy: 271, 248
-  size: 80, 80
-  orig: 80, 80
+  xy: 336, 282
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart01
+symbol/speed04
   rotate: false
-  xy: 594, 441
-  size: 80, 80
-  orig: 80, 80
+  xy: 580, 534
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart02
+symbol/speed06
   rotate: false
-  xy: 141, 97
-  size: 80, 80
-  orig: 80, 80
+  xy: 336, 30
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart03
+symbol/speed08
   rotate: false
-  xy: 353, 248
-  size: 80, 80
-  orig: 80, 80
+  xy: 588, 282
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart04
+symbol/speed10
   rotate: false
-  xy: 594, 359
-  size: 80, 80
-  orig: 80, 80
+  xy: 832, 534
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart05
+symbol/speed12
   rotate: false
-  xy: 435, 248
-  size: 80, 80
-  orig: 80, 80
+  xy: 588, 30
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart06
+symbol/speed14
   rotate: false
-  xy: 435, 248
-  size: 80, 80
-  orig: 80, 80
+  xy: 1084, 534
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart07
+symbol/speed16
   rotate: false
-  xy: 517, 248
-  size: 80, 80
-  orig: 80, 80
+  xy: 1336, 534
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart08
+symbol/speed18
   rotate: false
-  xy: 141, 15
-  size: 80, 80
-  orig: 80, 80
+  xy: 840, 282
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart09
+symbol/speed20
   rotate: false
-  xy: 271, 166
-  size: 80, 80
-  orig: 80, 80
+  xy: 840, 30
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart10
+symbol/speed22
   rotate: false
-  xy: 353, 166
-  size: 80, 80
-  orig: 80, 80
+  xy: 1092, 282
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart11
+symbol/speed24
   rotate: false
-  xy: 353, 166
-  size: 80, 80
-  orig: 80, 80
+  xy: 1092, 30
+  size: 250, 250
+  orig: 250, 250
   offset: 0, 0
   index: -1
-heart-effect/heart12
+symbol/symbol-00
   rotate: false
-  xy: 435, 166
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
+  xy: 2, 445
+  size: 324, 339
+  orig: 420, 358
+  offset: 48, 16
   index: -1
-heart-effect/heart13
+symbol/symbol-01
   rotate: false
-  xy: 517, 166
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
+  xy: 2, 445
+  size: 324, 339
+  orig: 420, 358
+  offset: 48, 16
   index: -1
-heart-effect/heart14
-  rotate: false
-  xy: 599, 277
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
+text_bonus
+  rotate: true
+  xy: 2, 33
+  size: 410, 165
+  orig: 500, 193
+  offset: 45, 20
   index: -1
-heart-effect/heart15
-  rotate: false
-  xy: 599, 195
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart16
-  rotate: false
-  xy: 223, 84
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart17
-  rotate: false
-  xy: 223, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart18
-  rotate: false
-  xy: 305, 84
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart19
-  rotate: false
-  xy: 305, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart20
-  rotate: false
-  xy: 387, 84
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart21
-  rotate: false
-  xy: 387, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart22
-  rotate: false
-  xy: 469, 84
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart23
-  rotate: false
-  xy: 469, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart24
-  rotate: false
-  xy: 551, 84
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart25
-  rotate: false
-  xy: 551, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart26
-  rotate: false
-  xy: 551, 2
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart27
-  rotate: false
-  xy: 633, 113
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-heart-effect/heart28
-  rotate: false
-  xy: 633, 31
-  size: 80, 80
-  orig: 80, 80
-  offset: 0, 0
-  index: -1
-leaf
-  rotate: false
-  xy: 2, 22
-  size: 137, 155
-  orig: 137, 155
-  offset: 0, 0
+text_bonus-glitch
+  rotate: true
+  xy: 169, 33
+  size: 410, 165
+  orig: 500, 193
+  offset: 45, 14
   index: -1

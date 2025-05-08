@@ -1,41 +1,34 @@
 
 transition.png
-size: 1122,495
+size: 715,715
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-images/cloud 1
+Smoke
   rotate: false
-  xy: 2, 2
-  size: 445, 239
-  orig: 582, 314
-  offset: 76, 40
+  xy: 2, 305
+  size: 598, 408
+  orig: 602, 411
+  offset: 2, 1
   index: -1
-images/cloud 2
+Stone Box
   rotate: false
-  xy: 528, 8
-  size: 467, 250
-  orig: 582, 314
-  offset: 84, 23
+  xy: 2, 116
+  size: 410, 187
+  orig: 412, 189
+  offset: 1, 1
   index: -1
-images/cloud 3
-  rotate: false
-  xy: 528, 260
-  size: 475, 233
-  orig: 582, 314
-  offset: 58, 31
-  index: -1
-images/cloud 4
-  rotate: false
-  xy: 2, 243
-  size: 524, 250
-  orig: 582, 314
-  offset: 44, 23
-  index: -1
-images/highlight
+Stone Top
   rotate: true
-  xy: 1005, 195
-  size: 298, 115
-  orig: 316, 129
-  offset: 9, 8
+  xy: 602, 312
+  size: 401, 111
+  orig: 403, 113
+  offset: 1, 1
+  index: -1
+dust
+  rotate: true
+  xy: 414, 88
+  size: 215, 239
+  orig: 251, 288
+  offset: 30, 1
   index: -1

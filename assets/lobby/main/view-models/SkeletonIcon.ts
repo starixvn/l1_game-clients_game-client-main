@@ -23,6 +23,7 @@ interface RemoteIconConfig {
     gameNotification?: GameNotificationConfig;
     premultipliedAlpha: boolean;
     useWebp: boolean;
+    labelGameType?: GameNotificationConfig;
 }
 
 @ccclass
@@ -124,11 +125,30 @@ export default class SkeletonIcon extends cc.Component {
             if (iconConfig?.gameNotification) {
                 await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
+            if (iconConfig?.labelGameType) {
+                await this.addLabelGameTypeComponent(node, id, iconConfig?.labelGameType);
+            }
         } catch (error) {
             cc.log(error);
             return null;
         }
         return node;
+    }
+
+    protected async addLabelGameTypeComponent(node: cc.Node, id: number, labelGameType: GameNotificationConfig) {
+        const labelPrefabName = `label-${labelGameType.type}`;
+        const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/${labelPrefabName}`);
+        const labelNode = cc.instantiate(prefab);
+        const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
+        const versions = await GameUtils.getRemoteVersion(id);
+        const versionType = versions?.icon;
+        const resName = `label-${labelGameType.type}-${window.i18n.curLang}.png?v=${versionType}`;
+        const url = `${host}/${resName}`;
+        console.log("url image icon", url);
+        const data = await GameUtils.loadRemote<cc.SpriteFrame>(url);
+        labelNode.getComponent(cc.Sprite).spriteFrame = data;
+        node?.addChild(labelNode);
+        labelNode.position = labelNode.position.add(cc.v3(labelGameType.x, labelGameType.y));
     }
 
     protected async addGameNotificationComponent(node: cc.Node, id: number, gameNotification: GameNotificationConfig) {

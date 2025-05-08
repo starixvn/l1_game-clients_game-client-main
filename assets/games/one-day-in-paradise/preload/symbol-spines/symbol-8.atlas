@@ -6,37 +6,37 @@ filter: Linear,Linear
 repeat: none
 OpticalFlares
   rotate: false
-  xy: 261, 154
+  xy: 2, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 WaterDrop_single
-  rotate: false
-  xy: 6, 1821
-  size: 32, 61
-  orig: 32, 61
+  rotate: true
+  xy: 557, 1110
+  size: 31, 61
+  orig: 31, 61
   offset: 0, 0
   index: -1
 WaterSplash-1
   rotate: false
-  xy: 389, 207
-  size: 1598, 1741
-  orig: 1598, 1741
+  xy: 75, 4
+  size: 1908, 1864
+  orig: 1908, 1864
   offset: 0, 0
   index: -1
 WaterSplash-2
-  rotate: true
-  xy: 97, 698
-  size: 967, 1813
-  orig: 967, 1813
+  rotate: false
+  xy: 770, 367
+  size: 957, 1439
+  orig: 957, 1439
   offset: 0, 0
   index: -1
 WaterSplash-3
   rotate: true
-  xy: 67, 322
-  size: 1643, 1863
-  orig: 1643, 1863
+  xy: 104, 116
+  size: 1798, 1853
+  orig: 1798, 1853
   offset: 0, 0
   index: -1
 bg
@@ -48,7 +48,7 @@ bg
   index: -1
 circle
   rotate: false
-  xy: 563, 581
+  xy: 715, 198
   size: 116, 116
   orig: 116, 116
   offset: 0, 0
@@ -67,191 +67,9 @@ s8_Aiko_glow
   orig: 110, 110
   offset: 0, 0
   index: -1
-WaterDrop/WaterDrop_01
-  rotate: true
-  xy: 546, 858
-  size: 15, 12
-  orig: 15, 12
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_02
-  rotate: true
-  xy: 222, 1089
-  size: 191, 1177
-  orig: 191, 1177
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_03
-  rotate: false
-  xy: 246, 563
-  size: 1740, 1402
-  orig: 1740, 1402
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_04
-  rotate: false
-  xy: 919, 226
-  size: 1068, 1725
-  orig: 1068, 1725
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_05
-  rotate: false
-  xy: 2, 913
-  size: 1949, 1058
-  orig: 1949, 1058
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_06
-  rotate: false
-  xy: 204, 140
-  size: 1776, 1830
-  orig: 1776, 1830
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_07
-  rotate: false
-  xy: 50, 215
-  size: 1902, 1751
-  orig: 1902, 1751
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_08
-  rotate: true
-  xy: 112, 467
-  size: 1502, 1868
-  orig: 1502, 1868
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_09
-  rotate: false
-  xy: 2, 44
-  size: 1977, 1940
-  orig: 1977, 1940
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_10
-  rotate: true
-  xy: 123, 2
-  size: 1982, 1857
-  orig: 1982, 1857
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_11
-  rotate: true
-  xy: 147, 2
-  size: 1979, 1823
-  orig: 1979, 1823
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_12
-  rotate: true
-  xy: 205, 128
-  size: 1853, 1737
-  orig: 1853, 1737
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_13
-  rotate: true
-  xy: 2, 261
-  size: 1716, 1969
-  orig: 1716, 1969
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_14
-  rotate: false
-  xy: 14, 33
-  size: 1928, 1948
-  orig: 1928, 1948
-  offset: 0, 0
-  index: -1
-WaterDrop/WaterDrop_15
-  rotate: false
-  xy: 1593, 153
-  size: 3, 3
-  orig: 3, 3
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_09
-  rotate: true
-  xy: 186, 538
-  size: 1429, 1784
-  orig: 1429, 1784
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_10
-  rotate: true
-  xy: 63, 188
-  size: 1793, 1917
-  orig: 1793, 1917
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_11
-  rotate: true
-  xy: 289, 139
-  size: 1842, 1679
-  orig: 1842, 1679
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_12
-  rotate: true
-  xy: 181, 2
-  size: 1945, 1785
-  orig: 1945, 1785
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_13
-  rotate: true
-  xy: 799, 172
-  size: 1749, 1178
-  orig: 1749, 1178
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_14
-  rotate: true
-  xy: 309, 730
-  size: 1044, 1629
-  orig: 1044, 1629
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_15
-  rotate: true
-  xy: 487, 452
-  size: 337, 190
-  orig: 337, 190
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_16
-  rotate: true
-  xy: 305, 871
-  size: 705, 1577
-  orig: 705, 1577
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_17
-  rotate: false
-  xy: 74, 1103
-  size: 1432, 782
-  orig: 1432, 782
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_18
-  rotate: false
-  xy: 343, 318
-  size: 1545, 1666
-  orig: 1545, 1666
-  offset: 0, 0
-  index: -1
-WaterSplash-4/WaterSplash-4_19
-  rotate: false
-  xy: 2, 3
-  size: 1893, 1872
-  orig: 1893, 1872
-  offset: 0, 0
-  index: -1
 particle/particle_01
   rotate: false
-  xy: 544, 1313
+  xy: 1534, 2
   size: 14, 12
   orig: 14, 12
   offset: 0, 0
@@ -265,92 +83,274 @@ particle/particle_02
   index: -1
 particle/particle_03
   rotate: false
-  xy: 375, 647
+  xy: 186, 902
   size: 39, 38
   orig: 39, 38
   offset: 0, 0
   index: -1
 particle/particle_04
   rotate: false
-  xy: 1001, 991
+  xy: 969, 765
   size: 52, 50
   orig: 52, 50
   offset: 0, 0
   index: -1
 particle/particle_05
   rotate: false
-  xy: 300, 138
-  size: 981, 1790
-  orig: 981, 1790
+  xy: 309, 714
+  size: 1539, 476
+  orig: 1539, 476
   offset: 0, 0
   index: -1
 particle/particle_06
   rotate: true
-  xy: 46, 247
-  size: 1695, 1896
-  orig: 1695, 1896
+  xy: 4, 63
+  size: 1893, 1934
+  orig: 1893, 1934
   offset: 0, 0
   index: -1
 particle/particle_07
   rotate: true
-  xy: 360, 2
-  size: 1943, 1551
-  orig: 1943, 1551
+  xy: 19, 252
+  size: 1653, 1896
+  orig: 1653, 1896
   offset: 0, 0
   index: -1
 particle/particle_08
   rotate: true
-  xy: 347, 2
-  size: 1964, 1551
-  orig: 1964, 1551
+  xy: 77, 106
+  size: 1839, 1881
+  orig: 1839, 1881
   offset: 0, 0
   index: -1
 particle/particle_09
   rotate: false
-  xy: 82, 82
-  size: 1860, 1883
-  orig: 1860, 1883
+  xy: 43, 2
+  size: 1924, 1953
+  orig: 1924, 1953
   offset: 0, 0
   index: -1
 particle/particle_10
   rotate: false
-  xy: 43, 57
-  size: 1888, 1917
-  orig: 1888, 1917
+  xy: 2, 2
+  size: 1925, 1962
+  orig: 1925, 1962
   offset: 0, 0
   index: -1
 particle/particle_11
   rotate: false
-  xy: 77, 2
-  size: 1854, 1972
-  orig: 1854, 1972
+  xy: 10, 33
+  size: 1957, 1933
+  orig: 1957, 1933
   offset: 0, 0
   index: -1
 particle/particle_12
   rotate: true
-  xy: 49, 84
-  size: 1891, 1928
-  orig: 1891, 1928
+  xy: 111, 94
+  size: 1874, 1871
+  orig: 1874, 1871
   offset: 0, 0
   index: -1
 particle/particle_13
   rotate: false
-  xy: 293, 276
-  size: 1694, 1700
-  orig: 1694, 1700
+  xy: 476, 2
+  size: 1507, 1912
+  orig: 1507, 1912
   offset: 0, 0
   index: -1
 particle/particle_14
   rotate: false
-  xy: 195, 187
-  size: 1774, 1795
-  orig: 1774, 1795
+  xy: 2, 2
+  size: 1981, 1962
+  orig: 1981, 1962
   offset: 0, 0
   index: -1
 particle/particle_15
   rotate: false
-  xy: 181, 270
-  size: 932, 831
-  orig: 932, 831
+  xy: 278, 21
+  size: 899, 602
+  orig: 899, 602
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_01
+  rotate: true
+  xy: 440, 801
+  size: 15, 12
+  orig: 15, 12
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_02
+  rotate: true
+  xy: 419, 677
+  size: 1230, 185
+  orig: 1230, 185
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_03
+  rotate: false
+  xy: 2, 2
+  size: 1981, 1959
+  orig: 1981, 1959
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_04
+  rotate: false
+  xy: 255, 523
+  size: 1726, 1427
+  orig: 1726, 1427
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_05
+  rotate: false
+  xy: 65, 68
+  size: 1879, 1880
+  orig: 1879, 1880
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_06
+  rotate: false
+  xy: 221, 2
+  size: 1737, 1881
+  orig: 1737, 1881
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_07
+  rotate: false
+  xy: 228, 2
+  size: 1748, 1959
+  orig: 1748, 1959
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_08
+  rotate: true
+  xy: 2, 88
+  size: 1887, 1946
+  orig: 1887, 1946
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_09
+  rotate: false
+  xy: 32, 2
+  size: 1951, 1955
+  orig: 1951, 1955
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_10
+  rotate: true
+  xy: 62, 2
+  size: 1959, 1921
+  orig: 1959, 1921
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_11
+  rotate: true
+  xy: 112, 372
+  size: 1601, 1869
+  orig: 1601, 1869
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_12
+  rotate: true
+  xy: 137, 2
+  size: 1942, 1846
+  orig: 1942, 1846
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_13
+  rotate: true
+  xy: 131, 367
+  size: 1606, 1852
+  orig: 1606, 1852
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_14
+  rotate: false
+  xy: 71, 2
+  size: 1912, 1935
+  orig: 1912, 1935
+  offset: 0, 0
+  index: -1
+WaterDrop/WaterDrop_15
+  rotate: false
+  xy: 505, 1746
+  size: 3, 3
+  orig: 3, 3
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_09
+  rotate: true
+  xy: 48, 84
+  size: 1889, 1900
+  orig: 1889, 1900
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_10
+  rotate: true
+  xy: 380, 46
+  size: 1927, 1603
+  orig: 1927, 1603
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_11
+  rotate: true
+  xy: 63, 86
+  size: 1889, 1920
+  orig: 1889, 1920
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_12
+  rotate: true
+  xy: 26, 126
+  size: 1855, 1941
+  orig: 1855, 1941
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_13
+  rotate: true
+  xy: 746, 2
+  size: 1979, 1078
+  orig: 1979, 1078
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_14
+  rotate: true
+  xy: 187, 282
+  size: 855, 1721
+  orig: 855, 1721
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_15
+  rotate: true
+  xy: 30, 8
+  size: 501, 620
+  orig: 501, 620
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_16
+  rotate: true
+  xy: 584, 577
+  size: 1320, 984
+  orig: 1320, 984
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_17
+  rotate: false
+  xy: 352, 306
+  size: 1532, 1560
+  orig: 1532, 1560
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_18
+  rotate: false
+  xy: 803, 291
+  size: 857, 1687
+  orig: 857, 1687
+  offset: 0, 0
+  index: -1
+WaterSplash-4/WaterSplash-4_19
+  rotate: false
+  xy: 113, 200
+  size: 1740, 1403
+  orig: 1740, 1403
   offset: 0, 0
   index: -1

@@ -1302,8 +1302,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 796,
-      "height": 1582.32
+      "width": 302.54,
+      "height": 601.37
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1314,15 +1314,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -529.414,
-        -79.802,
+        -498.319,
+        -76.299,
         0,
         0,
         0,
         0,
         1,
-        0.35,
-        0.35,
+        1,
+        1,
         1
       ]
     },
@@ -2650,7 +2650,7 @@
       "ctor": "Float64Array",
       "array": [
         -247.216,
-        361.96,
+        355.96,
         0,
         0,
         0,
@@ -2708,7 +2708,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        361.96,
+        355.96,
         0,
         0,
         0,
@@ -3237,8 +3237,8 @@
       }
     ],
     "paused": false,
-    "defaultSkin": "default",
-    "defaultAnimation": "idle",
+    "defaultSkin": "",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": true,
@@ -3249,7 +3249,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "hover",
+    "_animationName": "idle",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
@@ -4276,6 +4276,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "26a316dd-5027-4112-9304-0424817e4739"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -4820,6 +4823,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "f8d127aa-40d0-4465-bc18-eba7c7702d76"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,

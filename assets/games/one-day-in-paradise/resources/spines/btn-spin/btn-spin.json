@@ -1,21 +1,21 @@
 {
-"skeleton": { "hash": "8dIFqQdIPE2Sts9z0dpJmvDFucU", "spine": "3.8.99", "x": -125, "y": -125, "width": 250, "height": 250 },
+"skeleton": { "hash": "HnVjEeMfGBv+vGKNfgILSeFMjh8", "spine": "3.8.99", "images": "./images/", "audio": "" },
 "bones": [
 	{ "name": "root" },
-	{ "name": "arrow", "parent": "root" },
-	{ "name": "Swimming_ring", "parent": "root", "length": 1 },
-	{ "name": "hover_glow", "parent": "root" }
+	{ "name": "arrow", "parent": "root", "color": "ff00f6ff" },
+	{ "name": "Swimming_ring", "parent": "root", "length": 1, "color": "00ff5cff" },
+	{ "name": "hover_glow", "parent": "root", "color": "f3ff00ff" }
 ],
 "slots": [
-	{ "name": "beach", "bone": "root", "attachment": "beach" },
-	{ "name": "Swimming_ring", "bone": "Swimming_ring", "attachment": "Swimming_ring" },
-	{ "name": "Swimming_ring2", "bone": "Swimming_ring", "color": "ffffff55", "attachment": "Swimming_ring", "blend": "additive" },
-	{ "name": "arrow", "bone": "arrow", "attachment": "arrow" },
-	{ "name": "arrow_blur", "bone": "arrow", "attachment": "arrow_blur" },
-	{ "name": "circle_glow", "bone": "hover_glow", "attachment": "circle_glow", "blend": "additive" },
-	{ "name": "disable", "bone": "root", "attachment": "disable" },
-	{ "name": "particle/particle_00", "bone": "root", "attachment": "particle/particle_15" },
-	{ "name": "water_drop/water_drop_00", "bone": "root", "attachment": "water_drop/water_drop_15", "blend": "additive" },
+	{ "name": "beach", "bone": "root" },
+	{ "name": "Swimming_ring", "bone": "Swimming_ring" },
+	{ "name": "Swimming_ring2", "bone": "Swimming_ring", "color": "ffffff55", "blend": "additive" },
+	{ "name": "arrow", "bone": "arrow" },
+	{ "name": "arrow_blur", "bone": "arrow" },
+	{ "name": "circle_glow", "bone": "hover_glow", "blend": "additive" },
+	{ "name": "disable", "bone": "root" },
+	{ "name": "particle/particle_00", "bone": "root" },
+	{ "name": "water_drop/water_drop_00", "bone": "root", "blend": "additive" },
 	{ "name": "underwater/underwater_00", "bone": "Swimming_ring", "color": "ffffffb2", "blend": "additive" }
 ],
 "skins": [
@@ -117,86 +117,24 @@
 "animations": {
 	"disable": {
 		"slots": {
-			"Swimming_ring": {
+			"disable": {
 				"attachment": [
-					{ "name": null }
-				]
-			},
-			"Swimming_ring2": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow_blur": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"beach": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"circle_glow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"particle/particle_00": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"water_drop/water_drop_00": {
-				"attachment": [
-					{ "name": null }
+					{ "name": "disable" }
 				]
 			}
 		}
 	},
 	"hover": {
 		"slots": {
-			"Swimming_ring": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"Swimming_ring2": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow_blur": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"beach": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
 			"circle_glow": {
 				"color": [
 					{ "color": "ffffff00" },
 					{ "time": 0.3333, "color": "ffffffb3", "curve": "stepped" },
 					{ "time": 0.6667, "color": "ffffffb3" },
 					{ "time": 1, "color": "ffffff00" }
-				]
-			},
-			"disable": {
+				],
 				"attachment": [
-					{ "name": null }
+					{ "name": "circle_glow" }
 				]
 			}
 		},
@@ -211,6 +149,11 @@
 	},
 	"idle": {
 		"slots": {
+			"Swimming_ring": {
+				"attachment": [
+					{ "name": "Swimming_ring" }
+				]
+			},
 			"Swimming_ring2": {
 				"color": [
 					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
@@ -218,21 +161,19 @@
 					{ "time": 2, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
 					{ "time": 3, "color": "ffffff33", "curve": 0.25, "c3": 0.75 },
 					{ "time": 4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "Swimming_ring" }
 				]
 			},
-			"arrow_blur": {
+			"arrow": {
 				"attachment": [
-					{ "name": null }
+					{ "name": "arrow" }
 				]
 			},
-			"circle_glow": {
+			"beach": {
 				"attachment": [
-					{ "name": null }
-				]
-			},
-			"disable": {
-				"attachment": [
-					{ "name": null }
+					{ "name": "beach" }
 				]
 			},
 			"underwater/underwater_00": {
@@ -389,11 +330,6 @@
 	},
 	"spin": {
 		"slots": {
-			"Swimming_ring2": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
 			"arrow": {
 				"color": [
 					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
@@ -408,16 +344,6 @@
 					{ "time": 0.1333, "color": "ffffffff", "curve": "stepped" },
 					{ "time": 0.8667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.9333, "color": "ffffff00" }
-				]
-			},
-			"circle_glow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"disable": {
-				"attachment": [
-					{ "name": null }
 				]
 			},
 			"water_drop/water_drop_00": {
@@ -467,41 +393,6 @@
 	},
 	"spin-extra": {
 		"slots": {
-			"Swimming_ring": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"Swimming_ring2": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"arrow_blur": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"beach": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"circle_glow": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"disable": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
 			"particle/particle_00": {
 				"attachment": [
 					{ "name": "particle/particle_00" },

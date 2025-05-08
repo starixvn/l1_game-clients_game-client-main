@@ -1,111 +1,88 @@
 
-exportAtlas.webp
-size: 2048,1024
+effect-superwin.png
+size: 573,573
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bag
+Stone Board
   rotate: false
-  xy: 947, 435
-  size: 152, 126
-  orig: 152, 126
-  offset: 0, 0
+  xy: 2, 487
+  size: 569, 84
+  orig: 571, 86
+  offset: 1, 1
   index: -1
-board
+Stone Box
   rotate: false
-  xy: 16, 862
-  size: 460, 82
-  orig: 460, 82
-  offset: 0, 0
+  xy: 2, 298
+  size: 410, 187
+  orig: 412, 189
+  offset: 1, 1
   index: -1
-pearlchain
+Stone Cover
+  rotate: false
+  xy: 2, 90
+  size: 401, 93
+  orig: 403, 95
+  offset: 1, 1
+  index: -1
+Stone Top
+  rotate: false
+  xy: 2, 185
+  size: 401, 111
+  orig: 403, 113
+  offset: 0, 1
+  index: -1
+
+effect-superwin2.png
+size: 535,535
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect-coin/circle light
   rotate: true
-  xy: 411, 336
-  size: 103, 62
-  orig: 103, 62
-  offset: 0, 0
+  xy: 2, 140
+  size: 164, 477
+  orig: 166, 479
+  offset: 1, 1
   index: -1
-coin-spin/coin-01
+effect-coin/coin light
   rotate: false
-  xy: 961, 765
-  size: 81, 84
-  orig: 81, 84
-  offset: 0, 0
+  xy: 2, 306
+  size: 510, 227
+  orig: 512, 229
+  offset: 1, 1
   index: -1
-coin-spin/coin-02
+effect-coin/coin sublight
   rotate: false
-  xy: 1008, 325
-  size: 77, 83
-  orig: 77, 83
-  offset: 0, 0
+  xy: 2, 25
+  size: 396, 113
+  orig: 398, 115
+  offset: 1, 1
   index: -1
-coin-spin/coin-03
+effect-coin/point light
   rotate: false
-  xy: 6, 679
-  size: 50, 82
-  orig: 50, 82
-  offset: 0, 0
+  xy: 400, 18
+  size: 133, 120
+  orig: 135, 122
+  offset: 1, 1
   index: -1
-coin-spin/coin-04
+
+effect-superwin3.png
+size: 915,915
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+png/black
   rotate: false
-  xy: 1004, 926
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
+  xy: 2, 362
+  size: 796, 551
+  orig: 802, 559
+  offset: 3, 4
   index: -1
-coin-spin/coin-05
-  rotate: false
-  xy: 7, 229
-  size: 16, 75
-  orig: 16, 75
-  offset: 0, 0
-  index: -1
-coin-spin/coin-06
-  rotate: false
-  xy: 1137, 314
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-08
-  rotate: false
-  xy: 1030, 692
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-09
-  rotate: false
-  xy: 635, 924
-  size: 48, 83
-  orig: 48, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-10
-  rotate: false
-  xy: 873, 761
-  size: 75, 83
-  orig: 75, 83
-  offset: 0, 0
-  index: -1
-light-cloud/circle light
-  rotate: false
-  xy: 394, 8
-  size: 389, 398
-  orig: 389, 398
-  offset: 0, 0
-  index: -1
-light-cloud/cloud
+png/coins
   rotate: true
-  xy: 1092, 88
-  size: 421, 46
-  orig: 421, 46
-  offset: 0, 0
-  index: -1
-light-cloud/highlight
-  rotate: false
-  xy: 703, 341
-  size: 300, 117
-  orig: 300, 117
-  offset: 0, 0
+  xy: 800, 517
+  size: 396, 113
+  orig: 398, 115
+  offset: 1, 1
   index: -1

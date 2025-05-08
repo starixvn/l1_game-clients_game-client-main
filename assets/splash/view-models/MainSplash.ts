@@ -69,21 +69,10 @@ export default class MainSplash extends cc.Component {
 
     protected onLoad(): void {
         this.initUIListeners();
-        //this.setPositionProgressBarAndMessage();
         this.deactivateAllSlogans();
         this.activateSlogan();
     }
 
-    // private setPositionProgressBarAndMessage() {
-    //     const operator = sessionManager.getOperator()?.toUpperCase();
-    //     const spPosition =
-    //         operator === OperatorAlias.TIP88
-    //             ? { progressBar: cc.v2(this.containerProgressBar.x, -242), messageComp: cc.v2(0, -270) }
-    //             : { progressBar: cc.v2(this.containerProgressBar?.x, -307), messageComp: cc.v2(0, -331) };
-
-    //     this.containerProgressBar.setPosition(spPosition.progressBar);
-    //     this.messageComp.node.setPosition(spPosition.messageComp);
-    // }
 
     private deactivateAllSlogans(): void {
         const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88"];

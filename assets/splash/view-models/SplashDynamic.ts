@@ -1,6 +1,5 @@
 import { OperatorAlias } from "../../ISystem";
 import * as sessionManager from "../../common/auth/SessionManager";
-import LocalizedMask from "../../common/i18n/LocalizedMask";
 
 const { ccclass, property } = cc._decorator;
 
@@ -15,11 +14,6 @@ export default class SplashDynamic extends cc.Component {
     @property(cc.Sprite)
     sprTagline: cc.Sprite = null;
 
-    // @property(cc.Node)
-    // nodeLightMask: cc.Node = null;
-
-    // @property(LocalizedMask)
-    // mask: LocalizedMask = null;
 
     @property
     operatorName = "";
@@ -64,30 +58,7 @@ export default class SplashDynamic extends cc.Component {
 
     private async loadTagline() {
         this.sprTagline.spriteFrame = await this.loadTaglineImage();
-        //const widthTagLine = this.sprTagline?.node?.width;
-        // if (this?.mask?.node) {
-        //     this.mask.node.width = widthTagLine;
-        // }
-
-        //this.handleAnimLightMask();
-        //this.schedule(this.handleAnimLightMask, 3);
     }
-
-    // handleAnimLightMask = () => {
-    //     if (this.nodeLightMask) {
-    //         this.nodeLightMask.active = true;
-    //         const widthTagLine = this.sprTagline?.node?.width;
-    //         this.nodeLightMask.x = -(widthTagLine / 2);
-
-    //         cc.tween(this?.nodeLightMask)
-    //             .to(1, { position: cc.v2(widthTagLine / 2, 0) })
-    //             .call(() => {
-    //                 this.nodeLightMask && (this.nodeLightMask.active = false);
-    //             })
-    //             .delay(2)
-    //             .start();
-    //     }
-    // };
 
     private loadTaglineImage() {
         const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";

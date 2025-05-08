@@ -46,6 +46,9 @@ export default class SkeletonIcon extends cc.Component {
     @property(Loading)
     gameLoading: Loading = null;
 
+    @property(cc.Node)
+    lblCascading: cc.Node = null;
+
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
@@ -136,22 +139,39 @@ export default class SkeletonIcon extends cc.Component {
     }
 
     protected async addLabelGameTypeComponent(node: cc.Node, id: number, labelGameType: GameNotificationConfig) {
-        const labelPrefabName = `label-${labelGameType.type}`;
-        const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/${labelPrefabName}`);
-        const labelNode = cc.instantiate(prefab);
-        console.log("sprite----------", labelNode.getComponent(cc.Sprite));
-        const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
-        const versions = await GameUtils.getRemoteVersion(id);
-        const versionType = versions?.icon;
-        const resName = `${labelGameType.type}-label-${window.i18n.curLang}.png?v=${versionType}`;
-        const url = `${host}/${resName}`;
-        console.log("url image icon", url);
-        const data = await GameUtils.loadRemote<cc.SpriteFrame>(url);
-        console.log("data spite -------", data);
-        labelNode.getComponent(cc.Sprite).spriteFrame = data;
-        node?.addChild(labelNode);
-        console.log("label node------", labelNode);
-        labelNode.position = labelNode.position.add(cc.v3(labelGameType.x, labelGameType.y));
+        try {
+            if (!this.lblCascading) {
+                return;
+            }
+
+            this.lblCascading.active = true;
+            const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
+            const versions = await GameUtils.getRemoteVersion(id);
+            const versionType = versions?.icon;
+            const resName = `${labelGameType.type}-label-${window.i18n.curLang}.png?v=${versionType}`;
+            const url = `${host}/${resName}`;
+
+            try {
+                const data = await GameUtils.loadRemote(url);
+                if (data && this.lblCascading && this.lblCascading.isValid) {
+                    const sprite = this.lblCascading.getComponent(cc.Sprite);
+                    if (sprite) {
+                        const spriteFrame = new cc.SpriteFrame();
+                        spriteFrame.setTexture(data as cc.Texture2D);
+                        sprite.spriteFrame = spriteFrame;
+                    }
+                    this.lblCascading.position = cc.v3(labelGameType.x, labelGameType.y);
+                } else {
+                    cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
+                    this.lblCascading.active = false;
+                }
+            } catch (error) {
+                cc.log(error);
+                this.lblCascading.active = false;
+            }
+        } catch (error) {
+            cc.log(error);
+        }
     }
 
     protected async addGameNotificationComponent(node: cc.Node, id: number, gameNotification: GameNotificationConfig) {

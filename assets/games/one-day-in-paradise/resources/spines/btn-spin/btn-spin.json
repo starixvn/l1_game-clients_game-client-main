@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "HnVjEeMfGBv+vGKNfgILSeFMjh8", "spine": "3.8.99", "images": "./images/", "audio": "" },
+"skeleton": { "hash": "UP+FamPG6mNVRx+VeqFm4ehXG4s", "spine": "3.8.99", "images": "./images/", "audio": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "arrow", "parent": "root", "color": "ff00f6ff" },
@@ -330,12 +330,26 @@
 	},
 	"spin": {
 		"slots": {
+			"Swimming_ring": {
+				"attachment": [
+					{ "name": "Swimming_ring" }
+				]
+			},
+			"Swimming_ring2": {
+				"attachment": [
+					{ "name": "Swimming_ring" },
+					{ "time": 0.2333, "name": null }
+				]
+			},
 			"arrow": {
 				"color": [
 					{ "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.1333, "color": "ffffff00", "curve": "stepped" },
 					{ "time": 0.8667, "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.9333, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "arrow" }
 				]
 			},
 			"arrow_blur": {
@@ -344,6 +358,14 @@
 					{ "time": 0.1333, "color": "ffffffff", "curve": "stepped" },
 					{ "time": 0.8667, "color": "ffffffff", "curve": 0.25, "c3": 0.75 },
 					{ "time": 0.9333, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "arrow_blur" }
+				]
+			},
+			"beach": {
+				"attachment": [
+					{ "name": "beach" }
 				]
 			},
 			"water_drop/water_drop_00": {

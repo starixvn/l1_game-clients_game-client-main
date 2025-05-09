@@ -66,13 +66,11 @@ export default class MainSplash extends cc.Component {
 
     private noticePrefab: cc.Prefab = null;
 
-
     protected onLoad(): void {
         this.initUIListeners();
         this.deactivateAllSlogans();
         this.activateSlogan();
     }
-
 
     private deactivateAllSlogans(): void {
         const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88"];
@@ -147,7 +145,7 @@ export default class MainSplash extends cc.Component {
                     uiManager.emitter.emit(InternalEvents.NOTICE, {
                         data,
                         onConfirm: null,
-                        onClose: () => appManager.backToOperatorLobby()
+                        onClose: () => this.canNotOpenGameAtSplash()
                     });
                 }
                 uiManager.isPauseLoadingIcons = false;
@@ -168,12 +166,23 @@ export default class MainSplash extends cc.Component {
                 uiManager.emitter.emit(InternalEvents.NOTICE, {
                     data,
                     onConfirm: null,
-                    onClose: () => appManager.backToOperatorLobby()
+                    onClose: () => this.canNotOpenGameAtSplash()
                 });
                 uiManager.isPauseLoadingIcons = false;
             },
             this
         );
+    }
+
+    canNotOpenGameAtSplash() {
+        appManager.clearSSOGameId();
+        sessionManager.removeInRoomGameId();
+
+        if (appManager.isDirectMode) {
+            appManager.backToOperatorLobby();
+        } else {
+            this.preloadLobbyScene();
+        }
     }
 
     private clearUIListeners() {

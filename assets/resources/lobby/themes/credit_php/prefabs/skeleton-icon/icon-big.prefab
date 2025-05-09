@@ -2395,7 +2395,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "b39df9f2-0089-4890-b8af-586a72c9b2e1"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -2518,7 +2520,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "9d7f0785-c717-43b5-8943-d4c90a7e5c46"
+    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -3169,7 +3173,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "label-cascading",
+    "_name": "label-game-type",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -3631,7 +3635,7 @@
     "gameLoading": {
       "__id__": 91
     },
-    "lblCascading": {
+    "lblGameType": {
       "__id__": 98
     },
     "jackpotPoolInfo": {

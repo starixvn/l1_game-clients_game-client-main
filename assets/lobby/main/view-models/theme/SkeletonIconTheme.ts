@@ -1,10 +1,11 @@
+import GameUtils from "../../../../common/GameUtils";
 import { FormationHandler } from "../../../../common/i18n/FormationHandler";
 import StringUtil from "../../../../common/utils/StringUtil";
 import { uiManager } from "../../../../managers/GameUIManager";
 import { lobbyResourceManager } from "../LobbyResourceManager";
 import GameNotification from "./../GameNotification";
 import JackpotPoolInfo from "./../JackpotPoolInfo";
-import SkeletonIcon from "./../SkeletonIcon";
+import SkeletonIcon, { RemoteIconConfig } from "./../SkeletonIcon";
 import { themeGameIconLoader } from "./GameIconLoader";
 import { themeGameNameManager } from "./GameNameManager";
 
@@ -44,10 +45,31 @@ export default class SkeletonIconTheme extends SkeletonIcon {
             const spriteComponent = this.gameContent.getComponent(cc.Sprite);
             spriteComponent.spriteFrame = spriteFrame;
             this.updateNewTag(id, categoryIndex);
+            this.updateLabelGameType(id);
         }
 
         this.updateJackpotPoolInfo(id);
         this.updateReceiveNotification(id);
+    }
+
+    private async updateLabelGameType(id: number) {
+        try {
+            const configFile = this.micrositeIconCache[id]
+                ? this.micrositeIconCache[id].configFile
+                : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
+
+            this.micrositeIconCache[id] = {
+                ...this.micrositeIconCache[id],
+                configFile
+            };
+            const iconConfig: RemoteIconConfig = configFile?.json;
+            if (iconConfig?.labelGameTypeCreditPHP) {
+                await this.addLabelGameTypeComponent(id, iconConfig?.labelGameTypeCreditPHP, "icon/i18n-images/credit_php");
+            }
+        } catch (error) {
+            cc.log(error);
+            return null;
+        }
     }
 
     private updateReceiveNotification(id: number) {

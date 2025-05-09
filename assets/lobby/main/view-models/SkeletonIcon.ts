@@ -19,11 +19,12 @@ interface GameNotificationConfig {
     x?: number;
     y?: number;
 }
-interface RemoteIconConfig {
+export interface RemoteIconConfig {
     gameNotification?: GameNotificationConfig;
     premultipliedAlpha: boolean;
     useWebp: boolean;
     labelGameType?: GameNotificationConfig;
+    labelGameTypeCreditPHP?: GameNotificationConfig;
 }
 
 @ccclass
@@ -47,7 +48,7 @@ export default class SkeletonIcon extends cc.Component {
     gameLoading: Loading = null;
 
     @property(cc.Node)
-    lblCascading: cc.Node = null;
+    lblGameType: cc.Node = null;
 
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
@@ -59,7 +60,7 @@ export default class SkeletonIcon extends cc.Component {
         this.gameName.node.active = false;
     }
 
-    private readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
+    protected readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
 
     setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
         const transformersGameId = 70;
@@ -129,7 +130,8 @@ export default class SkeletonIcon extends cc.Component {
                 await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
             if (iconConfig?.labelGameType) {
-                await this.addLabelGameTypeComponent(node, id, iconConfig?.labelGameType);
+                const pathImages = "icon/i18n-images";
+                await this.addLabelGameTypeComponent(id, iconConfig?.labelGameType, pathImages);
             }
         } catch (error) {
             cc.log(error);
@@ -138,14 +140,14 @@ export default class SkeletonIcon extends cc.Component {
         return node;
     }
 
-    protected async addLabelGameTypeComponent(node: cc.Node, id: number, labelGameType: GameNotificationConfig) {
+    protected async addLabelGameTypeComponent(id: number, labelGameType: GameNotificationConfig, pathImages: string) {
         try {
-            if (!this.lblCascading) {
+            if (!this.lblGameType) {
                 return;
             }
 
-            this.lblCascading.active = true;
-            const host = GameUtils.remoteGameResourceUrl(id, "icon/i18n-images");
+            this.lblGameType.active = true;
+            const host = GameUtils.remoteGameResourceUrl(id, pathImages);
             const versions = await GameUtils.getRemoteVersion(id);
             const versionType = versions?.icon;
             const resName = `${labelGameType.type}-label-${window.i18n.curLang}.png?v=${versionType}`;
@@ -153,21 +155,21 @@ export default class SkeletonIcon extends cc.Component {
 
             try {
                 const data = await GameUtils.loadRemote(url);
-                if (data && this.lblCascading && this.lblCascading.isValid) {
-                    const sprite = this.lblCascading.getComponent(cc.Sprite);
+                if (data && this.lblGameType && this.lblGameType.isValid) {
+                    const sprite = this.lblGameType.getComponent(cc.Sprite);
                     if (sprite) {
                         const spriteFrame = new cc.SpriteFrame();
                         spriteFrame.setTexture(data as cc.Texture2D);
                         sprite.spriteFrame = spriteFrame;
                     }
-                    this.lblCascading.position = cc.v3(labelGameType.x, labelGameType.y);
+                    this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
                 } else {
                     cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
-                    this.lblCascading.active = false;
+                    this.lblGameType.active = false;
                 }
             } catch (error) {
                 cc.log(error);
-                this.lblCascading.active = false;
+                this.lblGameType.active = false;
             }
         } catch (error) {
             cc.log(error);

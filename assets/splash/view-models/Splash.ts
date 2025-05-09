@@ -19,9 +19,6 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class Splash extends cc.Component {
     @property(cc.Node)
-    background: cc.Node = null;
-
-    @property(cc.Node)
     nodeMainSplash: cc.Node = null;
 
     @property(cc.Node)
@@ -49,7 +46,6 @@ export default class Splash extends cc.Component {
 
         this.disableAllNodeSplash();
         this.initUIListeners();
-        this.loadBackground();
 
         this.enableMainSplashScreen();
         this.handleAuthorization();
@@ -244,19 +240,6 @@ export default class Splash extends cc.Component {
     private disableAllNodeSplash() {
         this.nodeMainSplash.active = false;
         this.nodeMicrositeGame.active = false;
-    }
-
-    private loadBackground() {
-        if (CC_PREVIEW) {
-            return;
-        }
-        const imagePath = `${window.location.origin}/splash-resources/background.jpg`;
-        cc.assetManager.loadRemote(imagePath, (err, imageAsset: "jpg") => {
-            try {
-                const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
-                this.background.getComponent(cc.Sprite).spriteFrame = spriteFrameTmp;
-            } catch (e) {}
-        });
     }
 
     private loadIconTop() {

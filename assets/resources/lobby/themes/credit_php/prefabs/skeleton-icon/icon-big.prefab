@@ -3198,8 +3198,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 369.4,
-      "height": 77.6
+      "width": 185,
+      "height": 46
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3211,14 +3211,14 @@
       "ctor": "Float64Array",
       "array": [
         -119,
-        -112,
+        -101,
         0,
         0,
         0,
         0,
         1,
-        0.5,
-        0.5,
+        1,
+        1,
         1
       ]
     },
@@ -3252,7 +3252,7 @@
     "_dstBlendFactor": 771,
     "_spriteFrame": null,
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -3261,7 +3261,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_atlas": null,
     "_id": ""
   },

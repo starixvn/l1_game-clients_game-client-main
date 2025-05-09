@@ -1,83 +1,55 @@
 
 effect-jackpot.png
-size: 556,545
+size: 764,352
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Objects copy
   rotate: false
-  xy: 216, 202
-  size: 338, 341
+  xy: 2, 7
+  size: 340, 343
   orig: 340, 343
-  offset: 1, 1
+  offset: 0, 0
   index: -1
-flare2
-  rotate: false
-  xy: 388, 2
-  size: 45, 45
-  orig: 56, 56
-  offset: 4, 6
+bonusgame_ttt_bum
+  rotate: true
+  xy: 344, 148
+  size: 202, 201
+  orig: 205, 205
+  offset: 2, 2
   index: -1
 flare2 copy 13
   rotate: false
-  xy: 388, 2
+  xy: 717, 305
   size: 45, 45
   orig: 56, 56
   offset: 4, 6
   index: -1
-flare2 copy 14
-  rotate: false
-  xy: 340, 2
-  size: 46, 45
-  orig: 58, 57
-  offset: 5, 7
-  index: -1
-flare2 copy 15
-  rotate: false
-  xy: 455, 9
-  size: 57, 57
-  orig: 71, 70
-  offset: 6, 7
-  index: -1
 leaf
-  rotate: true
-  xy: 2, 8
-  size: 158, 168
+  rotate: false
+  xy: 583, 2
+  size: 160, 170
   orig: 160, 170
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 leaf2
-  rotate: true
-  xy: 340, 49
-  size: 151, 113
+  rotate: false
+  xy: 344, 31
+  size: 153, 115
   orig: 153, 115
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 leaf3
   rotate: true
-  xy: 455, 68
-  size: 132, 80
+  xy: 499, 12
+  size: 134, 82
   orig: 134, 82
-  offset: 1, 1
+  offset: 0, 0
   index: -1
 leaf3 copy
   rotate: true
-  xy: 172, 25
-  size: 174, 166
+  xy: 547, 174
+  size: 176, 168
   orig: 176, 168
-  offset: 1, 1
-  index: -1
-text jackpot
-  rotate: true
-  xy: 2, 168
-  size: 375, 82
-  orig: 377, 84
-  offset: 1, 1
-  index: -1
-text no hu
-  rotate: true
-  xy: 86, 201
-  size: 342, 128
-  orig: 344, 130
-  offset: 1, 1
+  offset: 0, 0
   index: -1

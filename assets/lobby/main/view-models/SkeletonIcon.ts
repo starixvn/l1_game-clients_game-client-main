@@ -24,7 +24,6 @@ export interface RemoteIconConfig {
     premultipliedAlpha: boolean;
     useWebp: boolean;
     labelGameType?: GameNotificationConfig;
-    labelGameTypeCreditPHP?: GameNotificationConfig;
 }
 
 @ccclass

@@ -1,87 +1,87 @@
 
 effect-superwin.png
-size: 573,573
+size: 813,292
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Stone Board
   rotate: false
-  xy: 2, 487
+  xy: 0, 208
   size: 569, 84
   orig: 571, 86
   offset: 1, 1
   index: -1
 Stone Box
   rotate: false
-  xy: 2, 298
+  xy: 0, 19
   size: 410, 187
   orig: 412, 189
   offset: 1, 1
   index: -1
 Stone Cover
   rotate: false
-  xy: 2, 90
+  xy: 412, 0
   size: 401, 93
   orig: 403, 95
   offset: 1, 1
   index: -1
 Stone Top
   rotate: false
-  xy: 2, 185
+  xy: 412, 95
   size: 401, 111
   orig: 403, 113
   offset: 0, 1
   index: -1
 
 effect-superwin2.png
-size: 535,535
+size: 515,531
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 effect-coin/circle light
-  rotate: true
-  xy: 2, 140
+  rotate: false
+  xy: 229, 54
   size: 164, 477
   orig: 166, 479
   offset: 1, 1
   index: -1
 effect-coin/coin light
-  rotate: false
-  xy: 2, 306
+  rotate: true
+  xy: 0, 21
   size: 510, 227
   orig: 512, 229
   offset: 1, 1
   index: -1
 effect-coin/coin sublight
-  rotate: false
-  xy: 2, 25
+  rotate: true
+  xy: 395, 0
   size: 396, 113
   orig: 398, 115
   offset: 1, 1
   index: -1
 effect-coin/point light
-  rotate: false
-  xy: 400, 18
+  rotate: true
+  xy: 395, 398
   size: 133, 120
   orig: 135, 122
   offset: 1, 1
   index: -1
 
 effect-superwin3.png
-size: 915,915
+size: 1092,730
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 png/black
   rotate: false
-  xy: 2, 362
-  size: 796, 551
-  orig: 802, 559
-  offset: 3, 4
+  xy: 0, 0
+  size: 977, 730
+  orig: 1049, 769
+  offset: 36, 22
   index: -1
 png/coins
   rotate: true
-  xy: 800, 517
+  xy: 979, 334
   size: 396, 113
   orig: 398, 115
   offset: 1, 1

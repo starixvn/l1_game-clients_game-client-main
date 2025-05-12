@@ -12,14 +12,10 @@ export interface IGameNamesBreakLine {
     };
 }
 
-export interface IGameTypeInfo {
-    [gameType: string]: string;
-}
-
 export interface ILabelGameTypePosition {
     x: number;
     y: number;
-    gameTypes: IGameTypeInfo;
+    gameType: string;
 }
 
 export interface ILabelGameType {

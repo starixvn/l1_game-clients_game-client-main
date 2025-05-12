@@ -105,12 +105,13 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         }
         try {
             const version = lobbyResourceManager.infoShareResource["versionGameIcon"];
-            const resourcePath = `game-icons/${gameId}/${labelGameType.gameTypes}/${lang}.png?v=${version}`;
+            const resourcePath = `game-icons/${gameId}/${labelGameType.gameType}/${lang}.png?v=${version}`;
             const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
             const spriteFrame = new cc.SpriteFrame(remoteTexture);
             const sprLabelGame = this.lblGameType.getComponent(cc.Sprite);
             if (spriteFrame && sprLabelGame) {
                 sprLabelGame.spriteFrame = spriteFrame;
+                this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
             }
         } catch (error) {
             cc.log(`Not get Game} Icon from shared resource: ${gameId}`);

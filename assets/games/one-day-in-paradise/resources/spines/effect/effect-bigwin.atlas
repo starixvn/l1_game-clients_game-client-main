@@ -1,104 +1,202 @@
 
-exportAtlas.webp
-size: 2048,1024
+exportAtlas.png
+size: 4096,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bag
-  rotate: false
-  xy: 731, 675
-  size: 145, 136
-  orig: 145, 136
-  offset: 0, 0
-  index: -1
 board
   rotate: false
-  xy: 723, 5
-  size: 459, 81
-  orig: 459, 81
+  xy: 3, 189
+  size: 1063, 152
+  orig: 1063, 152
   offset: 0, 0
   index: -1
-coin-spin/coin-01
+coin1
   rotate: false
-  xy: 852, 845
-  size: 81, 84
-  orig: 81, 84
+  xy: 1513, 1582
+  size: 135, 122
+  orig: 135, 122
   offset: 0, 0
   index: -1
-coin-spin/coin-02
+coin2
   rotate: false
-  xy: 341, 669
-  size: 77, 83
-  orig: 77, 83
+  xy: 1105, 716
+  size: 130, 122
+  orig: 130, 122
   offset: 0, 0
   index: -1
-coin-spin/coin-03
+coin3
   rotate: false
-  xy: 5, 370
-  size: 50, 82
-  orig: 50, 82
+  xy: 801, 1610
+  size: 126, 94
+  orig: 126, 94
   offset: 0, 0
   index: -1
-coin-spin/coin-04
+coin4
   rotate: false
-  xy: 913, 924
-  size: 34, 83
-  orig: 34, 83
+  xy: 180, 1653
+  size: 133, 103
+  orig: 133, 103
   offset: 0, 0
   index: -1
-coin-spin/coin-05
-  rotate: false
-  xy: 4, 71
-  size: 16, 75
-  orig: 16, 75
-  offset: 0, 0
-  index: -1
-coin-spin/coin-06
-  rotate: false
-  xy: 4, 762
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-08
-  rotate: false
-  xy: 1140, 122
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-09
-  rotate: false
-  xy: 533, 923
-  size: 48, 83
-  orig: 48, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-10
-  rotate: false
-  xy: 954, 680
-  size: 75, 83
-  orig: 75, 83
-  offset: 0, 0
-  index: -1
-light-cloud/circle light
-  rotate: false
-  xy: 3, 371
-  size: 389, 398
-  orig: 389, 398
-  offset: 0, 0
-  index: -1
-light-cloud/cloud
+coin5
   rotate: true
-  xy: 1083, 497
-  size: 421, 46
-  orig: 421, 46
+  xy: 284, 1205
+  size: 125, 115
+  orig: 125, 115
   offset: 0, 0
   index: -1
-light-cloud/highlight
+coin6
   rotate: false
-  xy: 783, 218
-  size: 300, 117
-  orig: 300, 117
+  xy: 3, 1615
+  size: 122, 107
+  orig: 122, 107
+  offset: 0, 0
+  index: -1
+coin7
+  rotate: false
+  xy: 705, 1068
+  size: 127, 107
+  orig: 127, 107
+  offset: 0, 0
+  index: -1
+coin8
+  rotate: true
+  xy: 1602, 364
+  size: 122, 109
+  orig: 122, 109
+  offset: 0, 0
+  index: -1
+coin9
+  rotate: false
+  xy: 819, 706
+  size: 122, 96
+  orig: 122, 96
+  offset: 0, 0
+  index: -1
+coins
+  rotate: false
+  xy: 283, 1546
+  size: 341, 178
+  orig: 341, 178
+  offset: 0, 0
+  index: -1
+flash1
+  rotate: false
+  xy: 1354, 1069
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash3
+  rotate: false
+  xy: 1352, 865
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash2
+  rotate: false
+  xy: 1351, 1284
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash4
+  rotate: false
+  xy: 1310, 1492
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+all/coconut_back
+  rotate: true
+  xy: 5, 670
+  size: 440, 377
+  orig: 440, 377
+  offset: 0, 0
+  index: -1
+all/coconut_front
+  rotate: false
+  xy: 1208, 616
+  size: 440, 239
+  orig: 440, 239
+  offset: 0, 0
+  index: -1
+all/drop1
+  rotate: true
+  xy: 438, 1007
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+all/drop1_1
+  rotate: true
+  xy: 680, 876
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+all/drop2
+  rotate: true
+  xy: 517, 744
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+all/drop2 _1
+  rotate: true
+  xy: 331, 670
+  size: 64, 50
+  orig: 64, 50
+  offset: 0, 0
+  index: -1
+all/drop3
+  rotate: true
+  xy: 1036, 349
+  size: 45, 46
+  orig: 45, 46
+  offset: 0, 0
+  index: -1
+all/drop3_1
+  rotate: true
+  xy: 766, 768
+  size: 45, 48
+  orig: 45, 48
+  offset: 0, 0
+  index: -1
+all/drop4
+  rotate: true
+  xy: 1069, 227
+  size: 55, 45
+  orig: 55, 45
+  offset: 0, 0
+  index: -1
+all/drop4 _1
+  rotate: true
+  xy: 454, 688
+  size: 58, 50
+  orig: 58, 50
+  offset: 0, 0
+  index: -1
+all/tree
+  rotate: false
+  xy: 5, 1278
+  size: 355, 531
+  orig: 355, 531
+  offset: 0, 0
+  index: -1
+all/wave_back
+  rotate: true
+  xy: 1092, 831
+  size: 609, 258
+  orig: 609, 258
+  offset: 0, 0
+  index: -1
+all/wave_front
+  rotate: true
+  xy: 1022, 9
+  size: 777, 338
+  orig: 777, 338
   offset: 0, 0
   index: -1

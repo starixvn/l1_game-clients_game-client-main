@@ -1,111 +1,412 @@
 
-exportAtlas.webp
-size: 2048,1024
+exportAtlas.png
+size: 4096,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-bag
-  rotate: false
-  xy: 947, 435
-  size: 152, 126
-  orig: 152, 126
-  offset: 0, 0
-  index: -1
 board
   rotate: false
-  xy: 16, 862
-  size: 460, 82
-  orig: 460, 82
+  xy: 2, 2
+  size: 1050, 183
+  orig: 1050, 183
   offset: 0, 0
   index: -1
-pearlchain
+coin1
   rotate: true
-  xy: 411, 336
-  size: 103, 62
-  orig: 103, 62
+  xy: 3, 1113
+  size: 175, 155
+  orig: 175, 155
   offset: 0, 0
   index: -1
-coin-spin/coin-01
-  rotate: false
-  xy: 961, 765
-  size: 81, 84
-  orig: 81, 84
-  offset: 0, 0
-  index: -1
-coin-spin/coin-02
-  rotate: false
-  xy: 1008, 325
-  size: 77, 83
-  orig: 77, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-03
-  rotate: false
-  xy: 6, 679
-  size: 50, 82
-  orig: 50, 82
-  offset: 0, 0
-  index: -1
-coin-spin/coin-04
-  rotate: false
-  xy: 1004, 926
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-05
-  rotate: false
-  xy: 7, 229
-  size: 16, 75
-  orig: 16, 75
-  offset: 0, 0
-  index: -1
-coin-spin/coin-06
-  rotate: false
-  xy: 1137, 314
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-08
-  rotate: false
-  xy: 1030, 692
-  size: 34, 83
-  orig: 34, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-09
-  rotate: false
-  xy: 635, 924
-  size: 48, 83
-  orig: 48, 83
-  offset: 0, 0
-  index: -1
-coin-spin/coin-10
-  rotate: false
-  xy: 873, 761
-  size: 75, 83
-  orig: 75, 83
-  offset: 0, 0
-  index: -1
-light-cloud/circle light
-  rotate: false
-  xy: 394, 8
-  size: 389, 398
-  orig: 389, 398
-  offset: 0, 0
-  index: -1
-light-cloud/cloud
+coin2
   rotate: true
-  xy: 1092, 88
-  size: 421, 46
-  orig: 421, 46
+  xy: 315, 1034
+  size: 140, 135
+  orig: 140, 135
   offset: 0, 0
   index: -1
-light-cloud/highlight
+coin3
   rotate: false
-  xy: 703, 341
-  size: 300, 117
-  orig: 300, 117
+  xy: 1215, 67
+  size: 165, 130
+  orig: 165, 130
+  offset: 0, 0
+  index: -1
+coin4
+  rotate: false
+  xy: 956, 1342
+  size: 130, 130
+  orig: 130, 130
+  offset: 0, 0
+  index: -1
+coin5
+  rotate: false
+  xy: 454, 1337
+  size: 130, 130
+  orig: 130, 130
+  offset: 0, 0
+  index: -1
+coin6
+  rotate: false
+  xy: 1651, 635
+  size: 130, 130
+  orig: 130, 130
+  offset: 0, 0
+  index: -1
+coin7
+  rotate: true
+  xy: 944, 1194
+  size: 145, 120
+  orig: 145, 120
+  offset: 0, 0
+  index: -1
+coin8
+  rotate: false
+  xy: 162, 1113
+  size: 140, 145
+  orig: 140, 145
+  offset: 0, 0
+  index: -1
+coin9
+  rotate: false
+  xy: 1558, 1442
+  size: 120, 130
+  orig: 120, 130
+  offset: 0, 0
+  index: -1
+coins
+  rotate: true
+  xy: 883, 349
+  size: 350, 178
+  orig: 350, 178
+  offset: 0, 0
+  index: -1
+flash1
+  rotate: false
+  xy: 1597, 8
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash2
+  rotate: false
+  xy: 1557, 1239
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash3
+  rotate: false
+  xy: 1573, 1035
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash4
+  rotate: false
+  xy: 1559, 831
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+all/coconut_back
+  rotate: true
+  xy: 503, 346
+  size: 440, 377
+  orig: 440, 377
+  offset: 0, 0
+  index: -1
+all/coconut_front
+  rotate: false
+  xy: 866, 1446
+  size: 440, 239
+  orig: 440, 239
+  offset: 0, 0
+  index: -1
+all/drop1
+  rotate: true
+  xy: 870, 661
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+all/drop1_1
+  rotate: true
+  xy: 555, 344
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+all/drop2
+  rotate: true
+  xy: 832, 345
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+all/drop2 _1
+  rotate: true
+  xy: 506, 344
+  size: 64, 50
+  orig: 64, 50
+  offset: 0, 0
+  index: -1
+all/drop3
+  rotate: true
+  xy: 784, 344
+  size: 45, 46
+  orig: 45, 46
+  offset: 0, 0
+  index: -1
+all/drop3_1
+  rotate: true
+  xy: 385, 890
+  size: 45, 48
+  orig: 45, 48
+  offset: 0, 0
+  index: -1
+all/drop4
+  rotate: true
+  xy: 3, 1047
+  size: 55, 45
+  orig: 55, 45
+  offset: 0, 0
+  index: -1
+all/drop4 _1
+  rotate: true
+  xy: 2, 689
+  size: 58, 50
+  orig: 58, 50
+  offset: 0, 0
+  index: -1
+all/tree
+  rotate: false
+  xy: 587, 1178
+  size: 355, 531
+  orig: 355, 531
+  offset: 0, 0
+  index: -1
+all/wave_back
+  rotate: true
+  xy: 1341, 52
+  size: 609, 258
+  orig: 609, 258
+  offset: 0, 0
+  index: -1
+all/wave_front
+  rotate: true
+  xy: 334, 670
+  size: 777, 338
+  orig: 777, 338
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00000
+  rotate: true
+  xy: 369, 1009
+  size: 10, 61
+  orig: 10, 61
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00001
+  rotate: true
+  xy: 634, 855
+  size: 18, 102
+  orig: 18, 102
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00002
+  rotate: true
+  xy: 1261, 597
+  size: 24, 140
+  orig: 24, 140
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00003
+  rotate: true
+  xy: 403, 1797
+  size: 29, 176
+  orig: 29, 176
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00004
+  rotate: true
+  xy: 1602, 791
+  size: 34, 215
+  orig: 34, 215
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00005
+  rotate: true
+  xy: 921, 1682
+  size: 39, 252
+  orig: 39, 252
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00006
+  rotate: true
+  xy: 512, 1918
+  size: 44, 288
+  orig: 44, 288
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00007
+  rotate: true
+  xy: 26, 1948
+  size: 48, 327
+  orig: 48, 327
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00008
+  rotate: true
+  xy: 1307, 1892
+  size: 54, 363
+  orig: 54, 363
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00009
+  rotate: true
+  xy: 834, 1862
+  size: 58, 401
+  orig: 58, 401
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00010
+  rotate: true
+  xy: 390, 1860
+  size: 63, 437
+  orig: 63, 437
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00011
+  rotate: true
+  xy: 1109, 1763
+  size: 67, 475
+  orig: 67, 475
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00012
+  rotate: true
+  xy: 1317, 1695
+  size: 70, 495
+  orig: 70, 495
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00013
+  rotate: true
+  xy: 717, 1712
+  size: 69, 495
+  orig: 69, 495
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00014
+  rotate: true
+  xy: 68, 1808
+  size: 68, 495
+  orig: 68, 495
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00015
+  rotate: true
+  xy: 649, 1799
+  size: 69, 457
+  orig: 69, 457
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00016
+  rotate: true
+  xy: 1142, 2
+  size: 68, 415
+  orig: 68, 415
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00017
+  rotate: true
+  xy: 15, 1876
+  size: 68, 370
+  orig: 68, 370
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00018
+  rotate: true
+  xy: 835, 1124
+  size: 69, 324
+  orig: 69, 324
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00019
+  rotate: true
+  xy: 363, 1470
+  size: 69, 280
+  orig: 69, 280
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00020
+  rotate: true
+  xy: 1278, 1823
+  size: 68, 237
+  orig: 68, 237
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00021
+  rotate: true
+  xy: 561, 787
+  size: 69, 196
+  orig: 69, 196
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00022
+  rotate: true
+  xy: 2, 668
+  size: 1327, 501
+  orig: 1327, 501
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00023
+  rotate: true
+  xy: 506, 441
+  size: 1155, 199
+  orig: 1155, 199
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00024
+  rotate: true
+  xy: 306, 690
+  size: 315, 135
+  orig: 315, 135
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00025
+  rotate: false
+  xy: 3, 671
+  size: 333, 102
+  orig: 333, 102
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00026
+  rotate: true
+  xy: 502, 164
+  size: 273, 582
+  orig: 273, 582
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00027
+  rotate: true
+  xy: 46, 285
+  size: 414, 1042
+  orig: 414, 1042
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00028
+  rotate: true
+  xy: 851, 286
+  size: 157, 256
+  orig: 157, 256
+  offset: 0, 0
+  index: -1
+bg_light/bg_light_00029
+  rotate: true
+  xy: 1056, 5
+  size: 65, 15
+  orig: 65, 15
   offset: 0, 0
   index: -1

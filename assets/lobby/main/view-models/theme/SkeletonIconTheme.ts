@@ -52,26 +52,6 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         this.updateReceiveNotification(id);
     }
 
-    // private async updateLabelGameType(id: number) {
-    //     try {
-    //         const configFile = this.micrositeIconCache[id]
-    //             ? this.micrositeIconCache[id].configFile
-    //             : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
-
-    //         this.micrositeIconCache[id] = {
-    //             ...this.micrositeIconCache[id],
-    //             configFile
-    //         };
-    //         const iconConfig: RemoteIconConfig = configFile?.json;
-    //         if (iconConfig?.labelGameTypeCreditPHP) {
-    //             await this.addLabelGameTypeComponent(id, iconConfig?.labelGameTypeCreditPHP, "icon/i18n-images/credit_php");
-    //         }
-    //     } catch (error) {
-    //         cc.log(error);
-    //         return null;
-    //     }
-    // }
-
     private updateReceiveNotification(id: number) {
         const gameNotificationComp = this.node.getComponent(GameNotification);
         gameNotificationComp && (gameNotificationComp.gameId = id);
@@ -102,19 +82,19 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         const labelGameType = themeGameNameManager?.getLabelGameType(gameId);
         if (labelGameType) {
             this.lblGameType.active = true;
-        }
-        try {
-            const version = lobbyResourceManager.infoShareResource["versionGameIcon"];
-            const resourcePath = `game-icons/${gameId}/${labelGameType.gameType}/${lang}.png?v=${version}`;
-            const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
-            const spriteFrame = new cc.SpriteFrame(remoteTexture);
-            const sprLabelGame = this.lblGameType.getComponent(cc.Sprite);
-            if (spriteFrame && sprLabelGame) {
-                sprLabelGame.spriteFrame = spriteFrame;
-                this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
+            try {
+                const version = lobbyResourceManager.infoShareResource["versionGameIcon"];
+                const resourcePath = `game-icons/${gameId}/${labelGameType.gameType}/${lang}.png?v=${version}`;
+                const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
+                const spriteFrame = new cc.SpriteFrame(remoteTexture);
+                const sprLabelGame = this.lblGameType.getComponent(cc.Sprite);
+                if (spriteFrame && sprLabelGame) {
+                    sprLabelGame.spriteFrame = spriteFrame;
+                    this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
+                }
+            } catch (error) {
+                cc.log(`Not get Game} Icon from shared resource: ${gameId}`);
             }
-        } catch (error) {
-            cc.log(`Not get Game} Icon from shared resource: ${gameId}`);
         }
     }
 }

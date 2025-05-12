@@ -162,7 +162,7 @@ export default class StandardSlotGame extends SlotGameBase {
         });
     }
 
-    protected getPrefabsList() {
+    protected getPrefabsList(): Record<string, string> {
         return {
             // prefab name : prefab property
             "effect-transition": "effectTransitionPrefab",
@@ -206,8 +206,8 @@ export default class StandardSlotGame extends SlotGameBase {
         }
     }
 
-    loadAudios() {
-        const dict = {
+    protected getAudioDictionary(): Record<string, string> {
+        return {
             [ClassicSlotSound.SPIN]: "spin-button",
             [ClassicSlotSound.WIN]: "win",
             [ClassicSlotSound.BIG_WIN]: "big-win",
@@ -229,6 +229,10 @@ export default class StandardSlotGame extends SlotGameBase {
             [ClassicSlotSound.TRANSITION]: "transition",
             [ClassicSlotSound.SYMBOL_WIN]: "symbol-win"
         };
+    }
+
+    loadAudios() {
+        const dict = this.getAudioDictionary();
 
         for (const key of Object.keys(dict)) {
             const path = `preload/audios/${dict[key]}`;

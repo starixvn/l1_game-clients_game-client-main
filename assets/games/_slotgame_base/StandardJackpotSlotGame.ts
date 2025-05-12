@@ -42,7 +42,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         );
     }
 
-    protected getPrefabsList() {
+    protected getPrefabsList(): Record<string, string> {
         const normalPrefabs = super.getPrefabsList();
         const jackpotPrefabs = {
             // prefab name : prefab property

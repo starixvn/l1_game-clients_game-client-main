@@ -12,6 +12,7 @@ export enum InternalEvents {
     CASCADING_CLOSE_MENU = "cascading collapse menu",
     CASCADING_CLICK_TOTAL_BET = "cascading click total bet",
 
+    CAN_NOT_OPEN_GAME_AT_SPLASH = "CAN_NOT_OPEN_GAME_AT_SPLASH",
     NOT_PERMITTED_TO_PLAY = "NOT_PERMITTED_TO_PLAY",
     USER_STAKE_LEVEL_UPDATED = "USER_STAKE_LEVEL_UPDATED",
     SSO_FAILED = "SSO_FAILED",

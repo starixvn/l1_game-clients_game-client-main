@@ -152,7 +152,16 @@ export default class SocketIOController implements SocketIOControllerInterface {
                 uiManager.emitter.emit(InternalEvents.NOTICE, {
                     data,
                     onConfirm: null,
-                    onClose: () => appManager.backToOperatorLobby()
+                    onClose: () => {
+                        if (appManager.isDirectMode) {
+                            appManager.backToOperatorLobby();
+                        } else {
+                            const currentSceneName = cc.director.getScene().name;
+                            if (currentSceneName === "Splash") {
+                                uiManager.emitter.emit(InternalEvents.CAN_NOT_OPEN_GAME_AT_SPLASH);
+                            }
+                        }
+                    }
                 });
             };
             try {

@@ -172,6 +172,13 @@ export default class MainSplash extends cc.Component {
             },
             this
         );
+        uiManager.emitterListener(
+            InternalEvents.CAN_NOT_OPEN_GAME_AT_SPLASH,
+            () => {
+                this.canNotOpenGameAtSplash();
+            },
+            this
+        );
     }
 
     canNotOpenGameAtSplash() {

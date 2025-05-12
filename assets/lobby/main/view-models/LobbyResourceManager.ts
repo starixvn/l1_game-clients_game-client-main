@@ -1,6 +1,6 @@
 import GameUtils from "../../../common/GameUtils";
 import { buildShareResource } from "../../../common/helpers/UrlHelper";
-import { IGameNamesBreakLine, IGameNamesFontSize } from "./theme/GameNameManager";
+import { IGameNamesBreakLine, IGameNamesFontSize, ILabelGameType } from "./theme/GameNameManager";
 import { themeResourceLoader } from "./theme/ResourceLoader";
 import { THEME_REMOTE_PATH, themeManager } from "./theme/ThemeManager";
 
@@ -20,6 +20,7 @@ export interface IInfoShareResource {
     ignoreCapitalizeGameNames: number[];
     gameNamesBreakLine: IGameNamesBreakLine;
     gameNamesFontSize: IGameNamesFontSize;
+    labelGameType: ILabelGameType;
 }
 
 export interface IInfoShareResourceBanner {
@@ -49,7 +50,8 @@ export default class LobbyResourceManager {
         versionMiniGameIcon: 1,
         ignoreCapitalizeGameNames: [],
         gameNamesBreakLine: {},
-        gameNamesFontSize: {}
+        gameNamesFontSize: {},
+        labelGameType: {}
     };
     public infoLobbyTheme: IInfoLobbyTheme = {
         theme: "default",

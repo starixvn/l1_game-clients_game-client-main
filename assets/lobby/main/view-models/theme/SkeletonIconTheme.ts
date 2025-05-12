@@ -1,13 +1,13 @@
-import GameUtils from "../../../../common/GameUtils";
 import { FormationHandler } from "../../../../common/i18n/FormationHandler";
 import StringUtil from "../../../../common/utils/StringUtil";
 import { uiManager } from "../../../../managers/GameUIManager";
 import { lobbyResourceManager } from "../LobbyResourceManager";
 import GameNotification from "./../GameNotification";
 import JackpotPoolInfo from "./../JackpotPoolInfo";
-import SkeletonIcon, { RemoteIconConfig } from "./../SkeletonIcon";
+import SkeletonIcon from "./../SkeletonIcon";
 import { themeGameIconLoader } from "./GameIconLoader";
 import { themeGameNameManager } from "./GameNameManager";
+import { themeResourceLoader } from "./ResourceLoader";
 
 const { ccclass, property } = cc._decorator;
 
@@ -52,25 +52,25 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         this.updateReceiveNotification(id);
     }
 
-    private async updateLabelGameType(id: number) {
-        try {
-            const configFile = this.micrositeIconCache[id]
-                ? this.micrositeIconCache[id].configFile
-                : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
+    // private async updateLabelGameType(id: number) {
+    //     try {
+    //         const configFile = this.micrositeIconCache[id]
+    //             ? this.micrositeIconCache[id].configFile
+    //             : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
 
-            this.micrositeIconCache[id] = {
-                ...this.micrositeIconCache[id],
-                configFile
-            };
-            const iconConfig: RemoteIconConfig = configFile?.json;
-            if (iconConfig?.labelGameTypeCreditPHP) {
-                await this.addLabelGameTypeComponent(id, iconConfig?.labelGameTypeCreditPHP, "icon/i18n-images/credit_php");
-            }
-        } catch (error) {
-            cc.log(error);
-            return null;
-        }
-    }
+    //         this.micrositeIconCache[id] = {
+    //             ...this.micrositeIconCache[id],
+    //             configFile
+    //         };
+    //         const iconConfig: RemoteIconConfig = configFile?.json;
+    //         if (iconConfig?.labelGameTypeCreditPHP) {
+    //             await this.addLabelGameTypeComponent(id, iconConfig?.labelGameTypeCreditPHP, "icon/i18n-images/credit_php");
+    //         }
+    //     } catch (error) {
+    //         cc.log(error);
+    //         return null;
+    //     }
+    // }
 
     private updateReceiveNotification(id: number) {
         const gameNotificationComp = this.node.getComponent(GameNotification);
@@ -94,6 +94,26 @@ export default class SkeletonIconTheme extends SkeletonIcon {
 
         if (fontSize && fontSize > 0) {
             this.gameName.fontSize = fontSize;
+        }
+    }
+
+    protected async updateLabelGameType(gameId: number) {
+        const lang = window.i18n.curLang ?? "en";
+        const labelGameType = themeGameNameManager?.getLabelGameType(gameId);
+        if (labelGameType) {
+            this.lblGameType.active = true;
+        }
+        try {
+            const version = lobbyResourceManager.infoShareResource["versionGameIcon"];
+            const resourcePath = `game-icons/${gameId}/${labelGameType.gameTypes}/${lang}.png?v=${version}`;
+            const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
+            const spriteFrame = new cc.SpriteFrame(remoteTexture);
+            const sprLabelGame = this.lblGameType.getComponent(cc.Sprite);
+            if (spriteFrame && sprLabelGame) {
+                sprLabelGame.spriteFrame = spriteFrame;
+            }
+        } catch (error) {
+            cc.log(`Not get Game} Icon from shared resource: ${gameId}`);
         }
     }
 }

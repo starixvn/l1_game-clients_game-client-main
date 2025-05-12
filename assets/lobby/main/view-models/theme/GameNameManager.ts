@@ -12,6 +12,20 @@ export interface IGameNamesBreakLine {
     };
 }
 
+export interface IGameTypeInfo {
+    [gameType: string]: string;
+}
+
+export interface ILabelGameTypePosition {
+    x: number;
+    y: number;
+    gameTypes: IGameTypeInfo;
+}
+
+export interface ILabelGameType {
+    [gameId: string]: ILabelGameTypePosition;
+}
+
 export class ThemeGameNameManager {
     private static _instance: ThemeGameNameManager;
 
@@ -33,6 +47,10 @@ export class ThemeGameNameManager {
 
     public getGameNamesFontSize(gameId: number, lang: string) {
         return lobbyResourceManager?.infoShareResource?.gameNamesFontSize?.[gameId]?.[lang];
+    }
+
+    public getLabelGameType(gameId: number) {
+        return lobbyResourceManager?.infoShareResource?.labelGameType?.[gameId];
     }
 }
 

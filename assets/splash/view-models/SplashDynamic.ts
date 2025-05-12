@@ -30,10 +30,6 @@ export default class SplashDynamic extends cc.Component {
         console.log("operatorName", this.operatorName);
     }
 
-    protected onDestroy(): void {
-        //this.unschedule(this.handleAnimLightMask);
-    }
-
     loadLogoOperator() {
         const imagePath = `${this.href}/logo_${this.operatorName}.webp`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {

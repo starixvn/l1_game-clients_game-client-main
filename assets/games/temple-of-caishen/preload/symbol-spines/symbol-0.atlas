@@ -6,22 +6,29 @@ filter: Linear,Linear
 repeat: none
 Item - background
   rotate: false
-  xy: 464, 1467
+  xy: 645, 1515
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 light
-  rotate: false
-  xy: 2, 2
-  size: 1220, 360
-  orig: 1220, 360
+  rotate: true
+  xy: 8, 572
+  size: 244, 72
+  orig: 244, 72
   offset: 0, 0
   index: -1
 symbol-0
   rotate: false
-  xy: 3, 785
+  xy: 772, 1795
   size: 134, 105
   orig: 134, 105
+  offset: 0, 0
+  index: -1
+symbol-test
+  rotate: false
+  xy: 1133, 1445
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1

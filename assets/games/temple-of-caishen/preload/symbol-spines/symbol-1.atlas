@@ -1,26 +1,34 @@
-exportAtlas.webp
+
+exportAtlas.png
 size: 2048,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Item - background
   rotate: false
-  xy: 311, 1470
+  xy: 3, 1420
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 light
   rotate: false
-  xy: 64, 837
+  xy: 43, 1310
   size: 733, 156
   orig: 733, 156
   offset: 0, 0
   index: -1
 symbol-1
   rotate: false
-  xy: 536, 1927
+  xy: 456, 1927
   size: 59, 114
   orig: 59, 114
+  offset: 0, 0
+  index: -1
+symbol-1-idle_0
+  rotate: false
+  xy: 795, 1382
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1

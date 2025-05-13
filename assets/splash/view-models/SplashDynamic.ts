@@ -27,7 +27,6 @@ export default class SplashDynamic extends cc.Component {
         this.loadLogoOperator();
         this.loadTagPower();
         this.loadTagline();
-        console.log("operatorName", this.operatorName);
     }
 
     loadLogoOperator() {

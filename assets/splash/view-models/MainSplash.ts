@@ -82,7 +82,6 @@ export default class MainSplash extends cc.Component {
 
     private activateSlogan(): void {
         const operator = sessionManager.getOperator()?.toUpperCase();
-        console.log("operator", operator);
         if (!operator) {
             this.activateOtherSlogans();
             return;

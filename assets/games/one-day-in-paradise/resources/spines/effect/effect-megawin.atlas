@@ -1,6 +1,208 @@
 
-exportAtlas.png
-size: 
+effect-megawin.png
+size: 1063,567
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+board
+  rotate: false
+  xy: 0, 359
+  size: 1063, 208
+  orig: 1067, 262
+  offset: 2, 54
+  index: -1
+coin1
+  rotate: true
+  xy: 708, 0
+  size: 170, 123
+  orig: 170, 123
+  offset: 0, 0
+  index: -1
+coin2
+  rotate: true
+  xy: 112, 5
+  size: 150, 145
+  orig: 150, 145
+  offset: 0, 0
+  index: -1
+coin3
+  rotate: true
+  xy: 259, 5
+  size: 150, 109
+  orig: 150, 110
+  offset: 0, 1
+  index: -1
+coin4
+  rotate: true
+  xy: 0, 0
+  size: 155, 110
+  orig: 155, 110
+  offset: 0, 0
+  index: -1
+coin5
+  rotate: true
+  xy: 459, 15
+  size: 140, 135
+  orig: 140, 135
+  offset: 0, 0
+  index: -1
+coin6
+  rotate: true
+  xy: 596, 20
+  size: 135, 110
+  orig: 135, 110
+  offset: 0, 0
+  index: -1
+coin7
+  rotate: true
+  xy: 833, 1
+  size: 169, 107
+  orig: 169, 107
+  offset: 0, 0
+  index: -1
+coin8
+  rotate: true
+  xy: 942, 5
+  size: 165, 109
+  orig: 165, 109
+  offset: 0, 0
+  index: -1
+coin9
+  rotate: true
+  xy: 370, 5
+  size: 150, 87
+  orig: 150, 87
+  offset: 0, 0
+  index: -1
+coins
+  rotate: false
+  xy: 606, 172
+  size: 380, 185
+  orig: 380, 185
+  offset: 0, 0
+  index: -1
+flash1
+  rotate: false
+  xy: 0, 157
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash3
+  rotate: false
+  xy: 0, 157
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash2
+  rotate: false
+  xy: 202, 157
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+flash4
+  rotate: false
+  xy: 404, 157
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+
+effect-megawin2.png
+size: 1236,1032
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+all/coconut_back
+  rotate: true
+  xy: 859, 59
+  size: 440, 377
+  orig: 440, 377
+  offset: 0, 0
+  index: -1
+all/coconut_front
+  rotate: false
+  xy: 0, 0
+  size: 440, 240
+  orig: 440, 240
+  offset: 0, 0
+  index: -1
+all/drop1
+  rotate: true
+  xy: 442, 3
+  size: 29, 26
+  orig: 36, 29
+  offset: 0, 3
+  index: -1
+all/drop1_1
+  rotate: true
+  xy: 442, 3
+  size: 29, 26
+  orig: 36, 29
+  offset: 0, 3
+  index: -1
+all/drop2
+  rotate: true
+  xy: 442, 100
+  size: 69, 61
+  orig: 74, 83
+  offset: 5, 7
+  index: -1
+all/drop2 _1
+  rotate: true
+  xy: 442, 171
+  size: 69, 64
+  orig: 74, 83
+  offset: 5, 3
+  index: -1
+all/drop3
+  rotate: true
+  xy: 505, 53
+  size: 52, 48
+  orig: 61, 50
+  offset: 1, 0
+  index: -1
+all/drop3_1
+  rotate: true
+  xy: 508, 188
+  size: 52, 49
+  orig: 61, 50
+  offset: 1, 0
+  index: -1
+all/drop4
+  rotate: true
+  xy: 505, 107
+  size: 62, 58
+  orig: 70, 74
+  offset: 6, 0
+  index: -1
+all/drop4 _1
+  rotate: true
+  xy: 442, 34
+  size: 64, 61
+  orig: 70, 74
+  offset: 5, 0
+  index: -1
+all/tree
+  rotate: false
+  xy: 859, 501
+  size: 356, 531
+  orig: 356, 531
+  offset: 0, 0
+  index: -1
+all/wave_back
+  rotate: true
+  xy: 0, 242
+  size: 790, 514
+  orig: 1026, 1026
+  offset: 70, 107
+  index: -1
+all/wave_front
+  rotate: true
+  xy: 516, 250
+  size: 782, 341
+  orig: 787, 344
+  offset: 5, 0
+  index: -1

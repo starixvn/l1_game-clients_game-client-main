@@ -1,412 +1,431 @@
 
-exportAtlas.png
-size: 4096,2048
+effect-superwin.png
+size: 1252,575
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+bg_light
+  rotate: false
+  xy: 2, 73
+  size: 65, 500
+  orig: 65, 501
+  offset: 0, 0
+  index: -1
 board
   rotate: false
-  xy: 2, 2
-  size: 1050, 183
-  orig: 1050, 183
-  offset: 0, 0
+  xy: 69, 2
+  size: 1059, 219
+  orig: 1067, 262
+  offset: 0, 43
   index: -1
 coin1
   rotate: true
-  xy: 3, 1113
+  xy: 1057, 398
   size: 175, 155
   orig: 175, 155
   offset: 0, 0
   index: -1
 coin2
   rotate: true
-  xy: 315, 1034
+  xy: 513, 231
   size: 140, 135
   orig: 140, 135
   offset: 0, 0
   index: -1
 coin3
   rotate: false
-  xy: 1215, 67
+  xy: 650, 241
   size: 165, 130
   orig: 165, 130
   offset: 0, 0
   index: -1
 coin4
   rotate: false
-  xy: 956, 1342
+  xy: 817, 241
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin5
   rotate: false
-  xy: 454, 1337
+  xy: 949, 241
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin6
   rotate: false
-  xy: 1651, 635
+  xy: 1081, 266
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin7
   rotate: true
-  xy: 944, 1194
+  xy: 391, 226
   size: 145, 120
   orig: 145, 120
   offset: 0, 0
   index: -1
 coin8
   rotate: false
-  xy: 162, 1113
+  xy: 249, 226
   size: 140, 145
   orig: 140, 145
   offset: 0, 0
   index: -1
 coin9
   rotate: false
-  xy: 1558, 1442
+  xy: 1130, 134
   size: 120, 130
   orig: 120, 130
   offset: 0, 0
   index: -1
 coins
   rotate: true
-  xy: 883, 349
+  xy: 69, 223
   size: 350, 178
   orig: 350, 178
   offset: 0, 0
   index: -1
 flash1
   rotate: false
-  xy: 1597, 8
+  xy: 249, 373
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash2
   rotate: false
-  xy: 1557, 1239
+  xy: 451, 373
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash3
   rotate: false
-  xy: 1573, 1035
+  xy: 653, 373
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash4
   rotate: false
-  xy: 1559, 831
+  xy: 855, 373
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
+
+effect-superwin2.png
+size: 1240,1036
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 all/coconut_back
   rotate: true
-  xy: 503, 346
+  xy: 861, 61
   size: 440, 377
   orig: 440, 377
   offset: 0, 0
   index: -1
 all/coconut_front
   rotate: false
-  xy: 866, 1446
-  size: 440, 239
-  orig: 440, 239
+  xy: 2, 2
+  size: 440, 240
+  orig: 440, 240
   offset: 0, 0
   index: -1
 all/drop1
   rotate: true
-  xy: 870, 661
-  size: 23, 23
-  orig: 23, 23
-  offset: 0, 0
+  xy: 444, 5
+  size: 29, 26
+  orig: 36, 29
+  offset: 0, 3
   index: -1
 all/drop1_1
   rotate: true
-  xy: 555, 344
-  size: 23, 23
-  orig: 23, 23
-  offset: 0, 0
+  xy: 444, 5
+  size: 29, 26
+  orig: 36, 29
+  offset: 0, 3
   index: -1
 all/drop2
   rotate: true
-  xy: 832, 345
-  size: 64, 44
-  orig: 64, 44
-  offset: 0, 0
+  xy: 444, 102
+  size: 69, 61
+  orig: 74, 83
+  offset: 5, 7
   index: -1
 all/drop2 _1
   rotate: true
-  xy: 506, 344
-  size: 64, 50
-  orig: 64, 50
-  offset: 0, 0
+  xy: 444, 173
+  size: 69, 64
+  orig: 74, 83
+  offset: 5, 3
   index: -1
 all/drop3
   rotate: true
-  xy: 784, 344
-  size: 45, 46
-  orig: 45, 46
-  offset: 0, 0
+  xy: 507, 55
+  size: 52, 48
+  orig: 61, 50
+  offset: 1, 0
   index: -1
 all/drop3_1
   rotate: true
-  xy: 385, 890
-  size: 45, 48
-  orig: 45, 48
-  offset: 0, 0
+  xy: 510, 190
+  size: 52, 49
+  orig: 61, 50
+  offset: 1, 0
   index: -1
 all/drop4
   rotate: true
-  xy: 3, 1047
-  size: 55, 45
-  orig: 55, 45
-  offset: 0, 0
+  xy: 507, 109
+  size: 62, 58
+  orig: 70, 74
+  offset: 6, 0
   index: -1
 all/drop4 _1
   rotate: true
-  xy: 2, 689
-  size: 58, 50
-  orig: 58, 50
-  offset: 0, 0
+  xy: 444, 36
+  size: 64, 61
+  orig: 70, 74
+  offset: 5, 0
   index: -1
 all/tree
   rotate: false
-  xy: 587, 1178
-  size: 355, 531
-  orig: 355, 531
+  xy: 861, 503
+  size: 356, 531
+  orig: 356, 531
   offset: 0, 0
   index: -1
 all/wave_back
   rotate: true
-  xy: 1341, 52
-  size: 609, 258
-  orig: 609, 258
-  offset: 0, 0
+  xy: 2, 244
+  size: 790, 514
+  orig: 1026, 1026
+  offset: 70, 107
   index: -1
 all/wave_front
   rotate: true
-  xy: 334, 670
-  size: 777, 338
-  orig: 777, 338
-  offset: 0, 0
+  xy: 518, 252
+  size: 782, 341
+  orig: 787, 344
+  offset: 5, 0
   index: -1
+
+effect-superwin3.png
+size: 1734,269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 bg_light/bg_light_00000
   rotate: true
-  xy: 369, 1009
+  xy: 468, 2
   size: 10, 61
-  orig: 10, 61
-  offset: 0, 0
+  orig: 65, 550
+  offset: 28, 0
   index: -1
 bg_light/bg_light_00001
   rotate: true
-  xy: 634, 855
-  size: 18, 102
-  orig: 18, 102
-  offset: 0, 0
+  xy: 1492, 3
+  size: 15, 99
+  orig: 65, 550
+  offset: 26, 0
   index: -1
 bg_light/bg_light_00002
   rotate: true
-  xy: 1261, 597
-  size: 24, 140
-  orig: 24, 140
-  offset: 0, 0
+  xy: 1492, 20
+  size: 20, 137
+  orig: 65, 550
+  offset: 23, 0
   index: -1
 bg_light/bg_light_00003
   rotate: true
-  xy: 403, 1797
-  size: 29, 176
-  orig: 29, 176
-  offset: 0, 0
+  xy: 1492, 42
+  size: 24, 173
+  orig: 65, 550
+  offset: 21, 0
   index: -1
 bg_light/bg_light_00004
   rotate: true
-  xy: 1602, 791
-  size: 34, 215
-  orig: 34, 215
-  offset: 0, 0
+  xy: 1236, 69
+  size: 28, 211
+  orig: 65, 550
+  offset: 19, 0
   index: -1
 bg_light/bg_light_00005
   rotate: true
-  xy: 921, 1682
-  size: 39, 252
-  orig: 39, 252
-  offset: 0, 0
+  xy: 1277, 99
+  size: 34, 249
+  orig: 65, 550
+  offset: 16, 0
   index: -1
 bg_light/bg_light_00006
   rotate: true
-  xy: 512, 1918
-  size: 44, 288
-  orig: 44, 288
-  offset: 0, 0
+  xy: 876, 75
+  size: 38, 285
+  orig: 65, 550
+  offset: 14, 0
   index: -1
 bg_light/bg_light_00007
   rotate: true
-  xy: 26, 1948
-  size: 48, 327
-  orig: 48, 327
-  offset: 0, 0
+  xy: 952, 115
+  size: 43, 323
+  orig: 65, 550
+  offset: 11, 0
   index: -1
 bg_light/bg_light_00008
   rotate: true
-  xy: 1307, 1892
-  size: 54, 363
-  orig: 54, 363
-  offset: 0, 0
+  xy: 990, 160
+  size: 48, 360
+  orig: 65, 550
+  offset: 9, 0
   index: -1
 bg_light/bg_light_00009
   rotate: true
-  xy: 834, 1862
-  size: 58, 401
-  orig: 58, 401
-  offset: 0, 0
+  xy: 476, 81
+  size: 52, 398
+  orig: 65, 550
+  offset: 7, 0
   index: -1
 bg_light/bg_light_00010
   rotate: true
-  xy: 390, 1860
-  size: 63, 437
-  orig: 63, 437
-  offset: 0, 0
+  xy: 990, 210
+  size: 57, 434
+  orig: 65, 550
+  offset: 4, 0
   index: -1
 bg_light/bg_light_00011
   rotate: true
-  xy: 1109, 1763
-  size: 67, 475
-  orig: 67, 475
-  offset: 0, 0
+  xy: 2, 72
+  size: 61, 472
+  orig: 65, 550
+  offset: 2, 0
   index: -1
 bg_light/bg_light_00012
   rotate: true
-  xy: 1317, 1695
-  size: 70, 495
-  orig: 70, 495
+  xy: 2, 202
+  size: 65, 492
+  orig: 65, 550
   offset: 0, 0
   index: -1
 bg_light/bg_light_00013
   rotate: true
-  xy: 717, 1712
-  size: 69, 495
-  orig: 69, 495
+  xy: 2, 135
+  size: 65, 492
+  orig: 65, 550
   offset: 0, 0
   index: -1
 bg_light/bg_light_00014
   rotate: true
-  xy: 68, 1808
-  size: 68, 495
-  orig: 68, 495
+  xy: 496, 202
+  size: 65, 492
+  orig: 65, 550
   offset: 0, 0
   index: -1
 bg_light/bg_light_00015
   rotate: true
-  xy: 649, 1799
-  size: 69, 457
-  orig: 69, 457
-  offset: 0, 0
+  xy: 496, 135
+  size: 65, 454
+  orig: 65, 550
+  offset: 0, 38
   index: -1
 bg_light/bg_light_00016
   rotate: true
-  xy: 1142, 2
-  size: 68, 415
-  orig: 68, 415
-  offset: 0, 0
+  xy: 2, 5
+  size: 65, 411
+  orig: 65, 550
+  offset: 0, 81
   index: -1
 bg_light/bg_light_00017
   rotate: true
-  xy: 15, 1876
-  size: 68, 370
-  orig: 68, 370
-  offset: 0, 0
+  xy: 476, 14
+  size: 65, 366
+  orig: 65, 550
+  offset: 0, 126
   index: -1
 bg_light/bg_light_00018
   rotate: true
-  xy: 835, 1124
-  size: 69, 324
-  orig: 69, 324
-  offset: 0, 0
+  xy: 1352, 135
+  size: 65, 322
+  orig: 65, 550
+  offset: 0, 170
   index: -1
 bg_light/bg_light_00019
   rotate: true
-  xy: 363, 1470
-  size: 69, 280
-  orig: 69, 280
-  offset: 0, 0
+  xy: 1426, 202
+  size: 65, 278
+  orig: 65, 550
+  offset: 0, 214
   index: -1
 bg_light/bg_light_00020
   rotate: true
-  xy: 1278, 1823
-  size: 68, 237
-  orig: 68, 237
-  offset: 0, 0
+  xy: 844, 8
+  size: 65, 234
+  orig: 65, 550
+  offset: 0, 258
   index: -1
 bg_light/bg_light_00021
   rotate: true
-  xy: 561, 787
-  size: 69, 196
-  orig: 69, 196
-  offset: 0, 0
+  xy: 1528, 68
+  size: 65, 193
+  orig: 65, 550
+  offset: 0, 302
   index: -1
 bg_light/bg_light_00022
   rotate: true
-  xy: 2, 668
-  size: 1327, 501
-  orig: 1327, 501
-  offset: 0, 0
+  xy: 1080, 8
+  size: 65, 154
+  orig: 65, 550
+  offset: 0, 346
   index: -1
 bg_light/bg_light_00023
   rotate: true
-  xy: 506, 441
-  size: 1155, 199
-  orig: 1155, 199
-  offset: 0, 0
+  xy: 1236, 2
+  size: 65, 116
+  orig: 65, 550
+  offset: 0, 389
   index: -1
 bg_light/bg_light_00024
   rotate: true
-  xy: 306, 690
-  size: 315, 135
-  orig: 315, 135
-  offset: 0, 0
+  xy: 1354, 2
+  size: 65, 78
+  orig: 65, 550
+  offset: 0, 433
   index: -1
 bg_light/bg_light_00025
   rotate: false
-  xy: 3, 671
-  size: 333, 102
-  orig: 333, 102
-  offset: 0, 0
+  xy: 1667, 26
+  size: 65, 40
+  orig: 65, 550
+  offset: 0, 477
   index: -1
 bg_light/bg_light_00026
   rotate: true
-  xy: 502, 164
-  size: 273, 582
-  orig: 273, 582
-  offset: 0, 0
+  xy: 1676, 135
+  size: 65, 45
+  orig: 65, 550
+  offset: 0, 477
   index: -1
 bg_light/bg_light_00027
   rotate: true
-  xy: 46, 285
-  size: 414, 1042
-  orig: 414, 1042
-  offset: 0, 0
+  xy: 415, 5
+  size: 65, 51
+  orig: 65, 550
+  offset: 0, 477
   index: -1
 bg_light/bg_light_00028
   rotate: true
-  xy: 851, 286
-  size: 157, 256
-  orig: 157, 256
-  offset: 0, 0
+  xy: 1434, 2
+  size: 65, 56
+  orig: 65, 550
+  offset: 0, 477
   index: -1
 bg_light/bg_light_00029
   rotate: true
-  xy: 1056, 5
+  xy: 1706, 202
   size: 65, 15
-  orig: 65, 15
-  offset: 0, 0
+  orig: 65, 550
+  offset: 0, 477
   index: -1

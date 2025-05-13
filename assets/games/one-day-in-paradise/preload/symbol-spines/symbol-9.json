@@ -1,1 +1,1507 @@
-{"animations": {"highlight": {"bones": {"text": {"scale": [{"c3": 0.75, "curve": 0.25}, {"c3": 0.75, "curve": 0.25, "time": 0.1, "x": 0.781, "y": 1.104}, {"c3": 0.475, "curve": 0.146, "time": 0.2333, "x": 1.047}, {"c3": 0.485, "curve": 0.122, "time": 0.3667, "x": 0.792, "y": 1.072}, {"c3": 0.75, "curve": 0.25, "time": 0.5, "x": 1.042, "y": 0.983}, {"c3": 0.75, "curve": 0.25, "time": 0.6, "x": 0.898, "y": 1.05}, {"time": 0.6667, "x": 1.029, "y": 0.971}, {"time": 0.7333}], "translate": [{"c3": 0.75, "curve": 0.25, "time": 0.1}, {"c3": 0.423, "curve": 0.113, "time": 0.2333, "y": 13.96}, {"c3": 0.456, "curve": 0.141, "time": 0.3667}, {"c3": 0.75, "curve": 0.25, "time": 0.5, "y": 10.02}, {"time": 0.6}]}}, "slots": {"particle/particle_00": {"attachment": [{"name": null, "time": 0.0333}]}, "particle/particle_01": {"attachment": [{"name": null}, {"name": "particle/particle_01", "time": 0.0333}, {"name": null, "time": 0.0667}]}, "particle/particle_02": {"attachment": [{"name": null}, {"name": "particle/particle_02", "time": 0.0667}, {"name": null, "time": 0.1}]}, "particle/particle_03": {"attachment": [{"name": null}, {"name": "particle/particle_03", "time": 0.1}, {"name": null, "time": 0.1333}]}, "particle/particle_04": {"attachment": [{"name": null}, {"name": "particle/particle_04", "time": 0.1333}, {"name": null, "time": 0.1667}]}, "particle/particle_05": {"attachment": [{"name": null}, {"name": "particle/particle_05", "time": 0.1667}, {"name": null, "time": 0.2}]}, "particle/particle_06": {"attachment": [{"name": null}, {"name": "particle/particle_06", "time": 0.2}, {"name": null, "time": 0.2333}]}, "particle/particle_07": {"attachment": [{"name": null}, {"name": "particle/particle_07", "time": 0.2333}, {"name": null, "time": 0.2667}]}, "particle/particle_08": {"attachment": [{"name": null}, {"name": "particle/particle_08", "time": 0.2667}, {"name": null, "time": 0.3}]}, "particle/particle_09": {"attachment": [{"name": null}, {"name": "particle/particle_09", "time": 0.3}, {"name": null, "time": 0.3333}]}, "particle/particle_10": {"attachment": [{"name": null}, {"name": "particle/particle_10", "time": 0.3333}, {"name": null, "time": 0.3667}]}, "particle/particle_11": {"attachment": [{"name": null}, {"name": "particle/particle_11", "time": 0.3667}, {"name": null, "time": 0.4}]}, "particle/particle_12": {"attachment": [{"name": null}, {"name": "particle/particle_12", "time": 0.4}, {"name": null, "time": 0.4333}]}, "particle/particle_13": {"attachment": [{"name": null}, {"name": "particle/particle_13", "time": 0.4333}, {"name": null, "time": 0.4667}]}, "particle/particle_14": {"attachment": [{"name": null}, {"name": "particle/particle_14", "time": 0.4667}, {"name": null, "time": 0.5}]}, "particle/particle_15": {"attachment": [{"name": null}, {"name": "particle/particle_15", "time": 0.5}, {"name": null, "time": 0.5333}]}, "particle/particle_16": {"attachment": [{"name": null}, {"name": "particle/particle_16", "time": 0.5333}, {"name": null, "time": 0.5667}]}, "particle/particle_17": {"attachment": [{"name": null}, {"name": "particle/particle_17", "time": 0.5667}, {"name": null, "time": 0.6}]}, "particle/particle_18": {"attachment": [{"name": null}, {"name": "particle/particle_18", "time": 0.6}, {"name": null, "time": 0.6333}]}, "particle/particle_19": {"attachment": [{"name": null}, {"name": "particle/particle_19", "time": 0.6333}, {"name": null, "time": 0.6667}]}, "particle/particle_20": {"attachment": [{"name": null}, {"name": "particle/particle_20", "time": 0.6667}, {"name": null, "time": 0.7}]}, "particle/particle_21": {"attachment": [{"name": null}, {"name": "particle/particle_21", "time": 0.7}, {"name": null, "time": 0.7333}]}, "particle/particle_22": {"attachment": [{"name": null}, {"name": "particle/particle_22", "time": 0.7333}, {"name": null, "time": 0.7667}]}, "particle/particle_23": {"attachment": [{"name": null}, {"name": "particle/particle_23", "time": 0.7667}, {"name": null, "time": 0.8}]}, "particle/particle_24": {"attachment": [{"name": null}, {"name": "particle/particle_24", "time": 0.8}, {"name": null, "time": 0.8333}]}, "particle/particle_25": {"attachment": [{"name": null}, {"name": "particle/particle_25", "time": 0.8333}, {"name": null, "time": 0.8667}]}, "particle/particle_26": {"attachment": [{"name": null}, {"name": "particle/particle_26", "time": 0.8667}, {"name": null, "time": 0.9}]}, "particle/particle_27": {"attachment": [{"name": null}, {"name": "particle/particle_27", "time": 0.9}, {"name": null, "time": 0.9333}]}, "particle/particle_28": {"attachment": [{"name": null}, {"name": "particle/particle_28", "time": 0.9333}, {"name": null, "time": 0.9667}]}, "particle/particle_29": {"attachment": [{"name": null}, {"name": "particle/particle_29", "time": 0.9667}]}, "scatter_light_sweep/scatter_light_sweep_00": {"attachment": [{"name": null, "time": 0.0333}]}, "scatter_light_sweep/scatter_light_sweep_01": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_01", "time": 0.0333}, {"name": null, "time": 0.0667}]}, "scatter_light_sweep/scatter_light_sweep_02": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_02", "time": 0.0667}, {"name": null, "time": 0.1}]}, "scatter_light_sweep/scatter_light_sweep_03": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_03", "time": 0.1}, {"name": null, "time": 0.1333}]}, "scatter_light_sweep/scatter_light_sweep_04": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_04", "time": 0.1333}, {"name": null, "time": 0.1667}]}, "scatter_light_sweep/scatter_light_sweep_05": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_05", "time": 0.1667}, {"name": null, "time": 0.2}]}, "scatter_light_sweep/scatter_light_sweep_06": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_06", "time": 0.2}, {"name": null, "time": 0.2333}]}, "scatter_light_sweep/scatter_light_sweep_07": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_07", "time": 0.2333}, {"name": null, "time": 0.2667}]}, "scatter_light_sweep/scatter_light_sweep_08": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_08", "time": 0.2667}, {"name": null, "time": 0.3}]}, "scatter_light_sweep/scatter_light_sweep_09": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_09", "time": 0.3}, {"name": null, "time": 0.3333}]}, "scatter_light_sweep/scatter_light_sweep_10": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_10", "time": 0.3333}, {"name": null, "time": 0.3667}]}, "scatter_light_sweep/scatter_light_sweep_11": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_11", "time": 0.3667}, {"name": null, "time": 0.4}]}, "scatter_light_sweep/scatter_light_sweep_12": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_12", "time": 0.4}, {"name": null, "time": 0.4333}]}, "scatter_light_sweep/scatter_light_sweep_13": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_13", "time": 0.4333}, {"name": null, "time": 0.4667}]}, "scatter_light_sweep/scatter_light_sweep_14": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_14", "time": 0.4667}, {"name": null, "time": 0.5}]}, "scatter_light_sweep/scatter_light_sweep_15": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_15", "time": 0.5}, {"name": null, "time": 0.5333}]}, "scatter_light_sweep/scatter_light_sweep_16": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_16", "time": 0.5333}, {"name": null, "time": 0.5667}]}, "scatter_light_sweep/scatter_light_sweep_17": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_17", "time": 0.5667}, {"name": null, "time": 0.6}]}, "scatter_light_sweep/scatter_light_sweep_18": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_18", "time": 0.6}, {"name": null, "time": 0.6333}]}, "scatter_light_sweep/scatter_light_sweep_19": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_19", "time": 0.6333}, {"name": null, "time": 0.6667}]}, "scatter_light_sweep/scatter_light_sweep_20": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_20", "time": 0.6667}, {"name": null, "time": 0.7}]}, "scatter_light_sweep/scatter_light_sweep_21": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_21", "time": 0.7}, {"name": null, "time": 0.7333}]}, "scatter_light_sweep/scatter_light_sweep_22": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_22", "time": 0.7333}, {"name": null, "time": 0.7667}]}, "scatter_light_sweep/scatter_light_sweep_23": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_23", "time": 0.7667}, {"name": null, "time": 0.8}]}, "scatter_light_sweep/scatter_light_sweep_24": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_24", "time": 0.8}, {"name": null, "time": 0.8333}]}, "scatter_light_sweep/scatter_light_sweep_25": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_25", "time": 0.8333}, {"name": null, "time": 0.8667}]}, "scatter_light_sweep/scatter_light_sweep_26": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_26", "time": 0.8667}, {"name": null, "time": 0.9}]}, "scatter_light_sweep/scatter_light_sweep_27": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_27", "time": 0.9}, {"name": null, "time": 0.9333}]}, "scatter_light_sweep/scatter_light_sweep_28": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_28", "time": 0.9333}, {"name": null, "time": 0.9667}]}, "scatter_light_sweep/scatter_light_sweep_29": {"attachment": [{"name": null}, {"name": "scatter_light_sweep/scatter_light_sweep_29", "time": 0.9667}]}, "spray/spray_00": {"attachment": [{"name": null, "time": 0.0333}]}, "spray/spray_01": {"attachment": [{"name": null}, {"name": "spray/spray_01", "time": 0.0333}, {"name": null, "time": 0.0667}]}, "spray/spray_02": {"attachment": [{"name": null}, {"name": "spray/spray_02", "time": 0.0667}, {"name": null, "time": 0.1}]}, "spray/spray_03": {"attachment": [{"name": null}, {"name": "spray/spray_03", "time": 0.1}, {"name": null, "time": 0.1333}]}, "spray/spray_04": {"attachment": [{"name": null}, {"name": "spray/spray_04", "time": 0.1333}, {"name": null, "time": 0.1667}]}, "spray/spray_05": {"attachment": [{"name": null}, {"name": "spray/spray_05", "time": 0.1667}, {"name": null, "time": 0.2}]}, "spray/spray_06": {"attachment": [{"name": null}, {"name": "spray/spray_06", "time": 0.2}, {"name": null, "time": 0.2333}]}, "spray/spray_07": {"attachment": [{"name": null}, {"name": "spray/spray_07", "time": 0.2333}, {"name": null, "time": 0.2667}]}, "spray/spray_08": {"attachment": [{"name": null}, {"name": "spray/spray_08", "time": 0.2667}, {"name": null, "time": 0.3}]}, "spray/spray_09": {"attachment": [{"name": null}, {"name": "spray/spray_09", "time": 0.3}, {"name": null, "time": 0.3333}]}, "spray/spray_10": {"attachment": [{"name": null}, {"name": "spray/spray_10", "time": 0.3333}, {"name": null, "time": 0.3667}]}, "spray/spray_11": {"attachment": [{"name": null}, {"name": "spray/spray_11", "time": 0.3667}, {"name": null, "time": 0.4}]}, "spray/spray_12": {"attachment": [{"name": null}, {"name": "spray/spray_12", "time": 0.4}, {"name": null, "time": 0.4333}]}, "spray/spray_13": {"attachment": [{"name": null}, {"name": "spray/spray_13", "time": 0.4333}, {"name": null, "time": 0.4667}]}, "spray/spray_14": {"attachment": [{"name": null}, {"name": "spray/spray_14", "time": 0.4667}, {"name": null, "time": 0.5}]}, "spray/spray_15": {"attachment": [{"name": null}, {"name": "spray/spray_15", "time": 0.5}, {"name": null, "time": 0.5333}]}, "spray/spray_16": {"attachment": [{"name": null}, {"name": "spray/spray_16", "time": 0.5333}, {"name": null, "time": 0.5667}]}, "spray/spray_17": {"attachment": [{"name": null}, {"name": "spray/spray_17", "time": 0.5667}, {"name": null, "time": 0.6}]}, "spray/spray_18": {"attachment": [{"name": null}, {"name": "spray/spray_18", "time": 0.6}, {"name": null, "time": 0.6333}]}, "spray/spray_19": {"attachment": [{"name": null}, {"name": "spray/spray_19", "time": 0.6333}, {"name": null, "time": 0.6667}]}, "spray/spray_20": {"attachment": [{"name": null}, {"name": "spray/spray_20", "time": 0.6667}, {"name": null, "time": 0.7}]}, "spray/spray_21": {"attachment": [{"name": null}, {"name": "spray/spray_21", "time": 0.7}, {"name": null, "time": 0.7333}]}, "spray/spray_22": {"attachment": [{"name": null}, {"name": "spray/spray_22", "time": 0.7333}, {"name": null, "time": 0.7667}]}, "spray/spray_23": {"attachment": [{"name": null}, {"name": "spray/spray_23", "time": 0.7667}, {"name": null, "time": 0.8}]}, "spray/spray_24": {"attachment": [{"name": null}, {"name": "spray/spray_24", "time": 0.8}, {"name": null, "time": 0.8333}]}, "spray/spray_25": {"attachment": [{"name": null}, {"name": "spray/spray_25", "time": 0.8333}, {"name": null, "time": 0.8667}]}, "spray/spray_26": {"attachment": [{"name": null}, {"name": "spray/spray_26", "time": 0.8667}, {"name": null, "time": 0.9}]}, "spray/spray_27": {"attachment": [{"name": null}, {"name": "spray/spray_27", "time": 0.9}, {"name": null, "time": 0.9333}]}, "spray/spray_28": {"attachment": [{"name": null}, {"name": "spray/spray_28", "time": 0.9333}, {"name": null, "time": 0.9667}]}, "spray/spray_29": {"attachment": [{"name": null}, {"name": "spray/spray_29", "time": 0.9667}]}, "sunlight": {"color": [{"c3": 0.75, "color": "ffffff00", "curve": 0.25}, {"color": "ffffffff", "time": 0.3333}]}}}, "idle": {"slots": {"particle/particle_00": {"attachment": [{"name": null}]}, "particle/particle_01": {"attachment": [{"name": null}]}, "particle/particle_02": {"attachment": [{"name": null}]}, "particle/particle_03": {"attachment": [{"name": null}]}, "particle/particle_04": {"attachment": [{"name": null}]}, "particle/particle_05": {"attachment": [{"name": null}]}, "particle/particle_06": {"attachment": [{"name": null}]}, "particle/particle_07": {"attachment": [{"name": null}]}, "particle/particle_08": {"attachment": [{"name": null}]}, "particle/particle_09": {"attachment": [{"name": null}]}, "particle/particle_10": {"attachment": [{"name": null}]}, "particle/particle_11": {"attachment": [{"name": null}]}, "particle/particle_12": {"attachment": [{"name": null}]}, "particle/particle_13": {"attachment": [{"name": null}]}, "particle/particle_14": {"attachment": [{"name": null}]}, "particle/particle_15": {"attachment": [{"name": null}]}, "particle/particle_16": {"attachment": [{"name": null}]}, "particle/particle_17": {"attachment": [{"name": null}]}, "particle/particle_18": {"attachment": [{"name": null}]}, "particle/particle_19": {"attachment": [{"name": null}]}, "particle/particle_20": {"attachment": [{"name": null}]}, "particle/particle_21": {"attachment": [{"name": null}]}, "particle/particle_22": {"attachment": [{"name": null}]}, "particle/particle_23": {"attachment": [{"name": null}]}, "particle/particle_24": {"attachment": [{"name": null}]}, "particle/particle_25": {"attachment": [{"name": null}]}, "particle/particle_26": {"attachment": [{"name": null}]}, "particle/particle_27": {"attachment": [{"name": null}]}, "particle/particle_28": {"attachment": [{"name": null}]}, "particle/particle_29": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_00": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_01": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_02": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_03": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_04": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_05": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_06": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_07": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_08": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_09": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_10": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_11": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_12": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_13": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_14": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_15": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_16": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_17": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_18": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_19": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_20": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_21": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_22": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_23": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_24": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_25": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_26": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_27": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_28": {"attachment": [{"name": null}]}, "scatter_light_sweep/scatter_light_sweep_29": {"attachment": [{"name": null}]}, "spray/spray_00": {"attachment": [{"name": null}]}, "spray/spray_01": {"attachment": [{"name": null}]}, "spray/spray_02": {"attachment": [{"name": null}]}, "spray/spray_03": {"attachment": [{"name": null}]}, "spray/spray_04": {"attachment": [{"name": null}]}, "spray/spray_05": {"attachment": [{"name": null}]}, "spray/spray_06": {"attachment": [{"name": null}]}, "spray/spray_07": {"attachment": [{"name": null}]}, "spray/spray_08": {"attachment": [{"name": null}]}, "spray/spray_09": {"attachment": [{"name": null}]}, "spray/spray_10": {"attachment": [{"name": null}]}, "spray/spray_11": {"attachment": [{"name": null}]}, "spray/spray_12": {"attachment": [{"name": null}]}, "spray/spray_13": {"attachment": [{"name": null}]}, "spray/spray_14": {"attachment": [{"name": null}]}, "spray/spray_15": {"attachment": [{"name": null}]}, "spray/spray_16": {"attachment": [{"name": null}]}, "spray/spray_17": {"attachment": [{"name": null}]}, "spray/spray_18": {"attachment": [{"name": null}]}, "spray/spray_19": {"attachment": [{"name": null}]}, "spray/spray_20": {"attachment": [{"name": null}]}, "spray/spray_21": {"attachment": [{"name": null}]}, "spray/spray_22": {"attachment": [{"name": null}]}, "spray/spray_23": {"attachment": [{"name": null}]}, "spray/spray_24": {"attachment": [{"name": null}]}, "spray/spray_25": {"attachment": [{"name": null}]}, "spray/spray_26": {"attachment": [{"name": null}]}, "spray/spray_27": {"attachment": [{"name": null}]}, "spray/spray_28": {"attachment": [{"name": null}]}, "spray/spray_29": {"attachment": [{"name": null}]}, "sunlight": {"attachment": [{"name": null}]}}}}, "bones": [{"name": "root"}, {"length": 42.83, "name": "text", "parent": "root", "rotation": 90, "y": -47.19}], "skeleton": {"hash": "QHKAx+zBoAlTxEWN30UxfTO7y5s", "height": 110, "spine": "3.8.99", "width": 110, "x": -55, "y": -55}, "skins": [{"attachments": {"bg": {"bg": {"height": 110, "hull": 4, "triangles": [3, 1, 2, 3, 0, 1], "type": "mesh", "uvs": [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0], "vertices": [-55.0, 55.0, 55.0, 55.0, 55.0, -55.0, -55.0, -55.0], "width": 110}}, "particle/particle_00": {"particle/particle_00": {"height": 110, "width": 110}}, "particle/particle_01": {"particle/particle_01": {"height": 110, "width": 110}}, "particle/particle_02": {"particle/particle_02": {"height": 4012, "hull": 12, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9], "type": "mesh", "uvs": [0.163948, 0.0, 0.168026, 0.0, 0.168026, 0.003916, 0.163948, 0.003916, 0.995922, 0.996736, 1.0, 0.996736, 1.0, 1.0, 0.995922, 1.0, 0.0, 0.991514, 0.004894, 0.991514, 0.004894, 0.995431, 0.0, 0.995431], "vertices": [33.0, -7.0, 38.0, -7.0, 38.0, -13.0, 33.0, -13.0, 27.999998, -12.0, 33.0, -12.0, 33.0, -17.0, 27.999998, -17.0, -20.999998, -27.999998, -14.999999, -27.999998, -14.999999, -34.0, -20.999998, -34.0], "width": 1774}}, "particle/particle_03": {"particle/particle_03": {"height": 795, "hull": 20, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17], "type": "mesh", "uvs": [0.992989, 0.0, 1.0, 0.0, 1.0, 0.032154, 0.992989, 0.032154, 0.917782, 0.977492, 0.921606, 0.977492, 0.921606, 0.996785, 0.917782, 0.996785, 0.936265, 0.980707, 0.940089, 0.980707, 0.940089, 1.0, 0.936265, 1.0, 0.518802, 0.70418, 0.521351, 0.70418, 0.521351, 0.720257, 0.518802, 0.720257, 0.0, 0.88746, 0.005099, 0.88746, 0.005099, 0.909968, 0.0, 0.909968], "vertices": [27.999998, -7.0, 39.0, -7.0, 39.0, -17.0, 27.999998, -17.0, 20.999998, -9.0, 27.0, -9.0, 27.0, -15.000001, 20.999998, -15.000001, -10.0, -15.000001, -4.0, -15.000001, -4.0, -21.000002, -10.0, -21.000002, -39.0, -22.0, -35.0, -22.0, -35.0, -27.000002, -39.0, -27.000002, -21.999998, -27.000002, -13.999999, -27.000002, -13.999999, -34.0, -21.999998, -34.0], "width": 2212}}, "particle/particle_04": {"particle/particle_04": {"height": 3194, "hull": 25, "triangles": [3, 1, 2, 3, 0, 1, 6, 7, 5, 7, 8, 5, 8, 4, 5, 12, 10, 11, 12, 9, 10, 16, 14, 15, 16, 13, 14, 20, 18, 19, 20, 17, 18, 24, 22, 23, 24, 21, 22], "type": "mesh", "uvs": [0.149631, 0.015654, 0.150246, 0.015654, 0.150246, 0.016281, 0.149631, 0.016281, 0.386625, 0.000563, 0.387402, 0.006334, 0.379882, 0.008435, 0.379926, 0.004167, 0.384059, 0.00055, 0.996305, 0.996243, 1.0, 0.996243, 1.0, 1.0, 0.996305, 1.0, 0.892241, 0.994364, 0.895936, 0.994364, 0.895936, 0.998122, 0.892241, 0.998122, 0.0, 0.018159, 0.001847, 0.018159, 0.001847, 0.02129, 0.0, 0.02129, 0.500616, 0.96556, 0.505542, 0.96556, 0.505542, 0.97057, 0.500616, 0.97057], "vertices": [2.0, 9.0, 3.0, 9.0, 3.0, 8.0, 2.0, 8.0, 38.879753, -5.899799, 40.141022, -15.114918, 27.928545, -18.470158, 27.999788, -11.654926, 34.711975, -5.878941, 21.0, -9.0, 27.0, -9.0, 27.0, -15.0, 21.0, -15.0, -10.0, -15.0, -4.0, -15.0, -4.0, -21.0, -10.0, -21.0, -38.0, -22.0, -35.0, -22.0, -35.0, -27.0, -38.0, -27.0, -22.0, -26.0, -14.000001, -26.0, -14.000001, -34.0, -22.0, -34.0], "width": 2320}}, "particle/particle_05": {"particle/particle_05": {"height": 2864, "hull": 32, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 10, 11, 9, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29], "type": "mesh", "uvs": [0.0, 0.0, 0.000708, 0.0, 0.000708, 0.001397, 0.0, 0.001397, 0.489738, 0.325419, 0.491154, 0.325419, 0.491154, 0.326816, 0.489738, 0.326816, 0.884512, 0.680198, 0.885436, 0.68708, 0.877139, 0.690263, 0.87615, 0.682961, 0.056617, 0.516061, 0.058033, 0.516061, 0.058033, 0.517458, 0.056617, 0.517458, 0.26327, 0.875, 0.267516, 0.875, 0.267516, 0.87919, 0.26327, 0.87919, 0.77707, 0.995112, 0.781316, 0.995112, 0.781316, 1.0, 0.77707, 1.0, 0.997877, 0.330307, 1.0, 0.330307, 1.0, 0.333101, 0.997877, 0.333101, 0.593772, 0.977654, 0.599434, 0.977654, 0.599434, 0.98324, 0.593772, 0.98324], "vertices": [2.0, 10.0, 3.0, 10.0, 3.0, 8.0, 2.0, 8.0, -26.0, 0.0, -23.999998, 0.0, -23.999998, -2.0, -26.0, -2.0, 38.815472, -4.043732, 40.121391, -13.898735, 28.398066, -18.456467, 27.0, -8.0, 28.000002, -6.0, 30.0, -6.0, 30.0, -8.0, 28.000002, -8.0, 21.0, -8.0, 27.0, -8.0, 27.0, -14.0, 21.0, -14.0, -10.0, -14.0, -4.0, -14.0, -4.0, -21.0, -10.0, -21.0, -38.0, -22.0, -35.0, -22.0, -35.0, -26.0, -38.0, -26.0, -22.0, -26.0, -14.000001, -26.0, -14.000001, -34.0, -22.0, -34.0], "width": 2018}}, "particle/particle_06": {"particle/particle_06": {"height": 2491, "hull": 32, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29], "type": "mesh", "uvs": [0.0, 0.456255, 0.00128, 0.456255, 0.00128, 0.45789, 0.0, 0.45789, 0.534869, 0.0, 0.536148, 0.0, 0.536148, 0.001635, 0.534869, 0.001635, 0.180422, 0.378577, 0.182342, 0.378577, 0.182342, 0.380213, 0.180422, 0.380213, 0.167626, 0.372854, 0.168906, 0.372854, 0.168906, 0.375307, 0.167626, 0.375307, 0.992962, 0.677841, 1.0, 0.677841, 1.0, 0.686836, 0.992962, 0.686836, 0.787588, 0.995094, 0.791427, 0.995094, 0.791427, 1.0, 0.787588, 1.0, 0.990403, 0.450531, 0.994242, 0.450531, 0.994242, 0.456255, 0.990403, 0.456255, 0.229686, 0.971382, 0.234805, 0.971382, 0.234805, 0.977105, 0.229686, 0.977105], "vertices": [7.0, 21.000002, 9.0, 21.000002, 9.0, 19.000002, 7.0, 19.000002, 1.0, 10.000001, 3.0, 10.000001, 3.0, 8.000002, 1.0, 8.000002, -26.0, 0.0, -23.0, 0.0, -23.0, -2.0, -26.0, -2.0, 28.000002, -5.0, 30.0, -5.0, 30.0, -8.000001, 28.000002, -8.000001, 28.000002, -5.0, 39.0, -5.0, 39.0, -16.000002, 28.000002, -16.000002, 21.0, -8.000001, 27.0, -8.000001, 27.0, -14.000001, 21.0, -14.000001, -10.0, -14.000001, -4.0, -14.000001, -4.0, -21.0, -10.0, -21.0, -22.0, -26.0, -14.000001, -26.0, -14.000001, -33.000004, -22.0, -33.000004], "width": 2232}}, "particle/particle_07": {"particle/particle_07": {"height": 3346, "hull": 37, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 22, 23, 21, 21, 23, 24, 24, 20, 21, 28, 26, 27, 28, 25, 26, 32, 30, 31, 32, 29, 30, 36, 34, 35, 36, 33, 34], "type": "mesh", "uvs": [0.740433, 0.0, 0.742096, 0.0, 0.742096, 0.001195, 0.740433, 0.001195, 0.156406, 0.066348, 0.158902, 0.066348, 0.158902, 0.068141, 0.156406, 0.068141, 0.0, 0.553497, 0.001664, 0.553497, 0.001664, 0.554692, 0.0, 0.554692, 0.596506, 0.17095, 0.59817, 0.17095, 0.59817, 0.172146, 0.596506, 0.172146, 0.678037, 0.20263, 0.680532, 0.20263, 0.680532, 0.203825, 0.678037, 0.203825, 0.463624, 0.345858, 0.469218, 0.347878, 0.471072, 0.354073, 0.458286, 0.353662, 0.458307, 0.349636, 0.99584, 0.997011, 1.0, 0.997011, 1.0, 1.0, 0.99584, 1.0, 0.392679, 0.991632, 0.397671, 0.991632, 0.397671, 0.995218, 0.392679, 0.995218, 0.646423, 0.967125, 0.653078, 0.967125, 0.653078, 0.971907, 0.646423, 0.971907], "vertices": [7.0, 22.0, 9.0, 22.0, 9.0, 20.0, 7.0, 20.0, 1.0, 11.0, 4.0, 11.0, 4.0, 8.0, 1.0, 8.0, 23.0, 8.0, 25.0, 8.0, 25.0, 6.0, 23.0, 6.0, -30.999998, 2.0, -28.999998, 2.0, -28.999998, 0.0, -30.999998, 0.0, -26.0, 0.0, -23.0, 0.0, -23.0, -2.0, -26.0, -2.0, 27.275665, -2.620802, 34.0, -6.0, 36.228416, -16.363918, 20.860264, -15.676159, 20.884697, -8.941133, 34.0, -5.0, 39.0, -5.0, 39.0, -10.0, 34.0, -10.0, -10.0, -14.0, -4.0, -14.0, -4.0, -20.0, -10.0, -20.0, -22.0, -25.0, -14.000001, -25.0, -14.000001, -33.0, -22.0, -33.0], "width": 1717}}, "particle/particle_08": {"particle/particle_08": {"height": 3365, "hull": 40, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37], "type": "mesh", "uvs": [0.413488, 0.394068, 0.41485, 0.394068, 0.41485, 0.395278, 0.413488, 0.395278, 0.391689, 0.388015, 0.393052, 0.388015, 0.393052, 0.389225, 0.391689, 0.389225, 0.490463, 0.214891, 0.491826, 0.214891, 0.491826, 0.216102, 0.490463, 0.216102, 0.581063, 0.0, 0.582425, 0.0, 0.582425, 0.001211, 0.581063, 0.001211, 0.529973, 0.612591, 0.532016, 0.612591, 0.532016, 0.614407, 0.529973, 0.614407, 0.990463, 0.495157, 1.0, 0.495157, 1.0, 0.503027, 0.990463, 0.503027, 0.446185, 0.191283, 0.447548, 0.191283, 0.447548, 0.192494, 0.446185, 0.192494, 0.696185, 0.995763, 0.700954, 0.995763, 0.700954, 1.0, 0.696185, 1.0, 0.0, 0.93523, 0.002044, 0.93523, 0.002044, 0.937651, 0.0, 0.937651, 0.128065, 0.421913, 0.133515, 0.421913, 0.133515, 0.42615, 0.128065, 0.42615], "vertices": [7.0, 22.000002, 9.0, 22.000002, 9.0, 20.000002, 7.0, 20.000002, 1.0, 11.000001, 3.0, 11.000001, 3.0, 9.000001, 1.0, 9.000001, 23.0, 8.000002, 25.0, 8.000002, 25.0, 6.0, 23.0, 6.0, -31.0, 2.0, -29.0, 2.0, -29.0, 0.0, -31.0, 0.0, -26.0, 1.0, -23.0, 1.0, -23.0, -2.0, -26.0, -2.0, 21.0, -3.0, 35.0, -3.0, 35.0, -16.000002, 21.0, -16.000002, -19.0, -5.0, -17.0, -5.0, -17.0, -7.0, -19.0, -7.0, -11.0, -13.000001, -4.0, -13.000001, -4.0, -20.0, -11.0, -20.0, -38.0, -21.0, -35.0, -21.0, -35.0, -25.0, -38.0, -25.0, -22.0, -25.0, -14.0, -25.0, -14.0, -32.000004, -22.0, -32.000004], "width": 2018}}, "particle/particle_09": {"particle/particle_09": {"height": 3434, "hull": 44, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41], "type": "mesh", "uvs": [0.770794, 0.445317, 0.773333, 0.445317, 0.773333, 0.44713, 0.770794, 0.44713, 0.0, 0.072508, 0.00127, 0.072508, 0.00127, 0.073112, 0.0, 0.073112, 0.96254, 0.450151, 0.964444, 0.450151, 0.964444, 0.451964, 0.96254, 0.451964, 0.467302, 0.131722, 0.468571, 0.131722, 0.468571, 0.132931, 0.467302, 0.132931, 0.996825, 0.871299, 1.0, 0.871299, 1.0, 0.87432, 0.996825, 0.87432, 0.756825, 0.0, 0.765714, 0.0, 0.765714, 0.007251, 0.756825, 0.007251, 0.731429, 0.595166, 0.733968, 0.595166, 0.733968, 0.596979, 0.731429, 0.596979, 0.143492, 0.464048, 0.144762, 0.464048, 0.144762, 0.465257, 0.143492, 0.465257, 0.895238, 0.995166, 0.899683, 0.995166, 0.899683, 0.999396, 0.895238, 0.999396, 0.28254, 0.905136, 0.284444, 0.905136, 0.284444, 0.907553, 0.28254, 0.907553, 0.805714, 0.99577, 0.810159, 0.99577, 0.810159, 1.0, 0.805714, 1.0], "vertices": [6.0, 22.0, 10.0, 22.0, 10.0, 18.999998, 6.0, 18.999998, 1.0, 11.0, 3.0, 11.0, 3.0, 10.0, 1.0, 10.0, 23.0, 9.0, 26.0, 9.0, 26.0, 6.0, 23.0, 6.0, -31.0, 2.0, -29.0, 2.0, -29.0, 0.0, -31.0, 0.0, -27.0, 2.0, -22.0, 2.0, -22.0, -3.0, -27.0, -3.0, 21.0, -3.0, 35.0, -3.0, 35.0, -14.999999, 21.0, -14.999999, 35.0, -4.0, 39.0, -4.0, 39.0, -7.0, 35.0, -7.0, -19.0, -5.0, -17.0, -5.0, -17.0, -7.0, -19.0, -7.0, -11.0, -12.999999, -4.0, -12.999999, -4.0, -20.0, -11.0, -20.0, -38.0, -20.0, -35.0, -20.0, -35.0, -24.0, -38.0, -24.0, -21.0, -24.0, -14.0, -24.0, -14.0, -31.0, -21.0, -31.0], "width": 2165}}, "particle/particle_10": {"particle/particle_10": {"height": 3018, "hull": 48, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45], "type": "mesh", "uvs": [0.786223, 0.988529, 0.789192, 0.988529, 0.789192, 0.991903, 0.786223, 0.991903, 0.760689, 0.991228, 0.763658, 0.991228, 0.763658, 0.994602, 0.760689, 0.994602, 0.998219, 0.366397, 1.0, 0.366397, 1.0, 0.368421, 0.998219, 0.368421, 0.992874, 0.0, 0.996437, 0.0, 0.996437, 0.004049, 0.992874, 0.004049, 0.226247, 0.938596, 0.232185, 0.938596, 0.232185, 0.946019, 0.226247, 0.946019, 0.800475, 0.991228, 0.803444, 0.991228, 0.803444, 0.994602, 0.800475, 0.994602, 0.0, 0.51552, 0.001188, 0.51552, 0.001188, 0.517544, 0.0, 0.517544, 0.236936, 0.983806, 0.240499, 0.983806, 0.240499, 0.987854, 0.236936, 0.987854, 0.388955, 0.029015, 0.390143, 0.029015, 0.390143, 0.030364, 0.388955, 0.030364, 0.319477, 0.47031, 0.323634, 0.47031, 0.323634, 0.475034, 0.319477, 0.475034, 0.429335, 0.996626, 0.43171, 0.996626, 0.43171, 1.0, 0.429335, 1.0, 0.994062, 0.321862, 0.997625, 0.321862, 0.997625, 0.325911, 0.994062, 0.325911], "vertices": [5.0, 24.000002, 10.0, 24.000002, 10.0, 19.0, 5.0, 19.0, 22.0, 10.000001, 27.0, 10.000001, 27.0, 5.0, 22.0, 5.0, -32.0, 3.0, -29.0, 3.0, -29.0, 0.0, -32.0, 0.0, -27.0, 3.0, -21.0, 3.0, -21.0, -3.0, -27.0, -3.0, 21.0, -2.0, 31.0, -2.0, 31.0, -13.0, 21.0, -13.0, 35.0, -2.0, 40.0, -2.0, 40.0, -7.0, 35.0, -7.0, -19.0, -4.0, -17.0, -4.0, -17.0, -7.0, -19.0, -7.0, 29.0, -8.000001, 35.0, -8.000001, 35.0, -14.0, 29.0, -14.0, -23.0, -9.0, -21.0, -9.0, -21.0, -11.0, -23.0, -11.0, -11.0, -12.0, -4.0, -12.0, -4.0, -19.0, -11.0, -19.0, -38.0, -19.0, -34.0, -19.0, -34.0, -24.0, -38.0, -24.0, -21.0, -24.0, -15.0, -24.0, -15.0, -30.000002, -21.0, -30.000002], "width": 2315}}, "particle/particle_11": {"particle/particle_11": {"height": 3365, "hull": 48, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 21, 22, 23, 20, 21, 23, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45], "type": "mesh", "uvs": [0.992097, 0.0, 0.995745, 0.0, 0.995745, 0.003632, 0.992097, 0.003632, 0.99696, 0.177966, 1.0, 0.177966, 1.0, 0.181598, 0.99696, 0.181598, 0.703951, 0.97276, 0.708207, 0.97276, 0.708207, 0.976998, 0.703951, 0.976998, 0.40304, 0.615617, 0.404863, 0.615617, 0.404863, 0.617433, 0.40304, 0.617433, 0.568389, 0.985472, 0.572036, 0.985472, 0.572036, 0.989104, 0.568389, 0.989104, 0.006735, 0.341086, 0.005123, 0.348097, 0.000737, 0.348057, 0.000196, 0.343435, 0.135562, 0.40678, 0.136778, 0.40678, 0.136778, 0.40799, 0.135562, 0.40799, 0.099696, 0.996973, 0.103343, 0.996973, 0.103343, 1.0, 0.099696, 1.0, 0.170213, 0.381356, 0.171429, 0.381356, 0.171429, 0.382567, 0.170213, 0.382567, 0.520973, 0.986077, 0.52462, 0.986077, 0.52462, 0.989709, 0.520973, 0.989709, 0.653495, 0.042373, 0.655927, 0.042373, 0.655927, 0.046005, 0.653495, 0.046005, 0.426748, 0.811138, 0.430395, 0.811138, 0.430395, 0.81477, 0.426748, 0.81477], "vertices": [5.0, 25.000002, 11.0, 25.000002, 11.0, 19.0, 5.0, 19.0, 22.0, 11.000001, 27.0, 11.000001, 27.0, 5.0, 22.0, 5.0, -27.0, 4.000001, -20.0, 4.000001, -20.0, -3.0, -27.0, -3.0, -32.0, 3.0, -29.0, 3.0, -29.0, 0.0, -32.0, 0.0, 34.0, -1.0, 40.0, -1.0, 40.0, -7.0, 34.0, -7.0, 31.078875, -0.474516, 28.427856, -12.056512, 21.213146, -11.990823, 20.32198, -4.354473, -19.0, -4.0, -17.0, -4.0, -17.0, -6.0, -19.0, -6.0, 29.0, -8.000001, 35.0, -8.000001, 35.0, -13.0, 29.0, -13.0, -23.0, -9.0, -21.0, -9.0, -21.0, -11.0, -23.0, -11.0, -11.0, -12.0, -5.0, -12.0, -5.0, -18.0, -11.0, -18.0, -38.0, -18.0, -34.0, -18.0, -34.0, -24.0, -38.0, -24.0, -21.0, -23.0, -15.0, -23.0, -15.0, -29.000002, -21.0, -29.000002], "width": 2261}}, "particle/particle_12": {"particle/particle_12": {"height": 3277, "hull": 56, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53], "type": "mesh", "uvs": [0.330588, 0.980367, 0.334706, 0.980367, 0.334706, 0.984167, 0.330588, 0.984167, 0.811176, 0.481317, 0.814706, 0.481317, 0.814706, 0.485117, 0.811176, 0.485117, 0.0, 0.29069, 0.001176, 0.29069, 0.001176, 0.291957, 0.0, 0.291957, 0.810588, 0.991767, 0.813529, 0.991767, 0.813529, 0.994933, 0.810588, 0.994933, 0.919412, 0.350222, 0.923529, 0.350222, 0.923529, 0.354022, 0.919412, 0.354022, 0.482941, 0.910703, 0.487059, 0.910703, 0.487059, 0.914503, 0.482941, 0.914503, 0.221176, 0.261558, 0.222353, 0.261558, 0.222353, 0.262825, 0.221176, 0.262825, 0.997647, 0.340089, 1.0, 0.340089, 1.0, 0.342622, 0.997647, 0.342622, 0.170588, 0.170361, 0.174706, 0.170361, 0.174706, 0.174161, 0.170588, 0.174161, 0.987647, 0.452818, 0.991176, 0.452818, 0.991176, 0.456618, 0.987647, 0.456618, 0.284706, 0.112096, 0.285882, 0.112096, 0.285882, 0.113363, 0.284706, 0.113363, 0.213529, 0.0, 0.217059, 0.0, 0.217059, 0.004433, 0.213529, 0.004433, 0.386471, 0.996833, 0.388824, 0.996833, 0.388824, 1.0, 0.386471, 1.0, 0.114118, 0.991767, 0.117647, 0.991767, 0.117647, 0.994933, 0.114118, 0.994933], "vertices": [4.0, 24.999998, 11.0, 24.999998, 11.0, 18.999998, 4.0, 18.999998, 21.0, 11.0, 27.0, 11.0, 27.0, 5.0, 21.0, 5.0, 11.0, 6.0, 13.0, 6.0, 13.0, 4.0, 11.0, 4.0, -33.0, 4.0, -28.0, 4.0, -28.0, -1.0, -33.0, -1.0, -27.0, 4.0, -20.0, 4.0, -20.0, -2.0, -27.0, -2.0, 34.0, -0.0, 41.0, -0.0, 41.0, -6.0, 34.0, -6.0, 27.0, -2.0, 29.0, -2.0, 29.0, -4.0, 27.0, -4.0, -20.0, -3.0, -16.0, -3.0, -16.0, -7.0, -20.0, -7.0, 21.0, -5.0, 28.0, -5.0, 28.0, -10.999999, 21.0, -10.999999, 29.0, -7.0, 35.0, -7.0, 35.0, -12.999999, 29.0, -12.999999, -23.0, -9.0, -21.0, -9.0, -21.0, -10.999999, -23.0, -10.999999, -11.0, -10.999999, -5.0, -10.999999, -5.0, -18.0, -11.0, -18.0, -38.0, -18.0, -34.0, -18.0, -34.0, -22.999998, -38.0, -22.999998, -21.0, -22.999998, -15.0, -22.999998, -15.0, -28.0, -21.0, -28.0], "width": 2337}}, "particle/particle_13": {"particle/particle_13": {"height": 2239, "hull": 64, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61], "type": "mesh", "uvs": [0.647372, 0.446286, 0.647372, 0.449969, 0.643237, 0.449969, 0.643237, 0.446286, 0.009451, 0.755064, 0.009451, 0.758748, 0.005907, 0.758748, 0.005907, 0.755064, 1.0, 0.907305, 1.0, 0.910988, 0.995865, 0.910988, 0.995865, 0.907305, 0.701122, 0.985267, 0.701122, 0.989564, 0.697578, 0.989564, 0.697578, 0.985267, 0.932073, 0.35175, 0.932073, 0.352977, 0.930892, 0.352977, 0.930892, 0.35175, 0.995275, 0.0, 0.995275, 0.001228, 0.994684, 0.001228, 0.994684, 0.0, 0.74365, 0.22345, 0.74365, 0.224678, 0.742469, 0.224678, 0.742469, 0.22345, 0.02658, 0.03806, 0.02658, 0.041743, 0.022445, 0.041743, 0.022445, 0.03806, 0.00886, 0.704727, 0.00886, 0.70841, 0.005316, 0.70841, 0.005316, 0.704727, 0.808033, 0.238183, 0.808033, 0.239411, 0.806852, 0.239411, 0.806852, 0.238183, 0.271707, 0.928177, 0.271707, 0.931246, 0.268163, 0.931246, 0.268163, 0.928177, 0.002953, 0.77655, 0.002953, 0.779619, 0.0, 0.779619, 0.0, 0.77655, 0.032487, 0.995703, 0.032487, 1.0, 0.028352, 1.0, 0.028352, 0.995703, 0.692853, 0.065684, 0.692853, 0.066912, 0.691081, 0.066912, 0.691081, 0.065684, 0.210278, 0.096378, 0.210278, 0.100061, 0.206734, 0.100061, 0.206734, 0.096378, 0.15948, 0.675875, 0.15948, 0.678944, 0.157118, 0.678944, 0.157118, 0.675875], "vertices": [41.0, 1.0, 41.0, -5.0, 34.0, -5.0, 34.0, 1.0, 35.0, -7.0, 35.0, -12.999999, 29.0, -12.999999, 29.0, -7.0, 28.0, 12.0, 28.0, 6.0, 21.0, 6.0, 21.0, 12.0, 28.0, -4.0, 28.0, -10.999999, 22.0, -10.999999, 22.0, -4.0, 21.0, 19.0, 21.0, 16.999998, 19.0, 16.999998, 19.0, 19.0, 19.0, 14.0, 19.0, 12.0, 18.0, 12.0, 18.0, 14.0, 13.0, 6.0, 13.0, 4.0, 11.0, 4.0, 11.0, 6.0, 11.0, 25.999998, 11.0, 19.999998, 4.0, 19.999998, 4.0, 25.999998, -5.0, -10.999999, -5.0, -16.999998, -11.0, -16.999998, -11.0, -10.999999, -12.0, -15.999999, -12.0, -17.999998, -14.0, -17.999998, -14.0, -15.999999, -15.0, -22.0, -15.0, -26.999998, -21.0, -26.999998, -21.0, -22.0, -16.0, -2.0, -16.0, -7.0, -21.0, -7.0, -21.0, -2.0, -20.0, 5.0, -20.0, -2.0, -27.0, -2.0, -27.0, 5.0, -20.0, -9.0, -20.0, -10.999999, -23.0, -10.999999, -23.0, -9.0, -28.0, 5.0, -28.0, -1.0, -34.0, -1.0, -34.0, 5.0, -34.0, -16.999998, -34.0, -22.0, -38.0, -22.0, -38.0, -16.999998], "width": 2865}}, "particle/particle_14": {"particle/particle_14": {"height": 2843, "hull": 64, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61], "type": "mesh", "uvs": [0.100715, 0.979762, 0.104887, 0.979762, 0.104887, 0.983929, 0.100715, 0.983929, 0.026222, 0.069048, 0.027414, 0.069048, 0.027414, 0.069643, 0.026222, 0.069643, 0.144219, 0.139881, 0.144815, 0.139881, 0.144815, 0.141071, 0.144219, 0.141071, 0.526222, 0.980357, 0.530393, 0.980357, 0.530393, 0.983929, 0.526222, 0.983929, 0.459476, 0.105952, 0.460667, 0.105952, 0.460667, 0.107738, 0.459476, 0.107738, 0.113826, 0.893452, 0.117402, 0.893452, 0.117402, 0.897619, 0.113826, 0.897619, 0.742551, 0.550595, 0.746126, 0.550595, 0.746126, 0.554167, 0.742551, 0.554167, 0.535161, 0.980357, 0.539333, 0.980357, 0.539333, 0.983929, 0.535161, 0.983929, 0.129321, 0.997024, 0.132896, 0.997024, 0.132896, 1.0, 0.129321, 1.0, 0.803933, 0.973214, 0.808105, 0.973214, 0.808105, 0.977381, 0.803933, 0.977381, 0.996424, 0.496429, 1.0, 0.496429, 1.0, 0.5, 0.996424, 0.5, 0.833135, 0.997024, 0.836114, 0.997024, 0.836114, 1.0, 0.833135, 1.0, 0.750894, 0.984524, 0.75447, 0.984524, 0.75447, 0.988095, 0.750894, 0.988095, 0.168653, 0.0, 0.169845, 0.0, 0.169845, 0.000595, 0.168653, 0.000595, 0.0, 0.930357, 0.001788, 0.930357, 0.001788, 0.932738, 0.0, 0.932738, 0.971395, 0.280952, 0.97497, 0.280952, 0.97497, 0.285119, 0.971395, 0.285119], "vertices": [4.0, 27.0, 11.0, 27.0, 11.0, 19.999998, 4.0, 19.999998, 19.0, 19.0, 21.0, 19.0, 21.0, 18.0, 19.0, 18.0, 18.0, 14.0, 19.0, 14.0, 19.0, 12.0, 18.0, 12.0, 21.0, 12.0, 28.0, 12.0, 28.0, 6.0, 21.0, 6.0, 11.0, 7.0, 13.0, 7.0, 13.0, 4.0, 11.0, 4.0, -34.0, 6.0, -28.0, 6.0, -28.0, -1.0, -34.0, -1.0, -26.0, 5.0, -20.0, 5.0, -20.0, -1.0, -26.0, -1.0, 34.0, 2.0, 41.0, 2.0, 41.0, -4.0, 34.0, -4.0, -21.0, -2.0, -15.0, -2.0, -15.0, -7.0, -21.0, -7.0, 21.0, -3.0, 28.0, -3.0, 28.0, -9.999999, 21.0, -9.999999, 29.0, -6.0, 35.0, -6.0, 35.0, -12.0, 29.0, -12.0, -24.0, -7.0, -19.0, -7.0, -19.0, -12.0, -24.0, -12.0, -11.0, -9.999999, -5.0, -9.999999, -5.0, -15.999999, -11.0, -15.999999, -14.0, -15.999999, -12.0, -15.999999, -12.0, -16.999998, -14.0, -16.999998, -37.0, -16.999998, -34.0, -16.999998, -34.0, -20.999998, -37.0, -20.999998, -21.0, -19.999998, -15.0, -19.999998, -15.0, -26.999998, -21.0, -26.999998], "width": 2307}}, "particle/particle_15": {"particle/particle_15": {"height": 2766, "hull": 68, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61, 67, 65, 66, 67, 64, 65], "type": "mesh", "uvs": [0.893106, 0.586544, 0.897533, 0.586544, 0.897533, 0.590214, 0.893106, 0.590214, 0.067679, 0.137615, 0.068944, 0.137615, 0.068944, 0.138838, 0.067679, 0.138838, 0.172043, 0.0, 0.173308, 0.0, 0.173308, 0.000612, 0.172043, 0.000612, 0.338393, 0.061774, 0.339658, 0.061774, 0.339658, 0.062997, 0.338393, 0.062997, 0.147375, 0.464832, 0.151803, 0.464832, 0.151803, 0.469113, 0.147375, 0.469113, 0.049336, 0.384709, 0.050601, 0.384709, 0.050601, 0.386544, 0.049336, 0.386544, 0.619228, 0.170642, 0.623023, 0.170642, 0.623023, 0.174312, 0.619228, 0.174312, 0.311828, 0.476453, 0.315623, 0.476453, 0.315623, 0.480734, 0.311828, 0.480734, 0.16129, 0.98104, 0.165718, 0.98104, 0.165718, 0.98471, 0.16129, 0.98471, 0.994307, 0.963914, 1.0, 0.963914, 1.0, 0.970642, 0.994307, 0.970642, 0.500316, 0.995719, 0.504744, 0.995719, 0.504744, 1.0, 0.500316, 1.0, 0.915244, 0.992049, 0.919671, 0.992049, 0.919671, 0.99633, 0.915244, 0.99633, 0.672359, 0.610398, 0.676154, 0.610398, 0.676154, 0.614679, 0.672359, 0.614679, 0.103732, 0.662385, 0.106262, 0.662385, 0.106262, 0.666667, 0.103732, 0.666667, 0.234029, 0.396942, 0.235927, 0.396942, 0.235927, 0.398777, 0.234029, 0.398777, 0.879823, 0.423853, 0.88172, 0.423853, 0.88172, 0.4263, 0.879823, 0.4263, 0.0, 0.995719, 0.00506, 0.995719, 0.00506, 1.0, 0.0, 1.0], "vertices": [4.0, 26.999998, 11.0, 26.999998, 11.0, 21.0, 4.0, 21.0, -28.0, 25.0, -26.0, 25.0, -26.0, 22.999998, -28.0, 22.999998, 19.0, 19.0, 21.0, 19.0, 21.0, 18.0, 19.0, 18.0, 18.0, 14.0, 20.0, 14.0, 20.0, 12.0, 18.0, 12.0, 21.0, 12.999999, 28.0, 12.999999, 28.0, 6.0, 21.0, 6.0, 11.0, 7.0, 13.0, 7.0, 13.0, 4.0, 11.0, 4.0, -34.0, 6.0, -28.0, 6.0, -28.0, 0.000001, -34.0, 0.000001, -26.0, 6.0, -20.0, 6.0, -20.0, -0.999999, -26.0, -0.999999, 34.0, 3.0, 41.0, 3.0, 41.0, -3.0, 34.0, -3.0, -24.0, -0.999999, -15.0, -0.999999, -15.0, -12.0, -24.0, -12.0, 21.0, -2.0, 28.0, -2.0, 28.0, -9.0, 21.0, -9.0, 29.0, -4.999999, 36.0, -4.999999, 36.0, -12.0, 29.0, -12.0, -11.0, -9.0, -5.0, -9.0, -5.0, -15.999999, -11.0, -15.999999, 39.0, -12.0, 43.0, -12.0, 43.0, -19.0, 39.0, -19.0, -15.0, -15.0, -12.0, -15.0, -12.0, -18.0, -15.0, -18.0, -37.0, -16.999998, -34.0, -16.999998, -34.0, -21.0, -37.0, -21.0, -22.0, -19.0, -14.0, -19.0, -14.0, -25.999998, -22.0, -25.999998], "width": 2173}}, "particle/particle_16": {"particle/particle_16": {"height": 2832, "hull": 72, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 46, 47, 45, 45, 47, 44, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61, 67, 65, 66, 67, 64, 65, 71, 69, 70, 71, 68, 69], "type": "mesh", "uvs": [0.238329, 0.0, 0.239558, 0.0, 0.239558, 0.001195, 0.238329, 0.001195, 0.0, 0.07945, 0.001229, 0.07945, 0.001229, 0.080645, 0.0, 0.080645, 0.713759, 0.994026, 0.717445, 0.994026, 0.717445, 0.997611, 0.713759, 0.997611, 0.230344, 0.115293, 0.230958, 0.115293, 0.230958, 0.116487, 0.230344, 0.116487, 0.237715, 0.050179, 0.238329, 0.050179, 0.238329, 0.051374, 0.237715, 0.051374, 0.829238, 0.253883, 0.830467, 0.253883, 0.830467, 0.255078, 0.829238, 0.255078, 0.564496, 0.493429, 0.568796, 0.493429, 0.568796, 0.497013, 0.564496, 0.497013, 0.423833, 0.991637, 0.42629, 0.991637, 0.42629, 0.994624, 0.423833, 0.994624, 0.9957, 0.488053, 1.0, 0.488053, 1.0, 0.492234, 0.9957, 0.492234, 0.542998, 0.126045, 0.546683, 0.126045, 0.546683, 0.130227, 0.542998, 0.130227, 0.305897, 0.996416, 0.309582, 0.996416, 0.309582, 1.0, 0.305897, 1.0, 0.665746, 0.148876, 0.662252, 0.156237, 0.657566, 0.154134, 0.661059, 0.146773, 0.989558, 0.9773, 0.993858, 0.9773, 0.993858, 0.981481, 0.989558, 0.981481, 0.363636, 0.422342, 0.367936, 0.422342, 0.367936, 0.425926, 0.363636, 0.425926, 0.526413, 0.305854, 0.532555, 0.305854, 0.532555, 0.311231, 0.526413, 0.311231, 0.228501, 0.675627, 0.230958, 0.675627, 0.230958, 0.679211, 0.228501, 0.679211, 0.921376, 0.191756, 0.923219, 0.191756, 0.923219, 0.194146, 0.921376, 0.194146, 0.594595, 0.971326, 0.599509, 0.971326, 0.599509, 0.976105, 0.594595, 0.976105], "vertices": [20.0, 39.0, 22.0, 39.0, 22.0, 37.0, 20.0, 37.0, 16.0, 31.0, 18.0, 31.0, 18.0, 28.999998, 16.0, 28.999998, 5.0, 26.999998, 11.0, 26.999998, 11.0, 21.0, 5.0, 21.0, -27.0, 25.0, -26.0, 25.0, -26.0, 22.999998, -27.0, 22.999998, 19.0, 19.999998, 20.0, 19.999998, 20.0, 18.0, 19.0, 18.0, 18.0, 14.0, 20.0, 14.0, 20.0, 12.0, 18.0, 12.0, 21.0, 12.999999, 28.0, 12.999999, 28.0, 7.0, 21.0, 7.0, 10.0, 8.0, 14.0, 8.0, 14.0, 3.0, 10.0, 3.0, -35.0, 7.0, -28.0, 7.0, -28.0, 0.000001, -35.0, 0.000001, -26.0, 7.0, -20.0, 7.0, -20.0, 0.000001, -26.0, 0.000001, 35.0, 4.0, 41.0, 4.0, 41.0, -2.0, 35.0, -2.0, -13.165761, -2.218963, -18.853111, -14.541558, -26.483023, -11.020061, -20.795671, 1.302533, 21.0, -2.0, 28.0, -2.0, 28.0, -9.0, 21.0, -9.0, 29.0, -4.999999, 36.0, -4.999999, 36.0, -10.999999, 29.0, -10.999999, -15.0, -9.0, -5.0, -9.0, -5.0, -18.0, -15.0, -18.0, 39.0, -12.0, 43.0, -12.0, 43.0, -18.0, 39.0, -18.0, -37.0, -15.999999, -34.0, -15.999999, -34.0, -19.999998, -37.0, -19.999998, -22.0, -18.0, -14.0, -18.0, -14.0, -25.999998, -22.0, -25.999998], "width": 2238}}, "particle/particle_17": {"particle/particle_17": {"height": 2007, "hull": 71, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 49, 44, 45, 49, 45, 46, 46, 48, 49, 47, 48, 46, 53, 54, 50, 53, 50, 52, 52, 50, 51, 58, 56, 57, 58, 55, 56, 62, 60, 61, 62, 59, 60, 66, 64, 65, 66, 63, 64, 70, 68, 69, 70, 67, 68], "type": "mesh", "uvs": [0.703858, 0.843031, 0.703858, 0.847767, 0.70089, 0.847767, 0.70089, 0.843031, 0.315134, 0.596076, 0.315134, 0.600135, 0.311573, 0.600135, 0.311573, 0.596076, 0.031454, 0.995264, 0.031454, 1.0, 0.0273, 1.0, 0.0273, 0.995264, 0.020178, 0.035183, 0.020178, 0.039919, 0.016024, 0.039919, 0.016024, 0.035183, 0.319881, 0.923545, 0.319881, 0.928281, 0.315727, 0.928281, 0.315727, 0.923545, 0.861721, 0.223951, 0.861721, 0.224628, 0.860534, 0.224628, 0.860534, 0.223951, 0.140653, 0.162382, 0.140653, 0.164411, 0.138872, 0.164411, 0.138872, 0.162382, 1.0, 0.326793, 1.0, 0.328823, 0.998813, 0.328823, 0.998813, 0.326793, 0.01365, 0.68065, 0.01365, 0.684709, 0.010089, 0.684709, 0.010089, 0.68065, 0.002967, 0.143437, 0.002967, 0.147497, 0.0, 0.147497, 0.0, 0.143437, 0.175668, 0.043302, 0.175668, 0.045332, 0.173887, 0.045332, 0.173887, 0.043302, 0.061832, 0.460581, 0.06173, 0.464191, 0.055846, 0.472387, 0.051784, 0.472255, 0.051419, 0.46852, 0.057522, 0.460674, 0.049293, 0.02559, 0.048051, 0.030547, 0.042822, 0.030475, 0.044115, 0.02258, 0.049334, 0.021974, 0.017211, 0.863329, 0.017211, 0.867388, 0.01365, 0.867388, 0.01365, 0.863329, 0.834421, 0.0, 0.834421, 0.001353, 0.833828, 0.001353, 0.833828, 0.0, 0.01365, 0.069689, 0.01365, 0.073748, 0.009496, 0.073748, 0.009496, 0.069689, 0.916321, 0.434371, 0.916321, 0.43843, 0.913947, 0.43843, 0.913947, 0.434371], "vertices": [44.0, -11.0, 44.0, -17.999998, 39.0, -17.999998, 39.0, -11.0, 41.0, 5.0, 41.0, -1.0, 35.0, -1.0, 35.0, 5.0, 36.0, -4.0, 36.0, -11.0, 29.000002, -11.0, 29.000002, -4.0, 28.000002, 14.000001, 28.000002, 7.0, 21.0, 7.0, 21.0, 14.000001, 28.000002, -1.0, 28.000002, -8.0, 21.0, -8.0, 21.0, -1.0, 22.0, 39.0, 22.0, 38.0, 20.0, 38.0, 20.0, 39.0, 20.0, 15.000001, 20.0, 12.000001, 17.0, 12.000001, 17.0, 15.000001, 18.0, 32.0, 18.0, 29.000002, 16.0, 29.000002, 16.0, 32.0, 15.000001, 9.000001, 15.000001, 3.0, 9.0, 3.0, 9.0, 9.000001, 10.000001, 28.0, 10.000001, 22.0, 5.0, 22.0, 5.0, 28.0, 4.0, -2.0, 4.0, -5.0, 1.0, -5.0, 1.0, -2.0, -4.813191, -7.739056, -4.985547, -13.073941, -14.899179, -25.187235, -21.743593, -24.993372, -22.358925, -19.472336, -12.074777, -7.87656, -14.941644, -4.822723, -17.033796, -12.14843, -25.845177, -12.042721, -23.666918, -0.372906, -14.871892, 0.522633, -20.0, 7.0, -20.0, 1.0, -26.000002, 1.0, -26.000002, 7.0, -26.000002, 25.000002, -26.000002, 23.0, -27.000002, 23.0, -27.000002, 25.000002, -28.000002, 7.0, -28.000002, 1.0, -35.0, 1.0, -35.0, 7.0, -33.0, -14.0, -33.0, -20.0, -37.0, -20.0, -37.0, -14.0], "width": 2180}}, "particle/particle_18": {"particle/particle_18": {"height": 2269, "hull": 75, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 14, 15, 13, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 52, 53, 48, 52, 48, 49, 51, 52, 49, 51, 49, 50, 56, 57, 55, 57, 54, 55, 57, 58, 54, 62, 60, 61, 62, 59, 60, 66, 64, 65, 66, 63, 64, 70, 68, 69, 70, 67, 68, 74, 72, 73, 74, 71, 72], "type": "mesh", "uvs": [0.730585, 0.908438, 0.730585, 0.912627, 0.727599, 0.912627, 0.727599, 0.908438, 0.01374, 0.962298, 0.01374, 0.965889, 0.010155, 0.965889, 0.010155, 0.962298, 0.014337, 0.0, 0.014337, 0.003591, 0.010155, 0.003591, 0.010155, 0.0, 0.629291, 0.220813, 0.62368, 0.220902, 0.621335, 0.216181, 0.628995, 0.217294, 0.026882, 0.570916, 0.026882, 0.575105, 0.0227, 0.575105, 0.0227, 0.570916, 0.39546, 0.499102, 0.39546, 0.501496, 0.391876, 0.501496, 0.391876, 0.499102, 0.810036, 0.804309, 0.810036, 0.805506, 0.808841, 0.805506, 0.808841, 0.804309, 0.75448, 0.198683, 0.75448, 0.200479, 0.752688, 0.200479, 0.752688, 0.198683, 0.933094, 0.982645, 0.933094, 0.986236, 0.92951, 0.986236, 0.92951, 0.982645, 0.541219, 0.997606, 0.541219, 1.0, 0.538829, 1.0, 0.538829, 0.997606, 0.830346, 0.859366, 0.830346, 0.861161, 0.827957, 0.861161, 0.827957, 0.859366, 0.033453, 0.829443, 0.033453, 0.831239, 0.031661, 0.831239, 0.031661, 0.829443, 0.523875, 0.729176, 0.518149, 0.736059, 0.51373, 0.736605, 0.513683, 0.732592, 0.519805, 0.725995, 0.52416, 0.725391, 0.359278, 0.087867, 0.356893, 0.08804, 0.353735, 0.087995, 0.355219, 0.080653, 0.360759, 0.080809, 0.002987, 0.832436, 0.002987, 0.835428, 0.0, 0.835428, 0.0, 0.832436, 1.0, 0.127469, 1.0, 0.128067, 0.998805, 0.128067, 0.998805, 0.127469, 0.174433, 0.989826, 0.174433, 0.992819, 0.171446, 0.992819, 0.171446, 0.989826, 0.087216, 0.166966, 0.087216, 0.171155, 0.084229, 0.171155, 0.084229, 0.166966], "vertices": [44.0, -10.0, 44.0, -17.0, 39.0, -17.0, 39.0, -10.0, 41.0, 6.0, 41.0, 0.0, 35.0, 0.0, 35.0, 6.0, 36.0, -4.0, 36.0, -10.0, 29.000002, -10.0, 29.000002, -4.0, 28.433641, 8.021306, 19.040882, 7.872441, 15.113984, 15.761911, 27.937088, 13.902172, 28.000002, 0.0, 28.000002, -7.0, 21.0, -7.0, 21.0, 0.0, 26.000002, -42.0, 26.000002, -46.0, 20.0, -46.0, 20.0, -42.0, 22.0, 40.000004, 22.0, 38.000004, 20.0, 38.000004, 20.0, 40.000004, 19.0, 32.0, 19.0, 29.000002, 16.0, 29.000002, 16.0, 32.0, 15.000001, 9.0, 15.000001, 3.0, 9.0, 3.0, 9.0, 9.0, 10.000001, 28.000004, 10.000001, 24.000002, 6.0, 24.000002, 6.0, 28.000004, 4.0, 18.000002, 4.0, 15.000001, 0.0, 15.000001, 0.0, 18.000002, 4.0, -2.0, 4.0, -5.0, 1.0, -5.0, 1.0, -2.0, -5.032429, -12.452966, -14.618635, -23.953857, -22.016237, -24.867645, -22.095247, -18.161751, -11.846992, -7.137695, -4.556885, -6.128288, -16.568142, -11.825039, -20.560778, -12.115312, -25.847551, -12.039952, -23.363153, 0.229012, -14.089154, -0.031113, -20.0, 7.000001, -20.0, 2.0, -25.000002, 2.0, -25.000002, 7.000001, -25.000002, 25.0, -25.000002, 24.000002, -27.000002, 24.000002, -27.000002, 25.0, -29.000002, 7.000001, -29.000002, 2.0, -34.0, 2.0, -34.0, 7.000001, -32.0, -13.0, -32.0, -20.000002, -37.0, -20.000002, -37.0, -13.0], "width": 2141}}, "particle/particle_19": {"particle/particle_19": {"height": 2259, "hull": 78, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 16, 12, 15, 12, 13, 15, 13, 14, 19, 20, 18, 18, 20, 17, 24, 22, 23, 24, 21, 22, 28, 26, 27, 28, 25, 26, 32, 30, 31, 32, 29, 30, 36, 34, 35, 36, 33, 34, 40, 38, 39, 40, 37, 38, 44, 42, 43, 44, 41, 42, 48, 46, 47, 48, 45, 46, 52, 50, 51, 52, 49, 50, 56, 57, 53, 55, 56, 53, 54, 55, 53, 59, 60, 58, 60, 61, 58, 65, 63, 64, 65, 62, 63, 69, 67, 68, 69, 66, 67, 73, 71, 72, 73, 70, 71, 77, 75, 76, 77, 74, 75], "type": "mesh", "uvs": [0.609505, 0.663895, 0.609505, 0.668052, 0.606294, 0.668052, 0.606294, 0.663895, 0.487476, 0.983967, 0.487476, 0.98753, 0.483622, 0.98753, 0.483622, 0.983967, 0.298009, 0.983967, 0.298009, 0.98753, 0.294155, 0.98753, 0.294155, 0.983967, 0.571626, 0.20729, 0.570263, 0.21132, 0.566029, 0.212949, 0.565467, 0.2068, 0.571627, 0.204496, 0.835785, 0.390289, 0.829159, 0.390143, 0.827644, 0.38497, 0.835575, 0.386108, 0.967887, 0.680523, 0.967887, 0.682898, 0.964033, 0.682898, 0.964033, 0.680523, 1.0, 0.166865, 1.0, 0.168052, 0.999358, 0.168052, 0.999358, 0.166865, 0.003211, 0.848575, 0.003211, 0.851544, 0.0, 0.851544, 0.0, 0.848575, 0.008992, 0.197743, 0.008992, 0.201306, 0.005138, 0.201306, 0.005138, 0.197743, 0.003211, 0.885986, 0.003211, 0.888955, 0.0, 0.888955, 0.0, 0.885986, 0.055877, 0.796318, 0.055877, 0.7981, 0.05395, 0.7981, 0.05395, 0.796318, 0.908157, 0.143112, 0.908157, 0.143705, 0.906872, 0.143705, 0.906872, 0.143112, 0.55684, 0.345606, 0.55684, 0.349762, 0.552344, 0.349762, 0.552344, 0.345606, 0.996667, 0.358142, 0.989082, 0.358076, 0.990718, 0.354264, 0.992293, 0.352138, 0.998495, 0.350572, 0.870936, 0.817008, 0.864738, 0.817516, 0.86776, 0.808733, 0.872656, 0.809851, 0.279383, 0.374109, 0.279383, 0.375297, 0.278099, 0.375297, 0.278099, 0.374109, 0.925498, 0.0, 0.925498, 0.000594, 0.924855, 0.000594, 0.924855, 0.0, 0.553629, 0.997625, 0.553629, 1.0, 0.55106, 1.0, 0.55106, 0.997625, 0.213231, 0.766033, 0.213231, 0.77019, 0.209377, 0.77019, 0.209377, 0.766033], "vertices": [44.0, -10.0, 44.0, -17.0, 39.0, -17.0, 39.0, -10.0, 41.000004, 7.000001, 41.000004, 1.0, 35.0, 1.0, 35.0, 7.000001, 35.0, -3.0, 35.0, -9.0, 29.0, -9.0, 29.0, -3.0, 30.022364, 0.924233, 27.899202, -5.862194, 21.3071, -8.605424, 20.432241, 1.748665, 30.022913, 5.628064, 28.316978, 7.753929, 18.000002, 8.000001, 15.641823, 16.710375, 27.989962, 14.793546, 26.0, -42.0, 26.0, -46.0, 20.0, -46.0, 20.0, -42.0, 22.0, 40.000004, 22.0, 38.000004, 21.0, 38.000004, 21.0, 40.000004, 20.0, 33.000004, 20.0, 28.000004, 15.000001, 28.000004, 15.000001, 33.000004, 15.000001, 9.0, 15.000001, 3.0, 9.0, 3.0, 9.0, 9.0, 4.0, 20.000002, 4.0, 15.000001, -1.0, 15.000001, -1.0, 20.000002, 4.0, -2.0, 4.0, -5.0, 1.0, -5.0, 1.0, -2.0, 0.0, -32.0, 0.0, -33.0, -2.0, -33.0, -2.0, -32.0, -5.0, -6.0, -5.0, -13.0, -12.0, -13.0, -12.0, -6.0, -12.188997, -23.110445, -24.0, -23.000002, -21.451942, -16.581062, -19.0, -13.0, -9.343964, -10.362889, -16.952278, -11.841134, -26.602608, -12.696556, -21.897331, 2.093003, -14.274983, 0.210293, -25.000002, 26.000004, -25.000002, 24.000002, -27.0, 24.000002, -27.0, 26.000004, -26.0, 19.000002, -26.0, 18.000002, -27.0, 18.000002, -27.0, 19.000002, -30.000002, 7.000001, -30.000002, 3.0, -34.0, 3.0, -34.0, 7.000001, -32.0, -12.0, -32.0, -19.000002, -38.0, -19.000002, -38.0, -12.0], "width": 1991}}, "particle/particle_20": {"particle/particle_20": {"height": 2165, "hull": 71, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 30, 31, 29, 31, 32, 29, 29, 32, 28, 35, 36, 34, 36, 37, 34, 34, 37, 33, 41, 39, 40, 41, 38, 39, 45, 43, 44, 45, 42, 43, 49, 47, 48, 49, 46, 47, 53, 51, 52, 53, 50, 51, 57, 58, 56, 56, 58, 55, 55, 58, 54, 62, 60, 61, 62, 59, 60, 66, 64, 65, 66, 63, 64, 70, 68, 69, 70, 67, 68], "type": "mesh", "uvs": [0.015797, 0.018311, 0.016484, 0.018311, 0.016484, 0.018901, 0.015797, 0.018901, 0.871566, 0.986415, 0.875687, 0.986415, 0.875687, 0.989959, 0.871566, 0.989959, 0.293956, 0.740106, 0.296703, 0.740106, 0.296703, 0.741878, 0.293956, 0.741878, 0.0, 0.997047, 0.004121, 0.997047, 0.004121, 1.0, 0.0, 1.0, 0.462912, 0.0, 0.471154, 0.0, 0.471154, 0.004135, 0.462912, 0.004135, 0.843407, 0.994684, 0.846841, 0.994684, 0.846841, 0.997637, 0.843407, 0.997637, 0.796016, 0.979917, 0.800137, 0.979917, 0.800137, 0.983461, 0.796016, 0.983461, 0.473816, 0.261662, 0.47285, 0.268638, 0.467712, 0.269859, 0.467701, 0.265655, 0.469712, 0.262576, 0.298642, 0.459244, 0.297474, 0.467155, 0.291425, 0.467636, 0.289529, 0.464345, 0.295218, 0.459547, 0.870879, 0.798582, 0.87294, 0.798582, 0.87294, 0.800354, 0.870879, 0.800354, 0.996566, 0.561725, 1.0, 0.561725, 1.0, 0.565269, 0.996566, 0.565269, 0.865385, 0.997047, 0.868819, 0.997047, 0.868819, 1.0, 0.865385, 1.0, 0.18544, 0.111636, 0.188874, 0.111636, 0.188874, 0.115771, 0.18544, 0.115771, 0.850221, 0.19243, 0.854715, 0.193106, 0.854396, 0.199055, 0.8467, 0.20053, 0.847552, 0.195905, 0.026099, 0.489663, 0.030907, 0.489663, 0.030907, 0.493798, 0.026099, 0.493798, 0.285027, 0.740697, 0.286401, 0.740697, 0.286401, 0.741878, 0.285027, 0.741878, 0.006181, 0.997047, 0.010302, 0.997047, 0.010302, 1.0, 0.006181, 1.0], "vertices": [21.0, 40.000004, 22.0, 40.000004, 22.0, 39.000004, 21.0, 39.000004, 14.0, 34.0, 20.0, 34.0, 20.0, 28.000004, 14.0, 28.000004, -28.0, 27.000002, -24.0, 27.000002, -24.0, 24.000002, -28.0, 24.000002, -1.0, 21.0, 5.0, 21.0, 5.0, 16.0, -1.0, 16.0, 16.0, 16.0, 28.0, 16.0, 28.0, 9.0, 16.0, 9.0, 9.0, 9.0, 14.0, 9.0, 14.0, 4.0, 9.0, 4.0, 35.0, 8.000001, 41.0, 8.000001, 41.0, 2.0, 35.0, 2.0, 30.876076, 7.006641, 29.469757, -4.803909, 21.988129, -6.871662, 21.972679, 0.246208, 24.900673, 5.459191, -15.177023, 1.499573, -16.877558, -11.893101, -25.684971, -12.708467, -28.446056, -7.136124, -20.162132, 0.987763, 1.0, -2.0, 4.0, -2.0, 4.0, -5.0, 1.0, -5.0, 30.0, -2.0, 35.0, -2.0, 35.0, -8.0, 30.0, -8.0, -11.0, -6.0, -6.0, -6.0, -6.0, -11.0, -11.0, -11.0, 39.0, -9.0, 44.0, -9.0, 44.0, -16.0, 39.0, -16.0, -17.077709, -9.783776, -10.535572, -10.929001, -11.0, -21.000002, -22.204269, -23.497131, -20.964096, -15.66705, -39.0, -11.0, -32.0, -11.0, -32.0, -18.000002, -39.0, -18.000002, -2.0, -31.0, 0.0, -31.0, 0.0, -33.0, -2.0, -33.0, 20.0, -41.0, 26.0, -41.0, 26.0, -46.0, 20.0, -46.0], "width": 1840}}, "particle/particle_21": {"particle/particle_21": {"height": 2165, "hull": 65, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 34, 35, 33, 35, 36, 33, 33, 36, 32, 40, 38, 39, 40, 37, 38, 44, 42, 43, 44, 41, 42, 48, 46, 47, 48, 45, 46, 52, 50, 51, 52, 49, 50, 56, 54, 55, 56, 53, 54, 60, 58, 59, 60, 57, 58, 64, 62, 63, 64, 61, 62], "type": "mesh", "uvs": [0.035409, 0.0, 0.03602, 0.0, 0.03602, 0.000591, 0.035409, 0.000591, 0.93895, 0.968695, 0.943223, 0.968695, 0.943223, 0.972829, 0.93895, 0.972829, 0.831502, 0.040756, 0.833944, 0.040756, 0.833944, 0.042528, 0.831502, 0.042528, 0.123321, 0.997047, 0.126984, 0.997047, 0.126984, 1.0, 0.123321, 1.0, 0.20757, 0.408151, 0.214896, 0.408151, 0.214896, 0.412877, 0.20757, 0.412877, 0.736264, 0.851743, 0.739316, 0.851743, 0.739316, 0.855286, 0.736264, 0.855286, 0.190476, 0.810986, 0.194139, 0.810986, 0.194139, 0.815121, 0.190476, 0.815121, 0.954823, 0.314826, 0.960317, 0.314826, 0.960317, 0.321323, 0.954823, 0.321323, 0.859547, 0.082137, 0.858205, 0.090384, 0.852926, 0.090526, 0.851376, 0.087499, 0.855658, 0.082732, 0.997558, 0.57531, 1.0, 0.57531, 1.0, 0.577673, 0.997558, 0.577673, 0.965812, 0.926167, 0.968864, 0.926167, 0.968864, 0.92912, 0.965812, 0.92912, 0.410256, 0.588305, 0.41453, 0.588305, 0.41453, 0.59303, 0.410256, 0.59303, 0.473138, 0.966923, 0.476801, 0.966923, 0.476801, 0.971057, 0.473138, 0.971057, 0.0, 0.950975, 0.006105, 0.950975, 0.006105, 0.957472, 0.0, 0.957472, 0.669109, 0.462493, 0.67033, 0.462493, 0.67033, 0.463674, 0.669109, 0.463674, 0.503663, 0.986415, 0.507326, 0.986415, 0.507326, 0.989959, 0.503663, 0.989959], "vertices": [21.0, 40.000004, 22.0, 40.000004, 22.0, 39.000004, 21.0, 39.000004, 14.0, 35.000004, 21.0, 35.000004, 21.0, 28.000004, 14.0, 28.000004, -28.0, 27.000002, -24.0, 27.000002, -24.0, 24.000002, -28.0, 24.000002, -1.0, 22.0, 5.0, 22.0, 5.0, 17.0, -1.0, 17.0, 16.0, 17.0, 28.0, 17.0, 28.0, 9.0, 16.0, 9.0, 9.0, 10.0, 14.0, 10.0, 14.0, 4.0, 9.0, 4.0, 35.0, 10.0, 41.0, 10.0, 41.0, 3.0, 35.0, 3.0, 22.0, 7.000001, 31.0, 7.000001, 31.0, -4.0, 22.0, -4.0, -15.0627, 1.941418, -17.260298, -12.01962, -25.906977, -12.260437, -28.44606, -7.136124, -21.432329, 0.934395, 1.0, -1.0, 5.0, -1.0, 5.0, -5.0, 1.0, -5.0, 30.0, -2.0, 35.0, -2.0, 35.0, -7.0, 30.0, -7.0, -39.0, -9.0, -32.0, -9.0, -32.0, -17.0, -39.0, -17.0, 39.0, -9.0, 45.0, -9.0, 45.0, -16.0, 39.0, -16.0, -21.0, -10.0, -11.0, -10.0, -11.0, -21.000002, -21.0, -21.000002, -2.0, -31.0, 0.0, -31.0, 0.0, -33.0, -2.0, -33.0, 20.0, -40.0, 26.0, -40.0, 26.0, -46.0, 20.0, -46.0], "width": 2047}}, "particle/particle_22": {"particle/particle_22": {"height": 2110, "hull": 72, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 16, 19, 17, 17, 19, 18, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61, 66, 67, 65, 67, 64, 65, 71, 69, 70, 71, 68, 69], "type": "mesh", "uvs": [0.112903, 0.212678, 0.112903, 0.217417, 0.109032, 0.217417, 0.109032, 0.212678, 0.005161, 0.704384, 0.005161, 0.708531, 0.000645, 0.708531, 0.000645, 0.704384, 1.0, 0.146919, 1.0, 0.147512, 0.99871, 0.147512, 0.99871, 0.146919, 0.097419, 0.331161, 0.097419, 0.334716, 0.093548, 0.334716, 0.093548, 0.331161, 0.628317, 0.00011, 0.625118, 0.007277, 0.629329, 0.008861, 0.632527, 0.001694, 0.769032, 0.0, 0.769032, 0.004147, 0.76129, 0.004147, 0.76129, 0.0, 0.257419, 0.860782, 0.257419, 0.863744, 0.253548, 0.863744, 0.253548, 0.860782, 0.004516, 0.934834, 0.004516, 0.938981, 0.0, 0.938981, 0.0, 0.934834, 0.105806, 0.997038, 0.105806, 1.0, 0.102581, 1.0, 0.102581, 0.997038, 0.253548, 0.0, 0.253548, 0.003555, 0.249677, 0.003555, 0.249677, 0.0, 0.769032, 0.686019, 0.769032, 0.689573, 0.765161, 0.689573, 0.765161, 0.686019, 0.926452, 0.0, 0.926452, 0.000592, 0.925161, 0.000592, 0.925161, 0.0, 0.108387, 0.085308, 0.108387, 0.09064, 0.101935, 0.09064, 0.101935, 0.085308, 0.399355, 0.991706, 0.399355, 0.995261, 0.395484, 0.995261, 0.395484, 0.991706, 0.021935, 0.849526, 0.021935, 0.854265, 0.016129, 0.854265, 0.016129, 0.849526, 0.452258, 0.599526, 0.452258, 0.600711, 0.450968, 0.600711, 0.450968, 0.599526, 0.882217, 0.247015, 0.878168, 0.247153, 0.877694, 0.241926, 0.881862, 0.243452, 0.980645, 0.016588, 0.980645, 0.018957, 0.979355, 0.018957, 0.979355, 0.016588], "vertices": [45.0, -8.0, 45.0, -16.0, 39.0, -16.0, 39.0, -8.0, 42.0, 11.0, 42.0, 4.0, 35.0, 4.0, 35.0, 11.0, 38.0, -21.0, 38.0, -22.0, 36.0, -22.0, 36.0, -21.0, 36.0, 0.0, 36.0, -6.0, 30.0, -6.0, 30.0, 0.0, 25.891077, 9.814309, 20.933578, -2.28381, 27.459784, -4.95808, 32.417282, 7.140036, 28.0, 17.0, 28.0, 10.0, 16.0, 10.0, 16.0, 17.0, 26.0, -40.0, 26.0, -45.0, 20.0, -45.0, 20.0, -40.0, 21.0, 35.0, 21.0, 28.0, 14.0, 28.0, 14.0, 35.0, 14.0, 10.0, 14.0, 5.0, 9.0, 5.0, 9.0, 10.0, 6.0, 0.0, 6.0, -6.0, 0.0, -6.0, 0.0, 0.0, 5.0, 23.0, 5.0, 17.0, -1.0, 17.0, -1.0, 23.0, 0.0, -31.0, 0.0, -32.0, -2.0, -32.0, -2.0, -31.0, -11.0, -10.0, -11.0, -19.0, -21.0, -19.0, -21.0, -10.0, -16.0, 2.0, -16.0, -4.0, -22.0, -4.0, -22.0, 2.0, -18.0, -4.0, -18.0, -12.0, -27.0, -12.0, -27.0, -4.0, -25.0, 27.0, -25.0, 25.0, -27.0, 25.0, -27.0, 27.0, -31.563562, -15.961197, -37.83902, -16.194733, -38.574219, -7.371624, -32.113602, -9.946263, -41.0, -10.0, -41.0, -14.0, -43.0, -14.0, -43.0, -10.0], "width": 2131}}, "particle/particle_23": {"particle/particle_23": {"height": 1961, "hull": 73, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 56, 52, 54, 55, 52, 53, 54, 52, 60, 58, 59, 60, 57, 58, 64, 62, 63, 64, 61, 62, 68, 66, 67, 68, 65, 66, 72, 70, 71, 72, 69, 70], "type": "mesh", "uvs": [0.929453, 0.260239, 0.929453, 0.26528, 0.925926, 0.26528, 0.925926, 0.260239, 0.024691, 0.049779, 0.024691, 0.05419, 0.020576, 0.05419, 0.020576, 0.049779, 0.909465, 0.985507, 0.909465, 0.989288, 0.905938, 0.989288, 0.905938, 0.985507, 0.84127, 0.900441, 0.84127, 0.904222, 0.837155, 0.904222, 0.837155, 0.900441, 0.515579, 0.136736, 0.515579, 0.140517, 0.508524, 0.140517, 0.508524, 0.136736, 0.417989, 0.997479, 0.417989, 1.0, 0.415638, 1.0, 0.415638, 0.997479, 0.416814, 0.985507, 0.416814, 0.988658, 0.413286, 0.988658, 0.413286, 0.985507, 0.880658, 0.963453, 0.880658, 0.967234, 0.876543, 0.967234, 0.876543, 0.963453, 0.007643, 0.885318, 0.007643, 0.888469, 0.004703, 0.888469, 0.004703, 0.885318, 0.024103, 0.345936, 0.024103, 0.350347, 0.020576, 0.350347, 0.020576, 0.345936, 0.125808, 0.180844, 0.125808, 0.184625, 0.122281, 0.184625, 0.122281, 0.180844, 0.843621, 0.792691, 0.843621, 0.793951, 0.842446, 0.793951, 0.842446, 0.792691, 0.917695, 0.960933, 0.917695, 0.966604, 0.911817, 0.966604, 0.911817, 0.960933, 0.505663, 0.532378, 0.499994, 0.532897, 0.4993, 0.529438, 0.501828, 0.524366, 0.506661, 0.52395, 1.0, 0.0, 1.0, 0.00063, 0.999412, 0.00063, 0.999412, 0.0, 0.002939, 0.319471, 0.002939, 0.322621, 0.000588, 0.322621, 0.000588, 0.319471, 0.024691, 0.268431, 0.024691, 0.272842, 0.021164, 0.272842, 0.021164, 0.268431, 0.002352, 0.325142, 0.002352, 0.328292, 0.0, 0.328292, 0.0, 0.325142], "vertices": [44.999996, -8.0, 44.999996, -15.999999, 38.999996, -15.999999, 38.999996, -8.0, 42.0, 11.999999, 42.0, 5.0, 34.999996, 5.0, 34.999996, 11.999999, 36.0, -0.0, 36.0, -6.0, 30.0, -6.0, 30.0, -0.0, 31.0, 8.999999, 31.0, 3.0, 23.999998, 3.0, 23.999998, 8.999999, 27.999998, 16.999998, 27.999998, 10.999998, 15.999999, 10.999998, 15.999999, 16.999998, 26.999998, 2.0, 26.999998, -2.0, 22.999998, -2.0, 22.999998, 2.0, 26.0, -39.0, 26.0, -44.0, 19.999998, -44.0, 19.999998, -39.0, 21.0, 35.0, 21.0, 28.999998, 13.999999, 28.999998, 13.999999, 35.0, 13.999999, 9.999999, 13.999999, 5.0, 8.999999, 5.0, 8.999999, 9.999999, 6.0, 1.0, 6.0, -6.0, 0.0, -6.0, 0.0, 1.0, 4.0, 23.999998, 4.0, 17.999998, -2.0, 17.999998, -2.0, 23.999998, 0.0, -29.999998, 0.0, -31.999998, -2.0, -31.999998, -2.0, -29.999998, -11.0, -8.999999, -11.0, -18.0, -21.0, -18.0, -21.0, -8.999999, -16.867613, -10.884219, -26.510962, -11.706805, -27.691092, -6.217705, -23.39016, 1.8316, -15.169373, 2.491138, -25.0, 26.999998, -25.0, 25.999998, -26.0, 25.999998, -26.0, 26.999998, -31.0, -35.0, -31.0, -39.999996, -35.0, -39.999996, -35.0, -35.0, -32.999996, -8.0, -32.999996, -14.999999, -38.999996, -14.999999, -38.999996, -8.0, -40.0, -8.999999, -40.0, -14.0, -43.999996, -14.0, -43.999996, -8.999999], "width": 2368}}, "particle/particle_24": {"particle/particle_24": {"height": 2007, "hull": 71, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 16, 12, 15, 12, 14, 14, 12, 13, 20, 18, 19, 20, 17, 18, 24, 22, 23, 24, 21, 22, 28, 26, 27, 28, 25, 26, 32, 30, 31, 32, 29, 30, 36, 34, 35, 36, 33, 34, 40, 38, 39, 40, 37, 38, 44, 45, 43, 43, 45, 42, 45, 46, 42, 46, 41, 42, 50, 48, 49, 50, 47, 48, 54, 52, 53, 54, 51, 52, 58, 56, 57, 58, 55, 56, 62, 60, 61, 62, 59, 60, 66, 64, 65, 66, 63, 64, 70, 68, 69, 70, 67, 68], "type": "mesh", "uvs": [1.0, 0.150062, 1.0, 0.155044, 0.997637, 0.155044, 0.997637, 0.150062, 0.025989, 0.188045, 0.025989, 0.193026, 0.021855, 0.193026, 0.021855, 0.188045, 0.015357, 0.90411, 0.015357, 0.907846, 0.011813, 0.907846, 0.011813, 0.90411, 0.747799, 0.551232, 0.745986, 0.554954, 0.742677, 0.554838, 0.74389, 0.548208, 0.747814, 0.547422, 0.38925, 0.285803, 0.38925, 0.289539, 0.382753, 0.289539, 0.382753, 0.285803, 0.099232, 0.054795, 0.099232, 0.058531, 0.095097, 0.058531, 0.095097, 0.054795, 0.002953, 0.113325, 0.002953, 0.117061, 0.0, 0.117061, 0.0, 0.113325, 0.518606, 0.917808, 0.518606, 0.922167, 0.514471, 0.922167, 0.514471, 0.917808, 0.014176, 0.466376, 0.014176, 0.470112, 0.010632, 0.470112, 0.010632, 0.466376, 0.246308, 0.290785, 0.246308, 0.29203, 0.245127, 0.29203, 0.245127, 0.290785, 0.614018, 0.655443, 0.608457, 0.655933, 0.604234, 0.650814, 0.60425, 0.646949, 0.609012, 0.647574, 0.613686, 0.651662, 0.848198, 0.0, 0.848198, 0.000623, 0.847017, 0.000623, 0.847017, 0.0, 0.008269, 0.814446, 0.008269, 0.818182, 0.004725, 0.818182, 0.004725, 0.814446, 1.0, 0.013699, 1.0, 0.014321, 0.999409, 0.014321, 0.999409, 0.013699, 0.006497, 0.896638, 0.006497, 0.899751, 0.003544, 0.899751, 0.003544, 0.896638, 0.033668, 0.612702, 0.033668, 0.615816, 0.030124, 0.615816, 0.030124, 0.612702, 0.506793, 0.997509, 0.506793, 1.0, 0.50443, 1.0, 0.50443, 0.997509], "vertices": [44.0, -7.0, 44.0, -14.999999, 40.0, -14.999999, 40.0, -7.0, 42.0, 13.999999, 42.0, 6.0, 35.0, 6.0, 35.0, 13.999999, 36.0, 1.0, 36.0, -5.0, 30.0, -5.0, 30.0, 1.0, 30.023005, 4.720852, 26.953537, -1.256226, 21.351639, -1.069752, 23.40654, 9.578191, 30.049362, 10.839716, 27.0, 17.999998, 27.0, 11.999999, 16.0, 11.999999, 16.0, 17.999998, 21.0, 35.0, 21.0, 28.999998, 14.0, 28.999998, 14.0, 35.0, 14.0, 10.999999, 14.0, 5.0, 9.0, 5.0, 9.0, 10.999999, 7.0, 1.0, 7.0, -6.0, 0.0, -6.0, 0.0, 1.0, 4.0, 24.999998, 4.0, 18.999998, -2.0, 18.999998, -2.0, 24.999998, 0.0, -29.999998, 0.0, -31.999998, -2.0, -31.999998, -2.0, -29.999998, -10.46788, -16.641579, -19.881889, -17.428902, -27.032629, -9.207027, -27.004532, -2.999989, -18.941914, -4.004272, -11.029121, -10.569946, -13.0, 35.0, -13.0, 34.0, -15.0, 34.0, -15.0, 35.0, -16.0, 3.0, -16.0, -3.0, -22.0, -3.0, -22.0, 3.0, -27.0, 20.0, -27.0, 18.999998, -28.0, 18.999998, -28.0, 20.0, -31.0, -34.0, -31.0, -39.0, -36.0, -39.0, -36.0, -34.0, -33.0, -8.0, -33.0, -13.0, -39.0, -13.0, -39.0, -8.0, -40.0, -9.0, -40.0, -13.0, -44.0, -13.0, -44.0, -9.0], "width": 2450}}, "particle/particle_25": {"particle/particle_25": {"height": 2341, "hull": 66, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 36, 37, 35, 35, 37, 33, 35, 33, 34, 33, 37, 32, 41, 39, 40, 41, 38, 39, 45, 43, 44, 45, 42, 43, 49, 47, 48, 49, 46, 47, 53, 51, 52, 53, 50, 51, 57, 55, 56, 57, 54, 55, 61, 59, 60, 61, 58, 59, 65, 63, 64, 65, 62, 63], "type": "mesh", "uvs": [0.223347, 0.764444, 0.224538, 0.764444, 0.224538, 0.765714, 0.223347, 0.765714, 0.986301, 0.447619, 0.990471, 0.447619, 0.990471, 0.451429, 0.986301, 0.451429, 0.671233, 0.985397, 0.674806, 0.985397, 0.674806, 0.989206, 0.671233, 0.989206, 0.08517, 0.0, 0.085765, 0.0, 0.085765, 0.00127, 0.08517, 0.00127, 0.178678, 0.270476, 0.185229, 0.270476, 0.185229, 0.274286, 0.178678, 0.274286, 0.093508, 0.974603, 0.097677, 0.974603, 0.097677, 0.979048, 0.093508, 0.979048, 0.427635, 0.966349, 0.430018, 0.966349, 0.430018, 0.969524, 0.427635, 0.969524, 0.0, 0.183492, 0.004169, 0.183492, 0.004169, 0.190476, 0.0, 0.190476, 0.33706, 0.486935, 0.34197, 0.486751, 0.345125, 0.499189, 0.338763, 0.499156, 0.334647, 0.494163, 0.334702, 0.492107, 0.847528, 0.972063, 0.851697, 0.972063, 0.851697, 0.976508, 0.847528, 0.976508, 0.996426, 0.35873, 1.0, 0.35873, 1.0, 0.36254, 0.996426, 0.36254, 0.485408, 0.973968, 0.488982, 0.973968, 0.488982, 0.979048, 0.485408, 0.979048, 0.935676, 0.996825, 0.938654, 0.996825, 0.938654, 1.0, 0.935676, 1.0, 0.151281, 0.340952, 0.153067, 0.340952, 0.153067, 0.342222, 0.151281, 0.342222, 0.838594, 0.04381, 0.840977, 0.04381, 0.840977, 0.045714, 0.838594, 0.045714, 0.923764, 0.996825, 0.926742, 0.996825, 0.926742, 1.0, 0.923764, 1.0], "vertices": [-15.0, 36.0, -12.999999, 36.0, -12.999999, 33.999996, -15.0, 33.999996, 14.0, 36.0, 21.0, 36.0, 21.0, 29.999996, 14.0, 29.999996, -2.0, 25.999996, 4.0, 25.999996, 4.0, 20.0, -2.0, 20.0, -28.0, 21.0, -27.0, 21.0, -27.0, 19.0, -28.0, 19.0, 16.0, 18.0, 27.0, 18.0, 27.0, 12.0, 16.0, 12.0, 35.0, 15.0, 42.0, 15.0, 42.0, 8.0, 35.0, 8.0, 9.0, 11.0, 12.999999, 11.0, 12.999999, 6.0, 9.0, 6.0, 23.0, 11.0, 30.0, 11.0, 30.0, 0.0, 23.0, 0.0, -23.076038, 3.077892, -14.832932, 3.367687, -9.534828, -16.223152, -20.216812, -16.169876, -27.128355, -8.306725, -27.035103, -5.068855, 0.0, 2.0, 7.0, 2.0, 7.0, -5.0, 0.0, -5.0, 30.0, 2.0, 36.0, 2.0, 36.0, -4.0, 30.0, -4.0, 39.0, -7.0, 45.0, -7.0, 45.0, -15.0, 39.0, -15.0, -45.0, -8.0, -40.0, -8.0, -40.0, -13.0, -45.0, -13.0, -39.0, -8.0, -36.0, -8.0, -36.0, -10.0, -39.0, -10.0, 35.0, -19.0, 39.0, -19.0, 39.0, -22.0, 35.0, -22.0, -36.0, -33.0, -31.0, -33.0, -31.0, -38.000004, -36.0, -38.000004], "width": 2052}}, "particle/particle_26": {"particle/particle_26": {"height": 2043, "hull": 90, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61, 68, 69, 65, 65, 67, 68, 66, 67, 65, 65, 69, 64, 73, 71, 72, 73, 70, 71, 77, 75, 76, 77, 74, 75, 81, 79, 80, 81, 78, 79, 85, 83, 84, 85, 82, 83, 89, 87, 88, 89, 86, 87], "type": "mesh", "uvs": [0.23981, 0.489234, 0.23981, 0.494617, 0.235734, 0.494617, 0.235734, 0.489234, 0.035326, 0.0, 0.035326, 0.004785, 0.030571, 0.004785, 0.030571, 0.0, 0.002717, 0.348684, 0.002717, 0.351675, 0.0, 0.351675, 0.0, 0.348684, 0.014946, 0.157297, 0.014946, 0.160885, 0.01087, 0.160885, 0.01087, 0.157297, 0.015625, 0.819378, 0.015625, 0.822967, 0.011549, 0.822967, 0.011549, 0.819378, 0.002717, 0.353469, 0.002717, 0.356459, 0.0, 0.356459, 0.0, 0.353469, 0.412364, 0.827751, 0.412364, 0.830144, 0.408967, 0.830144, 0.408967, 0.827751, 0.574049, 0.99701, 0.574049, 1.0, 0.569973, 1.0, 0.569973, 0.99701, 0.019701, 0.988038, 0.019701, 0.991627, 0.015625, 0.991627, 0.015625, 0.988038, 0.779891, 0.19677, 0.779891, 0.198565, 0.778533, 0.198565, 0.778533, 0.19677, 0.996603, 0.861842, 0.996603, 0.863636, 0.993886, 0.863636, 0.993886, 0.861842, 0.028533, 0.113038, 0.028533, 0.117225, 0.023777, 0.117225, 0.023777, 0.113038, 1.0, 0.990431, 1.0, 0.994019, 0.995924, 0.994019, 0.995924, 0.990431, 0.980978, 0.050837, 0.980978, 0.051435, 0.97962, 0.051435, 0.97962, 0.050837, 0.775136, 0.153708, 0.775136, 0.155502, 0.773777, 0.155502, 0.773777, 0.153708, 0.462636, 0.995215, 0.462636, 0.998206, 0.45856, 0.998206, 0.45856, 0.995215, 0.477918, 0.038397, 0.472576, 0.037539, 0.466033, 0.035885, 0.464995, 0.032283, 0.468242, 0.026478, 0.474571, 0.025911, 0.220788, 0.045455, 0.220788, 0.046651, 0.219429, 0.046651, 0.219429, 0.045455, 0.592391, 0.826555, 0.592391, 0.828349, 0.590353, 0.828349, 0.590353, 0.826555, 0.008832, 0.914474, 0.008832, 0.917464, 0.005435, 0.917464, 0.005435, 0.914474, 0.879076, 0.955144, 0.879076, 0.956938, 0.877038, 0.956938, 0.877038, 0.955144, 0.008832, 0.170455, 0.008832, 0.174043, 0.005435, 0.174043, 0.005435, 0.170455], "vertices": [45.0, -6.0, 45.0, -15.0, 39.0, -15.0, 39.0, -6.0, 42.0, 17.0, 42.0, 9.0, 35.0, 9.0, 35.0, 17.0, 39.0, -18.0, 39.0, -22.999998, 35.0, -22.999998, 35.0, -18.0, 36.0, 3.0, 36.0, -3.0, 30.0, -3.0, 30.0, 3.0, 30.0, 12.0, 30.0, 6.0, 23.999998, 6.0, 23.999998, 12.0, 27.0, 18.0, 27.0, 13.0, 23.0, 13.0, 23.0, 18.0, 27.0, 5.0, 27.0, 1.0, 22.0, 1.0, 22.0, 5.0, 22.0, 18.0, 22.0, 13.0, 16.0, 13.0, 16.0, 18.0, 21.0, 36.0, 21.0, 29.999996, 15.0, 29.999996, 15.0, 36.0, 20.0, -2.0, 20.0, -5.0, 18.0, -5.0, 18.0, -2.0, 12.999999, 10.0, 12.999999, 7.0, 9.0, 7.0, 9.0, 10.0, 7.0, 2.0, 7.0, -5.0, 0.0, -5.0, 0.0, 2.0, 4.0, 26.999998, 4.0, 21.0, -2.0, 21.0, -2.0, 26.999998, 0.0, -29.0, 0.0, -30.000002, -2.0, -30.000002, -2.0, -29.0, -3.0, -4.0, -3.0, -7.0, -5.0, -7.0, -5.0, -4.0, -6.0, 0.0, -6.0, -5.0, -11.999999, -5.0, -11.999999, 0.0, -9.504166, -16.199615, -17.368795, -14.764771, -27.0, -12.0, -28.527031, -5.977444, -23.747595, 3.729492, -14.431866, 4.676079, -12.999999, 36.0, -12.999999, 33.999996, -15.0, 33.999996, -15.0, 36.0, -25.999998, 21.999996, -25.999998, 19.0, -28.999998, 19.0, -28.999998, 21.999996, -31.0, -33.0, -31.0, -38.000004, -36.0, -38.000004, -36.0, -33.0, -36.0, -7.0, -36.0, -10.0, -39.0, -10.0, -39.0, -7.0, -40.0, -7.0, -40.0, -13.0, -45.0, -13.0, -45.0, -7.0], "width": 2188}}, "particle/particle_27": {"particle/particle_27": {"height": 2551, "hull": 76, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 50, 51, 48, 50, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 63, 61, 62, 63, 60, 61, 67, 65, 66, 67, 64, 65, 71, 69, 70, 71, 68, 69, 75, 73, 74, 75, 72, 73], "type": "mesh", "uvs": [0.078155, 0.788541, 0.079436, 0.788541, 0.079436, 0.789722, 0.078155, 0.789722, 0.112748, 0.997047, 0.116592, 0.997047, 0.116592, 1.0, 0.112748, 1.0, 0.997438, 0.70762, 1.0, 0.70762, 1.0, 0.709982, 0.997438, 0.709982, 0.0, 0.99114, 0.003844, 0.99114, 0.003844, 0.994684, 0.0, 0.994684, 0.939142, 0.997047, 0.942345, 0.997047, 0.942345, 1.0, 0.939142, 1.0, 0.986547, 0.597165, 0.98975, 0.597165, 0.98975, 0.600709, 0.986547, 0.600709, 0.193466, 0.0, 0.19795, 0.0, 0.19795, 0.004135, 0.193466, 0.004135, 0.199872, 0.472534, 0.204997, 0.472534, 0.204997, 0.479622, 0.199872, 0.479622, 0.543882, 0.83225, 0.548366, 0.83225, 0.548366, 0.835794, 0.543882, 0.835794, 0.660474, 0.963379, 0.663677, 0.963379, 0.663677, 0.966923, 0.660474, 0.966923, 0.956438, 0.292971, 0.960282, 0.292971, 0.960282, 0.297106, 0.956438, 0.297106, 0.811659, 0.578854, 0.816144, 0.578854, 0.816144, 0.582398, 0.811659, 0.582398, 0.328098, 0.944038, 0.330557, 0.950975, 0.3177, 0.947741, 0.317472, 0.942008, 0.023062, 0.201418, 0.024343, 0.201418, 0.024343, 0.20319, 0.023062, 0.20319, 0.023062, 0.205552, 0.024343, 0.205552, 0.024343, 0.207324, 0.023062, 0.207324, 0.598975, 0.529238, 0.602819, 0.529238, 0.602819, 0.535145, 0.598975, 0.535145, 0.797566, 0.049025, 0.803331, 0.049025, 0.803331, 0.052569, 0.797566, 0.052569, 0.890455, 0.987596, 0.894299, 0.987596, 0.894299, 0.99114, 0.890455, 0.99114, 0.994234, 0.304784, 0.997438, 0.304784, 0.997438, 0.307738, 0.994234, 0.307738], "vertices": [-15.0, 36.0, -12.999999, 36.0, -12.999999, 34.0, -15.0, 34.0, 15.0, 36.0, 21.0, 36.0, 21.0, 31.0, 15.0, 31.0, 6.0, 33.0, 10.0, 33.0, 10.0, 29.0, 6.0, 29.0, -2.0, 28.0, 4.0, 28.0, 4.0, 22.0, -2.0, 22.0, 16.0, 25.0, 21.0, 25.0, 21.0, 20.0, 16.0, 20.0, 16.999998, 19.0, 22.0, 19.0, 22.0, 12.999999, 16.999998, 12.999999, 35.0, 18.0, 42.0, 18.0, 42.0, 10.999999, 35.0, 10.999999, 22.0, 12.999999, 30.0, 12.999999, 30.0, 1.0, 22.0, 1.0, -23.0, 4.0, -16.0, 4.0, -16.0, -2.0, -23.0, -2.0, 31.0, 4.0, 36.0, 4.0, 36.0, -2.0, 31.0, -2.0, -11.999999, 2.0, -6.0, 2.0, -6.0, -5.0, -11.999999, -5.0, 0.0, 2.0, 7.0, 2.0, 7.0, -4.0, 0.0, -4.0, -12.83847, -4.256718, -9.0, -16.0, -29.070473, -10.526234, -29.42659, -0.81926, 18.0, -2.0, 20.0, -2.0, 20.0, -5.0, 18.0, -5.0, -5.0, -4.0, -3.0, -4.0, -3.0, -7.0, -5.0, -7.0, 39.0, -5.0, 45.0, -5.0, 45.0, -15.000002, 39.0, -15.000002, -45.0, -6.0, -36.0, -6.0, -36.0, -12.0, -45.0, -12.0, 33.999996, -17.000002, 40.0, -17.000002, 40.0, -23.000002, 33.999996, -23.000002, -36.0, -32.0, -31.0, -32.0, -31.0, -37.0, -36.0, -37.0], "width": 1907}}, "particle/particle_28": {"particle/particle_28": {"height": 1920, "hull": 97, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 18, 19, 16, 18, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 62, 63, 61, 63, 64, 61, 61, 64, 60, 68, 66, 67, 68, 65, 66, 72, 70, 71, 72, 69, 70, 76, 74, 75, 76, 73, 74, 80, 78, 79, 80, 77, 78, 84, 82, 83, 84, 81, 82, 88, 86, 87, 88, 85, 86, 92, 90, 91, 92, 89, 90, 96, 94, 95, 96, 93, 94], "type": "mesh", "uvs": [0.88482, 0.352005, 0.88482, 0.359007, 0.881276, 0.359007, 0.881276, 0.352005, 0.281748, 0.488861, 0.281748, 0.49268, 0.277614, 0.49268, 0.277614, 0.488861, 0.008269, 0.732018, 0.008269, 0.735837, 0.004725, 0.735837, 0.004725, 0.732018, 0.002953, 0.922979, 0.002953, 0.926162, 0.0, 0.926162, 0.0, 0.922979, 0.477115, 0.395295, 0.472635, 0.3956, 0.473638, 0.387718, 0.478325, 0.38733, 0.965151, 0.171229, 0.965151, 0.171865, 0.96456, 0.171865, 0.96456, 0.171229, 0.008269, 0.959262, 0.008269, 0.963081, 0.004725, 0.963081, 0.004725, 0.959262, 0.004725, 0.140038, 0.004725, 0.143857, 0.001772, 0.143857, 0.001772, 0.140038, 0.287655, 0.996817, 0.287655, 0.999363, 0.285292, 0.999363, 0.285292, 0.996817, 1.0, 0.117759, 1.0, 0.119669, 0.998819, 0.119669, 0.998819, 0.117759, 0.497342, 0.997454, 0.497342, 1.0, 0.494979, 1.0, 0.494979, 0.997454, 0.808033, 0.986633, 0.808033, 0.990452, 0.804489, 0.990452, 0.804489, 0.986633, 0.686356, 0.986633, 0.686356, 0.990452, 0.682812, 0.990452, 0.682812, 0.986633, 0.380981, 0.468491, 0.380981, 0.469764, 0.379799, 0.469764, 0.379799, 0.468491, 0.064973, 0.978994, 0.064973, 0.98345, 0.060248, 0.98345, 0.060248, 0.978994, 0.944307, 0.451045, 0.933678, 0.447873, 0.93251, 0.442185, 0.938571, 0.442325, 0.94378, 0.445221, 0.67218, 0.010185, 0.67218, 0.011458, 0.670408, 0.011458, 0.670408, 0.010185, 0.304194, 0.633355, 0.304194, 0.637174, 0.300059, 0.637174, 0.300059, 0.633355, 0.523922, 0.934437, 0.523922, 0.936983, 0.520969, 0.936983, 0.520969, 0.934437, 0.777318, 0.0, 0.777318, 0.000637, 0.776137, 0.000637, 0.776137, 0.0, 0.019492, 0.966264, 0.019492, 0.969446, 0.016539, 0.969446, 0.016539, 0.966264, 0.002953, 0.9669, 0.002953, 0.970083, 0.0, 0.970083, 0.0, 0.9669, 0.002953, 0.971992, 0.002953, 0.975175, 0.0, 0.975175, 0.0, 0.971992, 0.470762, 0.979631, 0.470762, 0.984087, 0.464855, 0.984087, 0.464855, 0.979631], "vertices": [45.0, -4.0, 45.0, -14.999998, 39.0, -14.999998, 39.0, -4.0, 42.0, 19.0, 42.0, 12.999999, 35.0, 12.999999, 35.0, 19.0, 40.0, -15.999999, 40.0, -22.0, 33.999996, -22.0, 33.999996, -15.999999, 36.0, 5.0, 36.0, 0.0, 31.0, 0.0, 31.0, 5.0, 28.755949, 1.99173, 21.171082, 1.511749, 22.869156, 13.895732, 30.803658, 14.503838, 23.0, 42.999996, 23.0, 41.999996, 22.0, 41.999996, 22.0, 42.999996, 21.0, 36.999996, 21.0, 30.999996, 15.0, 30.999996, 15.0, 36.999996, 21.0, 25.999998, 21.0, 20.0, 16.0, 20.0, 16.0, 25.999998, 21.0, 17.999998, 21.0, 14.0, 16.999998, 14.0, 16.999998, 17.999998, 20.0, -2.0, 20.0, -5.0, 18.0, -5.0, 18.0, -2.0, 10.0, 33.999996, 10.0, 29.999998, 6.0, 29.999998, 6.0, 33.999996, 7.0, 3.0, 7.0, -3.0, 1.0, -3.0, 1.0, 3.0, 4.0, 28.999998, 4.0, 22.999998, -2.0, 22.999998, -2.0, 28.999998, -3.0, -4.0, -3.0, -6.0, -5.0, -6.0, -5.0, -4.0, -5.0, 3.0, -5.0, -4.0, -12.999999, -4.0, -12.999999, 3.0, -10.287693, -15.591055, -28.282949, -10.609142, -30.260239, -1.672821, -19.998854, -1.892826, -11.180714, -6.441902, -12.999999, 35.999996, -12.999999, 33.999996, -16.0, 33.999996, -16.0, 35.999996, -16.0, 5.0, -16.0, -1.0, -23.0, -1.0, -23.0, 5.0, -18.0, 17.0, -18.0, 12.999999, -23.0, 12.999999, -23.0, 17.0, -23.999998, 28.999998, -23.999998, 27.999996, -25.999998, 27.999996, -25.999998, 28.999998, -25.0, 23.999998, -25.0, 19.0, -30.0, 19.0, -30.0, 23.999998, -30.0, 14.0, -30.0, 9.0, -35.0, 9.0, -35.0, 14.0, -31.0, -31.0, -31.0, -36.0, -36.0, -36.0, -36.0, -31.0, -35.0, -5.0, -35.0, -11.999998, -45.0, -11.999998, -45.0, -5.0], "width": 2357}}, "particle/particle_29": {"particle/particle_29": {"height": 2056, "hull": 97, "triangles": [3, 1, 2, 3, 0, 1, 7, 5, 6, 7, 4, 5, 11, 9, 10, 11, 8, 9, 15, 13, 14, 15, 12, 13, 19, 17, 18, 19, 16, 17, 23, 21, 22, 23, 20, 21, 27, 25, 26, 27, 24, 25, 31, 29, 30, 31, 28, 29, 35, 33, 34, 35, 32, 33, 39, 37, 38, 39, 36, 37, 43, 41, 42, 43, 40, 41, 47, 45, 46, 47, 44, 45, 51, 49, 50, 51, 48, 49, 55, 53, 54, 55, 52, 53, 59, 57, 58, 59, 56, 57, 62, 63, 61, 63, 64, 61, 61, 64, 60, 68, 66, 67, 68, 65, 66, 72, 70, 71, 72, 69, 70, 76, 74, 75, 76, 73, 74, 80, 78, 79, 80, 77, 78, 84, 82, 83, 84, 81, 82, 88, 86, 87, 88, 85, 86, 92, 90, 91, 92, 89, 90, 96, 94, 95, 96, 93, 94], "type": "mesh", "uvs": [0.711765, 0.042916, 0.711765, 0.049971, 0.708235, 0.049971, 0.708235, 0.042916, 0.654706, 0.692534, 0.654706, 0.696061, 0.650588, 0.696061, 0.650588, 0.692534, 0.348824, 0.950029, 0.348824, 0.953557, 0.345294, 0.953557, 0.345294, 0.950029, 0.638235, 0.378013, 0.638235, 0.38154, 0.634706, 0.38154, 0.634706, 0.378013, 0.051176, 0.328042, 0.051176, 0.335685, 0.046471, 0.335685, 0.046471, 0.328042, 0.968824, 0.383892, 0.968824, 0.385655, 0.965882, 0.385655, 0.965882, 0.383892, 0.008235, 0.980012, 0.008235, 0.982951, 0.005294, 0.982951, 0.005294, 0.980012, 0.002353, 0.340976, 0.002353, 0.343915, 0.0, 0.343915, 0.0, 0.340976, 1.0, 0.250441, 1.0, 0.252205, 0.998824, 0.252205, 0.998824, 0.250441, 1.0, 0.121693, 1.0, 0.125808, 0.998235, 0.125808, 0.998235, 0.121693, 0.108824, 0.997648, 0.108824, 1.0, 0.106471, 1.0, 0.106471, 0.997648, 0.007647, 0.988242, 0.007647, 0.991182, 0.004706, 0.991182, 0.004706, 0.988242, 0.114118, 0.391534, 0.114118, 0.39565, 0.110588, 0.39565, 0.110588, 0.391534, 0.557647, 0.661964, 0.557647, 0.663139, 0.556471, 0.663139, 0.556471, 0.661964, 0.030588, 0.800705, 0.030588, 0.804821, 0.026471, 0.804821, 0.026471, 0.800705, 0.945506, 0.984263, 0.934614, 0.982319, 0.933156, 0.976097, 0.9399, 0.976588, 0.944364, 0.979804, 0.988824, 0.992945, 0.988824, 0.995885, 0.985882, 0.995885, 0.985882, 0.992945, 0.553529, 0.909465, 0.553529, 0.912992, 0.55, 0.912992, 0.55, 0.909465, 0.096471, 0.280423, 0.096471, 0.283951, 0.092941, 0.283951, 0.092941, 0.280423, 0.945294, 0.99177, 0.945294, 0.994709, 0.942353, 0.994709, 0.942353, 0.99177, 0.91, 0.99177, 0.91, 0.994709, 0.907059, 0.994709, 0.907059, 0.99177, 0.017647, 0.624927, 0.017647, 0.628454, 0.014118, 0.628454, 0.014118, 0.624927, 0.950588, 0.992945, 0.950588, 0.995885, 0.947647, 0.995885, 0.947647, 0.992945, 0.717647, 0.0, 0.717647, 0.004115, 0.709412, 0.004115, 0.709412, 0.0], "vertices": [45.0, -2.0, 45.0, -14.0, 39.0, -14.0, 39.0, -2.0, 42.0, 20.0, 42.0, 14.0, 35.0, 14.0, 35.0, 20.0, 40.0, -16.0, 40.0, -22.0, 34.0, -22.0, 34.0, -16.0, 36.0, 6.0, 36.0, 0.0, 30.0, 0.0, 30.0, 6.0, 30.0, 15.0, 30.0, 2.0, 22.000002, 2.0, 22.000002, 15.0, 25.0, 44.0, 25.0, 41.0, 20.0, 41.0, 20.0, 44.0, 21.0, 26.0, 21.0, 21.0, 16.0, 21.0, 16.0, 26.0, 20.0, 37.0, 20.0, 32.0, 16.0, 32.0, 16.0, 37.0, 20.0, -2.0, 20.0, -5.0, 18.000002, -5.0, 18.000002, -2.0, 12.0, 15.0, 12.0, 8.0, 9.0, 8.0, 9.0, 15.0, 10.0, 35.0, 10.0, 31.0, 6.0, 31.0, 6.0, 35.0, 6.0, 3.0, 6.0, -2.0, 1.0, -2.0, 1.0, 3.0, 4.0, 31.0, 4.0, 24.0, -2.0, 24.0, -2.0, 31.0, -3.0, -4.0, -3.0, -6.0, -5.0, -6.0, -5.0, -4.0, -6.0, 4.0, -6.0, -3.0, -13.000001, -3.0, -13.000001, 4.0, -9.639767, -14.231438, -28.155548, -10.924996, -30.635118, -0.341846, -19.169518, -1.176155, -11.581964, -6.646973, -12.0, 38.0, -12.0, 33.0, -17.0, 33.0, -17.0, 38.0, -17.0, 19.0, -17.0, 13.0, -23.0, 13.0, -23.0, 19.0, -17.0, 5.0, -17.0, -1.0, -23.0, -1.0, -23.0, 5.0, -23.0, 32.0, -23.0, 27.0, -28.000002, 27.0, -28.000002, 32.0, -25.0, 25.0, -25.0, 20.0, -30.000004, 20.0, -30.000004, 25.0, -30.000004, 15.0, -30.000004, 9.0, -36.000004, 9.0, -36.000004, 15.0, -31.000002, -31.0, -31.000002, -36.0, -36.000004, -36.0, -36.000004, -31.0, -32.0, -4.0, -32.0, -11.0, -46.000004, -11.0, -46.000004, -4.0], "width": 2337}}, "scatter": {"scatter": {"height": 38, "hull": 4, "triangles": [1, 2, 3, 1, 3, 0], "type": "mesh", "uvs": [1.0, 1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0], "vertices": [-7.81, -55, -7.81, 55, 30.19, 55, 30.19, -55], "width": 110}}, "scatter_light_sweep/scatter_light_sweep_00": {"scatter_light_sweep/scatter_light_sweep_00": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_01": {"scatter_light_sweep/scatter_light_sweep_01": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_02": {"scatter_light_sweep/scatter_light_sweep_02": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_03": {"scatter_light_sweep/scatter_light_sweep_03": {"height": 38, "hull": 4, "triangles": [3, 1, 2, 3, 0, 1], "type": "mesh", "uvs": [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0], "vertices": [17.190001, 48.0, 17.190001, 39.0, -0.81, 39.0, -0.81, 48.0], "width": 110}}, "scatter_light_sweep/scatter_light_sweep_04": {"scatter_light_sweep/scatter_light_sweep_04": {"height": 42, "hull": 5, "triangles": [2, 3, 4, 4, 0, 2, 1, 2, 0], "type": "mesh", "uvs": [0.645155, 0.03081, 0.996364, 0.916857, 0.530472, 0.982431, 0.0, 0.892857, 0.20097, 0.034428], "vertices": [24.327286, 35.161449, -0.481966, 27.083603, -2.318098, 37.799133, 0.190001, 50.0, 24.225986, 45.377697], "width": 133}}, "scatter_light_sweep/scatter_light_sweep_05": {"scatter_light_sweep/scatter_light_sweep_05": {"height": 40, "hull": 5, "triangles": [3, 1, 2, 1, 3, 0, 0, 3, 4], "type": "mesh", "uvs": [0.750055, 0.069894, 0.97576, 0.96841, 0.011546, 0.970171, 0.034813, 0.329163, 0.173151, 0.009478], "vertices": [24.23296, 23.498152, -0.925426, 15.824158, -0.974809, 48.607418, 16.973494, 47.816345, 25.924572, 43.112843], "width": 124}}, "scatter_light_sweep/scatter_light_sweep_06": {"scatter_light_sweep/scatter_light_sweep_06": {"height": 42, "hull": 7, "triangles": [4, 5, 3, 0, 3, 5, 3, 0, 1, 3, 1, 2, 0, 5, 6], "type": "mesh", "uvs": [0.781368, 0.090963, 0.956012, 0.684802, 0.991492, 0.966852, 0.106867, 0.96574, 0.017638, 0.836055, 0.075446, 0.272941, 0.166599, 0.01757], "vertices": [24.552059, 14.057049, 7.330762, 6.023411, -0.848666, 4.391353, -0.816506, 45.084133, 2.944346, 49.188663, 19.274734, 46.529453, 26.680485, 42.336403], "width": 120}}, "scatter_light_sweep/scatter_light_sweep_07": {"scatter_light_sweep/scatter_light_sweep_07": {"height": 40, "hull": 7, "triangles": [4, 5, 6, 3, 4, 6, 0, 3, 6, 1, 3, 0, 3, 1, 2], "type": "mesh", "uvs": [0.806514, 0.026101, 0.959034, 0.662345, 0.999322, 0.979152, 0.263154, 0.966034, 0.068534, 0.803885, 0.014772, 0.229305, 0.087492, 0.033186], "vertices": [25.459177, 1.028714, 7.644404, -7.664942, -1.226296, -9.961351, -0.858956, 32.000263, 3.681169, 43.093555, 19.769474, 46.157993, 25.260807, 42.01292], "width": 118}}, "scatter_light_sweep/scatter_light_sweep_08": {"scatter_light_sweep/scatter_light_sweep_08": {"height": 40, "hull": 5, "triangles": [3, 4, 0, 3, 0, 2, 0, 1, 2], "type": "mesh", "uvs": [0.724208, 0.034781, 0.863098, 0.086448, 0.986354, 0.968497, 0.139335, 0.965136, 0.0, 0.035714], "vertices": [25.216152, -8.176659, 23.769436, -16.648968, -0.927862, -24.167585, -0.833802, 27.500566, 25.189999, 36.0], "width": 119}}, "scatter_light_sweep/scatter_light_sweep_09": {"scatter_light_sweep/scatter_light_sweep_09": {"height": 40, "hull": 7, "triangles": [4, 5, 0, 2, 4, 0, 4, 2, 3, 2, 0, 1, 5, 6, 0], "type": "mesh", "uvs": [0.785176, 0.035152, 0.839392, 0.075819, 0.966402, 0.672128, 0.983668, 0.971279, 0.191975, 0.974152, 0.016255, 0.420689, 0.016632, 0.035714], "vertices": [25.205776, -25.110525, 24.067078, -28.363523, 7.370433, -35.984116, -1.00586, -37.02005, -1.086246, 10.481496, 14.410661, 21.024694, 25.190002, 21.002098], "width": 115}}, "scatter_light_sweep/scatter_light_sweep_10": {"scatter_light_sweep/scatter_light_sweep_10": {"height": 40, "hull": 5, "triangles": [2, 3, 4, 0, 2, 4, 2, 0, 1], "type": "mesh", "uvs": [0.981481, 0.035714, 0.986829, 0.974897, 0.203704, 0.96453, 0.026547, 0.511732, 0.008703, 0.029999], "vertices": [25.189999, -45.0, -1.107076, -45.288738, -0.816862, -2.999976, 11.861567, 6.56645, 25.350086, 7.530005], "width": 114}}, "scatter_light_sweep/scatter_light_sweep_11": {"scatter_light_sweep/scatter_light_sweep_11": {"height": 42, "hull": 6, "triangles": [4, 5, 0, 4, 0, 3, 3, 0, 1, 2, 3, 1], "type": "mesh", "uvs": [0.244074, 0.020853, 0.99184, 0.080667, 0.970429, 0.970434, 0.309429, 0.96891, 0.120056, 0.56181, 0.017486, 0.081825], "vertices": [26.585205, -12.983366, 24.85062, -46.63282, -0.952626, -45.669323, -0.908431, -15.924331, 10.897523, -7.402512, 24.817059, -2.786857], "width": 117}}, "scatter_light_sweep/scatter_light_sweep_12": {"scatter_light_sweep/scatter_light_sweep_12": {"height": 42, "hull": 4, "triangles": [3, 0, 1, 2, 3, 1], "type": "mesh", "uvs": [0.003107, 0.01954, 0.988677, 0.080423, 0.959905, 0.970177, 0.287879, 0.965618], "vertices": [26.623323, -14.102512, 24.857716, -46.626385, -0.945152, -45.676865, -0.81298, -23.49999], "width": 121}}, "scatter_light_sweep/scatter_light_sweep_13": {"scatter_light_sweep/scatter_light_sweep_13": {"height": 42, "hull": 5, "triangles": [3, 4, 0, 0, 1, 3, 1, 2, 3], "type": "mesh", "uvs": [0.982937, 0.080356, 0.939504, 0.970438, 0.590863, 0.970223, 0.263031, 0.712642, 0.012256, 0.033203], "vertices": [24.85972, -46.624607, -0.952674, -45.669106, -0.946399, -37.998989, 6.523334, -30.786667, 26.227036, -25.269632], "width": 127}}, "scatter_light_sweep/scatter_light_sweep_14": {"scatter_light_sweep/scatter_light_sweep_14": {"height": 42, "hull": 4, "triangles": [2, 3, 0, 2, 0, 1], "type": "mesh", "uvs": [0.847534, 0.047614, 0.940601, 0.929938, 0.351855, 0.976902, 0.051375, 0.042847], "vertices": [25.332924, -45.713024, 9.45109, -47.108978, 8.605737, -38.277782, 25.418818, -33.770626], "width": 150}}, "scatter_light_sweep/scatter_light_sweep_15": {"scatter_light_sweep/scatter_light_sweep_15": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_16": {"scatter_light_sweep/scatter_light_sweep_16": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_17": {"scatter_light_sweep/scatter_light_sweep_17": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_18": {"scatter_light_sweep/scatter_light_sweep_18": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_19": {"scatter_light_sweep/scatter_light_sweep_19": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_20": {"scatter_light_sweep/scatter_light_sweep_20": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_21": {"scatter_light_sweep/scatter_light_sweep_21": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_22": {"scatter_light_sweep/scatter_light_sweep_22": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_23": {"scatter_light_sweep/scatter_light_sweep_23": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_24": {"scatter_light_sweep/scatter_light_sweep_24": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_25": {"scatter_light_sweep/scatter_light_sweep_25": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_26": {"scatter_light_sweep/scatter_light_sweep_26": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_27": {"scatter_light_sweep/scatter_light_sweep_27": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_28": {"scatter_light_sweep/scatter_light_sweep_28": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "scatter_light_sweep/scatter_light_sweep_29": {"scatter_light_sweep/scatter_light_sweep_29": {"height": 38, "rotation": -90, "width": 110, "x": 11.19}}, "spray/spray_00": {"spray/spray_00": {"height": 47, "hull": 6, "triangles": [4, 5, 3, 5, 2, 3, 2, 5, 0, 2, 0, 1], "type": "mesh", "uvs": [0.999705, 0.023404, 0.961189, 0.714459, 0.767616, 0.946443, 0.246154, 1.0, 0.0, 0.592593, 0.041917, 0.022495], "vertices": [30.980804, -10.131887, 28.477242, -28.79043, 15.894963, -35.053974, -17.999998, -36.5, -34.0, -25.5, -31.275452, -10.107381], "width": 78}}, "spray/spray_01": {"spray/spray_01": {"height": 49, "hull": 6, "triangles": [3, 5, 0, 4, 5, 3, 1, 3, 0, 3, 1, 2], "type": "mesh", "uvs": [0.985821, 0.026635, 0.98428, 0.43905, 0.921875, 0.857143, 0.329134, 0.982293, 0.012995, 0.694451, 0.015625, 0.035714], "vertices": [30.092575, -10.245811, 29.993984, -21.793402, 26.0, -33.5, -11.935405, -37.004189, -32.168392, -28.944633, -32.0, -10.499999], "width": 76}}, "spray/spray_02": {"spray/spray_02": {"height": 49, "hull": 5, "triangles": [1, 3, 4, 2, 3, 1, 1, 4, 0], "type": "mesh", "uvs": [0.930831, 0.8237, 0.346092, 0.997729, 0.012819, 0.694541, 0.015385, 0.035714, 0.986009, 0.023115], "vertices": [27.504059, -32.563583, -10.504058, -37.436417, -32.166698, -28.947186, -32.0, -10.499999, 31.090546, -10.147206], "width": 78}}, "spray/spray_03": {"spray/spray_03": {"height": 47, "hull": 7, "triangles": [2, 5, 6, 3, 5, 2, 4, 5, 3, 0, 2, 6, 1, 2, 0], "type": "mesh", "uvs": [0.984797, 0.288552, 0.966068, 0.743096, 0.663549, 0.982521, 0.218409, 0.910789, 0.014032, 0.724456, 0.015625, 0.037037, 0.987453, 0.027104], "vertices": [30.026997, -17.290852, 28.828316, -29.563633, 9.467172, -36.028027, -19.021904, -34.091358, -32.101917, -29.06028, -32.0, -10.5, 30.197105, -10.231751], "width": 80}}, "spray/spray_04": {"spray/spray_04": {"height": 45, "hull": 8, "triangles": [6, 7, 0, 0, 3, 6, 3, 0, 2, 2, 0, 1, 3, 4, 6, 4, 5, 6], "type": "mesh", "uvs": [0.985641, 0.29957, 0.951822, 0.721694, 0.884615, 0.961764, 0.196291, 0.970027, 0.013077, 0.618953, 0.014893, 0.192303, 0.076923, 0.037964, 0.987646, 0.028147], "vertices": [30.066698, -17.28879, 27.86846, -28.26403, 23.500032, -34.505852, -21.241104, -34.720703, -33.150024, -25.592821, -33.031929, -14.49983, -29.000025, -10.487062, 30.197111, -10.231759], "width": 81}}, "spray/spray_05": {"spray/spray_05": {"height": 45, "hull": 8, "triangles": [6, 7, 0, 0, 3, 6, 3, 0, 2, 2, 0, 1, 3, 4, 6, 4, 5, 6], "type": "mesh", "uvs": [0.985618, 0.300298, 0.957707, 0.720454, 0.869231, 0.961947, 0.196291, 0.970027, 0.013077, 0.618953, 0.014893, 0.192303, 0.076923, 0.037964, 0.987646, 0.028142], "vertices": [30.065228, -17.307774, 28.251024, -28.23184, 22.500046, -34.510654, -21.241104, -34.720703, -33.150024, -25.592821, -33.031929, -14.49983, -29.000025, -10.48706, 30.197077, -10.231721], "width": 81}}, "spray/spray_06": {"spray/spray_06": {"height": 45, "hull": 6, "triangles": [1, 4, 5, 2, 4, 1, 3, 4, 2, 0, 1, 5], "type": "mesh", "uvs": [0.974622, 0.746573, 0.800278, 0.962163, 0.159091, 0.961548, 0.012168, 0.510094, 0.038977, 0.037283, 0.992961, 0.03217], "vertices": [29.325071, -28.910934, 17.818439, -34.516243, -24.5, -34.500191, -34.19693, -22.762413, -32.427429, -10.469396, 30.53546, -10.336399], "width": 82}}, "spray/spray_07": {"spray/spray_07": {"height": 45, "hull": 6, "triangles": [2, 5, 0, 3, 5, 2, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.986467, 0.023719, 0.946759, 0.798363, 0.74355, 0.962125, 0.156716, 0.961548, 0.011987, 0.510094, 0.038396, 0.037283], "vertices": [31.093206, -10.11674, 28.432838, -30.257492, 14.817841, -34.515205, -24.5, -34.500191, -34.19693, -22.762413, -32.427429, -10.469396], "width": 83}}, "spray/spray_08": {"spray/spray_08": {"height": 45, "hull": 6, "triangles": [2, 5, 0, 3, 5, 2, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.986467, 0.023719, 0.946759, 0.798363, 0.773397, 0.962153, 0.134328, 0.961538, 0.012642, 0.49245, 0.038332, 0.03726], "vertices": [31.093206, -10.11674, 28.432838, -30.257492, 16.81765, -34.516022, -26.0, -34.5, -34.152908, -22.303661, -32.431747, -10.468769], "width": 83}}, "spray/spray_09": {"spray/spray_09": {"height": 47, "hull": 6, "triangles": [4, 5, 3, 3, 5, 2, 2, 5, 0, 1, 2, 0], "type": "mesh", "uvs": [0.995925, 0.035821, 0.967144, 0.778519, 0.630998, 0.988946, 0.061538, 0.851852, 0.003271, 0.290767, 0.048792, 0.027895], "vertices": [30.735104, -10.467202, 28.864412, -30.520035, 7.014889, -36.201492, -30.0, -32.5, -33.787308, -17.350712, -30.828506, -10.25317], "width": 81}}, "spray/spray_10": {"spray/spray_10": {"height": 47, "hull": 6, "triangles": [2, 5, 0, 2, 4, 5, 3, 4, 2, 2, 0, 1], "type": "mesh", "uvs": [0.991586, 0.009535, 0.929288, 0.861292, 0.401881, 0.970581, 0.041361, 0.789497, 0.004226, 0.278542, 0.043762, 0.037401], "vertices": [31.444761, -9.757455, 27.333061, -32.75489, -7.475842, -35.705704, -31.270134, -30.816433, -33.721054, -17.020647, -31.111656, -10.509846], "width": 82}}, "spray/spray_11": {"spray/spray_11": {"height": 44, "hull": 6, "triangles": [2, 5, 0, 2, 4, 5, 3, 4, 2, 2, 0, 1], "type": "mesh", "uvs": [0.990306, 0.030283, 0.925738, 0.945449, 0.286892, 0.993013, 0.027295, 0.854683, 0.005412, 0.341226, 0.032918, 0.037925], "vertices": [31.369907, -10.257111, 27.172974, -33.136265, -14.352092, -34.325348, -31.225784, -30.867077, -32.64819, -18.030588, -30.860346, -10.448176], "width": 84}}, "spray/spray_12": {"spray/spray_12": {"height": 43, "hull": 6, "triangles": [2, 5, 0, 2, 4, 5, 3, 4, 2, 2, 0, 1], "type": "mesh", "uvs": [0.994318, 0.036338, 0.924242, 0.96, 0.224006, 0.960786, 0.036769, 0.863301, 0.006792, 0.278979, 0.052971, 0.039058], "vertices": [31.625067, -10.408405, 27.0, -33.5, -19.215549, -33.519676, -31.573235, -31.082546, -33.551735, -16.474468, -30.503849, -10.476383], "width": 86}}, "spray/spray_13": {"spray/spray_13": {"height": 43, "hull": 6, "triangles": [2, 5, 0, 4, 5, 2, 3, 4, 2, 2, 0, 1], "type": "mesh", "uvs": [0.994316, 0.036328, 0.924242, 0.96, 0.153507, 0.970864, 0.013899, 0.664082, 0.014876, 0.24, 0.072617, 0.039268], "vertices": [31.624878, -10.40816, 27.0, -33.5, -23.868526, -33.771599, -33.082645, -26.102018, -33.018219, -15.499945, -29.207306, -10.481635], "width": 86}}, "spray/spray_14": {"spray/spray_14": {"height": 45, "hull": 6, "triangles": [3, 4, 2, 2, 4, 5, 0, 2, 5, 2, 0, 1], "type": "mesh", "uvs": [0.984863, 0.325003, 0.947007, 0.887874, 0.174231, 0.998915, 0.0, 0.538462, 0.047957, 0.027804, 0.984852, 0.038462], "vertices": [30.00091, -17.950073, 27.502394, -32.58477, -23.500797, -35.471741, -35.0, -23.5, -31.834833, -10.222907, 30.000193, -10.5], "width": 86}}, "spray/spray_15": {"spray/spray_15": {"height": 40, "hull": 4, "triangles": [3, 1, 2, 3, 0, 1], "type": "mesh", "uvs": [1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0], "vertices": [29.999998, -10.5, 29.999998, -33.5, -33.0, -33.5, -33.0, -10.5], "width": 82}}, "spray/spray_16": {"spray/spray_16": {"height": 45, "hull": 6, "triangles": [1, 4, 5, 4, 1, 2, 3, 4, 2, 1, 5, 0], "type": "mesh", "uvs": [0.93963, 0.873925, 0.657454, 0.923018, 0.147188, 0.969306, 0.007222, 0.533616, 0.042854, 0.032377, 0.986654, 0.024928], "vertices": [27.955256, -32.222038, 9.049461, -33.49847, -25.138453, -34.701965, -34.516129, -23.374023, -32.128757, -10.341826, 31.10585, -10.148139], "width": 87}}, "spray/spray_17": {"spray/spray_17": {"height": 40, "hull": 4, "triangles": [3, 1, 2, 3, 0, 1], "type": "mesh", "uvs": [1.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0], "vertices": [29.999998, -10.5, 29.999998, -33.5, -33.0, -33.5, -33.0, -10.5], "width": 82}}, "spray/spray_18": {"spray/spray_18": {"height": 45, "hull": 6, "triangles": [3, 4, 2, 4, 1, 2, 1, 4, 5, 1, 5, 0], "type": "mesh", "uvs": [0.968545, 0.733699, 0.801606, 0.94265, 0.159078, 0.998042, 0.007378, 0.534095, 0.043516, 0.032381, 0.996538, 0.037879], "vertices": [28.923971, -28.576138, 17.905994, -34.008919, -24.50087, -35.449089, -34.513062, -23.386461, -32.127884, -10.341925, 30.771561, -10.484871], "width": 82}}, "spray/spray_19": {"spray/spray_19": {"height": 45, "hull": 6, "triangles": [3, 4, 2, 4, 1, 2, 1, 4, 5, 1, 5, 0], "type": "mesh", "uvs": [0.968545, 0.733699, 0.801606, 0.94265, 0.159078, 0.998042, 0.007378, 0.534095, 0.043516, 0.032381, 0.996539, 0.037879], "vertices": [28.923971, -28.576138, 17.905994, -34.008919, -24.50087, -35.449089, -34.513062, -23.386461, -32.127884, -10.341925, 30.771561, -10.484871], "width": 82}}, "spray/spray_20": {"spray/spray_20": {"height": 45, "hull": 6, "triangles": [3, 4, 2, 4, 1, 2, 1, 4, 5, 1, 5, 0], "type": "mesh", "uvs": [0.960945, 0.760428, 0.76375, 0.945913, 0.159078, 0.998042, 0.007378, 0.534095, 0.043516, 0.032381, 0.996216, 0.037785], "vertices": [28.422289, -29.27108, 15.407433, -34.093769, -24.50087, -35.449089, -34.513062, -23.386461, -32.127884, -10.341925, 30.750198, -10.482456], "width": 82}}, "spray/spray_21": {"spray/spray_21": {"height": 45, "hull": 6, "triangles": [3, 4, 2, 4, 1, 2, 1, 4, 5, 1, 5, 0], "type": "mesh", "uvs": [0.9626, 0.724879, 0.772727, 0.961719, 0.1506, 0.965407, 0.007352, 0.533813, 0.043509, 0.032379, 0.996208, 0.037781], "vertices": [28.531591, -28.346891, 16.000004, -34.504677, -25.060452, -34.600616, -34.514824, -23.379147, -32.128387, -10.341866, 30.749811, -10.482285], "width": 82}}, "spray/spray_22": {"spray/spray_22": {"height": 45, "hull": 6, "triangles": [2, 5, 0, 5, 2, 3, 4, 5, 3, 2, 0, 1], "type": "mesh", "uvs": [0.999649, 0.024104, 0.962902, 0.722468, 0.772727, 0.961717, 0.1506, 0.965407, 0.00735, 0.533813, 0.043535, 0.032311], "vertices": [30.976858, -10.126687, 28.551554, -28.284163, 16.000004, -34.504677, -25.060452, -34.600616, -34.514824, -23.379147, -32.126648, -10.340122], "width": 82}}, "spray/spray_23": {"spray/spray_23": {"height": 47, "hull": 7, "triangles": [0, 3, 6, 3, 0, 2, 2, 0, 1, 3, 5, 6, 4, 5, 3], "type": "mesh", "uvs": [0.999572, 0.023415, 0.959401, 0.658348, 0.861563, 0.890955, 0.301337, 0.966345, 0.038071, 0.820643, 0.007063, 0.258269, 0.053983, 0.035798], "vertices": [30.972235, -10.132172, 28.361061, -27.275421, 22.001556, -33.555809, -14.413054, -35.591255, -31.525417, -31.657389, -33.540916, -16.473221, -30.491064, -10.466496], "width": 81}}, "spray/spray_24": {"spray/spray_24": {"height": 45, "hull": 7, "triangles": [2, 6, 0, 3, 6, 2, 3, 5, 6, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.999784, 0.024456, 0.961974, 0.739422, 0.736099, 0.961994, 0.230769, 0.961637, 0.057103, 0.866544, 0.005251, 0.268804, 0.06006, 0.038152], "vertices": [30.985945, -10.135864, 28.528236, -28.725006, 13.846436, -34.511864, -19.0, -34.502541, -30.288342, -32.030205, -33.658661, -16.488834, -30.096069, -10.491949], "width": 81}}, "spray/spray_25": {"spray/spray_25": {"height": 45, "hull": 6, "triangles": [2, 5, 0, 5, 2, 3, 4, 5, 3, 2, 0, 1], "type": "mesh", "uvs": [0.999634, 0.02409, 0.963634, 0.704379, 0.817102, 0.95217, 0.151515, 1.0, 0.00462, 0.515242, 0.042791, 0.032255], "vertices": [30.975897, -10.126338, 28.599783, -27.813869, 18.928644, -34.256401, -25.0, -35.5, -34.695145, -22.896313, -32.175766, -10.338635], "width": 82}}, "spray/spray_26": {"spray/spray_26": {"height": 45, "hull": 6, "triangles": [2, 5, 0, 5, 2, 3, 4, 5, 3, 2, 0, 1], "type": "mesh", "uvs": [0.999634, 0.02409, 0.963634, 0.704379, 0.8171, 0.95217, 0.151515, 1.0, 0.004618, 0.515242, 0.042791, 0.032255], "vertices": [30.975897, -10.126338, 28.599783, -27.813869, 18.928644, -34.256401, -25.0, -35.5, -34.695145, -22.896313, -32.175766, -10.338635], "width": 82}}, "spray/spray_27": {"spray/spray_27": {"height": 47, "hull": 6, "triangles": [2, 5, 0, 3, 5, 2, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.999628, 0.023078, 0.961528, 0.730482, 0.656792, 0.963361, 0.151515, 0.962963, 0.011826, 0.492264, 0.038926, 0.035884], "vertices": [30.975431, -10.123112, 28.460772, -29.222998, 8.34829, -35.510769, -25.0, -35.5, -34.219467, -22.791145, -32.43092, -10.468889], "width": 79}}, "spray/spray_28": {"spray/spray_28": {"height": 47, "hull": 6, "triangles": [2, 5, 0, 3, 5, 2, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.999628, 0.023078, 0.961528, 0.730481, 0.664368, 0.963368, 0.151515, 0.962963, 0.011826, 0.492264, 0.038926, 0.035885], "vertices": [30.975431, -10.123112, 28.460772, -29.222998, 8.848289, -35.510933, -25.0, -35.5, -34.219467, -22.791145, -32.43092, -10.468889], "width": 79}}, "spray/spray_29": {"spray/spray_29": {"height": 47, "hull": 6, "triangles": [2, 5, 0, 3, 5, 2, 4, 5, 3, 1, 2, 0], "type": "mesh", "uvs": [0.999619, 0.023069, 0.961372, 0.730939, 0.702119, 0.963435, 0.174242, 0.96297, 0.012205, 0.491041, 0.038983, 0.035904], "vertices": [30.974873, -10.122878, 28.450617, -29.23534, 11.339863, -35.51273, -23.5, -35.500179, -34.194405, -22.758106, -32.427071, -10.469447], "width": 79}}, "sunlight": {"sunlight": {"height": 110, "hull": 4, "triangles": [3, 1, 2, 3, 0, 1], "type": "mesh", "uvs": [0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0], "vertices": [-51.0, 51.000004, 51.0, 51.000004, 51.0, -52.000004, -51.0, -52.000004], "width": 110}}}, "name": "default"}], "slots": [{"attachment": "bg", "bone": "root", "name": "bg"}, {"attachment": "spray/spray_00", "bone": "root", "name": "spray/spray_00"}, {"attachment": "spray/spray_01", "bone": "root", "name": "spray/spray_01"}, {"attachment": "spray/spray_02", "bone": "root", "name": "spray/spray_02"}, {"attachment": "spray/spray_03", "bone": "root", "name": "spray/spray_03"}, {"attachment": "spray/spray_04", "bone": "root", "name": "spray/spray_04"}, {"attachment": "spray/spray_05", "bone": "root", "name": "spray/spray_05"}, {"attachment": "spray/spray_06", "bone": "root", "name": "spray/spray_06"}, {"attachment": "spray/spray_07", "bone": "root", "name": "spray/spray_07"}, {"attachment": "spray/spray_08", "bone": "root", "name": "spray/spray_08"}, {"attachment": "spray/spray_09", "bone": "root", "name": "spray/spray_09"}, {"attachment": "spray/spray_10", "bone": "root", "name": "spray/spray_10"}, {"attachment": "spray/spray_11", "bone": "root", "name": "spray/spray_11"}, {"attachment": "spray/spray_12", "bone": "root", "name": "spray/spray_12"}, {"attachment": "spray/spray_13", "bone": "root", "name": "spray/spray_13"}, {"attachment": "spray/spray_14", "bone": "root", "name": "spray/spray_14"}, {"attachment": "spray/spray_15", "bone": "root", "name": "spray/spray_15"}, {"attachment": "spray/spray_16", "bone": "root", "name": "spray/spray_16"}, {"attachment": "spray/spray_17", "bone": "root", "name": "spray/spray_17"}, {"attachment": "spray/spray_18", "bone": "root", "name": "spray/spray_18"}, {"attachment": "spray/spray_19", "bone": "root", "name": "spray/spray_19"}, {"attachment": "spray/spray_20", "bone": "root", "name": "spray/spray_20"}, {"attachment": "spray/spray_21", "bone": "root", "name": "spray/spray_21"}, {"attachment": "spray/spray_22", "bone": "root", "name": "spray/spray_22"}, {"attachment": "spray/spray_23", "bone": "root", "name": "spray/spray_23"}, {"attachment": "spray/spray_24", "bone": "root", "name": "spray/spray_24"}, {"attachment": "spray/spray_25", "bone": "root", "name": "spray/spray_25"}, {"attachment": "spray/spray_26", "bone": "root", "name": "spray/spray_26"}, {"attachment": "spray/spray_27", "bone": "root", "name": "spray/spray_27"}, {"attachment": "spray/spray_28", "bone": "root", "name": "spray/spray_28"}, {"attachment": "spray/spray_29", "bone": "root", "name": "spray/spray_29"}, {"attachment": "sunlight", "blend": "additive", "bone": "root", "name": "sunlight"}, {"attachment": "particle/particle_00", "blend": "additive", "bone": "root", "name": "particle/particle_00"}, {"attachment": "particle/particle_01", "blend": "additive", "bone": "root", "name": "particle/particle_01"}, {"attachment": "particle/particle_02", "blend": "additive", "bone": "root", "name": "particle/particle_02"}, {"attachment": "particle/particle_03", "blend": "additive", "bone": "root", "name": "particle/particle_03"}, {"attachment": "particle/particle_04", "blend": "additive", "bone": "root", "name": "particle/particle_04"}, {"attachment": "particle/particle_05", "blend": "additive", "bone": "root", "name": "particle/particle_05"}, {"attachment": "particle/particle_06", "blend": "additive", "bone": "root", "name": "particle/particle_06"}, {"attachment": "particle/particle_07", "blend": "additive", "bone": "root", "name": "particle/particle_07"}, {"attachment": "particle/particle_08", "blend": "additive", "bone": "root", "name": "particle/particle_08"}, {"attachment": "particle/particle_09", "blend": "additive", "bone": "root", "name": "particle/particle_09"}, {"attachment": "particle/particle_10", "blend": "additive", "bone": "root", "name": "particle/particle_10"}, {"attachment": "particle/particle_11", "blend": "additive", "bone": "root", "name": "particle/particle_11"}, {"attachment": "particle/particle_12", "blend": "additive", "bone": "root", "name": "particle/particle_12"}, {"attachment": "particle/particle_13", "blend": "additive", "bone": "root", "name": "particle/particle_13"}, {"attachment": "particle/particle_14", "blend": "additive", "bone": "root", "name": "particle/particle_14"}, {"attachment": "particle/particle_15", "blend": "additive", "bone": "root", "name": "particle/particle_15"}, {"attachment": "particle/particle_16", "blend": "additive", "bone": "root", "name": "particle/particle_16"}, {"attachment": "particle/particle_17", "blend": "additive", "bone": "root", "name": "particle/particle_17"}, {"attachment": "particle/particle_18", "blend": "additive", "bone": "root", "name": "particle/particle_18"}, {"attachment": "particle/particle_19", "blend": "additive", "bone": "root", "name": "particle/particle_19"}, {"attachment": "particle/particle_20", "blend": "additive", "bone": "root", "name": "particle/particle_20"}, {"attachment": "particle/particle_21", "blend": "additive", "bone": "root", "name": "particle/particle_21"}, {"attachment": "particle/particle_22", "blend": "additive", "bone": "root", "name": "particle/particle_22"}, {"attachment": "particle/particle_23", "blend": "additive", "bone": "root", "name": "particle/particle_23"}, {"attachment": "particle/particle_24", "blend": "additive", "bone": "root", "name": "particle/particle_24"}, {"attachment": "particle/particle_25", "blend": "additive", "bone": "root", "name": "particle/particle_25"}, {"attachment": "particle/particle_26", "blend": "additive", "bone": "root", "name": "particle/particle_26"}, {"attachment": "particle/particle_27", "blend": "additive", "bone": "root", "name": "particle/particle_27"}, {"attachment": "particle/particle_28", "blend": "additive", "bone": "root", "name": "particle/particle_28"}, {"attachment": "particle/particle_29", "blend": "additive", "bone": "root", "name": "particle/particle_29"}, {"attachment": "scatter", "bone": "text", "name": "scatter"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_00", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_00"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_01", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_01"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_02", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_02"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_03", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_03"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_04", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_04"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_05", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_05"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_06", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_06"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_07", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_07"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_08", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_08"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_09", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_09"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_10", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_10"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_11", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_11"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_12", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_12"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_13", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_13"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_14", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_14"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_15", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_15"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_16", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_16"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_17", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_17"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_18", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_18"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_19", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_19"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_20", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_20"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_21", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_21"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_22", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_22"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_23", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_23"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_24", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_24"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_25", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_25"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_26", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_26"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_27", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_27"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_28", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_28"}, {"attachment": "scatter_light_sweep/scatter_light_sweep_29", "bone": "text", "name": "scatter_light_sweep/scatter_light_sweep_29"}]}
+{
+"skeleton": { "hash": "qX5GdUsm3Rvqi5PSzZ6yZs0a6bE", "spine": "3.8.99", "x": -55, "y": -55, "width": 110, "height": 110 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "text", "parent": "root", "length": 42.83, "rotation": 90, "y": -47.19 }
+],
+"slots": [
+	{ "name": "bg", "bone": "root", "attachment": "bg-scatter" },
+	{ "name": "spray/spray_00", "bone": "root", "attachment": "spray/spray_00" },
+	{ "name": "spray/spray_01", "bone": "root", "attachment": "spray/spray_01" },
+	{ "name": "spray/spray_02", "bone": "root", "attachment": "spray/spray_02" },
+	{ "name": "spray/spray_03", "bone": "root", "attachment": "spray/spray_03" },
+	{ "name": "spray/spray_04", "bone": "root", "attachment": "spray/spray_04" },
+	{ "name": "spray/spray_05", "bone": "root", "attachment": "spray/spray_05" },
+	{ "name": "spray/spray_06", "bone": "root", "attachment": "spray/spray_06" },
+	{ "name": "spray/spray_07", "bone": "root", "attachment": "spray/spray_07" },
+	{ "name": "spray/spray_08", "bone": "root", "attachment": "spray/spray_08" },
+	{ "name": "spray/spray_09", "bone": "root", "attachment": "spray/spray_09" },
+	{ "name": "spray/spray_10", "bone": "root", "attachment": "spray/spray_10" },
+	{ "name": "spray/spray_11", "bone": "root", "attachment": "spray/spray_11" },
+	{ "name": "spray/spray_12", "bone": "root", "attachment": "spray/spray_12" },
+	{ "name": "spray/spray_13", "bone": "root", "attachment": "spray/spray_13" },
+	{ "name": "spray/spray_14", "bone": "root", "attachment": "spray/spray_14" },
+	{ "name": "spray/spray_15", "bone": "root", "attachment": "spray/spray_15" },
+	{ "name": "spray/spray_16", "bone": "root", "attachment": "spray/spray_16" },
+	{ "name": "spray/spray_17", "bone": "root", "attachment": "spray/spray_17" },
+	{ "name": "spray/spray_18", "bone": "root", "attachment": "spray/spray_18" },
+	{ "name": "spray/spray_19", "bone": "root", "attachment": "spray/spray_19" },
+	{ "name": "spray/spray_20", "bone": "root", "attachment": "spray/spray_20" },
+	{ "name": "spray/spray_21", "bone": "root", "attachment": "spray/spray_21" },
+	{ "name": "spray/spray_22", "bone": "root", "attachment": "spray/spray_22" },
+	{ "name": "spray/spray_23", "bone": "root", "attachment": "spray/spray_23" },
+	{ "name": "spray/spray_24", "bone": "root", "attachment": "spray/spray_24" },
+	{ "name": "spray/spray_25", "bone": "root", "attachment": "spray/spray_25" },
+	{ "name": "spray/spray_26", "bone": "root", "attachment": "spray/spray_26" },
+	{ "name": "spray/spray_27", "bone": "root", "attachment": "spray/spray_27" },
+	{ "name": "spray/spray_28", "bone": "root", "attachment": "spray/spray_28" },
+	{ "name": "spray/spray_29", "bone": "root", "attachment": "spray/spray_29" },
+	{ "name": "sunlight", "bone": "root", "attachment": "sunlight", "blend": "additive" },
+	{ "name": "particle/particle_00", "bone": "root", "attachment": "particle/particle_00", "blend": "additive" },
+	{ "name": "particle/particle_01", "bone": "root", "attachment": "particle/particle_01", "blend": "additive" },
+	{ "name": "particle/particle_02", "bone": "root", "attachment": "particle/particle_02", "blend": "additive" },
+	{ "name": "particle/particle_03", "bone": "root", "attachment": "particle/particle_03", "blend": "additive" },
+	{ "name": "particle/particle_04", "bone": "root", "attachment": "particle/particle_04", "blend": "additive" },
+	{ "name": "particle/particle_05", "bone": "root", "attachment": "particle/particle_05", "blend": "additive" },
+	{ "name": "particle/particle_06", "bone": "root", "attachment": "particle/particle_06", "blend": "additive" },
+	{ "name": "particle/particle_07", "bone": "root", "attachment": "particle/particle_07", "blend": "additive" },
+	{ "name": "particle/particle_08", "bone": "root", "attachment": "particle/particle_08", "blend": "additive" },
+	{ "name": "particle/particle_09", "bone": "root", "attachment": "particle/particle_09", "blend": "additive" },
+	{ "name": "particle/particle_10", "bone": "root", "attachment": "particle/particle_10", "blend": "additive" },
+	{ "name": "particle/particle_11", "bone": "root", "attachment": "particle/particle_11", "blend": "additive" },
+	{ "name": "particle/particle_12", "bone": "root", "attachment": "particle/particle_12", "blend": "additive" },
+	{ "name": "particle/particle_13", "bone": "root", "attachment": "particle/particle_13", "blend": "additive" },
+	{ "name": "particle/particle_14", "bone": "root", "attachment": "particle/particle_14", "blend": "additive" },
+	{ "name": "particle/particle_15", "bone": "root", "attachment": "particle/particle_15", "blend": "additive" },
+	{ "name": "particle/particle_16", "bone": "root", "attachment": "particle/particle_16", "blend": "additive" },
+	{ "name": "particle/particle_17", "bone": "root", "attachment": "particle/particle_17", "blend": "additive" },
+	{ "name": "particle/particle_18", "bone": "root", "attachment": "particle/particle_18", "blend": "additive" },
+	{ "name": "particle/particle_19", "bone": "root", "attachment": "particle/particle_19", "blend": "additive" },
+	{ "name": "particle/particle_20", "bone": "root", "attachment": "particle/particle_20", "blend": "additive" },
+	{ "name": "particle/particle_21", "bone": "root", "attachment": "particle/particle_21", "blend": "additive" },
+	{ "name": "particle/particle_22", "bone": "root", "attachment": "particle/particle_22", "blend": "additive" },
+	{ "name": "particle/particle_23", "bone": "root", "attachment": "particle/particle_23", "blend": "additive" },
+	{ "name": "particle/particle_24", "bone": "root", "attachment": "particle/particle_24", "blend": "additive" },
+	{ "name": "particle/particle_25", "bone": "root", "attachment": "particle/particle_25", "blend": "additive" },
+	{ "name": "particle/particle_26", "bone": "root", "attachment": "particle/particle_26", "blend": "additive" },
+	{ "name": "particle/particle_27", "bone": "root", "attachment": "particle/particle_27", "blend": "additive" },
+	{ "name": "particle/particle_28", "bone": "root", "attachment": "particle/particle_28", "blend": "additive" },
+	{ "name": "particle/particle_29", "bone": "root", "attachment": "particle/particle_29", "blend": "additive" },
+	{ "name": "scatter", "bone": "text", "attachment": "scatter" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_00", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_00" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_01", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_01" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_02", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_02" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_03", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_03" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_04", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_04" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_05", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_05" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_06", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_06" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_07", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_07" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_08", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_08" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_09", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_09" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_10", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_10" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_11", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_11" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_12", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_12" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_13", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_13" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_14", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_14" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_15", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_15" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_16", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_16" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_17", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_17" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_18", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_18" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_19", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_19" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_20", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_20" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_21", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_21" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_22", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_22" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_23", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_23" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_24", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_24" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_25", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_25" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_26", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_26" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_27", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_27" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_28", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_28" },
+	{ "name": "scatter_light_sweep/scatter_light_sweep_29", "bone": "text", "attachment": "scatter_light_sweep/scatter_light_sweep_29" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"bg": {
+				"bg-scatter": { "width": 110, "height": 110 }
+			},
+			"particle/particle_00": {
+				"particle/particle_00": { "width": 110, "height": 110 }
+			},
+			"particle/particle_01": {
+				"particle/particle_01": { "width": 110, "height": 110 }
+			},
+			"particle/particle_02": {
+				"particle/particle_02": { "width": 110, "height": 110 }
+			},
+			"particle/particle_03": {
+				"particle/particle_03": { "width": 110, "height": 110 }
+			},
+			"particle/particle_04": {
+				"particle/particle_04": { "width": 110, "height": 110 }
+			},
+			"particle/particle_05": {
+				"particle/particle_05": { "width": 110, "height": 110 }
+			},
+			"particle/particle_06": {
+				"particle/particle_06": { "width": 110, "height": 110 }
+			},
+			"particle/particle_07": {
+				"particle/particle_07": { "width": 110, "height": 110 }
+			},
+			"particle/particle_08": {
+				"particle/particle_08": { "width": 110, "height": 110 }
+			},
+			"particle/particle_09": {
+				"particle/particle_09": { "width": 110, "height": 110 }
+			},
+			"particle/particle_10": {
+				"particle/particle_10": { "width": 110, "height": 110 }
+			},
+			"particle/particle_11": {
+				"particle/particle_11": { "width": 110, "height": 110 }
+			},
+			"particle/particle_12": {
+				"particle/particle_12": { "width": 110, "height": 110 }
+			},
+			"particle/particle_13": {
+				"particle/particle_13": { "width": 110, "height": 110 }
+			},
+			"particle/particle_14": {
+				"particle/particle_14": { "width": 110, "height": 110 }
+			},
+			"particle/particle_15": {
+				"particle/particle_15": { "width": 110, "height": 110 }
+			},
+			"particle/particle_16": {
+				"particle/particle_16": { "width": 110, "height": 110 }
+			},
+			"particle/particle_17": {
+				"particle/particle_17": { "width": 110, "height": 110 }
+			},
+			"particle/particle_18": {
+				"particle/particle_18": { "width": 110, "height": 110 }
+			},
+			"particle/particle_19": {
+				"particle/particle_19": { "width": 110, "height": 110 }
+			},
+			"particle/particle_20": {
+				"particle/particle_20": { "width": 110, "height": 110 }
+			},
+			"particle/particle_21": {
+				"particle/particle_21": { "width": 110, "height": 110 }
+			},
+			"particle/particle_22": {
+				"particle/particle_22": { "width": 110, "height": 110 }
+			},
+			"particle/particle_23": {
+				"particle/particle_23": { "width": 110, "height": 110 }
+			},
+			"particle/particle_24": {
+				"particle/particle_24": { "width": 110, "height": 110 }
+			},
+			"particle/particle_25": {
+				"particle/particle_25": { "width": 110, "height": 110 }
+			},
+			"particle/particle_26": {
+				"particle/particle_26": { "width": 110, "height": 110 }
+			},
+			"particle/particle_27": {
+				"particle/particle_27": { "width": 110, "height": 110 }
+			},
+			"particle/particle_28": {
+				"particle/particle_28": { "width": 110, "height": 110 }
+			},
+			"particle/particle_29": {
+				"particle/particle_29": { "width": 110, "height": 110 }
+			},
+			"scatter": {
+				"scatter": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ -7.81, -55, -7.81, 55, 30.19, 55, 30.19, -55 ],
+					"hull": 4
+				}
+			},
+			"scatter_light_sweep/scatter_light_sweep_00": {
+				"scatter_light_sweep/scatter_light_sweep_00": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_01": {
+				"scatter_light_sweep/scatter_light_sweep_01": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_02": {
+				"scatter_light_sweep/scatter_light_sweep_02": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_03": {
+				"scatter_light_sweep/scatter_light_sweep_03": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_04": {
+				"scatter_light_sweep/scatter_light_sweep_04": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_05": {
+				"scatter_light_sweep/scatter_light_sweep_05": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_06": {
+				"scatter_light_sweep/scatter_light_sweep_06": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_07": {
+				"scatter_light_sweep/scatter_light_sweep_07": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_08": {
+				"scatter_light_sweep/scatter_light_sweep_08": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_09": {
+				"scatter_light_sweep/scatter_light_sweep_09": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_10": {
+				"scatter_light_sweep/scatter_light_sweep_10": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_11": {
+				"scatter_light_sweep/scatter_light_sweep_11": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_12": {
+				"scatter_light_sweep/scatter_light_sweep_12": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_13": {
+				"scatter_light_sweep/scatter_light_sweep_13": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_14": {
+				"scatter_light_sweep/scatter_light_sweep_14": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_15": {
+				"scatter_light_sweep/scatter_light_sweep_15": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_16": {
+				"scatter_light_sweep/scatter_light_sweep_16": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_17": {
+				"scatter_light_sweep/scatter_light_sweep_17": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_18": {
+				"scatter_light_sweep/scatter_light_sweep_18": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_19": {
+				"scatter_light_sweep/scatter_light_sweep_19": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_20": {
+				"scatter_light_sweep/scatter_light_sweep_20": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_21": {
+				"scatter_light_sweep/scatter_light_sweep_21": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_22": {
+				"scatter_light_sweep/scatter_light_sweep_22": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_23": {
+				"scatter_light_sweep/scatter_light_sweep_23": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_24": {
+				"scatter_light_sweep/scatter_light_sweep_24": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_25": {
+				"scatter_light_sweep/scatter_light_sweep_25": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_26": {
+				"scatter_light_sweep/scatter_light_sweep_26": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_27": {
+				"scatter_light_sweep/scatter_light_sweep_27": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_28": {
+				"scatter_light_sweep/scatter_light_sweep_28": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"scatter_light_sweep/scatter_light_sweep_29": {
+				"scatter_light_sweep/scatter_light_sweep_29": { "x": 11.19, "rotation": -90, "width": 110, "height": 38 }
+			},
+			"spray/spray_00": {
+				"spray/spray_00": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_01": {
+				"spray/spray_01": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_02": {
+				"spray/spray_02": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_03": {
+				"spray/spray_03": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_04": {
+				"spray/spray_04": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_05": {
+				"spray/spray_05": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_06": {
+				"spray/spray_06": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_07": {
+				"spray/spray_07": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_08": {
+				"spray/spray_08": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_09": {
+				"spray/spray_09": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_10": {
+				"spray/spray_10": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_11": {
+				"spray/spray_11": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_12": {
+				"spray/spray_12": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_13": {
+				"spray/spray_13": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_14": {
+				"spray/spray_14": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_15": {
+				"spray/spray_15": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_16": {
+				"spray/spray_16": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_17": {
+				"spray/spray_17": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_18": {
+				"spray/spray_18": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_19": {
+				"spray/spray_19": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_20": {
+				"spray/spray_20": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_21": {
+				"spray/spray_21": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_22": {
+				"spray/spray_22": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_23": {
+				"spray/spray_23": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_24": {
+				"spray/spray_24": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_25": {
+				"spray/spray_25": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_26": {
+				"spray/spray_26": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_27": {
+				"spray/spray_27": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_28": {
+				"spray/spray_28": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"spray/spray_29": {
+				"spray/spray_29": { "y": -20.5, "width": 110, "height": 30 }
+			},
+			"sunlight": {
+				"sunlight": { "width": 110, "height": 110 }
+			}
+		}
+	}
+],
+"animations": {
+	"highlight": {
+		"slots": {
+			"particle/particle_00": {
+				"attachment": [
+					{ "time": 0.0333, "name": null }
+				]
+			},
+			"particle/particle_01": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0333, "name": "particle/particle_01" },
+					{ "time": 0.0667, "name": null }
+				]
+			},
+			"particle/particle_02": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0667, "name": "particle/particle_02" },
+					{ "time": 0.1, "name": null }
+				]
+			},
+			"particle/particle_03": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1, "name": "particle/particle_03" },
+					{ "time": 0.1333, "name": null }
+				]
+			},
+			"particle/particle_04": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1333, "name": "particle/particle_04" },
+					{ "time": 0.1667, "name": null }
+				]
+			},
+			"particle/particle_05": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1667, "name": "particle/particle_05" },
+					{ "time": 0.2, "name": null }
+				]
+			},
+			"particle/particle_06": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2, "name": "particle/particle_06" },
+					{ "time": 0.2333, "name": null }
+				]
+			},
+			"particle/particle_07": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2333, "name": "particle/particle_07" },
+					{ "time": 0.2667, "name": null }
+				]
+			},
+			"particle/particle_08": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2667, "name": "particle/particle_08" },
+					{ "time": 0.3, "name": null }
+				]
+			},
+			"particle/particle_09": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3, "name": "particle/particle_09" },
+					{ "time": 0.3333, "name": null }
+				]
+			},
+			"particle/particle_10": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3333, "name": "particle/particle_10" },
+					{ "time": 0.3667, "name": null }
+				]
+			},
+			"particle/particle_11": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "particle/particle_11" },
+					{ "time": 0.4, "name": null }
+				]
+			},
+			"particle/particle_12": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4, "name": "particle/particle_12" },
+					{ "time": 0.4333, "name": null }
+				]
+			},
+			"particle/particle_13": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4333, "name": "particle/particle_13" },
+					{ "time": 0.4667, "name": null }
+				]
+			},
+			"particle/particle_14": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4667, "name": "particle/particle_14" },
+					{ "time": 0.5, "name": null }
+				]
+			},
+			"particle/particle_15": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5, "name": "particle/particle_15" },
+					{ "time": 0.5333, "name": null }
+				]
+			},
+			"particle/particle_16": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5333, "name": "particle/particle_16" },
+					{ "time": 0.5667, "name": null }
+				]
+			},
+			"particle/particle_17": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5667, "name": "particle/particle_17" },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"particle/particle_18": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": "particle/particle_18" },
+					{ "time": 0.6333, "name": null }
+				]
+			},
+			"particle/particle_19": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6333, "name": "particle/particle_19" },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"particle/particle_20": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": "particle/particle_20" },
+					{ "time": 0.7, "name": null }
+				]
+			},
+			"particle/particle_21": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7, "name": "particle/particle_21" },
+					{ "time": 0.7333, "name": null }
+				]
+			},
+			"particle/particle_22": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "particle/particle_22" },
+					{ "time": 0.7667, "name": null }
+				]
+			},
+			"particle/particle_23": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7667, "name": "particle/particle_23" },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"particle/particle_24": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8, "name": "particle/particle_24" },
+					{ "time": 0.8333, "name": null }
+				]
+			},
+			"particle/particle_25": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8333, "name": "particle/particle_25" },
+					{ "time": 0.8667, "name": null }
+				]
+			},
+			"particle/particle_26": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8667, "name": "particle/particle_26" },
+					{ "time": 0.9, "name": null }
+				]
+			},
+			"particle/particle_27": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9, "name": "particle/particle_27" },
+					{ "time": 0.9333, "name": null }
+				]
+			},
+			"particle/particle_28": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9333, "name": "particle/particle_28" },
+					{ "time": 0.9667, "name": null }
+				]
+			},
+			"particle/particle_29": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9667, "name": "particle/particle_29" }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_00": {
+				"attachment": [
+					{ "time": 0.0333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_01": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0333, "name": "scatter_light_sweep/scatter_light_sweep_01" },
+					{ "time": 0.0667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_02": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0667, "name": "scatter_light_sweep/scatter_light_sweep_02" },
+					{ "time": 0.1, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_03": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1, "name": "scatter_light_sweep/scatter_light_sweep_03" },
+					{ "time": 0.1333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_04": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1333, "name": "scatter_light_sweep/scatter_light_sweep_04" },
+					{ "time": 0.1667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_05": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1667, "name": "scatter_light_sweep/scatter_light_sweep_05" },
+					{ "time": 0.2, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_06": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2, "name": "scatter_light_sweep/scatter_light_sweep_06" },
+					{ "time": 0.2333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_07": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2333, "name": "scatter_light_sweep/scatter_light_sweep_07" },
+					{ "time": 0.2667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_08": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2667, "name": "scatter_light_sweep/scatter_light_sweep_08" },
+					{ "time": 0.3, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_09": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3, "name": "scatter_light_sweep/scatter_light_sweep_09" },
+					{ "time": 0.3333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_10": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3333, "name": "scatter_light_sweep/scatter_light_sweep_10" },
+					{ "time": 0.3667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_11": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "scatter_light_sweep/scatter_light_sweep_11" },
+					{ "time": 0.4, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_12": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4, "name": "scatter_light_sweep/scatter_light_sweep_12" },
+					{ "time": 0.4333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_13": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4333, "name": "scatter_light_sweep/scatter_light_sweep_13" },
+					{ "time": 0.4667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_14": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4667, "name": "scatter_light_sweep/scatter_light_sweep_14" },
+					{ "time": 0.5, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_15": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5, "name": "scatter_light_sweep/scatter_light_sweep_15" },
+					{ "time": 0.5333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_16": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5333, "name": "scatter_light_sweep/scatter_light_sweep_16" },
+					{ "time": 0.5667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_17": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5667, "name": "scatter_light_sweep/scatter_light_sweep_17" },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_18": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": "scatter_light_sweep/scatter_light_sweep_18" },
+					{ "time": 0.6333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_19": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6333, "name": "scatter_light_sweep/scatter_light_sweep_19" },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_20": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": "scatter_light_sweep/scatter_light_sweep_20" },
+					{ "time": 0.7, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_21": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7, "name": "scatter_light_sweep/scatter_light_sweep_21" },
+					{ "time": 0.7333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_22": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "scatter_light_sweep/scatter_light_sweep_22" },
+					{ "time": 0.7667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_23": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7667, "name": "scatter_light_sweep/scatter_light_sweep_23" },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_24": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8, "name": "scatter_light_sweep/scatter_light_sweep_24" },
+					{ "time": 0.8333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_25": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8333, "name": "scatter_light_sweep/scatter_light_sweep_25" },
+					{ "time": 0.8667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_26": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8667, "name": "scatter_light_sweep/scatter_light_sweep_26" },
+					{ "time": 0.9, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_27": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9, "name": "scatter_light_sweep/scatter_light_sweep_27" },
+					{ "time": 0.9333, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_28": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9333, "name": "scatter_light_sweep/scatter_light_sweep_28" },
+					{ "time": 0.9667, "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_29": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9667, "name": "scatter_light_sweep/scatter_light_sweep_29" }
+				]
+			},
+			"spray/spray_00": {
+				"attachment": [
+					{ "time": 0.0333, "name": null }
+				]
+			},
+			"spray/spray_01": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0333, "name": "spray/spray_01" },
+					{ "time": 0.0667, "name": null }
+				]
+			},
+			"spray/spray_02": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.0667, "name": "spray/spray_02" },
+					{ "time": 0.1, "name": null }
+				]
+			},
+			"spray/spray_03": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1, "name": "spray/spray_03" },
+					{ "time": 0.1333, "name": null }
+				]
+			},
+			"spray/spray_04": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1333, "name": "spray/spray_04" },
+					{ "time": 0.1667, "name": null }
+				]
+			},
+			"spray/spray_05": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.1667, "name": "spray/spray_05" },
+					{ "time": 0.2, "name": null }
+				]
+			},
+			"spray/spray_06": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2, "name": "spray/spray_06" },
+					{ "time": 0.2333, "name": null }
+				]
+			},
+			"spray/spray_07": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2333, "name": "spray/spray_07" },
+					{ "time": 0.2667, "name": null }
+				]
+			},
+			"spray/spray_08": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.2667, "name": "spray/spray_08" },
+					{ "time": 0.3, "name": null }
+				]
+			},
+			"spray/spray_09": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3, "name": "spray/spray_09" },
+					{ "time": 0.3333, "name": null }
+				]
+			},
+			"spray/spray_10": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3333, "name": "spray/spray_10" },
+					{ "time": 0.3667, "name": null }
+				]
+			},
+			"spray/spray_11": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.3667, "name": "spray/spray_11" },
+					{ "time": 0.4, "name": null }
+				]
+			},
+			"spray/spray_12": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4, "name": "spray/spray_12" },
+					{ "time": 0.4333, "name": null }
+				]
+			},
+			"spray/spray_13": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4333, "name": "spray/spray_13" },
+					{ "time": 0.4667, "name": null }
+				]
+			},
+			"spray/spray_14": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.4667, "name": "spray/spray_14" },
+					{ "time": 0.5, "name": null }
+				]
+			},
+			"spray/spray_15": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5, "name": "spray/spray_15" },
+					{ "time": 0.5333, "name": null }
+				]
+			},
+			"spray/spray_16": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5333, "name": "spray/spray_16" },
+					{ "time": 0.5667, "name": null }
+				]
+			},
+			"spray/spray_17": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.5667, "name": "spray/spray_17" },
+					{ "time": 0.6, "name": null }
+				]
+			},
+			"spray/spray_18": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6, "name": "spray/spray_18" },
+					{ "time": 0.6333, "name": null }
+				]
+			},
+			"spray/spray_19": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6333, "name": "spray/spray_19" },
+					{ "time": 0.6667, "name": null }
+				]
+			},
+			"spray/spray_20": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.6667, "name": "spray/spray_20" },
+					{ "time": 0.7, "name": null }
+				]
+			},
+			"spray/spray_21": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7, "name": "spray/spray_21" },
+					{ "time": 0.7333, "name": null }
+				]
+			},
+			"spray/spray_22": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7333, "name": "spray/spray_22" },
+					{ "time": 0.7667, "name": null }
+				]
+			},
+			"spray/spray_23": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.7667, "name": "spray/spray_23" },
+					{ "time": 0.8, "name": null }
+				]
+			},
+			"spray/spray_24": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8, "name": "spray/spray_24" },
+					{ "time": 0.8333, "name": null }
+				]
+			},
+			"spray/spray_25": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8333, "name": "spray/spray_25" },
+					{ "time": 0.8667, "name": null }
+				]
+			},
+			"spray/spray_26": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.8667, "name": "spray/spray_26" },
+					{ "time": 0.9, "name": null }
+				]
+			},
+			"spray/spray_27": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9, "name": "spray/spray_27" },
+					{ "time": 0.9333, "name": null }
+				]
+			},
+			"spray/spray_28": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9333, "name": "spray/spray_28" },
+					{ "time": 0.9667, "name": null }
+				]
+			},
+			"spray/spray_29": {
+				"attachment": [
+					{ "name": null },
+					{ "time": 0.9667, "name": "spray/spray_29" }
+				]
+			},
+			"sunlight": {
+				"color": [
+					{ "color": "ffffff00", "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.3333, "color": "ffffffff" }
+				]
+			}
+		},
+		"bones": {
+			"text": {
+				"translate": [
+					{ "time": 0.1, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2333, "y": 13.96, "curve": 0.113, "c3": 0.423 },
+					{ "time": 0.3667, "curve": 0.141, "c3": 0.456 },
+					{ "time": 0.5, "y": 10.02, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6 }
+				],
+				"scale": [
+					{ "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.1, "x": 0.781, "y": 1.104, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.2333, "x": 1.047, "curve": 0.146, "c3": 0.475 },
+					{ "time": 0.3667, "x": 0.792, "y": 1.072, "curve": 0.122, "c3": 0.485 },
+					{ "time": 0.5, "x": 1.042, "y": 0.983, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6, "x": 0.898, "y": 1.05, "curve": 0.25, "c3": 0.75 },
+					{ "time": 0.6667, "x": 1.029, "y": 0.971 },
+					{ "time": 0.7333 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"particle/particle_00": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_01": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_02": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_03": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_04": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_05": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_06": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_07": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_08": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_09": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_10": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_11": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_12": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_13": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_14": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_15": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_16": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_17": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_18": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_19": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_20": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_21": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_22": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_23": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_24": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_25": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_26": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_27": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_28": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"particle/particle_29": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_00": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_01": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_02": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_03": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_04": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_05": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_06": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_07": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_08": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_09": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_10": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_11": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_12": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_13": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_14": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_15": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_16": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_17": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_18": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_19": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_20": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_21": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_22": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_23": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_24": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_25": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_26": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_27": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_28": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scatter_light_sweep/scatter_light_sweep_29": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_00": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_01": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_02": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_03": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_04": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_05": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_06": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_07": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_08": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_09": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_10": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_11": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_12": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_13": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_14": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_15": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_16": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_17": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_18": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_19": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_20": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_21": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_22": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_23": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_24": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_25": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_26": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_27": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_28": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"spray/spray_29": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"sunlight": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		}
+	}
+}
+}

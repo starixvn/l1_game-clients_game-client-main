@@ -6,35 +6,42 @@ filter: Linear,Linear
 repeat: none
 blue
   rotate: true
-  xy: 1750, 499
+  xy: 1706, 1425
   size: 92, 105
   orig: 92, 105
   offset: 0, 0
   index: -1
+idle
+  rotate: false
+  xy: 823, 1585
+  size: 123, 121
+  orig: 123, 121
+  offset: 0, 0
+  index: -1
 khung
   rotate: false
-  xy: 101, 1798
+  xy: 227, 1807
   size: 122, 120
   orig: 122, 120
   offset: 0, 0
   index: -1
 light
   rotate: false
-  xy: 1676, 1566
+  xy: 1731, 395
   size: 87, 88
   orig: 87, 88
   offset: 0, 0
   index: -1
 red
-  rotate: false
-  xy: 1680, 572
-  size: 93, 104
-  orig: 93, 104
+  rotate: true
+  xy: 1728, 226
+  size: 93, 103
+  orig: 93, 103
   offset: 0, 0
   index: -1
 text-symbol-wild
   rotate: false
-  xy: 1485, 569
+  xy: 351, 1818
   size: 96, 37
   orig: 96, 37
   offset: 0, 0

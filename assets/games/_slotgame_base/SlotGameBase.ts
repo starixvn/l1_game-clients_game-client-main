@@ -382,6 +382,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     private blinkUserBalance() {
         const currentScale = this.userProfile.userBalance.node.scale;
+
+        this.userProfile.userBalance.node.stopAllActions();
+
         cc.tween(this.userProfile.userBalance.node)
             .repeat(
                 3,
@@ -395,6 +398,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     private blinkWinningBet() {
         const originalScale = this.winningBet.node.scale;
+
+        this.winningBet.node.stopAllActions();
 
         cc.tween(this.winningBet.node)
             .repeat(

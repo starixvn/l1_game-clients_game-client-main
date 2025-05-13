@@ -86,12 +86,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
                 const version = lobbyResourceManager.infoShareResource["versionGameIcon"];
                 const resourcePath = `game-icons/${gameId}/${labelGameType.gameType}/${lang}.png?v=${version}`;
                 const remoteTexture = await themeResourceLoader?.loadRemoteSharedResource<cc.Texture2D>(resourcePath);
-                const spriteFrame = new cc.SpriteFrame(remoteTexture);
-                const sprLabelGame = this.lblGameType.getComponent(cc.Sprite);
-                if (spriteFrame && sprLabelGame) {
-                    sprLabelGame.spriteFrame = spriteFrame;
-                    this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
-                }
+                this.assignSpriteFrame(labelGameType, remoteTexture);
             } catch (error) {
                 cc.log(`Not get Game} Icon from shared resource: ${gameId}`);
             }

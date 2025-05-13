@@ -130,8 +130,7 @@ export default class SkeletonIcon extends cc.Component {
             }
             const lblGameType = iconConfig?.labelGameType;
             if (lblGameType) {
-                const pathImages = `icon/${lblGameType.type}`;
-                await this.addLabelGameTypeComponent(id, lblGameType, pathImages);
+                await this.addLabelGameTypeComponent(id, lblGameType);
             }
         } catch (error) {
             cc.log(error);
@@ -140,14 +139,14 @@ export default class SkeletonIcon extends cc.Component {
         return node;
     }
 
-    protected async addLabelGameTypeComponent(id: number, labelGameType: GameNotificationConfig, pathImages: string) {
+    protected async addLabelGameTypeComponent(id: number, labelGameType: GameNotificationConfig) {
         try {
             if (!this.lblGameType) {
                 return;
             }
 
             this.lblGameType.active = true;
-            const host = GameUtils.remoteGameResourceUrl(id, pathImages);
+            const host = GameUtils.remoteGameResourceUrl(id, `icon/${labelGameType.type}`);
             const versions = await GameUtils.getRemoteVersion(id);
             const versionType = versions?.icon;
             const resName = `${window.i18n.curLang}.png?v=${versionType}`;
@@ -156,13 +155,7 @@ export default class SkeletonIcon extends cc.Component {
             try {
                 const data = await GameUtils.loadRemote(url);
                 if (data && this.lblGameType && this.lblGameType.isValid) {
-                    const sprite = this.lblGameType.getComponent(cc.Sprite);
-                    if (sprite) {
-                        const spriteFrame = new cc.SpriteFrame();
-                        spriteFrame.setTexture(data as cc.Texture2D);
-                        sprite.spriteFrame = spriteFrame;
-                    }
-                    this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
+                    this.assignSpriteFrame(labelGameType, data as cc.Texture2D);
                 } else {
                     cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
                     this.lblGameType.active = false;
@@ -174,6 +167,15 @@ export default class SkeletonIcon extends cc.Component {
         } catch (error) {
             cc.log(error);
         }
+    }
+
+    assignSpriteFrame(labelGameType: any, texture2D: cc.Texture2D) {
+        const sprite = this.lblGameType.getComponent(cc.Sprite);
+        if (sprite) {
+            const spriteFrame = new cc.SpriteFrame(texture2D);
+            sprite.spriteFrame = spriteFrame;
+        }
+        this.lblGameType.position = cc.v3(labelGameType.x, labelGameType.y);
     }
 
     protected async addGameNotificationComponent(node: cc.Node, id: number, gameNotification: GameNotificationConfig) {

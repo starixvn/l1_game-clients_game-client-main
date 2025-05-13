@@ -1,12 +1,12 @@
 
 exportAtlas.png
-size: 2048,2048
+size: 4096,2048
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 H
   rotate: false
-  xy: 765, 1594
+  xy: 3, 413
   size: 33, 37
   orig: 33, 37
   offset: 0, 0
@@ -19,10 +19,10 @@ N
   offset: 0, 0
   index: -1
 O6
-  rotate: true
-  xy: 643, 5
-  size: 35, 51
-  orig: 35, 51
+  rotate: false
+  xy: 3, 457
+  size: 35, 52
+  orig: 35, 52
   offset: 0, 0
   index: -1
 U
@@ -34,57 +34,64 @@ U
   index: -1
 flare2
   rotate: false
-  xy: 1123, 4
+  xy: 1092, 431
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 gold1
   rotate: false
-  xy: 361, 529
+  xy: 244, 1118
   size: 31, 34
   orig: 31, 34
   offset: 0, 0
   index: -1
 gold2
   rotate: false
-  xy: 436, 1040
+  xy: 219, 203
   size: 31, 34
   orig: 31, 34
   offset: 0, 0
   index: -1
 leaf
   rotate: false
-  xy: 1244, 1917
+  xy: 2144, 617
   size: 62, 67
   orig: 62, 67
   offset: 0, 0
   index: -1
 leaf2
-  rotate: false
-  xy: 4, 245
+  rotate: true
+  xy: 2209, 533
   size: 61, 46
   orig: 61, 46
   offset: 0, 0
   index: -1
 leaf3
-  rotate: false
-  xy: 863, 1060
+  rotate: true
+  xy: 4, 215
   size: 43, 40
   orig: 43, 40
   offset: 0, 0
   index: -1
 leaf4
   rotate: false
-  xy: 1395, 1910
+  xy: 1245, 791
   size: 54, 59
   orig: 54, 59
   offset: 0, 0
   index: -1
 object
-  rotate: false
-  xy: 1023, 4
+  rotate: true
+  xy: 1066, 878
   size: 132, 124
   orig: 132, 124
+  offset: 0, 0
+  index: -1
+symbol-8-idle_00
+  rotate: false
+  xy: 156, 980
+  size: 146, 136
+  orig: 146, 136
   offset: 0, 0
   index: -1

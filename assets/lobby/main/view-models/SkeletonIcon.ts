@@ -128,10 +128,6 @@ export default class SkeletonIcon extends cc.Component {
             if (iconConfig?.gameNotification) {
                 await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
-            const lblGameType = iconConfig?.labelGameType;
-            if (lblGameType) {
-                await this.addLabelGameTypeComponent(id, lblGameType);
-            }
         } catch (error) {
             cc.log(error);
             return null;
@@ -139,14 +135,24 @@ export default class SkeletonIcon extends cc.Component {
         return node;
     }
 
-    protected async addLabelGameTypeComponent(id: number, labelGameType: GameNotificationConfig) {
+    protected async setGameTypeLabel(id: number) {
         try {
             if (!this.lblGameType) {
                 return;
             }
+            const configFile = this.micrositeIconCache[id]
+                ? this.micrositeIconCache[id].configFile
+                : await GameUtils.loadRemoteGameResource<cc.JsonAsset>(id, `icon/config.json`);
+
+            this.micrositeIconCache[id] = {
+                ...this.micrositeIconCache[id],
+                configFile
+            };
+            const iconConfig: RemoteIconConfig = configFile?.json;
+            const labelTypeInfo = iconConfig?.labelGameType;
 
             this.lblGameType.active = true;
-            const host = GameUtils.remoteGameResourceUrl(id, `icon/${labelGameType.type}`);
+            const host = GameUtils.remoteGameResourceUrl(id, `icon/${labelTypeInfo.type}`);
             const versions = await GameUtils.getRemoteVersion(id);
             const versionType = versions?.icon;
             const resName = `${window.i18n.curLang}.png?v=${versionType}`;
@@ -155,7 +161,7 @@ export default class SkeletonIcon extends cc.Component {
             try {
                 const data = await GameUtils.loadRemote(url);
                 if (data && this.lblGameType && this.lblGameType.isValid) {
-                    this.assignSpriteFrame(labelGameType, data as cc.Texture2D);
+                    this.assignSpriteFrame(labelTypeInfo, data as cc.Texture2D);
                 } else {
                     cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
                     this.lblGameType.active = false;
@@ -206,6 +212,7 @@ export default class SkeletonIcon extends cc.Component {
             this.hideSkeleton();
             this.gameContent?.addChild(gameNode);
             this.newTag && (this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex));
+            this.setGameTypeLabel(id);
         }
     }
 

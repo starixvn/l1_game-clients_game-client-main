@@ -45,7 +45,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
             const spriteComponent = this.gameContent.getComponent(cc.Sprite);
             spriteComponent.spriteFrame = spriteFrame;
             this.updateNewTag(id, categoryIndex);
-            this.updateLabelGameType(id);
+            this.setLabelGameType(id);
         }
 
         this.updateJackpotPoolInfo(id);
@@ -77,7 +77,7 @@ export default class SkeletonIconTheme extends SkeletonIcon {
         }
     }
 
-    protected async updateLabelGameType(gameId: number) {
+    protected async setLabelGameType(gameId: number) {
         const lang = window.i18n.curLang ?? "en";
         const labelGameType = themeGameNameManager?.getLabelGameType(gameId);
         if (labelGameType) {

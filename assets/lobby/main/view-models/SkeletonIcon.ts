@@ -128,9 +128,10 @@ export default class SkeletonIcon extends cc.Component {
             if (iconConfig?.gameNotification) {
                 await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
-            if (iconConfig?.labelGameType) {
-                const pathImages = "icon/i18n-images";
-                await this.addLabelGameTypeComponent(id, iconConfig?.labelGameType, pathImages);
+            const lblGameType = iconConfig?.labelGameType;
+            if (lblGameType) {
+                const pathImages = `icon/${lblGameType.type}`;
+                await this.addLabelGameTypeComponent(id, lblGameType, pathImages);
             }
         } catch (error) {
             cc.log(error);
@@ -149,7 +150,7 @@ export default class SkeletonIcon extends cc.Component {
             const host = GameUtils.remoteGameResourceUrl(id, pathImages);
             const versions = await GameUtils.getRemoteVersion(id);
             const versionType = versions?.icon;
-            const resName = `${labelGameType.type}-label-${window.i18n.curLang}.png?v=${versionType}`;
+            const resName = `${window.i18n.curLang}.png?v=${versionType}`;
             const url = `${host}/${resName}`;
 
             try {

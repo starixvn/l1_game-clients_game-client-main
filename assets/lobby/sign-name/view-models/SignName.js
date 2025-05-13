@@ -122,5 +122,13 @@ cc.Class({
     validateUsername: function (username) {
         const regex = new RegExp("^[a-zA-Z0-9]+$");
         return username.length > 14 || username.length < 3 || username.match(regex) === null;
+    },
+    onEditBoxFocus: function () {
+        if (this._debounceTimer) {
+            clearTimeout(this._debounceTimer);
+        }
+        this._debounceTimer = setTimeout(() => {
+            window.dispatchEvent(new Event("resize"));
+        }, 200);
     }
 });

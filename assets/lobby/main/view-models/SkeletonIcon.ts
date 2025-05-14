@@ -138,7 +138,7 @@ export default class SkeletonIcon extends cc.Component {
     protected async setGameTypeLabel(id: number) {
         try {
             const gameConfiguration = getGameConfiguration(id);
-            if (!this.lblGameType || GameUtils.isMicroSite(gameConfiguration)) {
+            if (!this.lblGameType || !GameUtils.isMicroSite(gameConfiguration)) {
                 return;
             }
             const configFile = this.micrositeIconCache[id]

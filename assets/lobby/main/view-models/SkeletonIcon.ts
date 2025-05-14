@@ -150,25 +150,26 @@ export default class SkeletonIcon extends cc.Component {
             };
             const iconConfig: RemoteIconConfig = configFile?.json;
             const labelTypeInfo = iconConfig?.labelGameType;
+            if (labelTypeInfo) {
+                this.lblGameType.active = true;
+                const host = GameUtils.remoteGameResourceUrl(id, `icon/${labelTypeInfo.type}`);
+                const versions = await GameUtils.getRemoteVersion(id);
+                const versionType = versions?.icon;
+                const resName = `${window.i18n.curLang}.png?v=${versionType}`;
+                const url = `${host}/${resName}`;
 
-            this.lblGameType.active = true;
-            const host = GameUtils.remoteGameResourceUrl(id, `icon/${labelTypeInfo.type}`);
-            const versions = await GameUtils.getRemoteVersion(id);
-            const versionType = versions?.icon;
-            const resName = `${window.i18n.curLang}.png?v=${versionType}`;
-            const url = `${host}/${resName}`;
-
-            try {
-                const data = await GameUtils.loadRemote(url);
-                if (data && this.lblGameType && this.lblGameType.isValid) {
-                    this.assignSpriteFrame(labelTypeInfo, data as cc.Texture2D);
-                } else {
-                    cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
+                try {
+                    const data = await GameUtils.loadRemote(url);
+                    if (data && this.lblGameType && this.lblGameType.isValid) {
+                        this.assignSpriteFrame(labelTypeInfo, data as cc.Texture2D);
+                    } else {
+                        cc.warn("[SkeletonIcon] Failed to load sprite frame for cascading label");
+                        this.lblGameType.active = false;
+                    }
+                } catch (error) {
+                    cc.log(error);
                     this.lblGameType.active = false;
                 }
-            } catch (error) {
-                cc.log(error);
-                this.lblGameType.active = false;
             }
         } catch (error) {
             cc.log(error);

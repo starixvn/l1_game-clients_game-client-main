@@ -1,1 +1,73 @@
-{"skeleton":{"hash":"Z99wiHPO5os1FuCnb/yUXkX/NmM","spine":"3.8.99","images":"./images/","audio":"F:/WorkFolder/10 support slotgame/popup ramses/bigwin"},"bones":[{"name":"root"},{"name":"chest","parent":"root","y":-160.8},{"name":"Stone Cover","parent":"chest","x":-0.09,"y":149.14},{"name":"Stone Top","parent":"Stone Cover","x":0.51,"y":89.06,"transform":"noScale"},{"name":"smoke1","parent":"root","x":-249.48,"y":-101.64,"scaleY":-1},{"name":"smoke2","parent":"root","x":-249.48,"y":-101.64},{"name":"bone","parent":"root"},{"name":"dust","parent":"root","y":2.58},{"name":"dust2","parent":"root","y":2.58}],"slots":[{"name":"dust","bone":"dust"},{"name":"dust2","bone":"dust2"},{"name":"Stone Top","bone":"Stone Top"},{"name":"Stone Box","bone":"chest"},{"name":"Smoke2","bone":"smoke1"},{"name":"Smoke3","bone":"smoke2"}],"skins":[{"name":"default","attachments":{"Smoke2":{"Smoke":{"x":229.19,"y":183.83,"width":602,"height":411}},"Smoke3":{"Smoke":{"x":229.19,"y":183.83,"width":602,"height":411}},"Stone Box":{"Stone Box":{"y":65.3,"width":412,"height":189}},"Stone Top":{"Stone Top":{"x":-0.92,"y":55.11,"width":403,"height":113}},"dust":{"dust":{"x":-9.24,"y":132.96,"width":251,"height":288}},"dust2":{"dust":{"x":-9.24,"y":132.96,"width":251,"height":288}}}}],"animations":{"transition":{"slots":{"Smoke2":{"color":[{"time":0.4667,"color":"ffffff00"},{"time":0.7,"color":"ffffff8a","curve":"stepped"},{"time":0.8333,"color":"ffffff8a"},{"time":1.1667,"color":"ffffff00"}],"attachment":[{"time":0.4667,"name":"Smoke"}]},"Smoke3":{"color":[{"time":0.5,"color":"ffffff00"},{"time":0.7,"color":"ffffff8a","curve":"stepped"},{"time":0.8333,"color":"ffffff8a"},{"time":1.1667,"color":"ffffff00"}],"attachment":[{"time":0.5,"name":"Smoke"}]},"Stone Box":{"color":[{"color":"ffffff00"},{"time":0.4667,"color":"ffffffff"}],"attachment":[{"name":"Stone Box"}]},"Stone Top":{"color":[{"color":"ffffff00"},{"time":0.4667,"color":"ffffffff"}],"attachment":[{"name":"Stone Top"}]},"dust":{"color":[{"time":0.8333,"color":"ffffffff"},{"time":1.1,"color":"ffffff00"}],"attachment":[{"time":0.4,"name":"dust"}]},"dust2":{"color":[{"time":0.8667,"color":"ffffffff"},{"time":1.1333,"color":"ffffff00"}],"attachment":[{"time":0.4333,"name":"dust"}]}},"bones":{"Stone Top":{"translate":[{"time":0.5},{"time":0.6667,"y":-15.09},{"time":0.8333}],"scale":[{"x":0,"y":0,"curve":0.39,"c2":0.49,"c3":0.75},{"time":0.4667,"x":0.75,"y":0.976}]},"Stone Cover":{"translate":[{"y":-5.14}],"scale":[{"y":0.12}]},"chest":{"translate":[{"y":173.77,"curve":0.25,"c3":0.75},{"time":0.4667}],"scale":[{"x":0,"y":0,"curve":0.39,"c2":0.5,"c3":0.75},{"time":0.4667,"x":0.75,"y":0.75,"curve":0.337,"c2":0.34,"c3":0.671,"c4":0.68},{"time":0.6,"x":0.76,"y":0.73,"curve":0.347,"c2":0.38,"c3":0.684,"c4":0.73},{"time":0.8333,"x":0.75,"y":0.75}]},"smoke1":{"rotate":[{"time":0.4667,"angle":-176.68}],"translate":[{"time":0.4667,"x":381.65,"y":-78.71,"curve":0.318,"c2":0.4,"c3":0.75},{"time":1.1667,"x":268.87,"y":-77.15}],"scale":[{"time":0.4667,"x":0.5,"y":0.5},{"time":1.1667,"x":0.75,"y":0.75}]},"smoke2":{"rotate":[{"time":0.5,"angle":-3.28}],"translate":[{"time":0.5,"x":127.38,"y":-77.66,"curve":0.318,"c2":0.4,"c3":0.75},{"time":1.1667,"x":182.54,"y":-91.55}],"scale":[{"time":0.5,"x":0.5,"y":0.5},{"time":1.1667}]},"dust":{"translate":[{"time":0.4,"x":110.06,"y":-165.68},{"time":1.1,"x":144.86,"y":-177.34}],"scale":[{"time":0.4,"x":0.5,"y":0.5,"curve":0.25,"c3":0.75},{"time":1.1,"y":0.8}]},"dust2":{"translate":[{"time":0.4333,"x":-113.96,"y":-172.2},{"time":1.1333,"x":-153.81,"y":-176.05}],"scale":[{"time":0.4333,"x":0.5,"y":0.5,"curve":0.25,"c3":0.75},{"time":1.1333}]}}}}}
+{
+"skeleton": {
+	"hash": "YuGxDufb8ZogrvLfilPXYJLl3lE",
+	"spine": "3.8.99",
+	"x": -920.26,
+	"y": -313.55,
+	"width": 1840.52,
+	"height": 772,
+	"images": "./images/",
+	"audio": "F:/WorkFolder/10 support slotgame/popup ramses/transition"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root", "x": 916.75, "scaleX": 2, "scaleY": 2 },
+	{ "name": "bone3", "parent": "root", "scaleX": -1 },
+	{ "name": "bone2", "parent": "bone3", "x": 916.75, "scaleX": 2, "scaleY": 2 }
+],
+"slots": [
+	{ "name": "wing", "bone": "bone", "attachment": "wing" },
+	{ "name": "wing2", "bone": "bone2", "attachment": "wing" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"wing": {
+				"wing": { "x": -315.25, "y": 36.23, "width": 634, "height": 386 }
+			},
+			"wing2": {
+				"wing": { "x": -315.25, "y": 36.23, "width": 634, "height": 386 }
+			}
+		}
+	}
+],
+"animations": {
+	"transition": {
+		"slots": {
+			"wing": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6667, "color": "ffffffff" },
+					{ "time": 1.1667, "color": "ffffff00" }
+				]
+			},
+			"wing2": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.5, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.6667, "color": "ffffffff" },
+					{ "time": 1.1667, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"bone": {
+				"rotate": [
+					{ "angle": 120 },
+					{ "time": 0.6, "angle": -2.27 },
+					{ "time": 1.1667, "angle": -110 }
+				]
+			},
+			"bone2": {
+				"rotate": [
+					{ "angle": 120 },
+					{ "time": 0.6, "angle": -2.27 },
+					{ "time": 1.1667, "angle": -110 }
+				]
+			}
+		}
+	}
+}
+}

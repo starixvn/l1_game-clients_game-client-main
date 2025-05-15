@@ -1,117 +1,124 @@
 
 effect-superwin.webp
-size: 1252,575
+size: 1909,506
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 bg_light
-  rotate: false
-  xy: 2, 73
+  rotate: true
+  xy: 2, 218
   size: 65, 500
   orig: 65, 501
   offset: 0, 0
   index: -1
+black-cover
+  rotate: false
+  xy: 1063, 19
+  size: 485, 485
+  orig: 503, 503
+  offset: 9, 9
+  index: -1
 board
   rotate: false
-  xy: 69, 2
+  xy: 2, 285
   size: 1059, 219
   orig: 1067, 262
   offset: 0, 43
   index: -1
 coin1
   rotate: true
-  xy: 1057, 398
+  xy: 1752, 149
   size: 175, 155
   orig: 175, 155
   offset: 0, 0
   index: -1
 coin2
-  rotate: true
-  xy: 513, 231
+  rotate: false
+  xy: 775, 148
   size: 140, 135
   orig: 140, 135
   offset: 0, 0
   index: -1
 coin3
   rotate: false
-  xy: 650, 241
+  xy: 608, 153
   size: 165, 130
   orig: 165, 130
   offset: 0, 0
   index: -1
 coin4
   rotate: false
-  xy: 817, 241
+  xy: 917, 153
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin5
   rotate: false
-  xy: 949, 241
+  xy: 755, 16
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin6
   rotate: false
-  xy: 1081, 266
+  xy: 887, 16
   size: 130, 130
   orig: 130, 130
   offset: 0, 0
   index: -1
 coin7
-  rotate: true
-  xy: 391, 226
+  rotate: false
+  xy: 1550, 2
   size: 145, 120
   orig: 145, 120
   offset: 0, 0
   index: -1
 coin8
-  rotate: false
-  xy: 249, 226
+  rotate: true
+  xy: 608, 11
   size: 140, 145
   orig: 140, 145
   offset: 0, 0
   index: -1
 coin9
-  rotate: false
-  xy: 1130, 134
+  rotate: true
+  xy: 1697, 2
   size: 120, 130
   orig: 120, 130
   offset: 0, 0
   index: -1
 coins
-  rotate: true
-  xy: 69, 223
+  rotate: false
+  xy: 1550, 326
   size: 350, 178
   orig: 350, 178
   offset: 0, 0
   index: -1
 flash1
   rotate: false
-  xy: 249, 373
+  xy: 2, 16
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash2
   rotate: false
-  xy: 451, 373
+  xy: 1550, 124
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash3
   rotate: false
-  xy: 653, 373
+  xy: 204, 16
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 flash4
   rotate: false
-  xy: 855, 373
+  xy: 406, 16
   size: 200, 200
   orig: 200, 200
   offset: 0, 0

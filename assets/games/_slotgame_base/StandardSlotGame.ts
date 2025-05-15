@@ -119,8 +119,8 @@ export default class StandardSlotGame extends SlotGameBase {
 
     protected audioClips = {};
     protected jackpotSymbolIndex = 10;
-    private readonly previewSymbolLeft: cc.Prefab;
-    private readonly previewSymbolRight: cc.Prefab;
+    protected readonly previewSymbolLeft: cc.Prefab;
+    protected readonly previewSymbolRight: cc.Prefab;
     private readonly effectTransitionPrefab: cc.Prefab;
     private colorConfig: any;
     private betLevelsContainerNode: cc.Node = null;

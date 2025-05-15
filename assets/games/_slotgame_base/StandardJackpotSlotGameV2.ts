@@ -6,24 +6,9 @@ import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
 const { ccclass } = cc._decorator;
 
 @ccclass
-export default class StandardJackpotSlotGameResourceOptimize extends StandardJackpotSlotGame {
+export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     protected getPrefabsList(): Record<string, string> {
-        return {
-            // prefab name : prefab property
-            "effect-transition": "effectTransitionPrefab",
-
-            // "effect-bonus": "effectBonus",
-            // "effect-big-win": "effectBigWin",
-            // "effect-freespin": "effectFreeSpin",
-
-            // "dialog-bonus": "bonusDialog",
-
-            "line-normal": "linePrefab",
-            "line-glow": "lightLinePrefab",
-
-            "preview-symbol-left": "previewSymbolLeft",
-            "preview-symbol-right": "previewSymbolRight"
-        };
+        return {};
     }
 
     start() {
@@ -35,9 +20,7 @@ export default class StandardJackpotSlotGameResourceOptimize extends StandardJac
         const dict = this.getDelayedPrefabsList();
 
         for (const key of Object.keys(dict)) {
-            console.log("start loadDelayedPrefabWithBundle", key);
             await GameUtils.asyncExecute(this?.node, this.loadDelayedPrefabWithBundle(key, dict[key]));
-            console.log("end loadDelayedPrefabWithBundle", key);
         }
     }
 
@@ -59,36 +42,18 @@ export default class StandardJackpotSlotGameResourceOptimize extends StandardJac
     }
 
     protected getDelayedPrefabsList(): Record<string, string> {
-        return {
-            "dialog-bonus": "bonusDialog",
-            
-            "effect-big-win": "effectBigWin",
-            "effect-bonus": "effectBonus",
-            "effect-freespin": "effectFreeSpin",
-
-            "effect-jackpot": "effectJackpot",
-        };
+        return super.getPrefabsList();
     }
 
     protected getAudioDictionary(): Record<string, string> {
         return {
             [ClassicSlotSound.SPIN]: "spin-button",
             [ClassicSlotSound.WIN]: "win",
-            // [ClassicSlotSound.BIG_WIN]: "big-win",
-            // [ClassicSlotSound.JACKPOT]: "jackpot-hit",
-            // [ClassicSlotSound.JACKPOT_ITEM]: "jackpot-item",
-            // [ClassicSlotSound.JACKPOT_WIN]: "jackpot-win",
-
-            // [ClassicSlotSound.FREESPIN]: "freespin",
-            // [ClassicSlotSound.BONUS]: "bonus",
             [ClassicSlotSound.SPINNING_NORMAL]: "spinning-normal",
             [ClassicSlotSound.SPINNING_TURBO]: "spinning-turbo",
 
             [ClassicSlotSound.REEL_STOP]: "reel-stop",
-            // [ClassicSlotSound.BONUS_POPUP]: "bonus-popup",
-            // [ClassicSlotSound.BONUS_ITEM]: "bonus-item",
             [ClassicSlotSound.CLICK]: "click",
-            // [ClassicSlotSound.BONUS_TOTAL]: "bonus-total",
 
             [ClassicSlotSound.TRANSITION]: "transition",
             [ClassicSlotSound.SYMBOL_WIN]: "symbol-win"
@@ -136,5 +101,18 @@ export default class StandardJackpotSlotGameResourceOptimize extends StandardJac
                     cc.warn("missing audio for", path);
                 });
         }
+    }
+
+    onSymbolPreview(symbol: any, worldPosition: cc.Vec3, isInfoOnLeft: boolean): void {
+        if (isInfoOnLeft) {
+            if (!this.previewSymbolLeft) {
+                cc.warn("waiting for load previewSymbolLeft");
+                return;
+            }
+        } else if (!this.previewSymbolRight) {
+            cc.warn("waiting for load previewSymbolRight");
+            return;
+        }
+        super.onSymbolPreview(symbol, worldPosition, isInfoOnLeft);
     }
 }

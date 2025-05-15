@@ -20,6 +20,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         const dict = this.getDelayedPrefabsList();
 
         for (const key of Object.keys(dict)) {
+            console.log("load loadDelayedPrefabsByCode", key);
             await GameUtils.asyncExecute(this?.node, this.loadDelayedPrefabWithBundle(key, dict[key]));
         }
     }

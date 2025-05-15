@@ -1,47 +1,47 @@
 
-effect-freespin.png
-size: 506,506
+effect-freespin.webp
+size: 506,499
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Freespins
-  rotate: false
-  xy: 2, 2
-  size: 290, 49
-  orig: 294, 51
-  offset: 2, 1
+  rotate: true
+  xy: 455, 190
+  size: 307, 49
+  orig: 344, 51
+  offset: 19, 1
   index: -1
 bg
-  rotate: false
-  xy: 2, 53
+  rotate: true
+  xy: 2, 4
   size: 493, 451
   orig: 495, 453
   offset: 1, 1
   index: -1
 colum
-  rotate: true
-  xy: 294, 5
+  rotate: false
+  xy: 480, 29
   size: 21, 122
   orig: 23, 124
   offset: 1, 1
   index: -1
 eye a
   rotate: false
-  xy: 445, 16
+  xy: 455, 153
   size: 35, 35
   orig: 37, 37
   offset: 1, 1
   index: -1
 eye b
   rotate: false
-  xy: 482, 42
+  xy: 492, 179
   size: 9, 9
   orig: 11, 11
   offset: 1, 1
   index: -1
 row
-  rotate: false
-  xy: 294, 28
+  rotate: true
+  xy: 455, 2
   size: 149, 23
   orig: 151, 25
   offset: 1, 1

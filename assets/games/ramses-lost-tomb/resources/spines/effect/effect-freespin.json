@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "BlXs819iOypgU1P/NRDvGJUf/Ho", "spine": "3.8.99", "images": "./images/", "audio": "F:/WorkFolder/10 support slotgame/popup ramses/freespin" },
+"skeleton": { "hash": "OP5VKx4sJ5po9D5BWUcLa8ke0TQ", "spine": "3.8.99", "images": "./images/", "audio": "F:/WorkFolder/10 support slotgame/popup ramses/freespin" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "all", "parent": "root" },
@@ -53,10 +53,10 @@
 		"name": "default",
 		"attachments": {
 			"Freespins": {
-				"Freespins": { "x": -6, "y": -1.96, "width": 294, "height": 51 }
+				"Freespins": { "x": -1.6, "y": -1.96, "width": 344, "height": 51 }
 			},
 			"Freespins2": {
-				"Freespins": { "x": -6, "y": -1.96, "width": 294, "height": 51 }
+				"Freespins": { "x": -6, "y": -1.96, "width": 344, "height": 51 }
 			},
 			"bg": {
 				"bg": { "x": 0.5, "y": -0.5, "width": 495, "height": 453 }
@@ -360,7 +360,7 @@
 			},
 			"number": {
 				"translate": [
-					{ "y": 20.86 }
+					{ "y": 14.73 }
 				]
 			}
 		}

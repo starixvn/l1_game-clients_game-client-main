@@ -529,8 +529,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1403.76,
-      "height": 790.37
+      "width": 1400.71,
+      "height": 380.38
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -542,7 +542,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        -79.86787500000008,
+        16.739000000000004,
         0,
         0,
         0,
@@ -564,7 +564,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "ebcpCrRyFN/aXTXCNKBUzX"
+    "_id": "62s/8wy+5NL7Th5eiAaCVc"
   },
   {
     "__type__": "sp.Skeleton",
@@ -598,7 +598,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "4ca379a7-dc77-400b-81bf-dc68537ecf86"
+      "__uuid__": "ad510849-e779-4fef-b487-0ef519303962"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -606,7 +606,7 @@
     "_N$debugMesh": false,
     "_N$useTint": false,
     "_N$enableBatch": false,
-    "_id": "f0NgEy9qtHm4kbpsDb8UPv"
+    "_id": "ceuBYEx0BAj5ZYSnlaeHTQ"
   },
   {
     "__type__": "cc.Widget",
@@ -617,25 +617,23 @@
     },
     "_enabled": true,
     "alignMode": 1,
-    "_target": {
-      "__id__": 2
-    },
-    "_alignFlags": 45,
-    "_left": -0.002060085836909868,
-    "_right": -0.002060085836909868,
-    "_top": 0.09883317430025457,
-    "_bottom": -0.10439297073791359,
+    "_target": null,
+    "_alignFlags": 4,
+    "_left": 0,
+    "_right": 0,
+    "_top": 0,
+    "_bottom": 219.549,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
-    "_isAbsLeft": false,
-    "_isAbsRight": false,
-    "_isAbsTop": false,
-    "_isAbsBottom": false,
+    "_isAbsLeft": true,
+    "_isAbsRight": true,
+    "_isAbsTop": true,
+    "_isAbsBottom": true,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
-    "_originalWidth": 1403.76,
-    "_originalHeight": 790.37,
-    "_id": "cegC4uq+xHcpF9KcEyS70w"
+    "_originalWidth": 0,
+    "_originalHeight": 0,
+    "_id": "795UxLU89JcaQH8Nogf22S"
   },
   {
     "__type__": "cc.Node",
@@ -4309,6 +4307,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -4853,6 +4852,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,

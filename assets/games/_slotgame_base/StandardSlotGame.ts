@@ -540,24 +540,36 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     async showEffectFreeSpin() {
+        if (!this.effectFreeSpin) {
+            return;
+        }
         const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
         await GameUtils.asyncExecute(this?.node, super.showEffectFreeSpin());
         transtition?.destroy();
     }
 
     async showEffectBigWin(betWin: number) {
+        if (!this.effectBigWin) {
+            return;
+        }
         const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
         await GameUtils.asyncExecute(this?.node, super.showEffectBigWin(betWin));
         transtition?.destroy();
     }
 
     async showEffectBonus(bonus: number): Promise<void> {
+        if (!this.effectBonus) {
+            return;
+        }
         const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
         await GameUtils.asyncExecute(this?.node, super.showEffectBonus(bonus));
         transtition?.destroy();
     }
 
     async showEffectJackpot(amount: number) {
+        if (!this.effectJackpot) {
+            return;
+        }
         const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
         await GameUtils.asyncExecute(this?.node, super.showEffectJackpot(amount));
         transtition?.destroy();

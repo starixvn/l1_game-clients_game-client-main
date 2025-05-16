@@ -13,7 +13,11 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
 
     start() {
         this.loadDelayedAudios();
-        this.loadDelayedPrefabsByCode();
+        this.loadDelayedPrefabsByCode().then(() => {
+            if (this.autoGenerateLines) {
+                this.createAllLines();
+            }
+        });
     }
 
     async loadDelayedPrefabsByCode() {

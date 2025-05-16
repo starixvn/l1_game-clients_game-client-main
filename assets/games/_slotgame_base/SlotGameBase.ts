@@ -332,6 +332,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     createAllLines() {
+        if (!this.linePrefab || !this.lightLinePrefab) {
+            return;
+        }
         this.leftNumberContainer.node.children.forEach((child) => {
             const view = this.createLineView(child);
             view.isLabelLeft = true;

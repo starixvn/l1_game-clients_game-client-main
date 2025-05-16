@@ -180,7 +180,7 @@ p.footer {
     position: absolute;
     --logo-height: calc(var(--vh, 1vh) * 11.99);
     top: calc(var(--vh, 1vh) * 37.8);
-    background: url(./logo_saba.webp) no-repeat center;
+    background: url(./logo_saba.webp?v=1) no-repeat center;
     background-size: auto var(--logo-height);
     width: 100%;
     height: var(--logo-height);
@@ -191,7 +191,7 @@ p.footer {
     position: absolute;
     --logo-height: calc(var(--vh, 1vh) * 18.32);
     top: calc(var(--vh, 1vh) * 31.6);
-    background: url(./logo_vgaming.webp) no-repeat center;
+    background: url(./logo_vgaming.webp?v=1) no-repeat center;
     background-size: auto var(--logo-height);
     width: 100%;
     height: var(--logo-height);
@@ -202,7 +202,7 @@ p.footer {
     --logo-height: calc(var(--vh, 1vh) * 23.85);
     top: calc(var(--vh, 1vh) * 25.9);
     left: 1px;
-    background: url(./logo_sabaplay.webp) no-repeat center;
+    background: url(./logo_sabaplay.webp?v=1) no-repeat center;
     background-size: auto var(--logo-height);
     width: 100%;
     height: var(--logo-height);
@@ -248,7 +248,7 @@ p.footer {
     --logo-height: calc(var(--vh, 1vh) * 24.07);
     top: calc(var(--vh, 1vh) * 25.85);
     left: -3px;
-    background: url(./logo_soibet.webp) no-repeat center;
+    background: url(./logo_soibet.webp?v=1) no-repeat center;
     background-size: auto var(--logo-height);
     width: 100%;
     height: var(--logo-height);

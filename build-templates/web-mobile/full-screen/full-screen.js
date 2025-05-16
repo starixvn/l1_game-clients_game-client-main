@@ -2,6 +2,7 @@ class FullScreenManager {
     timeoutDelayEnableScroll = null;
     timeoutExtraResize = null;
     constructor() {
+        this.isInIframe = window !== window.top;
         this.IOSInstruction = document.getElementById("ios-instruction");
         this.androidInstruction = document.getElementById("android-instruction");
         this.iconFullScreen = document.getElementById("icon-fullscreen");
@@ -169,7 +170,7 @@ class FullScreenManager {
     }
 
     updateIconFullScreen() {
-        if (this.isPortrait() || this.isFullScreen()) {
+        if (this.isPortrait() || this.isFullScreen() || this.isInIframe) {
             this.iconFullScreen.style.display = "none";
             this.registerEventFullScreenIcon(false);
         } else {

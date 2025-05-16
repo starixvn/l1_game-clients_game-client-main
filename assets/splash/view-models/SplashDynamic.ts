@@ -1,6 +1,3 @@
-import { OperatorAlias } from "../../ISystem";
-import * as sessionManager from "../../common/auth/SessionManager";
-
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -14,9 +11,11 @@ export default class SplashDynamic extends cc.Component {
     @property(cc.Sprite)
     sprTagline: cc.Sprite = null;
 
-
     @property
     operatorName = "";
+
+    @property(cc.Integer)
+    versionId = 1;
 
     private readonly href = `${window.location.origin}/splash-resources`;
 
@@ -30,7 +29,7 @@ export default class SplashDynamic extends cc.Component {
     }
 
     loadLogoOperator() {
-        const imagePath = `${this.href}/logo_${this.operatorName}.webp`;
+        const imagePath = `${this.href}/logo_${this.operatorName}.webp?v=${this.versionId}`;
         cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
             try {
                 const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
@@ -41,7 +40,7 @@ export default class SplashDynamic extends cc.Component {
 
     loadTagPower() {
         if (this.sprTagPower) {
-            const imagePath = `${this.href}/powered_by_Vgaming_${window.i18n.curLang}.webp`;
+            const imagePath = `${this.href}/powered_by_Vgaming_${window.i18n.curLang}.webp?v=${this.versionId}`;
             cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
                 try {
                     const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
@@ -56,8 +55,7 @@ export default class SplashDynamic extends cc.Component {
     }
 
     private loadTaglineImage() {
-        const system = sessionManager.getOperator()?.toUpperCase() === OperatorAlias.SG ? "sc1" : "sc2";
-        const path = `splash/images/splash_text_${window.i18n.curLang}`;
+        const path = `splash/images/splash_text_${window.i18n.curLang}?v=${this.versionId}`;
         return new Promise<cc.SpriteFrame>((resolve, reject) => {
             cc.resources.load<cc.SpriteFrame>(path, cc.SpriteFrame, (err, frame) => {
                 if (err || !frame) {

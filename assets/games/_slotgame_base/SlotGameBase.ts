@@ -153,6 +153,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     protected userSettings: SlotGameUserSettings;
     private showingWinningLine = false;
     private _jackpotEnabled = false;
+    private winningBetOriginalScale = 1;
+    private userBalanceOriginalScale = 1;
     normalPaylineDuration = 1;
     turboPaylineDuration = 0.75;
     isFinishedRound = true;
@@ -191,6 +193,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.initBottomMessage();
         this.initBottomArea();
         this.initDefaultBetChoices();
+        this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
+        this.winningBetOriginalScale = this.winningBet.node.scale;
     }
 
     initSlotBoard() {
@@ -381,8 +385,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     private blinkUserBalance() {
-        const currentScale = this.userProfile.userBalance.node.scale;
-
         this.userProfile.userBalance.node.stopAllActions();
 
         cc.tween(this.userProfile.userBalance.node)
@@ -390,15 +392,13 @@ export default class SlotGameBase extends FeatureSlotGameBase {
                 3,
                 cc
                     .tween()
-                    .to(0.1, { scale: currentScale + 0.1 })
-                    .to(0.1, { scale: currentScale })
+                    .to(0.1, { scale: this.userBalanceOriginalScale + 0.1 })
+                    .to(0.1, { scale: this.userBalanceOriginalScale })
             )
             .start();
     }
 
     private blinkWinningBet() {
-        const originalScale = this.winningBet.node.scale;
-
         this.winningBet.node.stopAllActions();
 
         cc.tween(this.winningBet.node)
@@ -406,8 +406,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
                 3,
                 cc
                     .tween()
-                    .to(0.1, { scale: originalScale + 0.1 })
-                    .to(0.1, { scale: originalScale })
+                    .to(0.1, { scale: this.winningBetOriginalScale + 0.1 })
+                    .to(0.1, { scale: this.winningBetOriginalScale })
             )
             .start();
     }

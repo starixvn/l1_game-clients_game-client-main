@@ -24,7 +24,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         const dict = this.getDelayedPrefabsList();
 
         for (const key of Object.keys(dict)) {
-            console.log("load loadDelayedPrefabsByCode", key);
             await GameUtils.asyncExecute(this?.node, this.loadDelayedPrefabWithBundle(key, dict[key]));
         }
     }
@@ -85,7 +84,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         const dict = this.getDelayedAudiosDictionary();
 
         for (const key of Object.keys(dict)) {
-            console.log("start loadAudio delayed", dict[key]);
 
             const path = `audios/${dict[key]}`;
             const devPath = `../games/*/${path}`;
@@ -97,7 +95,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
                     type: cc.AudioClip
                 })
                 .then((clip) => {
-                    console.log("end loadAudio delayed", dict[key]);
                     if (clip) {
                         this.audioClips[key] = clip;
                     }

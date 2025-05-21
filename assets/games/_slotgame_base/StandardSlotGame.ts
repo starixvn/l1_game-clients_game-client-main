@@ -189,8 +189,8 @@ export default class StandardSlotGame extends SlotGameBase {
         }
     }
 
-    async loadPrefabWithBundle(prefabName: string, prefabProperty: string) {
-        const path = `preload/prefabs/${prefabName}`;
+    async loadPrefabWithBundle(prefabName: string, prefabProperty: string, prefix = "preload") {
+        const path = `${prefix}/prefabs/${prefabName}`;
         const devPath = `../games/*/${path}`;
         try {
             const prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
@@ -234,8 +234,12 @@ export default class StandardSlotGame extends SlotGameBase {
     loadAudios() {
         const dict = this.getAudioDictionary();
 
+        this.loadAudioFromDictionary(dict);
+    }
+
+    protected loadAudioFromDictionary(dict: Record<string, string>, prefix = "preload") {
         for (const key of Object.keys(dict)) {
-            const path = `preload/audios/${dict[key]}`;
+            const path = `${prefix}/audios/${dict[key]}`;
             const devPath = `../games/*/${path}`;
             BundleManager.getInstance()
                 .loadAsset<cc.AudioClip>({
@@ -595,6 +599,9 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     protected showBonusDialog(bonus: number, onBonusFinished) {
+        if (!this.bonusDialog) {
+            return;
+        }
         this.playSound(ClassicSlotSound.BONUS_POPUP);
         super.showBonusDialog(bonus, onBonusFinished);
     }

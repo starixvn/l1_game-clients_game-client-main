@@ -20,33 +20,37 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         });
     }
 
-    async loadDelayedPrefabsByCode() {
+    private async loadDelayedPrefabsByCode() {
         const dict = this.getDelayedPrefabsList();
 
-        for (const key of Object.keys(dict)) {
-            await GameUtils.asyncExecute(this?.node, this.loadDelayedPrefabWithBundle(key, dict[key]));
-        }
-    }
-
-    async loadDelayedPrefabWithBundle(prefabName: string, prefabProperty: string) {
-        const path = `/prefabs/${prefabName}`;
-        const devPath = `../games/*/${path}`;
         try {
-            const prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({
-                bundleId: this.gameId.toString(),
-                path: path,
-                pathForDevMode: devPath,
-                type: cc.Prefab
-            });
-
-            this[prefabProperty] = prefab;
-        } catch (e) {
-            cc.warn(`Missing prefab for ${path} `, e);
+            for (const key of Object.keys(dict)) {
+                await GameUtils.asyncExecute(this?.node, this.loadPrefabWithBundle(key, dict[key], ""));
+            }
+        } catch (error) {
+            cc.warn("Error occur when lazy load prefabs ", error);
         }
     }
 
     protected getDelayedPrefabsList(): Record<string, string> {
-        return super.getPrefabsList();
+        return {
+            // prefab name : prefab property
+            "effect-transition": "effectTransitionPrefab",
+
+            "effect-bonus": "effectBonus",
+            "effect-big-win": "effectBigWin",
+            "effect-freespin": "effectFreeSpin",
+
+            "dialog-bonus": "bonusDialog",
+
+            "line-normal": "linePrefab",
+            "line-glow": "lightLinePrefab",
+
+            "preview-symbol-left": "previewSymbolLeft",
+            "preview-symbol-right": "previewSymbolRight",
+
+            "effect-jackpot": "effectJackpot"
+        };
     }
 
     protected getAudioDictionary(): Record<string, string> {
@@ -80,29 +84,10 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         };
     }
 
-    loadDelayedAudios() {
+    private loadDelayedAudios() {
         const dict = this.getDelayedAudiosDictionary();
 
-        for (const key of Object.keys(dict)) {
-
-            const path = `audios/${dict[key]}`;
-            const devPath = `../games/*/${path}`;
-            BundleManager.getInstance()
-                .loadAsset<cc.AudioClip>({
-                    bundleId: this.gameId.toString(),
-                    path: path,
-                    pathForDevMode: devPath,
-                    type: cc.AudioClip
-                })
-                .then((clip) => {
-                    if (clip) {
-                        this.audioClips[key] = clip;
-                    }
-                })
-                .catch(() => {
-                    cc.warn("missing audio for", path);
-                });
-        }
+        this.loadAudioFromDictionary(dict, "");
     }
 
     onSymbolPreview(symbol: any, worldPosition: cc.Vec3, isInfoOnLeft: boolean): void {

@@ -1,341 +1,334 @@
 
-transition.webp
-size: 1691,1076
+transition.png
+size: 1822,606
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-a
-  rotate: false
-  xy: 468, 306
-  size: 461, 768
-  orig: 473, 775
-  offset: 6, 7
-  index: -1
-b
-  rotate: false
-  xy: 2, 306
-  size: 464, 768
-  orig: 476, 776
-  offset: 6, 8
-  index: -1
 damage/damage_1
   rotate: false
-  xy: 2, 154
+  xy: 140, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_10
   rotate: false
-  xy: 1083, 772
+  xy: 1508, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_11
   rotate: false
-  xy: 1235, 924
+  xy: 1660, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_12
   rotate: false
-  xy: 306, 2
+  xy: 0, 223
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_13
   rotate: false
-  xy: 458, 154
+  xy: 0, 71
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_14
   rotate: false
-  xy: 931, 468
+  xy: 152, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_15
   rotate: false
-  xy: 1083, 620
+  xy: 152, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_16
   rotate: false
-  xy: 1235, 772
+  xy: 304, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_17
   rotate: false
-  xy: 1387, 924
+  xy: 304, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_18
   rotate: false
-  xy: 458, 2
+  xy: 456, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_19
   rotate: false
-  xy: 610, 154
+  xy: 456, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_2
   rotate: false
-  xy: 931, 924
+  xy: 292, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_20
   rotate: false
-  xy: 931, 316
+  xy: 608, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_21
   rotate: false
-  xy: 1083, 468
+  xy: 608, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_22
   rotate: false
-  xy: 1235, 620
+  xy: 760, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_23
   rotate: false
-  xy: 1387, 772
+  xy: 760, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_3
   rotate: false
-  xy: 2, 2
+  xy: 444, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_4
   rotate: false
-  xy: 154, 154
+  xy: 596, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_5
   rotate: false
-  xy: 931, 772
+  xy: 748, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_6
   rotate: false
-  xy: 1083, 924
+  xy: 900, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_7
   rotate: false
-  xy: 154, 2
+  xy: 1052, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_8
   rotate: false
-  xy: 306, 154
+  xy: 1204, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 damage/damage_9
   rotate: false
-  xy: 931, 620
+  xy: 1356, 456
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
+door
+  rotate: false
+  xy: 0, 375
+  size: 138, 231
+  orig: 142, 233
+  offset: 2, 2
+  index: -1
 explode/explode_1
   rotate: false
-  xy: 1539, 924
+  xy: 912, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_10
   rotate: false
-  xy: 1387, 468
+  xy: 1520, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_11
   rotate: false
-  xy: 1539, 620
+  xy: 1672, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_12
   rotate: false
-  xy: 1387, 316
+  xy: 1672, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_13
   rotate: false
-  xy: 1539, 468
+  xy: 152, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_14
   rotate: false
-  xy: 1539, 316
+  xy: 304, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_15
   rotate: false
-  xy: 914, 154
+  xy: 456, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_16
   rotate: false
-  xy: 914, 2
+  xy: 608, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_17
   rotate: false
-  xy: 1066, 164
+  xy: 760, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_18
   rotate: false
-  xy: 1066, 12
+  xy: 912, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_19
   rotate: false
-  xy: 1218, 164
+  xy: 1064, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_2
   rotate: false
-  xy: 610, 2
+  xy: 912, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_20
   rotate: false
-  xy: 1218, 12
+  xy: 1216, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_21
   rotate: false
-  xy: 1370, 164
+  xy: 1368, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_22
   rotate: false
-  xy: 1370, 12
+  xy: 1520, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_23
   rotate: false
-  xy: 1522, 164
+  xy: 1672, 0
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_3
   rotate: false
-  xy: 762, 154
+  xy: 1064, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_4
   rotate: false
-  xy: 1083, 316
+  xy: 1064, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_5
   rotate: false
-  xy: 1235, 468
+  xy: 1216, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_6
   rotate: false
-  xy: 1387, 620
+  xy: 1216, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_7
   rotate: false
-  xy: 1539, 772
+  xy: 1368, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_8
   rotate: false
-  xy: 762, 2
+  xy: 1368, 152
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 explode/explode_9
   rotate: false
-  xy: 1235, 316
+  xy: 1520, 304
   size: 150, 150
   orig: 150, 150
   offset: 0, 0

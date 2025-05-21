@@ -15,7 +15,7 @@ export default class SplashDynamic extends cc.Component {
     operatorName = "";
 
     @property(cc.Integer)
-    versionId = 1;
+    versionId = 2;
 
     private readonly href = `${window.location.origin}/splash-resources`;
 
@@ -50,20 +50,15 @@ export default class SplashDynamic extends cc.Component {
         }
     }
 
-    private async loadTagline() {
-        this.sprTagline.spriteFrame = await this.loadTaglineImage();
-    }
-
-    private loadTaglineImage() {
-        const path = `splash/images/splash_text_${window.i18n.curLang}?v=${this.versionId}`;
-        return new Promise<cc.SpriteFrame>((resolve, reject) => {
-            cc.resources.load<cc.SpriteFrame>(path, cc.SpriteFrame, (err, frame) => {
-                if (err || !frame) {
-                    reject(err);
-                } else {
-                    resolve(frame);
-                }
+    loadTagline() {
+        if (this.sprTagline) {
+            const imagePath = `${this.href}/splash_text_${window.i18n.curLang}.webp?v=${this.versionId}`;
+            cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
+                try {
+                    const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+                    this.sprTagline.spriteFrame = spriteFrameTmp;
+                } catch (e) {}
             });
-        });
+        }
     }
 }

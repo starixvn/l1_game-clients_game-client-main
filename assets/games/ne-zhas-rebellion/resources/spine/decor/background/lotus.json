@@ -1,6 +1,6 @@
 {
 "skeleton": {
-	"hash": "EACjWunquhnrrtLswOaAnv8ltDw",
+	"hash": "1o5Xq6QUvwjGfzK845glztLZhoM",
 	"spine": "3.8.99",
 	"x": -1057.59,
 	"y": -404.05,
@@ -11,7 +11,7 @@
 },
 "bones": [
 	{ "name": "lotus" },
-	{ "name": "lotus-left", "parent": "lotus", "x": -766.27, "y": -32.69 },
+	{ "name": "lotus-left", "parent": "lotus", "x": -761.9, "y": -81.81 },
 	{ "name": "lotus-right-small", "parent": "lotus", "x": 623.43, "y": -66.14 },
 	{ "name": "lotus-right", "parent": "lotus", "x": 555.55, "y": -15.47 },
 	{
@@ -230,7 +230,7 @@
 		"scaleY": 3,
 		"shearY": -178.36
 	},
-	{ "name": "cloud2", "parent": "lotus", "x": 309.82, "y": 102.1 }
+	{ "name": "cloud2", "parent": "lotus", "x": 305.59, "y": 93.66 }
 ],
 "slots": [
 	{ "name": "cloud", "bone": "cloud", "color": "ffffff64", "attachment": "cloud", "blend": "additive" },
@@ -369,10 +369,10 @@
 				"burn/Burn_50": { "width": 188, "height": 300 }
 			},
 			"cloud": {
-				"cloud": { "width": 638, "height": 404 }
+				"cloud": { "rotation": 0.09, "width": 638, "height": 404 }
 			},
 			"cloud2": {
-				"cloud": { "width": 638, "height": 404 }
+				"cloud": { "rotation": 0.09, "width": 638, "height": 404 }
 			},
 			"senbup": {
 				"senbup": {

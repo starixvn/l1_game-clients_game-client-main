@@ -13,6 +13,9 @@ export default class StandardSlotBonusDialog extends BonusDialog {
     @property({ type: cc.AudioSource, visible: false, override: true })
     soundBigWin: cc.AudioSource = null;
 
+    @property
+    prefixPath = "preload";
+
     async initBonusItems() {
         await this.loadBonusItemPrefab();
         super.initBonusItems();
@@ -23,7 +26,7 @@ export default class StandardSlotBonusDialog extends BonusDialog {
     }
 
     async loadBonusItemPrefab() {
-        const path = `preload/prefabs/bonus-item`;
+        const path = `${this.prefixPath}/prefabs/bonus-item`;
         const devPath = `../games/*/${path}`;
         try {
             const prefab = await BundleManager.getInstance().loadAsset<cc.Prefab>({

@@ -32,6 +32,9 @@ export default class LocalizedLoadSprite extends cc.Component {
     })
     isLoadShareResource = false;
 
+    @property
+    prefix = "images";
+
     protected sprite: cc.Sprite;
 
     onLoad() {
@@ -64,7 +67,7 @@ export default class LocalizedLoadSprite extends cc.Component {
             return loadFromResources();
         } else {
             const bundleManager = BundleManager.getInstance();
-            const path = `i18n/images/${lang}/${name}`;
+            const path = `i18n/${this.prefix}/${lang}/${name}`;
             const devPath = `../games/*/${path}`;
 
             try {

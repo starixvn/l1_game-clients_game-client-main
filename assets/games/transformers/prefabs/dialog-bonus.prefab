@@ -598,6 +598,10 @@
     "_enabled": true,
     "gameId": 70,
     "nameImage": "text-bonus-game",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -2829,6 +2833,10 @@
     "_enabled": true,
     "gameId": 70,
     "nameImage": "text-total-bonus-win",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -3126,6 +3134,7 @@
     },
     "soundBigWin": null,
     "bonusItem": null,
+    "prefixPath": "",
     "_id": ""
   },
   {

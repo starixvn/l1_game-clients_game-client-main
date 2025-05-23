@@ -315,6 +315,10 @@
     "_enabled": true,
     "gameId": 74,
     "nameImage": "text-big-win",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -375,7 +379,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400.98,
+      "width": 0,
       "height": 100
     },
     "_anchorPoint": {

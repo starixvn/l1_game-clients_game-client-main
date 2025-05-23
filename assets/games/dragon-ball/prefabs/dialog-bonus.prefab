@@ -598,6 +598,10 @@
     "_enabled": true,
     "gameId": 76,
     "nameImage": "text-bonus-game",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -1233,7 +1237,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 21.33,
+      "width": 19.33,
       "height": 40
     },
     "_anchorPoint": {
@@ -1343,7 +1347,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 12.19,
+      "width": 20,
       "height": 40
     },
     "_anchorPoint": {
@@ -1453,7 +1457,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 9.9,
+      "width": 8.67,
       "height": 40
     },
     "_anchorPoint": {
@@ -1563,7 +1567,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22.86,
+      "width": 20,
       "height": 40
     },
     "_anchorPoint": {
@@ -1673,7 +1677,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 22.86,
+      "width": 20,
       "height": 40
     },
     "_anchorPoint": {
@@ -2804,6 +2808,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -2828,6 +2833,10 @@
     "_enabled": true,
     "gameId": 76,
     "nameImage": "text-total-bonus-win",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -3125,6 +3134,7 @@
     },
     "soundBigWin": null,
     "bonusItem": null,
+    "prefixPath": "",
     "_id": ""
   },
   {

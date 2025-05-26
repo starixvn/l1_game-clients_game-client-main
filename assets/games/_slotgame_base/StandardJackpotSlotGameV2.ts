@@ -1,4 +1,3 @@
-import { BundleManager } from "bundle-management";
 import GameUtils from "../../common/GameUtils";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
@@ -8,7 +7,10 @@ const { ccclass } = cc._decorator;
 @ccclass
 export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     protected getPrefabsList(): Record<string, string> {
-        return {};
+        return {
+            "preview-symbol-left": "previewSymbolLeft",
+            "preview-symbol-right": "previewSymbolRight"
+        };
     }
 
     start() {
@@ -45,9 +47,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
 
             "line-normal": "linePrefab",
             "line-glow": "lightLinePrefab",
-
-            "preview-symbol-left": "previewSymbolLeft",
-            "preview-symbol-right": "previewSymbolRight",
 
             "effect-jackpot": "effectJackpot"
         };

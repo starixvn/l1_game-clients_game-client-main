@@ -104,7 +104,7 @@ gold
   index: -1
 gold 2
   rotate: false
-  xy: 635, 121
+  xy: 599, 121
   size: 44, 33
   orig: 46, 35
   offset: 1, 1
@@ -117,8 +117,8 @@ head
   offset: 0, 0
   index: -1
 lefthand
-  rotate: true
-  xy: 681, 120
+  rotate: false
+  xy: 645, 126
   size: 34, 28
   orig: 36, 30
   offset: 1, 1
@@ -157,13 +157,6 @@ phao/top
   size: 57, 81
   orig: 57, 81
   offset: 0, 0
-  index: -1
-righthand
-  rotate: false
-  xy: 599, 110
-  size: 34, 44
-  orig: 39, 48
-  offset: 4, 3
   index: -1
 righthand copy
   rotate: true

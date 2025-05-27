@@ -1,3 +1,4 @@
+import { BundleManager } from "bundle-management";
 import GameUtils from "../../common/GameUtils";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
@@ -20,6 +21,34 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
                 this.createAllLines();
             }
         });
+        this.preloadAnimSprites();
+    }
+
+    private preloadAnimSprites() {
+        const animSprites = ["bonus-popup/bonus-item"];
+
+        for (const anim of animSprites) {
+            this.loadAnimSprite(anim);
+        }
+    }
+
+    protected loadAnimSprite(animSprite: string) {
+        const animFolder = "resources/spine";
+
+        const combinedPath = (animPath) => `${animFolder}/${animPath}`;
+
+        const path = combinedPath(animSprite);
+        const devPath = `../games/*/${path}`;
+        BundleManager.getInstance()
+            .loadAsset<cc.SpriteFrame>({
+                bundleId: this.gameId.toString(),
+                path: path,
+                pathForDevMode: devPath,
+                type: cc.SpriteFrame
+            })
+            .catch(() => {
+                cc.warn("missing  anim sprite for", path);
+            });
     }
 
     private async loadDelayedPrefabsByCode() {

@@ -200,7 +200,7 @@ export default class StandardSlotGame extends SlotGameBase {
                 type: cc.Prefab
             });
 
-            this[prefabProperty] = prefab;
+            this[prefabProperty] && (this[prefabProperty] = prefab);
         } catch (e) {
             cc.warn(`Missing prefab for ${path} `, e);
         }

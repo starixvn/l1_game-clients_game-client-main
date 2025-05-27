@@ -1,4 +1,3 @@
-import { BundleManager } from "bundle-management";
 import GameUtils from "../../common/GameUtils";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
@@ -24,44 +23,15 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
                 this.createAllLines();
             }
         });
-        this.preloadAnimSprites();
         this.preloadJackpotGamePrefab();
     }
 
     async preloadJackpotGamePrefab() {
         try {
-            cc.log("Preloading jackpot game prefab");
             this.jackpotGamePrefab = await GameUtils.loadResource(`shared/slot-game/jackpot-game`);
         } catch (e) {
             cc.warn(`Missing jackpot game`, e);
         }
-    }
-
-    private preloadAnimSprites() {
-        const animSprites = ["bonus-popup/bonus-item"];
-
-        for (const anim of animSprites) {
-            this.loadAnimSprite(anim);
-        }
-    }
-
-    protected loadAnimSprite(animSprite: string) {
-        const animFolder = "resources/spine";
-
-        const combinedPath = (animPath) => `${animFolder}/${animPath}`;
-
-        const path = combinedPath(animSprite);
-        const devPath = `../games/*/${path}`;
-        BundleManager.getInstance()
-            .loadAsset<cc.SpriteFrame>({
-                bundleId: this.gameId.toString(),
-                path: path,
-                pathForDevMode: devPath,
-                type: cc.SpriteFrame
-            })
-            .catch(() => {
-                cc.warn("missing  anim sprite for", path);
-            });
     }
 
     private async loadDelayedPrefabsByCode() {
@@ -86,7 +56,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             "effect-freespin": "effectFreeSpin",
 
             "dialog-bonus": "bonusDialog",
-
+            "bonus-item": "not_assign_property",
             "line-normal": "linePrefab",
             "line-glow": "lightLinePrefab",
 

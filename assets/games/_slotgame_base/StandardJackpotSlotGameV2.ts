@@ -18,11 +18,13 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
 
     start() {
         this.loadDelayedAudios();
-        this.loadDelayedPrefabsByCode().then(() => {
+        this.loadLinePrefabs().then(() => {
             if (this.autoGenerateLines) {
                 this.createAllLines();
             }
         });
+
+        this.loadDelayedPrefabsByCode();
         this.preloadJackpotGamePrefab();
     }
 
@@ -31,6 +33,20 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             this.jackpotGamePrefab = await GameUtils.loadResource(`shared/slot-game/jackpot-game`);
         } catch (e) {
             cc.warn(`Missing jackpot game`, e);
+        }
+    }
+
+    private async loadLinePrefabs() {
+        const linePrefabs = {
+            "line-normal": "linePrefab",
+            "line-glow": "lightLinePrefab"
+        };
+        try {
+            for (const key of Object.keys(linePrefabs)) {
+                await GameUtils.asyncExecute(this?.node, this.loadPrefabWithBundle(key, linePrefabs[key], ""));
+            }
+        } catch (error) {
+            cc.warn("Error occur when load line prefabs ", error);
         }
     }
 
@@ -57,8 +73,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
 
             "dialog-bonus": "bonusDialog",
             "bonus-item": "not_assign_property",
-            "line-normal": "linePrefab",
-            "line-glow": "lightLinePrefab",
 
             "effect-jackpot": "effectJackpot"
         };

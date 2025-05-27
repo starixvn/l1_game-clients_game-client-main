@@ -114,6 +114,9 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
 
     protected showJackpotGame(prizes: number) {
         return new Promise<void>((resolve) => {
+            if (!this.jackpotGamePrefab) {
+                resolve();
+            }
             const node = cc.instantiate(this.jackpotGamePrefab);
             this.currentMiniPanel.addDialog(node);
             const dialog = node.getComponent(JackpotGame);

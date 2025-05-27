@@ -3,10 +3,13 @@ import GameUtils from "../../common/GameUtils";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
 
-const { ccclass } = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
+    @property({ type: cc.Prefab, visible: false, override: true })
+    jackpotGamePrefab: cc.Prefab = null;
+
     protected getPrefabsList(): Record<string, string> {
         return {
             "preview-symbol-left": "previewSymbolLeft",
@@ -22,6 +25,16 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             }
         });
         this.preloadAnimSprites();
+        this.preloadJackpotGamePrefab();
+    }
+
+    async preloadJackpotGamePrefab() {
+        try {
+            cc.log("Preloading jackpot game prefab");
+            this.jackpotGamePrefab = await GameUtils.loadResource(`shared/slot-game/jackpot-game`);
+        } catch (e) {
+            cc.warn(`Missing jackpot game`, e);
+        }
     }
 
     private preloadAnimSprites() {

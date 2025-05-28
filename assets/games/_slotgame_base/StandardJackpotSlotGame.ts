@@ -22,7 +22,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     topWinnersButton: cc.Node = null;
 
     @property(cc.Prefab)
-    jackpotGamePrefab: cc.Node = null;
+    jackpotGamePrefab: cc.Prefab = null;
 
     private jackpotPoolPrefab: cc.Prefab;
     private isLoadedSlotBoard = false;
@@ -112,11 +112,12 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         super.handleGameGuide(guide, language, minBet, maxBet, isInPromotionTime);
     }
 
-    protected showJackpotGame(prizes: number) {
-        return new Promise<void>((resolve) => {
+    protected async showJackpotGame(prizes: number) {
+        try {
             if (!this.jackpotGamePrefab) {
-                resolve();
+                await this.loadJackpotGamePrefab();
             }
+
             const node = cc.instantiate(this.jackpotGamePrefab);
             this.currentMiniPanel.addDialog(node);
             const dialog = node.getComponent(JackpotGame);
@@ -124,15 +125,28 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
             dialog.slotGameConfigs = this.slotGameConfigs;
             dialog.initJackpotItems();
             dialog.playSoundCallback = this.bonusDialogPlaySound.bind(this);
-            dialog.onJackpotGameFinished = resolve;
-            dialog.onItemClicked = (index) => {
-                this.socket.emit("jackpot", { chest: index });
-            };
 
-            this.onOpenJackpotChest = (data) => {
-                dialog && dialog.openJackpot(data);
-            };
-        });
+            return new Promise<void>((resolve) => {
+                dialog.onJackpotGameFinished = resolve;
+                dialog.onItemClicked = (index) => {
+                    this.socket.emit("jackpot", { chest: index });
+                };
+
+                this.onOpenJackpotChest = (data) => {
+                    dialog && dialog.openJackpot(data);
+                };
+            });
+        } catch (error) {
+            cc.warn("Error when show jackpot game", error);
+        }
+    }
+
+    async loadJackpotGamePrefab() {
+        try {
+            this.jackpotGamePrefab = await GameUtils.loadResource(`shared/slot-game/jackpot-game`);
+        } catch (e) {
+            cc.warn(`Missing jackpot game`, e);
+        }
     }
 
     async handleNewJackpot(jackpot: any) {

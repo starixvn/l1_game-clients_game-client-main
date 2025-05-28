@@ -25,15 +25,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         });
 
         this.loadDelayedPrefabsByCode();
-        this.preloadJackpotGamePrefab();
-    }
-
-    async preloadJackpotGamePrefab() {
-        try {
-            this.jackpotGamePrefab = await GameUtils.loadResource(`shared/slot-game/jackpot-game`);
-        } catch (e) {
-            cc.warn(`Missing jackpot game`, e);
-        }
+        this.loadJackpotGamePrefab();
     }
 
     private async loadLinePrefabs() {

@@ -102,6 +102,62 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         }
         super.onSymbolPreview(symbol, worldPosition, isInfoOnLeft);
     }
+
+    async showEffectFreeSpin() {
+        try {
+            if (!this.effectFreeSpin) {
+                await this.loadPrefabWithBundle("effect-freespin", "effectFreeSpin", "");
+            }
+            await super.showEffectFreeSpin();
+        } catch (error) {
+            cc.warn("Error when show effect free spin", error);
+        }
+    }
+
+    async showEffectBigWin(betWin: number) {
+        try {
+            if (!this.effectBigWin) {
+                await this.loadPrefabWithBundle("effect-big-win", "effectBigWin", "");
+            }
+            await super.showEffectBigWin(betWin);
+        } catch (error) {
+            cc.warn("Error when show effect big win", error);
+        }
+    }
+
+    async showEffectBonus(bonus: number): Promise<void> {
+        try {
+            if (!this.effectBonus) {
+                await this.loadPrefabWithBundle("effect-bonus", "effectBonus", "");
+            }
+            await super.showEffectBonus(bonus);
+        } catch (error) {
+            cc.warn("Error when show effect bonus", error);
+        }
+    }
+
+    async showEffectJackpot(amount: number) {
+        try {
+            if (!this.effectJackpot) {
+                await this.loadPrefabWithBundle("effect-jackpot", "effectJackpot", "");
+            }
+            await super.showEffectJackpot(amount);
+        } catch (error) {
+            cc.warn("Error when show effect jackpot", error);
+        }
+    }
+
+    protected async showBonusDialog(bonus: number, onBonusFinished) {
+        try {
+            if (!this.bonusDialog) {
+                await this.loadPrefabWithBundle("dialog-bonus", "bonusDialog", "");
+            }
+            super.showBonusDialog(bonus, onBonusFinished);
+        } catch (error) {
+            cc.warn("Error when show bonus dialog", error);
+        }
+    }
+
     async handleNewJackpot(jackpot: any) {
         try {
             if (!this.effectJackpot) {

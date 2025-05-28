@@ -89,7 +89,9 @@ const ErrorCodeDictionary = {
     SB1935: "invalidBet",
     SB1939: "disallowHedgeBet",
     SB1940: "invalidJackpot",
-    SB1941: "openedJackpot"
+    SB1941: "openedJackpot",
+    SB1942: "invalidJackpot",
+    SB1943: "openedJackpot"
 };
 
 export const CommonErrorCodeList = [

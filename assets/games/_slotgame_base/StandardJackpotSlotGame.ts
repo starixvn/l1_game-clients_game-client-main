@@ -133,21 +133,15 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
     }
 
     async handleNewJackpot(jackpot: any) {
-        const showJackpot = async () => {
-            this.playSound(ClassicSlotSound.JACKPOT);
-            this.showLine(jackpot.winningLine + 1);
-            this.slotBoard.showWinningEffect(paylines[jackpot.winningLine], jackpot.symbol);
-            const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
-            const effect = cc.instantiate(this.effectJackpot);
-            const animation = effect.getComponent(CallbackAnimation);
-            animation.setDuration(this.getCustomDuration("jackpot"));
-            await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
-            transtition?.destroy();
-            await this.showJackpotGame(jackpot.prizes);
-        };
-        if (!this.effectJackpot) {
-            await this.loadPrefabWithBundle("effect-jackpot", "effectJackpot", "");
-        }
-        await showJackpot();
+        this.playSound(ClassicSlotSound.JACKPOT);
+        this.showLine(jackpot.winningLine + 1);
+        this.slotBoard.showWinningEffect(paylines[jackpot.winningLine], jackpot.symbol);
+        const transtition = await GameUtils.asyncExecute(this?.node, this.playEffectTransition());
+        const effect = cc.instantiate(this.effectJackpot);
+        const animation = effect.getComponent(CallbackAnimation);
+        animation.setDuration(this.getCustomDuration("jackpot"));
+        await GameUtils.asyncExecute(this?.node, this.showEffect(effect));
+        transtition?.destroy();
+        await this.showJackpotGame(jackpot.prizes);
     }
 }

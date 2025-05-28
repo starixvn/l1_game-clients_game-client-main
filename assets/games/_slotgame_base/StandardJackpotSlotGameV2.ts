@@ -102,4 +102,14 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         }
         super.onSymbolPreview(symbol, worldPosition, isInfoOnLeft);
     }
+    async handleNewJackpot(jackpot: any) {
+        try {
+            if (!this.effectJackpot) {
+                await this.loadPrefabWithBundle("effect-jackpot", "effectJackpot", "");
+            }
+            await super.handleNewJackpot(jackpot);
+        } catch (error) {
+            cc.warn("Error when show effect jackpot", error);
+        }
+    }
 }

@@ -978,7 +978,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "clickOutsideReelArea",
     "customEventData": ""
   },
@@ -5373,6 +5373,7 @@
     "enableCustomizePath": false,
     "customizePath": "",
     "isLoadShareResource": false,
+    "prefix": "images",
     "_id": "3fiQBcZRhIW6h8AJPow5po"
   },
   {
@@ -6456,7 +6457,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "hover",
+    "_animationName": "idle",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 0,
@@ -6588,7 +6589,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onSpinClick",
     "customEventData": ""
   },
@@ -6994,7 +6995,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onCloseGameClick",
     "customEventData": ""
   },
@@ -7769,7 +7770,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onClickShowHistory",
     "customEventData": ""
   },
@@ -8027,7 +8028,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "openGuide",
     "customEventData": ""
   },
@@ -8826,7 +8827,7 @@
     "_id": "29zXboiXFBKoIV4PQ2liTe"
   },
   {
-    "__type__": "7e387mt851GpYAZGuC4yJJM",
+    "__type__": "02148H67rRDRKYmIarUKfJt",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -8966,6 +8967,10 @@
       "__uuid__": "2d5f39b5-8a4a-4ff6-b3c9-f0f394e2ed31"
     },
     "_gameId": 38,
+    "jackpotPoolNode": null,
+    "topWinnersButton": null,
+    "jackpotGamePrefab": null,
+    "hasJackpot": false,
     "_id": "c83FPtP2hEULzYv4R4mYbF"
   }
 ]

@@ -6,6 +6,27 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
+    @property
+    hasJackpot = true;
+
+    @property({
+        type: cc.Prefab,
+        visible: function (this: StandardJackpotSlotGameV2) {
+            return this.hasJackpot;
+        },
+        override: true
+    })
+    jackpotPoolNode: cc.Node = null;
+
+    @property({
+        type: cc.Prefab,
+        visible: function (this: StandardJackpotSlotGameV2) {
+            return this.hasJackpot;
+        },
+        override: true
+    })
+    topWinnersButton: cc.Node = null;
+
     @property({ type: cc.Prefab, visible: false, override: true })
     jackpotGamePrefab: cc.Prefab = null;
 
@@ -55,7 +76,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     }
 
     protected getDelayedPrefabsList(): Record<string, string> {
-        return {
+        const normalPrefabs = {
             // prefab name : prefab property
             "effect-transition": "effectTransitionPrefab",
 
@@ -64,10 +85,15 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             "effect-freespin": "effectFreeSpin",
 
             "dialog-bonus": "bonusDialog",
-            "bonus-item": "not_assign_property",
-
+            "bonus-item": "not_assign_property"
+        };
+        if (!this.hasJackpot) {
+            return normalPrefabs;
+        }
+        const jackpotPrefab = {
             "effect-jackpot": "effectJackpot"
         };
+        return { ...normalPrefabs, ...jackpotPrefab };
     }
 
     protected getAudioDictionary(): Record<string, string> {
@@ -86,12 +112,13 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     }
 
     protected getDelayedAudiosDictionary(): Record<string, string> {
-        return {
-            [ClassicSlotSound.BIG_WIN]: "big-win",
+        const jackpotSound = {
             [ClassicSlotSound.JACKPOT]: "jackpot-hit",
             [ClassicSlotSound.JACKPOT_ITEM]: "jackpot-item",
-            [ClassicSlotSound.JACKPOT_WIN]: "jackpot-win",
-
+            [ClassicSlotSound.JACKPOT_WIN]: "jackpot-win"
+        };
+        const normalSound = {
+            [ClassicSlotSound.BIG_WIN]: "big-win",
             [ClassicSlotSound.FREESPIN]: "freespin",
             [ClassicSlotSound.BONUS]: "bonus",
 
@@ -99,6 +126,11 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             [ClassicSlotSound.BONUS_ITEM]: "bonus-item",
             [ClassicSlotSound.BONUS_TOTAL]: "bonus-total"
         };
+
+        if (!this.hasJackpot) {
+            return normalSound;
+        }
+        return { ...normalSound, ...jackpotSound };
     }
 
     private loadDelayedAudios() {

@@ -1,4 +1,6 @@
 import GameUtils from "../../common/GameUtils";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
 
@@ -10,7 +12,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     hasJackpot = true;
 
     @property({
-        type: cc.Prefab,
+        type: cc.Node,
         visible: function (this: StandardJackpotSlotGameV2) {
             return this.hasJackpot;
         },
@@ -19,7 +21,7 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
     jackpotPoolNode: cc.Node = null;
 
     @property({
-        type: cc.Prefab,
+        type: cc.Node,
         visible: function (this: StandardJackpotSlotGameV2) {
             return this.hasJackpot;
         },
@@ -37,14 +39,33 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         };
     }
 
+    onLoad() {
+        uiManager.emitterListener(
+            InternalEvents.RECEIVED_JACKPOT_POOLS_IN_GAME,
+            (data) => {
+
+                this.jackpotEnabled = data.length > 0;
+                this.receiviedJackpotPools = data;
+                this.initSlotBoard();
+                this.showJackpotInfo();
+                this.showHideTopWinnersButton();
+                this.lazyLoadResources();
+            },
+            this
+        );
+        super.onLoad();
+    }
+
     start() {
-        this.loadDelayedAudios();
         this.loadLinePrefabs().then(() => {
             if (this.autoGenerateLines) {
                 this.createAllLines();
             }
         });
+    }
 
+    private lazyLoadResources() {
+        this.loadDelayedAudios();
         this.loadDelayedPrefabsByCode();
         this.loadJackpotGamePrefab();
     }
@@ -87,7 +108,8 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             "dialog-bonus": "bonusDialog",
             "bonus-item": "not_assign_property"
         };
-        if (!this.hasJackpot) {
+
+        if (!this.jackpotEnabled) {
             return normalPrefabs;
         }
         const jackpotPrefab = {
@@ -127,7 +149,8 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
             [ClassicSlotSound.BONUS_TOTAL]: "bonus-total"
         };
 
-        if (!this.hasJackpot) {
+
+        if (!this.jackpotEnabled) {
             return normalSound;
         }
         return { ...normalSound, ...jackpotSound };

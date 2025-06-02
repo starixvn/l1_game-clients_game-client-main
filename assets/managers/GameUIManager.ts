@@ -88,6 +88,9 @@ export default class GameUIManager {
     }
 
     emitterListener(eventName: string, callback: (param?) => void, target: any) {
+        if (this.emitterStorages.find((storage) => storage.eventName === eventName && storage.target === target)) {
+            return;
+        }
         const storage = {
             eventName,
             callback,

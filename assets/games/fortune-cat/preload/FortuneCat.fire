@@ -901,7 +901,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "clickOutsideReelArea",
     "customEventData": ""
   },
@@ -5428,6 +5428,10 @@
     "_enabled": true,
     "gameId": 0,
     "nameImage": "game-name",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": "3fiQBcZRhIW6h8AJPow5po"
   },
   {
@@ -6643,7 +6647,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onSpinClick",
     "customEventData": ""
   },
@@ -7049,7 +7053,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onCloseGameClick",
     "customEventData": ""
   },
@@ -7824,7 +7828,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "onClickShowHistory",
     "customEventData": ""
   },
@@ -8082,7 +8086,7 @@
       "__id__": 2
     },
     "component": "",
-    "_componentId": "7e387mt851GpYAZGuC4yJJM",
+    "_componentId": "02148H67rRDRKYmIarUKfJt",
     "handler": "openGuide",
     "customEventData": ""
   },
@@ -8881,7 +8885,7 @@
     "_id": "29zXboiXFBKoIV4PQ2liTe"
   },
   {
-    "__type__": "7e387mt851GpYAZGuC4yJJM",
+    "__type__": "02148H67rRDRKYmIarUKfJt",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -9021,6 +9025,10 @@
       "__uuid__": "d4f7ba99-ae42-4165-af96-76e85ba7eeea"
     },
     "_gameId": 62,
+    "jackpotPoolNode": null,
+    "topWinnersButton": null,
+    "jackpotGamePrefab": null,
+    "hasJackpot": false,
     "_id": "c83FPtP2hEULzYv4R4mYbF"
   }
 ]

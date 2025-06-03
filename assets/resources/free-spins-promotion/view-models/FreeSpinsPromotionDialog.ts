@@ -1,5 +1,4 @@
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
-import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import { StorageManager } from "../../../managers/StorageManager";
 import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { TrackingEvent } from "../../../analytics/AnalyticsManager";
@@ -11,6 +10,7 @@ import LobbyDialogManager from "../../../managers/LobbyDialogManager";
 import * as sessionManager from "../../../common/auth/SessionManager";
 import { appManager } from "../../../managers/AppManager";
 import GameUtils from "../../../common/GameUtils";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass("FreeSpinsPromotionDialog")
@@ -36,17 +36,16 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
             this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
         }
 
-        this.setGameName();
+        await this.setGameName();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {
             this.playLaterNode.active = true;
         }
     }
 
-    setGameName() {
+    async setGameName() {
         const gameId = freeSpinsPromotionHandler.getGameId();
-        const gameName = GameUtils.getGameNameString(gameId);
-        console.log("setGameName", gameId, gameName);
-        this.gameNameLabel.string = gameName !== `gameNames.${gameId}` ? gameName : "";
+        this.gameNameLabel.string = await GameUtils.getDisplayGameName(gameId);
+        console.log("setGameName", this.gameNameLabel.string);
     }
 
     closeDialog(enableSound = true) {

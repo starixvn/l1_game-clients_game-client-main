@@ -12,6 +12,7 @@ export default class JackpotPoolInfo extends JackpotPoolInfoBase {
     gameId = 0;
 
     onLoad() {
+        this.hideAllItems();
         if (userManager.disableJackpotGames) {
             this.node.active = false;
         } else {

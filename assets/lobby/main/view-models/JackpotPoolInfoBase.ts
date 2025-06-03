@@ -8,6 +8,10 @@ export default class JackpotPoolInfoBase extends cc.Component {
     @property({ type: JackpotPoolItem })
     items: JackpotPoolItem[] = [];
 
+    hideAllItems() {
+        this.items.forEach((item) => (item.node.active = false));
+    }
+
     setData(data: any[], poolInGame: boolean) {
         if (!this.items || data.length < this.items.length) {
             return;
@@ -23,6 +27,7 @@ export default class JackpotPoolInfoBase extends cc.Component {
                 return;
             }
 
+            item.node.active = true;
             const itemData = sortedData[index];
             item.setData(itemData.amount);
 

@@ -45,7 +45,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     async setGameName() {
         const gameId = freeSpinsPromotionHandler.getGameId();
         this.gameNameLabel.string = await GameUtils.getDisplayGameName(gameId);
-        console.log("setGameName", this.gameNameLabel.string);
     }
 
     closeDialog(enableSound = true) {

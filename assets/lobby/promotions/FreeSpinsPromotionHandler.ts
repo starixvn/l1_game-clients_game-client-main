@@ -56,7 +56,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
             const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
             if (promotionId) {
-                console.log("check game name", GameUtils.getGameNameString(this.getGameId()));
                 this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
                 return;
             }

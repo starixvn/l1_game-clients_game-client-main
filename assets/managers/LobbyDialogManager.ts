@@ -18,18 +18,15 @@ export default class LobbyDialogManager {
             cpFunction();
             this.isDialogOpened = true;
             this.name = name;
-            console.log("open dialog", name);
         } else {
             this.queue.push({ cb: cpFunction, name: name });
-            console.log("add dialog to queue", name);
         }
     }
 
     onCloseDialog() {
         if (this.queue.length > 0) {
-            const { cb, name } = this.queue.shift();
+            const { cb } = this.queue.shift();
             cb();
-            console.log("close dialog", name);
             this.isDialogOpened = false;
         }
         this.isDialogOpened = false;
@@ -39,12 +36,10 @@ export default class LobbyDialogManager {
         this.queue = [];
         this.isDialogOpened = false;
         this.name = "";
-        this.isCleared = true; // ✅ Đánh dấu đã clear
-        console.log("clear queue");
+        this.isCleared = true;
     }
 
     reset() {
         this.isCleared = false;
-        console.log("dialog manager reset");
     }
 }

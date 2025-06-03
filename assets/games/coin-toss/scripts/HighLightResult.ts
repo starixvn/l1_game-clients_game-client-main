@@ -23,6 +23,10 @@ export class HighlightResult extends cc.Component {
     }
 
     hide() {
+        if (!this?.node?.isValid) {
+            return;
+        }
+
         this.setStatusNode(this.confetiHeads, false);
         this.setStatusNode(this.confetiTails, false);
         this.winHeads.stop();

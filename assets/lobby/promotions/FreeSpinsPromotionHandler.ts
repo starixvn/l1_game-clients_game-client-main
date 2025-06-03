@@ -5,6 +5,7 @@ import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
+import GameUtils from "../../common/GameUtils";
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION"
@@ -50,6 +51,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
             const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
             if (promotionId) {
+                console.log("check game name", GameUtils.getGameNameString(this.getGameId()));
                 this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
                 return;
             }

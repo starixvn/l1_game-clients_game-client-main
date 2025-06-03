@@ -220,7 +220,10 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
                 LobbyDialogManager.getInstance().addDialog(this.showFreeSpinsPromotion.bind(this), "FreeSpinsPromotion")
             );
 
-            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT_BY_ICON, this.showPromotionTournament.bind(this));
+            promotionTournamentHandler.on(
+                PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT_BY_ICON,
+                this.showPromotionTournament.bind(this)
+            );
         } catch (error) {
             cc.warn("Failed to init boosted odds - " + error);
         }
@@ -257,11 +260,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         }
 
         const node = cc.instantiate(this.promotionTournamentPrefab);
-        node.name = "PromotionTournamentDialog";
-        const comp = node.getComponent("PromotionTournamentDialog");
-        if (comp) {
-            comp.miniPanel = this; // inject MiniPanel vào
-        }
         this.addDialog(node);
     }
 
@@ -271,11 +269,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         }
 
         const node = cc.instantiate(this.freeSpinsPromotionPrefab);
-        node.name = "FreeSpinsPromotionDialog";
-        const comp = node.getComponent("FreeSpinsPromotionDialog");
-        if (comp) {
-            comp.miniPanel = this; // inject MiniPanel vào
-        }
         this.addDialog(node);
     }
 

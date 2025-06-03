@@ -2,6 +2,7 @@ import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../analytics
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
+import LobbyDialogManager from "../../managers/LobbyDialogManager";
 import { StorageManager } from "../../managers/StorageManager";
 
 const { ccclass, property } = cc._decorator;
@@ -55,6 +56,7 @@ export default class CenterBanner extends cc.Component {
 
     closeBanner() {
         this.dialog.closeDialog(true);
+        LobbyDialogManager.getInstance().onCloseDialog();
     }
 
     playNow() {

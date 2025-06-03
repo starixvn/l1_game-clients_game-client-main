@@ -30,6 +30,8 @@ import Header from "./Header";
 import LobbyCenter from "./LobbyCenter";
 import { themeResourceLoader } from "./theme/ResourceLoader";
 import LobbyManager from "./LobbyManager";
+import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../promotions/FreeSpinsPromotionHandler";
+import LobbyDialogManager from "../../../managers/LobbyDialogManager";
 
 const socketIOController = appContainer.get(SocketIOController);
 const sentryLogger = logger();
@@ -297,7 +299,11 @@ export default class Lobby extends cc.Component {
         uiManager.emitterListener(InternalEvents.LOST_CONNECTION, this.showNotice.bind(this), this);
         uiManager.emitterListener(InternalEvents.HANDLE_ON_SIGN_IN, this.onSignIn.bind(this), this);
         uiManager.emitterListener(InternalEvents.OPEN_GAME, this.openGameFromCenterBanner.bind(this), this);
-        uiManager.emitterListener(InternalEvents.AFTER_LUCKY_WHEEL, this.showCenterBanner.bind(this), this);
+        uiManager.emitterListener(
+            InternalEvents.AFTER_LUCKY_WHEEL,
+            () => LobbyDialogManager.getInstance().addDialog(this.showCenterBanner.bind(this), "CenterBanner"),
+            this
+        );
         uiManager.emitterListener(InternalEvents.NOT_EXIST_MINI_GAMES, this.handleSsoLobby.bind(this), this);
         uiManager.emitterListener(InternalEvents.CLOSE_GAME, this.checkExistGameMini.bind(this), this);
     }
@@ -323,6 +329,7 @@ export default class Lobby extends cc.Component {
             this.showSignName();
         } else {
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
+            FreeSpinsPromotionHandler.getInstance().getFreeSpinsPromotionBanner();
         }
     }
 
@@ -592,6 +599,7 @@ export default class Lobby extends cc.Component {
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
+            FreeSpinsPromotionHandler.getInstance().getFreeSpinsPromotionBanner();
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

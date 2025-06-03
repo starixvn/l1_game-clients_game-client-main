@@ -15,7 +15,7 @@ import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import SocketIOMiniGameBase from "../../_base/SocketIOMiniGameBase";
 import LuckyWheelHistory from "./LuckyWheelHistory";
 import LuckyWheelWinning from "./LuckyWheelWinning";
-
+import LobbyDialogManager from "../../../managers/LobbyDialogManager";
 const { ccclass, property } = cc._decorator;
 
 export enum LuckyWheelColor {
@@ -369,6 +369,7 @@ export default class LuckyWheel extends SocketIOMiniGameBase {
             this.currentMiniPanel.addDialog(bannerNode);
         } else {
             uiManager.emitter.emit(InternalEvents.AFTER_LUCKY_WHEEL);
+            LobbyDialogManager.getInstance().onCloseDialog();
         }
 
         this.umNotice.hide();

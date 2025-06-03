@@ -139,6 +139,7 @@ function checkHasToken(urlParams, onSuccessFunc) {
                 sessionManager.removeDirectMode();
                 sessionManager.removeMicrositeGameId();
                 sessionManager.removeCheckedTournamentPromotionFirstSso();
+                sessionManager.removeCheckedFreeSpinsPromotionFirstSso();
                 clearQueryStringOnUrl();
                 onSuccessFunc();
             } else {

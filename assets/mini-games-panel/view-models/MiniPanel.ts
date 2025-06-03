@@ -36,6 +36,9 @@ import MiniPanelInterface from "./MiniPanelInterface";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
+import { freeSpinsPromotionHandler } from "../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
+import LobbyDialogManager from "../../managers/LobbyDialogManager";
 
 type NewLayerCallback = () => void;
 
@@ -92,6 +95,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
     private readonly authKey = "auth";
     private promotionAnnouncementPrefab: cc.Prefab;
     private promotionTournamentPrefab: cc.Prefab;
+    private freeSpinsPromotionPrefab: cc.Prefab;
     public boostedOdds: BoostedOdds;
     public promotionAnnouncement: PromotionAnnouncements;
     private readonly preloadFolderPercent = 25;
@@ -208,10 +212,71 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
                 this.showPromotionAnnouncements.bind(this)
             );
             Promotions.getInstance().on(PromotionsEvent.SHOW_BOOSTED_ODDS, () => this.showBoostedOdds());
-            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT, this.showPromotionTournament.bind(this));
+            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT, () =>
+                LobbyDialogManager.getInstance().addDialog(this.showPromotionTournament.bind(this), "PromotionTournament")
+            );
+
+            freeSpinsPromotionHandler.on(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION, () =>
+                LobbyDialogManager.getInstance().addDialog(this.showFreeSpinsPromotion.bind(this), "FreeSpinsPromotion")
+            );
+
+            promotionTournamentHandler.on(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT_BY_ICON, this.showPromotionTournament.bind(this));
         } catch (error) {
             cc.warn("Failed to init boosted odds - " + error);
         }
+    }
+
+    async createPromotionTournamentPrefab() {
+        const key = "promotionTournament";
+        if (!uiManager.prefabCache.miniPanelIcons[key]) {
+            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
+                this.node,
+                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
+            );
+            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
+        } else {
+            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
+        }
+    }
+
+    async createFreeSpinsPromotionPrefab() {
+        const key = "freeSpinsPromotion";
+        if (!uiManager.prefabCache.miniPanelIcons[key]) {
+            this.freeSpinsPromotionPrefab = await GameUtils.asyncExecute<cc.Prefab>(
+                this.node,
+                GameUtils.loadResource("free-spins-promotion/views/FreeSpinsPromotionWebView")
+            );
+            uiManager.prefabCache.miniPanelIcons[key] = this.freeSpinsPromotionPrefab;
+        } else {
+            this.freeSpinsPromotionPrefab = uiManager.prefabCache.miniPanelIcons[key];
+        }
+    }
+    async showPromotionTournament() {
+        if (!this.promotionTournamentPrefab) {
+            await this.createPromotionTournamentPrefab();
+        }
+
+        const node = cc.instantiate(this.promotionTournamentPrefab);
+        node.name = "PromotionTournamentDialog";
+        const comp = node.getComponent("PromotionTournamentDialog");
+        if (comp) {
+            comp.miniPanel = this; // inject MiniPanel vào
+        }
+        this.addDialog(node);
+    }
+
+    async showFreeSpinsPromotion() {
+        if (!this.freeSpinsPromotionPrefab) {
+            await this.createFreeSpinsPromotionPrefab();
+        }
+
+        const node = cc.instantiate(this.freeSpinsPromotionPrefab);
+        node.name = "FreeSpinsPromotionDialog";
+        const comp = node.getComponent("FreeSpinsPromotionDialog");
+        if (comp) {
+            comp.miniPanel = this; // inject MiniPanel vào
+        }
+        this.addDialog(node);
     }
 
     async createBoostedOddsNode() {
@@ -504,27 +569,6 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
             this.promotionAnnouncement.miniPanel = this;
         }
 
-        this.addDialog(node);
-    }
-
-    async createPromotionTournamentPrefab() {
-        const key = "promotionTournament";
-        if (!uiManager.prefabCache.miniPanelIcons[key]) {
-            this.promotionTournamentPrefab = await GameUtils.asyncExecute<cc.Prefab>(
-                this.node,
-                GameUtils.loadResource("promotion-tournament/views/PromotionTournamentWebView")
-            );
-            uiManager.prefabCache.miniPanelIcons[key] = this.promotionTournamentPrefab;
-        } else {
-            this.promotionTournamentPrefab = uiManager.prefabCache.miniPanelIcons[key];
-        }
-    }
-
-    async showPromotionTournament() {
-        if (!this.promotionTournamentPrefab) {
-            await this.createPromotionTournamentPrefab();
-        }
-        const node = cc.instantiate(this.promotionTournamentPrefab);
         this.addDialog(node);
     }
 

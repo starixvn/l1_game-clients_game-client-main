@@ -67,6 +67,6 @@ export default class PromotionTournamentIcon extends cc.Component {
 
     onClick() {
         AudioManager.getInstance().playClick();
-        promotionTournamentHandler.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+        promotionTournamentHandler.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT_BY_ICON);
     }
 }

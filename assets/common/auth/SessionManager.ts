@@ -23,6 +23,7 @@ const sessionIdStorageName = "scss";
 const micrositeGameIdKey = "microsite_game_id";
 const clearStorageMicroSiteKey = "clear_storage_microsite";
 const checkedTournamentPromotionFirstSso = "checked_tournament_promotion_first_sso";
+const checkedFreeSpinsPromotionFirstSso = "checked_free_spins_promotion_first_sso";
 
 export function getSessionKey() {
     if (window.location && window.location.hostname) {
@@ -192,8 +193,20 @@ export function getCheckedTournamentPromotionFirstSso(): boolean {
     return StorageManager.get(checkedTournamentPromotionFirstSso) ?? false;
 }
 
+export function setCheckedFreeSpinsPromotionFirstSso(data = true) {
+    StorageManager.set(checkedFreeSpinsPromotionFirstSso, data);
+}
+
+export function getCheckedFreeSpinsPromotionFirstSso(): boolean {
+    return StorageManager.get(checkedFreeSpinsPromotionFirstSso) ?? false;
+}
+
 export function removeCheckedTournamentPromotionFirstSso() {
     StorageManager.remove(checkedTournamentPromotionFirstSso);
+}
+
+export function removeCheckedFreeSpinsPromotionFirstSso() {
+    StorageManager.remove(checkedFreeSpinsPromotionFirstSso);
 }
 
 declare global {

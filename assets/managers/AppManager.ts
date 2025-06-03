@@ -11,6 +11,7 @@ import EncryptUtils from "../common/utils/EncryptUtils";
 import UrlParamsService from "../common/utils/UrlParamsService";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
+import { freeSpinsPromotionHandler } from "../lobby/promotions/FreeSpinsPromotionHandler";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
 import { delayTime } from "../utils";
@@ -274,7 +275,7 @@ class AppManager {
         if (!response.authorized && (this.autoGenerateNickname || response.autoGenerateNickname)) {
             return this.autoGenerateName();
         }
-
+        response.promotionInfo && freeSpinsPromotionHandler.setPromotionInfoFromSso(response.promotionInfo);
         response.user && userManager.updateUser(response.user);
         return response.authorized;
     }

@@ -7,7 +7,7 @@ import { InternalEvents } from "../../managers/InternalEvents";
 import { StorageManager } from "../../managers/StorageManager";
 import LobbyMenuConfig from "../main/view-models/LobbyMenuConfig";
 import CenterBanner from "./center-banner";
-
+import LobbyDialogManager from "../../managers/LobbyDialogManager";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -23,11 +23,16 @@ export default class CenterBannerContainer extends cc.Component {
         if (appManager.hasShowedCenterBanner) {
             return;
         }
-        uiManager.emitterListener(InternalEvents.CENTER_BANNER_SHOW, this.initCenterBanner.bind(this), this);
+        uiManager.emitterListener(
+            InternalEvents.CENTER_BANNER_SHOW,
+            () => LobbyDialogManager.getInstance().addDialog(this.initCenterBanner.bind(this), "CenterBanner"),
+            this
+        );
     }
 
     onDestroy(): void {
         uiManager.removeListenersWithTarget(this);
+        LobbyDialogManager.getInstance().onCloseDialog();
     }
 
     async initCenterBanner() {
@@ -50,7 +55,6 @@ export default class CenterBannerContainer extends cc.Component {
         const offerBannerIds = this.lobbyMenuConfig.bannerAds.filter((id) => userManager.offerGames.includes(id));
         const list = offerBannerIds.slice(0, 1); // only first banner
         const dontShowAgainStorage = StorageManager.get(this.storageKey);
-
         return list.filter((id) => !dontShowAgainStorage || !dontShowAgainStorage[id]);
     }
 

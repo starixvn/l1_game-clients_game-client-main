@@ -8,9 +8,10 @@ import EncryptUtils from "../../common/utils/EncryptUtils";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import configs = require("../../configs/Configs");
-
+import LobbyDialogManager from "../../managers/LobbyDialogManager";
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
+    OPEN_PROMOTION_TOURNAMENT_BY_ICON: "OPEN_PROMOTION_TOURNAMENT_BY_ICON",
     TOGGLE_ICON: "TOGGLE_ICON"
 };
 
@@ -60,6 +61,7 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
             this.initializeTournamentPromotionFirstSso();
         }
+        LobbyDialogManager.getInstance().onCloseDialog();
     }
 
     async getPromotionTournament() {

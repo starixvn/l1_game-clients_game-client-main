@@ -116,8 +116,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1398,
-      "height": 786
+      "width": 849,
+      "height": 479.84
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -315,6 +315,10 @@
     "_enabled": true,
     "gameId": 65,
     "nameImage": "text-big-win",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -375,7 +379,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 149.17,
+      "width": 0,
       "height": 100
     },
     "_anchorPoint": {

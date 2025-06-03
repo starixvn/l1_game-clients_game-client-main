@@ -6,6 +6,7 @@ import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
 import GameUtils from "../../common/GameUtils";
+import configs = require("../../configs/Configs");
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION"
@@ -45,7 +46,11 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     async getFreeSpinsPromotionBanner() {
         try {
             const storage = StorageManager.get(this.storageKey);
-            if (storage?.dontShowAgain || sessionManager.getCheckedFreeSpinsPromotionFirstSso()) {
+            if (
+                storage?.dontShowAgain ||
+                sessionManager.getCheckedFreeSpinsPromotionFirstSso() ||
+                configs.systemType.toUpperCase() === "SC1"
+            ) {
                 return;
             }
 

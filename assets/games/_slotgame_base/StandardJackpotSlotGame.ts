@@ -37,10 +37,13 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
                 this.initSlotBoard();
                 this.showJackpotInfo();
                 this.showHideTopWinnersButton();
+                this.lazyLoadResources();
             },
             this
         );
     }
+
+    protected lazyLoadResources() {}
 
     protected getPrefabsList(): Record<string, string> {
         const normalPrefabs = super.getPrefabsList();

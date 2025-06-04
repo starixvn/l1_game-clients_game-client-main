@@ -1,6 +1,4 @@
 import GameUtils from "../../common/GameUtils";
-import { uiManager } from "../../managers/GameUIManager";
-import { InternalEvents } from "../../managers/InternalEvents";
 import { ClassicSlotSound } from "./ClassicSlotSound";
 import StandardJackpotSlotGame from "./StandardJackpotSlotGame";
 
@@ -39,23 +37,6 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         };
     }
 
-    onLoad() {
-        uiManager.emitterListener(
-            InternalEvents.RECEIVED_JACKPOT_POOLS_IN_GAME,
-            (data) => {
-
-                this.jackpotEnabled = data.length > 0;
-                this.receiviedJackpotPools = data;
-                this.initSlotBoard();
-                this.showJackpotInfo();
-                this.showHideTopWinnersButton();
-                this.lazyLoadResources();
-            },
-            this
-        );
-        super.onLoad();
-    }
-
     start() {
         this.loadLinePrefabs().then(() => {
             if (this.autoGenerateLines) {
@@ -64,10 +45,12 @@ export default class StandardJackpotSlotGameV2 extends StandardJackpotSlotGame {
         });
     }
 
-    private lazyLoadResources() {
+    protected override lazyLoadResources() {
         this.loadDelayedAudios();
         this.loadDelayedPrefabsByCode();
-        this.loadJackpotGamePrefab();
+        if (this.jackpotEnabled) {
+            this.loadJackpotGamePrefab();
+        }
     }
 
     private async loadLinePrefabs() {

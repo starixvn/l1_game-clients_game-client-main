@@ -26,12 +26,12 @@ export default class LobbyDialogManager {
     }
 
     onCloseDialog() {
+        this.isDialogOpened = false;
         if (this.queue.length > 0) {
             const { cb } = this.queue.shift();
             cb();
             this.isDialogOpened = true;
         }
-        this.isDialogOpened = false;
     }
 
     clearQueue() {

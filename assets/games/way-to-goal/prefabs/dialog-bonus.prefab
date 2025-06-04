@@ -574,7 +574,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -599,6 +598,10 @@
     "_enabled": true,
     "gameId": 49,
     "nameImage": "text-bonus-game",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -2830,6 +2833,10 @@
     "_enabled": true,
     "gameId": 49,
     "nameImage": "text-total-bonus-win",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "lazy-load-images",
     "_id": ""
   },
   {
@@ -3127,6 +3134,7 @@
     },
     "soundBigWin": null,
     "bonusItem": null,
+    "prefixPath": "",
     "_id": ""
   },
   {

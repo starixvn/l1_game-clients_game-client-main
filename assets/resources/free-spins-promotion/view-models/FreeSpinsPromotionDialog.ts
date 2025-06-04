@@ -22,16 +22,15 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
     @property(cc.Node)
     playLaterNode: cc.Node = null;
-    storageKey = "free-spins-promotion-dont-show-again";
 
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
         const isChecked = toggle.isChecked;
-        StorageManager.set(this.storageKey, { dontShowAgain: isChecked });
+        StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });
     }
     async start() {
-        const storage = StorageManager.get(this.storageKey);
+        const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
         if (storage && typeof storage.dontShowAgain === "boolean") {
             this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
         }
@@ -50,7 +49,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     closeDialog(enableSound = true) {
         const isChecked = this.dontShowAgainToggle?.isChecked;
         if (isChecked) {
-            StorageManager.set(this.storageKey, { dontShowAgain: true });
+            StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: true });
         }
         super.closeDialog(enableSound);
         LobbyDialogManager.getInstance().onCloseDialog();

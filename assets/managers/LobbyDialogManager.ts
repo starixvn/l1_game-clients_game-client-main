@@ -9,7 +9,6 @@ export default class LobbyDialogManager {
     }
 
     isDialogOpened = false;
-    name = "";
     queue: { cb: () => void; name: string }[] = [];
     isCleared = false;
     private currentDialogName = "";
@@ -47,11 +46,6 @@ export default class LobbyDialogManager {
     clearQueue() {
         this.queue = [];
         this.isDialogOpened = false;
-        this.name = "";
         this.isCleared = true;
-    }
-
-    reset() {
-        this.isCleared = false;
     }
 }

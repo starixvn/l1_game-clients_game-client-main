@@ -14,7 +14,6 @@ export default class FreeSpinsPromotionWebView extends LoadWebView {
         this.loadFreeSpinsPromotionSite();
         if (this.freeSpinsPromotionDialog) {
             this.freeSpinsPromotionDialog.addOnDidHide(() => {
-                freeSpinsPromotionHandler.onCloseFreeSpinsPromotionPopup();
                 this.node.destroy();
             });
         }

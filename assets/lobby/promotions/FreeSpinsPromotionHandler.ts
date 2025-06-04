@@ -5,7 +5,6 @@ import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
-import GameUtils from "../../common/GameUtils";
 import configs = require("../../configs/Configs");
 
 export const FreeSpinsPromotionEvents = {
@@ -29,6 +28,9 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         return this.instance;
     }
 
+    getStorageKey() {
+        return this.storageKey;
+    }
     onCloseFreeSpinsPromotionPopup() {
         sessionManager.setCheckedFreeSpinsPromotionFirstSso(true);
     }
@@ -43,7 +45,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.getFreeSpinsPromotionBanner();
         this.isDirectlyOpen = isDirectly;
     }
-    async getFreeSpinsPromotionBanner() {
+    getFreeSpinsPromotionBanner() {
         try {
             const storage = StorageManager.get(this.storageKey);
             if (

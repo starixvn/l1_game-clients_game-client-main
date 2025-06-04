@@ -255,21 +255,29 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         }
     }
     async showPromotionTournament() {
-        if (!this.promotionTournamentPrefab) {
-            await this.createPromotionTournamentPrefab();
-        }
+        try {
+            if (!this.promotionTournamentPrefab) {
+                await this.createPromotionTournamentPrefab();
+            }
 
-        const node = cc.instantiate(this.promotionTournamentPrefab);
-        this.addDialog(node);
+            const node = cc.instantiate(this.promotionTournamentPrefab);
+            this.addDialog(node);
+        } catch (error) {
+            cc.log("Failed to show Promotion Tournament dialog:", error);
+        }
     }
 
     async showFreeSpinsPromotion() {
-        if (!this.freeSpinsPromotionPrefab) {
-            await this.createFreeSpinsPromotionPrefab();
-        }
+        try {
+            if (!this.freeSpinsPromotionPrefab) {
+                await this.createFreeSpinsPromotionPrefab();
+            }
 
-        const node = cc.instantiate(this.freeSpinsPromotionPrefab);
-        this.addDialog(node);
+            const node = cc.instantiate(this.freeSpinsPromotionPrefab);
+            this.addDialog(node);
+        } catch (error) {
+            cc.log("Failed to show Free Spins Promotion dialog:", error);
+        }
     }
 
     async createBoostedOddsNode() {

@@ -32,7 +32,6 @@ export default class CenterBannerContainer extends cc.Component {
 
     onDestroy(): void {
         uiManager.removeListenersWithTarget(this);
-        LobbyDialogManager.getInstance().onCloseDialog();
     }
 
     async initCenterBanner() {

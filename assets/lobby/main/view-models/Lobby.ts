@@ -101,6 +101,7 @@ export default class Lobby extends cc.Component {
         window.isSSO = false;
         PromotionNotificationsHandler.getInstance().setJoinGameId(0);
         this.removeGameUIEvent();
+        LobbyDialogManager.getInstance().clearQueue();
     }
 
     async onLoad() {

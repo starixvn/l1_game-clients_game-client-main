@@ -61,7 +61,6 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         if (!sessionManager.getCheckedTournamentPromotionFirstSso()) {
             this.initializeTournamentPromotionFirstSso();
         }
-        LobbyDialogManager.getInstance().onCloseDialog();
     }
 
     async getPromotionTournament() {

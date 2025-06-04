@@ -17,7 +17,6 @@ export default class LobbyDialogManager {
         if (!this.isDialogOpened) {
             cbFunction();
             this.isDialogOpened = true;
-            this.name = name;
         } else {
             const alreadyQueued = this.queue.some((item) => item.name === name);
             if (!alreadyQueued) {

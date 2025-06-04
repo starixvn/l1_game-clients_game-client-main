@@ -13,13 +13,16 @@ export default class LobbyDialogManager {
     queue: { cb: () => void; name: string }[] = [];
     isCleared = false;
 
-    addDialog(cpFunction: () => void, name: string) {
-        if (!this.isDialogOpened || this.name === name) {
-            cpFunction();
+    addDialog(cbFunction: () => void, name: string) {
+        if (!this.isDialogOpened) {
+            cbFunction();
             this.isDialogOpened = true;
             this.name = name;
         } else {
-            this.queue.push({ cb: cpFunction, name: name });
+            const alreadyQueued = this.queue.some((item) => item.name === name);
+            if (!alreadyQueued) {
+                this.queue.push({ cb: cbFunction, name });
+            }
         }
     }
 
@@ -27,7 +30,7 @@ export default class LobbyDialogManager {
         if (this.queue.length > 0) {
             const { cb } = this.queue.shift();
             cb();
-            this.isDialogOpened = false;
+            this.isDialogOpened = true;
         }
         this.isDialogOpened = false;
     }

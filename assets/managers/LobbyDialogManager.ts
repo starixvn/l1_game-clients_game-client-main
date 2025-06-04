@@ -12,26 +12,36 @@ export default class LobbyDialogManager {
     name = "";
     queue: { cb: () => void; name: string }[] = [];
     isCleared = false;
+    private currentDialogName = "";
 
     addDialog(cbFunction: () => void, name: string) {
+        const isAlreadyHandled = this.currentDialogName === name || this.queue.some((item) => item.name === name);
+
+        if (isAlreadyHandled) {
+            return;
+        }
         if (!this.isDialogOpened) {
             cbFunction();
             this.isDialogOpened = true;
+            this.setDialogState(true, name);
         } else {
-            const alreadyQueued = this.queue.some((item) => item.name === name);
-            if (!alreadyQueued) {
-                this.queue.push({ cb: cbFunction, name });
-            }
+            this.queue.push({ cb: cbFunction, name });
         }
     }
 
     onCloseDialog() {
-        this.isDialogOpened = false;
+        this.setDialogState(false);
+
         if (this.queue.length > 0) {
-            const { cb } = this.queue.shift();
+            const { cb, name } = this.queue.shift();
             cb();
-            this.isDialogOpened = true;
+            this.setDialogState(true, name);
         }
+    }
+
+    private setDialogState(opened: boolean, name = "") {
+        this.isDialogOpened = opened;
+        this.currentDialogName = name;
     }
 
     clearQueue() {

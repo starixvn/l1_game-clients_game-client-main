@@ -39,3 +39,30 @@ unit_test_js:
 sonar_js:
     needs:
     dependencies:
+.sonar_js:
+  extends: .sonar_common
+  needs: ["unit_test_js"]
+  dependencies:
+    - unit_test_js
+  image:
+    name: $SONAR_SCANNER_CLI_IMAGE
+  before_script:
+    - !reference [.sonar_common, before_script]
+    - echo $SRC_PATH
+    - echo $TEST_PATH
+  script:
+    - sonar-scanner
+      -X
+      -Dsonar.host.url=$SONAR_HOST_URL
+      -Dsonar.token=$SONAR_TOKEN
+      -Dsonar.sourceEncoding=UTF-8
+      -Dsonar.qualitygate.wait=true
+      -Dsonar.projectKey=$PROJECT_NAME
+      -Dsonar.projectName="$SONAR_PROJECT_NAME"
+      -Dsonar.projectVersion="${CI_COMMIT_REF_NAME} ($CI_COMMIT_SHORT_SHA) [${CI_JOB_ID}]"
+      -Dproject.settings=./sonarqube.analysis.properties
+      -Dsonar.javascript.lcov.reportPaths=**/lcov.info
+      -Dsonar.sources=${SRC_PATH}
+      -Dsonar.tests=${TEST_PATH}
+      -Dsonar.test.inclusions=**/__tests__/**,**/*.test.ts,**/*.spec.tsx,**/*.spec.ts
+      -Dsonar.log.level=INFO | grep -E "ERROR|WARN|coverage"

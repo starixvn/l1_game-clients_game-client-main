@@ -65,3 +65,4 @@ sonar_js:
       -Dsonar.sources=${SRC_PATH}
       -Dsonar.tests=${TEST_PATH}
       -Dsonar.test.inclusions=**/__tests__/**,**/*.test.ts,**/*.spec.tsx,**/*.spec.ts
+      -Dsonar.log.level=INFO | grep -E "ERROR|WARN|coverage"

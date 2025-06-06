@@ -19,7 +19,9 @@ export const clearRoundData = (game: SevenUpDown) => () => {
 export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory) => {
     const hasRoundHistory = roundHistory.length > 0;
 
-    if (!hasRoundHistory || !game.resultComp || !game.md5Component) return;
+    if (!hasRoundHistory || !game.resultComp || !game.md5Component) {
+        return;
+    }
 
     const latestRound = roundHistory[0];
 
@@ -60,7 +62,6 @@ export const handleFirstLoadRoundHistory = (game: SevenUpDown) => (roundHistory)
     ) {
         game.md5Component.updateValue(rawValue);
         game.md5Component.setCaptionAndHintForMD5(true);
-        return;
     }
 };
 

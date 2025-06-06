@@ -194,6 +194,7 @@ export default class GameUtils {
     public static async asyncExecuteAbortSignal<T>(node: cc.Node, promiseValue: Promise<T>, abortSignal: AbortSignal): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             const errorMessage = "Node is not valid!";
+
             if (!node?.isValid || abortSignal.aborted) {
                 return reject(new Error(errorMessage));
             }
@@ -201,19 +202,19 @@ export default class GameUtils {
             // Listen for the abort signal to reject the promise if canceled
             abortSignal.addEventListener("abort", () => {
                 cc.warn("Operation cancelled");
-                reject(new Error(errorMessage));
+                return reject(new Error(errorMessage));
             });
 
             promiseValue
                 .then((result) => {
                     if (!node?.isValid || abortSignal.aborted) {
-                        reject(new Error(errorMessage));
-                    } else {
-                        resolve(result);
+                        return reject(new Error(errorMessage));
                     }
+                    return resolve(result);
                 })
                 .catch((err) => {
                     cc.warn("----asyncExecute----:", err);
+                    return reject(err);
                 });
         });
     }
@@ -924,7 +925,6 @@ export default class GameUtils {
                     chipStack.addChip(chipNode);
                     const chipConfig = GameUtils.addShadowFrameStack(firstChip, option.shadowFrame, chipNode, i);
                     firstChip = chipConfig.isFirstChip;
-                    chipNode = chipConfig.chip;
                 } else {
                     chipNode.position = cc.v3(lodash.random(-2, 2), node.childrenCount * (ChipParams.offset + ChipParams.offsetStack), 0);
                     node.addChild(chipNode);
@@ -1051,7 +1051,7 @@ export default class GameUtils {
 
     public static initSlotCountDownTimer(timer: AnimatedTime, duration: number, hideTimer: () => void) {
         if (!timer || !timer.node || !hideTimer) {
-            return;
+            return null;
         }
 
         timer.setAnimatedY(5, 0);

@@ -66,7 +66,7 @@ export default class Splash extends cc.Component {
         this.clearUIListeners();
     }
 
-    private async handleSplashScene() {
+    private async handleSplashScene(): Promise<void> {
         const urlParams = appManager.urlParams;
         const gameId = +urlParams.get("gameId");
         const params = urlParams.get("params");
@@ -79,7 +79,8 @@ export default class Splash extends cc.Component {
             if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
                 return;
             }
-            return this.loadToLobbyOrDirectGame();
+            this.loadToLobbyOrDirectGame();
+            return;
         }
 
         // Handle SSO game launch
@@ -103,7 +104,8 @@ export default class Splash extends cc.Component {
         // Handle reload from micro-site game
         const micrositeGameId = +SessionManager.getMicrositeGameId();
         if (!urlParams.has("token") && micrositeGameId > 0) {
-            return this.enableMicrositeGameIframe(micrositeGameId);
+            await this.enableMicrositeGameIframe(micrositeGameId);
+            return;
         }
 
         if (this.isReloadFromGatewayLobby()) {
@@ -112,6 +114,7 @@ export default class Splash extends cc.Component {
 
         // Default: load to lobby or direct game
         this.loadToLobbyOrDirectGame();
+        return;
     }
 
     isReloadFromGatewayLobby() {

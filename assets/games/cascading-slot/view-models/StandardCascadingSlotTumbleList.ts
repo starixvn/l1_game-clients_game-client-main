@@ -29,7 +29,9 @@ export default class StandardCascadingSlotTumbleList extends CascadingSlotTumble
 
     private updateMaskSprite(isTrialMode: boolean) {
         const mask = this.maskNode.getComponent(cc.Mask);
-        if (!mask.spriteFrame) return;
+        if (!mask.spriteFrame) {
+            return;
+        }
 
         const spriteFrameName = isTrialMode ? "tumble-win-mask-trial" : "tumble-win-mask-real";
         mask.spriteFrame = this.mainAtlas.getSpriteFrame(spriteFrameName);

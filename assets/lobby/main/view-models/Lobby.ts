@@ -30,7 +30,7 @@ import Header from "./Header";
 import LobbyCenter from "./LobbyCenter";
 import { themeResourceLoader } from "./theme/ResourceLoader";
 import LobbyManager from "./LobbyManager";
-import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../promotions/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler from "../../promotions/FreeSpinsPromotionHandler";
 import LobbyDialogManager from "../../../managers/LobbyDialogManager";
 
 const socketIOController = appContainer.get(SocketIOController);

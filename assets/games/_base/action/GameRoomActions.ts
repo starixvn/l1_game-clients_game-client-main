@@ -129,7 +129,7 @@ export const closeGame = (game: any) => () => {
                 return;
             }
 
-            // cc.director.loadScene("Lobby");
+
             const lobbyMenuConfig = appContainer.get(LobbyMenuConfig);
             const splashConfig = appContainer.get(SplashConfig);
             const loading = game?.loading?.getComponent(Loading);

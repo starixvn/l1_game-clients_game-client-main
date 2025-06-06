@@ -2,7 +2,7 @@ import EncryptUtils from "../utils/EncryptUtils";
 
 class UrlParamsService {
     private static instance: UrlParamsService;
-    private paramsCache: Map<string, any> = new Map();
+    private readonly paramsCache: Map<string, any> = new Map();
 
     public static getInstance(): UrlParamsService {
         if (!UrlParamsService.instance) {

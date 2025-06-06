@@ -60,6 +60,7 @@ import MD5Component from "./view-models/MD5Component";
 import RebetButton from "./view-models/RebetButton";
 import SocketIOGameHistoryBase from "./view-models/SocketIOGameHistoryBase";
 import ProvablyFairComponent from "./view-models/provably-fair/ProvablyFairComponent";
+import { IGameBaseMd5Handler } from "./handlers/interfaces";
 
 const { ccclass, property } = cc._decorator;
 
@@ -188,7 +189,7 @@ export default class GameBase extends GameViewBase implements IGameBase {
     public logsHandler: DataHandler;
     public finishHandler: DataHandler;
     public configsHandler: DataHandler;
-    public md5Handler: DataHandler;
+    public md5Handler: IGameBaseMd5Handler;
     public provablyFairHandler: DataHandler;
     public oddsHandler: DataHandler;
 

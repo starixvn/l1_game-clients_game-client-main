@@ -1,9 +1,7 @@
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { StorageManager } from "../../../managers/StorageManager";
 import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { TrackingEvent } from "../../../analytics/AnalyticsManager";
-import AnalyticsManager from "../../../analytics/AnalyticsManager";
-import { TrackingAction } from "../../../analytics/AnalyticsManager";
+import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import LobbyDialogManager from "../../../managers/LobbyDialogManager";

@@ -16,5 +16,9 @@ export default class FanTanBigRoad extends ExtendedGameLogControl {
     @property(cc.Label)
     percentFan: cc.Label = null;
 
-    setPercentFan(data: any) {}
+    setPercentFan(data: any) {
+        if (this.percentFan) {
+            this.percentFan.string = data.toString();
+        }
+    }
 }

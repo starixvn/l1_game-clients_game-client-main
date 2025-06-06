@@ -66,15 +66,11 @@ export default class DynamicAudios extends GameAudios {
     protected async getAudioClip(id: string) {
         const audioValue = this.audioConfig[id];
         if (!audioValue) {
-            return;
+            return null;
         }
 
         const { audioClip } = await this.loadAssets(audioValue, id);
-
-        if (audioClip) {
-            return audioClip;
-        }
-        return null;
+        return audioClip ?? null;
     }
 
     protected loadAssets = async (audioValue: TAudioValue, soundId: string): Promise<{ audioClip: cc.AudioClip | null }> => {

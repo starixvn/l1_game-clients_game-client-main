@@ -33,21 +33,27 @@ export default class HtmlSiteSprite extends cc.Component {
             return;
         }
         this.sprite = this.getComponent(cc.Sprite);
+        if (!this.sprite) {
+            cc.error('No Sprite component found!');
+            return;
+        }
 
         try {
             const fileName = this.getFileName();
             const url = this.getUrl(fileName, this.versionId);
-            const imageAsset = (await GameUtils.loadRemote(url)) as cc.Texture2D;
+            const imageAsset = (await GameUtils.loadRemote(url));
             if (!isValidNode(this)) {
                 return;
             }
-            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
+            const spriteFrameTmp = new cc.SpriteFrame(imageAsset as cc.Texture2D);
             this.sprite.spriteFrame = spriteFrameTmp;
             if (this.originalSize) {
                 this.sprite.sizeMode = cc.Sprite.SizeMode.RAW;
             }
             this.sprite.type = this.type;
-        } catch (e) {}
+        } catch (e) {
+            cc.log(`Error loading sprite: ${e}`);
+        }
     }
 
     protected getFileName() {

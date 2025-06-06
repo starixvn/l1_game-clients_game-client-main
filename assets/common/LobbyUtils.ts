@@ -218,10 +218,9 @@ export default class LobbyUtils {
         };
         const updateProgress = () => {
             const values = Object.values(progressInfo);
-            const finish = values.reduce((pre, cur) => (pre += cur?.finish || 0), 0);
+            const finish = values.reduce((pre, cur) => pre + (cur?.finish || 0), 0);
             const fakeTotal = 300;
-            const total = values.some((cur) => cur.total === 0) ? fakeTotal : values.reduce((pre, cur) => (pre += cur.total), 0);
-            // cc.log(`updateProgress ${finish}/`, total);
+            const total = values.some((cur) => cur.total === 0) ? fakeTotal : values.reduce((pre, cur) => pre + cur.total, 0);
             onProgress(finish, total);
         };
 

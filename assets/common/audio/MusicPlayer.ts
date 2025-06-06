@@ -53,8 +53,8 @@ export default class MusicPlayer {
     };
 
     protected remoteAudioConfigs: TAudioConfigs = null;
-    private defaultListSong = ["SC1/song1", "SC1/song2", "SC1/song3", "SC1/song4", "SC1/song5", "SC1/song6", "SC1/song7"];
-    private remoteBgMusicPrefix = "remoteBgMusic";
+    private readonly defaultListSong = ["SC1/song1", "SC1/song2", "SC1/song3", "SC1/song4", "SC1/song5", "SC1/song6", "SC1/song7"];
+    private readonly remoteBgMusicPrefix = "remoteBgMusic";
 
     public static getInstance(): MusicPlayer {
         if (!this.instanceMusic) {
@@ -247,8 +247,8 @@ export default class MusicPlayer {
     protected async getRemoteSoundConfigs() {
         try {
             const configUrl = `${this.getRemoteSoundPath()}/info.json?v=${Date.now()}`;
-            const jsonAsset = (await GameUtils.loadRemote(configUrl)) as cc.JsonAsset;
-            this.remoteSoundConfigs = (jsonAsset?.json as IRemoteSoundConfigs) ?? null;
+            const jsonAsset = await GameUtils.loadRemote(configUrl);
+            this.remoteSoundConfigs = (jsonAsset as IRemoteSoundConfigs) ?? null;
         } catch (error) {
             cc.log("Get config remote sounds failed!");
         }
@@ -257,8 +257,8 @@ export default class MusicPlayer {
     protected async getRemoteAudioConfig() {
         try {
             const configUrl = `${this.getRemoteSoundPath()}/${this.remoteSoundConfigs.defaultTheme}/info.json?v=${Date.now()}`;
-            const jsonAsset = (await GameUtils.loadRemote(configUrl)) as cc.JsonAsset;
-            this.remoteAudioConfigs = (jsonAsset?.json as TAudioConfigs) ?? null;
+            const jsonAsset = await GameUtils.loadRemote(configUrl);
+            this.remoteAudioConfigs = (jsonAsset as TAudioConfigs) ?? null;
         } catch (error) {
             cc.log("Get remote audio config failed!");
         }

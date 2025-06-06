@@ -8,7 +8,7 @@ import EncryptUtils from "../../common/utils/EncryptUtils";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import configs = require("../../configs/Configs");
-import LobbyDialogManager from "../../managers/LobbyDialogManager";
+
 export const PromotionTournamentEvents = {
     OPEN_PROMOTION_TOURNAMENT: "OPEN_PROMOTION_TOURNAMENT",
     OPEN_PROMOTION_TOURNAMENT_BY_ICON: "OPEN_PROMOTION_TOURNAMENT_BY_ICON",
@@ -70,26 +70,31 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
         }
     }
 
-    async checkTournamentPromotionsBeforeSignIn() {
+    async checkTournamentPromotionsBeforeSignIn(): Promise<void> {
         try {
             if (configs.systemType.toUpperCase() === "SC1" || sessionManager.getCheckedTournamentPromotionFirstSso()) {
-                return this.emitSignInEvent();
+                this.emitSignInEvent();
+                return;
             }
 
             const existNewOrRunningPromotionTournament = await this.getPromotionData(
                 endpointConstants.existNewOrRunningTournamentPromotion
             );
 
-            existNewOrRunningPromotionTournament
-                ? this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT)
-                : this.initializeTournamentPromotionFirstSso();
+            if (existNewOrRunningPromotionTournament) {
+                this.emit(PromotionTournamentEvents.OPEN_PROMOTION_TOURNAMENT);
+            } else {
+                this.initializeTournamentPromotionFirstSso();
+            }
+            return;
         } catch (error) {
             this.emitSignInEvent();
+            return;
         }
     }
 
     async isExistPromotionTournament() {
-        return await this.getPromotionData(endpointConstants.existTournamentPromotionNotification);
+        return this.getPromotionData(endpointConstants.existTournamentPromotionNotification);
     }
 
     toggleIcon(isActive: boolean) {

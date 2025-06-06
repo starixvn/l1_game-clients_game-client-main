@@ -24,7 +24,7 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     public listMultiplierOrigin = [];
     public multiplierValue = 0;
     private multiplierTween: cc.Tween = null;
-    private lastMultiplierTween: cc.Tween = null;
+    private readonly lastMultiplierTween: cc.Tween = null;
 
     onDisable() {
         this.multiplierTween?.stop();
@@ -113,22 +113,25 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
         this.nodeMultiplier.scale = 1;
     }
 
-    generateRandomMultipliers() {
+    generateRandomMultipliers(): number[] {
         if (!this.listMultiplierOrigin || this.listMultiplierOrigin.length === 0) {
-            return;
+            return [];
         }
-        let listMultiplier = [];
 
+        let listMultiplier: number[] = [];
         const reverseList = this.listMultiplierOrigin.slice().reverse();
         const length = this.listMultiplierOrigin.length;
         const mod = this.MULTIPLIER_NUMBER % length;
         const countLoop = Math.floor(this.MULTIPLIER_NUMBER / length);
+
         for (let i = 0; i < countLoop; i++) {
             listMultiplier = [...listMultiplier, ...reverseList];
         }
+
         if (mod > 0) {
             listMultiplier = [...listMultiplier, ...reverseList.slice(0, mod)];
         }
+
         return listMultiplier;
     }
 }

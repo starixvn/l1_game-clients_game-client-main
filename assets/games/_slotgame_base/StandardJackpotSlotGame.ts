@@ -115,7 +115,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
         super.handleGameGuide(guide, language, minBet, maxBet, isInPromotionTime);
     }
 
-    protected async showJackpotGame(prizes: number) {
+    protected async showJackpotGame(prizes: number): Promise<void> {
         try {
             if (!this.jackpotGamePrefab) {
                 await this.loadJackpotGamePrefab();
@@ -141,6 +141,7 @@ export default class StandardJackpotSlotGame extends StandardSlotGame {
             });
         } catch (error) {
             cc.warn("Error when show jackpot game", error);
+            return Promise.resolve();
         }
     }
 

@@ -87,7 +87,7 @@ export default class DummyRoom extends BaseComponent {
     }
 
     loadRandomBackground() {
-        const randomBg = Math.ceil(Math.random() * this.backgroundCount);
+        const randomBg = Math.floor(Math.random() * this.backgroundCount) + 1;
         const spriteName = `dummy-room/background/bg-${randomBg}`;
         cc.resources.load<cc.SpriteFrame>(spriteName, cc.SpriteFrame, (err, frame) => {
             if (err) {

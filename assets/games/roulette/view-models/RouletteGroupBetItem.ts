@@ -16,7 +16,6 @@ export default class RouletteGroupBetItem extends CustomButton {
     @property(cc.Node)
     winning: cc.Node = null;
 
-    private selectedNumbers: number[] = [];
     private originFrame: cc.SpriteFrame;
 
     private readonly UN_HIGHLIGHTED_TAG = 1;
@@ -28,7 +27,10 @@ export default class RouletteGroupBetItem extends CustomButton {
     };
 
     getNumbers(): number[] {
-        return this.selectedNumbers;
+        return this.numbers
+        .split(",")
+        .map(i => parseInt(i.trim()))
+        .filter(n => !isNaN(n));
     }
 
     onLoad() {
@@ -38,12 +40,11 @@ export default class RouletteGroupBetItem extends CustomButton {
             this.originFrame = this.winning.getComponent(cc.Sprite).spriteFrame;
         }
 
-        this.selectedNumbers = this.numbers.split(",").map((i) => +i);
         this.callback.highlight = (highlight) => {
-            this.groupBetItemCallback.highlight(highlight, this.selectedNumbers);
+            this.groupBetItemCallback.highlight(highlight, this.getNumbers());
             highlight ? this.showHighlight() : this.clearHighlight();
         };
-        this.callback.selected = () => this.groupBetItemCallback.selected(this.betType, this.selectedNumbers);
+        this.callback.selected = () => this.groupBetItemCallback.selected(this.betType, this.getNumbers());
 
         this.clearHighlight();
         this.hideWinning();
@@ -75,7 +76,8 @@ export default class RouletteGroupBetItem extends CustomButton {
         if (this.winning) {
             this.winning.active = animated;
         }
-        const sprite = this.winning.getComponent(cc.Sprite);
+        const sprite = this.winning?.getComponent(cc.Sprite);
+        if (!sprite) return;
         sprite.spriteFrame = this.originFrame;
         if (animated) {
             const sequence = cc.sequence(cc.fadeOut(0.2), cc.fadeIn(0.2));

@@ -1,12 +1,13 @@
-import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
-import * as sessionManager from "../../../common/auth/SessionManager";
-import GameUtils from "../../../common/GameUtils";
+import { StorageManager } from "../../../managers/StorageManager";
 import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import LobbyDialogManager from "../../../managers/LobbyDialogManager";
-import { StorageManager } from "../../../managers/StorageManager";
+import * as sessionManager from "../../../common/auth/SessionManager";
+import { appManager } from "../../../managers/AppManager";
+import GameUtils from "../../../common/GameUtils";
 
 const { ccclass, property } = cc._decorator;
 
@@ -56,6 +57,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     playGameNow() {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
+        appManager.hasShowedCenterBanner = true;
         const gameId = freeSpinsPromotionHandler.getGameId();
         sessionManager.setCheckedTournamentPromotionFirstSso(true);
         if (!gameId) {

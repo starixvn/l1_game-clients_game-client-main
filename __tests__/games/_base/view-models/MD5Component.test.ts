@@ -183,7 +183,11 @@ describe("Test class MD5Component", () => {
             };
             jest.spyOn(md5Comp, "setCaptionAndHintForMD5");
             jest.spyOn(md5Comp, "generateMD5Result");
-            jest.spyOn(md5Comp, "setCopyString");
+            jest.spyOn(md5Component, "setCopyString");
+            Object.defineProperty(md5Component.node, "isValid", {
+                get: () => true,
+                configurable: true
+            });
             // Act
             md5Component.updateMD5Data(data);
 

@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 
 import { getLowercaseObjectKeys } from "../../../common/helpers/ObjectHelper";
-import { IGameBase } from "../IGameBase";
+import IGameBase from "../IGameBase";
 import RoomPlayer from "../view-models/RoomPlayer";
 import DataHandler from "./DataHandler";
 

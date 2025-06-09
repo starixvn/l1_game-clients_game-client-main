@@ -31,11 +31,3 @@ bundle-verification:
           when: always
         - when: never
     allow_failure: false
-unit_test_js:
-    before_script:
-        - echo "run before test"
-    script:
-        - echo "run test"
-sonar_js:
-    needs:
-    dependencies:

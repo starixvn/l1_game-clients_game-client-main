@@ -177,8 +177,8 @@ describe("Test class MD5Component", () => {
         it("Case 1: updateMD5Data ", () => {
             // Arrange
             const data = {
-                hashValue: "",
-                rawValue: "",
+                hashValue: "a",
+                rawValue: "b",
                 extraInfos: {}
             };
             jest.spyOn(md5Comp, "setCaptionAndHintForMD5");

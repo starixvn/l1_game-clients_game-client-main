@@ -1,4 +1,5 @@
 import GameUtils from "../../assets/common/GameUtils";
+import { shortenName } from "../../assets/common/helpers/NicknameHelper";
 import { numberWithCommas } from "../../assets/common/helpers/NumberHelper";
 import { userManager } from "../../assets/common/user/UserManager";
 import JackpotWinner from "../../assets/mini-games-panel/view-models/JackpotWinner";
@@ -97,7 +98,7 @@ describe("JackpotWinner", () => {
             });
             it("should display username", () => {
                 // Assert
-                expect(comp.username.string).toMatch(data.winnerName);
+                expect(comp.username.string).toMatch(shortenName(data.winnerName));
             });
             it("should display amount", () => {
                 // Assert

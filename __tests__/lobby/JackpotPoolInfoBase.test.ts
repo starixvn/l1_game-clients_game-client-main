@@ -63,12 +63,12 @@ describe("JackpotPoolInfoBase", () => {
                     {
                         amount: 5625,
                         gameId: 199,
-                        pool: 1
+                        pool: "pool1"
                     },
                     {
                         amount: 56250,
                         gameId: 199,
-                        pool: 10
+                        pool: "pool2"
                     }
                 ];
                 const setDataSpy = jest.spyOn(JackpotPoolItem.prototype, "setData");
@@ -89,17 +89,17 @@ describe("JackpotPoolInfoBase", () => {
                 {
                     amount: 5625,
                     gameId: 199,
-                    pool: 1
+                    pool: "pool1"
                 },
                 {
                     amount: 56250,
                     gameId: 199,
-                    pool: 10
+                    pool: "pool2"
                 },
                 {
                     amount: 250000,
                     gameId: 199,
-                    pool: 50
+                    pool: "pool3"
                 }
             ];
             const pool1Node = new cc.Node();

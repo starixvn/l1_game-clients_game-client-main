@@ -111,30 +111,34 @@ export default class HoldemPokerChips extends cc.Component {
                 const stackObj = GameUtils.isChipStack(totalAmount, betChips, nodeTmp);
 
                 if (stackObj.isStack) {
-                    const chipTotal = stackObj.chipTotal;
-                    const nodeArr = [];
-                    const values = stackObj.chipValues;
-                    const keys = Object.keys(values).sort((a, b) => +b - +a);
-                    keys.forEach((chip) => {
-                        const count = values[chip];
-                        for (let i = 0; i < count; i++) {
-                            nodeArr.push(chip);
-                        }
-                    });
-                    for (let i = 0; i < nodeTmp.childrenCount; i++) {
-                        const chipCurr = nodeTmp.children[i];
-                        if (i < chipTotal) {
-                            const chipView = chipCurr.getComponent(ChipView);
-                            chipView?.setColor(this.chipConfig.getChipColor(nodeArr[i]));
-                            chipView?.setValue(nodeArr[i]);
-                        } else {
-                            chipCurr.destroy();
-                        }
-                    }
+                    this.generateStackChips(stackObj, nodeTmp);
                 }
             })
             .start();
         HoldemPokerChips.shakeChipAnim(propertiesChip, chipFly);
+    }
+
+    private generateStackChips(stackObj: { isStack: boolean; chipValues: any; chipTotal: number }, nodeTmp: cc.Node) {
+        const chipTotal = stackObj.chipTotal;
+        const nodeArr = [];
+        const values = stackObj.chipValues;
+        const keys = Object.keys(values).sort((a, b) => +b - +a);
+        keys.forEach((chip) => {
+            const count = values[chip];
+            for (let i = 0; i < count; i++) {
+                nodeArr.push(chip);
+            }
+        });
+        for (let i = 0; i < nodeTmp.childrenCount; i++) {
+            const chipCurr = nodeTmp.children[i];
+            if (i < chipTotal) {
+                const chipView = chipCurr.getComponent(ChipView);
+                chipView?.setColor(this.chipConfig.getChipColor(nodeArr[i]));
+                chipView?.setValue(nodeArr[i]);
+            } else {
+                chipCurr.destroy();
+            }
+        }
     }
 
     public showWinningOption(

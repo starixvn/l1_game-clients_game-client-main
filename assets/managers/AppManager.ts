@@ -232,6 +232,10 @@ class AppManager {
             window.isUserGesture = params.isUserGesture;
         }
 
+        this.handleForAudioSetting(params);
+    }
+
+    private handleForAudioSetting(params: ISessionParams) {
         if (params?.sfxEnable !== undefined) {
             AudioManager.getInstance().sfxEnabled = params?.sfxEnable;
         }

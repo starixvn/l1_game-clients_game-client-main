@@ -91,6 +91,37 @@ export const outRoomGame = (game: any) => () => {
     });
 };
 
+const handleGoToOtherScene = (game: any, isDirectMode: boolean, isGameShow: boolean) => {
+    if (isDirectMode) {
+        if (isGameShow && game?.closeGameByClick) {
+            appManager.backToOperatorLobby();
+        } else if (!game.openOtherScene) {
+            cc.director.loadScene("Splash");
+        }
+    } else {
+        uiManager.isPauseLoadingIcons = false;
+        const gameId = game.gameId;
+        if (isGatewayGame(gameId)) {
+            cc.log("Open gateway lobby from game V2");
+            const gameConfiguration = getGameConfiguration(gameId);
+            const mainId = gameConfiguration.gateway?.id;
+            GameUtils.openSocketGatewayGame(mainId, game.currentMiniPanel.socketIOController);
+            appManager.clearSSOGameId();
+            return;
+        }
+
+        const lobbyMenuConfig = appContainer.get(LobbyMenuConfig);
+        const splashConfig = appContainer.get(SplashConfig);
+        const loading = game?.loading?.getComponent(Loading);
+        const onProgress = loading
+            ? (completed, total) => {
+                  loading.onProgress(completed, total);
+              }
+            : null;
+        LobbyUtils.gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig);
+    }
+};
+
 export const closeGame = (game: any) => () => {
     if (game.closingGameRoom || !game.node.activeInHierarchy) {
         return;
@@ -111,35 +142,7 @@ export const closeGame = (game: any) => () => {
             sessionManager.removeInRoomGameId();
         }
 
-        if (isDirectMode) {
-            if (isGameShow && game?.closeGameByClick) {
-                appManager.backToOperatorLobby();
-            } else if (!game.openOtherScene) {
-                cc.director.loadScene("Splash");
-            }
-        } else {
-            uiManager.isPauseLoadingIcons = false;
-            const gameId = game.gameId;
-            if (isGatewayGame(gameId)) {
-                cc.log("Open gateway lobby from game V2");
-                const gameConfiguration = getGameConfiguration(gameId);
-                const mainId = gameConfiguration.gateway?.id;
-                GameUtils.openSocketGatewayGame(mainId, game.currentMiniPanel.socketIOController);
-                appManager.clearSSOGameId();
-                return;
-            }
-
-
-            const lobbyMenuConfig = appContainer.get(LobbyMenuConfig);
-            const splashConfig = appContainer.get(SplashConfig);
-            const loading = game?.loading?.getComponent(Loading);
-            const onProgress = loading
-                ? (completed, total) => {
-                      loading.onProgress(completed, total);
-                  }
-                : null;
-            LobbyUtils.gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig);
-        }
+        handleGoToOtherScene(game, isDirectMode, isGameShow);
     });
 };
 

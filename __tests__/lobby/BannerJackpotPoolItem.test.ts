@@ -37,7 +37,7 @@ describe("BannerJackpotPoolItem", () => {
 
         it("should display pool amount", () => {
             // Arrange
-            const expectAmount = numberWithCommas(GameUtils.getValueByCurrency(data.amount), 2);
+            const expectAmount = numberWithCommas(GameUtils.getValueByCurrency(data.amount), 2, false);
 
             // Act
             comp.setData(data);

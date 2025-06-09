@@ -1,3 +1,4 @@
+import GameUtils from "../../../assets/common/GameUtils";
 import { getStringHourByTime } from "../../../assets/common/helpers/DateTimeHelper";
 import { shortenName } from "../../../assets/common/helpers/NicknameHelper";
 import { numberWithCommas } from "../../../assets/common/helpers/NumberHelper";
@@ -27,12 +28,14 @@ describe("Test class BalancedBettingPoolBetItemBase", () => {
             const rate = 1;
             const data = {
                 amount: 15,
+                baseAmount: 15,
                 betwin: 0,
                 choice: "small",
                 memberId: 6001,
                 name: "lele6001",
                 phien: 741687,
                 refund: 15,
+                baseRefund: 15,
                 siteId: "4100300",
                 thanhtoan: true,
                 time: "2021-09-20T08:21:54.635Z",
@@ -41,7 +44,7 @@ describe("Test class BalancedBettingPoolBetItemBase", () => {
             };
 
             // Act
-            comp.setData(data, rate, 1, 0);
+            comp.setData(data, rate, 1);
 
             // Assert
             const isLoginUser = userManager.isLoginUser(data.name);
@@ -49,8 +52,10 @@ describe("Test class BalancedBettingPoolBetItemBase", () => {
             expect(comp.highlight.active).toEqual(isLoginUser);
             expect(comp.time.string).toMatch(getStringHourByTime(data.time));
             expect(comp.username.string).toMatch(userName);
-            expect(comp.betAmount.string).toMatch(numberWithCommas(data.amount, 2));
-            expect(comp.refund.string).toMatch(numberWithCommas(data.refund, 2));
+            const convertValue = GameUtils.getTicketValueByCurrency(data.amount, rate);
+            expect(comp.betAmount.string).toMatch(numberWithCommas(convertValue, 2));
+            const convertRefund = GameUtils.getTicketValueByCurrency(data.refund, rate);
+            expect(comp.refund.string).toMatch(numberWithCommas(convertRefund, 2));
         });
     });
 });

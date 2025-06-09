@@ -37,7 +37,7 @@ describe("JackpotPoolInfoBase", () => {
                 const setDataSpy = jest.spyOn(JackpotPoolItem.prototype, "setData");
 
                 // Act
-                comp.setData(data);
+                comp.setData(data, false);
 
                 // Assert
                 expect(setDataSpy).not.toHaveBeenCalled();
@@ -74,7 +74,7 @@ describe("JackpotPoolInfoBase", () => {
                 const setDataSpy = jest.spyOn(JackpotPoolItem.prototype, "setData");
 
                 // Act
-                comp.setData(poolData);
+                comp.setData(poolData, false);
 
                 // Assert
                 expect(setDataSpy).not.toHaveBeenCalled();
@@ -121,7 +121,7 @@ describe("JackpotPoolInfoBase", () => {
                 ];
 
                 // Act
-                comp.setData(poolData);
+                comp.setData(poolData, false);
             });
 
             it("should call call setData of JackpotPoolItem", () => {

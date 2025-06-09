@@ -113,7 +113,7 @@ describe("JackpotTopWinnersItem", () => {
             comp["setAmount"](amount);
 
             // Assert
-            expect(comp.amount.string).toEqual(numberWithCommas(amount, 2));
+            expect(comp.amount.string).toEqual(numberWithCommas(amount, 2, false));
         });
     });
 

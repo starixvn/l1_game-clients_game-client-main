@@ -19,7 +19,7 @@ export default class JackpotPoolInfoBase extends cc.Component {
 
         // sort jackpot pools descending
         const sortedData = [...data].sort((a, b) => {
-            return +JackpotPoolType[b.pool.toUpperCase()] - +JackpotPoolType[a.pool.toUpperCase()];
+            return +JackpotPoolType[b.pool] - +JackpotPoolType[a.pool];
         });
 
         this.items.forEach((item, index) => {

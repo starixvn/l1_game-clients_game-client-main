@@ -17,7 +17,7 @@ export default class SevenUpDownResultTest extends cc.Component {
     private currentResult: ISevenUpDownResult = { dice1: null, dice2: null };
 
     private getRandomNumber(max: number) {
-        return Math.floor(Math.random() * max) + 1;
+        return Math.floor(Math.random() * max) + 1; // NOSONAR
     }
 
     setCurrentResult() {

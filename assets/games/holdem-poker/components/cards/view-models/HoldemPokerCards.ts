@@ -171,7 +171,7 @@ export default class HoldemPokerCards extends cc.Component {
     }
 
     protected randomRotation(): number {
-        return Math.floor(Math.random() * 10);
+        return Math.floor(Math.random() * 10); // NOSONAR
     }
 
     protected showIndicatorCard(

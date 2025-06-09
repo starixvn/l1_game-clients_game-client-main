@@ -59,7 +59,7 @@ export default class ChineseBlackjackPFComponent extends ProvablyFairComponent {
     }
 
     private getRandomClientSeed() {
-        return Math.floor(Math.random() * (this.clientSeedMax - this.clientSeedMin + 1)) + this.clientSeedMin;
+        return Math.floor(Math.random() * (this.clientSeedMax - this.clientSeedMin + 1)) + this.clientSeedMin; // NOSONAR
     }
 
     setClientSeedUIState(isEnable: boolean) {

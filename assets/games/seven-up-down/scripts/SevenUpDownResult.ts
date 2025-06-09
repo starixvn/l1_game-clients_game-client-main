@@ -111,7 +111,7 @@ export default class SevenUpDownResult extends cc.Component {
     }
 
     private getRandomNumber(max: number): number {
-        return Math.floor(Math.random() * max) + 1;
+        return Math.floor(Math.random() * max) + 1; // NOSONAR
     }
 
     private setResultDiceFrames(prevResult: ISevenUpDownResult, result: ISevenUpDownResult) {

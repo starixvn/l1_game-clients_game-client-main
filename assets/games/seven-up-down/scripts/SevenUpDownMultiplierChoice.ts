@@ -24,11 +24,9 @@ export default class SevenUpDownMultiplierChoice extends cc.Component {
     public listMultiplierOrigin = [];
     public multiplierValue = 0;
     private multiplierTween: cc.Tween = null;
-    private readonly lastMultiplierTween: cc.Tween = null;
 
     onDisable() {
         this.multiplierTween?.stop();
-        this.lastMultiplierTween?.stop();
     }
 
     async showMultiplier(animated: boolean) {

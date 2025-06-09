@@ -86,10 +86,8 @@ export default class PromotionTournamentHandler extends EventEmitterBase {
             } else {
                 this.initializeTournamentPromotionFirstSso();
             }
-            return;
         } catch (error) {
             this.emitSignInEvent();
-            return;
         }
     }
 

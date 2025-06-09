@@ -13,7 +13,7 @@ export default class KenoUserHistory extends SocketIOGameHistoryBase {
     bindItemRowData(betLog, index) {
         const historyItemPrefab = cc.instantiate(this.itemPrefab);
         const item = historyItemPrefab.getComponent(KenoUserHistoryItem);
-        item.init(this);
+        item.initMain(this);
         item.setData(betLog, index);
         this.content.addChild(historyItemPrefab);
     }

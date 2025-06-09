@@ -18,7 +18,7 @@ export default class MegaKenoHistoryItem extends MultiplayGameHistoryItem {
     public betLogDetails: any[];
     private main: MegaKenoHistory;
 
-    init(main: MegaKenoHistory) {
+    initMain(main: MegaKenoHistory) {
         this.main = main;
     }
 

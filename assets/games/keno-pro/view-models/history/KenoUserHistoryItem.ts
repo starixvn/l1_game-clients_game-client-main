@@ -16,7 +16,7 @@ export default class KenoUserHistoryItem extends KenoHistoryItem {
     public settlementResult: any;
     private main: KenoUserHistory;
 
-    public init(main: KenoUserHistory): void {
+    public initMain(main: KenoUserHistory): void {
         this.main = main;
     }
 

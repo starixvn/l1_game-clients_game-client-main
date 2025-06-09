@@ -2,16 +2,7 @@ import { i18n } from "../../../../ClientModules";
 import GameUtils from "../../../../common/GameUtils";
 import NewDropDownOption from "../../../../common/new-drop-down-list/view-models/NewDropDownOption";
 import DropdownListMultiplayGameHistory from "../../../multiplay/scripts/DropdownListMultiplayGameHistory";
-import {
-    MegaKeno1Id,
-    MegaKeno2Id,
-    MegaKeno3Id,
-    MegaKeno4Id,
-    MegaKeno5Id,
-    MegaKeno6Id,
-    MegaKeno7Id,
-    MegaKeno8Id,
-} from "../MegaKenoConfig";
+import { MegaKeno1Id, MegaKeno2Id, MegaKeno3Id, MegaKeno4Id, MegaKeno5Id, MegaKeno6Id, MegaKeno7Id, MegaKeno8Id } from "../MegaKenoConfig";
 import MegaKenoHistoryDetail from "./MegaKenoHistoryDetail";
 import MegaKenoHistoryItem from "./MegaKenoHistoryItem";
 
@@ -40,7 +31,7 @@ export default class MegaKenoHistory extends DropdownListMultiplayGameHistory {
         super.bindItemRowData(betLog, index);
         const node = cc.instantiate(this.itemPrefab);
         const item = node.getComponent(MegaKenoHistoryItem);
-        item.init(this);
+        item.initMain(this);
         item.setData(betLog, index);
         this.content.addChild(node);
     }

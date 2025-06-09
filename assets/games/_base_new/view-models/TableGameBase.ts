@@ -14,7 +14,7 @@ import {
     hanleAddPlayer,
     removePlayer,
     updateOtherPlayersBalance,
-    updateTablePlayer,
+    updateTablePlayer
 } from "../actions/CommonTableGameAction";
 import { clearChipsForLostChoices, resetUIAndClearChips } from "../actions/NewPayChipsAction";
 import { BetModel } from "../models/BetModel";
@@ -244,7 +244,7 @@ export default class TableGameBase extends MiniGameBase implements TableGameBase
         return this.gameData.settlement.status;
     }
 
-    protected override showPayoutForLoginPlayer(mainRoomGame: TableGameBaseInterface) {
+    override showPayoutForLoginPlayer(mainRoomGame: TableGameBaseInterface) {
         mainRoomGame.gameData.settlement.showStatus();
     }
 }

@@ -196,25 +196,27 @@ export default class GameUtils {
             const errorMessage = "Node is not valid!";
 
             if (!node?.isValid || abortSignal.aborted) {
-                return reject(new Error(errorMessage));
+                reject(new Error(errorMessage));
+                return;
             }
 
             // Listen for the abort signal to reject the promise if canceled
             abortSignal.addEventListener("abort", () => {
                 cc.warn("Operation cancelled");
-                return reject(new Error(errorMessage));
+                reject(new Error(errorMessage));
             });
 
             promiseValue
                 .then((result) => {
                     if (!node?.isValid || abortSignal.aborted) {
-                        return reject(new Error(errorMessage));
+                        reject(new Error(errorMessage));
+                        return;
                     }
-                    return resolve(result);
+                    resolve(result);
                 })
                 .catch((err) => {
                     cc.warn("----asyncExecute----:", err);
-                    return reject(err);
+                    reject(err);
                 });
         });
     }

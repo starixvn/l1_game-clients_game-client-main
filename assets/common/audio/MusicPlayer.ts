@@ -247,8 +247,8 @@ export default class MusicPlayer {
     protected async getRemoteSoundConfigs() {
         try {
             const configUrl = `${this.getRemoteSoundPath()}/info.json?v=${Date.now()}`;
-            const jsonAsset = await GameUtils.loadRemote(configUrl);
-            this.remoteSoundConfigs = (jsonAsset as IRemoteSoundConfigs) ?? null;
+            const jsonAsset = await GameUtils.loadRemote<cc.JsonAsset>(configUrl);
+            this.remoteSoundConfigs = (jsonAsset?.json as IRemoteSoundConfigs) ?? null;
         } catch (error) {
             cc.log("Get config remote sounds failed!");
         }
@@ -257,8 +257,8 @@ export default class MusicPlayer {
     protected async getRemoteAudioConfig() {
         try {
             const configUrl = `${this.getRemoteSoundPath()}/${this.remoteSoundConfigs.defaultTheme}/info.json?v=${Date.now()}`;
-            const jsonAsset = await GameUtils.loadRemote(configUrl);
-            this.remoteAudioConfigs = (jsonAsset as TAudioConfigs) ?? null;
+            const jsonAsset = await GameUtils.loadRemote<cc.JsonAsset>(configUrl);
+            this.remoteAudioConfigs = (jsonAsset?.json as TAudioConfigs) ?? null;
         } catch (error) {
             cc.log("Get remote audio config failed!");
         }

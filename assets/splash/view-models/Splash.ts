@@ -114,7 +114,6 @@ export default class Splash extends cc.Component {
 
         // Default: load to lobby or direct game
         this.loadToLobbyOrDirectGame();
-        return;
     }
 
     isReloadFromGatewayLobby() {

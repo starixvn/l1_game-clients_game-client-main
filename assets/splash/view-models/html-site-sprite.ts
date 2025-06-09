@@ -34,14 +34,14 @@ export default class HtmlSiteSprite extends cc.Component {
         }
         this.sprite = this.getComponent(cc.Sprite);
         if (!this.sprite) {
-            cc.error('No Sprite component found!');
+            cc.log("HtmlSiteSprite - No Sprite component found!");
             return;
         }
 
         try {
             const fileName = this.getFileName();
             const url = this.getUrl(fileName, this.versionId);
-            const imageAsset = (await GameUtils.loadRemote(url));
+            const imageAsset = await GameUtils.loadRemote(url);
             if (!isValidNode(this)) {
                 return;
             }

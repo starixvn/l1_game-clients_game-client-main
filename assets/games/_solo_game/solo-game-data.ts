@@ -1,0 +1,47 @@
+import EventEmitterBase from "../../common/emitter/EventEmitterBase";
+import { GameConfigHandler } from "../_base_new/handlers/GameConfigHandler";
+import { NoticeHandler } from "../_base_new/handlers/NoticeHandler";
+import { ResultHashHandler } from "../_base_new/handlers/ResultHashHandler";
+import { RoundHistoryHandler } from "../_base_new/handlers/RoundHistoryHandler";
+import { SettlemenHandler } from "../_base_new/handlers/SettlementHandler";
+import { UMHandler } from "../_base_new/handlers/UMHandler";
+import NewGameData from "../_base_new/models/NewGameData";
+import { UserProfileModel } from "../_base_new/models/UserProfileModel";
+import { TimeEventHandler } from "../_new/_base/game-data-management/event-handlers/time-handler";
+import { TotalBetsEventHandler } from "../_new/_base/game-data-management/event-handlers/total-bets-handler";
+
+export default class SoloGameData extends NewGameData {
+    userProfileModel: UserProfileModel;
+    protected initModels() {
+        super.initModels();
+        this.userProfileModel = new UserProfileModel();
+    }
+
+    protected initEventEmitters() {
+        super.initEventEmitters();
+
+        const models: EventEmitterBase[] = [
+            //
+            this.userProfileModel
+        ];
+        this.eventEmitters.push(...models);
+    }
+
+    protected registerBaseEventHandlers() {
+        const handlers = [
+            // base handlers
+            UMHandler,
+            ResultHashHandler,
+            TimeEventHandler,
+            GameConfigHandler,
+            RoundHistoryHandler,
+            TotalBetsEventHandler,
+            NoticeHandler,
+            SettlemenHandler
+
+            // more handlers for player and placing chips
+            // TableGameBetHandler,
+        ];
+        this.eventHandlers.push(...handlers.map((Handler) => new Handler(this)));
+    }
+}

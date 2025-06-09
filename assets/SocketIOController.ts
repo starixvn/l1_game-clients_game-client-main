@@ -153,14 +153,7 @@ export default class SocketIOController implements SocketIOControllerInterface {
                     data,
                     onConfirm: null,
                     onClose: () => {
-                        if (appManager.isDirectMode) {
-                            appManager.backToOperatorLobby();
-                        } else {
-                            const currentSceneName = cc.director.getScene().name;
-                            if (currentSceneName === "Splash") {
-                                uiManager.emitter.emit(InternalEvents.CAN_NOT_OPEN_GAME_AT_SPLASH);
-                            }
-                        }
+                        this.onCloseNoticeConnectionError();
                     }
                 });
             };
@@ -183,6 +176,17 @@ export default class SocketIOController implements SocketIOControllerInterface {
 
             resolve();
         });
+    }
+
+    private onCloseNoticeConnectionError() {
+        if (appManager.isDirectMode) {
+            appManager.backToOperatorLobby();
+        } else {
+            const currentSceneName = cc.director.getScene().name;
+            if (currentSceneName === "Splash") {
+                uiManager.emitter.emit(InternalEvents.CAN_NOT_OPEN_GAME_AT_SPLASH);
+            }
+        }
     }
 
     private newInitListeners(socket, gameId: number, isMiniGame: boolean) {

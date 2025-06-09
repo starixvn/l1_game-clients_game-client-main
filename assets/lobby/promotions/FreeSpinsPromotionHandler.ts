@@ -1,10 +1,10 @@
 import axios from "axios";
-import { StorageManager } from "../../managers/StorageManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
+import { StorageManager } from "../../managers/StorageManager";
 import configs = require("../../configs/Configs");
 
 export const FreeSpinsPromotionEvents = {
@@ -40,7 +40,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         return offers[0].gameId;
     }
 
-    setPromotionInfoFromSso(promotionInfo: any, isDirectly?: boolean) {
+    setPromotionInfoFromSso(promotionInfo: any, isDirectly = false) {
         this.promotionInfoFromSso = promotionInfo;
         this.getFreeSpinsPromotionBanner();
         this.isDirectlyOpen = isDirectly;

@@ -1,7 +1,9 @@
 import { userManager } from "../../common/user/UserManager";
 import { GameConfigBase } from "../_base/view-models/GameConfigBase";
+import { SoloBetModel } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
 import RouletteWheel from "../roulette/view-models/RouletteWheel";
+import RouletteBetItem from "./scripts/roulette-bet-item";
 
 const { ccclass, property } = cc._decorator;
 
@@ -18,10 +20,38 @@ export default class RouletteS extends SoloGame {
     @property(RouletteWheel)
     wheel: RouletteWheel = null;
 
+    @property(cc.Node)
+    rouletteBetItemsContainer: cc.Node = null;
+
+    private rouletteBetItems: RouletteBetItem[] = [];
+
     constructor() {
         super();
         this.gameId = 134;
         this.setConfig(new RouletteSConfig());
+    }
+
+    onLoad() {
+        this.initRouletteBetItems();
+        super.onLoad();
+    }
+
+    protected onChangedBetChip(bet: number) {
+        super.onChangedBetChip(bet);
+        console.log("onChangedBetChip", bet);
+        (this.gameData.betModel as SoloBetModel).setCurrentBet(bet);
+    }
+
+    initRouletteBetItems() {
+        this.rouletteBetItems = this.rouletteBetItemsContainer.getComponentsInChildren(RouletteBetItem);
+
+        this.rouletteBetItems.forEach((item) => {
+            item.betCallback = this.onRouletteBetClick.bind(this);
+        });
+    }
+
+    onRouletteBetClick(choice: string) {
+        (this.gameData.betModel as SoloBetModel).addBet(choice);
     }
 
     protected createBetData(bet: any) {
@@ -30,7 +60,6 @@ export default class RouletteS extends SoloGame {
             redBlack: { red: 100 }
         };
         const betData = {
-            amount: bet,
             betChoices,
             username: userManager.userName,
             clientSentTime: new Date()

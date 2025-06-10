@@ -7,13 +7,22 @@ export class SoloBetModel extends BetModel {
     };
 
     protected queueBet: any[] = [];
+    protected currentBet = 0;
+
+    setCurrentBet(bet: number) {
+        this.currentBet = bet;
+    }
 
     clearTempBet() {
         this.queueBet = [];
     }
 
-    addTempBet(bet: { betChoice: string; betAmount: number }) {
+    addTempBet(bet: { choice: string; amount: number }) {
         this.queueBet.push(bet);
+    }
+
+    addBet(choice: string) {
+        this.addTempBet({ choice, amount: this.currentBet });
     }
 
     confirmBet() {

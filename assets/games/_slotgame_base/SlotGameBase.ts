@@ -30,6 +30,7 @@ import { SlotNotification } from "./SlotGameBottomMessage";
 import SlotGameHistory from "./SlotGameHistory";
 import SlotGameTopWinner from "./SlotGameTopWinner";
 import SlotGameUserSettings from "./SlotGameUserSettings";
+import SlotGameFreeSpinsHandler from "../_base/handlers/SlotGameFreeSpinsHandler";
 
 export interface LineData {
     payline: number;
@@ -135,6 +136,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     protected settlementHandler: SlotGameSettlementHandler;
     protected jackpotHandler: SlotGameJackpotHandler;
     protected bonusHandler: SlotGameBonusHandler;
+    protected freeSpinsHandler: SlotGameFreeSpinsHandler;
     protected jackpotPoolValue = -1;
     public slotGameConfigs: SlotGameBaseConfigs;
     public settleTween: cc.Tween;
@@ -161,6 +163,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     receiviedJackpotPools;
     isSpinnedAction = false;
 
+    protected promotionBetLevel: number | null = null;
+
     public get jackpotEnabled() {
         return this._jackpotEnabled;
     }
@@ -171,6 +175,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     setAllowChangeBet(allow: boolean) {
         this.stakeButton.interactable = allow;
+    }
+    public setPromotionBetLevel(betLevel: number) {
+        this.promotionBetLevel = betLevel;
     }
 
     async loadPrefabsByCode() {
@@ -364,6 +371,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.jackpotHandler = new SlotGameJackpotHandler(this);
         this.bonusHandler = new SlotGameBonusHandler(this);
         this.betHandler = new SlotGameBetHandler(this);
+        this.freeSpinsHandler = new SlotGameFreeSpinsHandler(this);
 
         this.addHandlers(
             this.umHandler,
@@ -375,7 +383,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             this.ingameHandler,
             this.settlementHandler,
             this.jackpotHandler,
-            this.bonusHandler
+            this.bonusHandler,
+            this.freeSpinsHandler
         );
     }
 
@@ -575,7 +584,12 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateTotalBetLabel() {
         const total = this.getCurrentTotalBet();
-        this.setTotalBetLabel(numberWithCommas(total, this.numberToFixed()));
+        const isPromo = typeof this.promotionBetLevel === "number";
+        this.setTotalBetLabel(
+            isPromo
+                ? numberWithCommas(this.promotionBetLevel * this.betChoices.length, this.numberToFixed()) + " (Promo)"
+                : numberWithCommas(total, this.numberToFixed())
+        );
     }
 
     setStake(stake: number) {
@@ -712,16 +726,15 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.stopAllFinishTweens();
         this.hideStakeContrainer();
         this.hideWinningEffectOnItems();
-
+        const hasPromotion = typeof this.promotionBetLevel === "number";
         this.lockBet();
         const isFreeSpin = this.isFreeSpin();
         const data = {
             betChoice: this.betChoices,
-            amount: this.stake,
-            freeSpin: isFreeSpin,
+            amount: hasPromotion ? this.promotionBetLevel : this.stake,
+            freeSpin: this.isFreeSpin(),
             clientSentTime: new Date()
         };
-
         this.waitingSpinResult = true;
         if (!isFreeSpin) {
             this.consumeAutoSpinCount();

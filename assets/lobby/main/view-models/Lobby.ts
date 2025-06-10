@@ -330,7 +330,7 @@ export default class Lobby extends cc.Component {
             this.showSignName();
         } else {
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-            FreeSpinsPromotionHandler.getInstance().getFreeSpinsPromotionBanner();
+            FreeSpinsPromotionHandler.getInstance().handlePromotionDisplay();
         }
     }
 
@@ -600,7 +600,7 @@ export default class Lobby extends cc.Component {
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-            FreeSpinsPromotionHandler.getInstance().getFreeSpinsPromotionBanner();
+            FreeSpinsPromotionHandler.getInstance().handlePromotionDisplay();
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

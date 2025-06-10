@@ -1,7 +1,9 @@
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { StorageManager } from "../../../managers/StorageManager";
-import FreeSpinsPromotionHandler, { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
+import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { TrackingEvent } from "../../../analytics/AnalyticsManager";
+import AnalyticsManager from "../../../analytics/AnalyticsManager";
+import { TrackingAction } from "../../../analytics/AnalyticsManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import LobbyDialogManager from "../../../managers/LobbyDialogManager";
@@ -18,9 +20,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     @property(cc.Label)
     gameNameLabel: cc.Label = null;
 
-    @property(cc.Node)
-    playLaterNode: cc.Node = null;
-
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
@@ -34,14 +33,13 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         }
 
         await this.setGameName();
-        if (freeSpinsPromotionHandler.isDirectlyOpen) {
-            this.playLaterNode.active = true;
-        }
     }
 
     async setGameName() {
         const gameId = freeSpinsPromotionHandler.getGameId();
-        this.gameNameLabel.string = await GameUtils.getDisplayGameName(gameId);
+        if (gameId) {
+            this.gameNameLabel.string = (await GameUtils?.getDisplayGameName(gameId)) ?? "";
+        }
     }
 
     closeDialog(enableSound = true) {
@@ -57,6 +55,15 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     playGameNow() {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
+        if (freeSpinsPromotionHandler.isDirectlyOpen) {
+            const giftPopup = cc.find("Canvas/GiftCodePopup");
+            if (giftPopup) {
+                giftPopup.destroy();
+            }
+        } else {
+            freeSpinsPromotionHandler.setShouldSkipGiftCode(true);
+        }
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
         appManager.hasShowedCenterBanner = true;
         const gameId = freeSpinsPromotionHandler.getGameId();
         sessionManager.setCheckedTournamentPromotionFirstSso(true);
@@ -64,7 +71,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
             cc.warn("FreeSpinsPromotionHandler: gameId is not available.");
             return;
         }
-
         uiManager.emitter.emit(InternalEvents.OPEN_GAME, gameId);
 
         AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {

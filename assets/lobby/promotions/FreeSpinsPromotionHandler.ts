@@ -1,68 +1,125 @@
 import axios from "axios";
+import { StorageManager } from "../../managers/StorageManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
-import { StorageManager } from "../../managers/StorageManager";
 import configs = require("../../configs/Configs");
+import { uiManager } from "../../managers/GameUIManager";
 
 export const FreeSpinsPromotionEvents = {
-    OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION"
+    OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",
+    OPEN_GIFT_CODE: "OPEN_GIFT_CODE",
+    OPEN_GIFT_CODE_REDEEM_POPUP: "OPEN_GIFT_CODE_REDEEM_POPUP",
+    OPEN_PROMOTION_DETAILS_PANEL: "OPEN_PROMOTION_DETAILS_PANEL",
 };
 
 const endpointConstants = {
     bannerPromotion: "banner-promotions"
 };
 
+interface StandardPromotionInfo {
+    promotionId: string;
+    code?: string;
+    isGiftCode?: boolean;
+    remainingBonusItems?: number;
+    [key: string]: any;
+}
+
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
     private promotionInfoFromSso: any = null;
     public isDirectlyOpen = false;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
+    private shouldSkipGiftCode = false;
+
+    public setShouldSkipGiftCode(skip: boolean) {
+        this.shouldSkipGiftCode = skip;
+    }
+
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
             this.instance = new FreeSpinsPromotionHandler();
         }
-
         return this.instance;
     }
 
     getStorageKey() {
         return this.storageKey;
     }
+
     onCloseFreeSpinsPromotionPopup() {
         sessionManager.setCheckedFreeSpinsPromotionFirstSso(true);
     }
 
     getGameId() {
         const offers = this.promotionInfoFromSso?.gameOfferPromotion;
-        return offers[0].gameId;
+        return offers?.[0]?.gameId;
     }
 
-    setPromotionInfoFromSso(promotionInfo: any, isDirectly = false) {
-        this.promotionInfoFromSso = promotionInfo;
-        this.getFreeSpinsPromotionBanner();
+    setPromotionInfoFromSso(rawData: any, isDirectly = false) {
+        this.promotionInfoFromSso = this.normalizePromotionData(rawData);
         this.isDirectlyOpen = isDirectly;
+        this.handlePromotionDisplay();
     }
-    getFreeSpinsPromotionBanner() {
+
+    private normalizePromotionData(data: any): { promotion: StandardPromotionInfo; gameOfferPromotion?: any[] } {
+        const rawPromo = data?.promotion;
+        const gamePromo = data?.promotionInfo?.promotion;
+
+        const source = rawPromo?.promotionId ? rawPromo : gamePromo;
+
+        return {
+            promotion: {
+                promotionId: source?.promotionId,
+                code: source?.code || source?.promotionCode,
+                isGiftCode: source?.isGiftCode === true,
+                remainingBonusItems: source?.remainingBonusItems || source?.bonusItemCount,
+                ...source
+            },
+            gameOfferPromotion: data?.gameOfferPromotion ?? data?.promotionInfo?.gameOfferPromotion
+        };
+    }
+
+    public getNormalizedPromotionInfo() {
+        return this.promotionInfoFromSso;
+    }
+    public handlePromotionDisplay() {
         try {
-            const storage = StorageManager.get(this.storageKey);
-            if (
-                storage?.dontShowAgain ||
-                sessionManager.getCheckedFreeSpinsPromotionFirstSso() ||
-                configs.systemType.toUpperCase() === "SC1"
-            ) {
+            const promotion = this.promotionInfoFromSso?.promotion;
+
+            if (!promotion?.promotionId) return;
+
+            const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
+            const isSC1 = configs.systemType.toUpperCase() === "SC1";
+            if (dontShow || isSC1) {
                 return;
             }
 
-            const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
-            if (promotionId) {
-                this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+            if (this.isDirectlyOpen) {
+                if (this.shouldSkipGiftCode) {
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
+                    return;
+                }
+                const isGiftCode = promotion?.isGiftCode === true;
+
+                if (isGiftCode) {
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
+                } else {
+                    this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+                }
                 return;
             }
+
+            const alreadySeen = sessionManager.getCheckedFreeSpinsPromotionFirstSso();
+            if (alreadySeen) {
+                return;
+            }
+
+            this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
         } catch (error) {
-            sentryLogger.log(`getFreeSpinsPromotionBanner error: ${error.message}`);
+            sentryLogger.log(`handlePromotionDisplay error: ${error.message}`);
         }
     }
 
@@ -70,8 +127,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
         const gameOffers = this.promotionInfoFromSso?.gameOfferPromotion;
         const queryString = this.getQueryString(promotionId, gameOffers);
-        const url = `${buildPromotionSiteUrl()}/${endpointConstants.bannerPromotion}?${queryString}`;
-        return `${url}`;
+        return `${buildPromotionSiteUrl()}/${endpointConstants.bannerPromotion}?${queryString}`;
     }
 
     private async getPromotionData(action: string, promotionId?: string) {
@@ -79,10 +135,9 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             const queryString = this.getQueryString(promotionId);
             const url = `${buildPromotionSiteUrl()}/${action}?${queryString}`;
             const response = await axios.get(url);
-
             return response.data;
         } catch (error) {
-            sentryLogger.log(`Get promotion tournament failed: ${error.message}`);
+            sentryLogger.log(`getPromotionData failed: ${error.message}`);
             return false;
         }
     }
@@ -95,10 +150,14 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             language: session?.language
         };
     }
+
     private getQueryString(promotionId?: string, gameOffers?: { gameId: number; name: string }[]) {
         const searchParams = new URLSearchParams();
         const params = this.buildParams();
-        Object.keys(params).forEach((key) => params[key] !== undefined && searchParams.append(key, params[key]));
+        Object.keys(params).forEach((key) => {
+            if (params[key] !== undefined) searchParams.append(key, params[key]);
+        });
+
         if (promotionId) {
             searchParams.append("promotionId", promotionId);
         }
@@ -106,6 +165,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             const jsonString = JSON.stringify(gameOffers);
             searchParams.append("game", jsonString);
         }
+
         return searchParams.toString();
     }
 }

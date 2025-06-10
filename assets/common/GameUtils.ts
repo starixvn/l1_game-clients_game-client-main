@@ -1076,4 +1076,15 @@ export default class GameUtils {
             })
             .start();
     }
+
+    public static async showFreeSpinsPromotionPopupOnce(name: string, path: string) {
+        const existing = cc.find(`Canvas/${name}`);
+        if (existing) return;
+
+        const prefab = await GameUtils.loadResource(path);
+        const node = cc.instantiate(prefab);
+        node.name = name;
+        node.parent = cc.find("Canvas");
+        node.setPosition(0, 0);
+    }
 }

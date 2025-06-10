@@ -109,7 +109,7 @@
     "_prefab": {
       "__id__": 7
     },
-    "_opacity": 200,
+    "_opacity": 240,
     "_color": {
       "__type__": "cc.Color",
       "r": 17,
@@ -750,7 +750,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -13,
+        139,
         -309,
         0,
         0,
@@ -924,7 +924,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 145.24,
+      "width": 0,
       "height": 35.28
     },
     "_anchorPoint": {
@@ -1158,7 +1158,7 @@
         "__id__": 31
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 34
@@ -1192,7 +1192,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -284,
+        -132,
         -309,
         0,
         0,
@@ -1244,7 +1244,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 184.68,
+      "width": 165.89,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1302,7 +1302,7 @@
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": {
-      "__uuid__": "6f67ad5b-2d03-41ea-9b73-400975801e61"
+      "__uuid__": "81c533e8-958d-482d-bab3-238bbc6caf5e"
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
@@ -1420,7 +1420,7 @@
     },
     "component": "",
     "_componentId": "cb89dthUuNAh5FkjQIhmTHQ",
-    "handler": "playGameNow",
+    "handler": "closeDialog",
     "customEventData": ""
   },
   {
@@ -1515,8 +1515,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        374.266,
-        -305.579,
+        28.996,
+        -357.234,
         0,
         0,
         0,
@@ -2113,7 +2113,6 @@
     "time": 0.4,
     "dontShowAgainToggle": null,
     "gameNameLabel": null,
-    "playLaterNode": null,
     "_id": ""
   },
   {
@@ -2210,7 +2209,6 @@
     "gameNameLabel": {
       "__id__": 24
     },
-    "playLaterNode": null,
     "_id": ""
   },
   {

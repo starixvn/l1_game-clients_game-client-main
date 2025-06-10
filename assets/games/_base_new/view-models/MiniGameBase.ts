@@ -276,6 +276,10 @@ export default class MiniGameBase extends NewMiniGameBase {
     }
 
     emitterListener(emitter: EventEmitterBase, eventName: string, listener: (param: any) => any) {
+        if (!emitter) {
+            cc.log("emitter null for ", eventName);
+            return;
+        }
         const storage = {
             emitter,
             eventName,

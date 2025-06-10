@@ -149,8 +149,11 @@ export const handlePlayerChipAction = (mainGame: TableGameBase) => (playerChip) 
 };
 
 export const updateOtherPlayersBalance = (mainGame: TableGameBase) => (settlement) => {
+    const players = mainGame.gameData?.playerModel?.players;
+    if (!players) {
+        return;
+    }
     const { winningPlayers } = settlement;
-    const players = mainGame.gameData.playerModel.players;
     Object.keys(winningPlayers).forEach((playerId) => {
         const otherPlayerData = players[playerId];
         if (otherPlayerData) {

@@ -12,7 +12,7 @@ export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",
     OPEN_GIFT_CODE: "OPEN_GIFT_CODE",
     OPEN_GIFT_CODE_REDEEM_POPUP: "OPEN_GIFT_CODE_REDEEM_POPUP",
-    OPEN_PROMOTION_DETAILS_PANEL: "OPEN_PROMOTION_DETAILS_PANEL",
+    OPEN_PROMOTION_DETAILS_PANEL: "OPEN_PROMOTION_DETAILS_PANEL"
 };
 
 const endpointConstants = {
@@ -107,17 +107,16 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                 if (isGiftCode) {
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
                 } else {
-                    this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
                 }
                 return;
             }
-
             const alreadySeen = sessionManager.getCheckedFreeSpinsPromotionFirstSso();
             if (alreadySeen) {
                 return;
             }
 
-            this.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
         } catch (error) {
             sentryLogger.log(`handlePromotionDisplay error: ${error.message}`);
         }

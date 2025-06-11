@@ -215,8 +215,10 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
                 LobbyDialogManager.getInstance().addDialog(this.showPromotionTournament.bind(this), "PromotionTournament")
             );
 
-            freeSpinsPromotionHandler.on(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION, () =>
-                LobbyDialogManager.getInstance().addDialog(this.showFreeSpinsPromotion.bind(this), "FreeSpinsPromotion")
+            uiManager.emitterListener(
+                FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION,
+                () => LobbyDialogManager.getInstance().addDialog(this.showFreeSpinsPromotion.bind(this), "FreeSpinsPromotion"),
+                this
             );
 
             promotionTournamentHandler.on(

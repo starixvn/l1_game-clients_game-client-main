@@ -1,4 +1,5 @@
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { uiManager } from "../../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -60,8 +61,9 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
         // Gửi code lên server hoặc emit event
         cc.log("Redeem gift code:", code); */
+        console.log("redeem gift code");
         this.onCloseClicked();
-        FreeSpinsPromotionHandler.getInstance().emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }
 
     onCloseClicked() {

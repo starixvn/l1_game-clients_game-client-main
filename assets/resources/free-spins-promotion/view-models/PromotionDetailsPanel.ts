@@ -1,3 +1,7 @@
+import { numberWithCommas } from "../../../common/helpers/NumberHelper";
+import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { uiManager } from "../../../managers/GameUIManager";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -10,52 +14,64 @@ export default class PromotionDetailsPanel extends cc.Component {
     private totalWin = 0;
     private endTime = 0;
     private promotionActive = false;
+    private betLevel = 0;
+
+    private promotionFSB = 0;
 
     initPromotion(promotionInfo: any) {
         if (!promotionInfo) return;
-    
+
         const promotion = promotionInfo.promotion;
         const gameOffer = promotionInfo.gameOfferPromotion?.[0];
-    
-        const betLevel = promotion?.betLevel ?? gameOffer?.betLevel ?? 0;
-        const totalFreeSpin = promotion?.remainingBonusItems ?? 0;
-        const endTime = promotion?.endTime ?? null;
-    
-        this.promotionActive = true;
-        this.endTime = endTime;
-    
-        this.labelBetLevel.string = betLevel.toString();
-        this.labelFSB.string = totalFreeSpin.toString();
-        this.labelTotalWin.string = "0";
-        this.labelTotalBet.string = (betLevel * this.getLinesCount()).toString();
-    
-        // Optional: schedule countdown if needed
-        // this.schedule(this.checkPromotionEnded, 1);
-    }
-    
 
-    updateRemainingFSB(fsbLeft: number) {
-        this.labelFSB.string = fsbLeft.toString();
+        this.betLevel = promotion?.betLevel ?? gameOffer?.betLevel ?? 0;
+        const totalFreeSpin = promotion?.remainingBonusItems ?? 0;
+        this.endTime = promotion?.endTime ?? null;
+
+        this.promotionActive = true;
+        this.totalWin = Number(promotion?.totalWin ?? 0);
+
+        this.labelBetLevel.string = this.betLevel.toString();
+        this.promotionFSB = totalFreeSpin;
+        this.labelFSB.string = this.promotionFSB.toString();
+        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
+        this.updateTotalBetLabel();
+        this.node.active = true;
+        if (this.promotionFSB > 0) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
+        }
     }
 
     addWinAmount(amount: number) {
+        if (!this.promotionActive || amount <= 0) return;
         this.totalWin += amount;
-        this.labelTotalWin.string = this.totalWin.toString();
+        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
     }
 
-    getLinesCount(): number {
-        // gọi từ slotGameBase
-        return 0;
-       // return cc.find("Canvas").getComponentInChildren(SlotGameBase)?.betChoices?.length || 0;
+    public isPromotionStillActive(): boolean {
+        return this.promotionActive && this.promotionFSB > 0;
+    }
+    updateTotalBetLabel() {
+        const lines = 25;
+        const totalBet = this.betLevel * lines;
+        this.labelTotalBet.string = totalBet.toString();
     }
 
-    checkPromotionEnded() {
-        const fsbLeft = parseInt(this.labelFSB.string);
+    consumePromotionFSB() {
+        if (this.promotionFSB <= 0) return;
+        this.promotionFSB -= 1;
+        this.labelFSB.string = this.promotionFSB.toString();
+        this.checkPromotionEnded();
+    }
+
+    private checkPromotionEnded() {
         const now = Date.now();
-        if (fsbLeft <= 0 || now > this.endTime) {
+
+        if (!this.promotionActive) return;
+
+        if (this.promotionFSB <= 0 || (this.endTime && now > this.endTime)) {
             this.promotionActive = false;
-            this.unschedule(this.checkPromotionEnded);
-            this.hidePanel();
+            //this.hidePanel();
             this.showPromotionEndedPopup();
         }
     }

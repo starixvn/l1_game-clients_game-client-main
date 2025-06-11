@@ -113,6 +113,14 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         this.main.setTotalFreeSpins(totalOfFreeSpins);
+        const promotionPanel = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel");
+        if (promotionPanel) {
+            promotionPanel.addWinAmount(betWin);
+
+            if (freeSpins.count === 0 && this.main.totalFreeSpins === 0) {
+                promotionPanel.consumePromotionFSB();
+            }
+        }
         const needWaitEffect = bigWin || freeSpins.count > 0 || betByFreeSpin || this.main.holdActionButton.isAutoAction;
         if (!needWaitEffect) {
             this.main.updateModeSpinButton(this.main.isFreeSpin());
@@ -211,9 +219,10 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.main.showMessageDisplay(SlotNotification.SETTLED);
         this.main.waitingSpinResult = false;
         if (!this.main.gotApiError()) {
+            const isPromotionFSB = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel")?.isPromotionStillActive?.() ?? false;
             const isAutoSpinMode = this.main.isAutoSpinMode();
             const stillAutoSpin = this.main.stillAutoSpin();
-            const autoSpin = isAutoSpinMode && stillAutoSpin;
+            const autoSpin = isPromotionFSB || (isAutoSpinMode && stillAutoSpin);
 
             if (freeSpins.count > 0 || autoSpin || this.main.isFreeSpin()) {
                 this.main.spin();

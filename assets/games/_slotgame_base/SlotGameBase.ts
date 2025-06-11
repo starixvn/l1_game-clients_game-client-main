@@ -31,6 +31,7 @@ import SlotGameHistory from "./SlotGameHistory";
 import SlotGameTopWinner from "./SlotGameTopWinner";
 import SlotGameUserSettings from "./SlotGameUserSettings";
 import SlotGameFreeSpinsHandler from "../_base/handlers/SlotGameFreeSpinsHandler";
+import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
 
 export interface LineData {
     payline: number;
@@ -180,6 +181,11 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.promotionBetLevel = betLevel;
     }
 
+    public isPromotionActive(): boolean {
+        const promotionPanel = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel");
+        return promotionPanel?.isPromotionStillActive?.() ?? false;
+    }
+
     async loadPrefabsByCode() {
         //empty
     }
@@ -202,6 +208,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.initDefaultBetChoices();
         this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
         this.winningBetOriginalScale = this.winningBet.node.scale;
+        uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.tryAutoSpinWhenFSB, this);
     }
 
     initSlotBoard() {
@@ -705,10 +712,16 @@ export default class SlotGameBase extends FeatureSlotGameBase {
                 .start();
         }
     }
+    tryAutoSpinWhenFSB = () => {
+        if (!this.isSpinnedAction && !this.isAnimatingResult && this.spinButton && this.spinButton.node.active) {
+            const result = this.spin();
+            console.log("Triggered auto-spin from FSB promo:", result);
+        }
+    };
 
-    spin(): boolean {
+    public spin(): boolean {
         let success = false;
-        if (this.betChoices.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
+        if (this.betChoices?.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }
 
@@ -726,7 +739,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.stopAllFinishTweens();
         this.hideStakeContrainer();
         this.hideWinningEffectOnItems();
-        const hasPromotion = typeof this.promotionBetLevel === "number";
+        const hasPromotion = this.isPromotionActive();
         this.lockBet();
         const isFreeSpin = this.isFreeSpin();
         const data = {

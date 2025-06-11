@@ -11,12 +11,33 @@ export default class RouletteBetItem extends cc.Component {
     @property(cc.Label)
     odds: cc.Label = null;
 
+    @property(cc.Node)
+    chipNode: cc.Node = null;
+
+    @property(cc.Node)
+    highlight: cc.Node = null;
+
     public betCallback = (choice: string) => {};
 
     private setMoneyLabel(label: cc.Label, bet: number) {
         if (label) {
             label.string = bet > 0 ? numberWithCommas(bet, 1) : "";
         }
+    }
+
+    resetUI() {
+        this.odds.string = "";
+        this.clearBet();
+    }
+
+    clearChips() {
+        this.chipNode.destroyAllChildren();
+    }
+
+    clearBet() {
+        this.ownBet.string = "";
+        this.highlight.active = false;
+        this.clearChips();
     }
 
     public setOwnBet(bet: number) {
@@ -31,6 +52,7 @@ export default class RouletteBetItem extends cc.Component {
 
     public onBetClick(event: cc.Event.EventTouch) {
         AudioManager.getInstance().playClick();
-        this.betCallback(event.target.name);
+        const choice = this.node.name;
+        this.betCallback(choice);
     }
 }

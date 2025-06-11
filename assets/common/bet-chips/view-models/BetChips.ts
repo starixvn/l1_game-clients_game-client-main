@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 
-import BetItem from "../../../games/_base/view-models/BetItem";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
@@ -380,7 +379,6 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
             this.playSingleChipsSound();
         }
     }
-
     private createStartNodeInfo(startNode: cc.Node, bet: number) {
         let worldPos: cc.Vec3;
         let node = startNode;
@@ -472,6 +470,7 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
         const chipBoundingBox = chip.getBoundingBox();
         const xDest = _.random(Math.floor(chip.width / 4), Math.floor(box.width - chipBoundingBox.width / 2) + 1);
         const yDest = _.random(Math.floor(chip.height / 4), Math.floor(box.height - chipBoundingBox.height / 2) + 1);
+        cc.log("xDest", xDest, "yDest", yDest);
         return cc.v3(xDest, yDest);
     }
 
@@ -596,7 +595,7 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
         return nodes;
     }
 
-    public showChipOwnBet(item: BetItem, bet: number) {
+    public showChipOwnBet(item: { chipNode: cc.Node; clearChips: () => void }, bet: number) {
         item.clearChips();
         const nodes = this.createChipNodes(bet);
         nodes.forEach((node) => {

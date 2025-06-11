@@ -1,6 +1,9 @@
+import _ = require("lodash");
+import { i18n } from "../../ClientModules";
+import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { userManager } from "../../common/user/UserManager";
 import { GameConfigBase } from "../_base/view-models/GameConfigBase";
-import { SoloBetModel } from "../_solo_game/solo-bet-model";
+import { SoloBetModel, SoloBetState } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
 import RouletteWheel from "../roulette/view-models/RouletteWheel";
 import RouletteBetItem from "./scripts/roulette-bet-item";
@@ -39,7 +42,7 @@ export default class RouletteS extends SoloGame {
     protected onChangedBetChip(bet: number) {
         super.onChangedBetChip(bet);
         console.log("onChangedBetChip", bet);
-        (this.gameData.betModel as SoloBetModel).setCurrentBet(bet);
+        this.soloBetModel.setCurrentBet(bet);
     }
 
     initRouletteBetItems() {
@@ -47,24 +50,80 @@ export default class RouletteS extends SoloGame {
 
         this.rouletteBetItems.forEach((item) => {
             item.betCallback = this.onRouletteBetClick.bind(this);
+            item.resetUI();
         });
     }
 
+    initGameDataEvents() {
+        super.initGameDataEvents();
+        this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_BET, () => (data) => {
+            this.rouletteBetItems.forEach((item) => {
+                const ownBet = data[item.node.name] ?? 0;
+                item.setOwnBet(ownBet);
+            });
+        });
+        this.emitterListener(this.gameData.betModel, SoloBetModel.Events.FLY_OWN_CHIP_FAKE, () => (data) => {
+            if (data.endBet) {
+                const betItem = this.rouletteBetItems.find((item) => item.node.name.toLowerCase() === data.betChoice.toLowerCase());
+                this.betChips.placeChipToChipBox(data.endBet, betItem.chipNode, null, null);
+            }
+        });
+        this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_CHIPS_FAKE, () => (ownBets) => {
+            this.rouletteBetItems.forEach((item) => {
+                const choice = item.node.name;
+                const betValue = ownBets[choice];
+                this.betChips.showChipOwnBet(item, betValue);
+            });
+        });
+        this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_STATE, () => (state) => {
+            this.onStateChange(state);
+        });
+    }
+
+    onStateChange(state: string) {
+        switch (state) {
+            case SoloBetState.READY:
+                this.rouletteBetItems.forEach((item) => item.clearBet());
+                break;
+            case SoloBetState.BETTING:
+                break;
+            case SoloBetState.RESULT:
+                break;
+            case SoloBetState.SETTLEMENT:
+                break;
+            default:
+                break;
+        }
+    }
+
     onRouletteBetClick(choice: string) {
-        (this.gameData.betModel as SoloBetModel).addBet(choice);
+        if (!this.checkAvailableBetChoices(choice, this.currentBet) || !this.checkAvailableBalance(this.currentBet)) {
+            return;
+        }
+
+        this.soloBetModel.addBet(choice);
     }
 
     protected createBetData(bet: any) {
-        const betChoices = {
-            oddEven: { odd: 100 },
-            redBlack: { red: 100 }
-        };
+        const betChoices = this.generateBetChoices(bet);
+        cc.log("betChoices --- ", betChoices);
         const betData = {
             betChoices,
             username: userManager.userName,
             clientSentTime: new Date()
         };
         return betData;
+    }
+
+    protected generateBetChoices(bet: any) {
+        const betChoices = {};
+        Object.keys(bet).forEach((choice) => {
+            const type = this.getTypeFromChoice(choice);
+            const typeValue = betChoices[type] || {};
+            typeValue[choice] = bet[choice];
+            betChoices[type] = typeValue;
+        });
+        return betChoices;
     }
 
     async showSettlementResult(settlement: any) {
@@ -81,5 +140,106 @@ export default class RouletteS extends SoloGame {
         return new Promise<void>((resolve) => {
             this.wheel.showResult(result, resolve);
         });
+    }
+
+    checkAvailableBalance(amount: number): boolean {
+        const total = this.soloBetModel.currentTotalBet();
+        const available = total + amount <= userManager.balance;
+
+        !available && this.showMiniWarning(i18n.t("messages.notEnoughMoney"));
+        return available;
+    }
+
+    getTypeFromChoice(choice: string): string {
+        const dict = {
+            split: [],
+            street: [],
+            triangle: [],
+            corner: [],
+            fourNumbers: [],
+            line: [],
+            column: ["column1", "column2", "column3"],
+            dozen: ["dozen1", "dozen2", "dozen3"],
+            redBlack: ["red", "black"],
+            oddEven: ["odd", "even"],
+            bigSmall: ["big", "small"]
+        };
+
+        const type = Object.keys(dict).find((type) => dict[type].includes(choice));
+
+        if (type) {
+            return type;
+        }
+
+        const numbers = choice.split(",");
+        const length = numbers.length;
+
+        if (length === 1) {
+            return "straightUp";
+        }
+        if (length === 2) {
+            return "split";
+        }
+        if (length === 3) {
+            if (choice === "0,1,2" || choice === "0,2,3") {
+                return "street";
+            }
+            return "triangle";
+        }
+        if (length === 4) {
+            if (choice === "0,1,2,3") {
+                return "fourNumbers";
+            }
+            return "corner";
+        }
+
+        return "line";
+    }
+
+    checkAvailableBetChoices(choice: string, amount: number): boolean {
+        if (!this.gameConfigs) {
+            return false;
+        }
+
+        const betModel = this.soloBetModel;
+        const choiceAmount = betModel.currentChoiceAmount(choice);
+        const newChoiceAmount = choiceAmount + amount;
+        const type = this.getTypeFromChoice(choice);
+
+        if (this.checkExceedMaxBetChoice(newChoiceAmount, type, false)) {
+            return false;
+        }
+
+        const currentTotal = betModel.currentTotalBet();
+        const newTotal = currentTotal + amount;
+        if (this.checkExceedMaxBet(newTotal)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    checkExceedMaxBet(total: number): boolean {
+        const maxBet = this.getMaxBet();
+        if (total > maxBet) {
+            this.showMiniWarning(i18n.t("messages.maxBetNotice", { maxBet: numberWithCommas(maxBet) }));
+            return true;
+        }
+        return false;
+    }
+
+    checkExceedMaxBetChoice(amount: number, type: string, isMultiChoices: boolean): boolean {
+        const maxBet = Math.min(this.gameConfigs.maxBetPerChoices[type], this.getMaxBet());
+        const text = isMultiChoices
+            ? i18n.t("messages.maxBetOfAnyChoiceReached")
+            : i18n.t("messages.maxBetForChoiceNotice", {
+                  maxBet: numberWithCommas(maxBet)
+              });
+        if (amount > maxBet) {
+            this.showMiniWarning(text);
+            return true;
+        }
+
+        return false;
     }
 }

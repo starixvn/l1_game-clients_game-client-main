@@ -1,12 +1,16 @@
 import NewGameData from "../_base_new/models/NewGameData";
 import StandAloneTableGameBase from "../_base_new/view-models/StandAloneTableGameBase";
-import { SoloBetModel } from "./solo-bet-model";
+import { SoloBetModel, SoloBetState } from "./solo-bet-model";
 import SoloGameData from "./solo-game-data";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SoloGame extends StandAloneTableGameBase {
+    get soloBetModel() {
+        return this.gameData.betModel as SoloBetModel;
+    }
+
     createGameData(): NewGameData {
         return new SoloGameData();
     }
@@ -28,6 +32,14 @@ export default class SoloGame extends StandAloneTableGameBase {
     }
 
     clickConfirmBet() {
-        (this.gameData.betModel as SoloBetModel).confirmBet();
+        this.soloBetModel.confirmBet();
+    }
+
+    clickNewBet() {
+        this.soloBetModel.changeState(SoloBetState.READY);
+    }
+
+    clickReBet() {
+        this.soloBetModel.reBet();
     }
 }

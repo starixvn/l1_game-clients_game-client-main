@@ -48,7 +48,7 @@ export default class BetItem extends cc.Component {
 
     public betCallback = (e) => {};
 
-    private setMoneyLabel(label: cc.Label, bet: number) {
+    protected setMoneyLabel(label: cc.Label, bet: number) {
         if (label) {
             label.string = bet > 0 ? numberWithCommas(bet, 1) : "";
         }

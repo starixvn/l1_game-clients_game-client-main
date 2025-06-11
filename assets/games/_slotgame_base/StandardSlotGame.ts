@@ -137,9 +137,11 @@ export default class StandardSlotGame extends SlotGameBase {
         this.updateBalanceColor();
         uiManager.emitterListener(InternalEvents.SLOT_PLAY_SOUND, (type: ClassicSlotSound) => this.playSound(type), this);
         uiManager.emitterListener(InternalEvents.CLICK_HAMBURGER_MENU, () => this.hideStakeContrainer(), this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, this.showGiftCode, this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, this.showGiftCodeRedeemPopup, this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, this.showPromotionDetailsPanel, this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.showGiftCode(), this);
+
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this);
+
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this);
     }
 
     onDestroy() {
@@ -148,32 +150,36 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     async showGiftCode() {
-        GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodePopup", "free-spins-promotion/views/GiftCode");
+        GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodePopup", "free-spins-promotion/views/gift-code");
     }
 
     async showGiftCodeRedeemPopup() {
-        GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/GiftCodeRedeemPopup");
+        if (!this.isFreeSpin()) {
+            GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
+        } else {
+            this.freeSpinsPromotionMessage?.showMessageContent();
+        }
     }
 
     async showPromotionDetailsPanel() {
+        
         const existing = cc.find("Canvas/PromotionDetailsPanel");
         if (existing) {
             const comp = existing.getComponent("PromotionDetailsPanel");
             comp?.refresh?.();
             return;
         }
-    
-        const prefab = await GameUtils.loadResource("free-spins-promotion/views/PromotionDetailsPanel");
+
+        const prefab = await GameUtils.loadResource("free-spins-promotion/views/promotion-details-panel");
         const node = cc.instantiate(prefab);
         node.name = "PromotionDetailsPanel";
         node.parent = cc.find("Canvas");
-        node.setPosition(0, 0); 
-    
+        node.setPosition(0, 0);
+
         const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
         const panelComp = node.getComponent("PromotionDetailsPanel");
         panelComp?.initPromotion?.(promotionInfo);
     }
-    
 
     updateBalanceColor() {
         this.userProfile.updateColor(this.colorConfig.bottomAreaWinAmountColor);
@@ -546,6 +552,23 @@ export default class StandardSlotGame extends SlotGameBase {
         if (this.totalFreeSpins) {
             this.setTotalFreeSpins(this.totalFreeSpins);
         }
+    }
+
+    async initFreeSpinsPromotionMessage() {
+        const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
+        if (existing) {
+            this.freeSpinsPromotionMessage = existing.getComponent("FreeSpinsPromotionMessage");
+            return;
+        }
+
+        const prefab = await GameUtils.loadResource("free-spins-promotion/views/free-spins-promotion-message");
+        const node = cc.instantiate(prefab);
+        node.active = false;
+        node.name = "FreeSpinsPromotionMessage";
+        node.parent = cc.find("Canvas");
+        node.setPosition(0, 0);
+
+        this.freeSpinsPromotionMessage = node.getComponent("FreeSpinsPromotionMessage");
     }
 
     generateRandomBoardData() {

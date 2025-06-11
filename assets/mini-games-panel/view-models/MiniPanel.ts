@@ -248,7 +248,7 @@ export default class MiniPanel extends BaseComponent implements MiniPanelInterfa
         if (!uiManager.prefabCache.miniPanelIcons[key]) {
             this.freeSpinsPromotionPrefab = await GameUtils.asyncExecute<cc.Prefab>(
                 this.node,
-                GameUtils.loadResource("free-spins-promotion/views/FreeSpinsPromotionWebView")
+                GameUtils.loadResource("free-spins-promotion/views/free-spins-promotion-banner")
             );
             uiManager.prefabCache.miniPanelIcons[key] = this.freeSpinsPromotionPrefab;
         } else {

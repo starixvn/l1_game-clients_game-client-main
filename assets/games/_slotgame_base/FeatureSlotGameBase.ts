@@ -19,7 +19,7 @@ import SlotGameBottomMessage from "./SlotGameBottomMessage";
 import SlotGameSongs from "./SlotGameSongs";
 import SlotGameSound from "./SlotGameSound";
 import TurboAutoSpinSettingDialog from "./TurboAutoSpinSettingDialog";
-
+import FreeSpinsPromotionMessage from "./FreeSpinsPromotionMessage";
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -93,6 +93,7 @@ export default abstract class FeatureSlotGameBase extends NewGameRoomBase {
 
     countDownAutoSpin: CountDownWarning = null;
     bottomMessage: SlotGameBottomMessage = null;
+    freeSpinsPromotionMessage: FreeSpinsPromotionMessage = null;
     gameSound: SlotGameSound;
     protected autoSpinCount = 0;
     protected lastAutoSpinCount: number;

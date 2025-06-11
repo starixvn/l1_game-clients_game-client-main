@@ -206,6 +206,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.initBottomMessage();
         this.initBottomArea();
         this.initDefaultBetChoices();
+        this.initFreeSpinsPromotionMessage();
         this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
         this.winningBetOriginalScale = this.winningBet.node.scale;
         uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.tryAutoSpinWhenFSB, this);
@@ -1172,6 +1173,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     async handleNewJackpot(jackpot: any) {
+        //empty
+    }
+
+    initFreeSpinsPromotionMessage() {
         //empty
     }
 }

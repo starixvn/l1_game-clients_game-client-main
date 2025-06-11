@@ -181,7 +181,8 @@ const data = {
         winTumbleMsg: "ขอแสดงความยินดี!",
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
-        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง"
+        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
+        freeSpinsPromotionMsg: "กรุณาทำการหมุนฟรีเพื่อรับรางวัล!"
     },
     ui: {
         choice_red2: "2 แดง",

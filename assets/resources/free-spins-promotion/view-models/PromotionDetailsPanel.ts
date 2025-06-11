@@ -58,7 +58,9 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     consumePromotionFSB() {
-        if (this.promotionFSB <= 0) return;
+        if (this.promotionFSB < 0) {
+            this.promotionFSB = 0;
+        }
         this.promotionFSB -= 1;
         this.labelFSB.string = this.promotionFSB.toString();
         this.checkPromotionEnded();

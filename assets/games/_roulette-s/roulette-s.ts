@@ -80,6 +80,17 @@ export default class RouletteS extends SoloGame {
         });
     }
 
+    updateOddsFromConfigs() {
+        if (this.gameConfigs?.odds) {
+            const odds = this.gameConfigs.odds;
+
+            this.rouletteBetItems.forEach((item) => {
+                const type = this.getTypeFromChoice(item.node.name);
+                item.setOdd(odds[type]);
+            });
+        }
+    }
+
     onStateChange(state: string) {
         switch (state) {
             case SoloBetState.READY:
@@ -120,7 +131,13 @@ export default class RouletteS extends SoloGame {
         Object.keys(bet).forEach((choice) => {
             const type = this.getTypeFromChoice(choice);
             const typeValue = betChoices[type] || {};
-            typeValue[choice] = bet[choice];
+
+            if (type === "column" || type === "dozen") {
+                const subChoice = choice.slice(-1);
+                typeValue[subChoice] = bet[choice];
+            } else {
+                typeValue[choice] = bet[choice];
+            }
             betChoices[type] = typeValue;
         });
         return betChoices;

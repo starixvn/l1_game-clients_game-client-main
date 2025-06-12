@@ -86,6 +86,7 @@ export default class PromotionDetailsPanel extends cc.Component {
 
         if (this.promotionFSB <= 0 || (this.endTime && now > this.endTime)) {
             this.promotionActive = false;
+            this.hidePanel();
             this.showPromotionEndedPopup();
         }
     }

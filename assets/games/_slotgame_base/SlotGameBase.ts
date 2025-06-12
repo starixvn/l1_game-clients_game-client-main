@@ -32,6 +32,7 @@ import SlotGameTopWinner from "./SlotGameTopWinner";
 import SlotGameUserSettings from "./SlotGameUserSettings";
 import SlotGameFreeSpinsHandler from "../_base/handlers/SlotGameFreeSpinsHandler";
 import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
+import SlotGameEndPromotionHandler from "../_base/handlers/SlotGameEndPromotionHandler";
 
 export interface LineData {
     payline: number;
@@ -138,6 +139,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     protected jackpotHandler: SlotGameJackpotHandler;
     protected bonusHandler: SlotGameBonusHandler;
     protected freeSpinsHandler: SlotGameFreeSpinsHandler;
+    protected endPromotionHandler: SlotGameEndPromotionHandler;
     protected jackpotPoolValue = -1;
     public slotGameConfigs: SlotGameBaseConfigs;
     public settleTween: cc.Tween;
@@ -381,6 +383,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.bonusHandler = new SlotGameBonusHandler(this);
         this.betHandler = new SlotGameBetHandler(this);
         this.freeSpinsHandler = new SlotGameFreeSpinsHandler(this);
+        this.endPromotionHandler = new SlotGameEndPromotionHandler(this);
 
         this.addHandlers(
             this.umHandler,
@@ -393,7 +396,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             this.settlementHandler,
             this.jackpotHandler,
             this.bonusHandler,
-            this.freeSpinsHandler
+            this.freeSpinsHandler,
+            this.endPromotionHandler
         );
     }
 

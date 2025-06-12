@@ -60,6 +60,7 @@ export class SoloBetModel extends BetModel {
     }
 
     confirmBet() {
+        this.changeState(SoloBetState.BETTING);
         this.lastQueueBet = this.queueBet;
 
         const confirmBet = {};

@@ -2,6 +2,7 @@ import _ = require("lodash");
 import { i18n } from "../../ClientModules";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { userManager } from "../../common/user/UserManager";
+import AnimationUtils from "../../common/utils/AnimationUtils";
 import { GameConfigBase } from "../_base/view-models/GameConfigBase";
 import { SoloBetModel, SoloBetState } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
@@ -143,6 +144,7 @@ export default class RouletteS extends SoloGame {
                 this.rouletteBetItems.forEach((item) => item.clearBet());
                 break;
             case SoloBetState.BETTING:
+                this.rouletteBetItems.forEach((item) => item.setHighlight(false));
                 break;
             case SoloBetState.RESULT:
                 break;
@@ -193,16 +195,29 @@ export default class RouletteS extends SoloGame {
         const result = settlement.result;
         await this.showWheelResult(result);
         try {
+            this.wheel.hideResultNumber();
             this.gameData.settlement.finishShowResult(settlement, true);
         } catch (error) {
             console.warn(error.message);
         }
     }
 
+    handleAfterSettlementResult(settlement: any, animated: boolean) {
+        super.handleAfterSettlementResult(settlement, animated);
+        this.rouletteBetItems.forEach((betItem) => {
+            const choice = betItem.node.name;
+            const type = this.getTypeFromChoice(choice);
+            const isWin = settlement.settlementResult[type].includes(choice);
+            betItem.setHighlight(isWin);
+        });
+    }
+
     showWheelResult(result: number) {
         return new Promise<void>((resolve) => {
             this.wheel.showResult(result, () => {
-                this.hideWheel().then(resolve);
+                AnimationUtils.delayTime(0.5).then(() => {
+                    this.hideWheel().then(resolve);
+                });
             });
         });
     }

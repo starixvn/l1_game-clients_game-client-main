@@ -55,4 +55,8 @@ export default class RouletteBetItem extends cc.Component {
         const choice = this.node.name;
         this.betCallback(choice);
     }
+
+    setHighlight(highlight: boolean) {
+        this.highlight.active = highlight;
+    }
 }

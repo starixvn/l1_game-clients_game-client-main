@@ -113,7 +113,7 @@ function checkTimeOut(urlParams) {
     return false;
 }
 function getAppType(urlParams) {
-    return parseInt(urlParams.get("appType")) === AppTypes.SabaApp ? AppTypes.SabaApp : AppTypes.SabaClub;
+    return parseInt(urlParams.get("appType"));
 }
 
 function checkSignOut(urlParams, session) {

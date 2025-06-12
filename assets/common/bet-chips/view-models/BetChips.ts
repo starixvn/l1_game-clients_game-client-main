@@ -470,7 +470,6 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
         const chipBoundingBox = chip.getBoundingBox();
         const xDest = _.random(Math.floor(chip.width / 4), Math.floor(box.width - chipBoundingBox.width / 2) + 1);
         const yDest = _.random(Math.floor(chip.height / 4), Math.floor(box.height - chipBoundingBox.height / 2) + 1);
-        cc.log("xDest", xDest, "yDest", yDest);
         return cc.v3(xDest, yDest);
     }
 

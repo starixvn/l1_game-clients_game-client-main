@@ -26,7 +26,13 @@ export default class RouletteS extends SoloGame {
     @property(cc.Node)
     rouletteBetItemsContainer: cc.Node = null;
 
+    @property(cc.Widget)
+    tableWidget: cc.Widget = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
+
+    private readonly TableWidgetRightShowWheel = -330;
+    private readonly TableWidgetRightHideWheel = 0;
 
     constructor() {
         super();
@@ -36,7 +42,47 @@ export default class RouletteS extends SoloGame {
 
     onLoad() {
         this.initRouletteBetItems();
+        this.hideWheel(false);
         super.onLoad();
+    }
+
+    showWheel(animated = true) {
+        if (!animated) {
+            this.tableWidget.right = this.TableWidgetRightShowWheel;
+            return Promise.resolve();
+        }
+
+        return new Promise<void>((resolve) => {
+            this.tweenTableWidget(this.TableWidgetRightShowWheel, resolve);
+        });
+    }
+
+    hideWheel(animated = true) {
+        if (!animated) {
+            this.tableWidget.right = this.TableWidgetRightHideWheel;
+            return Promise.resolve();
+        }
+        return new Promise<void>((resolve) => {
+            this.tweenTableWidget(this.TableWidgetRightHideWheel, resolve);
+        });
+    }
+
+    tweenTableWidget(toRight: number, complete: () => void) {
+        return cc
+            .tween({ value: this.tableWidget.right })
+            .to(
+                0.5,
+                { value: toRight },
+                {
+                    onUpdate: (target) => {
+                        this.tableWidget.right = target.value;
+                        this.tableWidget.updateAlignment();
+                    },
+                    easing: "easeSineOut"
+                }
+            )
+            .call(complete)
+            .start();
     }
 
     protected onChangedBetChip(bet: number) {
@@ -155,7 +201,9 @@ export default class RouletteS extends SoloGame {
 
     showWheelResult(result: number) {
         return new Promise<void>((resolve) => {
-            this.wheel.showResult(result, resolve);
+            this.wheel.showResult(result, () => {
+                this.hideWheel().then(resolve);
+            });
         });
     }
 
@@ -258,5 +306,18 @@ export default class RouletteS extends SoloGame {
         }
 
         return false;
+    }
+
+    clickReBet() {
+        if (!this.checkAvailableBalance(0)) {
+            return;
+        }
+
+        super.clickReBet();
+    }
+
+    async onConfirmBet(bet: any) {
+        await this.showWheel();
+        super.onConfirmBet(bet);
     }
 }

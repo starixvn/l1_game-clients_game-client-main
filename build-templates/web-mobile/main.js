@@ -282,6 +282,7 @@ window.boot = function () {
         }
         count++;
         if (count === bundleRoot.length + 1) {
+            cc.macro.ENABLE_WEBGL_ANTIALIAS = true;
             cc.game.run(option, onStart);
         }
     }

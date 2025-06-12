@@ -18,7 +18,7 @@ export class RouletteSConfig implements GameConfigBase {
     stopBetTime = 5;
     waitTime = 15;
 }
-
+cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
 @ccclass
 export default class RouletteS extends SoloGame {
     @property(RouletteWheel)

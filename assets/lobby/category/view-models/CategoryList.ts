@@ -64,15 +64,23 @@ export default class CategoryList extends cc.Component {
     public activeBgNewOnCategory() {
         const categoryList = LobbyManager.getInstance().getCategoryList();
         categoryList.forEach(({ index, gameIds }) => {
+            if (this.getExcludedCategoryIndex().has(index)) {
+                return;
+            }
             const isNew = gameIds.some(
                 (gameId) => this.lobbyMenuConfig.isNewGame(gameId, index) && userManager.offerGames.includes(gameId)
             );
             const categoryNode = this.content.children.find((child) => child.name === index.toString());
-            if (categoryNode && index !== 0) {
+            if (categoryNode) {
                 const newNode = categoryNode?.getComponent(CategoryItem);
                 newNode.newNode.active = isNew;
             }
         });
+    }
+
+    private getExcludedCategoryIndex(): Set<number> {
+        const lobbyManager = LobbyManager.getInstance();
+        return new Set([lobbyManager.getCategoryIndexByName("allgames"), lobbyManager.getCategoryIndexByName("newreleases")]);
     }
 
     public activeCategoryFromStorage(): number {

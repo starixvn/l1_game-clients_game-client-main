@@ -74,6 +74,10 @@ export class SoloBetModel extends BetModel {
 
     reBet() {
         this.queueBet = this.lastQueueBet;
+        this.updateOwnBetAndChips();
+    }
+
+    private updateOwnBetAndChips() {
         this.updateOwnbets();
 
         const ownBets = {};
@@ -82,6 +86,13 @@ export class SoloBetModel extends BetModel {
             ownBets[bet.choice] = currentBet + bet.amount;
         });
         this.changeOwnChipsFake(ownBets);
+    }
+
+    undoBet() {
+        if (this.queueBet.length > 0) {
+            this.queueBet.pop();
+            this.updateOwnBetAndChips();
+        }
     }
 
     currentTotalBet() {

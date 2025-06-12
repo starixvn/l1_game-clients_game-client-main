@@ -42,4 +42,8 @@ export default class SoloGame extends StandAloneTableGameBase {
     clickReBet() {
         this.soloBetModel.reBet();
     }
+
+    clickUndoBet() {
+        this.soloBetModel.undoBet();
+    }
 }

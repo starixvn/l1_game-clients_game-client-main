@@ -34,6 +34,7 @@ export default class RouletteS extends SoloGame {
 
     private readonly TableWidgetRightShowWheel = -330;
     private readonly TableWidgetRightHideWheel = 0;
+    protected betChipContainer: cc.Node = null;
 
     constructor() {
         super();
@@ -45,6 +46,28 @@ export default class RouletteS extends SoloGame {
         this.initRouletteBetItems();
         this.hideWheel(false);
         super.onLoad();
+    }
+
+    initBetChipByLoader(node: cc.Node): void {
+        super.initBetChipByLoader(node);
+        this.betChipContainer = node.parent.parent;
+        this.hideBetChip();
+    }
+
+    hideBetChip() {
+        this.betChipContainer.active = false;
+    }
+
+    showBetChip() {
+        this.betChipContainer.active = true;
+    }
+
+    clickOpenBetChip() {
+        if (this.betChipContainer.active) {
+            this.hideBetChip();
+        } else {
+            this.showBetChip();
+        }
     }
 
     showWheel(animated = true) {
@@ -193,8 +216,9 @@ export default class RouletteS extends SoloGame {
 
     async showSettlementResult(settlement: any) {
         const result = settlement.result;
-        await this.showWheelResult(result);
         try {
+            await this.showWheel();
+            await this.showWheelResult(result);
             this.wheel.hideResultNumber();
             this.gameData.settlement.finishShowResult(settlement, true);
         } catch (error) {
@@ -329,10 +353,5 @@ export default class RouletteS extends SoloGame {
         }
 
         super.clickReBet();
-    }
-
-    async onConfirmBet(bet: any) {
-        await this.showWheel();
-        super.onConfirmBet(bet);
     }
 }

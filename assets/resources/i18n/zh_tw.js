@@ -619,6 +619,11 @@ const data = {
         pf_verification_para_2: "從 SHA512 中獲取前 {value} 個字符：",
         pf_verification_para_3: "轉換為十進制",
         pf_verification_para_4: "計算最終結果"
+    },
+    freeSpinsPromotion: {
+        gift_code_message: "兌換您的免費旋轉獎勵。",
+        Invalide_gift_code_error_message: "無效的禮物代碼。請檢查您的代碼並重試。",
+        gift_code_error_message: "請輸入您的禮物代碼。"
     }
 };
 

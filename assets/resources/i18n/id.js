@@ -660,6 +660,11 @@ const data = {
         pf_verification_para_2: "Ambil karakter {value} pertama dari SHA512:",
         pf_verification_para_3: "Konversikan ke Desimal",
         pf_verification_para_4: "Hitung Hasil Akhir"
+    },
+    freeSpinsPromotion: {
+        gift_code_message: "Tukarkan Hadiah Putaran Gratis Anda.",
+        Invalide_gift_code_error_message: "Kode Hadiah Tidak Valid. Silakan periksa kode Anda dan coba lagi.",
+        gift_code_error_message: "Silakan masukkan Kode Hadiah Anda."
     }
 };
 

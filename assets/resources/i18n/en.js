@@ -173,7 +173,7 @@ const data = {
         winningNotificationOn: "Winning streak notification “ON”",
         winningNotificationOff: "Winning streak notification “OFF”",
         voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again.",
-        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus.",
+        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus."
     },
     ui: {
         choice_red2: "2 Red",
@@ -642,6 +642,11 @@ const data = {
         pf_verification_para_2: "Take first {value} characters from SHA512:",
         pf_verification_para_3: "Convert to Decimal ",
         pf_verification_para_4: "Calculate Final Result"
+    },
+    freeSpinsPromotion: {
+        gift_code_message: "Redeem Your Free Spins Reward.",
+        Invalide_gift_code_error_message: "Invalid Gift Code. Please check your code and try again.",
+        gift_code_error_message: "Please enter your Gift Code."
     }
 };
 

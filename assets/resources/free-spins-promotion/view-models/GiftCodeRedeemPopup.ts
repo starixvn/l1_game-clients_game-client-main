@@ -21,7 +21,6 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
     onEnable() {
         this.inputBox.string = "";
-        this.inputBox.placeholder = "Enter or Paste Your Code";
         this.redeemButton.interactable = true;
 
         this.pasteButton.node.on("click", this.onPasteClicked, this);

@@ -648,6 +648,11 @@ const data = {
         pf_verification_para_2: "ใช้ตัวอักษร {value} ตัวแรกจาก SHA512:",
         pf_verification_para_3: "แปลงเป็นทศนิยม",
         pf_verification_para_4: "คำนวณผลลัพธ์สุดท้าย"
+    },
+    freeSpinsPromotion: {
+        gift_code_message: "แลกฟรีสปินของคุณ",
+        Invalide_gift_code_error_message: "รหัสของขวัญไม่ถูกต้อง กรุณาตรวจสอบรหัสของคุณแล้วลองใหม่อีกครั้ง",
+        gift_code_error_message: "กรุณาป้อนรหัสของขวัญของคุณ"
     }
 };
 

@@ -644,6 +644,11 @@ const data = {
         pf_verification_para_2: "Lấy {value} ký tự đầu tiên trong chuỗi SHA512:",
         pf_verification_para_3: "Đổi Sang Hệ Thập Phân",
         pf_verification_para_4: "Tính Kết Quả "
+    },
+    freeSpinsPromotion: {
+        gift_code_message: "Nhận phần thưởng vòng quay miễn phí của bạn.",
+        Invalide_gift_code_error_message: "Mã Quà Tặng không hợp lệ. Vui lòng kiểm tra lại mã và thử lại.",
+        gift_code_error_message: "Vui lòng nhập mã Quà Tặng của bạn."
     }
 };
 

@@ -282,7 +282,6 @@ window.boot = function () {
         }
         count++;
         if (count === bundleRoot.length + 1) {
-            cc.macro.ENABLE_WEBGL_ANTIALIAS = true;
             cc.game.run(option, onStart);
         }
     }
@@ -318,5 +317,6 @@ if (window.jsb) {
     }
 
     cc.macro.CLEANUP_IMAGE_CACHE = true;
+    cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
     window.boot();
 }

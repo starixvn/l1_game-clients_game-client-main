@@ -45,6 +45,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
     handleApiError(data: any) {
         const error = data.apiError;
         const gameId = error.gameTypeId;
+        this.main.promotionPanel?.revertLastPromotionFSB?.();
         if (gameId === this.main.gameId && this.main.waitingSpinResult && !data.endBet) {
             this.main.cacheApiError = error;
         } else {
@@ -113,14 +114,16 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         this.main.setTotalFreeSpins(totalOfFreeSpins);
-        const promotionPanel = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel");
-        if (promotionPanel) {
-            promotionPanel.addWinAmount(betWin);
 
+        if (this.main.promotionPanel?.fsbConsumedThisRound) {
+            this.main.promotionPanel.addWinAmount(betWin);
+
+            // Nếu không còn free spin từ cả game và promotion thì mới gọi commit
             if (freeSpins.count === 0 && this.main.totalFreeSpins === 0) {
-                promotionPanel.consumePromotionFSB();
+                this.main.promotionPanel.commitPromotionFSB();
             }
         }
+
         const needWaitEffect = bigWin || freeSpins.count > 0 || betByFreeSpin || this.main.holdActionButton.isAutoAction;
         if (!needWaitEffect) {
             this.main.updateModeSpinButton(this.main.isFreeSpin());
@@ -219,7 +222,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.main.showMessageDisplay(SlotNotification.SETTLED);
         this.main.waitingSpinResult = false;
         if (!this.main.gotApiError()) {
-            const isPromotionFSB = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel")?.isPromotionStillActive?.() ?? false;
+            const isPromotionFSB = this.main.isPromotionActive();
             const isAutoSpinMode = this.main.isAutoSpinMode();
             const stillAutoSpin = this.main.stillAutoSpin();
             const autoSpin = isPromotionFSB || (isAutoSpinMode && stillAutoSpin);

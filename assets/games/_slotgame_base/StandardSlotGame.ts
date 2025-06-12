@@ -566,8 +566,6 @@ export default class StandardSlotGame extends SlotGameBase {
         node.active = false;
         node.name = "FreeSpinsPromotionMessage";
         node.parent = cc.find("Canvas");
-        node.setPosition(0, 0);
-
         this.freeSpinsPromotionMessage = node.getComponent("FreeSpinsPromotionMessage");
     }
 

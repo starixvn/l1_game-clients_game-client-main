@@ -17,6 +17,7 @@ export default class SlotGameBetHandler extends GameBaseBetHandler {
                 this.main.activeButtons();
                 this.main.showProcessingWarning(false);
                 this.main.isSpinnedAction = false;
+                this.main.promotionPanel?.revertLastPromotionFSB?.();
             }
             this.main.spinButton.showTextSpinInFreeSpin(false);
         }

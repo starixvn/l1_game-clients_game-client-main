@@ -176,7 +176,8 @@ const data = {
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
         voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
-        freeSpinsPromotionMsg: "Vui lòng hoàn thành các lượt quay miễn phí để nhận thưởng!"
+        freeSpinsPromotionMsg:
+            "Vui lòng hoàn tất các lượt quay Free Spin hiện có trong game trước khi bắt đầu các lượt quay Free Spin khuyến mãi."
     },
     ui: {
         choice_red2: "2 Đỏ",

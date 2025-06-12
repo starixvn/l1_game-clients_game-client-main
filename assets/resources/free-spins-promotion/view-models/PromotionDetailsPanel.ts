@@ -15,8 +15,8 @@ export default class PromotionDetailsPanel extends cc.Component {
     private endTime = 0;
     private promotionActive = false;
     private betLevel = 0;
-
     private promotionFSB = 0;
+    private fsbConsumedThisRound = false;
 
     initPromotion(promotionInfo: any) {
         if (!promotionInfo) return;
@@ -25,20 +25,42 @@ export default class PromotionDetailsPanel extends cc.Component {
         const gameOffer = promotionInfo.gameOfferPromotion?.[0];
 
         this.betLevel = promotion?.betLevel ?? gameOffer?.betLevel ?? 0;
-        const totalFreeSpin = promotion?.remainingBonusItems ?? 0;
+        this.promotionFSB = promotion?.remainingBonusItems ?? 0;
         this.endTime = promotion?.endTime ?? null;
-
-        this.promotionActive = true;
         this.totalWin = Number(promotion?.totalWin ?? 0);
+        this.promotionActive = true;
 
         this.labelBetLevel.string = this.betLevel.toString();
-        this.promotionFSB = totalFreeSpin;
         this.labelFSB.string = this.promotionFSB.toString();
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
         this.updateTotalBetLabel();
         this.node.active = true;
+
         if (this.promotionFSB > 0) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
+        }
+    }
+
+    tryConsumePromotionFSB() {
+        if (this.promotionActive && this.promotionFSB > 0 && !this.fsbConsumedThisRound) {
+            this.promotionFSB--;
+            this.fsbConsumedThisRound = true;
+            this.labelFSB.string = this.promotionFSB.toString();
+        }
+    }
+
+    revertLastPromotionFSB() {
+        if (this.fsbConsumedThisRound) {
+            this.promotionFSB++;
+            this.fsbConsumedThisRound = false;
+            this.labelFSB.string = this.promotionFSB.toString();
+        }
+    }
+
+    commitPromotionFSB() {
+        if (this.fsbConsumedThisRound) {
+            this.fsbConsumedThisRound = false;
+            this.checkPromotionEnded();
         }
     }
 
@@ -51,29 +73,19 @@ export default class PromotionDetailsPanel extends cc.Component {
     public isPromotionStillActive(): boolean {
         return this.promotionActive && this.promotionFSB > 0;
     }
+
     updateTotalBetLabel() {
         const lines = 25;
         const totalBet = this.betLevel * lines;
         this.labelTotalBet.string = totalBet.toString();
     }
 
-    consumePromotionFSB() {
-        if (this.promotionFSB < 0) {
-            this.promotionFSB = 0;
-        }
-        this.promotionFSB -= 1;
-        this.labelFSB.string = this.promotionFSB.toString();
-        this.checkPromotionEnded();
-    }
-
     private checkPromotionEnded() {
         const now = Date.now();
-
         if (!this.promotionActive) return;
 
         if (this.promotionFSB <= 0 || (this.endTime && now > this.endTime)) {
             this.promotionActive = false;
-            //this.hidePanel();
             this.showPromotionEndedPopup();
         }
     }
@@ -83,6 +95,6 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     showPromotionEndedPopup() {
-        //uiManager.showMessage("Promotion Ended", "Your Free Spin Bonus has ended.");
+        // uiManager.showMessage("Promotion Ended", "Your Free Spin Bonus has ended.");
     }
 }

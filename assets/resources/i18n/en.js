@@ -173,7 +173,7 @@ const data = {
         winningNotificationOn: "Winning streak notification “ON”",
         winningNotificationOff: "Winning streak notification “OFF”",
         voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again.",
-        freeSpinsPromotionMsg: "Please complete the free spins to get the prize!",
+        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus.",
     },
     ui: {
         choice_red2: "2 Red",

@@ -173,7 +173,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     public set jackpotEnabled(value) {
         this._jackpotEnabled = value;
     }
-
+    get promotionPanel() {
+        return cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel") ?? null;
+    }
     setAllowChangeBet(allow: boolean) {
         this.stakeButton.interactable = allow;
     }
@@ -182,8 +184,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     public isPromotionActive(): boolean {
-        const promotionPanel = cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel");
-        return promotionPanel?.isPromotionStillActive?.() ?? false;
+        return this.promotionPanel?.isPromotionStillActive?.() ?? false;
     }
 
     async loadPrefabsByCode() {
@@ -750,6 +751,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             clientSentTime: new Date()
         };
         this.waitingSpinResult = true;
+        if (hasPromotion) {
+            this.promotionPanel.tryConsumePromotionFSB();
+        }
         if (!isFreeSpin) {
             this.consumeAutoSpinCount();
         }

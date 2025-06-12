@@ -182,7 +182,7 @@ const data = {
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
         voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
-        freeSpinsPromotionMsg: "กรุณาทำการหมุนฟรีเพื่อรับรางวัล!"
+        freeSpinsPromotionMsg: "กรุณาทำการหมุนฟรีที่ค้างอยู่ให้เสร็จก่อนเริ่มโบนัสหมุนฟรี"
     },
     ui: {
         choice_red2: "2 แดง",

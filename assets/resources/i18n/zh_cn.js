@@ -160,7 +160,7 @@ const data = {
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
         voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
-        freeSpinsPromotionMsg: "请完成免费旋转以获得奖励！"
+        freeSpinsPromotionMsg: "请在开始免费旋转奖金之前完成待处理的免费旋转。"
     },
     ui: {
         choice_red2: "2 红",

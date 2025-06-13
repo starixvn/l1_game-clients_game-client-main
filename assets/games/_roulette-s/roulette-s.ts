@@ -30,6 +30,15 @@ export default class RouletteS extends SoloGame {
     @property(cc.Widget)
     tableWidget: cc.Widget = null;
 
+    @property(cc.Button)
+    btnSpin:cc.Button = null;
+
+    @property(cc.Button)
+    btnClear:cc.Button = null;
+
+    @property(cc.Button)
+    btnUndo:cc.Button = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
 
     private readonly TableWidgetRightShowWheel = -330;

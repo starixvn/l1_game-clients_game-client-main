@@ -32,12 +32,15 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });
     }
     async start() {
-        const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
-        if (storage && typeof storage.dontShowAgain === "boolean") {
-            this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
+        if (freeSpinsPromotionHandler.isDirectlyOpen) {
+            this.dontShowAgainToggle.node.active = false;
+        } else {
+            const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
+            if (storage && typeof storage.dontShowAgain === "boolean") {
+                this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
+            }
+            await this.setGameName();
         }
-
-        await this.setGameName();
     }
 
     async setGameName() {

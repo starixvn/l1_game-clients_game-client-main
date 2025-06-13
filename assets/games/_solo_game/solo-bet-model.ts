@@ -1,6 +1,6 @@
 import { BetModel } from "../_base_new/models/BetModel";
 
-interface ChoiceBet {
+export interface ChoiceBet {
     choice: string;
     amount: number;
 }

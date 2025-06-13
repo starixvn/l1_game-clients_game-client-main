@@ -1,15 +1,18 @@
 import _ = require("lodash");
 import { i18n } from "../../ClientModules";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
+import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { userManager } from "../../common/user/UserManager";
 import AnimationUtils from "../../common/utils/AnimationUtils";
 import { GameConfigBase } from "../_base/view-models/GameConfigBase";
+import NewGameData from "../_base_new/models/NewGameData";
 import { SoloBetModel, SoloBetState } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
-import RouletteWheel from "../roulette/view-models/RouletteWheel";
-import RouletteBetItem from "./scripts/roulette-bet-item";
-import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import RouletteHistory from "../roulette/view-models/RouletteHistory";
+import RouletteWheel from "../roulette/view-models/RouletteWheel";
+import { RouletteGameData } from "./scripts/roulette-bet-game-data";
+import RouletteBetItem from "./scripts/roulette-bet-item";
+import { getTypeFromChoice } from "./scripts/roulette-s-utils";
 
 const { ccclass, property } = cc._decorator;
 
@@ -61,6 +64,10 @@ export default class RouletteS extends SoloGame {
         super();
         this.gameId = 134;
         this.setConfig(new RouletteSConfig());
+    }
+
+    createGameData(): NewGameData {
+        return new RouletteGameData();
     }
 
     onLoad() {
@@ -155,19 +162,23 @@ export default class RouletteS extends SoloGame {
     initGameDataEvents() {
         super.initGameDataEvents();
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_BET, () => (data) => {
-            this.rouletteBetItems.forEach((item) => {
-                const ownBet = data[item.node.name] ?? 0;
-                item.setOwnBet(ownBet);
+            Object.keys(data).forEach((choice) => {
+                const nodeName = choice;
+                const betItem = this.rouletteBetItems.find((item) => item.node.name === nodeName);
+                betItem?.setOwnBet(data[choice]);
             });
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.FLY_OWN_CHIP_FAKE, () => (data) => {
             if (data.endBet) {
                 const choice = data.betChoice;
-                const betItem = this.rouletteBetItems.find((item) => item.node.name === choice);
-                this.chipFlyingStamp = Date.now();
-                this.betChips.throwChipThenConvertToStack(betItem.chipNode, this.currentBet, () => {
-                    this.mergeStackOnChoice(choice, this.chipFlyingStamp);
-                });
+                const nodeName = choice;
+                const betItem = this.rouletteBetItems.find((item) => item.node.name === nodeName);
+                if (betItem) {
+                    this.chipFlyingStamp = Date.now();
+                    this.betChips.throwChipThenConvertToStack(betItem.chipNode, this.currentBet, () => {
+                        this.mergeStackOnChoice(choice, this.chipFlyingStamp);
+                    });
+                }
                 this.updateSpinButtonInteractable();
             }
         });
@@ -199,7 +210,8 @@ export default class RouletteS extends SoloGame {
         }
 
         const totalBet = this.soloBetModel.getTotalBetOnChoice(choice);
-        const item = this.rouletteBetItems.find((item) => item.node.name === choice);
+        const nodeName = choice;
+        const item = this.rouletteBetItems.find((item) => item.node.name === nodeName);
         this.betChips.createChipStackUtils(item.chipNode, totalBet);
     }
 
@@ -208,7 +220,7 @@ export default class RouletteS extends SoloGame {
             const odds = this.gameConfigs.odds;
 
             this.rouletteBetItems.forEach((item) => {
-                const type = this.getTypeFromChoice(item.node.name);
+                const type = getTypeFromChoice(item.node.name);
                 item.setOdd(odds[type]);
             });
         }
@@ -268,7 +280,7 @@ export default class RouletteS extends SoloGame {
     protected generateBetChoices(bet: any) {
         const betChoices = {};
         Object.keys(bet).forEach((choice) => {
-            const type = this.getTypeFromChoice(choice);
+            const type = getTypeFromChoice(choice);
             const typeValue = betChoices[type] || {};
 
             if (type === "column" || type === "dozen") {
@@ -303,7 +315,7 @@ export default class RouletteS extends SoloGame {
         super.handleAfterSettlementResult(settlement, animated);
         this.rouletteBetItems.forEach((betItem) => {
             const choice = betItem.node.name;
-            const type = this.getTypeFromChoice(choice);
+            const type = getTypeFromChoice(choice);
 
             const settlementResult = settlement.settlementResult[type];
             const isSpecial = type === "column" || type === "dozen";
@@ -330,52 +342,6 @@ export default class RouletteS extends SoloGame {
         return available;
     }
 
-    getTypeFromChoice(choice: string): string {
-        const dict = {
-            split: [],
-            street: [],
-            triangle: [],
-            corner: [],
-            fourNumbers: [],
-            line: [],
-            column: ["column1", "column2", "column3"],
-            dozen: ["dozen1", "dozen2", "dozen3"],
-            redBlack: ["red", "black"],
-            oddEven: ["odd", "even"],
-            bigSmall: ["big", "small"]
-        };
-
-        const type = Object.keys(dict).find((type) => dict[type].includes(choice));
-
-        if (type) {
-            return type;
-        }
-
-        const numbers = choice.split(",");
-        const length = numbers.length;
-
-        if (length === 1) {
-            return "straightUp";
-        }
-        if (length === 2) {
-            return "split";
-        }
-        if (length === 3) {
-            if (choice === "0,1,2" || choice === "0,2,3") {
-                return "street";
-            }
-            return "triangle";
-        }
-        if (length === 4) {
-            if (choice === "0,1,2,3") {
-                return "fourNumbers";
-            }
-            return "corner";
-        }
-
-        return "line";
-    }
-
     checkAvailableBetChoices(choice: string, amount: number): boolean {
         if (!this.gameConfigs) {
             return false;
@@ -384,7 +350,7 @@ export default class RouletteS extends SoloGame {
         const betModel = this.soloBetModel;
         const choiceAmount = betModel.currentChoiceAmount(choice);
         const newChoiceAmount = choiceAmount + amount;
-        const type = this.getTypeFromChoice(choice);
+        const type = getTypeFromChoice(choice);
 
         if (this.checkExceedMaxBetChoice(newChoiceAmount, type, false)) {
             return false;

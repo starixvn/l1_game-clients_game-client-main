@@ -13437,12 +13437,16 @@
     "guidePrefab": {
       "__uuid__": "6c037c3b-07a0-4baa-a2d9-dfbb20ecf3e2"
     },
-    "historyPrefab": null,
+    "historyPrefab": {
+      "__uuid__": "e0208ea4-71e3-4078-aed4-23b2cff15d69"
+    },
     "betPercentage": [],
     "waitingDotsSubGame": null,
     "gameNameSprite": null,
     "tableGameBg": null,
-    "ticketDetailPrefab": null,
+    "ticketDetailPrefab": {
+      "__uuid__": "fb4ae78f-9de7-4359-872e-a9a03afe8774"
+    },
     "gameAudioConfig": null,
     "players": [],
     "otherPlayers": null,
@@ -13479,6 +13483,9 @@
     },
     "btnUndo": {
       "__id__": 183
+    },
+    "nodeInGameMenu": {
+      "__id__": 260
     },
     "_id": "4eAhQ8e49HWqU6sCv/2Dmy"
   },

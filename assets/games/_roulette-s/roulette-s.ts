@@ -8,6 +8,8 @@ import { SoloBetModel, SoloBetState } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
 import RouletteWheel from "../roulette/view-models/RouletteWheel";
 import RouletteBetItem from "./scripts/roulette-bet-item";
+import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
+import RouletteHistory from "../roulette/view-models/RouletteHistory";
 
 const { ccclass, property } = cc._decorator;
 
@@ -39,7 +41,11 @@ export default class RouletteS extends SoloGame {
     @property(cc.Button)
     btnUndo: cc.Button = null;
 
+    @property(cc.Node)
+    nodeInGameMenu: cc.Node = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
+    private inGameMenu: InGameMenu = null;
 
     private readonly TableWidgetRightShowWheel = -330;
     private readonly TableWidgetRightHideWheel = 0;
@@ -60,8 +66,13 @@ export default class RouletteS extends SoloGame {
 
     onLoad() {
         this.initRouletteBetItems();
+
         this.hideWheel(false);
         super.onLoad();
+    }
+
+    onStart() {
+        this.initInGameMenuEvents();
     }
 
     initBetChipByLoader(node: cc.Node): void {
@@ -120,7 +131,7 @@ export default class RouletteS extends SoloGame {
                         this.tableWidget.right = target.value;
                         this.tableWidget.updateAlignment();
                     },
-                    easing: "easeSineOut"
+                    easing: "sineOut"
                 }
             )
             .call(complete)
@@ -419,5 +430,24 @@ export default class RouletteS extends SoloGame {
         }
 
         super.clickReBet();
+    }
+
+    private initInGameMenuEvents() {
+        if (!this.nodeInGameMenu) {
+            return;
+        }
+
+        const node = this.nodeInGameMenu.getComponentInChildren(InGameMenu).node;
+
+        node.on(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
+        // node.on(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
+        // node.on(InGameMenuEvents.OPEN_STATISTIC, this.openStatistic, this);
+    }
+
+    public openHistory() {
+        const dialog = cc.instantiate(this.historyPrefab);
+        this.historyComponent = dialog.getComponent(RouletteHistory);
+        this.historyComponent.init(this.socket);
+        this.currentMiniPanel.node.addChild(dialog);
     }
 }

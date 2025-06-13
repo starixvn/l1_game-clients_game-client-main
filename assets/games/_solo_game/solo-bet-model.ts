@@ -23,9 +23,10 @@ export class SoloBetModel extends BetModel {
     protected queueBet: ChoiceBet[] = [];
     protected lastQueueBet: ChoiceBet[] = [];
     protected currentBet = 0;
-    state = SoloBetState.READY;
+    state: string = SoloBetState.READY;
 
     changeState(state: string) {
+        this.state = state;
         this.emit(SoloBetModel.Events.CHANGE_STATE, state);
         if (state === SoloBetState.READY) {
             this.resetLastBet();

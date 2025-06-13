@@ -232,7 +232,7 @@ export default class RouletteS extends SoloGame {
 
     updateSpinButtonInteractable() {
         const state = this.soloBetModel.state;
-        const isStateCanBet = state === SoloBetState.READY || state === SoloBetState.SETTLEMENT;
+        const isStateCanBet = state === SoloBetState.READY || state === SoloBetState.BETTING_FAILED || state === SoloBetState.SETTLEMENT;
         this.btnSpin.interactable = this.soloBetModel.existBet() && isStateCanBet;
     }
 

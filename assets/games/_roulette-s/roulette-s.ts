@@ -45,7 +45,6 @@ export default class RouletteS extends SoloGame {
     nodeInGameMenu: cc.Node = null;
 
     private rouletteBetItems: RouletteBetItem[] = [];
-    private inGameMenu: InGameMenu = null;
 
     private readonly TableWidgetRightShowWheel = -330;
     private readonly TableWidgetRightHideWheel = 0;

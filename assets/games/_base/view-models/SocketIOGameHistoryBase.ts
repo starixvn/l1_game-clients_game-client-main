@@ -55,8 +55,8 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
         // handle
     };
 
-    AUTO_SCALE_NODE_WIDTH = 1398;
-    HEIGHT_CONTENT = 520;
+    AUTO_SCALE_NODE_WIDTH = 930;
+    HEIGHT_CONTENT = 700;
     WIDTH_SIGN = 120;
 
     init(socket: Socket) {

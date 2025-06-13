@@ -6,9 +6,6 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class RouletteHistoryItem extends SocketIOHistoryItemBase {
     @property(cc.Label)
-    resultLabel: cc.Label = null;
-
-    @property(cc.Label)
     amountLabel: cc.Label = null;
 
     betTime: string = null;
@@ -28,7 +25,6 @@ export default class RouletteHistoryItem extends SocketIOHistoryItemBase {
     setData(log: any, index: number) {
         this.time.string = getStringDateByTime(log.time);
         this.round.string = log.phien.toString();
-        this.resultLabel.string = log.result.toString();
         this.setBackground(index);
     }
 }

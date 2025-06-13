@@ -1,5 +1,5 @@
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
-import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
@@ -96,6 +96,6 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     showPromotionEndedPopup() {
-        // uiManager.showMessage("Promotion Ended", "Your Free Spin Bonus has ended.");
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, freeSpinsPromotionHandler.getFinishPromotion());
     }
 }

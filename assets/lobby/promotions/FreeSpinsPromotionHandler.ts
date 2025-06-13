@@ -36,8 +36,18 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private readonly storageKey = "free-spins-promotion-dont-show-again";
     private shouldSkipGiftCode = false;
 
+    private finishPromotion: any = null;
+
     public setShouldSkipGiftCode(skip: boolean) {
         this.shouldSkipGiftCode = skip;
+    }
+
+    public setFinishPromotion(promotion: any) {
+        this.finishPromotion = promotion;
+    }
+
+    public getFinishPromotion() {
+        return this.finishPromotion;
     }
 
     public static getInstance(): FreeSpinsPromotionHandler {

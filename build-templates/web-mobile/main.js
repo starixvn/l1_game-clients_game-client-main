@@ -184,7 +184,7 @@ window.boot = function () {
             if (gameContainer) {
                 gameContainer.style.top = window.scrollY + "px";
             }
-            document.body.style.background = "#000";
+            document.body.style.backgroundColor = "transparent";
             splash.style.transition = "opacity 0.2s ease-in-out";
             splash.style.opacity = 0;
             const progressBar = document.getElementById("loading_icon");

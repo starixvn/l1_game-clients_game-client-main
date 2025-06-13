@@ -779,13 +779,22 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             this.spinButton.showFreeSpinMode();
             return;
         }
+        if (this.isPromotionActive()) {
+            this.setTotalBetLabel("0");
+            this.spinButton.showFreeSpinMode();
+            this.stakeButton.interactable = false;
+            this.lineButton.interactable = false;
+            this.autoSpinToggle.interactable = false;
+            this.autoSpinToggle.isChecked = false;
+            return;
+        }
         this.updateTotalBetLabel();
         const showAutoSpin = this.stillAutoSpin() && this.isAutoSpinMode();
         if (showAutoSpin) {
             this.spinButton.showAutoSpinMode();
             return;
         }
-
+        this.lineButton.interactable = true;
         this.spinButton.showNormalMode();
     }
 
@@ -813,7 +822,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     activeButtons() {
-        const isFreeSpin = this.isFreeSpin();
+        const isFreeSpin = this.isFreeSpin() || this.isPromotionActive();
         const isAutoSpinMode = this.isAutoSpinMode();
         const notAutoSpinByKeySpaceOrHold = !this.holdActionButton.isAutoAction;
 
@@ -1134,7 +1143,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         //compare with onAutoSpinOff()
         this.autoSpinToggle.isChecked = false;
         this.setAutoSpinCount(0);
-        const isFreeSpin = this.isFreeSpin();
+        const isFreeSpin = this.isFreeSpin() || this.isPromotionActive();
         this.updateModeSpinButton(isFreeSpin);
         this.activeButtons();
         if (isFreeSpin) {

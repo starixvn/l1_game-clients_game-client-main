@@ -155,7 +155,9 @@ export default class RouletteS extends SoloGame {
             this.rouletteBetItems.forEach((item) => {
                 const choice = item.node.name;
                 const betValue = ownBets[choice];
-                this.betChips.createChipStackUtils(item.chipNode, betValue);
+                if (betValue) {
+                    this.betChips.createChipStackUtils(item.chipNode, betValue);
+                }
             });
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_STATE, () => (state) => {
@@ -168,7 +170,9 @@ export default class RouletteS extends SoloGame {
             return;
         }
 
-        this.soloBetModel.updateOwnBetAndChips();
+        const totalBet = this.soloBetModel.getTotalBetOnChoice(choice);
+        const item = this.rouletteBetItems.find((item) => item.node.name === choice);
+        this.betChips.createChipStackUtils(item.chipNode, totalBet);
     }
 
     updateOddsFromConfigs() {

@@ -79,13 +79,11 @@ export class SoloBetModel extends BetModel {
 
     updateOwnBetAndChips() {
         this.updateOwnbets();
+        this.changeOwnChipsFake(this.ownBets);
+    }
 
-        const ownBets = {};
-        this.queueBet.forEach((bet) => {
-            const currentBet = ownBets[bet.choice] ?? 0;
-            ownBets[bet.choice] = currentBet + bet.amount;
-        });
-        this.changeOwnChipsFake(ownBets);
+    getTotalBetOnChoice(choice: string) {
+        return this.ownBets[choice] ?? 0;
     }
 
     undoBet() {

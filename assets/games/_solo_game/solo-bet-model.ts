@@ -77,7 +77,7 @@ export class SoloBetModel extends BetModel {
         this.updateOwnBetAndChips();
     }
 
-    private updateOwnBetAndChips() {
+    updateOwnBetAndChips() {
         this.updateOwnbets();
 
         const ownBets = {};

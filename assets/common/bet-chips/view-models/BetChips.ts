@@ -5,6 +5,7 @@ import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import GameUtils from "../../GameUtils";
 import AudioManager from "../../audio/AudioManager";
+import ChipStack from "../../chip-stack/views/ChipStack";
 import BetChipsInterface from "./BetChipsInterface";
 import ChipConfig from "./ChipConfig";
 import ChipView, { ChipDisplayType } from "./ChipView";
@@ -471,6 +472,49 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
         const xDest = _.random(Math.floor(chip.width / 4), Math.floor(box.width - chipBoundingBox.width / 2) + 1);
         const yDest = _.random(Math.floor(chip.height / 4), Math.floor(box.height - chipBoundingBox.height / 2) + 1);
         return cc.v3(xDest, yDest);
+    }
+
+    public throwChipThenConvertToStack(destNode: cc.Node, bet: number, onComplete: () => void) {
+        const chip = this.createSmallChip(bet);
+        const objectData = {
+            chipNode: chip,
+            bet,
+            destNode,
+            startNode: null,
+            onComplete,
+            delayDestroy: 0,
+            duration: 0.3,
+            fadeDuration: 1
+        };
+        this.moveChipWithCallback(objectData);
+    }
+
+    public createChipStackUtils(chipNode: cc.Node, amount: number) {
+        chipNode.destroyAllChildren();
+        const chipValues = GameUtils.getChipQuantity(amount, this.chipValues);
+        const node = new cc.Node();
+        node.scaleX = 0.3;
+        node.scaleY = 0.3;
+        const chipStack = node.addComponent(ChipStack);
+        chipStack.chipSize = 26;
+        chipStack.thickness = 18;
+        chipStack.skewX = chipNode.skewX;
+
+        const keys = Object.keys(chipValues).sort((a, b) => +b - +a);
+        let firstChip = true;
+        keys.forEach((chip) => {
+            const count = chipValues[chip];
+            for (let i = 0; i < count; i++) {
+                let chipNode: cc.Node;
+                if (+chip === 0) {
+                    chipNode = this.createLowValueChip();
+                } else {
+                    chipNode = this.createBigChip(+chip);
+                }
+                chipStack.addChip(chipNode);
+            }
+        });
+        chipNode.addChild(node);
     }
 
     public createChipStack(bet: number, options: number[]) {

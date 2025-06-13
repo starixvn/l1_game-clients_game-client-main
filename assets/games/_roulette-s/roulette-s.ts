@@ -39,6 +39,7 @@ export default class RouletteS extends SoloGame {
     private readonly BetChipsPositionHide = -300;
 
     private betChipsShowing = false;
+    private chipFlyingStamp = 0;
 
     protected betChipContainer: cc.Node = null;
 
@@ -142,20 +143,32 @@ export default class RouletteS extends SoloGame {
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.FLY_OWN_CHIP_FAKE, () => (data) => {
             if (data.endBet) {
-                const betItem = this.rouletteBetItems.find((item) => item.node.name.toLowerCase() === data.betChoice.toLowerCase());
-                this.betChips.placeChipToChipBox(data.endBet, betItem.chipNode, null, null);
+                const choice = data.betChoice;
+                const betItem = this.rouletteBetItems.find((item) => item.node.name === choice);
+                this.chipFlyingStamp = Date.now();
+                this.betChips.throwChipThenConvertToStack(betItem.chipNode, this.currentBet, () => {
+                    this.mergeStackOnChoice(choice, this.chipFlyingStamp);
+                });
             }
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_CHIPS_FAKE, () => (ownBets) => {
             this.rouletteBetItems.forEach((item) => {
                 const choice = item.node.name;
                 const betValue = ownBets[choice];
-                this.betChips.showChipOwnBet(item, betValue);
+                this.betChips.createChipStackUtils(item.chipNode, betValue);
             });
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_STATE, () => (state) => {
             this.onStateChange(state);
         });
+    }
+
+    mergeStackOnChoice(choice: string, timeStamp: number) {
+        if (this.chipFlyingStamp !== timeStamp) {
+            return;
+        }
+
+        this.soloBetModel.updateOwnBetAndChips();
     }
 
     updateOddsFromConfigs() {

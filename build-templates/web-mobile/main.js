@@ -3,7 +3,7 @@ window.boot = function () {
     window._CCSettings = undefined;
     var onProgress = null;
 
-    cc.macro.ENABLE_WEBGL_ANTIALIAS = true;
+    // cc.macro.ENABLE_WEBGL_ANTIALIAS = true;
 
     const isIOS14Device =
         cc.sys.os === cc.sys.OS_IOS && cc.sys.isBrowser && cc.sys.isMobile && /iPhone OS 14/.test(window.navigator.userAgent);
@@ -282,7 +282,7 @@ window.boot = function () {
         }
         count++;
         if (count === bundleRoot.length + 1) {
-            cc.macro.ENABLE_WEBGL_ANTIALIAS = true;
+            cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
             cc.game.run(option, onStart);
         }
     }

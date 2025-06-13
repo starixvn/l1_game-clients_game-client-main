@@ -34,6 +34,12 @@ export default class RouletteS extends SoloGame {
 
     private readonly TableWidgetRightShowWheel = -330;
     private readonly TableWidgetRightHideWheel = 0;
+
+    private readonly BetChipsPositionShow = 0;
+    private readonly BetChipsPositionHide = -300;
+
+    private betChipsShowing = false;
+
     protected betChipContainer: cc.Node = null;
 
     constructor() {
@@ -50,20 +56,22 @@ export default class RouletteS extends SoloGame {
 
     initBetChipByLoader(node: cc.Node): void {
         super.initBetChipByLoader(node);
-        this.betChipContainer = node.parent.parent;
+        this.betChipContainer = node.parent;
         this.hideBetChip();
     }
 
     hideBetChip() {
-        this.betChipContainer.active = false;
+        this.betChipsShowing = false;
+        this.betChipContainer.position = cc.v3(0, this.BetChipsPositionHide, 0);
     }
 
     showBetChip() {
-        this.betChipContainer.active = true;
+        this.betChipsShowing = true;
+        this.betChipContainer.position = cc.v3(0, this.BetChipsPositionShow, 0);
     }
 
     clickOpenBetChip() {
-        if (this.betChipContainer.active) {
+        if (this.betChipsShowing) {
             this.hideBetChip();
         } else {
             this.showBetChip();

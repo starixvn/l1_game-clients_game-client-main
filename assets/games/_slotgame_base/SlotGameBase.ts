@@ -597,12 +597,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
 
     updateTotalBetLabel() {
         const total = this.getCurrentTotalBet();
-        const isPromo = typeof this.promotionBetLevel === "number";
-        this.setTotalBetLabel(
-            isPromo
-                ? numberWithCommas(this.promotionBetLevel * this.betChoices.length, this.numberToFixed()) + " (Promo)"
-                : numberWithCommas(total, this.numberToFixed())
-        );
+        this.setTotalBetLabel(numberWithCommas(total, this.numberToFixed()));
     }
 
     setStake(stake: number) {

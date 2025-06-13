@@ -16,7 +16,7 @@ const defaultConfig = {
         secretKey: "f41dc948ed66a029406413327a68b6ae27fe4e6c"
     },
     gatewaySubDomain: "l2-gw2",
-    subGuideDomain: "l1-guide1",
+    subGuideDomain: "l2-guide-2",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     subPromotionDomain: "l2-promotion2",

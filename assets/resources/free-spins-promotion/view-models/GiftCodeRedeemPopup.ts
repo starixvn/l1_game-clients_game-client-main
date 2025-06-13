@@ -60,7 +60,10 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
         // Gửi code lên server hoặc emit event
         cc.log("Redeem gift code:", code); */
-        console.log("redeem gift code");
+        const giftPopup = cc.find("Canvas/GiftCodePopup");
+        if (giftPopup) {
+            giftPopup.destroy();
+        }
         this.onCloseClicked();
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }

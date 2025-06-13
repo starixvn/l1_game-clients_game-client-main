@@ -1,6 +1,9 @@
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 import { StorageManager } from "../../../managers/StorageManager";
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler, {
+    FreeSpinsPromotionEvents,
+    freeSpinsPromotionHandler
+} from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { TrackingEvent } from "../../../analytics/AnalyticsManager";
 import AnalyticsManager from "../../../analytics/AnalyticsManager";
 import { TrackingAction } from "../../../analytics/AnalyticsManager";
@@ -21,6 +24,8 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     gameNameLabel: cc.Label = null;
 
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
+
+    private _skippedGiftCodeManually = false;
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
         const isChecked = toggle.isChecked;
@@ -50,9 +55,13 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         super.closeDialog(enableSound);
         LobbyDialogManager.getInstance().onCloseDialog();
         FreeSpinsPromotionHandler.getInstance().onCloseFreeSpinsPromotionPopup();
+        if (!isChecked && !this._skippedGiftCodeManually) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
+        }
     }
 
     playGameNow() {
+        this._skippedGiftCodeManually = true;
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {

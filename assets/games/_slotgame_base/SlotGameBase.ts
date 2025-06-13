@@ -730,8 +730,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         if (this.betChoices?.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }
-
-        const balanceAvailable = this.isFreeSpin() || this.checkAvailableBalance();
+        const hasPromotion = this.isPromotionActive();
+        const balanceAvailable = this.isFreeSpin() || hasPromotion || this.checkAvailableBalance();
         if (!balanceAvailable) {
             this.resetStateButtons();
             return success;
@@ -745,7 +745,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.stopAllFinishTweens();
         this.hideStakeContrainer();
         this.hideWinningEffectOnItems();
-        const hasPromotion = this.isPromotionActive();
         this.lockBet();
         const isFreeSpin = this.isFreeSpin();
         const data = {

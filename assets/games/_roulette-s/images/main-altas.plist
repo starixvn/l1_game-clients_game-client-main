@@ -60,11 +60,11 @@
                 <key>spriteSourceSize</key>
                 <string>{98,98}</string>
                 <key>textureRect</key>
-                <string>{{723,485},{98,98}}</string>
+                <string>{{623,531},{98,98}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>button-spin.png</key>
+            <key>button-spin-disable.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -79,6 +79,21 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>button-spin.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{148,148}</string>
+                <key>spriteSourceSize</key>
+                <string>{148,148}</string>
+                <key>textureRect</key>
+                <string>{{723,485},{148,148}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>button-undo.png</key>
             <dict>
                 <key>aliases</key>
@@ -90,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{98,98}</string>
                 <key>textureRect</key>
-                <string>{{623,531},{98,98}}</string>
+                <string>{{623,631},{98,98}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -191,11 +206,11 @@
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{4,664}</string>
+                <string>{10,663}</string>
                 <key>spriteSourceSize</key>
-                <string>{4,664}</string>
+                <string>{10,663}</string>
                 <key>textureRect</key>
-                <string>{{1003,3},{4,664}}</string>
+                <string>{{1003,3},{10,663}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -255,7 +270,7 @@
                 <key>spriteSourceSize</key>
                 <string>{2,2}</string>
                 <key>textureRect</key>
-                <string>{{1009,3},{2,2}}</string>
+                <string>{{1015,3},{2,2}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -273,7 +288,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:2f19752c7be1adae95589b8afbebb26c:3ad0a4321d1ce3a32a35f3bde97f7f83:ef0ef156a355359910a67f53b8e8916b$</string>
+            <string>$TexturePacker:SmartUpdate:e27afec9fb091605683cdf58c66fa0db:a25df455e42f089aaba8304b4ffa1d30:ef0ef156a355359910a67f53b8e8916b$</string>
             <key>textureFileName</key>
             <string>main-altas.webp</string>
         </dict>

@@ -29,6 +29,14 @@ export default class SoloGameData extends NewGameData {
         this.eventEmitters.push(...models);
     }
 
+    receiveData(data: any) {
+        super.receiveData(data);
+
+        if (data?.finish?.roundId) {
+            this.changeRoundId(data?.finish?.roundId);
+        }
+    }
+
     protected registerBaseEventHandlers() {
         const handlers = [
             // base handlers

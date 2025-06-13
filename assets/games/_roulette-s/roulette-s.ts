@@ -285,6 +285,10 @@ export default class RouletteS extends SoloGame {
         }
     }
 
+    handlePayChips(settlement) {
+        this.gameData.settlement.showStatus();
+    }
+
     handleAfterSettlementResult(settlement: any, animated: boolean) {
         super.handleAfterSettlementResult(settlement, animated);
         this.rouletteBetItems.forEach((betItem) => {

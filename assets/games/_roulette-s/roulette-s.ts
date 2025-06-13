@@ -31,13 +31,13 @@ export default class RouletteS extends SoloGame {
     tableWidget: cc.Widget = null;
 
     @property(cc.Button)
-    btnSpin:cc.Button = null;
+    btnSpin: cc.Button = null;
 
     @property(cc.Button)
-    btnClear:cc.Button = null;
+    btnClear: cc.Button = null;
 
     @property(cc.Button)
-    btnUndo:cc.Button = null;
+    btnUndo: cc.Button = null;
 
     private rouletteBetItems: RouletteBetItem[] = [];
 
@@ -158,6 +158,7 @@ export default class RouletteS extends SoloGame {
                 this.betChips.throwChipThenConvertToStack(betItem.chipNode, this.currentBet, () => {
                     this.mergeStackOnChoice(choice, this.chipFlyingStamp);
                 });
+                this.updateSpinButtonInteractable();
             }
         });
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_CHIPS_FAKE, () => (ownBets) => {
@@ -166,12 +167,20 @@ export default class RouletteS extends SoloGame {
                 const betValue = ownBets[choice];
                 if (betValue) {
                     this.betChips.createChipStackUtils(item.chipNode, betValue);
+                } else {
+                    item.clearChips();
                 }
             });
+            this.updateSpinButtonInteractable();
         });
+        this.emitterListener(this.gameData.betModel, SoloBetModel.Events.PLACE_BET_FAILED, () => () => {
+            this.soloBetModel.changeState(SoloBetState.BETTING_FAILED);
+        });
+
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_STATE, () => (state) => {
             this.onStateChange(state);
         });
+        this.onStateChange(this.soloBetModel.state);
     }
 
     mergeStackOnChoice(choice: string, timeStamp: number) {
@@ -196,6 +205,10 @@ export default class RouletteS extends SoloGame {
     }
 
     onStateChange(state: string) {
+        this.updateSpinButtonInteractable();
+        const preventChangeBet = state === SoloBetState.BETTING || state === SoloBetState.RESULT;
+        this.updateChangeBetButtons(!preventChangeBet);
+
         switch (state) {
             case SoloBetState.READY:
                 this.rouletteBetItems.forEach((item) => item.clearBet());
@@ -210,6 +223,17 @@ export default class RouletteS extends SoloGame {
             default:
                 break;
         }
+    }
+
+    updateChangeBetButtons(enable: boolean) {
+        this.btnClear.interactable = enable;
+        this.btnUndo.interactable = enable;
+    }
+
+    updateSpinButtonInteractable() {
+        const state = this.soloBetModel.state;
+        const isStateCanBet = state === SoloBetState.READY || state === SoloBetState.SETTLEMENT;
+        this.btnSpin.interactable = this.soloBetModel.existBet() && isStateCanBet;
     }
 
     onRouletteBetClick(choice: string) {
@@ -254,6 +278,7 @@ export default class RouletteS extends SoloGame {
             await this.showWheel();
             await this.showWheelResult(result);
             this.wheel.hideResultNumber();
+            this.soloBetModel.changeState(SoloBetState.SETTLEMENT);
             this.gameData.settlement.finishShowResult(settlement, true);
         } catch (error) {
             console.warn(error.message);

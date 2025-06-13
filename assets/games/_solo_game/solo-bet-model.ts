@@ -8,6 +8,7 @@ interface ChoiceBet {
 export enum SoloBetState {
     READY = "ready",
     BETTING = "betting",
+    BETTING_FAILED = "bettingFailed",
     RESULT = "result",
     SETTLEMENT = "settlement"
 }
@@ -22,7 +23,7 @@ export class SoloBetModel extends BetModel {
     protected queueBet: ChoiceBet[] = [];
     protected lastQueueBet: ChoiceBet[] = [];
     protected currentBet = 0;
-    protected state = "idle";
+    state = SoloBetState.READY;
 
     changeState(state: string) {
         this.emit(SoloBetModel.Events.CHANGE_STATE, state);
@@ -75,6 +76,10 @@ export class SoloBetModel extends BetModel {
     reBet() {
         this.queueBet = this.lastQueueBet;
         this.updateOwnBetAndChips();
+    }
+
+    existBet() {
+        return this.queueBet.length > 0;
     }
 
     updateOwnBetAndChips() {

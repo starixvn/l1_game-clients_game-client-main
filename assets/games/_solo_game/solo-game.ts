@@ -46,4 +46,13 @@ export default class SoloGame extends StandAloneTableGameBase {
     clickUndoBet() {
         this.soloBetModel.undoBet();
     }
+
+   override showStatus(status: any) {
+        const { win, bet } = status;
+
+        if (win) {
+            this.showWinningBet(bet);
+            this.updateUserBalance();
+        }
+    }
 }

@@ -10,7 +10,31 @@ export class SoloBetHandler extends BetHandler {
     }
 
     protected handle(event: BetEventType) {
-        super.handle(event);
+        if (event.endBet) {
+            if (event.endBet === -1) {
+                this.gameData.betModel.placeBetFailed();
+            } else {
+                this.gameData.betModel.placeBetSuccess(event.endBet);
+            }
+        }
+
+        if (event.ownBets) {
+            this.gameData.betModel.changeOwnBets(event.ownBets);
+            const isInGamePackage = event.gameConfigs !== undefined;
+            if (isInGamePackage) {
+                this.gameData.betModel.changeOwnChipsFake(event.ownBets);
+                this.gameData.betModel.initOwnChipsByOwnBets(event.ownBets);
+            }
+        }
+
+        if (event.betPercentage || event.userBetPercentage) {
+            this.gameData.betModel.changeBetPercentage(event.betPercentage || event.userBetPercentage);
+        }
+
+        if (event.rebet) {
+            this.gameData.betModel.handleRebet(event.rebet);
+        }
+
         if (event.ownChip) {
             this.gameData.betModel.changeOwnChip(event.ownChip);
         }

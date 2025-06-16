@@ -143,7 +143,11 @@ export default class StandardSlotGame extends SlotGameBase {
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this);
 
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, (finishPromotion) => this.showPromotionEndedPopup(finishPromotion), this);
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
+            (finishPromotion) => this.showPromotionEndedPopup(finishPromotion),
+            this
+        );
     }
 
     onDestroy() {
@@ -152,7 +156,11 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     async showGiftCode() {
-        GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodePopup", "free-spins-promotion/views/gift-code");
+        GameUtils.showFreeSpinsPromotionPopupOnce(
+            "GiftCodePopup",
+            "free-spins-promotion/views/gift-code",
+            "Canvas/main/BoardGroup/other/number_col_left"
+        );
     }
 
     async showGiftCodeRedeemPopup() {
@@ -164,35 +172,28 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     async showPromotionDetailsPanel() {
-        
-        const existing = cc.find("Canvas/PromotionDetailsPanel");
-        if (existing) {
-            const comp = existing.getComponent("PromotionDetailsPanel");
-            comp?.refresh?.();
-            return;
-        }
-
-        const prefab = await GameUtils.loadResource("free-spins-promotion/views/promotion-details-panel");
-        const node = cc.instantiate(prefab);
-        node.name = "PromotionDetailsPanel";
-        node.parent = cc.find("Canvas");
-        node.setPosition(0, 0);
-
-        const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
-        const panelComp = node.getComponent("PromotionDetailsPanel");
-        panelComp?.initPromotion?.(promotionInfo);
+        GameUtils.showFreeSpinsPromotionPopupOnce(
+            "PromotionDetailsPanel",
+            "free-spins-promotion/views/promotion-details-panel",
+            "Canvas/main/BoardGroup/other/number_col_left",
+            (node) => {
+                const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
+                const panelComp = node.getComponent("PromotionDetailsPanel");
+                panelComp?.initPromotion?.(promotionInfo);
+            }
+        );
     }
 
     async showPromotionEndedPopup(finishPromotion: any) {
-        console.log("showPromotionEndedPopup", finishPromotion);
-        const prefab = await GameUtils.loadResource("free-spins-promotion/views/promotion-ended-popup");
-        const node = cc.instantiate(prefab);
-        node.name = "PromotionEndedPopup";
-        node.parent = cc.find("Canvas");
-        node.setPosition(0, 0);
-
-        const popupComp = node.getComponent("PromotionEndedPopup");
-        popupComp?.show(finishPromotion);
+        GameUtils.showFreeSpinsPromotionPopupOnce(
+            "PromotionEndedPopup",
+            "free-spins-promotion/views/promotion-ended-popup",
+            null,
+            (node) => {
+                const popupComp = node.getComponent("PromotionEndedPopup");
+                popupComp?.show?.(finishPromotion);
+            }
+        );
     }
 
     updateBalanceColor() {

@@ -25,12 +25,6 @@ export default class GiftCode extends cc.Component {
     }
 
     onClickGiftCode() {
-        cc.log("onClickGiftCode");
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
-    }
-
-    handleGiftCode() {
-        cc.log("handleGiftCode");
-        this.icon.active = true;
     }
 }

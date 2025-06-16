@@ -26,10 +26,7 @@ export default class Draggable extends cc.Component {
         this._touchOffset = cc.v2(touchLoc.x - nodePos.x, touchLoc.y - nodePos.y);
 
         // Reference tọa độ gốc để sau này so sánh
-        this._touchReference = cc.v2(
-            touchLoc.x - (touchLoc.x - nodePos.x),
-            touchLoc.y - (touchLoc.y - nodePos.y)
-        );
+        this._touchReference = cc.v2(touchLoc.x - (touchLoc.x - nodePos.x), touchLoc.y - (touchLoc.y - nodePos.y));
     }
 
     onTouchMove(e: cc.Event.EventTouch) {
@@ -45,8 +42,6 @@ export default class Draggable extends cc.Component {
 
         if (Math.abs(xChanger) < 5 && Math.abs(yChanger) < 5) {
             this.onClickCallback?.();
-        } else {
-            this.snapToEdge();
         }
 
         this._touchOffset = null;
@@ -67,26 +62,5 @@ export default class Draggable extends cc.Component {
         pos.y = Math.max(minY, Math.min(maxY, pos.y));
 
         return cc.v3(pos.x, pos.y);
-    }
-
-    snapToEdge() {
-        const winSize = cc.winSize;
-        const halfW = this.node.width / 2;
-        const halfH = this.node.height / 2;
-
-        const maxX = winSize.width / 2 - halfW;
-        const maxY = winSize.height / 2 - halfH;
-
-        const curPos = this.node.getPosition();
-
-        const distLeft = Math.abs(curPos.x + maxX);
-        const distRight = Math.abs(maxX - curPos.x);
-
-        const targetX = distLeft < distRight ? -maxX : maxX;
-        const targetY = Math.max(-maxY, Math.min(maxY, curPos.y));
-
-        cc.tween(this.node)
-            .to(0.15, { x: targetX, y: targetY }, { easing: "sineOut" })
-            .start();
     }
 }

@@ -1,3 +1,4 @@
+import GameUtils from "../../../common/GameUtils";
 import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 
@@ -52,15 +53,9 @@ export default class GiftCodeRedeemPopup extends cc.Component {
     }
 
     onRedeemClicked() {
-        /*   const code = this.inputBox.string.trim();
-        if (!code) {
-            cc.log("Empty code!");
-            return;
-        }
-
-        // Gửi code lên server hoặc emit event
-        cc.log("Redeem gift code:", code); */
-        const giftPopup = cc.find("Canvas/GiftCodePopup");
+        const canvas = cc.find("Canvas");
+        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
+    
         if (giftPopup) {
             giftPopup.destroy();
         }

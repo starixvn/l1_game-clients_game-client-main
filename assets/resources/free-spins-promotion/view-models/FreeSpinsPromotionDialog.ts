@@ -68,7 +68,9 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {
-            const giftPopup = cc.find("Canvas/GiftCodePopup");
+            const canvas = cc.find("Canvas");
+            const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
+
             if (giftPopup) {
                 giftPopup.destroy();
             }

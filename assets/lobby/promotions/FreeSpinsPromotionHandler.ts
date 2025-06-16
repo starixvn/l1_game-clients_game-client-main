@@ -101,7 +101,9 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         try {
             const promotion = this.promotionInfoFromSso?.promotion;
 
-            if (!promotion?.promotionId) return;
+            if (!promotion?.promotionId) {
+                return;
+            }
 
             const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
             const isSC1 = configs.systemType.toUpperCase() === "SC1";
@@ -167,7 +169,9 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const searchParams = new URLSearchParams();
         const params = this.buildParams();
         Object.keys(params).forEach((key) => {
-            if (params[key] !== undefined) searchParams.append(key, params[key]);
+            if (params[key] !== undefined) {
+                searchParams.append(key, params[key]);
+            }
         });
 
         if (promotionId) {

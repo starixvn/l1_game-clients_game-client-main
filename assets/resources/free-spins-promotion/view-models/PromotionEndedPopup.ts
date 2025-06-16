@@ -15,7 +15,9 @@ export default class PromotionEndedPopup extends cc.Component {
 
     public show(finishPromotion: any) {
         const { endPromotion, totalWin } = finishPromotion;
-        if (PromotionEndedPopup.hasShown || !endPromotion) return;
+        if (PromotionEndedPopup.hasShown || !endPromotion) {
+            return;
+        }
 
         PromotionEndedPopup.hasShown = true;
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);

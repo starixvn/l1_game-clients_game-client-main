@@ -176,8 +176,10 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this._jackpotEnabled = value;
     }
     get promotionPanel() {
-        return cc.find("Canvas/PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel") ?? null;
+        return GameUtils.findNodeByNameRecursive(cc.find("Canvas"), "PromotionDetailsPanel")
+            ?.getComponent("PromotionDetailsPanel") ?? null;
     }
+    
     setAllowChangeBet(allow: boolean) {
         this.stakeButton.interactable = allow;
     }

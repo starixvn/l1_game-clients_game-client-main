@@ -19,7 +19,9 @@ export default class PromotionDetailsPanel extends cc.Component {
     private fsbConsumedThisRound = false;
 
     initPromotion(promotionInfo: any) {
-        if (!promotionInfo) return;
+        if (!promotionInfo) {
+            return;
+        }
 
         const promotion = promotionInfo.promotion;
         const gameOffer = promotionInfo.gameOfferPromotion?.[0];
@@ -65,7 +67,10 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     addWinAmount(amount: number) {
-        if (!this.promotionActive || amount <= 0) return;
+        if (!this.promotionActive || amount <= 0) {
+            return;
+        }
+
         this.totalWin += amount;
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
     }
@@ -82,7 +87,9 @@ export default class PromotionDetailsPanel extends cc.Component {
 
     private checkPromotionEnded() {
         const now = Date.now();
-        if (!this.promotionActive) return;
+        if (!this.promotionActive) {
+            return;
+        }
 
         if (this.promotionFSB <= 0 || (this.endTime && now > this.endTime)) {
             this.promotionActive = false;

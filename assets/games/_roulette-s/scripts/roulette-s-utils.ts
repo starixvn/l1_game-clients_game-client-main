@@ -43,3 +43,9 @@ export const getTypeFromChoice = (choice: string) => {
 
     return "line";
 };
+
+export const CustomColor = {
+    green: "#139A3D",
+    red: "#AE0303",
+    black: "#0A0A0A"
+};

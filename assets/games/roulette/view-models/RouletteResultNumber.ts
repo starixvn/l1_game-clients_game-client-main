@@ -10,12 +10,23 @@ export default class RouletteResultNumber extends cc.Component {
     @property(cc.Label)
     label: cc.Label = null;
 
+    protected readonly greenColor: string = "#145c1c";
+    protected readonly redColor: string = "#b80201";
+    protected readonly blackColor: string = "#000000";
+
     setNumber(number: number) {
         this.label.string = number.toString();
-        const color = cc.Color.BLACK;
-        this.background.node.color =
-            number === 0 ? color.fromHEX("#145c1c") : RouletteUtils.isRed(number) ? color.fromHEX("#b80201") : color;
+        this.background.node.color = this.getColor(number);
         this.show();
+    }
+
+    protected getColor(number: number) {
+        const color = cc.Color.BLACK;
+        return number === 0
+            ? color.fromHEX(this.greenColor)
+            : RouletteUtils.isRed(number)
+            ? color.fromHEX(this.redColor)
+            : color.fromHEX(this.blackColor);
     }
 
     show() {

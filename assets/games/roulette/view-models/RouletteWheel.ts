@@ -47,6 +47,9 @@ export default class RouletteWheel extends cc.Component {
     @property(RouletteResultNumber)
     resultNumber: RouletteResultNumber = null;
 
+    @property
+    durationShowResult = 0;
+
     wheelTrack = 0;
     ballTrack = 1;
     timeScale = 0;
@@ -117,8 +120,9 @@ export default class RouletteWheel extends cc.Component {
             .delay(9)
             .call(() => {
                 this.showResultNumber(result);
-                onComplete();
             })
+            .delay(this.durationShowResult)
+            .call(onComplete)
             .start();
     }
 

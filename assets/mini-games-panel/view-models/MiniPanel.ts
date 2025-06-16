@@ -36,7 +36,7 @@ import MiniPanelInterface from "./MiniPanelInterface";
 import MiniPanelMiniGameInitializers from "./MiniPanelMiniGameInitializers";
 import MiniPanelSocketIOGameInitializers from "./MiniPanelSocketIOGameInitializers";
 import PopupMinigames from "./popup/PopupMinigames";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
 
 type NewLayerCallback = () => void;

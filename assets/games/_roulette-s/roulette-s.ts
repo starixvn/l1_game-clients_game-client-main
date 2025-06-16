@@ -13,6 +13,7 @@ import RouletteWheel from "../roulette/view-models/RouletteWheel";
 import { RouletteGameData } from "./scripts/roulette-bet-game-data";
 import RouletteBetItem from "./scripts/roulette-bet-item";
 import { getTypeFromChoice } from "./scripts/roulette-s-utils";
+import MiniRouletteRoundHistory from "./scripts/mini-roulette-round-history";
 
 const { ccclass, property } = cc._decorator;
 
@@ -47,7 +48,14 @@ export default class RouletteS extends SoloGame {
     @property(cc.Node)
     nodeInGameMenu: cc.Node = null;
 
+    @property(cc.Prefab)
+    roundHistoryPrefab: cc.Prefab = null;
+
+    @property(cc.Node)
+    roundHistoryContainer: cc.Node = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
+    private roundHistoryComponent: MiniRouletteRoundHistory = null;
 
     private readonly TableWidgetRightShowWheel = -330;
     private readonly TableWidgetRightHideWheel = 0;
@@ -72,7 +80,7 @@ export default class RouletteS extends SoloGame {
 
     onLoad() {
         this.initRouletteBetItems();
-
+        this.initRoundHistory();
         this.hideWheel(false);
         super.onLoad();
     }
@@ -159,6 +167,15 @@ export default class RouletteS extends SoloGame {
         });
     }
 
+    initRoundHistory() {
+        if (!this.roundHistoryPrefab || !this.roundHistoryContainer) {
+            return;
+        }
+        const item = cc.instantiate(this.roundHistoryPrefab);
+        this.roundHistoryComponent = item.getComponent(MiniRouletteRoundHistory);
+        this.roundHistoryContainer.addChild(item);
+    }
+
     initGameDataEvents() {
         super.initGameDataEvents();
         this.emitterListener(this.gameData.betModel, SoloBetModel.Events.CHANGE_OWN_BET, () => (data) => {
@@ -204,6 +221,10 @@ export default class RouletteS extends SoloGame {
         this.onStateChange(this.soloBetModel.state);
     }
 
+    updateRoundHistory() {
+        this.roundHistoryComponent?.setData(this.currentDataLogs);
+    }
+
     mergeStackOnChoice(choice: string, timeStamp: number) {
         if (this.chipFlyingStamp !== timeStamp) {
             return;
@@ -237,6 +258,7 @@ export default class RouletteS extends SoloGame {
                 break;
             case SoloBetState.BETTING:
                 this.rouletteBetItems.forEach((item) => item.setHighlight(false));
+                this.roundHistoryComponent.setHighlight(false);
                 break;
             case SoloBetState.RESULT:
                 break;
@@ -321,6 +343,7 @@ export default class RouletteS extends SoloGame {
             const isSpecial = type === "column" || type === "dozen";
             const isWin = isSpecial ? settlementResult.includes(choice.slice(-1)) : settlementResult.includes(choice);
             betItem.setHighlight(isWin);
+            this.roundHistoryComponent.setHighlight(true);
         });
     }
 

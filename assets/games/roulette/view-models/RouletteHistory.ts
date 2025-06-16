@@ -5,6 +5,9 @@ import RouletteTicketDetail from "./RouletteTicketDetail";
 const { ccclass, property } = cc._decorator;
 @ccclass
 export default class RouletteHistory extends SocketIOGameHistoryBase {
+    AUTO_SCALE_NODE_WIDTH = 930;
+    HEIGHT_CONTENT = 700;
+
     @property(cc.Prefab)
     ticketDetailPrefab: cc.Prefab = null;
 

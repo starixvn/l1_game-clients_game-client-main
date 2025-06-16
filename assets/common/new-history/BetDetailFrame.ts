@@ -37,9 +37,12 @@ export default class BetDetailFrame extends cc.Component {
             child.width = widthContent / 2;
             child.height = heightContent;
         });
-        this.backFrameLayout.updateLayout();
+        this.backFrameLayout?.updateLayout();
         this.backWrapper.width = this.mainFrame.width;
-        this.titleBgNode.parent.active = this.isShowTitleBetDetail;
+
+        if (this.titleBgNode && this.titleBgNode.parent) {
+            this.titleBgNode.parent.active = this.isShowTitleBetDetail;
+        }
 
         const padding = this.PADDING_AROUND_POPUP;
         const autoScaleNode = this.backWrapper.parent;

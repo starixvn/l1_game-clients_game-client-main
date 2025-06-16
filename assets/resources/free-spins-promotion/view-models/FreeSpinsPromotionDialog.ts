@@ -4,9 +4,7 @@ import FreeSpinsPromotionHandler, {
     FreeSpinsPromotionEvents,
     freeSpinsPromotionHandler
 } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { TrackingEvent } from "../../../analytics/AnalyticsManager";
-import AnalyticsManager from "../../../analytics/AnalyticsManager";
-import { TrackingAction } from "../../../analytics/AnalyticsManager";
+import AnalyticsManager, { TrackingEvent, TrackingAction } from "../../../analytics/AnalyticsManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import LobbyDialogManager from "../../../managers/LobbyDialogManager";

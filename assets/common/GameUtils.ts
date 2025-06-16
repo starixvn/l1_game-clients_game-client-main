@@ -1122,10 +1122,14 @@ export default class GameUtils {
     }
 
     public static findNodeByNameRecursive(root: cc.Node, name: string): cc.Node | null {
-        if (root.name === name) return root;
+        if (root.name === name) {
+            return root;
+        }
         for (const child of root.children) {
             const found = this.findNodeByNameRecursive(child, name);
-            if (found) return found;
+            if (found) {
+                return found;
+            }
         }
         return null;
     }

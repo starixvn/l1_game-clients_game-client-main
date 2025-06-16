@@ -29,17 +29,17 @@ export default class RouletteBetItem extends cc.Component {
     }
 
     resetUI() {
-        this.odds.string = "";
+        this.odds && (this.odds.string = "");
         this.clearBet();
     }
 
     clearChips() {
-        this.chipNode.destroyAllChildren();
+        this.chipNode?.destroyAllChildren();
     }
 
     clearBet() {
-        this.ownBet.string = "";
-        this.highlight.active = false;
+        this.ownBet && (this.ownBet.string = "");
+        this.highlight && (this.highlight.active = false);
         this.clearChips();
     }
 

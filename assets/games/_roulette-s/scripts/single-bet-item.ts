@@ -1,16 +1,19 @@
 import AudioManager from "../../../common/audio/AudioManager";
 import RouletteBetItem from "./roulette-bet-item";
+import SingleBetControl from "./single-bet-control";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class SingleBetItem extends RouletteBetItem {
-    @property({override: true})
+    @property({ override: true })
     isGroupBet = true;
+
+    @property(SingleBetControl)
+    singleBetControl: SingleBetControl = null;
 
     public onBetClick(event: cc.Event.EventTouch) {
         AudioManager.getInstance().playClick();
-        // const choice = this.node.name;
-        this.betCallback("0");
+        this.singleBetControl.showControl();
     }
 }

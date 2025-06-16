@@ -10,10 +10,10 @@ import { SoloBetModel, SoloBetState } from "../_solo_game/solo-bet-model";
 import SoloGame from "../_solo_game/solo-game";
 import RouletteHistory from "../roulette/view-models/RouletteHistory";
 import RouletteWheel from "../roulette/view-models/RouletteWheel";
+import MiniRouletteRoundHistory from "./scripts/mini-roulette-round-history";
 import { RouletteGameData } from "./scripts/roulette-bet-game-data";
 import RouletteBetItem from "./scripts/roulette-bet-item";
 import { getTypeFromChoice } from "./scripts/roulette-s-utils";
-import MiniRouletteRoundHistory from "./scripts/mini-roulette-round-history";
 
 const { ccclass, property } = cc._decorator;
 
@@ -24,7 +24,7 @@ export class RouletteSConfig implements GameConfigBase {
     stopBetTime = 5;
     waitTime = 15;
 }
-// cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
+
 @ccclass
 export default class RouletteS extends SoloGame {
     @property(RouletteWheel)

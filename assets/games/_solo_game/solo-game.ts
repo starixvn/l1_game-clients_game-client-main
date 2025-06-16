@@ -11,6 +11,12 @@ export default class SoloGame extends StandAloneTableGameBase {
         return this.gameData.betModel as SoloBetModel;
     }
 
+    setGameRound(gameRoundId) {
+        const gameRound = this.formatGameRound(gameRoundId);
+        this.gameRound.string = gameRound;
+        this.gameRound.node.parent.active = gameRoundId > 0;
+    }
+
     createGameData(): NewGameData {
         return new SoloGameData();
     }
@@ -47,7 +53,7 @@ export default class SoloGame extends StandAloneTableGameBase {
         this.soloBetModel.undoBet();
     }
 
-   override showStatus(status: any) {
+    override showStatus(status: any) {
         const { win, bet } = status;
 
         if (win) {

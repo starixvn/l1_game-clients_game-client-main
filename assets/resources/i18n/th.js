@@ -652,7 +652,11 @@ const data = {
     freeSpinsPromotion: {
         gift_code_message: "แลกฟรีสปินของคุณ",
         Invalide_gift_code_error_message: "รหัสของขวัญไม่ถูกต้อง กรุณาตรวจสอบรหัสของคุณแล้วลองใหม่อีกครั้ง",
-        gift_code_error_message: "กรุณาป้อนรหัสของขวัญของคุณ"
+        gift_code_error_message: "กรุณาป้อนรหัสของขวัญของคุณ",
+        Unexpected_gift_code_error_message: "เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองแลกโค้ดของขวัญอีกครั้งในภายหลัง",
+        gift_code_redeem: "แลกฟรีสปิน",
+        gift_code: "รหัสของขวัญ",
+        gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ"
     }
 };
 

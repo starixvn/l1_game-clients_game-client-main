@@ -646,9 +646,13 @@ const data = {
         pf_verification_para_4: "Tính Kết Quả "
     },
     freeSpinsPromotion: {
-        gift_code_message: "Nhận phần thưởng vòng quay miễn phí của bạn.",
-        Invalide_gift_code_error_message: "Mã Quà Tặng không hợp lệ. Vui lòng kiểm tra lại mã và thử lại.",
-        gift_code_error_message: "Vui lòng nhập mã Quà Tặng của bạn."
+        gift_code_message: "Nhận thưởng lượt quay Free Spin.",
+        Invalide_gift_code_error_message: "Gift Code không hợp lệ. Vui lòng kiểm tra và thử lại.",
+        gift_code_error_message: "Vui lòng nhập Gift Code.",
+        Unexpected_gift_code_error_message: "Đã xảy ra lỗi. Vui lòng nhập lại mã Gift code của bạn sau vài phút.",
+        gift_code_redeem: "Nhận thưởng",
+        gift_code: "Gift Code",
+        gift_code_enter_paste_code: "Nhập hoặc dán mã Gift Code"
     }
 };
 

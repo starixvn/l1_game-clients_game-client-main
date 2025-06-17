@@ -1,4 +1,4 @@
-const defaultSourcePaths = "assets/**/*.ts";
+const defaultSourcePaths = "assets";
 const defaultTestPaths = "__tests__";
 
 const collectCoverageFrom = (process.env.SOURCE_PATHS || defaultSourcePaths).split(",").map((path) => `${path}/**/*.ts`);

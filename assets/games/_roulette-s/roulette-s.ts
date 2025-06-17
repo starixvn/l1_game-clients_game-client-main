@@ -1,7 +1,7 @@
 import _ = require("lodash");
 import { i18n } from "../../ClientModules";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
-import InGameMenu, { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
+import { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { userManager } from "../../common/user/UserManager";
 import AnimationUtils from "../../common/utils/AnimationUtils";
 import { GameConfigBase } from "../_base/view-models/GameConfigBase";
@@ -14,6 +14,7 @@ import MiniRouletteRoundHistory from "./scripts/mini-roulette-round-history";
 import { RouletteGameData } from "./scripts/roulette-bet-game-data";
 import RouletteBetItem from "./scripts/roulette-bet-item";
 import { getTypeFromChoice } from "./scripts/roulette-s-utils";
+import RouletteStatistics from "./scripts/roulette-statistics";
 
 const { ccclass, property } = cc._decorator;
 
@@ -54,6 +55,9 @@ export default class RouletteS extends SoloGame {
     @property(cc.Node)
     roundHistoryContainer: cc.Node = null;
 
+    @property(cc.Prefab)
+    statisticPrefab: cc.Prefab = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
     private roundHistoryComponent: MiniRouletteRoundHistory = null;
 
@@ -83,10 +87,6 @@ export default class RouletteS extends SoloGame {
         this.initRoundHistory();
         this.hideWheel(false);
         super.onLoad();
-    }
-
-    onStart() {
-        this.initInGameMenuEvents();
     }
 
     initBetChipByLoader(node: cc.Node): void {
@@ -420,16 +420,20 @@ export default class RouletteS extends SoloGame {
         super.clickReBet();
     }
 
-    private initInGameMenuEvents() {
-        if (!this.nodeInGameMenu) {
-            return;
-        }
+    override initEventForInGameMenu() {
+        const node = super.initEventForInGameMenu();
+        node.on(InGameMenuEvents.OPEN_STATISTIC, this.openStatistic, this);
+        return node;
+    }
 
-        const node = this.nodeInGameMenu.getComponentInChildren(InGameMenu).node;
+    public openStatistic() {
+        this.playClick();
+        const dialog = cc.instantiate(this.statisticPrefab);
+        const statisticData = this.currentDataLogs.map((log) => log.result);
+        const comp = dialog.getComponent(RouletteStatistics);
+        comp.generateStatistic(statisticData);
 
-        node.on(InGameMenuEvents.OPEN_HISTORY, this.openHistory, this);
-        // node.on(InGameMenuEvents.OPEN_GUIDE, this.openGuide, this);
-        // node.on(InGameMenuEvents.OPEN_STATISTIC, this.openStatistic, this);
+        this.currentMiniPanel.node.addChild(dialog);
     }
 
     public openHistory() {

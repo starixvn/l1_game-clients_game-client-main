@@ -32,6 +32,8 @@ interface StandardPromotionInfo {
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
     private promotionInfoFromSso: any = null;
+
+    private previousGameOfferPromotion?: any[];
     public isDirectlyOpen = false;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
     private shouldSkipGiftCode = false;
@@ -78,19 +80,18 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     private normalizePromotionData(data: any): { promotion: StandardPromotionInfo; gameOfferPromotion?: any[] } {
         const rawPromo = data?.promotion;
-        const gamePromo = data?.promotionInfo?.promotion;
-
-        const source = rawPromo?.promotionId ? rawPromo : gamePromo;
-
+        const currentGameOfferPromotion =
+            data?.gameOfferPromotion !== undefined ? data.gameOfferPromotion : this.previousGameOfferPromotion;
+        this.previousGameOfferPromotion = currentGameOfferPromotion;
         return {
             promotion: {
-                promotionId: source?.promotionId,
-                code: source?.code || source?.promotionCode,
-                isGiftCode: source?.isGiftCode === true,
-                remainingBonusItems: source?.remainingBonusItems || source?.bonusItemCount,
-                ...source
+                promotionId: rawPromo?.promotionId,
+                code: rawPromo?.code || rawPromo?.promotionCode,
+                isGiftCode: rawPromo?.isGiftCode === true,
+                remainingBonusItems: rawPromo?.remainingBonusItems || rawPromo?.bonusItemCount,
+                ...rawPromo
             },
-            gameOfferPromotion: data?.gameOfferPromotion ?? data?.promotionInfo?.gameOfferPromotion
+            gameOfferPromotion: currentGameOfferPromotion
         };
     }
 
@@ -113,7 +114,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
             if (this.isDirectlyOpen) {
                 if (this.shouldSkipGiftCode) {
-                    this.shouldSkipGiftCode = false; 
+                    this.shouldSkipGiftCode = false;
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
                     return;
                 }

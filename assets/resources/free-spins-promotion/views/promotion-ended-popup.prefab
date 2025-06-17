@@ -502,7 +502,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1431.99,
+      "width": 1845.51,
       "height": 100.8
     },
     "_anchorPoint": {
@@ -514,7 +514,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        16.828,
+        0,
         32.553,
         0,
         0,
@@ -540,18 +540,6 @@
     "_id": ""
   },
   {
-    "__type__": "a8acfDXW6RBdZj4RLwzEfA7",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 11
-    },
-    "_enabled": true,
-    "overrideFonts": [],
-    "enableCacheMode": false,
-    "_id": ""
-  },
-  {
     "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
@@ -566,8 +554,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "You have completed your Free Spins Bonus",
-    "_N$string": "You have completed your Free Spins Bonus",
+    "_string": "Bạn đã hoàn thành các lượt chơi Free Spin khuyến mãi.",
+    "_N$string": "Bạn đã hoàn thành các lượt chơi Free Spin khuyến mãi.",
     "_fontSize": 80,
     "_lineHeight": 80,
     "_enableWrapText": true,
@@ -584,6 +572,19 @@
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
     "_N$cacheMode": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "148dec5uTNPMq+vU3F1WigD",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 11
+    },
+    "_enabled": true,
+    "_dataId": "freeSpinsPromotion.FSB_end_notification",
+    "format": 0,
+    "suffix": "",
     "_id": ""
   },
   {
@@ -630,7 +631,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 483.98,
+      "width": 2189.7,
       "height": 126
     },
     "_anchorPoint": {
@@ -642,7 +643,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        10.344,
+        0,
         99.821,
         0,
         0,
@@ -682,8 +683,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "CONGRATS!",
-    "_N$string": "CONGRATS!",
+    "_string": "FREESPINSPROMOTION.FSB_NOTIFICATION_PARA1A",
+    "_N$string": "FREESPINSPROMOTION.FSB_NOTIFICATION_PARA1A",
     "_fontSize": 100,
     "_lineHeight": 100,
     "_enableWrapText": true,
@@ -710,7 +711,7 @@
       "__id__": 15
     },
     "_enabled": true,
-    "_dataId": "",
+    "_dataId": "freeSpinsPromotion.FSB_notification_para1a",
     "format": 1,
     "suffix": "",
     "_id": ""
@@ -784,7 +785,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        21.516,
+        0,
         -211.712,
         0,
         0,
@@ -1111,7 +1112,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        17.414000000000044,
+        0,
         -37.424,
         0,
         0,
@@ -1172,7 +1173,7 @@
     "alignMode": 1,
     "_target": null,
     "_alignFlags": 8,
-    "_left": 355.73400000000004,
+    "_left": 338.32,
     "_right": 0,
     "_top": 0,
     "_bottom": 0,

@@ -173,7 +173,10 @@ const data = {
         winningNotificationOn: "Winning streak notification “ON”",
         winningNotificationOff: "Winning streak notification “OFF”",
         voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again.",
-        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus."
+        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus.",
+        FSB_notification_para1a: "CONGRATS!",
+        play_now: "Play Now",
+        play_later: "Play Later"
     },
     ui: {
         choice_red2: "2 Red",
@@ -650,7 +653,11 @@ const data = {
         Unexpected_gift_code_error_message: "Unexpected error occurred. Please try redeeming your gift code again later.",
         gift_code_redeem: "Redeem",
         gift_code: "Gift Code",
-        gift_code_enter_paste_code: "Enter or Paste Gift Code"
+        gift_code_enter_paste_code: "Enter or Paste Gift Code",
+        FSB_notification_para1a: "CONGRATS!",
+        play_now: "Play Now",
+        play_later: "Play Later",
+        FSB_end_notification: "You have completed your Free Spins Bonus."
     }
 };
 

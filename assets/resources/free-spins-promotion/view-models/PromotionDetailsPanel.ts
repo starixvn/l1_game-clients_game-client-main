@@ -17,7 +17,12 @@ export default class PromotionDetailsPanel extends cc.Component {
     private betLevel = 0;
     private promotionFSB = 0;
     private fsbConsumedThisRound = false;
+    private hasServerFinishPromotion = false;
 
+    public markServerConfirmedEnd() {
+        this.hasServerFinishPromotion = true;
+        this.checkPromotionEnded();
+    }
     initPromotion(promotionInfo: any) {
         if (!promotionInfo) {
             return;
@@ -91,7 +96,10 @@ export default class PromotionDetailsPanel extends cc.Component {
             return;
         }
 
-        if (this.promotionFSB <= 0 || (this.endTime && now > this.endTime)) {
+        const isFinished = this.promotionFSB <= 0 || (this.endTime && now > this.endTime);
+
+        // NEW: nếu server đã confirm end thì override logic local
+        if (this.hasServerFinishPromotion || isFinished) {
             this.promotionActive = false;
             this.hidePanel();
             this.showPromotionEndedPopup();

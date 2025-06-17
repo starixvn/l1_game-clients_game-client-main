@@ -1,3 +1,4 @@
+import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
 
 const { ccclass, property } = cc._decorator;
@@ -18,7 +19,12 @@ export default class PromotionEndedPopup extends cc.Component {
         if (PromotionEndedPopup.hasShown || !endPromotion) {
             return;
         }
+        const canvas = cc.find("Canvas");
+        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
 
+        if (giftPopup) {
+            giftPopup.destroy();
+        }
         PromotionEndedPopup.hasShown = true;
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
 

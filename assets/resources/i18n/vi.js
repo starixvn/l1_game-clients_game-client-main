@@ -652,7 +652,11 @@ const data = {
         Unexpected_gift_code_error_message: "Đã xảy ra lỗi. Vui lòng nhập lại mã Gift code của bạn sau vài phút.",
         gift_code_redeem: "Nhận thưởng",
         gift_code: "Gift Code",
-        gift_code_enter_paste_code: "Nhập hoặc dán mã Gift Code"
+        gift_code_enter_paste_code: "Nhập hoặc dán mã Gift Code",
+        FSB_notification_para1a: "CHÚC MỪNG!",
+        play_now: "Chơi Ngay",
+        play_later: "Khi Khác",
+        FSB_end_notification: "Bạn đã hoàn thành các lượt chơi Free Spin khuyến mãi."
     }
 };
 

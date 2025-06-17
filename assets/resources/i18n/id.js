@@ -668,7 +668,11 @@ const data = {
         Unexpected_gift_code_error_message: "Terjadi kesalahan tak terduga. Silakan coba menukarkan kode hadiah Anda lagi nanti.",
         gift_code_redeem: "Tukar",
         gift_code: "Kode Hadiah",
-        gift_code_enter_paste_code: "Masukkan atau Tempel Kode Hadiah"
+        gift_code_enter_paste_code: "Masukkan atau Tempel Kode Hadiah",
+        FSB_notification_para1a: "SELAMAT!",
+        play_now: "Main Sekarang",
+        play_later: "Main Nanti",
+        FSB_end_notification: "Anda telah menyelesaikan Bonus Putaran Gratis Anda."
     }
 };
 

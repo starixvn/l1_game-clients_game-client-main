@@ -656,7 +656,11 @@ const data = {
         Unexpected_gift_code_error_message: "เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองแลกโค้ดของขวัญอีกครั้งในภายหลัง",
         gift_code_redeem: "แลกฟรีสปิน",
         gift_code: "รหัสของขวัญ",
-        gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ"
+        gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ",
+        FSB_notification_para1a: "ขอแสดงความยินดี!",
+        play_now: "เล่นตอนนี้",
+        play_later: "เล่นตอนอื่น",
+        FSB_end_notification: "คุณได้สำเร็จการรับรองของขวัญฟรีสปินของคุณ"
     }
 };
 

@@ -317,6 +317,8 @@ export default class RouletteS extends SoloGame {
     }
 
     async showSettlementResult(settlement: any) {
+        this.wheel.hideResultNumber();
+
         const result = settlement.result;
         try {
             await this.showWheel();

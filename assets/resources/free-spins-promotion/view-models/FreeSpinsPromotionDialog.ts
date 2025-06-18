@@ -97,7 +97,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         const gameId = freeSpinsPromotionHandler.getGameId();
         sessionManager.setCheckedTournamentPromotionFirstSso(true);
         if (!gameId) {
-            cc.warn("FreeSpinsPromotionHandler: gameId is not available.");
             return;
         }
         uiManager.emitter.emit(InternalEvents.OPEN_GAME, gameId);

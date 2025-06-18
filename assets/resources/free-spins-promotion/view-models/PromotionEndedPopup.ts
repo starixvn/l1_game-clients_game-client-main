@@ -14,10 +14,11 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     public show(finishPromotion: any) {
-        const { endPromotion, totalWin } = finishPromotion;
-        if (PromotionEndedPopup.hasShown || !endPromotion) {
+        if (!finishPromotion || PromotionEndedPopup.hasShown || !finishPromotion.endPromotion) {
             return;
         }
+
+        const { totalWin } = finishPromotion;
         const canvas = cc.find("Canvas");
         const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
 

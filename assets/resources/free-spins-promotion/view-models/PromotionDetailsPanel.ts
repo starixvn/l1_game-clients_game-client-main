@@ -10,9 +10,9 @@ export default class PromotionDetailsPanel extends cc.Component {
     @property(cc.Label) labelFSB: cc.Label = null;
     @property(cc.Label) labelBetLevel: cc.Label = null;
     @property(cc.Label) labelTotalBet: cc.Label = null;
+    private readonly DEFAULT_LINES = 25;
 
     private totalWin = 0;
-    private endTime = 0;
     private promotionActive = false;
     private betLevel = 0;
     private promotionFSB = 0;
@@ -21,19 +21,20 @@ export default class PromotionDetailsPanel extends cc.Component {
 
     public markServerConfirmedEnd() {
         this.hasServerFinishPromotion = true;
-        this.checkPromotionEnded();
+        if (!this.fsbConsumedThisRound) {
+            this.tryShowPromotionEndedPopupIfFinished();
+        }
     }
+
     initPromotion(promotionInfo: any) {
         if (!promotionInfo) {
             return;
         }
 
         const promotion = promotionInfo.promotion;
-        const gameOffer = promotionInfo.gameOfferPromotion?.[0];
 
-        this.betLevel = promotion?.betLevel ?? gameOffer?.betLevel ?? 0;
+        this.betLevel = promotion?.betLevel ?? 0;
         this.promotionFSB = promotion?.remainingBonusItems ?? 0;
-        this.endTime = promotion?.endTime ?? null;
         this.totalWin = Number(promotion?.totalWin ?? 0);
         this.promotionActive = true;
 
@@ -67,7 +68,7 @@ export default class PromotionDetailsPanel extends cc.Component {
     commitPromotionFSB() {
         if (this.fsbConsumedThisRound) {
             this.fsbConsumedThisRound = false;
-            this.checkPromotionEnded();
+            this.endPromotionIfNeeded();
         }
     }
 
@@ -85,29 +86,32 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     updateTotalBetLabel() {
-        const lines = 25;
-        const totalBet = this.betLevel * lines;
+        const totalBet = this.betLevel * this.DEFAULT_LINES;
         this.labelTotalBet.string = totalBet.toString();
     }
 
-    private checkPromotionEnded() {
-        const now = Date.now();
+    private endPromotionIfNeeded() {
         if (!this.promotionActive) {
             return;
         }
 
-        const isFinished = this.promotionFSB <= 0 || (this.endTime && now > this.endTime);
-
-        // NEW: nếu server đã confirm end thì override logic local
-        if (this.hasServerFinishPromotion || isFinished) {
+        const isFinished = this.promotionFSB <= 0;
+        if (isFinished) {
             this.promotionActive = false;
-            this.hidePanel();
-            this.showPromotionEndedPopup();
         }
     }
 
     hidePanel() {
         this.node.active = false;
+    }
+
+    public tryShowPromotionEndedPopupIfFinished() {
+        const isPromotionEnded = this.hasServerFinishPromotion && (!this.isPromotionStillActive() || this.promotionFSB > 0);
+
+        if (isPromotionEnded) {
+            this.hidePanel();
+            this.showPromotionEndedPopup();
+        }
     }
 
     showPromotionEndedPopup() {

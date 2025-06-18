@@ -73,8 +73,6 @@ export default class RouletteStatistics extends cc.Component {
         let blackCount = 0;
         let oddCount = 0;
         let evenCount = 0;
-        let bigCount = 0;
-        let smallCount = 0;
         let zeroCount = 0;
 
         this.result.forEach((number) => {
@@ -92,12 +90,6 @@ export default class RouletteStatistics extends cc.Component {
                 } else {
                     evenCount += 1;
                 }
-
-                if (RouletteUtils.isBig(number)) {
-                    bigCount += 1;
-                } else {
-                    smallCount += 1;
-                }
             }
         });
 
@@ -109,9 +101,6 @@ export default class RouletteStatistics extends cc.Component {
         const odd = _.round((oddCount / this.result.length) * 100);
         const even = 100 - (odd + zeroPercent);
 
-        const big = _.round((bigCount / this.result.length) * 100);
-        const small = 100 - (big + zeroPercent);
-
         const statisticPercentNodes = this.getComponentsInChildren(RouletteStatisticItem);
         statisticPercentNodes.forEach((item, index) => {
             if (index === 0) {
@@ -122,11 +111,6 @@ export default class RouletteStatistics extends cc.Component {
             if (index === 1) {
                 item.setData(even, odd);
                 item.updateProgressBar(evenCount, oddCount);
-            }
-
-            if (index === 2) {
-                item.setData(small, big);
-                item.updateProgressBar(smallCount, bigCount);
             }
         });
     }

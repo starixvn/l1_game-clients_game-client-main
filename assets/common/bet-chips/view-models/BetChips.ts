@@ -56,6 +56,7 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
     public chipValues: number[] = [];
     public configValues: number[] = [];
     public onChanged: OnChangedBet = (bet) => {};
+    public onClickBetCallback: () => void = () => {};
     public readonly chipFlyingTime: number = 0.8;
     public readonly loginUserChipFlyingTime: number = 0.5;
     public readonly chipDelayFlyingTime: number = 1.25;
@@ -167,6 +168,10 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
 
     updateLastChip(value: number) {
         const chipView = this.chipList[this.chipList.length - 1].getComponent(ChipView);
+        this.updateChipView(chipView, value);
+    }
+
+    updateChipView(chipView: ChipView, value: number) {
         chipView.setValue(value);
         chipView.setColor(this.chipConfig.getChipColor(value));
     }
@@ -229,6 +234,8 @@ export default class BetChips extends cc.Component implements BetChipsInterface 
         const bet = target.node.name;
         AudioManager.getInstance().playSFX(this.betChipClickAudio.clip);
         this.setSelectedIndexAndScroll(bet);
+
+        this.onClickBetCallback();
     }
 
     setSelectedIndexAndScroll(bet: string) {

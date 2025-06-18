@@ -1,5 +1,6 @@
 import _ = require("lodash");
 import { i18n } from "../../ClientModules";
+import ChipView from "../../common/bet-chips/view-models/ChipView";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { InGameMenuEvents } from "../../common/in-game-menu/InGameMenu";
 import { userManager } from "../../common/user/UserManager";
@@ -58,6 +59,9 @@ export default class RouletteS extends SoloGame {
     @property(cc.Prefab)
     statisticPrefab: cc.Prefab = null;
 
+    @property(ChipView)
+    chipView: ChipView = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
     private roundHistoryComponent: MiniRouletteRoundHistory = null;
 
@@ -93,6 +97,7 @@ export default class RouletteS extends SoloGame {
         super.initBetChipByLoader(node);
         this.betChipContainer = node.parent;
         this.hideBetChip();
+        this.betChips.onClickBetCallback = this.hideBetChip.bind(this);
     }
 
     hideBetChip() {
@@ -156,6 +161,7 @@ export default class RouletteS extends SoloGame {
         super.onChangedBetChip(bet);
         console.log("onChangedBetChip", bet);
         this.soloBetModel.setCurrentBet(bet);
+        this.betChips.updateChipView(this.chipView, bet);
     }
 
     initRouletteBetItems() {

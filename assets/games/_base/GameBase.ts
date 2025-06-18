@@ -53,6 +53,7 @@ import GameBaseTimeHandler from "./handlers/GameBaseTimeHandler";
 import GameBaseUmDataHandler from "./handlers/GameBaseUmDataHandler";
 import GameBaseVoidTicketHandler from "./handlers/GameBaseVoidTicketHandler";
 import GameBaseWinnersHandler from "./handlers/GameBaseWinnersHandler";
+import { IGameBaseMd5Handler } from "./handlers/interfaces";
 import BetItem from "./view-models/BetItem";
 import GameAudios from "./view-models/GameAudios";
 import { GameConfigBase } from "./view-models/GameConfigBase";
@@ -60,7 +61,6 @@ import MD5Component from "./view-models/MD5Component";
 import RebetButton from "./view-models/RebetButton";
 import SocketIOGameHistoryBase from "./view-models/SocketIOGameHistoryBase";
 import ProvablyFairComponent from "./view-models/provably-fair/ProvablyFairComponent";
-import { IGameBaseMd5Handler } from "./handlers/interfaces";
 
 const { ccclass, property } = cc._decorator;
 

@@ -16,6 +16,7 @@ import { RouletteGameData } from "./scripts/roulette-bet-game-data";
 import RouletteBetItem from "./scripts/roulette-bet-item";
 import { getTypeFromChoice } from "./scripts/roulette-s-utils";
 import RouletteStatistics from "./scripts/roulette-statistics";
+import SingleBetControl from "./scripts/single-bet-control";
 
 const { ccclass, property } = cc._decorator;
 
@@ -62,6 +63,8 @@ export default class RouletteS extends SoloGame {
     @property(ChipView)
     chipView: ChipView = null;
 
+    private singleBetControl: SingleBetControl = null;
+
     private rouletteBetItems: RouletteBetItem[] = [];
     private roundHistoryComponent: MiniRouletteRoundHistory = null;
 
@@ -90,6 +93,8 @@ export default class RouletteS extends SoloGame {
         this.initRouletteBetItems();
         this.initRoundHistory();
         this.hideWheel(false);
+
+        this.singleBetControl = this.rouletteBetItemsContainer.getComponentInChildren(SingleBetControl);
         super.onLoad();
     }
 
@@ -324,6 +329,7 @@ export default class RouletteS extends SoloGame {
 
     async showSettlementResult(settlement: any) {
         this.wheel.hideResultNumber();
+        this.singleBetControl.hideControl();
 
         const result = settlement.result;
         try {
@@ -332,7 +338,7 @@ export default class RouletteS extends SoloGame {
             AnimationUtils.delayTime(1).then(() => {
                 this.hideWheel();
             });
-            AnimationUtils.delayTime(2).then(() => {
+            AnimationUtils.delayTime(4).then(() => {
                 this.wheel.hideResultNumber();
             });
             this.soloBetModel.changeState(SoloBetState.SETTLEMENT);

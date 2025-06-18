@@ -189,15 +189,19 @@ function setSplashTextClass(language) {
 function updateSplashLogo() {
     const operator = getOperator().toUpperCase();
     const splash_logo = document.getElementById("splash_logo");
-    const suffix = getCSSClassName(operator);
-    splash_logo.className = `splash${suffix}`;
+    if (splash_logo) {
+        const suffix = getCSSClassName(operator);
+        splash_logo.className = `splash${suffix}`;
+    }
 }
 
 function updatePoweredBy(language) {
     const operator = getOperator().toUpperCase();
     const poweredBy = document.getElementById("powered-by");
-    const suffix = getCSSClassName(operator);
-    poweredBy.className = `powered-by${suffix} ${language}`;
+    if (poweredBy) {
+        const suffix = getCSSClassName(operator);
+        poweredBy.className = `powered-by${suffix} ${language}`;
+    }
 }
 
 function getCSSClassName(operator) {

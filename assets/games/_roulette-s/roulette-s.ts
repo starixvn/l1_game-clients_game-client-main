@@ -321,7 +321,7 @@ export default class RouletteS extends SoloGame {
         try {
             await this.showWheel();
             await this.showWheelResult(result);
-            AnimationUtils.delayTime(1).then(() => {
+            AnimationUtils.delayTime(1.5).then(() => {
                 this.wheel.hideResultNumber();
             });
             this.soloBetModel.changeState(SoloBetState.SETTLEMENT);
@@ -352,9 +352,8 @@ export default class RouletteS extends SoloGame {
     showWheelResult(result: number) {
         return new Promise<void>((resolve) => {
             this.wheel.showResult(result, () => {
-                AnimationUtils.delayTime(0.5).then(() => {
-                    this.hideWheel().then(resolve);
-                });
+                this.hideWheel();
+                resolve();
             });
         });
     }

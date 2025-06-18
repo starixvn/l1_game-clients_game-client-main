@@ -21,6 +21,11 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     @property(cc.Label)
     gameNameLabel: cc.Label = null;
 
+    @property(cc.Node)
+    playNowInGame: cc.Node = null;
+    @property(cc.Node)
+    playNowInLobby: cc.Node = null;
+
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
 
     private _skippedGiftCodeManually = false;
@@ -30,14 +35,22 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });
     }
     async start() {
-        if (freeSpinsPromotionHandler.isDirectlyOpen) {
-            this.dontShowAgainToggle.node.active = false;
-        } else {
-            const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
-            if (storage && typeof storage.dontShowAgain === "boolean") {
-                this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
-            }
+        const isDirect = freeSpinsPromotionHandler.isDirectlyOpen;
+
+        this.dontShowAgainToggle.node.active = !isDirect;
+        this.playNowInGame.active = isDirect;
+        this.playNowInLobby.active = !isDirect;
+
+        if (!isDirect) {
+            this.restoreDontShowToggle();
             await this.setGameName();
+        }
+    }
+
+    private restoreDontShowToggle() {
+        const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
+        if (storage && typeof storage.dontShowAgain === "boolean") {
+            this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
         }
     }
 

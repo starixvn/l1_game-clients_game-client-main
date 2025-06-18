@@ -8,15 +8,15 @@ export enum FreeSpinsPromotionMessageType {
 
 @ccclass
 export default class FreeSpinsPromotionMessage extends cc.Component {
-    @property(cc.RichText)
-    msgRichText: cc.RichText = null;
+    @property(cc.Label)
+    msgText: cc.Label = null;
 
     @property(cc.Node)
     msgNode: cc.Node = null;
 
     showMessageContent() {
         const msg = GameUtils.getText(`messages.freeSpinsPromotionMsg`);
-        this.msgRichText.string = msg.toUpperCase();
+        this.msgText.string = msg.toUpperCase();
 
         // Bật hiển thị node (nếu đang bị ẩn)
         this.msgNode.active = true;

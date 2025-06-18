@@ -629,8 +629,8 @@ const data = {
         gift_code: "礼包码",
         gift_code_enter_paste_code: "输入或粘贴礼包码",
         FSB_notification_para1a: "恭喜！",
-        play_now: "现在玩",
-        play_later: "稍后再玩",
+        play_now: "立即遊玩",
+        play_later: "稍后游玩",
         FSB_end_notification: "您已经完成了您的免费旋转奖励。"
     }
 };

@@ -658,8 +658,8 @@ const data = {
         gift_code: "รหัสของขวัญ",
         gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ",
         FSB_notification_para1a: "ขอแสดงความยินดี!",
-        play_now: "เล่นตอนนี้",
-        play_later: "เล่นตอนอื่น",
+        play_now: "เล่นเลย",
+        play_later: "เล่นต่อ",
         FSB_end_notification: "คุณได้สำเร็จการรับรองของขวัญฟรีสปินของคุณ"
     }
 };

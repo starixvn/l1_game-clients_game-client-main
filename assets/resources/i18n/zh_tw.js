@@ -629,8 +629,8 @@ const data = {
         gift_code: "禮物代碼",
         gift_code_enter_paste_code: "輸入或粘貼禮物代碼",
         FSB_notification_para1a: "恭喜！",
-        play_now: "現在玩",
-        play_later: "稍後玩",
+        play_now: "立即遊玩",
+        play_later: "稍後遊玩",
         FSB_end_notification: "您已經完成了您的免費旋轉獎勵。"
     }
 };

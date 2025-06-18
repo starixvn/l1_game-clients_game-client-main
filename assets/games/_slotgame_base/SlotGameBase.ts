@@ -176,10 +176,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this._jackpotEnabled = value;
     }
     get promotionPanel() {
-        return GameUtils.findNodeByNameRecursive(cc.find("Canvas"), "PromotionDetailsPanel")
-            ?.getComponent("PromotionDetailsPanel") ?? null;
+        return GameUtils.findNodeByNameRecursive(cc.find("Canvas"), "PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel") ?? null;
     }
-    
+
     setAllowChangeBet(allow: boolean) {
         this.stakeButton.interactable = allow;
     }
@@ -215,6 +214,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
         this.winningBetOriginalScale = this.winningBet.node.scale;
         uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.tryAutoSpinWhenFSB, this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (callback: (isSpinning: boolean) => void) => { callback(this.isSpinnedAction); }, this);
     }
 
     initSlotBoard() {
@@ -717,8 +717,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
     tryAutoSpinWhenFSB = () => {
         if (!this.isSpinnedAction && !this.isAnimatingResult && this.spinButton && this.spinButton.node.active) {
-            const result = this.spin();
-            console.log("Triggered auto-spin from FSB promo:", result);
+            this.spin();
         }
     };
 

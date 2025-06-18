@@ -25,6 +25,16 @@ export default class GiftCode extends cc.Component {
     }
 
     onClickGiftCode() {
+        let isSpinning = false;
+
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (spinning: boolean) => {
+            isSpinning = spinning;
+        });
+
+        if (isSpinning) {
+            return;
+        }
+
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
     }
 }

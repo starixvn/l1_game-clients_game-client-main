@@ -26,6 +26,9 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     @property(cc.Node)
     playNowInLobby: cc.Node = null;
 
+    @property(cc.Node)
+    closeButton: cc.Node = null;
+
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
 
     private _skippedGiftCodeManually = false;
@@ -40,6 +43,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         this.dontShowAgainToggle.node.active = !isDirect;
         this.playNowInGame.active = isDirect;
         this.playNowInLobby.active = !isDirect;
+        this.closeButton.active = !isDirect;
 
         if (!isDirect) {
             this.restoreDontShowToggle();

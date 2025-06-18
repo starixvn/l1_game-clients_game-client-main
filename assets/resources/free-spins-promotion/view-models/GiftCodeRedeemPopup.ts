@@ -66,7 +66,12 @@ export default class GiftCodeRedeemPopup extends cc.Component {
     }
 
     onCloseClicked() {
-        this.node.destroy();
+        cc.tween(this.node)
+            .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
+            .call(() => {
+                this.node.destroy();
+            })
+            .start();
     }
 
     onEditBoxFocus() {

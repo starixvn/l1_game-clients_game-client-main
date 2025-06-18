@@ -5,7 +5,6 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PromotionEndedPopup extends cc.Component {
-    @property(cc.Label) labelTitle: cc.Label = null;
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Button) closeButton: cc.Button = null;
 
@@ -32,6 +31,11 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     private onCloseClicked() {
-        this.node.active = false;
+        cc.tween(this.node)
+            .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
+            .call(() => {
+                this.node.active = false;
+            })
+            .start();
     }
 }

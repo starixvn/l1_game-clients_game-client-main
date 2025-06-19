@@ -24,17 +24,17 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 56
+        "__id__": 84
       },
       {
-        "__id__": 57
+        "__id__": 85
       },
       {
-        "__id__": 58
+        "__id__": 86
       }
     ],
     "_prefab": {
-      "__id__": 59
+      "__id__": 87
     },
     "_opacity": 255,
     "_color": {
@@ -101,11 +101,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 54
+        "__id__": 82
       }
     ],
     "_prefab": {
-      "__id__": 55
+      "__id__": 83
     },
     "_opacity": 255,
     "_color": {
@@ -430,19 +430,19 @@
         "__id__": 17
       },
       {
-        "__id__": 26
+        "__id__": 33
       },
       {
-        "__id__": 35
+        "__id__": 49
       },
       {
-        "__id__": 44
+        "__id__": 65
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 53
+      "__id__": 81
     },
     "_opacity": 255,
     "_color": {
@@ -509,7 +509,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 25
+      "__id__": 32
     },
     "_opacity": 255,
     "_color": {
@@ -696,10 +696,13 @@
     "_components": [
       {
         "__id__": 23
+      },
+      {
+        "__id__": 24
       }
     ],
     "_prefab": {
-      "__id__": 24
+      "__id__": 31
     },
     "_opacity": 255,
     "_color": {
@@ -784,6 +787,67 @@
     "_id": ""
   },
   {
+    "__type__": "a8acfDXW6RBdZj4RLwzEfA7",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 22
+    },
+    "_enabled": true,
+    "overrideFonts": [
+      {
+        "__id__": 25
+      },
+      {
+        "__id__": 26
+      },
+      {
+        "__id__": 27
+      },
+      {
+        "__id__": 28
+      },
+      {
+        "__id__": 29
+      },
+      {
+        "__id__": 30
+      }
+    ],
+    "enableCacheMode": false,
+    "_id": ""
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "en",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "vi",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "id",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "th",
+    "name": "NotoSerifThai-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_cn",
+    "name": "NotoSerifZHCN-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_tw",
+    "name": "NotoSerifZHTW-Bold"
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -814,16 +878,16 @@
     },
     "_children": [
       {
-        "__id__": 27
+        "__id__": 34
       },
       {
-        "__id__": 31
+        "__id__": 38
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 34
+      "__id__": 48
     },
     "_opacity": 255,
     "_color": {
@@ -877,20 +941,20 @@
     "_name": "img",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 26
+      "__id__": 33
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 28
+        "__id__": 35
       },
       {
-        "__id__": 29
+        "__id__": 36
       }
     ],
     "_prefab": {
-      "__id__": 30
+      "__id__": 37
     },
     "_opacity": 255,
     "_color": {
@@ -944,7 +1008,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 27
+      "__id__": 34
     },
     "_enabled": true,
     "_materials": [
@@ -979,7 +1043,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 27
+      "__id__": 34
     },
     "_enabled": true,
     "_dataId": "freeSpinsPromotion.free_spin_bonus",
@@ -1003,17 +1067,20 @@
     "_name": "lbl-bonus",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 26
+      "__id__": 33
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 32
+        "__id__": 39
+      },
+      {
+        "__id__": 40
       }
     ],
     "_prefab": {
-      "__id__": 33
+      "__id__": 47
     },
     "_opacity": 255,
     "_color": {
@@ -1067,7 +1134,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 31
+      "__id__": 38
     },
     "_enabled": true,
     "_materials": [
@@ -1096,6 +1163,67 @@
     "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
+  },
+  {
+    "__type__": "a8acfDXW6RBdZj4RLwzEfA7",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 38
+    },
+    "_enabled": true,
+    "overrideFonts": [
+      {
+        "__id__": 41
+      },
+      {
+        "__id__": 42
+      },
+      {
+        "__id__": 43
+      },
+      {
+        "__id__": 44
+      },
+      {
+        "__id__": 45
+      },
+      {
+        "__id__": 46
+      }
+    ],
+    "enableCacheMode": false,
+    "_id": ""
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "en",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "vi",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "id",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "th",
+    "name": "NotoSerifThai-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_cn",
+    "name": "NotoSerifZHCN-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_tw",
+    "name": "NotoSerifZHTW-Bold"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1128,16 +1256,16 @@
     },
     "_children": [
       {
-        "__id__": 36
+        "__id__": 50
       },
       {
-        "__id__": 40
+        "__id__": 54
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 43
+      "__id__": 64
     },
     "_opacity": 255,
     "_color": {
@@ -1191,20 +1319,20 @@
     "_name": "img",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 35
+      "__id__": 49
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 37
+        "__id__": 51
       },
       {
-        "__id__": 38
+        "__id__": 52
       }
     ],
     "_prefab": {
-      "__id__": 39
+      "__id__": 53
     },
     "_opacity": 255,
     "_color": {
@@ -1258,7 +1386,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 36
+      "__id__": 50
     },
     "_enabled": true,
     "_materials": [
@@ -1293,7 +1421,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 36
+      "__id__": 50
     },
     "_enabled": true,
     "_dataId": "cascadingSlot.betLevel",
@@ -1317,17 +1445,20 @@
     "_name": "lbl-betlevel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 35
+      "__id__": 49
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 41
+        "__id__": 55
+      },
+      {
+        "__id__": 56
       }
     ],
     "_prefab": {
-      "__id__": 42
+      "__id__": 63
     },
     "_opacity": 255,
     "_color": {
@@ -1381,7 +1512,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 40
+      "__id__": 54
     },
     "_enabled": true,
     "_materials": [
@@ -1410,6 +1541,67 @@
     "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
+  },
+  {
+    "__type__": "a8acfDXW6RBdZj4RLwzEfA7",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 54
+    },
+    "_enabled": true,
+    "overrideFonts": [
+      {
+        "__id__": 57
+      },
+      {
+        "__id__": 58
+      },
+      {
+        "__id__": 59
+      },
+      {
+        "__id__": 60
+      },
+      {
+        "__id__": 61
+      },
+      {
+        "__id__": 62
+      }
+    ],
+    "enableCacheMode": false,
+    "_id": ""
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "en",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "vi",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "id",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "th",
+    "name": "NotoSerifThai-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_cn",
+    "name": "NotoSerifZHCN-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_tw",
+    "name": "NotoSerifZHTW-Bold"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1442,16 +1634,16 @@
     },
     "_children": [
       {
-        "__id__": 45
+        "__id__": 66
       },
       {
-        "__id__": 49
+        "__id__": 70
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 52
+      "__id__": 80
     },
     "_opacity": 255,
     "_color": {
@@ -1505,20 +1697,20 @@
     "_name": "img",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 44
+      "__id__": 65
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 46
+        "__id__": 67
       },
       {
-        "__id__": 47
+        "__id__": 68
       }
     ],
     "_prefab": {
-      "__id__": 48
+      "__id__": 69
     },
     "_opacity": 255,
     "_color": {
@@ -1572,7 +1764,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 45
+      "__id__": 66
     },
     "_enabled": true,
     "_materials": [
@@ -1607,7 +1799,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 45
+      "__id__": 66
     },
     "_enabled": true,
     "_dataId": "freeSpinsPromotion.total_bet",
@@ -1631,17 +1823,20 @@
     "_name": "lbl-totalbet",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 44
+      "__id__": 65
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 50
+        "__id__": 71
+      },
+      {
+        "__id__": 72
       }
     ],
     "_prefab": {
-      "__id__": 51
+      "__id__": 79
     },
     "_opacity": 255,
     "_color": {
@@ -1695,7 +1890,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 49
+      "__id__": 70
     },
     "_enabled": true,
     "_materials": [
@@ -1724,6 +1919,67 @@
     "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
+  },
+  {
+    "__type__": "a8acfDXW6RBdZj4RLwzEfA7",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 70
+    },
+    "_enabled": true,
+    "overrideFonts": [
+      {
+        "__id__": 73
+      },
+      {
+        "__id__": 74
+      },
+      {
+        "__id__": 75
+      },
+      {
+        "__id__": 76
+      },
+      {
+        "__id__": 77
+      },
+      {
+        "__id__": 78
+      }
+    ],
+    "enableCacheMode": false,
+    "_id": ""
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "en",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "vi",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "id",
+    "name": "UTM Swiss 721 Black Condensed"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "th",
+    "name": "NotoSerifThai-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_cn",
+    "name": "NotoSerifZHCN-Bold"
+  },
+  {
+    "__type__": "LanguageFont",
+    "language": "zh_tw",
+    "name": "NotoSerifZHTW-Bold"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -1815,13 +2071,13 @@
       "__id__": 23
     },
     "labelFSB": {
-      "__id__": 32
+      "__id__": 39
     },
     "labelBetLevel": {
-      "__id__": 41
+      "__id__": 55
     },
     "labelTotalBet": {
-      "__id__": 50
+      "__id__": 71
     },
     "_id": ""
   },

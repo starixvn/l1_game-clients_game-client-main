@@ -627,11 +627,16 @@ const data = {
         Unexpected_gift_code_error_message: "發生未預期的錯誤。請稍後再試兌換您的禮物代碼。",
         gift_code_redeem: "兌換",
         gift_code: "禮物代碼",
+        gift_code_copy: "禮物代碼",
         gift_code_enter_paste_code: "輸入或粘貼禮物代碼",
         FSB_notification_para1a: "恭喜！",
         play_now: "立即遊玩",
         play_later: "稍後遊玩",
-        FSB_end_notification: "您已經完成了您的免費旋轉獎勵。"
+        FSB_end_notification: "您已經完成了您的免費旋轉獎勵。",
+        free_spin_bonus: "免費旋轉獎金",
+        promo_info: "促銷訊息",
+        total_bet: "總投注",
+        total_win: "總獎金"
     }
 };
 

@@ -652,12 +652,17 @@ const data = {
         gift_code_error_message: "Please enter your Gift Code.",
         Unexpected_gift_code_error_message: "Unexpected error occurred. Please try redeeming your gift code again later.",
         gift_code_redeem: "Redeem",
-        gift_code: "Gift Code",
+        gift_code: "Gift\nCode",
+        gift_code_copy: "Gift Code",
         gift_code_enter_paste_code: "Enter or Paste Gift Code",
         FSB_notification_para1a: "CONGRATS!",
         play_now: "Play Now",
         play_later: "Play Later",
-        FSB_end_notification: "You have completed your Free Spins Bonus."
+        FSB_end_notification: "You have completed your Free Spins Bonus.",
+        free_spin_bonus: "Free Spin Bonus",
+        promo_info: "Promotion Info",
+        total_bet: "Total Bet",
+        total_win: "Total Win"
     }
 };
 

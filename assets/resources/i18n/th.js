@@ -656,11 +656,16 @@ const data = {
         Unexpected_gift_code_error_message: "เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองแลกโค้ดของขวัญอีกครั้งในภายหลัง",
         gift_code_redeem: "แลกฟรีสปิน",
         gift_code: "รหัสของขวัญ",
+        gift_code_copy: "รหัสของขวัญ",
         gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ",
         FSB_notification_para1a: "ขอแสดงความยินดี!",
-        play_now: "เล่นเลย",
-        play_later: "เล่นต่อ",
-        FSB_end_notification: "คุณได้สำเร็จการรับรองของขวัญฟรีสปินของคุณ"
+        play_now: "เล่นตอนนี้",
+        play_later: "เล่นทีหลัง",
+        FSB_end_notification: "คุณได้สำเร็จการรับรองของขวัญฟรีสปินของคุณ",
+        free_spin_bonus: "โบนัสฟรีสปิน",
+        promo_info: "ข้อมูลโปรโมชั่น",
+        total_bet: "ยอดเดิมพันรวม",
+        total_win: "ยอดชนะรวม",
     }
 };
 

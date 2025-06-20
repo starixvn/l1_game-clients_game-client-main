@@ -65,7 +65,7 @@ function initGA() {
             cc.view.enableRetina(true);
             cc.view.resizeWithBrowserSize(true);
 
-            if (cc.sys.isBrowser && cc.sys.os === cc.sys.OS_IOS) {
+            if (cc.sys.isBrowser && (cc.sys.os === cc.sys.OS_IOS || cc.sys.os === cc.sys.MACOS)) {
                 function checkSupport(cb) {
                     var webP = new Image();
                     webP.onload = webP.onerror = function () {

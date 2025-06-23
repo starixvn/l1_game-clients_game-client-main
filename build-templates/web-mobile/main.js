@@ -20,7 +20,7 @@ window.boot = function () {
         };
     }
 
-    if (cc.sys.isBrowser && (cc.sys.os === cc.sys.OS_IOS || cc.sys.os === cc.sys.MACOS)) {
+    if (cc.sys.isBrowser && (cc.sys.os === cc.sys.OS_IOS || cc.sys.os === cc.sys.OS_OSX)) {
         function checkSupport(cb) {
             var webP = new Image();
             webP.onload = webP.onerror = function () {

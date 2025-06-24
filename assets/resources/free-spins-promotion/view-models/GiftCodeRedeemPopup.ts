@@ -13,20 +13,12 @@ export default class GiftCodeRedeemPopup extends cc.Component {
     redeemButton: cc.Button = null;
 
     @property(cc.Button)
-    pasteButton: cc.Button = null;
-
-    @property(cc.Button)
     closeButton: cc.Button = null;
-
-    public hintLabel: cc.Label = null;
     private _debounceTimer: any = null;
     private readonly _originalY = 0;
     onEnable() {
         this.inputBox.string = "";
         this.redeemButton.interactable = true;
-
-        this.pasteButton.node.on(cc.Node.EventType.TOUCH_END, this.onPasteClicked, this);
-        this.pasteButton.node.on("click", this.onPasteClicked, this);
         this.redeemButton.node.on("click", this.onRedeemClicked, this);
         this.closeButton.node.on("click", this.onCloseClicked, this);
         this.inputBox.node.on("editing-did-began", this.onEditBoxFocus, this);
@@ -34,34 +26,22 @@ export default class GiftCodeRedeemPopup extends cc.Component {
     }
 
     onDisable() {
-        this.pasteButton.node.off(cc.Node.EventType.TOUCH_END, this.onPasteClicked, this);
-        this.pasteButton.node.off("click", this.onPasteClicked, this);
         this.redeemButton.node.off("click", this.onRedeemClicked, this);
         this.closeButton.node.off("click", this.onCloseClicked, this);
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onEditBoxBlur, this);
     }
 
-    async onPasteClicked(event?: cc.Event.EventTouch) {
-        if (event) {
-            event.stopPropagation?.();
-        }
-        this.inputBox.blur(); 
+    async onPasteClicked() {
+        this.inputBox.blur();
         let text = "";
 
-        if (cc.sys.isNative) {
-            text = "ab";
-        } else {
-            try {
-                text = await navigator.clipboard.readText();
-            } catch (e) {
-                cc.warn("Clipboard read failed", e);
-            }
-        }
-    
-        setTimeout(() => {
+        try {
+            text = await navigator.clipboard.readText();
             this.inputBox.string = text;
-        }, 100);
+        } catch (e) {
+            cc.warn("Clipboard read failed", e);
+        }
     }
 
     onRedeemClicked() {

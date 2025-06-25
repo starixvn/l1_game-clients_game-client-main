@@ -164,15 +164,20 @@ export default class StandardSlotGame extends SlotGameBase {
     }
 
     async showGiftCodeRedeemPopup() {
-        if (!this.isFreeSpin()) {
-            GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
-        } else {
+        if (this.isFreeSpin()) {
             this.freeSpinsPromotionMessage?.showMessageContent();
+            return;
         }
+
+        const transition = await this.playEffectTransition();
+        await GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
+
+        transition?.destroy();
     }
 
     async showPromotionDetailsPanel() {
-        GameUtils.showFreeSpinsPromotionPopupOnce(
+        const transition = await this.playEffectTransition();
+        await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
             "Canvas/main/BoardGroup/other/number_col_left",
@@ -182,6 +187,7 @@ export default class StandardSlotGame extends SlotGameBase {
                 panelComp?.initPromotion?.(promotionInfo);
             }
         );
+        transition?.destroy();
     }
 
     async showPromotionEndedPopup(finishPromotion: any) {

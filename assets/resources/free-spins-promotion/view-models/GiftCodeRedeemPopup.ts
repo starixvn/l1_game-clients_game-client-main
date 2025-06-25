@@ -72,7 +72,7 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
     onCloseClicked() {
         cc.tween(this.node)
-            .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
+            .to(0.3, { scale: 0, opacity: 0 }, { easing: "backIn" })
             .call(() => {
                 this.node.destroy();
             })

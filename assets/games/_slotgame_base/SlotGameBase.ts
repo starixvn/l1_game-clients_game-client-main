@@ -717,7 +717,9 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
     tryAutoSpinWhenFSB = () => {
         if (!this.isSpinnedAction && !this.isAnimatingResult && this.spinButton && this.spinButton.node.active) {
-            this.spin();
+            setTimeout(() => {
+                this.spin();
+            }, 500);
         }
     };
 

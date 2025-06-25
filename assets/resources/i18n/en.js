@@ -653,7 +653,6 @@ const data = {
         Unexpected_gift_code_error_message: "Unexpected error occurred. Please try redeeming your gift code again later.",
         gift_code_redeem: "Redeem",
         gift_code: "Gift\nCode",
-        gift_code_copy: "Gift Code",
         gift_code_enter_paste_code: "Enter or Paste Gift Code",
         FSB_notification_para1a: "CONGRATS!",
         play_now: "Play Now",

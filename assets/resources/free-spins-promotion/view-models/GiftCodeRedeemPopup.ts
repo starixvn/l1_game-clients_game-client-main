@@ -23,6 +23,21 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.closeButton.node.on("click", this.onCloseClicked, this);
         this.inputBox.node.on("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.on("editing-did-ended", this.onEditBoxBlur, this);
+        this.startRedeemButtonPulse();
+    }
+    startRedeemButtonPulse() {
+        const node = this.redeemButton.node;
+        node.scale = 1.0;
+
+        cc.tween(node)
+            .repeatForever(
+                cc
+                    .tween()
+                    .to(0.2, { scale: 0.93 }, { easing: "sineIn" })
+                    .to(0.4, { scale: 1.05 }, { easing: "sineOut" })
+                    .to(0.3, { scale: 1.0 }, { easing: "sineInOut" })
+            )
+            .start();
     }
 
     onDisable() {

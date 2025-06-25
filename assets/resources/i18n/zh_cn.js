@@ -627,7 +627,6 @@ const data = {
         Unexpected_gift_code_error_message: "发生意外错误。请稍后再尝试兑换您的礼品码。",
         gift_code_redeem: "兑换",
         gift_code: "礼包码",
-        gift_code_copy: "礼包码",
         gift_code_enter_paste_code: "输入或粘贴礼包码",
         FSB_notification_para1a: "恭喜！",
         play_now: "立即遊玩",

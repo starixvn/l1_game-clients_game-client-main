@@ -635,7 +635,8 @@ const data = {
         free_spin_bonus: "免費旋轉獎金",
         promo_info: "促銷訊息",
         total_bet: "總投注",
-        total_win: "總獎金"
+        total_win: "總獎金",
+        free_spins: "Free Spins"
     }
 };
 

@@ -635,7 +635,8 @@ const data = {
         free_spin_bonus: "免费旋转奖金",
         promo_info: "促销信息",
         total_bet: "总投注",
-        total_win: "总奖金"
+        total_win: "总奖金",
+        free_spins: "Free Spins"
     }
 };
 

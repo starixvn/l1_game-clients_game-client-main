@@ -665,6 +665,7 @@ const data = {
         promo_info: "ข้อมูลโปรโมชั่น",
         total_bet: "ยอดเดิมพันรวม",
         total_win: "ยอดชนะรวม",
+        free_spins: "Free Spins"
     }
 };
 

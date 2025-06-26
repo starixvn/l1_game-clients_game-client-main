@@ -661,7 +661,8 @@ const data = {
         free_spin_bonus: "Free Spin Bonus",
         promo_info: "Promotion Info",
         total_bet: "Total Bet",
-        total_win: "Total Win"
+        total_win: "Total Win",
+        free_spins: "Free Spins"
     }
 };
 

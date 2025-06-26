@@ -676,7 +676,8 @@ const data = {
         free_spin_bonus: "Bonus Putaran Gratis",
         promo_info: "Informasi Promosi",
         total_bet: "Total Taruhan",
-        total_win: "Total Menang"
+        total_win: "Total Menang",
+        free_spins: "Free Spins"
     }
 };
 

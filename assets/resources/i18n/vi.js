@@ -660,7 +660,8 @@ const data = {
         free_spin_bonus: "Free Spin Thưởng",
         promo_info: "Thông Tin Khuyến Mãi",
         total_bet: "Tổng Cược",
-        total_win: "Tổng Thắng"
+        total_win: "Tổng Thắng",
+        free_spins: "Free Spins"
     }
 };
 

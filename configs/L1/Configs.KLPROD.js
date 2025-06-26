@@ -3,9 +3,7 @@ window.envConfig = {
     ssl: true,
     subDomain: "proxy",
     serverDomainMapper: {
-        "www.sabagaming.com": "sabagame.net",
         "www.gamesaba.com": "sabagame.net",
-        "sabagaming.com": "sabagame.net",
         "gamesaba.com": "sabagame.net"
     },
     env: "",

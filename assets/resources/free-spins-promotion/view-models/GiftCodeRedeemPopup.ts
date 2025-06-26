@@ -45,6 +45,7 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.closeButton.node.off("click", this.onCloseClicked, this);
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onEditBoxBlur, this);
+        cc.Tween.stopAllByTarget(this.redeemButton.node);
     }
 
     async onPasteClicked() {

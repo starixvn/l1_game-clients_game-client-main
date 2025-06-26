@@ -9,7 +9,7 @@ export default class SlotGameEndPromotionHandler implements DataHandler {
         const finishPromotion = data?.finishPromotion;
         if (finishPromotion) {
             FreeSpinsPromotionHandler.getInstance().setFinishPromotion(finishPromotion);
-            const promotionPanel = this.main.promotionPanel;
+            const promotionPanel = this.main.promotionFreeSpinsHandler?.promotionPanel;
             if (promotionPanel) {
                 promotionPanel.markServerConfirmedEnd();
             } else {

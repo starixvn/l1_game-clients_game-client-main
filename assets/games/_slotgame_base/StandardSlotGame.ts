@@ -18,7 +18,6 @@ import StandardSlotBonusDialog from "./StandardSlotBonusDialog";
 import { StandardSlotGameConfigs } from "./StandardSlotGameConfigs";
 import StandardSlotGameHistory from "./StandardSlotGameHistory";
 import SymbolPreview from "./SymbolPreview";
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -137,69 +136,13 @@ export default class StandardSlotGame extends SlotGameBase {
         this.updateBalanceColor();
         uiManager.emitterListener(InternalEvents.SLOT_PLAY_SOUND, (type: ClassicSlotSound) => this.playSound(type), this);
         uiManager.emitterListener(InternalEvents.CLICK_HAMBURGER_MENU, () => this.hideStakeContrainer(), this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.showGiftCode(), this);
-
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this);
-
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this);
-
-        uiManager.emitterListener(
-            FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
-            (finishPromotion) => this.showPromotionEndedPopup(finishPromotion),
-            this
-        );
+        this.promotionFreeSpinsHandler.registerEvents();
+        this.promotionFreeSpinsHandler.initFreeSpinsPromotionMessage();
     }
 
     onDestroy() {
         uiManager.removeListenersWithTarget(this);
         super.onDestroy();
-    }
-
-    async showGiftCode() {
-        GameUtils.showFreeSpinsPromotionPopupOnce(
-            "GiftCodePopup",
-            "free-spins-promotion/views/gift-code",
-            "Canvas/main/BoardGroup/other/number_col_left"
-        );
-    }
-
-    async showGiftCodeRedeemPopup() {
-        if (this.isFreeSpin()) {
-            this.freeSpinsPromotionMessage?.showMessageContent();
-            return;
-        }
-
-        const transition = await this.playEffectTransition();
-        await GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
-
-        transition?.destroy();
-    }
-
-    async showPromotionDetailsPanel() {
-        const transition = await this.playEffectTransition();
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
-            "PromotionDetailsPanel",
-            "free-spins-promotion/views/promotion-details-panel",
-            "Canvas/main/BoardGroup/other/number_col_left",
-            (node) => {
-                const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
-                const panelComp = node.getComponent("PromotionDetailsPanel");
-                panelComp?.initPromotion?.(promotionInfo);
-            }
-        );
-        transition?.destroy();
-    }
-
-    async showPromotionEndedPopup(finishPromotion: any) {
-        GameUtils.showFreeSpinsPromotionPopupOnce(
-            "PromotionEndedPopup",
-            "free-spins-promotion/views/promotion-ended-popup",
-            null,
-            (node) => {
-                const popupComp = node.getComponent("PromotionEndedPopup");
-                popupComp?.show?.(finishPromotion);
-            }
-        );
     }
 
     updateBalanceColor() {
@@ -573,21 +516,6 @@ export default class StandardSlotGame extends SlotGameBase {
         if (this.totalFreeSpins) {
             this.setTotalFreeSpins(this.totalFreeSpins);
         }
-    }
-
-    async initFreeSpinsPromotionMessage() {
-        const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
-        if (existing) {
-            this.freeSpinsPromotionMessage = existing.getComponent("FreeSpinsPromotionMessage");
-            return;
-        }
-
-        const prefab = await GameUtils.loadResource("free-spins-promotion/views/free-spins-promotion-message");
-        const node = cc.instantiate(prefab);
-        node.active = false;
-        node.name = "FreeSpinsPromotionMessage";
-        node.parent = cc.find("Canvas");
-        this.freeSpinsPromotionMessage = node.getComponent("FreeSpinsPromotionMessage");
     }
 
     generateRandomBoardData() {

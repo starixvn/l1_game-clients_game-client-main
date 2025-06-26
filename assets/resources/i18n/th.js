@@ -656,7 +656,7 @@ const data = {
         Unexpected_gift_code_error_message: "เกิดข้อผิดพลาดที่ไม่คาดคิด กรุณาลองแลกโค้ดของขวัญอีกครั้งในภายหลัง",
         gift_code_redeem: "แลกรับ",
         gift_code: "รหัส\nของขวัญ",
-        gift_code_enter_paste_code: "ป้อนหรือวางรหัสของขวัญ",
+        gift_code_enter_paste_code: "ใส่หรือวางโค้ดของคุณ",
         FSB_notification_para1a: "ขอแสดงความยินดี!",
         play_now: "เล่นตอนนี้",
         play_later: "เล่นทีหลัง",

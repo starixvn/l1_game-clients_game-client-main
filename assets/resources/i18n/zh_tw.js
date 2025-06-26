@@ -623,11 +623,11 @@ const data = {
     freeSpinsPromotion: {
         gift_code_message: "兌換您的免費旋轉獎勵。",
         Invalide_gift_code_error_message: "無效的禮物代碼。請檢查您的代碼並重試。",
-        gift_code_error_message: "請輸入您的禮物代碼。",
+        gift_code_error_message: "請輸入您的禮品代碼。",
         Unexpected_gift_code_error_message: "發生未預期的錯誤。請稍後再試兌換您的禮物代碼。",
         gift_code_redeem: "兌換",
         gift_code: "禮品碼",
-        gift_code_enter_paste_code: "輸入或粘貼禮物代碼",
+        gift_code_enter_paste_code: "輸入或貼上您的程式碼",
         FSB_notification_para1a: "恭喜！",
         play_now: "立即遊玩",
         play_later: "稍後遊玩",

@@ -10,6 +10,7 @@ import { getGameConfiguration } from "../../../configs/GameConfigurations";
 import { SkeletonCache, uiManager } from "../../../managers/GameUIManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 import GameNotification from "./GameNotification";
+import JackpotPoolInfo from "./JackpotPoolInfo";
 import LobbyMenuConfig from "./LobbyMenuConfig";
 
 const { ccclass, property } = cc._decorator;
@@ -24,6 +25,7 @@ export interface RemoteIconConfig {
     premultipliedAlpha: boolean;
     useWebp: boolean;
     labelGameType?: GameNotificationConfig;
+    extra?: any;
 }
 
 @ccclass
@@ -128,11 +130,30 @@ export default class SkeletonIcon extends cc.Component {
             if (iconConfig?.gameNotification) {
                 await this.addGameNotificationComponent(node, id, iconConfig?.gameNotification);
             }
+            if (iconConfig?.extra) {
+                await this.addExtra(node, id, iconConfig.extra);
+            }
         } catch (error) {
             cc.log(error);
             return null;
         }
         return node;
+    }
+
+    protected async addExtra(parent: cc.Node, id: number, extra: any) {
+        if (extra.slotJackpot) {
+            await this.addSlotJackpot(parent, id, extra.slotJackpot);
+        }
+    }
+
+    protected async addSlotJackpot(parent: cc.Node, id: number, info: { x: number; y: number }) {
+        const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/slot-jackpot`);
+        const { x, y } = info;
+        const node = cc.instantiate(prefab);
+        node.position = node.position.add(cc.v3(x, y));
+        const comp = node.getComponent(JackpotPoolInfo);
+        comp.gameId = id;
+        parent.addChild(node);
     }
 
     protected async setGameTypeLabel(id: number) {

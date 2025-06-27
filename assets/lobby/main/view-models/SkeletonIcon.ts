@@ -150,7 +150,7 @@ export default class SkeletonIcon extends cc.Component {
         const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/slot-jackpot`);
         const { x, y } = info;
         const node = cc.instantiate(prefab);
-        node.position = node.position.add(cc.v3(x, y));
+        node.position = cc.v3(x, y);
         const comp = node.getComponent(JackpotPoolInfo);
         comp.gameId = id;
         parent.addChild(node);

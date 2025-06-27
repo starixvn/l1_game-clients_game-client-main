@@ -1,11 +1,13 @@
+import { Socket } from "socket.io-client";
 import GameUtils from "../../../common/GameUtils";
 import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
+import BaseComponent from "../../../common/BaseComponent";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class GiftCodeRedeemPopup extends cc.Component {
+export default class GiftCodeRedeemPopup extends BaseComponent {
     @property(cc.EditBox)
     inputBox: cc.EditBox = null;
 
@@ -14,8 +16,24 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
     @property(cc.Button)
     closeButton: cc.Button = null;
+
+    @property(cc.Label)
+    errorLabel: cc.Label = null;
+
     private _debounceTimer: any = null;
     private readonly _originalY = 0;
+    private gameName: string;
+    protected socket: Socket;
+
+    init(socket: Socket, gameName: string) {
+        this.socket = socket;
+        this.gameName = gameName;
+        console.log("socket", this.socket, this.gameName);
+        if (this.socket) {
+            this.socket.on(this.gameName, this.receivedData.bind(this));
+        }
+    }
+
     onEnable() {
         this.inputBox.string = "";
         this.redeemButton.interactable = true;
@@ -25,6 +43,33 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.inputBox.node.on("editing-did-ended", this.onInputFinalized, this);
         this.startRedeemButtonPulse();
     }
+
+    receivedData(data: any) {
+        console.log("receivedData", data);
+        if (!this.isAlive() || !data.giftCode) {
+            return;
+        }
+        this.redeemButton.interactable = true;
+
+        if (data.errorCode) {
+            this.showErrorMessage(data.errorMessage);
+            return;
+        }
+
+        if (data.isGiftCode) {
+            const canvas = cc.find("Canvas");
+            const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
+
+            if (giftPopup) {
+                giftPopup.destroy();
+            }
+            this.onCloseClicked();
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+        } else {
+            this.showErrorMessage("Giftcode không hợp lệ hoặc đã được sử dụng.");
+        }
+    }
+
     startRedeemButtonPulse() {
         const node = this.redeemButton.node;
         node.scale = 1.0;
@@ -46,6 +91,7 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onInputFinalized, this);
         cc.Tween.stopAllByTarget(this.redeemButton.node);
+        this.socket.off(this.gameName, this.receivedData.bind(this));
     }
 
     onInputFinalized(editBox: cc.EditBox) {
@@ -69,6 +115,15 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         }
     }
 
+    showErrorMessage(message: string) {
+        if (this.errorLabel) {
+            const key = `messages.${message}`;
+            const msg = GameUtils.getText(key);
+            this.errorLabel.string = msg;
+            this.errorLabel.node.active = true;
+        }
+    }
+
     onRedeemClicked() {
         const canvas = cc.find("Canvas");
         const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
@@ -76,8 +131,26 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         if (giftPopup) {
             giftPopup.destroy();
         }
+
         this.onCloseClicked();
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+    }
+
+    onRedeemClicked2() {
+        if (!this.redeemButton.interactable) {
+            return;
+        }
+        const giftCode = this.inputBox.string.trim().toUpperCase();
+
+        if (!giftCode) {
+            this.showErrorMessage("Vui lòng nhập giftcode.");
+            return;
+        }
+
+        this.redeemButton.interactable = false;
+        this.errorLabel.node.active = false;
+
+        this.socket?.connected && this.socket.emit("verifyGiftCode", { giftCode });
     }
 
     onCloseClicked() {

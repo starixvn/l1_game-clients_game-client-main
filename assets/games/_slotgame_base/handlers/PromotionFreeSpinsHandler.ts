@@ -54,7 +54,16 @@ export default class PromotionFreeSpinsHandler {
         }
 
         const transition = await this.game.playEffectTransition();
-        await GameUtils.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
+        await GameUtils.showFreeSpinsPromotionPopupOnce(
+            "GiftCodeRedeemPopup",
+            "free-spins-promotion/views/gift-code-redeem",
+            null,
+            (node) => {
+                const popupComp = node.getComponent("GiftCodeRedeemPopup");
+                popupComp.init(this.game?.socket, this.game?.gameName);
+            }
+        );
+    
         transition?.destroy();
     }
     async showPromotionEndedPopup(finishPromotion: any) {

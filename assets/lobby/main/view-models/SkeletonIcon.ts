@@ -216,7 +216,7 @@ export default class SkeletonIcon extends cc.Component {
         const prefab = await GameUtils.loadResource(`lobby/games/remote-icon/${labelPrefabName}`);
         const labelNode = cc.instantiate(prefab);
         node?.addChild(labelNode);
-        labelNode.position = labelNode.position.add(cc.v3(gameNotification.x, gameNotification.y));
+        labelNode.position = cc.v3(gameNotification.x, gameNotification.y);
         labelNode.active = false;
         notification.noticeNode = labelNode;
     }

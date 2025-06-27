@@ -36,6 +36,16 @@ export default class BannerJackpotPoolItem extends BannerJackpot {
         frame && (this.gameIcon.spriteFrame = frame);
     }
 
+    protected async getRemoteGameIcon(gameId: number) {
+        try {
+            const texture = await GameUtils.loadRemoteGameResource<cc.Texture2D>(gameId, `icon/icon-game-small.webp`);
+            const spriteFrame = new cc.SpriteFrame(texture);
+            return spriteFrame;
+        } catch (e) {
+            return null;
+        }
+    }
+
     getGameIcon(): Promise<cc.SpriteFrame> {
         const gameConfiguration = getGameConfiguration(this.gameId);
 
@@ -45,6 +55,8 @@ export default class BannerJackpotPoolItem extends BannerJackpot {
                 path: "resources/textures/icon-game-small",
                 type: cc.SpriteFrame
             });
+        } else if (gameConfiguration?.isMicrosite) {
+            return this.getRemoteGameIcon(this.gameId);
         } else {
             return new Promise((resolve) => {
                 cc.resources.load<cc.SpriteFrame>(

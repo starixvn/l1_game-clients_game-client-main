@@ -25,7 +25,8 @@ export default class JackpotTopWinnersItem extends BannerJackpot {
         this.gameId = gameId;
         this.setName(winnerName);
         this.setAmount(GameUtils.getValueByExchangeRateCode(amount, exchangeRateCode));
-        this.setGameName(GameUtils.getGameNameString(gameId));
+        const gameName = await GameUtils.getDisplayGameName(gameId);
+        this.setGameName(gameName);
         await GameUtils.asyncExecute(this?.node, this.setAvatar(avatarId));
     }
 

@@ -22,7 +22,7 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.redeemButton.node.on("click", this.onRedeemClicked, this);
         this.closeButton.node.on("click", this.onCloseClicked, this);
         this.inputBox.node.on("editing-did-began", this.onEditBoxFocus, this);
-        this.inputBox.node.on("editing-did-ended", this.onEditBoxBlur, this);
+        this.inputBox.node.on("editing-did-ended", this.onInputFinalized, this);
         this.startRedeemButtonPulse();
     }
     startRedeemButtonPulse() {
@@ -44,8 +44,17 @@ export default class GiftCodeRedeemPopup extends cc.Component {
         this.redeemButton.node.off("click", this.onRedeemClicked, this);
         this.closeButton.node.off("click", this.onCloseClicked, this);
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
-        this.inputBox.node.off("editing-did-ended", this.onEditBoxBlur, this);
+        this.inputBox.node.off("editing-did-ended", this.onInputFinalized, this);
         cc.Tween.stopAllByTarget(this.redeemButton.node);
+    }
+
+    onInputFinalized(editBox: cc.EditBox) {
+        const upper = editBox.string.toUpperCase();
+        if (editBox.string !== upper) {
+            editBox.string = upper;
+        }
+
+        this.onEditBoxBlur();
     }
 
     async onPasteClicked() {
@@ -54,7 +63,7 @@ export default class GiftCodeRedeemPopup extends cc.Component {
 
         try {
             text = await navigator.clipboard.readText();
-            this.inputBox.string = text;
+            this.inputBox.string = text.toUpperCase();
         } catch (e) {
             cc.warn("Clipboard read failed", e);
         }

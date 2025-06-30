@@ -118,14 +118,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected loadMicrositeGame() {
         this.micrositeUrl = buildMicrositeGameUrl(this.gameId);
-        let queryString = this.getMicrositeGameQueryString();
-
-        if (queryString && queryString.length > 0) {
-            queryString += "&hideFullscreen=true";
-        } else {
-            queryString = "?hideFullscreen=true";
-        }
-
+        const queryString = this.getMicrositeGameQueryString();
         this.webview && (this.webview.url = `${this.micrositeUrl}/${queryString}`);
     }
 

@@ -136,8 +136,8 @@ export default class StandardSlotGame extends SlotGameBase {
         this.updateBalanceColor();
         uiManager.emitterListener(InternalEvents.SLOT_PLAY_SOUND, (type: ClassicSlotSound) => this.playSound(type), this);
         uiManager.emitterListener(InternalEvents.CLICK_HAMBURGER_MENU, () => this.hideStakeContrainer(), this);
-        this.promotionFreeSpinsHandler.registerEvents();
-        this.promotionFreeSpinsHandler.initFreeSpinsPromotionMessage();
+        this.freeSpinsBonusHandler.registerEvents();
+        this.freeSpinsBonusHandler.initFreeSpinsPromotionMessage();
     }
 
     onDestroy() {
@@ -168,7 +168,6 @@ export default class StandardSlotGame extends SlotGameBase {
         return {
             // prefab name : prefab property
             "effect-transition": "effectTransitionPrefab",
-
             "effect-bonus": "effectBonus",
             "effect-big-win": "effectBigWin",
             "effect-freespin": "effectFreeSpin",

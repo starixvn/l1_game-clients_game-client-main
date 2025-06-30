@@ -1,8 +1,10 @@
 import GameUtils from "../../../common/GameUtils";
 import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
+import GiftCodeSkeleton from "../../../resources/free-spins-promotion/view-models/GiftCodeSkeleton";
+import { ClassicSlotSound } from "../ClassicSlotSound";
 
-export default class PromotionFreeSpinsHandler {
+export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
 
     constructor(game: any) {
@@ -28,6 +30,8 @@ export default class PromotionFreeSpinsHandler {
     registerEvents() {
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.showGiftCode(), this.game);
 
+        //uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showBackgroundPopup(), this.game);
+
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this.game);
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this.game);
@@ -37,8 +41,20 @@ export default class PromotionFreeSpinsHandler {
             (finishPromotion) => this.showPromotionEndedPopup(finishPromotion),
             this.game
         );
-    }
 
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT,
+            () => this.playRedeemTransitionEffect(),
+            this.game
+        );
+    }
+    async showBackgroundPopup() {
+        await GameUtils.showFreeSpinsPromotionPopupOnce(
+            "background-popup",
+            "free-spins-promotion/views/background-popup",
+            "Canvas/main/BoardGroup/other/number_col_left"
+        );
+    }
     async showGiftCode() {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "GiftCodePopup",
@@ -46,26 +62,11 @@ export default class PromotionFreeSpinsHandler {
             "Canvas/main/BoardGroup/other/number_col_left"
         );
     }
-
     async showGiftCodeRedeemPopup() {
-        if (this.game.isFreeSpin()) {
-            this.game.freeSpinsPromotionMessage?.showMessageContent();
-            return;
-        }
-
-        const transition = await this.game.playEffectTransition();
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
-            "GiftCodeRedeemPopup",
-            "free-spins-promotion/views/gift-code-redeem",
-            null,
-            (node) => {
-                const popupComp = node.getComponent("GiftCodeRedeemPopup");
-                popupComp.init(this.game?.socket, this.game?.gameName);
-            }
-        );
-    
+        const transition = await this.playGiftCodeTransitionEffect();
         transition?.destroy();
     }
+    
     async showPromotionEndedPopup(finishPromotion: any) {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionEndedPopup",
@@ -77,7 +78,12 @@ export default class PromotionFreeSpinsHandler {
             }
         );
     }
+
     async showPromotionDetailsPanel() {
+        if (this.game.isFreeSpin()) {
+            this.game.freeSpinsPromotionMessage?.showMessageContent();
+            return;
+        }
         const transition = await this.game?.playEffectTransition();
         await new Promise((resolve) => setTimeout(resolve, 1000));
         await GameUtils.showFreeSpinsPromotionPopupOnce(
@@ -92,7 +98,7 @@ export default class PromotionFreeSpinsHandler {
         );
         transition?.destroy();
     }
-    
+
     async initFreeSpinsPromotionMessage() {
         const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
         if (existing) {
@@ -106,5 +112,43 @@ export default class PromotionFreeSpinsHandler {
         node.name = "FreeSpinsPromotionMessage";
         node.parent = cc.find("Canvas");
         this.game.freeSpinsPromotionMessage = node.getComponent("FreeSpinsPromotionMessage");
+    }
+
+    async playGiftCodeTransitionEffect() {
+        const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-gift-code-transition");
+        if (!effectPrefab) {
+            return null;
+        }
+        this.game.playSound?.(ClassicSlotSound.TRANSITION);
+        const effect = cc.instantiate(effectPrefab);
+        const callbackAnim = effect.getComponent(GiftCodeSkeleton);
+        callbackAnim.onShowPopup = () => this.showGiftCodePopup();
+        await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
+        return effect;
+    }
+
+    async playRedeemTransitionEffect() {
+        const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-redeem-transition");
+        if (!effectPrefab) {
+            return null;
+        }
+        this.game.playSound?.(ClassicSlotSound.TRANSITION);
+        const effect = cc.instantiate(effectPrefab);
+        const callbackAnim = effect.getComponent(GiftCodeSkeleton);
+        callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+        await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
+        return effect;
+    }
+
+    async showGiftCodePopup() {
+        await GameUtils.showFreeSpinsPromotionPopupOnce(
+            "GiftCodeRedeemPopup",
+            "free-spins-promotion/views/gift-code-redeem",
+            null,
+            (node) => {
+                const popupComp = node.getComponent("GiftCodeRedeemPopup");
+                popupComp.init(this.game?.socket, this.game?.gameName);
+            }
+        );
     }
 }

@@ -2,12 +2,12 @@ import { Socket } from "socket.io-client";
 import GameUtils from "../../../common/GameUtils";
 import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
-import BaseComponent from "../../../common/BaseComponent";
+import CommonDialog from "../../../common/_base/view-models/CommonDialog";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class GiftCodeRedeemPopup extends BaseComponent {
+export default class GiftCodeRedeemPopup extends CommonDialog {
     @property(cc.EditBox)
     inputBox: cc.EditBox = null;
 
@@ -34,6 +34,18 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
         }
     }
 
+    showDialog() {
+        super.onWillShow();
+        this.node.active = true;
+        this.node.scale = 0;
+        this.node.opacity = 255;
+
+        cc.tween(this.node)
+            .to(this.time * 0.8, { scale: 1.5 }, { easing: "backOut" })
+            .to(this.time * 0.4, { scale: 1.0 }, { easing: "sineInOut" })
+            .start();
+    }
+
     onEnable() {
         this.inputBox.string = "";
         this.redeemButton.interactable = true;
@@ -42,6 +54,9 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
         this.inputBox.node.on("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.on("editing-did-ended", this.onInputFinalized, this);
         this.startRedeemButtonPulse();
+    }
+    public isAlive(): boolean {
+        return this.node && this.node.isValid;
     }
 
     receivedData(data: any) {
@@ -52,18 +67,13 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
         this.redeemButton.interactable = true;
 
         if (data.errorCode) {
-            this.showErrorMessage(data.errorMessage);
+            const key = this.mapErrorCodeToMessageKey(data.errorCode);
+            this.showErrorMessage(key);
             return;
         }
 
         if (data.isGiftCode) {
-            const canvas = cc.find("Canvas");
-            const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
-
-            if (giftPopup) {
-                giftPopup.destroy();
-            }
-            this.onCloseClicked();
+            this.destroySelf();
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
         } else {
             this.showErrorMessage("Giftcode không hợp lệ hoặc đã được sử dụng.");
@@ -91,7 +101,7 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onInputFinalized, this);
         cc.Tween.stopAllByTarget(this.redeemButton.node);
-        this.socket.off(this.gameName, this.receivedData.bind(this));
+        this.socket?.off(this.gameName, this.receivedData.bind(this));
     }
 
     onInputFinalized(editBox: cc.EditBox) {
@@ -117,23 +127,15 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
 
     showErrorMessage(message: string) {
         if (this.errorLabel) {
-            const key = `messages.${message}`;
-            const msg = GameUtils.getText(key);
+            const msg = GameUtils.getText(message);
             this.errorLabel.string = msg;
             this.errorLabel.node.active = true;
         }
     }
 
     onRedeemClicked() {
-        const canvas = cc.find("Canvas");
-        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
-
-        if (giftPopup) {
-            giftPopup.destroy();
-        }
-
-        this.onCloseClicked();
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+        this.destroySelf();
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT);
     }
 
     onRedeemClicked2() {
@@ -177,6 +179,28 @@ export default class GiftCodeRedeemPopup extends BaseComponent {
     onEditBoxBlur() {
         if (cc.sys.isMobile) {
             this.node.y = this._originalY;
+        }
+    }
+
+    private destroySelf() {
+        const canvas = cc.find("Canvas");
+        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
+        giftPopup?.destroy();
+        this.onCloseClicked();
+    }
+
+    private mapErrorCodeToMessageKey(errorCode: number): string {
+        switch (errorCode) {
+            case 1001:
+                return "giftcode.error.empty";
+            case 1002:
+                return "giftcode.error.invalid";
+            case 1003:
+                return "giftcode.error.system";
+            case 1004:
+                return "giftcode.error.too_many_attempts";
+            default:
+                return "giftcode.error.unknown";
         }
     }
 }

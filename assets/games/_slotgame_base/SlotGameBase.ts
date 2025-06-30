@@ -33,7 +33,7 @@ import SlotGameUserSettings from "./SlotGameUserSettings";
 import SlotGameFreeSpinsHandler from "../_base/handlers/SlotGameFreeSpinsHandler";
 import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
 import SlotGameEndPromotionHandler from "../_base/handlers/SlotGameEndPromotionHandler";
-import PromotionFreeSpinsHandler from "./handlers/PromotionFreeSpinsHandler";
+import SlotGameFreeSpinsBonusHandler from "./handlers/SlotGameFreeSpinsBonusHandler";
 export interface LineData {
     payline: number;
     positions: number[];
@@ -167,7 +167,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     isSpinnedAction = false;
 
     protected promotionBetLevel: number | null = null;
-    public promotionFreeSpinsHandler: PromotionFreeSpinsHandler;
+    public freeSpinsBonusHandler: SlotGameFreeSpinsBonusHandler;
 
     public get jackpotEnabled() {
         return this._jackpotEnabled;
@@ -206,8 +206,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.initDefaultBetChoices();
         this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
         this.winningBetOriginalScale = this.winningBet.node.scale;
-        this.promotionFreeSpinsHandler = new PromotionFreeSpinsHandler(this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.promotionFreeSpinsHandler.tryAutoSpinWhenFSB, this);
+        this.freeSpinsBonusHandler = new SlotGameFreeSpinsBonusHandler(this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.freeSpinsBonusHandler.tryAutoSpinWhenFSB, this);
         uiManager.emitterListener(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (callback: (isSpinning: boolean) => void) => { callback(this.isSpinnedAction); }, this);
     }
 
@@ -715,7 +715,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         if (this.betChoices?.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }
-        const hasPromotion = this.promotionFreeSpinsHandler.isPromotionActive();
+        const hasPromotion = this.freeSpinsBonusHandler.isPromotionActive();
         const balanceAvailable = this.isFreeSpin() || hasPromotion || this.checkAvailableBalance();
         if (!balanceAvailable) {
             this.resetStateButtons();
@@ -740,7 +740,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         };
         this.waitingSpinResult = true;
         if (hasPromotion) {
-            this.promotionFreeSpinsHandler?.promotionPanel?.tryConsumePromotionFSB();
+            this.freeSpinsBonusHandler?.promotionPanel?.tryConsumePromotionFSB();
         }
         if (!isFreeSpin) {
             this.consumeAutoSpinCount();
@@ -764,7 +764,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     updateModeSpinButton(isFreeSpin: boolean) {
-        if (isFreeSpin || this.promotionFreeSpinsHandler?.isPromotionActive()) {
+        if (isFreeSpin || this.freeSpinsBonusHandler?.isPromotionActive()) {
             this.setTotalBetLabel("0");
             this.spinButton.showFreeSpinMode();
             return;
@@ -803,7 +803,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     activeButtons() {
-        const isFreeSpin = this.isFreeSpin() || this.promotionFreeSpinsHandler?.isPromotionActive();
+        const isFreeSpin = this.isFreeSpin() || this.freeSpinsBonusHandler?.isPromotionActive();
         const isAutoSpinMode = this.isAutoSpinMode();
         const notAutoSpinByKeySpaceOrHold = !this.holdActionButton.isAutoAction;
 
@@ -1124,7 +1124,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         //compare with onAutoSpinOff()
         this.autoSpinToggle.isChecked = false;
         this.setAutoSpinCount(0);
-        const isFreeSpin = this.isFreeSpin() || this.promotionFreeSpinsHandler.isPromotionActive();
+        const isFreeSpin = this.isFreeSpin() || this.freeSpinsBonusHandler.isPromotionActive();
         this.updateModeSpinButton(isFreeSpin);
         this.activeButtons();
         if (isFreeSpin) {

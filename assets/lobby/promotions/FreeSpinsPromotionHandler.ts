@@ -15,7 +15,8 @@ export const FreeSpinsPromotionEvents = {
     OPEN_PROMOTION_DETAILS_PANEL: "OPEN_PROMOTION_DETAILS_PANEL",
     SPIN_ON_FSB_PROMOTION: "SPIN_ON_FSB_PROMOTION",
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
-    CHECK_IS_SPINNING: "CHECK_IS_SPINNING"
+    CHECK_IS_SPINNING: "CHECK_IS_SPINNING",
+    OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT"
 };
 
 const endpointConstants = {
@@ -26,7 +27,9 @@ interface StandardPromotionInfo {
     promotionId: string;
     code?: string;
     isGiftCode?: boolean;
-    remainingBonusItems?: number;
+    isClaimed?: boolean;
+    bonusItemCount?: number;
+    initialBonusItem?: number;
     [key: string]: any;
 }
 
@@ -75,6 +78,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     setPromotionInfoFromSso(rawData: any, isDirectly = false) {
         this.promotionInfoFromSso = this.normalizePromotionData(rawData);
+        console.log("promotionInfo", this.promotionInfoFromSso);
         this.isDirectlyOpen = isDirectly;
         this.handlePromotionDisplay();
     }
@@ -89,7 +93,9 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                 promotionId: rawPromo?.promotionId,
                 code: rawPromo?.code || rawPromo?.promotionCode,
                 isGiftCode: rawPromo?.isGiftCode === true,
-                remainingBonusItems: rawPromo?.remainingBonusItems || rawPromo?.bonusItemCount,
+                remainingBonusItems: rawPromo?.bonusItemCount,
+                initialBonusItem: rawPromo?.initialBonusItem,
+                isClaimed: rawPromo?.isClaimed === true,
                 ...rawPromo
             },
             gameOfferPromotion: currentGameOfferPromotion
@@ -120,10 +126,12 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                     return;
                 }
                 const isGiftCode = promotion?.isGiftCode === true;
-
-                if (isGiftCode) {
+                const remaining = promotion?.bonusItemCount;
+                const initial = promotion?.initialBonusItem;
+                const isClaimed = promotion?.isClaimed === true;
+                if (isGiftCode && !isClaimed) {
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
-                } else {
+                } else if (isClaimed && remaining === initial) {
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
                 }
                 return;

@@ -50,7 +50,7 @@ export default class CommonDialog extends BounceInEffect {
         this.onDidHideActions.forEach((action) => action());
     }
 
-    private onWillShow() {
+    protected onWillShow() {
         this.onWillShowActions.forEach((action) => action());
     }
 

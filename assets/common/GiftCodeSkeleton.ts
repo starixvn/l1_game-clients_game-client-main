@@ -1,10 +1,11 @@
-import CallbackSkeleton from "../../../common/CallbackSkeleton";
+import CallbackSkeleton from "./CallbackSkeleton";
+
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class GiftCodeSkeleton extends CallbackSkeleton {
-    @property(Number)
+    @property(cc.Float)
     public time = 1;
 
     @property(cc.Node)

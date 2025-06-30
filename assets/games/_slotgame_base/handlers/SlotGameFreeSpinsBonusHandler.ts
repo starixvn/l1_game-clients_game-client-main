@@ -1,7 +1,7 @@
 import GameUtils from "../../../common/GameUtils";
+import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
 import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
-import GiftCodeSkeleton from "../../../resources/free-spins-promotion/view-models/GiftCodeSkeleton";
 import { ClassicSlotSound } from "../ClassicSlotSound";
 
 export default class SlotGameFreeSpinsBonusHandler {
@@ -30,8 +30,6 @@ export default class SlotGameFreeSpinsBonusHandler {
     registerEvents() {
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.showGiftCode(), this.game);
 
-        //uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showBackgroundPopup(), this.game);
-
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this.game);
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this.game);
@@ -48,13 +46,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
     }
-    async showBackgroundPopup() {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
-            "background-popup",
-            "free-spins-promotion/views/background-popup",
-            "Canvas/main/BoardGroup/other/number_col_left"
-        );
-    }
+ 
     async showGiftCode() {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "GiftCodePopup",

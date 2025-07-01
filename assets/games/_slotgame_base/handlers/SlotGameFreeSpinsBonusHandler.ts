@@ -72,12 +72,12 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showPromotionDetailsPanel(isAutoSpin: boolean) {
-  /*       if (this.game.isFreeSpin()) {
+        if (this.game.isFreeSpin()) {
             this.game.freeSpinsPromotionMessage?.showMessageContent();
             return;
-        } */
+        }
         const transition = await this.game?.playEffectTransition();
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 500));
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",

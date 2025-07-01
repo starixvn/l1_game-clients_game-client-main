@@ -3,7 +3,6 @@ import GameUtils from "../../../common/GameUtils";
 import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
-import ErrorCodeDictionary from "../../../common/utils/ErrorCodeDictionary";
 
 const { ccclass, property } = cc._decorator;
 
@@ -71,7 +70,6 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         if (data.redeemResult === 1) {
             this.destroySelf();
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
-            return;
         } else if (data.redeemResult === -1) {
             this.redeemButton.interactable = true;
             this.startRedeemButtonPulse();

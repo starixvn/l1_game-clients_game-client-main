@@ -236,6 +236,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
             } else {
                 if (!this.main.isShowAutoSpinSettingDialog) {
                     this.main.resetStateButtons();
+                    this.main.freeSpinsBonusHandler?.showPromotionDetailsPanel(true);
                 }
             }
         }

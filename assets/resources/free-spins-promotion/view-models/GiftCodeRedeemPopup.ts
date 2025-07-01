@@ -3,6 +3,7 @@ import GameUtils from "../../../common/GameUtils";
 import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import CommonDialog from "../../../common/_base/view-models/CommonDialog";
+import ErrorCodeDictionary from "../../../common/utils/ErrorCodeDictionary";
 
 const { ccclass, property } = cc._decorator;
 
@@ -64,23 +65,20 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     }
 
     receivedData(data: any) {
-        console.log("receivedData", data);
-        if (!this.isAlive() || !data.giftCode) {
+        if (!this.isAlive()) {
             return;
         }
         this.redeemButton.interactable = true;
-
-        if (data.errorCode) {
-            const key = this.mapErrorCodeToMessageKey(data.errorCode);
-            this.showErrorMessage(key);
-            return;
-        }
-
-        if (data.isGiftCode) {
+        if (data.redeemResult === 1) {
             this.destroySelf();
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
-        } else {
-            this.showErrorMessage("Giftcode không hợp lệ hoặc đã được sử dụng.");
+            return;
+        } else if (data.redeemResult === -1) {
+            const notice = data.notice;
+            if (notice?.errorCode) {
+                const fallback = this.mapErrorCodeToMessageKey(notice.errorCode);
+                this.showErrorMessage(fallback);
+            }
         }
     }
 
@@ -129,20 +127,22 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         }
     }
 
-    showErrorMessage(message: string) {
+    showErrorMessage(key: string) {
         if (this.errorLabel) {
-            const msg = GameUtils.getText(message);
+            const msg = GameUtils.getText(key);
             this.errorLabel.string = msg;
             this.errorLabel.node.active = true;
         }
     }
 
-    onRedeemClicked() {
+    onRedeemClicked2() {
         this.destroySelf();
+        const giftCode = this.inputBox.string.trim().toUpperCase();
+        this.socket?.connected && this.socket.emit("redeem", { giftCode: giftCode });
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT);
     }
 
-    onRedeemClicked2() {
+    onRedeemClicked() {
         if (!this.redeemButton.interactable) {
             return;
         }
@@ -156,7 +156,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         this.redeemButton.interactable = false;
         this.errorLabel.node.active = false;
 
-        this.socket?.connected && this.socket.emit("verifyGiftCode", { giftCode });
+        this.socket?.connected && this.socket.emit("redeem", { giftCode: giftCode });
     }
 
     onCloseClicked() {
@@ -193,18 +193,16 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         this.onCloseClicked();
     }
 
-    private mapErrorCodeToMessageKey(errorCode: number): string {
+    private mapErrorCodeToMessageKey(errorCode: string): string {
         switch (errorCode) {
-            case 1001:
-                return "giftcode.error.empty";
-            case 1002:
-                return "giftcode.error.invalid";
-            case 1003:
-                return "giftcode.error.system";
-            case 1004:
-                return "giftcode.error.too_many_attempts";
+            case "SB3019":
+                return "freeSpinsPromotion.gift_code_error_message";
+            case "SB3020":
+                return "freeSpinsPromotion.Invalide_gift_code_error_message";
+            case "SB3021":
+                return "freeSpinsPromotion.Unexpected_gift_code_error_message";
             default:
-                return "giftcode.error.unknown";
+                return "freeSpinsPromotion.gift_code_error_message";
         }
     }
 }

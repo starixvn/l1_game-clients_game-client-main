@@ -133,6 +133,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
                 } else if (isClaimed && remaining === initial) {
                     uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+                } else {
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
                 }
                 return;
             }

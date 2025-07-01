@@ -26,7 +26,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         }
     }
 
-    initPromotion(promotionInfo: any) {
+    initPromotion(promotionInfo: any, isAutoSpin: boolean) {
         if (!promotionInfo) {
             return;
         }
@@ -44,7 +44,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.updateTotalBetLabel();
         this.node.active = true;
 
-        if (this.promotionFSB > 0) {
+        if (this.promotionFSB > 0 && isAutoSpin) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
         }
     }

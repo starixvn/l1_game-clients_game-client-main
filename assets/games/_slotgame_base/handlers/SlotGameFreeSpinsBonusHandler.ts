@@ -32,7 +32,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this.game);
 
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, () => this.showPromotionDetailsPanel(), this.game);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, (isAutoSpin = false) => this.showPromotionDetailsPanel(isAutoSpin), this.game);
 
         uiManager.emitterListener(
             FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
@@ -71,11 +71,11 @@ export default class SlotGameFreeSpinsBonusHandler {
         );
     }
 
-    async showPromotionDetailsPanel() {
-        if (this.game.isFreeSpin()) {
+    async showPromotionDetailsPanel(isAutoSpin: boolean) {
+  /*       if (this.game.isFreeSpin()) {
             this.game.freeSpinsPromotionMessage?.showMessageContent();
             return;
-        }
+        } */
         const transition = await this.game?.playEffectTransition();
         await new Promise((resolve) => setTimeout(resolve, 1000));
         await GameUtils.showFreeSpinsPromotionPopupOnce(
@@ -85,7 +85,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             (node) => {
                 const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
                 const panelComp = node.getComponent("PromotionDetailsPanel");
-                panelComp?.initPromotion?.(promotionInfo);
+                panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
             }
         );
         transition?.destroy();

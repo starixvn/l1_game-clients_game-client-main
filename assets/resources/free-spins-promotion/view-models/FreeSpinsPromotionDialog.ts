@@ -77,9 +77,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         super.closeDialog(enableSound);
         LobbyDialogManager.getInstance().onCloseDialog();
         FreeSpinsPromotionHandler.getInstance().onCloseFreeSpinsPromotionPopup();
-        if (!isChecked && !this._skippedGiftCodeManually) {
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
-        }
     }
 
     playGameNow() {
@@ -96,7 +93,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         } else {
             freeSpinsPromotionHandler.setShouldSkipGiftCode(true);
         }
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
         appManager.hasShowedCenterBanner = true;
         const gameId = freeSpinsPromotionHandler.getGameId();
         sessionManager.setCheckedTournamentPromotionFirstSso(true);

@@ -65,6 +65,10 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         }
     }
 
+    protected onDestroy(): void {
+        LobbyDialogManager.getInstance().onCloseDialog();
+    }
+
     closeDialog(enableSound = true) {
         const isChecked = this.dontShowAgainToggle?.isChecked;
         if (isChecked) {

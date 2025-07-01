@@ -20,6 +20,9 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     @property(cc.Label)
     errorLabel: cc.Label = null;
 
+    @property(cc.Node)
+    giftCodeNode: cc.Node = null;
+
     private _debounceTimer: any = null;
     private readonly _originalY = 0;
     private gameName: string;
@@ -37,16 +40,18 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     showDialog() {
         super.onWillShow();
         this.node.active = true;
-        this.node.scale = 0;
-        this.node.opacity = 255;
+        this.giftCodeNode.scale = 0.3;
+        this.giftCodeNode.opacity = 255;
 
-        cc.tween(this.node)
-            .to(this.time * 0.8, { scale: 1.5 }, { easing: "backOut" })
-            .to(this.time * 0.4, { scale: 1.0 }, { easing: "sineInOut" })
+        cc.tween(this.giftCodeNode)
+            .delay(0.03)
+            .to(this.time * 1.2, { scale: 1.2 }, { easing: "backOut" })
+            .to(0.2, { scale: 1.0 }, { easing: "sineInOut" })
             .start();
     }
 
     onEnable() {
+        this.showDialog();
         this.inputBox.string = "";
         this.redeemButton.interactable = true;
         this.redeemButton.node.on("click", this.onRedeemClicked, this);

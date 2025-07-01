@@ -69,7 +69,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         }
         if (data.redeemResult === 1) {
             this.destroySelf();
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT);
         } else if (data.redeemResult === -1) {
             this.redeemButton.interactable = true;
             this.startRedeemButtonPulse();

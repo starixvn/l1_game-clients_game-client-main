@@ -68,12 +68,13 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         if (!this.isAlive()) {
             return;
         }
-        this.redeemButton.interactable = true;
         if (data.redeemResult === 1) {
             this.destroySelf();
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
             return;
         } else if (data.redeemResult === -1) {
+            this.redeemButton.interactable = true;
+            this.startRedeemButtonPulse();
             const notice = data.notice;
             if (notice?.errorCode) {
                 const fallback = this.mapErrorCodeToMessageKey(notice.errorCode);
@@ -135,27 +136,16 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         }
     }
 
-    onRedeemClicked2() {
-        this.destroySelf();
-        const giftCode = this.inputBox.string.trim().toUpperCase();
-        this.socket?.connected && this.socket.emit("redeem", { giftCode: giftCode });
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT);
-    }
-
     onRedeemClicked() {
         if (!this.redeemButton.interactable) {
             return;
         }
         const giftCode = this.inputBox.string.trim().toUpperCase();
 
-        if (!giftCode) {
-            this.showErrorMessage("Vui lòng nhập giftcode.");
-            return;
-        }
-
         this.redeemButton.interactable = false;
         this.errorLabel.node.active = false;
-
+        cc.Tween.stopAllByTarget(this.redeemButton.node);
+        this.redeemButton.node.scale = 1.2;
         this.socket?.connected && this.socket.emit("redeem", { giftCode: giftCode });
     }
 

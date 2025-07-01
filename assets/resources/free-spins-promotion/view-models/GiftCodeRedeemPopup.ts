@@ -38,15 +38,14 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     }
 
     showDialog() {
-        super.onWillShow();
         this.node.active = true;
         this.giftCodeNode.scale = 0.3;
-        this.giftCodeNode.opacity = 255;
+        this.giftCodeNode.opacity = 0;
 
         cc.tween(this.giftCodeNode)
-            .delay(0.03)
-            .to(this.time * 1.2, { scale: 1.2 }, { easing: "backOut" })
-            .to(0.2, { scale: 1.0 }, { easing: "sineInOut" })
+            .delay(0.2)
+            .to(this.time, { scale: 1.1, opacity: 255 }, { easing: "cubicOut" })
+            .to(this.time * 0.3, { scale: 1.0 }, { easing: "cubicInOut" })
             .start();
     }
 

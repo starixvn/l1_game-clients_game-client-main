@@ -32,7 +32,11 @@ export default class SlotGameFreeSpinsBonusHandler {
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this.game);
 
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, (isAutoSpin = false) => this.showPromotionDetailsPanel(isAutoSpin), this.game);
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL,
+            (isAutoSpin = false) => this.showPromotionDetailsPanel(isAutoSpin),
+            this.game
+        );
 
         uiManager.emitterListener(
             FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
@@ -46,7 +50,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
     }
- 
+
     async showGiftCode() {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "GiftCodePopup",
@@ -58,7 +62,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         const transition = await this.playGiftCodeTransitionEffect();
         transition?.destroy();
     }
-    
+
     async showPromotionEndedPopup(finishPromotion: any) {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionEndedPopup",
@@ -76,14 +80,18 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game.freeSpinsPromotionMessage?.showMessageContent();
             return;
         }
+        const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
+        if (!promotionInfo?.promotion?.isClaimed) {
+            return;
+        }
         const transition = await this.game?.playEffectTransition();
         await new Promise((resolve) => setTimeout(resolve, 500));
+
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
             "Canvas/main/BoardGroup/other/number_col_left",
             (node) => {
-                const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
             }

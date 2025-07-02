@@ -8,7 +8,7 @@ const { ccclass, property } = cc._decorator;
 export default class GiftCode extends cc.Component {
     @property(cc.Node)
     icon: cc.Node = null;
-
+    private isProcessing = false;
     onEnable() {
         this.setDefaultPosition();
         const draggable = this.getComponent(Draggable);
@@ -25,16 +25,22 @@ export default class GiftCode extends cc.Component {
     }
 
     onClickGiftCode() {
-        let isSpinning = false;
-
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (spinning: boolean) => {
-            isSpinning = spinning;
-        });
-
-        if (isSpinning) {
+        if (this.isProcessing) {
             return;
         }
+        this.isProcessing = true;
 
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (isSpinning: boolean) => {
+            if (isSpinning) {
+                this.isProcessing = false;
+                return;
+            }
+
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
+
+            this.scheduleOnce(() => {
+                this.isProcessing = false;
+            }, 1);
+        });
     }
 }

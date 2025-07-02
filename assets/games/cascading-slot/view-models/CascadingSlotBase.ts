@@ -1,3 +1,4 @@
+import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../../analytics/AnalyticsManager";
 import CallbackLoopAnimation from "../../../common/CallbackLoopAnimation";
 import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas, truncateFixedDecimals } from "../../../common/helpers/NumberHelper";
@@ -82,11 +83,22 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
 
     onLoad() {
         this.initGameDataEvents();
+
         super.onLoad();
         this.loadPrefabsByCode().then(() => {
             this.onLoadedPrefabs();
         });
         uiManager.emitterListener(InternalEvents.CASCADING_CLOSE_MENU, this.closeExpandMenu.bind(this), this);
+        this.trackOnLoadTrialMode();
+    }
+
+    trackOnLoadTrialMode() {
+        const location = cc.director.getScene().name;
+        AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
+            location,
+            action: TrackingAction.Show,
+            object_name: "TrialMode"
+        });
     }
 
     closeExpandMenu() {
@@ -186,6 +198,12 @@ export default class CascadingSlotBase extends FeatureSlotGameBase {
         this.saveSettingKey("trialMode", checked);
         this.tumbleList.clear();
         this.updateForTrialMode();
+
+        AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
+            location: cc.director.getScene().name,
+            action: toggle.isChecked ? TrackingAction.ToggleOn : TrackingAction.ToggleOff,
+            object_name: "TrialMode"
+        });
     }
 
     clearGameOnTrialModeChanged() {

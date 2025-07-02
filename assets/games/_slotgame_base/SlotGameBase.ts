@@ -735,7 +735,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         const data = {
             betChoice: this.betChoices,
             amount: hasPromotion ? this.promotionBetLevel : this.stake,
-            freeSpin: this.isFreeSpin(),
+            freeSpin: hasPromotion || this.isFreeSpin(),
             clientSentTime: new Date()
         };
         this.waitingSpinResult = true;

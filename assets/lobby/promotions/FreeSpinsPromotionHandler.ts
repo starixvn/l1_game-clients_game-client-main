@@ -28,7 +28,7 @@ interface StandardPromotionInfo {
     code?: string;
     isGiftCode?: boolean;
     isClaimed?: boolean;
-    bonusItemCount?: number;
+    remainingBonusItems?: number;
     initialBonusItem?: number;
     [key: string]: any;
 }
@@ -124,7 +124,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                     return;
                 }
                 const isGiftCode = promotion?.isGiftCode === true;
-                const remaining = promotion?.bonusItemCount;
+                const remaining = promotion?.remainingBonusItems;
                 const initial = promotion?.initialBonusItem;
                 const isClaimed = promotion?.isClaimed === true;
                 if (isGiftCode && !isClaimed) {

@@ -44,12 +44,22 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     private finishPromotion: any = null;
 
+    private extraFreeSpinsBonusInGame = false;
+
     public setShouldSkipGiftCode(skip: boolean) {
         this.shouldSkipGiftCode = skip;
     }
 
     public setFinishPromotion(promotion: any) {
         this.finishPromotion = promotion;
+    }
+
+    public setExtraFreeSpinsBonusInGame(extraFreeSpinsBonusInGame: boolean) {
+        this.extraFreeSpinsBonusInGame = extraFreeSpinsBonusInGame;
+    }
+
+    public getExtraFreeSpinsBonusInGame() {
+        return this.extraFreeSpinsBonusInGame;
     }
 
     public getFinishPromotion() {

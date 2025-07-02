@@ -1,4 +1,5 @@
 import GameUtils from "../../../common/GameUtils";
+import { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase, { LineData } from "../SlotGameBase";
 import { SlotNotification } from "../SlotGameBottomMessage";
@@ -114,15 +115,10 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         this.main.setTotalFreeSpins(totalOfFreeSpins);
-
-        if (this.main?.freeSpinsBonusHandler?.promotionPanel?.fsbConsumedThisRound) {
-            this.main?.freeSpinsBonusHandler?.promotionPanel?.addWinAmount(betWin);
-
-            // Nếu không còn free spin từ cả game và promotion thì mới gọi commit
-            if (freeSpins.count === 0 && this.main.totalFreeSpins === 0) {
-                this.main?.freeSpinsBonusHandler?.promotionPanel?.commitPromotionFSB();
-            }
+        if (totalOfFreeSpins === 0) {
+            freeSpinsPromotionHandler.setExtraFreeSpinsBonusInGame(false);
         }
+        this.handlePromotionFSBUpdate(betWin, freeSpins.count);
 
         const needWaitEffect = bigWin || freeSpins.count > 0 || betByFreeSpin || this.main.holdActionButton.isAutoAction;
         if (!needWaitEffect) {
@@ -133,6 +129,17 @@ export default class SlotGameSettlementHandler implements DataHandler {
             this.main.updateWinningBetLabel(betWin);
         }
         this.handlePayline(jackpot, betWin, winningLines, bigWin, freeSpins);
+    }
+
+    private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
+        const handler = this.main?.freeSpinsBonusHandler?.promotionPanel;
+        if (!handler?.fsbConsumedThisRound) {
+            return;
+        }
+        handler.addWinAmount(betWin);
+        if (freeSpinsCount === 0 && this.main.totalFreeSpins === 0) {
+            handler.commitPromotionFSB();
+        }
     }
 
     waitingHandleSpecialCase(totalDuration: number): Promise<void> {

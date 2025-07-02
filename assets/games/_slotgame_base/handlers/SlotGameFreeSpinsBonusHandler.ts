@@ -12,7 +12,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     isPromotionActive(): boolean {
-        return this.promotionPanel?.isPromotionStillActive?.() ?? false;
+        return (this.promotionPanel?.isPromotionStillActive?.() ?? false) && !this.isExtraFreeSpinsBonusInGame();
     }
 
     get promotionPanel() {
@@ -75,8 +75,12 @@ export default class SlotGameFreeSpinsBonusHandler {
         );
     }
 
+    isExtraFreeSpinsBonusInGame() {
+        return FreeSpinsPromotionHandler.getInstance().getExtraFreeSpinsBonusInGame();
+    }
+
     async showPromotionDetailsPanel(isAutoSpin: boolean) {
-        if (this.game.isFreeSpin()) {
+        if (this.game.isFreeSpin() && !this.isExtraFreeSpinsBonusInGame()) {
             this.game.freeSpinsPromotionMessage?.showMessageContent();
             return;
         }

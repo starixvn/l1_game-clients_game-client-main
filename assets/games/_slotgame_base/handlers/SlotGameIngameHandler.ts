@@ -1,3 +1,4 @@
+import FreeSpinsPromotionHandler from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase from "../SlotGameBase";
 
@@ -6,7 +7,7 @@ export default class SlotGameIngameHandler implements DataHandler {
 
     handle(data: any) {
         if (data.freeSpins && data.freeSpins.total) {
-            const { bet, total, paylines } = data.freeSpins;
+            const { bet, total, paylines, promotionId } = data.freeSpins;
             this.main.setTotalFreeSpins(total);
             let betLevel = bet;
             if (this.main.isAccelerate) {
@@ -22,6 +23,7 @@ export default class SlotGameIngameHandler implements DataHandler {
             this.main.stakeButton && (this.main.stakeButton.interactable = false);
             this.main.lineButtonStatus(false);
             this.main.autoSpinToggle && (this.main.autoSpinToggle.interactable = false);
+            FreeSpinsPromotionHandler.getInstance().setExtraFreeSpinsBonusInGame(!!promotionId?.trim());
         }
     }
 }

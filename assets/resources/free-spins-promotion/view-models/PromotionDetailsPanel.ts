@@ -34,7 +34,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         const promotion = promotionInfo.promotion;
 
         this.betLevel = promotion?.betLevel ?? 0;
-        this.promotionFSB = promotion?.remainingBonusItems ?? 0;
+        this.promotionFSB = promotion?.bonusItemCount ?? 0;
         this.totalWin = Number(promotion?.totalWin ?? 0);
         this.promotionActive = true;
 

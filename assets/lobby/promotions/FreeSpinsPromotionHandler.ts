@@ -93,8 +93,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                 promotionId: rawPromo?.promotionId,
                 code: rawPromo?.code || rawPromo?.promotionCode,
                 isGiftCode: rawPromo?.isGiftCode === true,
-                remainingBonusItems: rawPromo?.bonusItemCount,
-                initialBonusItem: rawPromo?.initialBonusItem,
                 isClaimed: rawPromo?.isClaimed === true,
                 ...rawPromo
             },

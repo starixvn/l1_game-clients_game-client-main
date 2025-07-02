@@ -73,7 +73,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         } else if (data.redeemResult === -1) {
             this.redeemButton.interactable = true;
             this.startRedeemButtonPulse();
-            const notice = data.notice;
+            const notice = data.redemptionNotice;
             if (notice?.errorCode) {
                 const fallback = this.mapErrorCodeToMessageKey(notice.errorCode);
                 this.showErrorMessage(fallback);
@@ -190,7 +190,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
             case "SB3021":
                 return "freeSpinsPromotion.Unexpected_gift_code_error_message";
             default:
-                return "freeSpinsPromotion.gift_code_error_message";
+                return "freeSpinsPromotion.Invalide_gift_code_error_message";
         }
     }
 }

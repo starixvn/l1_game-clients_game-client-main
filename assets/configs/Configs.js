@@ -19,7 +19,11 @@ const defaultConfig = {
     subGuideDomain: "l1-guide1",
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
-    subPromotionDomain: "l2-promotion2"
+    subPromotionDomain: "l2-promotion2",
+    clientDomainMapper: {
+        localhost: "lumigame.com",
+        "10.5.10.31": "lumigame.com"
+    }
     // clientSubDomain: "l1-client" // Turn on when new proxy for client && aws
 };
 

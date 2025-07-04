@@ -78,7 +78,9 @@ async function retryGetLobbyConfigs(session: { ss: string; username: string }) {
 
         try {
             const lobby = await UserService.getInstance().lobby.getLobbyConfigs(session.ss, session.username);
-            if (lobby) return lobby;
+            if (lobby) {
+                return lobby;
+            }
         } catch (error) {
             cc.warn(`Can not get lobby configs: ${error.message}`);
         }

@@ -14,7 +14,7 @@ import GameUtils from "../../../common/GameUtils";
 
 const { ccclass, property } = cc._decorator;
 
-@ccclass("FreeSpinsPromotionDialog")
+@ccclass
 export default class FreeSpinsPromotionDialog extends CommonDialog {
     @property(cc.Toggle)
     dontShowAgainToggle: cc.Toggle = null;
@@ -29,8 +29,11 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     @property(cc.Node)
     closeButton: cc.Node = null;
 
-    private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
+    @property(cc.Node)
+    background: cc.Node = null;
 
+    private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
+    private _bgTween: cc.Tween<cc.Node> = null;
     private _skippedGiftCodeManually = false;
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
@@ -48,6 +51,24 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         if (!isDirect) {
             this.restoreDontShowToggle();
             await this.setGameName();
+        }
+    }
+
+    onEnable(): void {
+        super.onEnable();
+        if (this.background) {
+            this.background.active = true;
+            this.background.opacity = 0;
+
+            this._bgTween = cc.tween(this.background).to(1, { opacity: 150 }, { easing: "sineOut" }).start();
+        }
+    }
+
+    onDisable(): void {
+        super.onDisable();
+        if (this._bgTween) {
+            this._bgTween.stop();
+            this._bgTween = null;
         }
     }
 

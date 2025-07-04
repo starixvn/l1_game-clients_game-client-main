@@ -68,7 +68,6 @@ export default class PromotionDetailsPanel extends cc.Component {
     commitPromotionFSB() {
         if (this.fsbConsumedThisRound) {
             this.fsbConsumedThisRound = false;
-            this.endPromotionIfNeeded();
         }
     }
 
@@ -82,7 +81,7 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     public isPromotionStillActive(): boolean {
-        return this.promotionActive && this.promotionFSB > 0;
+        return this.promotionActive && !this.hasServerFinishPromotion;
     }
 
     updateTotalBetLabel() {
@@ -90,25 +89,12 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.labelTotalBet.string = totalBet.toString();
     }
 
-    private endPromotionIfNeeded() {
-        if (!this.promotionActive) {
-            return;
-        }
-
-        const isFinished = this.promotionFSB <= 0;
-        if (isFinished) {
-            this.promotionActive = false;
-        }
-    }
-
     hidePanel() {
         this.node.active = false;
     }
 
     public tryShowPromotionEndedPopupIfFinished() {
-        const isPromotionEnded = this.hasServerFinishPromotion && (!this.isPromotionStillActive() || this.promotionFSB > 0);
-
-        if (isPromotionEnded) {
+        if (this.hasServerFinishPromotion) {
             this.hidePanel();
             this.showPromotionEndedPopup();
         }

@@ -27,14 +27,13 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     private readonly _originalY = 0;
     private gameName: string;
     protected socket: Socket;
-
+    private boundReceiveData: (data: any) => void;
     init(socket: Socket, gameName: string) {
         this.socket = socket;
         this.gameName = gameName;
         console.log("socket", this.socket, this.gameName);
-        if (this.socket) {
-            this.socket.on(this.gameName, this.receivedData.bind(this));
-        }
+        this.boundReceiveData = this.receivedData.bind(this);
+        this.socket.on(this.gameName, this.boundReceiveData);
     }
 
     showDialog() {
@@ -102,7 +101,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onInputFinalized, this);
         cc.Tween.stopAllByTarget(this.redeemButton.node);
-        this.socket?.off(this.gameName, this.receivedData.bind(this));
+        this.socket?.off(this.gameName, this.boundReceiveData);
     }
 
     onInputFinalized(editBox: cc.EditBox) {
@@ -120,7 +119,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
 
         try {
             text = await navigator.clipboard.readText();
-            this.inputBox.string = text.toUpperCase();
+            this.inputBox.string = text.trim().toUpperCase();
         } catch (e) {
             cc.warn("Clipboard read failed", e);
         }

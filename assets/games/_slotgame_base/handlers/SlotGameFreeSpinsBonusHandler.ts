@@ -60,7 +60,9 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
     async showGiftCodeRedeemPopup() {
         const transition = await this.playGiftCodeTransitionEffect();
-        transition?.destroy();
+        if (cc.isValid(transition)) {
+            transition.destroy();
+        }
     }
 
     async showPromotionEndedPopup(finishPromotion: any) {

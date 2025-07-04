@@ -130,7 +130,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             if (this.isDirectlyOpen) {
                 if (this.shouldSkipGiftCode) {
                     this.shouldSkipGiftCode = false;
-                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
                     return;
                 }
                 const isGiftCode = promotion?.isGiftCode === true;

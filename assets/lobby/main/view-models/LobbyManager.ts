@@ -42,6 +42,7 @@ export interface LobbyConfigs {
     miniPanelGameIds: number[];
     categories: GameCategory[];
     banners: Banner[];
+    centerBanners: Banner[];
     roundTimerGame: IRoundTimerGame;
 }
 
@@ -134,6 +135,10 @@ export default class LobbyManager {
 
     getBanners(): Banner[] {
         return LobbyManager.lobbyConfigs?.banners;
+    }
+
+    getCenterBanners(): Banner[] {
+        return LobbyManager.lobbyConfigs?.centerBanners;
     }
 
     getBannerByGameId(gameId: number): Banner {

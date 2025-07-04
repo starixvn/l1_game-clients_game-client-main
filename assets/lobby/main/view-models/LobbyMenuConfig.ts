@@ -34,6 +34,11 @@ export default class LobbyMenuConfig extends System implements ICreditSystem, IC
         return banners?.map((banner) => banner.gameId) ?? [];
     }
 
+    get centerBanners() {
+        const banners = LobbyManager.getInstance().getCenterBanners();
+        return banners ?? [];
+    }
+
     get miniList() {
         return LobbyManager.getInstance().getMiniPanelList();
     }

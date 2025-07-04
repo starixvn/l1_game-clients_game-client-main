@@ -49,6 +49,16 @@ export default class SlotGameFreeSpinsBonusHandler {
             () => this.playRedeemTransitionEffect(),
             this.game
         );
+
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED, () => this.showTurnOverRequiredPanel(), this.game);
+    }
+
+    async showTurnOverRequiredPanel() {
+        await GameUtils.showFreeSpinsPromotionPopupOnce(
+            "TurnOverRequiredPanel",
+            "free-spins-promotion/views/turn-over-required-panel",
+            "Canvas/main/BoardGroup/other/number_col_left"
+        );
     }
 
     async showGiftCode() {
@@ -58,6 +68,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             "Canvas/main/BoardGroup/other/number_col_left"
         );
     }
+
     async showGiftCodeRedeemPopup() {
         const transition = await this.playGiftCodeTransitionEffect();
         if (cc.isValid(transition)) {
@@ -135,6 +146,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async playRedeemTransitionEffect() {
         const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-redeem-transition");
+        console.log("playRedeemTransitionEffect", effectPrefab, this.game?.node);
         if (!effectPrefab) {
             return null;
         }
@@ -142,7 +154,8 @@ export default class SlotGameFreeSpinsBonusHandler {
         const effect = cc.instantiate(effectPrefab);
         const callbackAnim = effect.getComponent(GiftCodeSkeleton);
         callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
-        await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
+        await GameUtils.asyncExecute(this.game?.node ?? cc.find("Canvas"), this.game.showEffect(effect));
+        FreeSpinsPromotionHandler.getInstance().setIsTransitionEffectActive(false);
         return effect;
     }
 

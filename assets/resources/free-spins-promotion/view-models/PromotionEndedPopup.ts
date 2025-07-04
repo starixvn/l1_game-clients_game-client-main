@@ -1,5 +1,7 @@
 import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
+import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { uiManager } from "../../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -9,9 +11,6 @@ export default class PromotionEndedPopup extends cc.Component {
     @property(cc.Button) closeButton: cc.Button = null;
 
     private static hasShown = false;
-    onLoad() {
-        this.closeButton.node.on("click", this.onCloseClicked, this);
-    }
 
     public show(finishPromotion: any) {
         if (!finishPromotion || PromotionEndedPopup.hasShown || !finishPromotion.endPromotion) {
@@ -32,6 +31,7 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     private onCloseClicked() {
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED);
         cc.tween(this.node)
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
             .call(() => {

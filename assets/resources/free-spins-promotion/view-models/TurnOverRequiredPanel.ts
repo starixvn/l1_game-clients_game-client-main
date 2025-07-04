@@ -1,7 +1,7 @@
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class PromotionProgressPanel extends cc.Component {
+export default class TurnOverRequiredPanel extends cc.Component {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Label) labelTotalTurnover: cc.Label = null;
     @property(cc.Label) labelMinRequiredTurnover: cc.Label = null;

@@ -8,8 +8,11 @@ export default class SlotGameFreeSpinsHandler implements DataHandler {
     handle(data: any) {
         const rawPromotion = data?.promotion;
         const redeemResult = data?.redeemResult;
+        if (redeemResult) {
+            freeSpinsPromotionHandler.setIsTransitionEffectActive(true);
+        }
         if (rawPromotion) {
-            !redeemResult && freeSpinsPromotionHandler.setPromotionInfoFromSso({ promotion: rawPromotion }, true);
+            freeSpinsPromotionHandler.setPromotionInfoFromSso({ promotion: rawPromotion }, true);
             const betLevel = rawPromotion.betLevel;
 
             if (typeof betLevel === "number") {

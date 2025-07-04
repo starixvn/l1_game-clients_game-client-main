@@ -16,7 +16,8 @@ export const FreeSpinsPromotionEvents = {
     SPIN_ON_FSB_PROMOTION: "SPIN_ON_FSB_PROMOTION",
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
     CHECK_IS_SPINNING: "CHECK_IS_SPINNING",
-    OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT"
+    OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT",
+    OPEN_TURN_OVER_REQUIRED: "OPEN_TURN_OVER_REQUIRED"
 };
 
 const endpointConstants = {
@@ -45,6 +46,16 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private finishPromotion: any = null;
 
     private extraFreeSpinsBonusInGame = false;
+
+    private isTransitionEffectActive = false;
+
+    public getIsTransitionEffectActive() {
+        return this.isTransitionEffectActive;
+    }
+
+    public setIsTransitionEffectActive(isActive: boolean) {
+        this.isTransitionEffectActive = isActive;
+    }
 
     public setShouldSkipGiftCode(skip: boolean) {
         this.shouldSkipGiftCode = skip;
@@ -113,8 +124,13 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     public getNormalizedPromotionInfo() {
         return this.promotionInfoFromSso;
     }
+
     public handlePromotionDisplay() {
         try {
+            if (this.isTransitionEffectActive) {
+                return;
+            }
+
             const promotion = this.promotionInfoFromSso?.promotion;
 
             if (!promotion?.promotionId) {

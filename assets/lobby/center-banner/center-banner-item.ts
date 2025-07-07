@@ -21,6 +21,7 @@ export default class CenterBannerItem extends cc.Component {
     }
 
     onClick() {
+        this.onCloseBanner();
         uiManager.emitter.emit(InternalEvents.OPEN_GAME, this.gameId);
         AnalyticsManager.Instance.trackEvent(TrackingEvent.Button, {
             location: cc.director.getScene().name,

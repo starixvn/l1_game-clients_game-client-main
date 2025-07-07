@@ -6,6 +6,7 @@ import { ClassicSlotSound } from "../ClassicSlotSound";
 
 export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
+    private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
 
     constructor(game: any) {
         this.game = game;
@@ -57,7 +58,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "TurnOverRequiredPanel",
             "free-spins-promotion/views/turn-over-required-panel",
-            "Canvas/main/BoardGroup/other/number_col_left"
+            this.DEFAULT_POPUP_PARENT_PATH
         );
     }
 
@@ -65,7 +66,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "GiftCodePopup",
             "free-spins-promotion/views/gift-code",
-            "Canvas/main/BoardGroup/other/number_col_left"
+            this.DEFAULT_POPUP_PARENT_PATH
         );
     }
 
@@ -107,7 +108,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
-            "Canvas/main/BoardGroup/other/number_col_left",
+            this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);

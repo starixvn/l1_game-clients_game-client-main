@@ -137,49 +137,55 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     public handlePromotionDisplay() {
         try {
-            if (this.isTransitionEffectActive) {
+            if (this.isTransitionEffectActive || !this.hasValidPromotion()) {
                 return;
             }
-
-            const promotion = this.promotionInfoFromSso?.promotion;
-
-            if (!promotion?.promotionId) {
-                return;
-            }
-
-            const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
-            const isSC1 = configs.systemType.toUpperCase() === "SC1";
-            if (dontShow || isSC1) {
+            if (this.shouldSkipPromotionDueToSettings()) {
                 return;
             }
 
             if (this.isDirectlyOpen) {
-                if (this.shouldSkipGiftCode) {
-                    this.shouldSkipGiftCode = false;
-                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
-                    return;
-                }
-                const isGiftCode = promotion?.isGiftCode === true;
-                const remaining = promotion?.remainingBonusItems;
-                const initial = promotion?.initialBonusItem;
-                const isClaimed = promotion?.isClaimed === true;
-                if (isGiftCode && !isClaimed) {
-                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
-                } else if (isClaimed && remaining === initial) {
-                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
-                } else {
-                    uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
-                }
-                return;
-            }
-            const alreadySeen = sessionManager.getCheckedFreeSpinsPromotionFirstSso();
-            if (alreadySeen) {
+                this.handleDirectOpenFlow();
                 return;
             }
 
+            if (sessionManager.getCheckedFreeSpinsPromotionFirstSso()) {
+                return;
+            }
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
         } catch (error) {
             sentryLogger.log(`handlePromotionDisplay error: ${error.message}`);
+        }
+    }
+    private hasValidPromotion(): boolean {
+        return !!this.promotionInfoFromSso?.promotion?.promotionId;
+    }
+
+    private shouldSkipPromotionDueToSettings(): boolean {
+        const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
+        const isSC1 = configs.systemType.toUpperCase() === "SC1";
+        return dontShow || isSC1;
+    }
+
+    private handleDirectOpenFlow() {
+        const promotion = this.promotionInfoFromSso?.promotion;
+        const isGiftCode = promotion?.isGiftCode === true;
+        const isClaimed = promotion?.isClaimed === true;
+        const remaining = promotion?.remainingBonusItems;
+        const initial = promotion?.initialBonusItem;
+
+        if (this.shouldSkipGiftCode) {
+            this.shouldSkipGiftCode = false;
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
+            return;
+        }
+
+        if (isGiftCode && !isClaimed) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE);
+        } else if (isClaimed && remaining === initial) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+        } else {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
         }
     }
 

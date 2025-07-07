@@ -1,6 +1,4 @@
-import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-
-import { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;

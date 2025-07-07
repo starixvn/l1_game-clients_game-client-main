@@ -1,3 +1,8 @@
+import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+
+import { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { uiManager } from "../../../managers/GameUIManager";
+
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -80,5 +85,10 @@ export default class TurnOverRequiredPanel extends cc.Component {
         // emit event or call API
         cc.log("User clicked CLAIM!");
         // uiManager.emitter.emit(...) nếu bạn có hệ thống event
+    }
+
+    onClickInfoIcon() {
+        freeSpinsPromotionHandler.setIsAnnouncementDetailsActive(true);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }
 }

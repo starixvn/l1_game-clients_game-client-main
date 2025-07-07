@@ -27,6 +27,9 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     playNowInLobby: cc.Node = null;
 
     @property(cc.Node)
+    playLater: cc.Node = null;
+
+    @property(cc.Node)
     closeButton: cc.Node = null;
 
     @property(cc.Node)
@@ -42,16 +45,25 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     }
     async start() {
         const isDirect = freeSpinsPromotionHandler.isDirectlyOpen;
+        const isAnnouncementDetailsActive = freeSpinsPromotionHandler.getIsAnnouncementDetailsActive();
 
-        this.dontShowAgainToggle.node.active = !isDirect;
-        this.playNowInGame.active = isDirect;
-        this.playNowInLobby.active = !isDirect;
-        this.closeButton.active = !isDirect;
+        this.updateUIVisibility(isDirect, isAnnouncementDetailsActive);
 
-        if (!isDirect) {
+        const shouldRestoreToggle = !isDirect && !isAnnouncementDetailsActive;
+        if (shouldRestoreToggle) {
             this.restoreDontShowToggle();
             await this.setGameName();
         }
+    }
+
+    private updateUIVisibility(isDirect: boolean, isAnnouncementDetailsActive: boolean) {
+        const showStandardUI = !isAnnouncementDetailsActive;
+
+        this.dontShowAgainToggle.node.active = showStandardUI && !isDirect;
+        this.playNowInGame.active = showStandardUI && isDirect;
+        this.playNowInLobby.active = showStandardUI && !isDirect;
+        this.closeButton.active = showStandardUI && !isDirect;
+        this.playLater.active = showStandardUI;
     }
 
     onEnable(): void {

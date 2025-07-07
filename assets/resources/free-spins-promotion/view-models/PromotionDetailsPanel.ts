@@ -103,4 +103,9 @@ export default class PromotionDetailsPanel extends cc.Component {
     showPromotionEndedPopup() {
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, freeSpinsPromotionHandler.getFinishPromotion());
     }
+
+    onClickInfoIcon() {
+        freeSpinsPromotionHandler.setIsAnnouncementDetailsActive(true);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+    }
 }

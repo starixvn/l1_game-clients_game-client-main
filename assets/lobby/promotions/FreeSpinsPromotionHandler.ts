@@ -1,4 +1,3 @@
-import axios from "axios";
 import { StorageManager } from "../../managers/StorageManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
@@ -21,7 +20,8 @@ export const FreeSpinsPromotionEvents = {
 };
 
 const endpointConstants = {
-    bannerPromotion: "banner-promotions"
+    bannerPromotion: "banner-promotions",
+    announcementDetails: "announcement-detail"
 };
 
 interface StandardPromotionInfo {
@@ -48,6 +48,16 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private extraFreeSpinsBonusInGame = false;
 
     private isTransitionEffectActive = false;
+
+    private isAnnouncementDetailsActive = false;
+
+    public getIsAnnouncementDetailsActive() {
+        return this.isAnnouncementDetailsActive;
+    }
+
+    public setIsAnnouncementDetailsActive(isActive: boolean) {
+        this.isAnnouncementDetailsActive = isActive;
+    }
 
     public getIsTransitionEffectActive() {
         return this.isTransitionEffectActive;
@@ -177,19 +187,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
         const gameOffers = this.promotionInfoFromSso?.gameOfferPromotion;
         const queryString = this.getQueryString(promotionId, gameOffers);
-        return `${buildPromotionSiteUrl()}/${endpointConstants.bannerPromotion}?${queryString}`;
-    }
-
-    private async getPromotionData(action: string, promotionId?: string) {
-        try {
-            const queryString = this.getQueryString(promotionId);
-            const url = `${buildPromotionSiteUrl()}/${action}?${queryString}`;
-            const response = await axios.get(url);
-            return response.data;
-        } catch (error) {
-            sentryLogger.log(`getPromotionData failed: ${error.message}`);
-            return false;
-        }
+        const endpoint = this.isAnnouncementDetailsActive ? endpointConstants.announcementDetails : endpointConstants.bannerPromotion;
+        return `${buildPromotionSiteUrl()}/${endpoint}?${queryString}`;
     }
 
     private buildParams() {

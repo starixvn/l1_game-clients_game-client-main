@@ -7,7 +7,7 @@ import { ClassicSlotSound } from "../ClassicSlotSound";
 export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
-
+    public isMessageContentShown = false;
     constructor(game: any) {
         this.game = game;
     }
@@ -85,6 +85,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             (node) => {
                 const popupComp = node.getComponent("PromotionEndedPopup");
                 popupComp?.show?.(finishPromotion);
+                this.isMessageContentShown = false;
             }
         );
     }
@@ -95,7 +96,10 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async showPromotionDetailsPanel(isAutoSpin: boolean) {
         if (this.game.isFreeSpin() && !this.isExtraFreeSpinsBonusInGame()) {
-            this.game.freeSpinsPromotionMessage?.showMessageContent();
+            if (!this.isMessageContentShown) {
+                this.isMessageContentShown = true;
+                this.game.freeSpinsPromotionMessage?.showMessageContent();
+            }
             return;
         }
         const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();

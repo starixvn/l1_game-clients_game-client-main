@@ -1,3 +1,4 @@
+import StatusButton from "../../../common/custom-button/StatusButton";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 
@@ -23,20 +24,15 @@ export default class TurnOverRequiredPanel extends cc.Component {
         this.schedule(this.updateTimer, 1);
     }
 
-    public init(data: {
-        totalWinAmount: number;
-        totalTurnover: number;
-        minRequiredTurnover: number;
-        endTime: number;
-    }) {
+    public init(data: { totalWinAmount: number; totalTurnover: number; minRequiredTurnover: number; endTime: number }) {
         this.totalWinAmount = data.totalWinAmount;
         this.totalTurnover = data.totalTurnover;
         this.minRequiredTurnover = data.minRequiredTurnover;
         this.endTime = data.endTime;
-    
+
         this.updateProgressUI();
     }
-    
+
     public updateTotalWinAndTurnover(totalWin: number, turnover: number) {
         this.totalWinAmount = totalWin;
         this.totalTurnover = turnover;
@@ -47,17 +43,21 @@ export default class TurnOverRequiredPanel extends cc.Component {
         this.labelTotalWin.string = this.totalWinAmount.toFixed(2);
         this.labelTotalTurnover.string = this.totalTurnover.toFixed(0);
         this.labelMinRequiredTurnover.string = this.minRequiredTurnover.toFixed(0);
-    
+
         const remainingTO = Math.max(0, this.minRequiredTurnover - this.totalTurnover);
         this.labelRemainingTO.string = remainingTO.toFixed(0);
-    
+
         const percent = Math.min(this.totalTurnover / this.minRequiredTurnover, 1);
         this.labelPercentage.string = `${Math.floor(percent * 100)}%`;
         this.progressBar.progress = percent;
-    
-        this.claimButton.active = percent >= 1;
+
+        const isReadyToClaim = percent >= 1;
+        const statusBtn = this.claimButton.getComponent(StatusButton);
+        if (statusBtn) {
+            statusBtn.interactable = isReadyToClaim;
+        }
+        
     }
-    
 
     private updateTimer() {
         if (!this.endTime) {

@@ -30,7 +30,6 @@ export default class CenterBanner extends cc.Component {
     private dialog: CommonDialog = null;
     private banners: BannerItemData[] = [];
     private readonly TRACKING_OBJECT_NAME = "Center Banner";
-    private autoSlideTimer: any = null;
 
     onLoad() {
         this.dialog = this.getComponentInChildren(CommonDialog);
@@ -74,7 +73,6 @@ export default class CenterBanner extends cc.Component {
     closeBanner() {
         this.dialog.closeDialog(true);
         LobbyDialogManager.getInstance().onCloseDialog();
-        this.updateDontShowAgain();
     }
 
     playNow() {
@@ -100,7 +98,7 @@ export default class CenterBanner extends cc.Component {
         }
         this.initIndicator();
 
-        this.pageView.node.on('page-turning', this.onPageTurning, this);
+        this.pageView.node.on("page-turning", this.onPageTurning, this);
     }
 
     onIndicatorClick() {
@@ -114,7 +112,12 @@ export default class CenterBanner extends cc.Component {
         }
         this.pageView.indicator.node.children.forEach((child) => {
             const button = child.addComponent(cc.Button);
-            child.addComponent(CenterBannerIndicator);
+            const indicator = child.addComponent(CenterBannerIndicator);
+            indicator.onClick = () => {
+                const index = child.getSiblingIndex();
+                this.pageView.scrollToPage(index, 0);
+                this.restartAutoSlide();
+            };
             const event = new cc.Component.EventHandler();
             event.target = child;
             event.component = "CenterBannerIndicator";
@@ -134,7 +137,6 @@ export default class CenterBanner extends cc.Component {
         if (this.banners.length <= 1) {
             return;
         }
-        
         this.stopAutoSlide();
         this.scheduleNextSlide();
     }
@@ -142,20 +144,21 @@ export default class CenterBanner extends cc.Component {
     private scheduleNextSlide() {
         const currentIndex = this.pageView.getCurrentPageIndex();
         const currentBanner = this.banners[currentIndex];
-        
-        if (currentBanner && currentBanner.displayTime > 0) {
-            this.autoSlideTimer = setTimeout(() => {
-                this.nextBanner();
-                this.scheduleNextSlide();
-            }, currentBanner.displayTime * 1000);
+
+        let displayTime = 5;
+        if (currentBanner?.displayTime > 0) {
+            displayTime = currentBanner.displayTime;
         }
+        this.schedule(this.autoSlideCallback, displayTime);
     }
 
+    private autoSlideCallback = () => {
+        this.nextBanner();
+        this.scheduleNextSlide();
+    };
+
     private stopAutoSlide() {
-        if (this.autoSlideTimer !== null) {
-            clearTimeout(this.autoSlideTimer);
-            this.autoSlideTimer = null;
-        }
+        this.unschedule(this.autoSlideCallback);
     }
 
     private restartAutoSlide() {

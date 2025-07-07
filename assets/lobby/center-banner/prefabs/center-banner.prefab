@@ -1463,9 +1463,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 238,
-      "g": 231,
-      "b": 62,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -1521,7 +1521,7 @@
     },
     "_indicators": [],
     "spriteFrame": {
-      "__uuid__": "c9fa51ff-3f01-4601-8f80-325d1b11dab7"
+      "__uuid__": "6a18ee79-1d8d-4681-b6cf-0316ecc1f7ba"
     },
     "direction": 0,
     "cellSize": {
@@ -1752,7 +1752,7 @@
       "__id__": 42
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 44
@@ -2160,7 +2160,7 @@
     "_N$target": {
       "__id__": 42
     },
-    "_N$isChecked": true,
+    "_N$isChecked": false,
     "toggleGroup": null,
     "checkMark": {
       "__id__": 44

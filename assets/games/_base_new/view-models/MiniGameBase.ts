@@ -4,6 +4,8 @@ import ExtraFeature from "../../../common/extra-features/ExtraFeature";
 import GameIdSprite from "../../../common/GameIdSprite";
 import MiniRoundHistory from "../../../common/mini-round-history/MiniRoundHistory";
 import { appManager } from "../../../managers/AppManager";
+import { uiManager } from "../../../managers/GameUIManager";
+import { InternalEvents } from "../../../managers/InternalEvents";
 import { onReceiveLoginPlayerStatus, onReceiveOthersStatus } from "../../_base/action/PayChipsAction";
 import { GameState } from "../../_base/GameState";
 import { Durations } from "../../_new/_base/game-data-management/models/durations";
@@ -107,7 +109,9 @@ export default class MiniGameBase extends NewMiniGameBase {
     wholeResultTime = 3;
     isPlacingFakeChip = true;
     streakChoices = [];
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     callbackWinningResult = (game: any, status: any) => {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     callbackWinningStreak = (game: any) => {};
     extraFeature: ExtraFeature;
 
@@ -156,6 +160,7 @@ export default class MiniGameBase extends NewMiniGameBase {
         this.stopAllSFX();
         this.node.active = false;
         this.currentMiniPanel.onGamesLayerChanged();
+        uiManager.emitter.emit(InternalEvents.CLOSE_GAME, this.gameId);
     }
 
     override onData(data: unknown) {

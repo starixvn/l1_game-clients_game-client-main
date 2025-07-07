@@ -5,6 +5,8 @@ import BetChips from "../../../common/bet-chips/view-models/BetChips";
 import DraggableItem from "../../../common/draggable-layout/view-models/DraggableItem";
 import InternalGameNotification from "../../../common/game-notification/InternalGameNotification";
 import GameUtils from "../../../common/GameUtils";
+import { uiManager } from "../../../managers/GameUIManager";
+import { InternalEvents } from "../../../managers/InternalEvents";
 import SocketIOController from "../../../SocketIOController";
 import GameBase from "../../_base/GameBase";
 import { GameState } from "../../_base/GameState";
@@ -361,6 +363,8 @@ export default class MultiplayGame extends GameViewBase {
         this.node.active = false;
         this.resetStatisticShow();
         this.currentMiniPanel.onGamesLayerChanged();
+        uiManager.emitter.emit(InternalEvents.CLOSE_GAME, this.gameId);
+
     }
 
     handleSubGamesArea() {

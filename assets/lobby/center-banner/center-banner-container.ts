@@ -1,5 +1,6 @@
 import { Banner } from "sc-user-service-client/dist/lobby";
 import { lazyInject } from "../../Application";
+import { lodash } from "../../ClientModules";
 import GameUtils from "../../common/GameUtils";
 import { userManager } from "../../common/user/UserManager";
 import { appManager } from "../../managers/AppManager";
@@ -20,11 +21,6 @@ export default class CenterBannerContainer extends cc.Component {
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
     onLoad() {
-        appManager.hasShowedCenterBanner = StorageManager.get(CENTER_BANNER_DONT_SHOW_STORAGE_KEY) ?? false;
-
-        if (appManager.hasShowedCenterBanner) {
-            return;
-        }
         uiManager.emitterListener(
             InternalEvents.CENTER_BANNER_SHOW,
             () => LobbyDialogManager.getInstance().addDialog(this.initCenterBanner.bind(this), "CenterBanner"),
@@ -37,16 +33,44 @@ export default class CenterBannerContainer extends cc.Component {
     }
 
     async initCenterBanner() {
-        if (appManager.hasShowedCenterBanner) {
-            return;
-        }
+        appManager.hasShowedCenterBanner = StorageManager.get(CENTER_BANNER_DONT_SHOW_STORAGE_KEY) ?? false;
 
         try {
             const banners = await this.loadBanners();
+
+            if (banners.length === 0) {
+                return;
+            }
+
+            if (!appManager.hasShowedCenterBanner) {
+                this.showBanners(banners);
+                return;
+            }
+
+
+            const showedCenterBanners = StorageManager.get("SHOWED_CENTER_BANNERS");
+            if (!showedCenterBanners) {
+                this.showBanners(banners);
+                return;
+            }
+
+            const bannersObject = this.parseBannersToObject(banners);
+            const isSame = lodash.isEqual(bannersObject, showedCenterBanners);
+            if (isSame) {
+                return;
+            }
             this.showBanners(banners);
+
         } catch (error) {
             console.log("Load banners error", error);
         }
+    }
+
+
+    private parseBannersToObject(banners: BannerItemData[]) {
+        return banners.map((banner) => ({
+            gameId: banner.gameId,
+        }));
     }
 
     private getFilteredBanners() {
@@ -97,6 +121,7 @@ export default class CenterBannerContainer extends cc.Component {
     }
 
     private showBanners(banners: BannerItemData[]) {
+        StorageManager.set("SHOWED_CENTER_BANNERS", this.parseBannersToObject(banners));
         this.showCenterBanner(banners);
         appManager.hasShowedCenterBanner = true;
     }

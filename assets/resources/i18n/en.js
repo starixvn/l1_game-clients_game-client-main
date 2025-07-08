@@ -648,9 +648,9 @@ const data = {
     },
     freeSpinsPromotion: {
         gift_code_message: "Redeem Your Free Spins Reward.",
-        Invalide_gift_code_error_message: "Invalid Gift Code. Please check your code and try again.",
+        Invalide_gift_code_error_message: "Invalid Gift Code.\n Please check your code and try again.",
         gift_code_error_message: "Please enter your Gift Code.",
-        Unexpected_gift_code_error_message: "Unexpected error occurred. Please try again later.",
+        Unexpected_gift_code_error_message: "Unexpected error occurred.\n Please try again later.",
         gift_code_redeem: "Redeem",
         gift_code: "Gift\nCode",
         gift_code_enter_paste_code: "Enter or Paste Your Code",

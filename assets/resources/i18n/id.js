@@ -663,7 +663,7 @@ const data = {
     },
     freeSpinsPromotion: {
         gift_code_message: "Tukarkan Hadiah Putaran Gratis Anda.",
-        Invalide_gift_code_error_message: "Kode Hadiah Tidak Valid. Silakan periksa kode Anda dan coba lagi.",
+        Invalide_gift_code_error_message: "Kode Hadiah Tidak Valid.\n Silakan periksa kode Anda dan coba lagi.",
         gift_code_error_message: "Silakan masukkan Kode Hadiah Anda.",
         Unexpected_gift_code_error_message: "Terjadi kesalahan tak terduga. \nSilakan coba menukarkan kode hadiah Anda lagi nanti.",
         gift_code_redeem: "Tukarkan",

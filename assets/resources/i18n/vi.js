@@ -649,7 +649,7 @@ const data = {
         gift_code_message: "Nhận thưởng lượt quay Free Spin.",
         Invalide_gift_code_error_message: "Gift Code không hợp lệ.\nVui lòng kiểm tra và thử lại.",
         gift_code_error_message: "Vui lòng nhập Gift Code.",
-        Unexpected_gift_code_error_message: "Đã xảy ra lỗi.\nVui lòng nhập lại mã Gift code của bạn sau vài phút.",
+        Unexpected_gift_code_error_message: "Đã xảy ra lỗi. Vui lòng thủ lại sau.",
         gift_code_redeem: "Nhận thưởng",
         gift_code: "Gift\nCode",
         gift_code_enter_paste_code: "Nhập hoặc dán Gift Code",

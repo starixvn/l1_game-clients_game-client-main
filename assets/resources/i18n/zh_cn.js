@@ -622,9 +622,9 @@ const data = {
     },
     freeSpinsPromotion: {
         gift_code_message: "兑换您的免费旋转奖励。",
-        Invalide_gift_code_error_message: "无效的礼物代码。请检查您的代码并重试。",
+        Invalide_gift_code_error_message: "礼品码无效。请检查您的代码并重试。",
         gift_code_error_message: "请输入您的礼品码。",
-        Unexpected_gift_code_error_message: "发生意外错误。请稍后再尝试兑换您的礼品码。",
+        Unexpected_gift_code_error_message: "发生意外错误。请稍后再试。",
         gift_code_redeem: "兑换",
         gift_code: "礼包码",
         gift_code_enter_paste_code: "输入或貼上您的代码",

@@ -62,7 +62,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         this.dontShowAgainToggle.node.active = showStandardUI && !isDirect;
         this.playNowInGame.active = showStandardUI && isDirect;
         this.playNowInLobby.active = showStandardUI && !isDirect;
-        this.closeButton.active = showStandardUI && !isDirect;
+        this.closeButton.active = isAnnouncementDetailsActive || (!isDirect && showStandardUI);
         this.playLater.active = showStandardUI;
     }
 

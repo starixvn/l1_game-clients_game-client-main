@@ -164,7 +164,12 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private shouldSkipPromotionDueToSettings(): boolean {
         const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
-        return dontShow || isSC1;
+        const isGiftCode = this.promotionInfoFromSso?.promotion?.isGiftCode === true;
+        if (dontShow && !isGiftCode) {
+            return true;
+        }
+
+        return isSC1;
     }
 
     private handleDirectOpenFlow() {

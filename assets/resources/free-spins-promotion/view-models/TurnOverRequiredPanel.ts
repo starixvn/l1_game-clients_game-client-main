@@ -1,11 +1,13 @@
+import { Socket } from "socket.io-client";
 import StatusButton from "../../../common/custom-button/StatusButton";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
+import BaseComponent from "../../../common/BaseComponent";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
-export default class TurnOverRequiredPanel extends cc.Component {
+export default class TurnOverRequiredPanel extends BaseComponent {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Label) labelTotalTurnover: cc.Label = null;
     @property(cc.Label) labelMinRequiredTurnover: cc.Label = null;
@@ -19,18 +21,33 @@ export default class TurnOverRequiredPanel extends cc.Component {
     private totalTurnover = 0;
     private minRequiredTurnover = 0;
     private endTime = 0;
-
+    private gameName: string;
+    protected socket: Socket;
+    private boundReceiveData: (data: any) => void;
     onLoad() {
         this.schedule(this.updateTimer, 1);
     }
 
-    public init(data: { totalWinAmount: number; totalTurnover: number; minRequiredTurnover: number; endTime: number }) {
+    init(socket: Socket, gameName: string) {
+        this.socket = socket;
+        this.gameName = gameName;
+        this.boundReceiveData = this.receivedData.bind(this);
+        this.socket.on(this.gameName, this.boundReceiveData);
+    }
+
+    public initBonusWallet(data: { totalWinAmount: number; totalTurnover: number; minRequiredTurnover: number; endTime: number }) {
         this.totalWinAmount = data.totalWinAmount;
         this.totalTurnover = data.totalTurnover;
         this.minRequiredTurnover = data.minRequiredTurnover;
         this.endTime = data.endTime;
 
         this.updateProgressUI();
+    }
+
+    receivedData(data: any) {
+        if (!this.isAlive()) {
+            return;
+        }
     }
 
     public updateTotalWinAndTurnover(totalWin: number, turnover: number) {
@@ -80,13 +97,15 @@ export default class TurnOverRequiredPanel extends cc.Component {
     }
 
     public onClickClaim() {
-        // emit event or call API
-        cc.log("User clicked CLAIM!");
-        // uiManager.emitter.emit(...) nếu bạn có hệ thống event
+        this.socket?.connected && this.socket.emit("claim-bonus-win");
     }
 
     onClickInfoIcon() {
         freeSpinsPromotionHandler.setIsAnnouncementDetailsActive(true);
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+    }
+
+    onDestroy() {
+        this.socket?.off(this.gameName, this.boundReceiveData);
     }
 }

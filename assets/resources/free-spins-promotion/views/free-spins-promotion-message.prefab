@@ -24,11 +24,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 8
+        "__id__": 9
       }
     ],
     "_prefab": {
-      "__id__": 9
+      "__id__": 10
     },
     "_opacity": 255,
     "_color": {
@@ -92,11 +92,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 6
+        "__id__": 7
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -108,8 +108,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 795,
-      "height": 56
+      "width": 743,
+      "height": 62
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -157,10 +157,13 @@
     "_components": [
       {
         "__id__": 4
+      },
+      {
+        "__id__": 5
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 6
     },
     "_opacity": 255,
     "_color": {
@@ -224,8 +227,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "",
-    "_N$string": "",
+    "_string": "Vui lòng hoàn tất các lượt quay Free Spin hiện có trong game trước khi bắt đầu các lượt quay Free Spin khuyến mãi.",
+    "_N$string": "Vui lòng hoàn tất các lượt quay Free Spin hiện có trong game trước khi bắt đầu các lượt quay Free Spin khuyến mãi.",
     "_fontSize": 22,
     "_lineHeight": 22,
     "_enableWrapText": true,
@@ -242,6 +245,24 @@
     "_N$fontFamily": "Arial",
     "_N$overflow": 2,
     "_N$cacheMode": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.LabelOutline",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 3
+    },
+    "_enabled": true,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 98,
+      "g": 31,
+      "b": 23,
+      "a": 255
+    },
+    "_width": 2,
     "_id": ""
   },
   {
@@ -273,8 +294,8 @@
     "_spriteFrame": {
       "__uuid__": "26af6bca-91da-4379-a675-315a0eb0091b"
     },
-    "_type": 1,
-    "_sizeMode": 0,
+    "_type": 0,
+    "_sizeMode": 2,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",

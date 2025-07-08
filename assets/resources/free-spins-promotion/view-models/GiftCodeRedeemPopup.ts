@@ -31,7 +31,6 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     init(socket: Socket, gameName: string) {
         this.socket = socket;
         this.gameName = gameName;
-        console.log("socket", this.socket, this.gameName);
         this.boundReceiveData = this.receivedData.bind(this);
         this.socket.on(this.gameName, this.boundReceiveData);
     }

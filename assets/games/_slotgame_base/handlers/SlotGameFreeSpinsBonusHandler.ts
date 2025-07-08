@@ -58,7 +58,11 @@ export default class SlotGameFreeSpinsBonusHandler {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "TurnOverRequiredPanel",
             "free-spins-promotion/views/turn-over-required-panel",
-            this.DEFAULT_POPUP_PARENT_PATH
+            this.DEFAULT_POPUP_PARENT_PATH,
+            (node) => {
+                const popupComp = node.getComponent("TurnOverRequiredPanel");
+                popupComp.init(this.game?.socket, this.game?.gameName);
+            }
         );
     }
 

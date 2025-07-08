@@ -16,12 +16,8 @@ export default class FreeSpinsPromotionMessage extends cc.Component {
 
     showMessageContent() {
         const msg = GameUtils.getText(`messages.freeSpinsPromotionMsg`);
-        this.msgText.string = msg.toUpperCase();
-
-        // Bật hiển thị node (nếu đang bị ẩn)
+        this.msgText.string = msg;
         this.msgNode.active = true;
-
-        // Hiển thị trong 3s rồi ẩn
         cc.tween(this.msgNode)
             .delay(3)
             .call(() => {

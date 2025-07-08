@@ -5,7 +5,6 @@ import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
 import { StorageManager } from "../../managers/StorageManager";
-import CenterBannerIndicator from "./center-banner-indicator";
 import CenterBannerItem from "./center-banner-item";
 
 const { ccclass, property } = cc._decorator;
@@ -112,17 +111,11 @@ export default class CenterBanner extends cc.Component {
         }
         this.pageView.indicator.node.children.forEach((child) => {
             const button = child.addComponent(cc.Button);
-            const indicator = child.addComponent(CenterBannerIndicator);
-            indicator.onClick = () => {
+            button.node.on(cc.Node.EventType.TOUCH_END, () => {
                 const index = child.getSiblingIndex();
-                this.pageView.scrollToPage(index, 0);
+                this.pageView.scrollToPage(index, 1);
                 this.restartAutoSlide();
-            };
-            const event = new cc.Component.EventHandler();
-            event.target = child;
-            event.component = "CenterBannerIndicator";
-            event.handler = "onClick";
-            button.clickEvents.push(event);
+            });
         });
     }
 
@@ -130,7 +123,7 @@ export default class CenterBanner extends cc.Component {
         const currentIndex = this.pageView.getCurrentPageIndex();
         const totalPages = this.pageView.getPages().length;
         const nextIndex = currentIndex === totalPages - 1 ? 0 : currentIndex + 1;
-        this.pageView.scrollToPage(nextIndex, 0);
+        this.pageView.scrollToPage(nextIndex, 1);
     }
 
     private startAutoSlide() {

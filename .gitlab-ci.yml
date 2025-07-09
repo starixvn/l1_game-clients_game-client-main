@@ -15,6 +15,11 @@ include:
 variables:
     COCOS_VERSION: 2.4.6
 
+build_cocos_env:
+    stage: build-cocos-web
+    tags:
+      - cocos-test
+
 bundle-verification:
     stage: build
     image: hub.lumigame.com/docker-hub/library/node:18.14-alpine

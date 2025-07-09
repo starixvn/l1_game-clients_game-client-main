@@ -20,6 +20,7 @@ const defaultConfig = {
     enableMsgpackParserAllGames: false,
     enableMsgpackParserOnNotification: false,
     subPromotionDomain: "l2-promotion2",
+    
     clientDomainMapper: {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"

@@ -43,7 +43,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
         this.updateTotalBetLabel();
         this.node.active = true;
-
+        freeSpinsPromotionHandler.setFreeSpinsUsedUp(false);
         if (this.promotionFSB > 0 && isAutoSpin) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
         }
@@ -54,6 +54,9 @@ export default class PromotionDetailsPanel extends cc.Component {
             this.promotionFSB--;
             this.fsbConsumedThisRound = true;
             this.labelFSB.string = this.promotionFSB.toString();
+            if (this.promotionFSB === 0) {
+                freeSpinsPromotionHandler.setFreeSpinsUsedUp(true);
+            }
         }
     }
 

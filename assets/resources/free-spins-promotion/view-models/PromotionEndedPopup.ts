@@ -1,6 +1,7 @@
+import { i18n } from "../../../ClientModules";
 import GameUtils from "../../../common/GameUtils";
 import { numberWithCommas } from "../../../common/helpers/NumberHelper";
-import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
@@ -31,14 +32,47 @@ export default class PromotionEndedPopup extends cc.Component {
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
 
         this.node.active = true;
+        this.setupContent(totalWin);
+    }
+
+    private setupContent(totalWin: number) {
+        const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
+
+        let titleKey = "";
+        let mainMessageKey = "";
+        let subMessageKey = "";
+
+        if (totalWin > 0) {
+            if (isUsedUp) {
+                titleKey = "freeSpinsPromotion.FSB_notification_para1a";
+                mainMessageKey = "freeSpinsPromotion.FSB_end_notification";
+                subMessageKey = "freeSpinsPromotion.FSB_end_notification_message";
+            } else {
+                titleKey = "freeSpinsPromotion.FSB_end_notification_unusedFS";
+                mainMessageKey = "freeSpinsPromotion.FSB_end_notification_unusedFS_message";
+                subMessageKey = "freeSpinsPromotion.FSB_end_notification_unusedFS_message1";
+            }
+        } else {
+            titleKey = "freeSpinsPromotion.FSB_end_notification_zero_win";
+            subMessageKey = "freeSpinsPromotion.FSB_end_notification_zero_win_message";
+        }
+
+        this.labelTitle.string = i18n.t(titleKey);
+        this.labelMainMessage.string = mainMessageKey ? i18n.t(mainMessageKey) : "";
+        this.labelSubMessage.string = subMessageKey ? i18n.t(subMessageKey) : "";
     }
 
     private onCloseClicked() {
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED);
+        const totalWin = Number(this.labelTotalWin.string.replace(/,/g, ""));
+        const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
+        if (totalWin > 0 && isUsedUp) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED);
+        }
         cc.tween(this.node)
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
             .call(() => {
                 this.node.active = false;
+                PromotionEndedPopup.hasShown = false;
             })
             .start();
     }

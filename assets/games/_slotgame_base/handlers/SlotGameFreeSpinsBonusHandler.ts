@@ -156,7 +156,6 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async playRedeemTransitionEffect() {
         const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-redeem-transition");
-        console.log("playRedeemTransitionEffect", effectPrefab, this.game?.node);
         if (!effectPrefab) {
             return null;
         }

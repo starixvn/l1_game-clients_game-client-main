@@ -636,7 +636,26 @@ const data = {
         promo_info: "促销信息",
         total_bet: "总投注",
         total_win: "总奖金",
-        free_spins: "Free Spins"
+        free_spins: "Free Spins",
+        TO_requirement_claim: "Claim Now!",
+        TO_requirement_state1_message: "Hurry Up!",
+        TO_requirement_state1_message1: "Play Now to Claim",
+        TO_requirement_state2_message: "Almost There!",
+        TO_requirement_state2_message1: "Your Bonus Awaits",
+        TO_requirement_state3_message: "You're so close!",
+        TO_requirement_state3_message1: "Unlock your reward",
+        TO_requirement_state4_message: "The Bonus is yours",
+        Too_many_attempts_redemption_error_message: "Too many attempts. Please try again after a few minutes.",
+        FSB_days: "Days",
+        FSB_end_notification_message: "Almost there! Finish the Turnover & claim Your Bonus Win",
+        FSB_end_notification_unusedFS: "Promotion Ended!",
+        FSB_end_notification_unusedFS_message: "Spins Left Unused. Reward Missed",
+        FSB_end_notification_unusedFS_message1: "Keep Playing! More Promotions Ahead",
+        FSB_end_notification_zero_win: "Free Spins Completed!",
+        FSB_end_notification_zero_win_message: "Better Luck Next Time",
+        FSB_ends_in: "Ends in",
+        FSB_hours: "Hours",
+        FSB_mins: "MINS",
     }
 };
 

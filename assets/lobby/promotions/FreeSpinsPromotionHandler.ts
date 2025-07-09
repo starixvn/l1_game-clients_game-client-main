@@ -46,8 +46,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private extraFreeSpinsBonusInGame = false;
     private isTransitionEffectActive = false;
     private isAnnouncementDetailsActive = false;
-
-    private fallbackGameOffers: { name: string; gameId: number }[] = [];
+    private freeSpinsUsedUp = false;
+    private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
             this.instance = new FreeSpinsPromotionHandler();
@@ -102,6 +102,14 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     public getFinishPromotion() {
         return this.finishPromotion;
+    }
+
+    public setFreeSpinsUsedUp(usedUp: boolean) {
+        this.freeSpinsUsedUp = usedUp;
+    }
+
+    public getFreeSpinsUsedUp() {
+        return this.freeSpinsUsedUp;
     }
 
     /** ========== PROMOTION FLOW ========== */

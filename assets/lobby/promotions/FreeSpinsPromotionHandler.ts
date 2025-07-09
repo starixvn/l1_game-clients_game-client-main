@@ -39,17 +39,34 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private promotionInfoFromSso: any = null;
 
     private previousGameOfferPromotion?: any[];
-    public isDirectlyOpen = false;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
+    public isDirectlyOpen = false;
     private shouldSkipGiftCode = false;
-
     private finishPromotion: any = null;
-
     private extraFreeSpinsBonusInGame = false;
-
     private isTransitionEffectActive = false;
-
     private isAnnouncementDetailsActive = false;
+
+    private fallbackGameOffers: { name: string; gameId: number }[] = [];
+    public static getInstance(): FreeSpinsPromotionHandler {
+        if (!this.instance) {
+            this.instance = new FreeSpinsPromotionHandler();
+        }
+        return this.instance;
+    }
+
+    /** ========== CONFIGS / STATE ========== */
+    getStorageKey() {
+        return this.storageKey;
+    }
+
+    public getFallbackGameOffers() {
+        return this.fallbackGameOffers;
+    }
+
+    public setFallbackGameOffers({ name, gameId }: { name: string; gameId: number }) {
+        this.fallbackGameOffers.push({ name: name?.toLowerCase(), gameId });
+    }
 
     public getIsAnnouncementDetailsActive() {
         return this.isAnnouncementDetailsActive;
@@ -87,26 +104,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         return this.finishPromotion;
     }
 
-    public static getInstance(): FreeSpinsPromotionHandler {
-        if (!this.instance) {
-            this.instance = new FreeSpinsPromotionHandler();
-        }
-        return this.instance;
-    }
-
-    getStorageKey() {
-        return this.storageKey;
-    }
-
-    onCloseFreeSpinsPromotionPopup() {
-        sessionManager.setCheckedFreeSpinsPromotionFirstSso(true);
-    }
-
-    getGameId() {
-        const offers = this.promotionInfoFromSso?.gameOfferPromotion;
-        return offers?.[0]?.gameId;
-    }
-
+    /** ========== PROMOTION FLOW ========== */
     setPromotionInfoFromSso(rawData: any, isDirectly = false) {
         this.promotionInfoFromSso = this.normalizePromotionData(rawData);
         console.log("promotionInfo", this.promotionInfoFromSso);
@@ -193,10 +191,25 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
         }
     }
+    onCloseFreeSpinsPromotionPopup() {
+        sessionManager.setCheckedFreeSpinsPromotionFirstSso(true);
+    }
 
+    /** ========== GAME INFO HELPERS ========== */
+    getGameId() {
+        const offers = this.getGameOffered();
+        return offers?.[0]?.gameId;
+    }
+
+    getGameOffered() {
+        const offers = this.promotionInfoFromSso?.gameOfferPromotion;
+        return Array.isArray(offers) && offers.length > 0 ? offers : this.fallbackGameOffers;
+    }
+
+    /** ========== URL HELPERS ========== */
     getFreeSpinsPromotionUrl() {
         const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
-        const gameOffers = this.promotionInfoFromSso?.gameOfferPromotion;
+        const gameOffers = this.getGameOffered();
         const queryString = this.getQueryString(promotionId, gameOffers);
         const endpoint = this.isAnnouncementDetailsActive ? endpointConstants.announcementDetails : endpointConstants.bannerPromotion;
         return `${buildPromotionSiteUrl()}/${endpoint}?${queryString}`;

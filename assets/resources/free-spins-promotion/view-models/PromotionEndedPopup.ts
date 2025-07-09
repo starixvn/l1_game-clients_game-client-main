@@ -7,6 +7,9 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PromotionEndedPopup extends cc.Component {
+    @property(cc.Label) labelTitle: cc.Label = null;
+    @property(cc.Label) labelMainMessage: cc.Label = null;
+    @property(cc.Label) labelSubMessage: cc.Label = null;
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Button) closeButton: cc.Button = null;
 

@@ -97,17 +97,12 @@ export default class CenterBanner extends cc.Component {
         this.initIndicator();
         this.pageView.node.on("page-turning", this.onPageTurning, this);
         this.pageView.node.on("scroll-ended", this.onScrollEnded, this);
-        
-        // Start at the first real page (index 1 if we have duplicates)
-        if (this.originalBannerCount > 1) {
-            this.pageView.setCurrentPageIndex(1);
-        }
     }
 
     private createInfinitePages() {
         // Clear existing pages
         this.pageView.removeAllPages();
-        
+
         if (this.originalBannerCount <= 1) {
             // No infinite scrolling needed for single banner
             this.isInfiniteScrolling = false;
@@ -118,23 +113,34 @@ export default class CenterBanner extends cc.Component {
         }
 
         this.isInfiniteScrolling = true;
-        
+
         // Structure: [last, first, second, ..., last, first]
         // Add last banner as first page (for seamless transition from first to last)
         const lastBanner = this.banners[this.originalBannerCount - 1];
         const firstDuplicatePage = this.createBannerPage(lastBanner);
         this.pageView.addPage(firstDuplicatePage);
-        
+
         // Add all original banners
         for (const banner of this.banners) {
             const page = this.createBannerPage(banner);
             this.pageView.addPage(page);
         }
-        
         // Add first banner as last page (for seamless transition from last to first)
         const firstBanner = this.banners[0];
         const lastDuplicatePage = this.createBannerPage(firstBanner);
         this.pageView.addPage(lastDuplicatePage);
+
+        // Manually trigger layout by changing a property
+        const layout = this.pageView.content.getComponent(cc.Layout);
+        if (layout) {
+            const originalPadding = layout.paddingLeft;
+            layout.paddingLeft = originalPadding + 0.1;
+            layout.paddingLeft = originalPadding;
+            layout.updateLayout();
+        }
+
+        this.pageView.scrollToPage(1, 0);
+        this.pageView.setCurrentPageIndex(1);
     }
 
     private createBannerPage(banner: BannerItemData): cc.Node {
@@ -151,7 +157,7 @@ export default class CenterBanner extends cc.Component {
         if (!this.isInfiniteScrolling) {
             return pageIndex;
         }
-        
+
         // Convert page index to real banner index
         if (pageIndex === 0) {
             // First duplicate page (last banner)
@@ -172,12 +178,11 @@ export default class CenterBanner extends cc.Component {
 
         const currentIndex = this.pageView.getCurrentPageIndex();
         const totalPages = this.pageView.getPages().length;
-        
+
         // Handle infinite scrolling transitions
         if (currentIndex === 0) {
             // At first duplicate page (last banner), jump to real last page
             this.pageView.scrollToPage(this.originalBannerCount, 0);
-            
         } else if (currentIndex === totalPages - 1) {
             // At last duplicate page (first banner), jump to real first page
             this.pageView.scrollToPage(1, 0);
@@ -196,27 +201,27 @@ export default class CenterBanner extends cc.Component {
 
         // Create indicators only for real banners
         const indicatorParent = this.pageView.indicator.node;
-        
+
         // Remove existing indicators
         indicatorParent.removeAllChildren();
-        
+
         // Create new indicators for each real banner
         for (let i = 0; i < this.originalBannerCount; i++) {
             const indicatorNode = new cc.Node();
             indicatorNode.addComponent(cc.Sprite).spriteFrame = this.pageView.indicator.spriteFrame;
             indicatorNode.width = this.pageView.indicator.cellSize.width;
             indicatorNode.height = this.pageView.indicator.cellSize.height;
-            
+
             const button = indicatorNode.addComponent(cc.Button);
             button.node.on("click", () => {
                 const targetIndex = this.isInfiniteScrolling ? i + 1 : i;
                 this.pageView.scrollToPage(targetIndex, 1);
                 this.restartAutoSlide();
             });
-            
+
             indicatorParent.addChild(indicatorNode);
         }
-        
+
         this.updateIndicatorDisplay();
     }
 
@@ -228,7 +233,7 @@ export default class CenterBanner extends cc.Component {
         const currentIndex = this.pageView.getCurrentPageIndex();
         const realIndex = this.getRealBannerIndex(currentIndex);
         const indicators = this.pageView.indicator.node.children;
-        
+
         indicators.forEach((indicator, index) => {
             indicator.opacity = index === realIndex ? 255 : 128;
         });
@@ -238,7 +243,7 @@ export default class CenterBanner extends cc.Component {
         const currentIndex = this.pageView.getCurrentPageIndex();
         const totalPages = this.pageView.getPages().length;
         const nextIndex = currentIndex + 1;
-        
+
         if (nextIndex >= totalPages) {
             // This shouldn't happen with infinite scrolling, but just in case
             this.pageView.scrollToPage(this.isInfiniteScrolling ? 1 : 0, 1);

@@ -129,7 +129,7 @@ export default class CenterBannerContainer extends cc.Component {
     private showCenterBanner(banners: BannerItemData[]) {
         const node = cc.instantiate(this.bannerPrefab);
         const banner = node.getComponent(CenterBanner);
-        banner.init(banners);
         this.node.addChild(node);
+        banner.init(banners);
     }
 }

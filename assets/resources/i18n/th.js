@@ -657,10 +657,8 @@ const data = {
         gift_code_redeem: "แลกรับ",
         gift_code: "รหัส\nของขวัญ",
         gift_code_enter_paste_code: "ใส่หรือวางโค้ดของคุณ",
-        FSB_notification_para1a: "ขอแสดงความยินดี!",
         play_now: "เล่นตอนนี้",
         play_later: "เล่นทีหลัง",
-        FSB_end_notification: "คุณได้สำเร็จการรับรองของขวัญฟรีสปินของคุณ",
         free_spin_bonus: "โบนัสฟรีสปิน",
         promo_info: "ข้อมูลโปรโมชั่น",
         total_bet: "ยอดเดิมพันรวม",
@@ -675,16 +673,18 @@ const data = {
         TO_requirement_state3_message1: "Unlock your reward",
         TO_requirement_state4_message: "The Bonus is yours",
         Too_many_attempts_redemption_error_message: "Too many attempts. Please try again after a few minutes.",
-        FSB_days: "Days",
+        FSB_days: "วัน",
+        FSB_end_notification: "คุณใช้โบนัสหมุนฟรีสปินของคุณเรียบร้อยแล้ว",
+        FSB_notification_para1a: "ขอแสดงความยินดีด้วยค่ะ",
         FSB_end_notification_message: "Almost there! Finish the Turnover & claim Your Bonus Win",
         FSB_end_notification_unusedFS: "Promotion Ended!",
         FSB_end_notification_unusedFS_message: "Spins Left Unused. Reward Missed",
         FSB_end_notification_unusedFS_message1: "Keep Playing! More Promotions Ahead",
         FSB_end_notification_zero_win: "Free Spins Completed!",
         FSB_end_notification_zero_win_message: "Better Luck Next Time",
-        FSB_ends_in: "Ends in",
-        FSB_hours: "Hours",
-        FSB_mins: "MINS",
+        FSB_ends_in: "สิ้นสุดในอีก",
+        FSB_hours: "ชั่วโมง",
+        FSB_mins: "นาที"
     }
 };
 

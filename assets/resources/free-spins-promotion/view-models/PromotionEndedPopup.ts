@@ -57,7 +57,7 @@ export default class PromotionEndedPopup extends cc.Component {
             subMessageKey = "freeSpinsPromotion.FSB_end_notification_zero_win_message";
         }
 
-        this.labelTitle.string = i18n.t(titleKey);
+        this.labelTitle.string = i18n.t(titleKey).toUpperCase();
         this.labelMainMessage.string = mainMessageKey ? i18n.t(mainMessageKey) : "";
         this.labelSubMessage.string = subMessageKey ? i18n.t(subMessageKey) : "";
     }

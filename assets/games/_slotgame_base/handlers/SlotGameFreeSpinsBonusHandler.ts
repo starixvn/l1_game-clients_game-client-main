@@ -110,16 +110,20 @@ export default class SlotGameFreeSpinsBonusHandler {
             return;
         }
 
-        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 800 : 0);
+        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 1000 : 0);
         await this.delay(delayTime);
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
-                node.opacity = 0;
-                node.scale = 0.8;
-                cc.tween(node).to(0.5, { opacity: 255, scale: 1.0 }, { easing: "quadOut" }).start();
+                if (isAutoSpin) {
+                    node.opacity = 0;
+                    node.scale = 0.8;
+                    cc.tween(node)
+                        .to(0.8, { opacity: 255, scale: 1.0 }, { easing: "quadOut" })
+                        .start();
+                }
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
             }

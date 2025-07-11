@@ -3,6 +3,7 @@ import StatusButton from "../../common/custom-button/StatusButton";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import BaseComponent from "../../common/BaseComponent";
+import { i18n } from "../../ClientModules";
 
 const { ccclass, property } = cc._decorator;
 
@@ -15,6 +16,8 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     @property(cc.ProgressBar) progressBar: cc.ProgressBar = null;
     @property(cc.Node) claimButton: cc.Node = null;
     @property(cc.Label) labelTimer: cc.Label = null;
+    @property(cc.Label) labelMainMessage: cc.Label = null;
+    @property(cc.Label) labelSubMessage: cc.Label = null;
 
     private totalWinAmount = 0;
     private totalTurnover = 0;
@@ -72,6 +75,8 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.labelPercentage.string = `${this.progressPercentage}%`;
         this.progressBar.progress = this.progressPercentage / 100;
 
+        this.getProgressMessage();
+
         const isReadyToClaim = this.progressPercentage >= 100;
         const statusBtn = this.claimButton.getComponent(StatusButton);
         if (statusBtn) {
@@ -110,5 +115,28 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
     onDestroy() {
         this.socket?.off(this.gameName, this.boundReceiveData);
+    }
+
+    private getProgressMessage() {
+        const value = this.progressPercentage;
+        let mainMessageKey = "";
+        let subMessageKey = "";
+
+        if (value >= 100) {
+            mainMessageKey = "freeSpinsPromotion.FSB_notification_para1a";
+            subMessageKey = "freeSpinsPromotion.TO_requirement_state4_message";
+        } else if (value >= 81) {
+            mainMessageKey = "freeSpinsPromotion.TO_requirement_state3_message";
+            subMessageKey = "freeSpinsPromotion.TO_requirement_state3_message1";
+        } else if (value >= 41) {
+            mainMessageKey = "freeSpinsPromotion.TO_requirement_state2_message";
+            subMessageKey = "freeSpinsPromotion.TO_requirement_state2_message1";
+        } else {
+            mainMessageKey = "freeSpinsPromotion.TO_requirement_state1_message";
+            subMessageKey = "freeSpinsPromotion.TO_requirement_state1_message1";
+        }
+
+        this.labelMainMessage.string = i18n.t(mainMessageKey).toUpperCase();
+        this.labelSubMessage.string = i18n.t(subMessageKey);
     }
 }

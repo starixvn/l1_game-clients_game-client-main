@@ -99,31 +99,50 @@ export default class SlotGameFreeSpinsBonusHandler {
         return FreeSpinsPromotionHandler.getInstance().getExtraFreeSpinsBonusInGame();
     }
 
-    async showPromotionDetailsPanel(isAutoSpin: boolean) {
-        if (this.game.isFreeSpin() && !this.isExtraFreeSpinsBonusInGame()) {
-            if (!this.isMessageContentShown) {
-                this.isMessageContentShown = true;
-                this.game.freeSpinsPromotionMessage?.showMessageContent();
-            }
+    async showPromotionDetailsPanel(isAutoSpin: boolean, triggerAfterFreeSpinInGame = false) {
+        if (this.shouldShowMessageInsteadOfPopup()) {
+            this.showFreeSpinMessageOnce();
             return;
         }
+
         const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
         if (!promotionInfo?.promotion?.isClaimed) {
             return;
         }
-        const transition = await this.game?.playEffectTransition();
-        await new Promise((resolve) => setTimeout(resolve, 500));
 
+        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 800 : 0);
+        await this.delay(delayTime);
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
+                node.opacity = 0;
+                node.scale = 0.8;
+                cc.tween(node).to(0.5, { opacity: 255, scale: 1.0 }, { easing: "quadOut" }).start();
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
             }
         );
-        transition?.destroy();
+    }
+    private shouldShowMessageInsteadOfPopup(): boolean {
+        return this.game.isFreeSpin() && !this.isExtraFreeSpinsBonusInGame();
+    }
+
+    private showFreeSpinMessageOnce(): void {
+        if (!this.isMessageContentShown) {
+            this.isMessageContentShown = true;
+            this.game.freeSpinsPromotionMessage?.showMessageContent();
+        }
+    }
+    private delay(ms: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    private animatePopupAppearance(node: cc.Node): void {
+        node.opacity = 0;
+        node.scale = 0.8;
+        cc.tween(node).to(0.5, { opacity: 255, scale: 1.0 }, { easing: "quadOut" }).start();
     }
 
     async initFreeSpinsPromotionMessage() {

@@ -1,8 +1,8 @@
 import { Socket } from "socket.io-client";
-import StatusButton from "../../../common/custom-button/StatusButton";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
-import BaseComponent from "../../../common/BaseComponent";
+import StatusButton from "../../common/custom-button/StatusButton";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
+import BaseComponent from "../../common/BaseComponent";
 
 const { ccclass, property } = cc._decorator;
 

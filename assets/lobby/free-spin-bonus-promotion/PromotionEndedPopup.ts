@@ -1,8 +1,8 @@
-import { i18n } from "../../../ClientModules";
-import GameUtils from "../../../common/GameUtils";
-import { numberWithCommas } from "../../../common/helpers/NumberHelper";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
+import { i18n } from "../../ClientModules";
+import GameUtils from "../../common/GameUtils";
+import { numberWithCommas } from "../../common/helpers/NumberHelper";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
 

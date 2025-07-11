@@ -1,8 +1,8 @@
 import { Socket } from "socket.io-client";
-import GameUtils from "../../../common/GameUtils";
-import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
-import CommonDialog from "../../../common/_base/view-models/CommonDialog";
+import GameUtils from "../../common/GameUtils";
+import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
+import CommonDialog from "../../common/_base/view-models/CommonDialog";
 
 const { ccclass, property } = cc._decorator;
 

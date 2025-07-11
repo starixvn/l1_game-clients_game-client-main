@@ -1,6 +1,6 @@
 import GameUtils from "../../../common/GameUtils";
 import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import { ClassicSlotSound } from "../ClassicSlotSound";
 
@@ -110,7 +110,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             return;
         }
 
-        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 1000 : 0);
+        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 900 : 0);
         await this.delay(delayTime);
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "PromotionDetailsPanel",
@@ -118,11 +118,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
                 if (isAutoSpin) {
-                    node.opacity = 0;
-                    node.scale = 0.8;
-                    cc.tween(node)
-                        .to(0.8, { opacity: 255, scale: 1.0 }, { easing: "quadOut" })
-                        .start();
+                    this.animatePopupAppearance(node);
                 }
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
@@ -146,7 +142,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     private animatePopupAppearance(node: cc.Node): void {
         node.opacity = 0;
         node.scale = 0.8;
-        cc.tween(node).to(0.5, { opacity: 255, scale: 1.0 }, { easing: "quadOut" }).start();
+        cc.tween(node).to(0.8, { opacity: 255, scale: 1.0 }, { easing: "quadOut" }).start();
     }
 
     async initFreeSpinsPromotionMessage() {

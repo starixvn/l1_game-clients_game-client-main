@@ -1,5 +1,5 @@
 import GameUtils from "../../../common/GameUtils";
-import { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import { freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase, { LineData } from "../SlotGameBase";
 import { SlotNotification } from "../SlotGameBottomMessage";

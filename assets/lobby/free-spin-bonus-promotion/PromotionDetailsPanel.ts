@@ -1,6 +1,6 @@
-import { numberWithCommas } from "../../../common/helpers/NumberHelper";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
+import { numberWithCommas } from "../../common/helpers/NumberHelper";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
 

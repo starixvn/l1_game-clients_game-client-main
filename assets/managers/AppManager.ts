@@ -11,7 +11,7 @@ import EncryptUtils from "../common/utils/EncryptUtils";
 import UrlParamsService from "../common/utils/UrlParamsService";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
-import { freeSpinsPromotionHandler } from "../lobby/promotions/FreeSpinsPromotionHandler";
+import { freeSpinsPromotionHandler } from "../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
 import { delayTime } from "../utils";

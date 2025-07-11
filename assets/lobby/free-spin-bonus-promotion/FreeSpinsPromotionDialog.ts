@@ -1,16 +1,16 @@
-import CommonDialog from "../../../common/_base/view-models/CommonDialog";
-import { StorageManager } from "../../../managers/StorageManager";
+import CommonDialog from "../../common/_base/view-models/CommonDialog";
+import { StorageManager } from "../../managers/StorageManager";
 import FreeSpinsPromotionHandler, {
     FreeSpinsPromotionEvents,
     freeSpinsPromotionHandler
-} from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import AnalyticsManager, { TrackingEvent, TrackingAction } from "../../../analytics/AnalyticsManager";
-import { uiManager } from "../../../managers/GameUIManager";
-import { InternalEvents } from "../../../managers/InternalEvents";
-import LobbyDialogManager from "../../../managers/LobbyDialogManager";
-import * as sessionManager from "../../../common/auth/SessionManager";
-import { appManager } from "../../../managers/AppManager";
-import GameUtils from "../../../common/GameUtils";
+} from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import AnalyticsManager, { TrackingEvent, TrackingAction } from "../../analytics/AnalyticsManager";
+import { uiManager } from "../../managers/GameUIManager";
+import { InternalEvents } from "../../managers/InternalEvents";
+import LobbyDialogManager from "../../managers/LobbyDialogManager";
+import * as sessionManager from "../../common/auth/SessionManager";
+import { appManager } from "../../managers/AppManager";
+import GameUtils from "../../common/GameUtils";
 
 const { ccclass, property } = cc._decorator;
 

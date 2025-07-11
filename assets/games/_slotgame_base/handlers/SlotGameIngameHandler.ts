@@ -1,4 +1,4 @@
-import FreeSpinsPromotionHandler from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase from "../SlotGameBase";
 

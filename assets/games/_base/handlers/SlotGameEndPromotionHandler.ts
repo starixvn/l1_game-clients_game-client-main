@@ -1,6 +1,6 @@
 import SlotGameBase from "../../_slotgame_base/SlotGameBase";
 import DataHandler from "./DataHandler";
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 export default class SlotGameEndPromotionHandler implements DataHandler {
     constructor(protected readonly main: SlotGameBase) {}

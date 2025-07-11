@@ -31,7 +31,7 @@ import SlotGameHistory from "./SlotGameHistory";
 import SlotGameTopWinner from "./SlotGameTopWinner";
 import SlotGameUserSettings from "./SlotGameUserSettings";
 import SlotGameFreeSpinsHandler from "../_base/handlers/SlotGameFreeSpinsHandler";
-import { FreeSpinsPromotionEvents } from "../../lobby/promotions/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import SlotGameEndPromotionHandler from "../_base/handlers/SlotGameEndPromotionHandler";
 import SlotGameFreeSpinsBonusHandler from "./handlers/SlotGameFreeSpinsBonusHandler";
 export interface LineData {

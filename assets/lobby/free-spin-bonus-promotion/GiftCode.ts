@@ -1,5 +1,5 @@
-import { FreeSpinsPromotionEvents } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
+import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
 import Draggable from "./Draggable";
 
 const { ccclass, property } = cc._decorator;

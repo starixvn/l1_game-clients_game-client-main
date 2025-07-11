@@ -1,5 +1,5 @@
-import LoadWebView from "../../../common/LoadWebView";
-import { freeSpinsPromotionHandler } from "../../../lobby/promotions/FreeSpinsPromotionHandler";
+import LoadWebView from "../../common/LoadWebView";
+import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import FreeSpinsPromotionDialog from "./FreeSpinsPromotionDialog";
 
 const CLOSE_FREE_SPINS_PROMOTION_EVENT = "closeFreeSpinsPromotionPopup";

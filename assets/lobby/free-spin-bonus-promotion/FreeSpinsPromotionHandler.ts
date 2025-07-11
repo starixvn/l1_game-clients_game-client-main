@@ -16,7 +16,6 @@ export const FreeSpinsPromotionEvents = {
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
     CHECK_IS_SPINNING: "CHECK_IS_SPINNING",
     OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT",
-    OPEN_TURN_OVER_REQUIRED: "OPEN_TURN_OVER_REQUIRED"
 };
 
 const endpointConstants = {
@@ -48,6 +47,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private isAnnouncementDetailsActive = false;
     private freeSpinsUsedUp = false;
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
+
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
             this.instance = new FreeSpinsPromotionHandler();

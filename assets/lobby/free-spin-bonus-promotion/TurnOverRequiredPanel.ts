@@ -11,7 +11,6 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Label) labelTotalTurnover: cc.Label = null;
     @property(cc.Label) labelMinRequiredTurnover: cc.Label = null;
-    @property(cc.Label) labelRemainingTO: cc.Label = null;
     @property(cc.Label) labelPercentage: cc.Label = null;
     @property(cc.ProgressBar) progressBar: cc.ProgressBar = null;
     @property(cc.Node) claimButton: cc.Node = null;
@@ -20,6 +19,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     private totalWinAmount = 0;
     private totalTurnover = 0;
     private minRequiredTurnover = 0;
+    private progressPercentage = 0;
     private endTime = 0;
     private gameName: string;
     protected socket: Socket;
@@ -28,18 +28,26 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.schedule(this.updateTimer, 1);
     }
 
-    init(socket: Socket, gameName: string) {
+    init(socket: Socket, gameName: string, promotionTOProgress: any) {
         this.socket = socket;
         this.gameName = gameName;
         this.boundReceiveData = this.receivedData.bind(this);
         this.socket.on(this.gameName, this.boundReceiveData);
+        this.initBonusWallet(promotionTOProgress);
     }
 
-    public initBonusWallet(data: { totalWinAmount: number; totalTurnover: number; minRequiredTurnover: number; endTime: number }) {
-        this.totalWinAmount = data.totalWinAmount;
-        this.totalTurnover = data.totalTurnover;
-        this.minRequiredTurnover = data.minRequiredTurnover;
-        this.endTime = data.endTime;
+    public initBonusWallet(data: {
+        totalWinAmount: number;
+        totalTurnover: number;
+        minRequiredTurnover: number;
+        progressPercentage: number;
+        endTime: number;
+    }) {
+        this.totalWinAmount = data?.totalWinAmount;
+        this.totalTurnover = data?.totalTurnover;
+        this.minRequiredTurnover = data?.minRequiredTurnover;
+        this.progressPercentage = data?.progressPercentage;
+        this.endTime = data?.endTime;
 
         this.updateProgressUI();
     }
@@ -61,19 +69,14 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.labelTotalTurnover.string = this.totalTurnover.toFixed(0);
         this.labelMinRequiredTurnover.string = this.minRequiredTurnover.toFixed(0);
 
-        const remainingTO = Math.max(0, this.minRequiredTurnover - this.totalTurnover);
-        this.labelRemainingTO.string = remainingTO.toFixed(0);
+        this.labelPercentage.string = `${this.progressPercentage}%`;
+        this.progressBar.progress = this.progressPercentage / 100;
 
-        const percent = Math.min(this.totalTurnover / this.minRequiredTurnover, 1);
-        this.labelPercentage.string = `${Math.floor(percent * 100)}%`;
-        this.progressBar.progress = percent;
-
-        const isReadyToClaim = percent >= 1;
+        const isReadyToClaim = this.progressPercentage >= 100;
         const statusBtn = this.claimButton.getComponent(StatusButton);
         if (statusBtn) {
             statusBtn.interactable = isReadyToClaim;
         }
-        
     }
 
     private updateTimer() {

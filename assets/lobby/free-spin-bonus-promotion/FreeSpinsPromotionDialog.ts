@@ -74,6 +74,9 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
             this._bgTween = cc.tween(this.background).to(1, { opacity: 150 }, { easing: "sineOut" }).start();
         }
+        if (!freeSpinsPromotionHandler.isDirectlyOpen) {
+            this.time = 0.4;
+        }
     }
 
     onDisable(): void {

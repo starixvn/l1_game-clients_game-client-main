@@ -1,8 +1,9 @@
 import { i18n } from "../../ClientModules";
 import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
+import { TurnOverRequiredEvents, turnOverRequiredHandler } from "./TurnOverRequiredHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -66,7 +67,7 @@ export default class PromotionEndedPopup extends cc.Component {
         const totalWin = Number(this.labelTotalWin.string.replace(/,/g, ""));
         const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
         if (totalWin > 0 && isUsedUp) {
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED);
+            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, turnOverRequiredHandler.getPromotionTOProgress());
         }
         cc.tween(this.node)
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })

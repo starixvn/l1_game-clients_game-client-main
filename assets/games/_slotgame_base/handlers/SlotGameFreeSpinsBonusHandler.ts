@@ -3,6 +3,7 @@ import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
 import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import { ClassicSlotSound } from "../ClassicSlotSound";
+import { TurnOverRequiredEvents } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 
 export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
@@ -51,17 +52,17 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
 
-        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_TURN_OVER_REQUIRED, () => this.showTurnOverRequiredPanel(), this.game);
+        uiManager.emitterListener(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, (promotionTOProgress) => this.showTurnOverRequiredPanel(promotionTOProgress), this.game);
     }
 
-    async showTurnOverRequiredPanel() {
+    async showTurnOverRequiredPanel(promotionTOProgress: any) {
         await GameUtils.showFreeSpinsPromotionPopupOnce(
             "TurnOverRequiredPanel",
             "free-spins-promotion/views/turn-over-required-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
                 const popupComp = node.getComponent("TurnOverRequiredPanel");
-                popupComp.init(this.game?.socket, this.game?.gameName);
+                popupComp.init(this.game?.socket, this.game?.gameName, promotionTOProgress);
             }
         );
     }

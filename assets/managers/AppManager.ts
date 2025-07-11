@@ -20,6 +20,7 @@ import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
 import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
+import { turnOverRequiredHandler } from "../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 
 const sentryLogger = logger();
 enum GameId {
@@ -91,6 +92,7 @@ class AppManager {
     async initNotificationService() {
         cc.log("initNotificationService -----------------------------------");
         jackpotManager.initEvents();
+        turnOverRequiredHandler.initEvents();
         await NotificationService.getInstance().forceConnect();
         appManager.initPromotions();
     }

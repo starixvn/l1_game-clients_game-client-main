@@ -44,17 +44,17 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     public updateBonusWallet(data: {
-        totalWinAmount: number;
-        totalTurnover: number;
-        minRequiredTurnover: number;
-        progressPercentage: number;
-        claimExpirationDate: string;
+        win: number;
+        totalTO: number;
+        minTO: number;
+        progress: number;
+        expire: string;
     }) {
-        this.totalWinAmount = data?.totalWinAmount;
-        this.totalTurnover = data?.totalTurnover;
-        this.minRequiredTurnover = data?.minRequiredTurnover;
-        this.progressPercentage = data?.progressPercentage;
-        this.endTime = new Date(data?.claimExpirationDate).getTime();
+        this.totalWinAmount = data?.win;
+        this.totalTurnover = data?.totalTO;
+        this.minRequiredTurnover = data?.minTO;
+        this.progressPercentage = data?.progress;
+        this.endTime = new Date(data?.expire).getTime();
 
         this.updateProgressUI();
         this.updateTimer();
@@ -102,7 +102,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
         const dayText = i18n.t("freeSpinsPromotion.FSB_days");
-        this.labelTimer.string = `${days}${dayText} ${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+        this.labelTimer.string = `${days} ${dayText} ${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
     }
 
     private pad(num: number): string {

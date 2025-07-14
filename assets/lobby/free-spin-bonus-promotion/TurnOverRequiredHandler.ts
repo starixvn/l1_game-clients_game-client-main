@@ -3,12 +3,11 @@ import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { uiManager } from "../../managers/GameUIManager";
 
 interface ITurnOverRequired {
-    totalWinAmount: number;
-    totalTurnover: number;
-    minRequiredTurnover: number;
-    turnoverMultiplier: number;
-    claimExpirationDate: string;
-    progressPercentage: number;
+    win: number;
+    totalTO: number;
+    minTO: number;
+    expire: string;
+    progress: number;
 }
 
 export const TurnOverRequiredEvents = {
@@ -17,7 +16,7 @@ export const TurnOverRequiredEvents = {
 };
 
 export const TurnOverRequiredDataKey = {
-    PROMOTION_TO_PROGRESS: "promotionTOProgress"
+    PROMOTION_TO_PROGRESS: "promotionProgress"
 };
 
 export default class TurnOverRequiredHandler extends EventEmitterBase{

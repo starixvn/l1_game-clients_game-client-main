@@ -27,27 +27,31 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     initPromotion(promotionInfo: any, isAutoSpin: boolean) {
-        if (!promotionInfo) {
+        if (!promotionInfo?.promotion) {
             return;
         }
 
-        const promotion = promotionInfo.promotion;
-
-        this.betLevel = promotion?.betLevel ?? 0;
-        this.promotionFSB = promotion?.remainingBonusItems ?? 0;
-        this.totalWin = Number(promotion?.totalWin ?? 0);
+        const { betLevel = 0, remainingBonusItems = 0, totalWin = 0 } = promotionInfo.promotion;
+    
+        this.betLevel = betLevel;
+        this.promotionFSB = remainingBonusItems;
+        this.totalWin = Number(totalWin);
         this.promotionActive = true;
-
-        this.labelBetLevel.string = this.betLevel.toString();
-        this.labelFSB.string = this.promotionFSB.toString();
+    
+        this.labelBetLevel.string = betLevel.toString();
+        this.labelFSB.string = remainingBonusItems.toString();
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
+    
         this.updateTotalBetLabel();
         this.node.active = true;
-        freeSpinsPromotionHandler.setFreeSpinsUsedUp(false);
-        if (this.promotionFSB > 0 && isAutoSpin) {
+    
+        freeSpinsPromotionHandler.setFreeSpinsUsedUp(remainingBonusItems === 0);
+    
+        if (remainingBonusItems > 0 && isAutoSpin) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
         }
     }
+    
 
     tryConsumePromotionFSB() {
         if (this.promotionActive && this.promotionFSB > 0 && !this.fsbConsumedThisRound) {

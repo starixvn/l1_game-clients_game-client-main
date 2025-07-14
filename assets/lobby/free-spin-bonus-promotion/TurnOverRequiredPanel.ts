@@ -1,9 +1,9 @@
 import { Socket } from "socket.io-client";
-import StatusButton from "../../common/custom-button/StatusButton";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import BaseComponent from "../../common/BaseComponent";
 import { i18n } from "../../ClientModules";
+import SimpleClaimButton from "./SimpleClaimButton";
 
 const { ccclass, property } = cc._decorator;
 
@@ -27,6 +27,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     private gameName: string;
     protected socket: Socket;
     private boundReceiveData: (data: any) => void;
+
     onLoad() {
         this.schedule(this.updateTimer, 1);
     }
@@ -44,15 +45,16 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         totalTurnover: number;
         minRequiredTurnover: number;
         progressPercentage: number;
-        endTime: number;
+        claimExpirationDate: string;
     }) {
         this.totalWinAmount = data?.totalWinAmount;
         this.totalTurnover = data?.totalTurnover;
         this.minRequiredTurnover = data?.minRequiredTurnover;
         this.progressPercentage = data?.progressPercentage;
-        this.endTime = data?.endTime;
+        this.endTime = new Date(data?.claimExpirationDate).getTime();
 
         this.updateProgressUI();
+        this.updateTimer();
     }
 
     receivedData(data: any) {
@@ -78,9 +80,9 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.getProgressMessage();
 
         const isReadyToClaim = this.progressPercentage >= 100;
-        const statusBtn = this.claimButton.getComponent(StatusButton);
-        if (statusBtn) {
-            statusBtn.interactable = isReadyToClaim;
+        const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
+        if (claimBtnCtrl) {
+            claimBtnCtrl.setClaimable(isReadyToClaim);
         }
     }
 
@@ -96,8 +98,8 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-
-        this.labelTimer.string = `${days}d ${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+        const dayText = i18n.t("freeSpinsPromotion.FSB_days");
+        this.labelTimer.string = `${days}${dayText} ${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
     }
 
     private pad(num: number): string {
@@ -105,7 +107,16 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     public onClickClaim() {
-        this.socket?.connected && this.socket.emit("claim-bonus-win");
+        if (!this.socket?.connected) {
+            return;
+        }
+
+        const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
+        if (claimBtnCtrl) {
+            claimBtnCtrl.setClaimable(false);
+        }
+
+        this.socket.emit("claim-bonus-win");
     }
 
     onClickInfoIcon() {

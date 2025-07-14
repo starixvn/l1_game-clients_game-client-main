@@ -672,6 +672,7 @@ const data = {
         TO_requirement_state3_message: "You're so close!",
         TO_requirement_state3_message1: "Unlock your reward",
         TO_requirement_state4_message: "The Bonus is yours",
+        TO_requirement_turnover: "Turnover",
         Too_many_attempts_redemption_error_message: "Too many attempts. Please try again after a few minutes.",
         FSB_days: "วัน",
         FSB_end_notification: "คุณใช้โบนัสหมุนฟรีสปินของคุณเรียบร้อยแล้ว",

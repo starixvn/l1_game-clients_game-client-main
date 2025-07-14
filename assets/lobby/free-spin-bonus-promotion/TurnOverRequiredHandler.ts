@@ -7,19 +7,25 @@ interface ITurnOverRequired {
     totalTurnover: number;
     minRequiredTurnover: number;
     turnoverMultiplier: number;
+    claimExpirationDate: string;
+    progressPercentage: number;
 }
 
 export const TurnOverRequiredEvents = {
-    OPEN_TURN_OVER_REQUIRED: "OPEN_TURN_OVER_REQUIRED"
+    OPEN_TURN_OVER_REQUIRED: "OPEN_TURN_OVER_REQUIRED",
+    UPDATE_TURN_OVER_REQUIRED: "UPDATE_TURN_OVER_REQUIRED"
 };
 
+export const TurnOverRequiredDataKey = {
+    PROMOTION_TO_PROGRESS: "promotionTOProgress"
+};
 
 export default class TurnOverRequiredHandler extends EventEmitterBase{
     private static instance: TurnOverRequiredHandler;
     public events = {};
     private promotionTOProgress: any = null;
     private readonly turnOverRequiredDataKey = [
-       
+        TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS
     ];
 
     public static getInstance(): TurnOverRequiredHandler {
@@ -59,8 +65,15 @@ export default class TurnOverRequiredHandler extends EventEmitterBase{
     addDataObserver(dataType: string, dataKey: string) {
         console.log("addDataObserver", dataType, dataKey);
         let callback;
-
+        if (dataType === TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS) {
+            callback = (data) => this.onReceivedPromotionTOProgressData(data);
+        }
         NotificationService.getInstance().addDataObserver(dataType, dataKey, callback);
+    }
+
+    onReceivedPromotionTOProgressData(data: any) {
+        this.setPromotionTOProgress(data);
+        uiManager.emitter.emit(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, data);
     }
 
     removeDataObserver(dataType: string, dataKey: string) {

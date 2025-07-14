@@ -4,6 +4,8 @@ import { uiManager } from "../../managers/GameUIManager";
 import BaseComponent from "../../common/BaseComponent";
 import { i18n } from "../../ClientModules";
 import SimpleClaimButton from "./SimpleClaimButton";
+import { numberWithCommas } from "../../common/helpers/NumberHelper";
+import { TurnOverRequiredEvents } from "./TurnOverRequiredHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -30,6 +32,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
     onLoad() {
         this.schedule(this.updateTimer, 1);
+        uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, (data) => this.updateBonusWallet(data), this);
     }
 
     init(socket: Socket, gameName: string, promotionTOProgress: any) {
@@ -37,10 +40,10 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.gameName = gameName;
         this.boundReceiveData = this.receivedData.bind(this);
         this.socket.on(this.gameName, this.boundReceiveData);
-        this.initBonusWallet(promotionTOProgress);
+        this.updateBonusWallet(promotionTOProgress);
     }
 
-    public initBonusWallet(data: {
+    public updateBonusWallet(data: {
         totalWinAmount: number;
         totalTurnover: number;
         minRequiredTurnover: number;
@@ -70,9 +73,9 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     private updateProgressUI() {
-        this.labelTotalWin.string = this.totalWinAmount.toFixed(2);
-        this.labelTotalTurnover.string = this.totalTurnover.toFixed(0);
-        this.labelMinRequiredTurnover.string = this.minRequiredTurnover.toFixed(0);
+        this.labelTotalWin.string = numberWithCommas(this.totalWinAmount, 2);
+        this.labelTotalTurnover.string = numberWithCommas(this.totalTurnover, 2);
+        this.labelMinRequiredTurnover.string = numberWithCommas(this.minRequiredTurnover, 2);
 
         this.labelPercentage.string = `${this.progressPercentage}%`;
         this.progressBar.progress = this.progressPercentage / 100;

@@ -6,6 +6,8 @@ import { i18n } from "../../ClientModules";
 import SimpleClaimButton from "./SimpleClaimButton";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { TurnOverRequiredEvents } from "./TurnOverRequiredHandler";
+import NoticeUtil from "../../common/utils/NoticeUtil";
+import { appManager } from "../../managers/AppManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -43,13 +45,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.updateBonusWallet(promotionTOProgress);
     }
 
-    public updateBonusWallet(data: {
-        win: number;
-        totalTO: number;
-        minTO: number;
-        progress: number;
-        expire: string;
-    }) {
+    public updateBonusWallet(data: { win: number; totalTO: number; minTO: number; progress: number; expire: string }) {
         this.totalWinAmount = data?.win;
         this.totalTurnover = data?.totalTO;
         this.minRequiredTurnover = data?.minTO;
@@ -63,6 +59,15 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     receivedData(data: any) {
         if (!this.isAlive()) {
             return;
+        }
+        const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
+        if (data.errorCode) {
+            const message = NoticeUtil.getLocalizedErrorMessage(data.errorCode, { errorCode: data.errorCode });
+            const noticeData = { text: message };
+            appManager.currentScene?.showNotice(noticeData);
+            if (claimBtnCtrl) {
+                claimBtnCtrl.setClaimable(this.progressPercentage >= 100);
+            }
         }
     }
 

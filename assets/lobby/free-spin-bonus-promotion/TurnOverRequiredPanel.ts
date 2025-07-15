@@ -72,6 +72,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         }
         const { claimedAmount } = data;
         if (claimedAmount) {
+            this.hidePanel();
             uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, claimedAmount);
         }
     }
@@ -162,5 +163,9 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
         this.labelMainMessage.string = i18n.t(mainMessageKey).toUpperCase();
         this.labelSubMessage.string = i18n.t(subMessageKey);
+    }
+
+    hidePanel() {
+        this.node.active = false;
     }
 }

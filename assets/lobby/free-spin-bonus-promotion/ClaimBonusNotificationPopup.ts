@@ -5,7 +5,6 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class ClaimBonusNotificationPopup extends cc.Component {
     @property(cc.Label) labelTotalWin: cc.Label = null;
-    private static hasShown = false;
 
     public show(claimedAmount: number) {
         if (!claimedAmount) {

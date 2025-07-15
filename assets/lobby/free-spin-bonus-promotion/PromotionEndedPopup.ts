@@ -66,6 +66,7 @@ export default class PromotionEndedPopup extends cc.Component {
     private onCloseClicked() {
         const totalWin = Number(this.labelTotalWin.string.replace(/,/g, ""));
         const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
+        freeSpinsPromotionHandler.setFinishPromotion(null);
         if (totalWin > 0 && isUsedUp) {
             uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, turnOverRequiredHandler.getPromotionTOProgress());
         }
@@ -76,5 +77,9 @@ export default class PromotionEndedPopup extends cc.Component {
                 PromotionEndedPopup.hasShown = false;
             })
             .start();
+    }
+
+    onDestroy() {
+        freeSpinsPromotionHandler.setFinishPromotion(null);
     }
 }

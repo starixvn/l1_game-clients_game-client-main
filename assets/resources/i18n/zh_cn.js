@@ -159,8 +159,7 @@ const data = {
         winTumbleMsg: "恭喜！",
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
-        voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
-        freeSpinsPromotionMsg: "请在开始免费旋转奖金之前完成待处理的免费旋转。"
+        voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。"
     },
     ui: {
         choice_red2: "2 红",
@@ -620,7 +619,8 @@ const data = {
         pf_verification_para_3: "转换为十进制",
         pf_verification_para_4: "计算最终结果"
     },
-    freeSpinsPromotion: {
+    FreeSpinBonus: {
+        FSB_pending_freespin_msg: "请在开始免费旋转奖励之前，先将未完成的免费旋转完成。",
         gift_code_message: "兑换您的免费旋转奖励。",
         Invalide_gift_code_error_message: "礼品码无效。请检查您的代码并重试。",
         gift_code_error_message: "请输入您的礼品码。",
@@ -635,6 +635,7 @@ const data = {
         total_bet: "总投注",
         total_win: "总奖金",
         free_spins: "Free Spins",
+        bet_level: "投注等级",
         TO_requirement_claim: "Claim Now!",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
@@ -657,6 +658,9 @@ const data = {
         FSB_ends_in: "结束于",
         FSB_hours: "小时",
         FSB_mins: "分钟",
+        Claim_promotion_message: "Great Performance!",
+        Claim_promotion_message_1: "You have successfully earned",
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

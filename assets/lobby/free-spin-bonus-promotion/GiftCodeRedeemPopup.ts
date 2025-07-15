@@ -182,13 +182,13 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     private mapErrorCodeToMessageKey(errorCode: string): string {
         switch (errorCode) {
             case "SB3019":
-                return "freeSpinsPromotion.gift_code_error_message";
+                return "FreeSpinBonus.gift_code_error_message";
             case "SB3020":
-                return "freeSpinsPromotion.Invalide_gift_code_error_message";
+                return "FreeSpinBonus.Invalide_gift_code_error_message";
             case "SB3021":
-                return "freeSpinsPromotion.Unexpected_gift_code_error_message";
+                return "FreeSpinBonus.Unexpected_gift_code_error_message";
             default:
-                return "freeSpinsPromotion.Invalide_gift_code_error_message";
+                return "FreeSpinBonus.Invalide_gift_code_error_message";
         }
     }
 }

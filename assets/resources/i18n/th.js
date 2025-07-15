@@ -181,8 +181,7 @@ const data = {
         winTumbleMsg: "ขอแสดงความยินดี!",
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
-        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
-        freeSpinsPromotionMsg: "กรุณาทำการหมุนฟรีที่ค้างอยู่ให้เสร็จก่อนเริ่มโบนัสหมุนฟรี"
+        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง"
     },
     ui: {
         choice_red2: "2 แดง",
@@ -649,7 +648,8 @@ const data = {
         pf_verification_para_3: "แปลงเป็นทศนิยม",
         pf_verification_para_4: "คำนวณผลลัพธ์สุดท้าย"
     },
-    freeSpinsPromotion: {
+    FreeSpinBonus: {
+        FSB_pending_freespin_msg: "กรุณาหมุนฟรีที่ค้างอยู่ให้เสร็จสิ้นก่อนที่เริ่มโบนัสหมุนฟรีสปินใหม่",
         gift_code_message: "แลกฟรีสปินของคุณ",
         Invalide_gift_code_error_message: "รหัสของขวัญไม่ถูกต้อง\n กรุณาตรวจสอบรหัสของคุณแล้วลองใหม่อีกครั้ง",
         gift_code_error_message: "กรุณาป้อนรหัสของขวัญของคุณ",
@@ -664,6 +664,7 @@ const data = {
         total_bet: "ยอดเดิมพันรวม",
         total_win: "ยอดชนะรวม",
         free_spins: "Free Spins",
+        bet_level: "ระดับเดิมพัน",
         TO_requirement_claim: "Claim Now!",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
@@ -685,7 +686,10 @@ const data = {
         FSB_end_notification_zero_win_message: "Better Luck Next Time",
         FSB_ends_in: "สิ้นสุดในอีก",
         FSB_hours: "ชั่วโมง",
-        FSB_mins: "นาที"
+        FSB_mins: "นาที",
+        Claim_promotion_message: "Great Performance!",
+        Claim_promotion_message_1: "You have successfully earned",
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

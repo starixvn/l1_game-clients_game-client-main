@@ -175,9 +175,7 @@ const data = {
         winTumbleMsg: "CHÚC MỪNG!",
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
-        voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
-        freeSpinsPromotionMsg:
-            "Vui lòng hoàn tất các lượt quay Free Spin hiện có trong game trước khi bắt đầu các lượt quay Free Spin khuyến mãi."
+        voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game."
     },
     ui: {
         choice_red2: "2 Đỏ",
@@ -645,7 +643,9 @@ const data = {
         pf_verification_para_3: "Đổi Sang Hệ Thập Phân",
         pf_verification_para_4: "Tính Kết Quả "
     },
-    freeSpinsPromotion: {
+    FreeSpinBonus: {
+        FSB_pending_freespin_msg:
+            "Vui lòng hoàn tất các lượt Free Spin hiện có trong game trước khi bắt đầu các lượt quay Free Spin khuyến mãi.",
         gift_code_message: "Nhận thưởng lượt quay Free Spin.",
         Invalide_gift_code_error_message: "Gift Code không hợp lệ.\nVui lòng kiểm tra và thử lại.",
         gift_code_error_message: "Vui lòng nhập Gift Code.",
@@ -661,6 +661,7 @@ const data = {
         total_bet: "Tổng Cược",
         total_win: "Tổng Thắng",
         free_spins: "Free Spins",
+        bet_level: "Mức Cược",
         TO_requirement_claim: "Nhận Thưởng",
         TO_requirement_state1_message: "Nhanh tay!",
         TO_requirement_state1_message1: "Chơi ngay để nhận",
@@ -682,6 +683,9 @@ const data = {
         FSB_ends_in: "Kết thúc sau",
         FSB_hours: "Giờ",
         FSB_mins: "Phút",
+        Claim_promotion_message: "Great Performance!",
+        Claim_promotion_message_1: "You have successfully earned",
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

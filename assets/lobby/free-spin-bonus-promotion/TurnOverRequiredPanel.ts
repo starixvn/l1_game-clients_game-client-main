@@ -68,6 +68,11 @@ export default class TurnOverRequiredPanel extends BaseComponent {
             if (claimBtnCtrl) {
                 claimBtnCtrl.setClaimable(this.progressPercentage >= 100);
             }
+            return;
+        }
+        const { claimedAmount } = data;
+        if (claimedAmount) {
+            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, claimedAmount);
         }
     }
 
@@ -106,7 +111,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-        const dayText = i18n.t("freeSpinsPromotion.FSB_days");
+        const dayText = i18n.t("FreeSpinBonus.FSB_days");
         this.labelTimer.string = `${days} ${dayText} ${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
     }
 
@@ -142,17 +147,17 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         let subMessageKey = "";
 
         if (value >= 100) {
-            mainMessageKey = "freeSpinsPromotion.FSB_notification_para1a";
-            subMessageKey = "freeSpinsPromotion.TO_requirement_state4_message";
+            mainMessageKey = "FreeSpinBonus.FSB_notification_para1a";
+            subMessageKey = "FreeSpinBonus.TO_requirement_state4_message";
         } else if (value >= 81) {
-            mainMessageKey = "freeSpinsPromotion.TO_requirement_state3_message";
-            subMessageKey = "freeSpinsPromotion.TO_requirement_state3_message1";
+            mainMessageKey = "FreeSpinBonus.TO_requirement_state3_message";
+            subMessageKey = "FreeSpinBonus.TO_requirement_state3_message1";
         } else if (value >= 41) {
-            mainMessageKey = "freeSpinsPromotion.TO_requirement_state2_message";
-            subMessageKey = "freeSpinsPromotion.TO_requirement_state2_message1";
+            mainMessageKey = "FreeSpinBonus.TO_requirement_state2_message";
+            subMessageKey = "FreeSpinBonus.TO_requirement_state2_message1";
         } else {
-            mainMessageKey = "freeSpinsPromotion.TO_requirement_state1_message";
-            subMessageKey = "freeSpinsPromotion.TO_requirement_state1_message1";
+            mainMessageKey = "FreeSpinBonus.TO_requirement_state1_message";
+            subMessageKey = "FreeSpinBonus.TO_requirement_state1_message1";
         }
 
         this.labelMainMessage.string = i18n.t(mainMessageKey).toUpperCase();

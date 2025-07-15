@@ -172,11 +172,7 @@ const data = {
         winTumbleMsg: "CONGRATULATION!",
         winningNotificationOn: "Winning streak notification “ON”",
         winningNotificationOff: "Winning streak notification “OFF”",
-        voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again.",
-        freeSpinsPromotionMsg: "Please complete the pending Free Spins before starting Free Spin Bonus.",
-        FSB_notification_para1a: "CONGRATS!",
-        play_now: "Play Now",
-        play_later: "Play Later"
+        voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again."
     },
     ui: {
         choice_red2: "2 Red",
@@ -646,7 +642,8 @@ const data = {
         pf_verification_para_3: "Convert to Decimal ",
         pf_verification_para_4: "Calculate Final Result"
     },
-    freeSpinsPromotion: {
+    FreeSpinBonus: {
+        FSB_pending_freespin_msg: "Please complete the pending Free Spins before starting Free Spin Bonuses.",
         gift_code_message: "Redeem Your Free Spins Reward.",
         Invalide_gift_code_error_message: "Invalid Gift Code.\n Please check your code and try again.",
         gift_code_error_message: "Please enter your Gift Code.",
@@ -661,6 +658,7 @@ const data = {
         total_bet: "Total Bet",
         total_win: "Total Win",
         free_spins: "Free Spins",
+        bet_level: "Bet Level",
         TO_requirement_claim: "Claim Now!",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
@@ -683,6 +681,9 @@ const data = {
         FSB_ends_in: "Ends in",
         FSB_hours: "Hours",
         FSB_mins: "MINS",
+        Claim_promotion_message: "Great Performance!",
+        Claim_promotion_message_1: "You have successfully earned",
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

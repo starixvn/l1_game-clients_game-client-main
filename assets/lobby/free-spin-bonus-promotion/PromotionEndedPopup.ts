@@ -45,17 +45,17 @@ export default class PromotionEndedPopup extends cc.Component {
 
         if (totalWin > 0) {
             if (isUsedUp) {
-                titleKey = "freeSpinsPromotion.FSB_notification_para1a";
-                mainMessageKey = "freeSpinsPromotion.FSB_end_notification";
-                subMessageKey = "freeSpinsPromotion.FSB_end_notification_message";
+                titleKey = "FreeSpinBonus.FSB_notification_para1a";
+                mainMessageKey = "FreeSpinBonus.FSB_end_notification";
+                subMessageKey = "FreeSpinBonus.FSB_end_notification_message";
             } else {
-                titleKey = "freeSpinsPromotion.FSB_end_notification_unusedFS";
-                mainMessageKey = "freeSpinsPromotion.FSB_end_notification_unusedFS_message";
-                subMessageKey = "freeSpinsPromotion.FSB_end_notification_unusedFS_message1";
+                titleKey = "FreeSpinBonus.FSB_end_notification_unusedFS";
+                mainMessageKey = "FreeSpinBonus.FSB_end_notification_unusedFS_message";
+                subMessageKey = "FreeSpinBonus.FSB_end_notification_unusedFS_message1";
             }
         } else {
-            titleKey = "freeSpinsPromotion.FSB_end_notification_zero_win";
-            subMessageKey = "freeSpinsPromotion.FSB_end_notification_zero_win_message";
+            titleKey = "FreeSpinBonus.FSB_end_notification_zero_win";
+            subMessageKey = "FreeSpinBonus.FSB_end_notification_zero_win_message";
         }
 
         this.labelTitle.string = i18n.t(titleKey).toUpperCase();

@@ -175,8 +175,7 @@ const data = {
         winTumbleMsg: "SELAMAT!",
         winningNotificationOn: 'Notifikasi kemenangan beruntun "AKTIF"',
         winningNotificationOff: 'Notifikasi kemenangan beruntun "MATI"',
-        voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi.",
-        freeSpinsPromotionMsg: "Harap selesaikan Putaran Gratis yang tertunda sebelum memulai Bonus Putaran Gratis."
+        voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi."
     },
     ui: {
         choice_red2: "2 Merah",
@@ -661,7 +660,8 @@ const data = {
         pf_verification_para_3: "Konversikan ke Desimal",
         pf_verification_para_4: "Hitung Hasil Akhir"
     },
-    freeSpinsPromotion: {
+    FreeSpinBonus: {
+        FSB_pending_freespin_msg: "Harap selesaikan Putaran Gratis yang tertunda sebelum memulai Bonus Putaran Gratis.",
         gift_code_message: "Tukarkan Hadiah Putaran Gratis Anda.",
         Invalide_gift_code_error_message: "Kode Hadiah Tidak Valid.\n Silakan periksa kode Anda dan coba lagi.",
         gift_code_error_message: "Silakan masukkan Kode Hadiah Anda.",
@@ -676,6 +676,7 @@ const data = {
         total_bet: "Total Taruhan",
         total_win: "Total Menang",
         free_spins: "Free Spins",
+        bet_level: "Level Taruhan",
         TO_requirement_claim: "Claim Now!",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
@@ -698,6 +699,9 @@ const data = {
         FSB_ends_in: "Berakhir pada",
         FSB_hours: "Jam",
         FSB_mins: "Menit",
+        Claim_promotion_message: "Great Performance!",
+        Claim_promotion_message_1: "You have successfully earned",
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

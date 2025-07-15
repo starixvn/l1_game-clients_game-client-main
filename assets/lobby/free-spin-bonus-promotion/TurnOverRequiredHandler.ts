@@ -12,7 +12,8 @@ interface ITurnOverRequired {
 
 export const TurnOverRequiredEvents = {
     OPEN_TURN_OVER_REQUIRED: "OPEN_TURN_OVER_REQUIRED",
-    UPDATE_TURN_OVER_REQUIRED: "UPDATE_TURN_OVER_REQUIRED"
+    UPDATE_TURN_OVER_REQUIRED: "UPDATE_TURN_OVER_REQUIRED",
+    OPEN_CLAIM_BONUS_NOTIFICATION: "OPEN_CLAIM_BONUS_NOTIFICATION"
 };
 
 export const TurnOverRequiredDataKey = {
@@ -65,7 +66,7 @@ export default class TurnOverRequiredHandler extends EventEmitterBase{
         console.log("addDataObserver", dataType, dataKey);
         let callback;
         if (dataType === TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS) {
-            callback = (data) => this.onReceivedPromotionTOProgressData(data);
+            callback = (data: ITurnOverRequired) => this.onReceivedPromotionTOProgressData(data);
         }
         NotificationService.getInstance().addDataObserver(dataType, dataKey, callback);
     }

@@ -15,7 +15,7 @@ export default class FreeSpinsPromotionMessage extends cc.Component {
     msgNode: cc.Node = null;
 
     showMessageContent() {
-        const msg = GameUtils.getText(`messages.freeSpinsPromotionMsg`);
+        const msg = GameUtils.getText(`FreeSpinBonus.FSB_pending_freespin_msg`);
         this.msgText.string = msg;
         this.msgNode.active = true;
         cc.tween(this.msgNode)

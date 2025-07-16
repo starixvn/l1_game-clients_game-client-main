@@ -132,12 +132,7 @@ export default class CenterBanner extends cc.Component {
 
         // Manually trigger layout by changing a property
         const layout = this.pageView.content.getComponent(cc.Layout);
-        if (layout) {
-            const originalPadding = layout.paddingLeft;
-            layout.paddingLeft = originalPadding + 0.1;
-            layout.paddingLeft = originalPadding;
-            layout.updateLayout();
-        }
+        layout.updateLayout();
 
         this.pageView.scrollToPage(1, 0);
         this.pageView.setCurrentPageIndex(1);

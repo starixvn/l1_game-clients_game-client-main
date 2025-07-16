@@ -68,7 +68,7 @@ export default class CenterBanner extends cc.Component {
         });
     }
 
-    private updateDontShowAgain() {
+    updateDontShowAgain() {
         const isChecked = this.toggleDontShowAgain.isChecked;
         StorageManager.set(STORAGE_KEYS.CENTER_BANNER_DONT_SHOW, isChecked);
     }

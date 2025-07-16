@@ -7,6 +7,7 @@ import { RoundTimerEvents } from "../../mini-games-panel/view-models/RoundTimerE
 import GameUtils from "../GameUtils";
 import { buildUrl, getEnvironment } from "../helpers/UrlHelper";
 import { sentryLogger } from "../logger";
+import { TurnOverRequiredDataKey } from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 
 export default class NotificationService {
     public static getInstance(): NotificationService {
@@ -94,7 +95,8 @@ export default class NotificationService {
             "promotions",
             "promotionNotifications",
             RoundTimerEvents.ROUND_TIMER,
-            RoundTimerEvents.LATEST_ROUND_TIMER
+            RoundTimerEvents.LATEST_ROUND_TIMER,
+            TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS
         ];
 
         messageList.forEach((message) => {

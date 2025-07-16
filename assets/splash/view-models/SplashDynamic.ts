@@ -52,7 +52,8 @@ export default class SplashDynamic extends cc.Component {
 
     loadTagline() {
         if (this.sprTagline) {
-            const imagePath = `${this.href}/splash_text_${window.i18n.curLang}.webp?v=${this.versionId}`;
+            const imageName = this.operatorName === "sabaplay" ? "splash_text_sabaplay" : `splash_text`;
+            const imagePath = `${this.href}/${imageName}_${window.i18n.curLang}.webp?v=${this.versionId}`;
             cc.assetManager.loadRemote(imagePath, (err, imageAsset: "webp") => {
                 try {
                     const spriteFrameTmp = new cc.SpriteFrame(imageAsset);

@@ -181,8 +181,9 @@ function setTitleAndFavicon(title, favicon) {
 }
 
 function setSplashTextClass(language) {
+    const operator = getOperator().toUpperCase();
     const splashText = document.getElementById("splash_text");
-    const className = `splash_text_${language}`;
+    const className = operator === "SP" ? `splash_text_sabaplay_${language}` : `splash_text_${language}`;
     splashText.className += ` ${className}`;
 }
 

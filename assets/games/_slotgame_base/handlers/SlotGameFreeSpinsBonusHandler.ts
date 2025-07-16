@@ -55,6 +55,12 @@ export default class SlotGameFreeSpinsBonusHandler {
         uiManager.emitterListener(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, (promotionTOProgress) => this.showTurnOverRequiredPanel(promotionTOProgress), this.game);
 
         uiManager.emitterListener(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, (claimBonus) => this.showClaimBonusNotification(claimBonus), this.game);
+
+        uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_BALANCE_BONUS, () => this.updateBalanceBonus(), this.game);
+    }
+
+    updateBalanceBonus() {
+        this.game?.updateUserBalance();
     }
 
     async showClaimBonusNotification(claimBonus: any) {

@@ -123,7 +123,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.isTransitionEffectActive = false;
         this.isAnnouncementDetailsActive = false;
         this.freeSpinsUsedUp = false;
-        this.promotionInfoFromSso = null;
     }
 
     /** ========== PROMOTION FLOW ========== */
@@ -185,7 +184,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
         const isGiftCode = this.promotionInfoFromSso?.promotion?.isGiftCode === true;
-        if (dontShow && !isGiftCode) {
+        if (dontShow || (isGiftCode && !this.isDirectlyOpen)) {
             return true;
         }
 

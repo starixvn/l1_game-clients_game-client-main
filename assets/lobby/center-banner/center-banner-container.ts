@@ -9,8 +9,14 @@ import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
 import { StorageManager } from "../../managers/StorageManager";
 import LobbyMenuConfig from "../main/view-models/LobbyMenuConfig";
-import CenterBanner, { BannerItemData, CENTER_BANNER_DONT_SHOW_STORAGE_KEY } from "./center-banner";
+import CenterBanner, { BannerItemData } from "./center-banner";
 const { ccclass, property } = cc._decorator;
+
+// Constants
+export const STORAGE_KEYS = {
+    SHOWED_CENTER_BANNERS: "SHOWED_CENTER_BANNERS",
+    CENTER_BANNER_DONT_SHOW: "center-banner-dont-show-again"
+};
 
 @ccclass
 export default class CenterBannerContainer extends cc.Component {
@@ -32,40 +38,58 @@ export default class CenterBannerContainer extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    async initCenterBanner() {
-        appManager.hasShowedCenterBanner = StorageManager.get(CENTER_BANNER_DONT_SHOW_STORAGE_KEY) ?? false;
-
+    async initCenterBanner(): Promise<void> {
         try {
+            this.updateHasShowedCenterBannerFlag();
+
             const banners = await this.loadBanners();
 
-            if (banners.length === 0) {
+            if (this.shouldSkipBanners(banners)) {
                 return;
             }
 
-            if (!appManager.hasShowedCenterBanner) {
+            if (this.shouldShowBanners(banners)) {
                 this.showBanners(banners);
-                return;
             }
-
-
-            const showedCenterBanners = StorageManager.get("SHOWED_CENTER_BANNERS");
-            if (!showedCenterBanners) {
-                this.showBanners(banners);
-                return;
-            }
-
-            const bannersObject = this.parseBannersToObject(banners);
-            const isSame = lodash.isEqual(bannersObject, showedCenterBanners);
-            if (isSame) {
-                return;
-            }
-            this.showBanners(banners);
-
         } catch (error) {
-            console.log("Load banners error", error);
+            this.handleBannerLoadError(error);
         }
     }
 
+    private updateHasShowedCenterBannerFlag(): void {
+        appManager.hasShowedCenterBanner = StorageManager.get(STORAGE_KEYS.CENTER_BANNER_DONT_SHOW) ?? false;
+    }
+
+    private shouldSkipBanners(banners: BannerItemData[]): boolean {
+        return banners.length === 0;
+    }
+
+    private shouldShowBanners(banners: BannerItemData[]): boolean {
+        if (!appManager.hasShowedCenterBanner) {
+            return true;
+        }
+
+        return this.hasNewBannersToShow(banners);
+    }
+
+    private hasNewBannersToShow(banners: BannerItemData[]): boolean {
+        const previouslyShowedBanners = this.getPreviouslyShowedBanners();
+
+        if (!previouslyShowedBanners) {
+            return true;
+        }
+
+        const currentBannersData = this.parseBannersToObject(banners);
+        return !lodash.isEqual(currentBannersData, previouslyShowedBanners);
+    }
+
+    private getPreviouslyShowedBanners(): any {
+        return StorageManager.get(STORAGE_KEYS.SHOWED_CENTER_BANNERS);
+    }
+
+    private handleBannerLoadError(error: any): void {
+        console.error("Failed to load center banners:", error);
+    }
 
     private parseBannersToObject(banners: BannerItemData[]) {
         return banners.map((banner) => ({
@@ -120,10 +144,15 @@ export default class CenterBannerContainer extends cc.Component {
         return null;
     }
 
-    private showBanners(banners: BannerItemData[]) {
-        StorageManager.set("SHOWED_CENTER_BANNERS", this.parseBannersToObject(banners));
-        this.showCenterBanner(banners);
+    private saveBannersAsShowed(banners: BannerItemData[]): void {
+        const bannersData = this.parseBannersToObject(banners);
+        StorageManager.set(STORAGE_KEYS.SHOWED_CENTER_BANNERS, bannersData);
         appManager.hasShowedCenterBanner = true;
+    }
+
+    private showBanners(banners: BannerItemData[]): void {
+        this.saveBannersAsShowed(banners);
+        this.showCenterBanner(banners);
     }
 
     private showCenterBanner(banners: BannerItemData[]) {

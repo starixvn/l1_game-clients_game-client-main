@@ -5,13 +5,13 @@ import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
 import { StorageManager } from "../../managers/StorageManager";
+import { STORAGE_KEYS } from "./center-banner-container";
 import CenterBannerItem from "./center-banner-item";
 
 const { ccclass, property } = cc._decorator;
 export type BannerItemData = Banner & {
     spriteFrame: cc.SpriteFrame;
 };
-export const CENTER_BANNER_DONT_SHOW_STORAGE_KEY = "center-banner-dont-show-again";
 
 @ccclass
 export default class CenterBanner extends cc.Component {
@@ -70,7 +70,7 @@ export default class CenterBanner extends cc.Component {
 
     private updateDontShowAgain() {
         const isChecked = this.toggleDontShowAgain.isChecked;
-        StorageManager.set(CENTER_BANNER_DONT_SHOW_STORAGE_KEY, isChecked);
+        StorageManager.set(STORAGE_KEYS.CENTER_BANNER_DONT_SHOW, isChecked);
     }
 
     closeBanner() {
@@ -130,7 +130,6 @@ export default class CenterBanner extends cc.Component {
         const lastDuplicatePage = this.createBannerPage(firstBanner);
         this.pageView.addPage(lastDuplicatePage);
 
-        // Manually trigger layout by changing a property
         const layout = this.pageView.content.getComponent(cc.Layout);
         layout.updateLayout();
 
@@ -267,10 +266,10 @@ export default class CenterBanner extends cc.Component {
         this.schedule(this.autoSlideCallback, displayTime);
     }
 
-    private autoSlideCallback () {
+    private autoSlideCallback() {
         this.nextBanner();
         this.scheduleNextSlide();
-    };
+    }
 
     private stopAutoSlide() {
         this.unschedule(this.autoSlideCallback);

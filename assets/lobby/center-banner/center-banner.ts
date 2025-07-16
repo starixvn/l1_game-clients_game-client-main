@@ -272,7 +272,7 @@ export default class CenterBanner extends cc.Component {
         this.schedule(this.autoSlideCallback, displayTime);
     }
 
-    private autoSlideCallback = () => {
+    private autoSlideCallback () {
         this.nextBanner();
         this.scheduleNextSlide();
     };

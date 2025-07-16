@@ -15,7 +15,7 @@ export const FreeSpinsPromotionEvents = {
     SPIN_ON_FSB_PROMOTION: "SPIN_ON_FSB_PROMOTION",
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
     CHECK_IS_SPINNING: "CHECK_IS_SPINNING",
-    OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT",
+    OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT"
 };
 
 const endpointConstants = {
@@ -65,7 +65,10 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     public setFallbackGameOffers({ name, gameId }: { name: string; gameId: number }) {
-        this.fallbackGameOffers.push({ name: name?.toLowerCase(), gameId });
+        const exists = this.fallbackGameOffers.some((offer) => offer.gameId === gameId);
+        if (!exists) {
+            this.fallbackGameOffers.push({ name: name?.toLowerCase(), gameId });
+        }
     }
 
     public getIsAnnouncementDetailsActive() {
@@ -110,6 +113,17 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     public getFreeSpinsUsedUp() {
         return this.freeSpinsUsedUp;
+    }
+
+    public reset() {
+        this.finishPromotion = null;
+        this.isDirectlyOpen = false;
+        this.shouldSkipGiftCode = false;
+        this.extraFreeSpinsBonusInGame = false;
+        this.isTransitionEffectActive = false;
+        this.isAnnouncementDetailsActive = false;
+        this.freeSpinsUsedUp = false;
+        this.promotionInfoFromSso = null;
     }
 
     /** ========== PROMOTION FLOW ========== */
@@ -210,8 +224,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     getGameOffered() {
-        const offers = this.promotionInfoFromSso?.gameOfferPromotion;
-        return Array.isArray(offers) && offers.length > 0 ? offers : this.fallbackGameOffers;
+        return this.promotionInfoFromSso?.gameOfferPromotion || this.fallbackGameOffers;
     }
 
     /** ========== URL HELPERS ========== */

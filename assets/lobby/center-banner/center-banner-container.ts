@@ -47,7 +47,11 @@ export default class CenterBannerContainer extends cc.Component {
                 return;
             }
 
-            if (!this.doNotShowedCenterBannerAgain || this.hasNewBannersToShow(banners)) {
+            const hasNewBannerToShow = this.hasNewBannersToShow(banners);
+            if (!this.doNotShowedCenterBannerAgain || hasNewBannerToShow) {
+                if (hasNewBannerToShow) {
+                    StorageManager.set(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN, false);
+                }
                 this.showBanners(banners);
             }
         } catch (error) {
@@ -80,7 +84,7 @@ export default class CenterBannerContainer extends cc.Component {
 
     private parseBannersToObject(banners: BannerItemData[]) {
         return banners.map((banner) => ({
-            gameId: banner.gameId,
+            gameId: banner.gameId
         }));
     }
 
@@ -134,7 +138,6 @@ export default class CenterBannerContainer extends cc.Component {
     private saveBannersAsShowed(banners: BannerItemData[]): void {
         const bannersData = this.parseBannersToObject(banners);
         StorageManager.set(STORAGE_KEYS.SHOWED_CENTER_BANNERS, bannersData);
-        this.doNotShowedCenterBannerAgain = true;
     }
 
     private showBanners(banners: BannerItemData[]): void {
@@ -145,7 +148,6 @@ export default class CenterBannerContainer extends cc.Component {
     private showCenterBanner(banners: BannerItemData[]) {
         const node = cc.instantiate(this.bannerPrefab);
         const banner = node.getComponent(CenterBanner);
-        banner.updateDontShowAgain();
         this.node.addChild(node);
         banner.init(banners);
     }

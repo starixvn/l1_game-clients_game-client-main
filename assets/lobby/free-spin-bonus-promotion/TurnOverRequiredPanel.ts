@@ -67,6 +67,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
             appManager.currentScene?.showNotice(noticeData);
             if (claimBtnCtrl) {
                 claimBtnCtrl.setClaimable(this.progressPercentage >= 100);
+                claimBtnCtrl.startClaimButtonPulse();
             }
             return;
         }
@@ -97,6 +98,11 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
         if (claimBtnCtrl) {
             claimBtnCtrl.setClaimable(isReadyToClaim);
+            if (isReadyToClaim) {
+                claimBtnCtrl.startClaimButtonPulse();
+            } else {
+                claimBtnCtrl.stopClaimButtonPulse();
+            }
         }
     }
 
@@ -124,10 +130,10 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         if (!this.socket?.connected) {
             return;
         }
-
         const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
         if (claimBtnCtrl) {
             claimBtnCtrl.setClaimable(false);
+            claimBtnCtrl.stopClaimButtonPulse();
         }
 
         this.socket.emit("claim-bonus-win");

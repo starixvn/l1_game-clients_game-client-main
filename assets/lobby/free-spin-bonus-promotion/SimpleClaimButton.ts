@@ -8,7 +8,6 @@ export default class SimpleClaimButton extends cc.Component {
     @property(cc.Node)
     disableNode: cc.Node = null;
 
-
     public setClaimable(isClaimable: boolean) {
         if (this.activeNode) {
             this.activeNode.active = isClaimable;
@@ -21,5 +20,24 @@ export default class SimpleClaimButton extends cc.Component {
         if (btn) {
             btn.interactable = isClaimable;
         }
+    }
+
+    startClaimButtonPulse() {
+        const node = this.node;
+        node.scale = 1.0;
+
+        cc.tween(node)
+            .repeatForever(
+                cc
+                    .tween()
+                    .to(0.2, { scale: 0.93 }, { easing: "sineIn" })
+                    .to(0.4, { scale: 1.05 }, { easing: "sineOut" })
+                    .to(0.3, { scale: 1.0 }, { easing: "sineInOut" })
+            )
+            .start();
+    }
+
+    stopClaimButtonPulse() {
+        cc.Tween.stopAllByTarget(this.node);
     }
 }

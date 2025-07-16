@@ -91,7 +91,9 @@ const ErrorCodeDictionary = {
     SB1940: "invalidJackpot",
     SB1941: "openedJackpot",
     SB1942: "invalidJackpot",
-    SB1943: "openedJackpot"
+    SB1943: "openedJackpot",
+    SB3017: "errorOccurred",
+    SB3018: "errorOccurred"
 };
 
 export const CommonErrorCodeList = [

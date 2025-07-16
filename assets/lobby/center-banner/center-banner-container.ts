@@ -3,7 +3,6 @@ import { lazyInject } from "../../Application";
 import { lodash } from "../../ClientModules";
 import GameUtils from "../../common/GameUtils";
 import { userManager } from "../../common/user/UserManager";
-import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
@@ -15,7 +14,7 @@ const { ccclass, property } = cc._decorator;
 // Constants
 export const STORAGE_KEYS = {
     SHOWED_CENTER_BANNERS: "SHOWED_CENTER_BANNERS",
-    CENTER_BANNER_DONT_SHOW: "center-banner-dont-show-again"
+    DO_NOT_SHOW_CENTER_BANNER_AGAIN: "do-not-show-center-banner-again"
 };
 
 @ccclass
@@ -25,6 +24,8 @@ export default class CenterBannerContainer extends cc.Component {
 
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
+
+    doNotShowedCenterBannerAgain = StorageManager.get(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN) ?? false;
 
     onLoad() {
         uiManager.emitterListener(
@@ -40,15 +41,13 @@ export default class CenterBannerContainer extends cc.Component {
 
     async initCenterBanner(): Promise<void> {
         try {
-            this.updateHasShowedCenterBannerFlag();
-
             const banners = await this.loadBanners();
 
-            if (this.shouldSkipBanners(banners)) {
+            if (this.isBannersEmpty(banners)) {
                 return;
             }
 
-            if (this.shouldShowBanners(banners)) {
+            if (!this.doNotShowedCenterBannerAgain || this.hasNewBannersToShow(banners)) {
                 this.showBanners(banners);
             }
         } catch (error) {
@@ -56,20 +55,8 @@ export default class CenterBannerContainer extends cc.Component {
         }
     }
 
-    private updateHasShowedCenterBannerFlag(): void {
-        appManager.hasShowedCenterBanner = StorageManager.get(STORAGE_KEYS.CENTER_BANNER_DONT_SHOW) ?? false;
-    }
-
-    private shouldSkipBanners(banners: BannerItemData[]): boolean {
+    private isBannersEmpty(banners: BannerItemData[]): boolean {
         return banners.length === 0;
-    }
-
-    private shouldShowBanners(banners: BannerItemData[]): boolean {
-        if (!appManager.hasShowedCenterBanner) {
-            return true;
-        }
-
-        return this.hasNewBannersToShow(banners);
     }
 
     private hasNewBannersToShow(banners: BannerItemData[]): boolean {
@@ -147,7 +134,7 @@ export default class CenterBannerContainer extends cc.Component {
     private saveBannersAsShowed(banners: BannerItemData[]): void {
         const bannersData = this.parseBannersToObject(banners);
         StorageManager.set(STORAGE_KEYS.SHOWED_CENTER_BANNERS, bannersData);
-        appManager.hasShowedCenterBanner = true;
+        this.doNotShowedCenterBannerAgain = true;
     }
 
     private showBanners(banners: BannerItemData[]): void {

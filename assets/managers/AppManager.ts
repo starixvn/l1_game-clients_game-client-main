@@ -65,7 +65,6 @@ class AppManager {
     urlParams: URLSearchParams;
 
     ssoGameId = GameId.UNKNOWN;
-    hasShowedCenterBanner = false;
     didSsoLobby = false;
     autoOpenLuckyWheel = true;
 

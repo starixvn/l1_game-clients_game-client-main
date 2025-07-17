@@ -223,7 +223,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     getGameOffered() {
-        return this.promotionInfoFromSso?.gameOfferPromotion || this.fallbackGameOffers;
+        return this.promotionInfoFromSso?.gameOfferPromotion?.length > 0 ? this.promotionInfoFromSso?.gameOfferPromotion : this.fallbackGameOffers;
     }
 
     /** ========== URL HELPERS ========== */

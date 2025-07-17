@@ -95,11 +95,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCode() {
-        await this.showFreeSpinsPromotionPanel(
-            "GiftCodePopup",
-            "free-spins-promotion/views/gift-code",
-            this.DEFAULT_POPUP_PARENT_PATH
-        );
+        await this.showFreeSpinsPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
         FreeSpinsPromotionHandler.getInstance().setFallbackGameOffers({ name: this.game?.gameName, gameId: this.game?.gameId });
     }
 
@@ -111,15 +107,11 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showPromotionEndedPopup(finishPromotion: any) {
-        await this.showFreeSpinsPromotionPopupOnce(
-            "PromotionEndedPopup",
-            "free-spins-promotion/views/promotion-ended-popup",
-            (node) => {
-                const popupComp = node.getComponent("PromotionEndedPopup");
-                popupComp?.show?.(finishPromotion);
-                this.isMessageContentShown = false;
-            }
-        );
+        await this.showFreeSpinsPromotionPopupOnce("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
+            const popupComp = node.getComponent("PromotionEndedPopup");
+            popupComp?.show?.(finishPromotion);
+            this.isMessageContentShown = false;
+        });
     }
 
     isExtraFreeSpinsBonusInGame() {
@@ -215,14 +207,10 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCodePopup() {
-        await this.showFreeSpinsPromotionPopupOnce(
-            "GiftCodeRedeemPopup",
-            "free-spins-promotion/views/gift-code-redeem",
-            (node) => {
-                const popupComp = node.getComponent("GiftCodeRedeemPopup");
-                popupComp.init(this.game?.socket, this.game?.gameName);
-            }
-        );
+        await this.showFreeSpinsPromotionPopupOnce("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem", (node) => {
+            const popupComp = node.getComponent("GiftCodeRedeemPopup");
+            popupComp.init(this.game?.socket, this.game?.gameName);
+        });
     }
 
     public async showFreeSpinsPromotionPanel(
@@ -270,8 +258,13 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     public async showFreeSpinsPromotionPopupOnce(name: string, path: string, afterLoadCallback?: (node: cc.Node) => void) {
-        if (!this.game.currentMiniPanel?.addDialog || typeof this.game.currentMiniPanel.addDialog !== "function") {
-            console.error("Invalid miniPanel or missing addDialog method.");
+        const miniPanel = this.game.currentMiniPanel;
+
+        if (!miniPanel?.addDialog || typeof miniPanel.addDialog !== "function") {
+            return;
+        }
+
+        if (miniPanel?.dialog?.getChildByName(name)) {
             return;
         }
 

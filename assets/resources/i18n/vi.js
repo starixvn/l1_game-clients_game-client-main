@@ -685,7 +685,8 @@ const data = {
         FSB_mins: "Phút",
         Claim_promotion_message: "Great Performance!",
         Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!"
+        Claim_promotion_message_2: "Well Play!",
+        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
     }
 };
 

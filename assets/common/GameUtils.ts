@@ -1077,50 +1077,6 @@ export default class GameUtils {
             .start();
     }
 
-    public static async showFreeSpinsPromotionPopupOnce(
-        name: string,
-        path: string,
-        alignToNodePath: string | null = null,
-        afterLoadCallback?: (node: cc.Node) => void
-    ) {
-        const refNode = alignToNodePath ? cc.find(alignToNodePath) : null;
-
-        if (alignToNodePath && !refNode) {
-            cc.warn(`[UI] Không tìm thấy node tại path: ${alignToNodePath}`);
-            return;
-        }
-        const parent = alignToNodePath ? cc.find("Canvas/main") : cc.find("Canvas");
-        if (!parent) {
-            cc.error("[UI] Không tìm thấy parent hợp lệ (Canvas hoặc Canvas/main).");
-            return;
-        }
-
-        if (parent.getChildByName(name)) {
-            console.log(`[UI] Popup "${name}" đã tồn tại`);
-            return;
-        }
-        const prefab = await GameUtils.loadResource(path);
-        const node = cc.instantiate(prefab);
-        node.name = name;
-        node.parent = parent;
-        if (refNode) {
-            const refBox = refNode.getBoundingBoxToWorld();
-            const popupBox = node.getBoundingBoxToWorld();
-
-            const distance = popupBox.xMax - popupBox.xMin;
-            const margin = -20;
-            const worldTargetX = refBox.xMin - margin - distance / 2;
-            const worldTargetY = refBox.yMin + refBox.height / 2;
-
-            const localPos = parent.convertToNodeSpaceAR(cc.v2(worldTargetX, worldTargetY));
-            node.setPosition(localPos);
-        } else {
-            node.setPosition(0, 0);
-        }
-
-        afterLoadCallback?.(node);
-    }
-
     public static findNodeByNameRecursive(root: cc.Node, name: string): cc.Node | null {
         if (root.name === name) {
             return root;

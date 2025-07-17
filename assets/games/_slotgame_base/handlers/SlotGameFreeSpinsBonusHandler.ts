@@ -52,9 +52,17 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
 
-        uiManager.emitterListener(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, (promotionTOProgress) => this.showTurnOverRequiredPanel(promotionTOProgress), this.game);
+        uiManager.emitterListener(
+            TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED,
+            (promotionTOProgress) => this.showTurnOverRequiredPanel(promotionTOProgress),
+            this.game
+        );
 
-        uiManager.emitterListener(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, (claimBonus) => this.showClaimBonusNotification(claimBonus), this.game);
+        uiManager.emitterListener(
+            TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION,
+            (claimBonus) => this.showClaimBonusNotification(claimBonus),
+            this.game
+        );
 
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_BALANCE_BONUS, () => this.updateBalanceBonus(), this.game);
     }
@@ -64,10 +72,9 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showClaimBonusNotification(claimBonus: any) {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPopupOnce(
             "ClaimBonusNotificationPopup",
             "free-spins-promotion/views/claim-bonus-notification",
-            null,
             (node) => {
                 const popupComp = node.getComponent("ClaimBonusNotificationPopup");
                 popupComp.show(claimBonus);
@@ -76,7 +83,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showTurnOverRequiredPanel(promotionTOProgress: any) {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPanel(
             "TurnOverRequiredPanel",
             "free-spins-promotion/views/turn-over-required-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
@@ -88,7 +95,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCode() {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPanel(
             "GiftCodePopup",
             "free-spins-promotion/views/gift-code",
             this.DEFAULT_POPUP_PARENT_PATH
@@ -104,10 +111,9 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showPromotionEndedPopup(finishPromotion: any) {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPopupOnce(
             "PromotionEndedPopup",
             "free-spins-promotion/views/promotion-ended-popup",
-            null,
             (node) => {
                 const popupComp = node.getComponent("PromotionEndedPopup");
                 popupComp?.show?.(finishPromotion);
@@ -131,9 +137,9 @@ export default class SlotGameFreeSpinsBonusHandler {
             return;
         }
 
-        const delayTime = triggerAfterFreeSpinInGame ? 0 : (isAutoSpin ? 900 : 0);
+        const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 900 : 0;
         await this.delay(delayTime);
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPanel(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
@@ -209,14 +215,80 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCodePopup() {
-        await GameUtils.showFreeSpinsPromotionPopupOnce(
+        await this.showFreeSpinsPromotionPopupOnce(
             "GiftCodeRedeemPopup",
             "free-spins-promotion/views/gift-code-redeem",
-            null,
             (node) => {
                 const popupComp = node.getComponent("GiftCodeRedeemPopup");
                 popupComp.init(this.game?.socket, this.game?.gameName);
             }
         );
+    }
+
+    public async showFreeSpinsPromotionPanel(
+        name: string,
+        path: string,
+        alignToNodePath: string | null = null,
+        afterLoadCallback?: (node: cc.Node) => void
+    ) {
+        const refNode = alignToNodePath ? cc.find(alignToNodePath) : null;
+
+        if (alignToNodePath && !refNode) {
+            cc.warn(`[UI] Không tìm thấy node tại path: ${alignToNodePath}`);
+            return;
+        }
+        const parent = alignToNodePath ? cc.find("Canvas/main") : cc.find("Canvas");
+        if (!parent) {
+            cc.error("[UI] Không tìm thấy parent hợp lệ (Canvas hoặc Canvas/main).");
+            return;
+        }
+
+        if (parent.getChildByName(name)) {
+            console.log(`[UI] Popup "${name}" đã tồn tại`);
+            return;
+        }
+        const prefab = await GameUtils.loadResource(path);
+        const node = cc.instantiate(prefab);
+        node.name = name;
+        node.parent = parent;
+        if (refNode) {
+            const refBox = refNode.getBoundingBoxToWorld();
+            const popupBox = node.getBoundingBoxToWorld();
+
+            const distance = popupBox.xMax - popupBox.xMin;
+            const margin = -20;
+            const worldTargetX = refBox.xMin - margin - distance / 2;
+            const worldTargetY = refBox.yMin + refBox.height / 2;
+
+            const localPos = parent.convertToNodeSpaceAR(cc.v2(worldTargetX, worldTargetY));
+            node.setPosition(localPos);
+        } else {
+            node.setPosition(0, 0);
+        }
+
+        afterLoadCallback?.(node);
+    }
+
+    public async showFreeSpinsPromotionPopupOnce(name: string, path: string, afterLoadCallback?: (node: cc.Node) => void) {
+        if (!this.game.currentMiniPanel?.addDialog || typeof this.game.currentMiniPanel.addDialog !== "function") {
+            console.error("Invalid miniPanel or missing addDialog method.");
+            return;
+        }
+
+        try {
+            const prefab = await GameUtils.loadResource(path);
+            if (!prefab) {
+                console.warn(`Prefab not found at path: ${path}`);
+                return;
+            }
+
+            const node = cc.instantiate(prefab);
+            node.name = name;
+            this.game.currentMiniPanel.addDialog(node);
+
+            afterLoadCallback?.(node);
+        } catch (error) {
+            console.error(`Error loading FreeSpinsPromotionPopup: ${error}`);
+        }
     }
 }

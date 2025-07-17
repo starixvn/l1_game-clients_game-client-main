@@ -21,13 +21,11 @@ export const TurnOverRequiredDataKey = {
     PROMOTION_TO_PROGRESS: "promotionProgress"
 };
 
-export default class TurnOverRequiredHandler extends EventEmitterBase{
+export default class TurnOverRequiredHandler extends EventEmitterBase {
     private static instance: TurnOverRequiredHandler;
     public events = {};
     private promotionTOProgress: any = null;
-    private readonly turnOverRequiredDataKey = [
-        TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS
-    ];
+    private readonly turnOverRequiredDataKey = [TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS];
 
     public static getInstance(): TurnOverRequiredHandler {
         if (!this.instance) {
@@ -73,8 +71,14 @@ export default class TurnOverRequiredHandler extends EventEmitterBase{
     }
 
     onReceivedPromotionTOProgressData(data: any) {
+        const oldData = this.getPromotionTOProgress();
+        const isChanged = !oldData || oldData.totalTO !== data.totalTO || oldData.win !== data.win || oldData.progress !== data.progress;
+
         this.setPromotionTOProgress(data);
-        uiManager.emitter.emit(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, data);
+
+        if (isChanged) {
+            uiManager.emitter.emit(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, data);
+        }
     }
 
     removeDataObserver(dataType: string, dataKey: string) {

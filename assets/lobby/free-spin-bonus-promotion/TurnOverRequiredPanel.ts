@@ -146,6 +146,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
     onDestroy() {
         this.socket?.off(this.gameName, this.boundReceiveData);
+        uiManager.removeListenersWithTarget(this);
     }
 
     private getProgressMessage() {

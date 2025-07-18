@@ -176,7 +176,7 @@ const data = {
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
         voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Đỏ",

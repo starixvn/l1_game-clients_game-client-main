@@ -173,7 +173,7 @@ const data = {
         winningNotificationOn: "Winning streak notification “ON”",
         winningNotificationOff: "Winning streak notification “OFF”",
         voidTicketMessage: "The bet was voided due to a technical issue. Please try the game again.",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Red",

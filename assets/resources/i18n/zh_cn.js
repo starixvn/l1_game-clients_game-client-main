@@ -160,7 +160,7 @@ const data = {
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
         voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 红",

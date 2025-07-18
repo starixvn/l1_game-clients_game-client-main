@@ -159,7 +159,8 @@ const data = {
         winTumbleMsg: "恭喜！",
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
-        voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。"
+        voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
+        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
     },
     ui: {
         choice_red2: "2 红",
@@ -660,8 +661,7 @@ const data = {
         FSB_mins: "分钟",
         Claim_promotion_message: "Great Performance!",
         Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

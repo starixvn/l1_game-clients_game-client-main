@@ -181,7 +181,8 @@ const data = {
         winTumbleMsg: "ขอแสดงความยินดี!",
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
-        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง"
+        voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
+        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
     },
     ui: {
         choice_red2: "2 แดง",
@@ -689,8 +690,7 @@ const data = {
         FSB_mins: "นาที",
         Claim_promotion_message: "Great Performance!",
         Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

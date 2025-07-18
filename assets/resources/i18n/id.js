@@ -175,7 +175,8 @@ const data = {
         winTumbleMsg: "SELAMAT!",
         winningNotificationOn: 'Notifikasi kemenangan beruntun "AKTIF"',
         winningNotificationOff: 'Notifikasi kemenangan beruntun "MATI"',
-        voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi."
+        voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi.",
+        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
     },
     ui: {
         choice_red2: "2 Merah",
@@ -701,8 +702,7 @@ const data = {
         FSB_mins: "Menit",
         Claim_promotion_message: "Great Performance!",
         Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

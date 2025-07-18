@@ -175,7 +175,8 @@ const data = {
         winTumbleMsg: "CHÚC MỪNG!",
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
-        voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game."
+        voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
+        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
     },
     ui: {
         choice_red2: "2 Đỏ",
@@ -685,8 +686,7 @@ const data = {
         FSB_mins: "Phút",
         Claim_promotion_message: "Great Performance!",
         Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!",
-        Claim_expired_error_message: "The bonus is no longer available because the claim period has expired."
+        Claim_promotion_message_2: "Well Play!"
     }
 };
 

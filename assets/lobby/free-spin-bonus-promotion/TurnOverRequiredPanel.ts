@@ -35,6 +35,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     onLoad() {
         this.schedule(this.updateTimer, 1);
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, (data) => this.updateBonusWallet(data), this);
+        uiManager.emitterListener(TurnOverRequiredEvents.EXPIRED_CLAIM_BONUS, () => this.hidePanel(), this);
     }
 
     init(socket: Socket, gameName: string, promotionTOProgress: any) {
@@ -62,6 +63,9 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         }
         const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
         if (data.errorCode) {
+            if (data.errorCode === "SB3023") {
+                this.hidePanel();
+            }
             const message = NoticeUtil.getLocalizedErrorMessage(data.errorCode, { errorCode: data.errorCode });
             const noticeData = { text: message };
             appManager.currentScene?.showNotice(noticeData);

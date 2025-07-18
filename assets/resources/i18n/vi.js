@@ -176,7 +176,7 @@ const data = {
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
         voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
-        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
+        Claim_expired_error_message: "Thời gian nhận thưởng đã hết. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Đỏ",
@@ -668,25 +668,25 @@ const data = {
         TO_requirement_state1_message1: "Chơi ngay để nhận",
         TO_requirement_state2_message: "Cố Lên!",
         TO_requirement_state2_message1: "Phần thưởng đang chờ",
-        TO_requirement_state3_message: "Bạn đang rất gần!",
+        TO_requirement_state3_message: "Gần Về Đích!",
         TO_requirement_state3_message1: "Mở khóa phần thưởng",
-        TO_requirement_state4_message: "Tiền thưởng là của bạn",
+        TO_requirement_state4_message: "Phần thưởng thuộc về bạn",
         TO_requirement_turnover: "Tổng Cược",
         Too_many_attempts_redemption_error_message: "Quá nhiều lần thử. Vui lòng thử lại sau vài phút.",
         FSB_days: "Ngày",
         FSB_end_notification: "Bạn đã hoàn tất các lượt Free Spin thưởng",
-        FSB_end_notification_message: "Hoàn thành hạn mức cược & nhận ngay tiền thưởng",
+        FSB_end_notification_message: "Hoàn thành hạn mức cược nhận ngay tiền thưởng",
         FSB_end_notification_unusedFS: "Kết thúc khuyến mãi!",
         FSB_end_notification_unusedFS_message: "Bỏ lỡ phần thưởng do chưa hoàn tất Free Spin",
-        FSB_end_notification_unusedFS_message1: "Tiếp tục chơi! Nhiều cơ hội khác đang chờ",
+        FSB_end_notification_unusedFS_message1: "Khuyến Mãi Nối Tiếp, Quà Không Giới Hạn!",
         FSB_end_notification_zero_win: "Hoàn thành Free Spin thưởng!",
         FSB_end_notification_zero_win_message: "Chúc Bạn May Mắn Lần Sau",
         FSB_ends_in: "Kết thúc sau",
         FSB_hours: "Giờ",
         FSB_mins: "Phút",
-        Claim_promotion_message: "Great Performance!",
-        Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!"
+        Claim_promotion_message: "Thật Tuyệt!",
+        Claim_promotion_message_1: "Tiền thưởng về tay",
+        Claim_promotion_message_2: "Cao thủ săn quà là đây!"
     }
 };
 

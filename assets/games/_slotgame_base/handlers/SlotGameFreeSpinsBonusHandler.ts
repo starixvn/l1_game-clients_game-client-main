@@ -96,7 +96,6 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async showGiftCode() {
         await this.showFreeSpinsPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
-        FreeSpinsPromotionHandler.getInstance().setFallbackGameOffers({ name: this.game?.gameName, gameId: this.game?.gameId });
     }
 
     async showGiftCodeRedeemPopup() {

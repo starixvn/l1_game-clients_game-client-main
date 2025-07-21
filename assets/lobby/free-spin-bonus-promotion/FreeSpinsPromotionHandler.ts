@@ -6,6 +6,7 @@ import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
 import configs = require("../../configs/Configs");
 import { uiManager } from "../../managers/GameUIManager";
+import { getGameName } from "../../configs/GameConfigurations";
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",
@@ -67,7 +68,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     public setFallbackGameOffers({ name, gameId }: { name: string; gameId: number }) {
         const exists = this.fallbackGameOffers.some((offer) => offer.gameId === gameId);
         if (!exists) {
-            this.fallbackGameOffers.push({ name: name?.toLowerCase(), gameId });
+            this.fallbackGameOffers.push({ name: name, gameId });
         }
     }
 
@@ -223,7 +224,13 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     getGameOffered() {
-        return this.promotionInfoFromSso?.gameOfferPromotion?.length > 0 ? this.promotionInfoFromSso?.gameOfferPromotion : this.fallbackGameOffers;
+        const currentGameId = uiManager.getCurrentGameId();
+        const gameName = getGameName(currentGameId)?.toLowerCase();
+        this.setFallbackGameOffers({ name: gameName, gameId: currentGameId });
+
+        return this.promotionInfoFromSso?.gameOfferPromotion?.length > 0
+            ? this.promotionInfoFromSso.gameOfferPromotion
+            : this.fallbackGameOffers;
     }
 
     /** ========== URL HELPERS ========== */

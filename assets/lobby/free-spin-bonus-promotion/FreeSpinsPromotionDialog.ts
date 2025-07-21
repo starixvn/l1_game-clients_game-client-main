@@ -9,7 +9,6 @@ import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
 import * as sessionManager from "../../common/auth/SessionManager";
-import { appManager } from "../../managers/AppManager";
 import GameUtils from "../../common/GameUtils";
 
 const { ccclass, property } = cc._decorator;
@@ -130,7 +129,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
             freeSpinsPromotionHandler.setShouldSkipGiftCode(true);
         }
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
-        appManager.hasShowedCenterBanner = true;
         const gameId = freeSpinsPromotionHandler.getGameId();
         sessionManager.setCheckedTournamentPromotionFirstSso(true);
         if (!gameId) {

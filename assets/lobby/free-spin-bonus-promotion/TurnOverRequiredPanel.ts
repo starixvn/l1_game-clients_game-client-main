@@ -15,7 +15,6 @@ const { ccclass, property } = cc._decorator;
 export default class TurnOverRequiredPanel extends BaseComponent {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Label) labelTotalTurnover: cc.Label = null;
-    @property(cc.Label) labelMinRequiredTurnover: cc.Label = null;
     @property(cc.Label) labelPercentage: cc.Label = null;
     @property(cc.ProgressBar) progressBar: cc.ProgressBar = null;
     @property(cc.Node) claimButton: cc.Node = null;
@@ -35,7 +34,6 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     onLoad() {
         this.schedule(this.updateTimer, 1);
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, (data) => this.updateBonusWallet(data), this);
-        uiManager.emitterListener(TurnOverRequiredEvents.EXPIRED_CLAIM_BONUS, () => this.hidePanel(), this);
     }
 
     init(socket: Socket, gameName: string, promotionTOProgress: any) {
@@ -90,8 +88,10 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
     private updateProgressUI() {
         this.labelTotalWin.string = numberWithCommas(this.totalWinAmount, 2);
-        this.labelTotalTurnover.string = numberWithCommas(this.totalTurnover, 2);
-        this.labelMinRequiredTurnover.string = numberWithCommas(this.minRequiredTurnover, 2);
+
+        const formattedTotalTO = numberWithCommas(this.totalTurnover, 2);
+        const formattedMinRequiredTO = numberWithCommas(this.minRequiredTurnover, 2);
+        this.labelTotalTurnover.string = `${formattedTotalTO} / ${formattedMinRequiredTO}`;
 
         this.labelPercentage.string = `${this.progressPercentage}%`;
         this.progressBar.progress = this.progressPercentage / 100;

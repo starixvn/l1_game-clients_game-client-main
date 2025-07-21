@@ -26,7 +26,6 @@ const endpointConstants = {
 
 interface StandardPromotionInfo {
     promotionId: string;
-    code?: string;
     isGiftCode?: boolean;
     isClaimed?: boolean;
     remainingBonusItems?: number;
@@ -129,7 +128,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     /** ========== PROMOTION FLOW ========== */
     setPromotionInfoFromSso(rawData: any, isDirectly = false) {
         this.promotionInfoFromSso = this.normalizePromotionData(rawData);
-        console.log("promotionInfo", this.promotionInfoFromSso);
         this.isDirectlyOpen = isDirectly;
         this.handlePromotionDisplay();
     }
@@ -142,7 +140,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         return {
             promotion: {
                 promotionId: rawPromo?.promotionId,
-                code: rawPromo?.code || rawPromo?.promotionCode,
                 isGiftCode: rawPromo?.isGiftCode === true,
                 isClaimed: rawPromo?.isClaimed === true,
                 ...rawPromo

@@ -91,7 +91,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
         const formattedTotalTO = numberWithCommas(this.totalTurnover, 2);
         const formattedMinRequiredTO = numberWithCommas(this.minRequiredTurnover, 2);
-        this.labelTotalTurnover.string = `${formattedTotalTO} / ${formattedMinRequiredTO}`;
+        this.labelTotalTurnover.string = `${formattedTotalTO}/${formattedMinRequiredTO}`;
 
         this.labelPercentage.string = `${this.progressPercentage}%`;
         this.progressBar.progress = this.progressPercentage / 100;

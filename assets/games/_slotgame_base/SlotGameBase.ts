@@ -208,7 +208,6 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.winningBetOriginalScale = this.winningBet.node.scale;
         this.freeSpinsBonusHandler = new SlotGameFreeSpinsBonusHandler(this);
         uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.freeSpinsBonusHandler.tryAutoSpinWhenFSB, this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (callback: (isSpinning: boolean) => void) => { callback(this.isSpinnedAction); }, this);
     }
 
     initSlotBoard() {

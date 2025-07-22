@@ -30,17 +30,11 @@ export default class GiftCode extends cc.Component {
         }
         this.isProcessing = true;
 
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.CHECK_IS_SPINNING, (isSpinning: boolean) => {
-            if (isSpinning) {
-                this.isProcessing = false;
-                return;
-            }
+        this.isProcessing = true;
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
 
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
-
-            this.scheduleOnce(() => {
-                this.isProcessing = false;
-            }, 1);
-        });
+        this.scheduleOnce(() => {
+            this.isProcessing = false;
+        }, 1);
     }
 }

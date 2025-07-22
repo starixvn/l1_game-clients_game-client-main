@@ -99,6 +99,9 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCodeRedeemPopup() {
+        if (this.game?.isSpinnedAction) {
+            return;
+        }
         const transition = await this.playGiftCodeTransitionEffect();
         if (cc.isValid(transition)) {
             transition.destroy();

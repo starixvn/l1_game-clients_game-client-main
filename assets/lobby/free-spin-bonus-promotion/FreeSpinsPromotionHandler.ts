@@ -6,7 +6,6 @@ import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
 import configs = require("../../configs/Configs");
 import { uiManager } from "../../managers/GameUIManager";
-import { getGameName } from "../../configs/GameConfigurations";
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",

@@ -65,6 +65,10 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     public setFallbackGameOffers({ name, gameId }: { name: string; gameId: number }) {
+        if (!name || typeof gameId !== "number") {
+            return;
+        }
+    
         const exists = this.fallbackGameOffers.some((offer) => offer.gameId === gameId);
         if (!exists) {
             this.fallbackGameOffers.push({ name: name, gameId });
@@ -224,7 +228,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const currentGameId = uiManager.getCurrentGameId();
         const gameName = getGameName(currentGameId)?.toLowerCase();
         this.setFallbackGameOffers({ name: gameName, gameId: currentGameId });
-
         return this.promotionInfoFromSso?.gameOfferPromotion?.length > 0
             ? this.promotionInfoFromSso.gameOfferPromotion
             : this.fallbackGameOffers;

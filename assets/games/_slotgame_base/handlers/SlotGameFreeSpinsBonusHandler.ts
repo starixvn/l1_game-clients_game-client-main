@@ -1,6 +1,9 @@
 import GameUtils from "../../../common/GameUtils";
 import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
-import FreeSpinsPromotionHandler, { FreeSpinsPromotionEvents } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import FreeSpinsPromotionHandler, {
+    FreeSpinsPromotionEvents,
+    freeSpinsPromotionHandler
+} from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../../managers/GameUIManager";
 import { ClassicSlotSound } from "../ClassicSlotSound";
 import { TurnOverRequiredEvents } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
@@ -30,6 +33,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     };
 
     registerEvents() {
+        freeSpinsPromotionHandler.setFallbackGameOffers({ name: this.game?.gameName, gameId: this.game?.gameId });
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.showGiftCode(), this.game);
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.showGiftCodeRedeemPopup(), this.game);
@@ -130,7 +134,6 @@ export default class SlotGameFreeSpinsBonusHandler {
         if (!promotionInfo?.promotion?.isClaimed) {
             return;
         }
-
         const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 900 : 0;
         await this.delay(delayTime);
         await this.showFreeSpinsPromotionPanel(

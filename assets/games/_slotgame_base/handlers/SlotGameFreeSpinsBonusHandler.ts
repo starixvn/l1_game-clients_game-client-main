@@ -238,13 +238,15 @@ export default class SlotGameFreeSpinsBonusHandler {
         const node = cc.instantiate(prefab);
         node.name = name;
         node.parent = parent;
+        const indexBelowOverlay = 3;
+        node.setSiblingIndex(parent.children.length - indexBelowOverlay);
         if (refNode) {
             const refBox = refNode.getBoundingBoxToWorld();
-            const popupBox = node.getBoundingBoxToWorld();
+            const panelBox = node.getBoundingBoxToWorld();
 
-            const distance = popupBox.xMax - popupBox.xMin;
-            const margin = -20;
-            const worldTargetX = refBox.xMin - margin - distance / 2;
+            const panelWidth = panelBox.width;
+            const spacingFromRef = -20; // khoảng cách giữa refNode và panel
+            const worldTargetX = refBox.xMin - spacingFromRef - panelWidth / 2;
             const worldTargetY = refBox.yMin + refBox.height / 2;
 
             const localPos = parent.convertToNodeSpaceAR(cc.v2(worldTargetX, worldTargetY));

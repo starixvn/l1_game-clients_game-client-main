@@ -30,7 +30,7 @@ const gameNameFolder = configFromFile.gameNameFolder;
 const namespaces = [...configFromFile.namespaces];
 const pathToGame = `./assets/games/${gameNameFolder}`;
 const languageFolder = `${pathToGame}/i18n/texts/${gameNameFolder}-`;
-const languageCodes = ["en", "id", "th", "vi", "zh_cn", "zh_tw"];
+const languageCodes = ["en", "id", "th", "vi", "zh_cn", "zh_tw", "ja"];
 const tg = Tolgee().use(DevTools()).init({
     defaultLanguage: "en",
     availableLanguages: languageCodes,

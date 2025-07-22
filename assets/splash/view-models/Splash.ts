@@ -66,7 +66,7 @@ export default class Splash extends cc.Component {
         this.clearUIListeners();
     }
 
-    private async handleSplashScene(): Promise<void> {
+    private async handleSplashScene() {
         const urlParams = appManager.urlParams;
         const gameId = +urlParams.get("gameId");
         const params = urlParams.get("params");

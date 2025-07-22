@@ -41,11 +41,11 @@ export default class HtmlSiteSprite extends cc.Component {
         try {
             const fileName = this.getFileName();
             const url = this.getUrl(fileName, this.versionId);
-            const imageAsset = await GameUtils.loadRemote(url);
+            const imageAsset = await GameUtils.loadRemote<cc.Texture2D>(url);
             if (!isValidNode(this)) {
                 return;
             }
-            const spriteFrameTmp = new cc.SpriteFrame(imageAsset as cc.Texture2D);
+            const spriteFrameTmp = new cc.SpriteFrame(imageAsset);
             this.sprite.spriteFrame = spriteFrameTmp;
             if (this.originalSize) {
                 this.sprite.sizeMode = cc.Sprite.SizeMode.RAW;

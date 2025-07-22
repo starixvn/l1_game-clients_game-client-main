@@ -12,18 +12,16 @@ export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
     public isMessageContentShown = false;
+    
+    public promotionPanel = null;
+
     constructor(game: any) {
         this.game = game;
     }
 
     isPromotionActive(): boolean {
-        return (this.promotionPanel?.isPromotionStillActive?.() ?? false) && !this.isExtraFreeSpinsBonusInGame();
+        return (this.promotionPanel?.isStillActive?.() ?? false) && !this.isExtraFSBonusInGame();
     }
-
-    get promotionPanel() {
-        return GameUtils.findNodeByNameRecursive(cc.find("Canvas"), "PromotionDetailsPanel")?.getComponent("PromotionDetailsPanel") ?? null;
-    }
-
     tryAutoSpinWhenFSB = () => {
         if (!this.game.isSpinnedAction && !this.game.isAnimatingResult && this.game.spinButton && this.game.spinButton.node.active) {
             setTimeout(() => {
@@ -99,7 +97,9 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCode() {
-        await this.showFreeSpinsPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
+        await this.showFreeSpinsPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH, (node) => {
+            freeSpinsPromotionHandler.giftCodeNode = node;
+        });
     }
 
     async showGiftCodeRedeemPopup() {
@@ -120,8 +120,8 @@ export default class SlotGameFreeSpinsBonusHandler {
         });
     }
 
-    isExtraFreeSpinsBonusInGame() {
-        return FreeSpinsPromotionHandler.getInstance().getExtraFreeSpinsBonusInGame();
+    isExtraFSBonusInGame() {
+        return FreeSpinsPromotionHandler.getInstance().extraFSBonusInGame;
     }
 
     async showPromotionDetailsPanel(isAutoSpin: boolean, triggerAfterFreeSpinInGame = false) {
@@ -130,7 +130,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             return;
         }
 
-        const promotionInfo = FreeSpinsPromotionHandler.getInstance().getNormalizedPromotionInfo();
+        const promotionInfo = FreeSpinsPromotionHandler.getInstance().getPromo();
         if (!promotionInfo?.promotion?.isClaimed) {
             return;
         }
@@ -146,11 +146,12 @@ export default class SlotGameFreeSpinsBonusHandler {
                 }
                 const panelComp = node.getComponent("PromotionDetailsPanel");
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
+                this.promotionPanel = panelComp;
             }
         );
     }
     private shouldShowMessageInsteadOfPopup(): boolean {
-        return this.game.isFreeSpin() && !this.isExtraFreeSpinsBonusInGame();
+        return this.game.isFreeSpin() && !this.isExtraFSBonusInGame();
     }
 
     private showFreeSpinMessageOnce(): void {
@@ -207,7 +208,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         const callbackAnim = effect.getComponent(GiftCodeSkeleton);
         callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
         await GameUtils.asyncExecute(this.game?.node ?? cc.find("Canvas"), this.game.showEffect(effect));
-        FreeSpinsPromotionHandler.getInstance().setIsTransitionEffectActive(false);
+        FreeSpinsPromotionHandler.getInstance().activeTransitionEffect = false;
         return effect;
     }
 

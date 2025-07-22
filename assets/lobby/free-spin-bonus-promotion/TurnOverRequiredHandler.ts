@@ -24,7 +24,7 @@ export const TurnOverRequiredDataKey = {
 export default class TurnOverRequiredHandler extends EventEmitterBase {
     private static instance: TurnOverRequiredHandler;
     public events = {};
-    private promotionTOProgress: any = null;
+    private _toProgress: any = null;
     private readonly turnOverRequiredDataKey = [TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS];
 
     public static getInstance(): TurnOverRequiredHandler {
@@ -35,12 +35,12 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
         return this.instance;
     }
 
-    setPromotionTOProgress(promotionTOProgress: any) {
-        this.promotionTOProgress = promotionTOProgress;
+    set toProgress(promotionTOProgress: any) {
+        this._toProgress = promotionTOProgress;
     }
 
-    getPromotionTOProgress() {
-        return this.promotionTOProgress;
+    get toProgress() {
+        return this._toProgress;
     }
 
     emitEvent(eventName: string, data: any) {
@@ -62,19 +62,18 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
     }
 
     addDataObserver(dataType: string, dataKey: string) {
-        console.log("addDataObserver", dataType, dataKey);
         let callback;
         if (dataType === TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS) {
-            callback = (data: ITurnOverRequired) => this.onReceivedPromotionTOProgressData(data);
+            callback = (data: ITurnOverRequired) => this.onReceivedTOProgressData(data);
         }
         NotificationService.getInstance().addDataObserver(dataType, dataKey, callback);
     }
 
-    onReceivedPromotionTOProgressData(data: any) {
-        const oldData = this.getPromotionTOProgress();
+    onReceivedTOProgressData(data: any) {
+        const oldData = this.toProgress;
         const isChanged = !oldData || oldData.totalTO !== data.totalTO || oldData.win !== data.win || oldData.progress !== data.progress;
 
-        this.setPromotionTOProgress(data);
+        this.toProgress = data;
 
         if (isChanged) {
             uiManager.emitter.emit(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, data);
@@ -86,9 +85,8 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
     }
 
     displayTurnOverRequired() {
-        const promotionTOProgress = this.getPromotionTOProgress();
-        if (promotionTOProgress) {
-            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, promotionTOProgress);
+        if (this.toProgress) {
+            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, this.toProgress);
         }
     }
 }

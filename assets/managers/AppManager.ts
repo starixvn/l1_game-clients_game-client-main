@@ -281,7 +281,7 @@ class AppManager {
         if (!response.authorized && (this.autoGenerateNickname || response.autoGenerateNickname)) {
             return this.autoGenerateName();
         }
-        response.promotionInfo && freeSpinsPromotionHandler.setPromotionInfoFromSso(response.promotionInfo);
+        response.promotionInfo && freeSpinsPromotionHandler.setPromotionData(response.promotionInfo);
         response.user && userManager.updateUser(response.user);
         return response.authorized;
     }

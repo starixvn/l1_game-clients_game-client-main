@@ -33,18 +33,20 @@ interface StandardPromotionInfo {
 
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
-    private promotionInfoFromSso: any = null;
+    private promotionData: any = null;
 
-    private previousGameOfferPromotion?: any[];
+    private previousGameOffered?: any[];
     private readonly storageKey = "free-spins-promotion-dont-show-again";
     public isDirectlyOpen = false;
-    private shouldSkipGiftCode = false;
-    private finishPromotion: any = null;
-    private extraFreeSpinsBonusInGame = false;
-    private isTransitionEffectActive = false;
-    private isAnnouncementDetailsActive = false;
-    private freeSpinsUsedUp = false;
+    private _skipGiftCode = false;
+    private _finishPromotion: any = null;
+    private _extraFSBonusInGame = false;
+    private _activeTransitionEffect = false;
+    private _activeDetailPromo = false;
+    private _currentSpinCount = 0;
+    private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
+    public giftCodeNode = null;
 
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
@@ -66,79 +68,84 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         if (!name || typeof gameId !== "number") {
             return;
         }
-    
+
         const exists = this.fallbackGameOffers.some((offer) => offer.gameId === gameId);
         if (!exists) {
             this.fallbackGameOffers.push({ name: name.toLowerCase(), gameId });
         }
     }
 
-    public getIsAnnouncementDetailsActive() {
-        return this.isAnnouncementDetailsActive;
+    get currentSpinCount() {
+        return this._currentSpinCount;
     }
 
-    public setIsAnnouncementDetailsActive(isActive: boolean) {
-        this.isAnnouncementDetailsActive = isActive;
+    set currentSpinCount(count: number) {
+        this._currentSpinCount = count;
     }
 
-    public getIsTransitionEffectActive() {
-        return this.isTransitionEffectActive;
+    get activeDetailPromo() {
+        return this._activeDetailPromo;
     }
 
-    public setIsTransitionEffectActive(isActive: boolean) {
-        this.isTransitionEffectActive = isActive;
+    set activeDetailPromo(isActive: boolean) {
+        this._activeDetailPromo = isActive;
     }
 
-    public setShouldSkipGiftCode(skip: boolean) {
-        this.shouldSkipGiftCode = skip;
+    get activeTransitionEffect() {
+        return this._activeTransitionEffect;
     }
 
-    public setFinishPromotion(promotion: any) {
-        this.finishPromotion = promotion;
+    set activeTransitionEffect(isActive: boolean) {
+        this._activeTransitionEffect = isActive;
     }
 
-    public setExtraFreeSpinsBonusInGame(extraFreeSpinsBonusInGame: boolean) {
-        this.extraFreeSpinsBonusInGame = extraFreeSpinsBonusInGame;
+    set shouldSkipGiftCode(skip: boolean) {
+        this._skipGiftCode = skip;
     }
 
-    public getExtraFreeSpinsBonusInGame() {
-        return this.extraFreeSpinsBonusInGame;
+    set extraFSBonusInGame(extraFSBonusInGame: boolean) {
+        this._extraFSBonusInGame = extraFSBonusInGame;
     }
 
-    public getFinishPromotion() {
-        return this.finishPromotion;
+    get extraFSBonusInGame() {
+        return this._extraFSBonusInGame;
+    }
+    set finishPromotion(promotion: any) {
+        this._finishPromotion = promotion;
     }
 
-    public setFreeSpinsUsedUp(usedUp: boolean) {
-        this.freeSpinsUsedUp = usedUp;
+    get finishPromotion() {
+        return this._finishPromotion;
     }
 
-    public getFreeSpinsUsedUp() {
-        return this.freeSpinsUsedUp;
+    set promotionIdFromTO(promotionId: string) {
+        this._promotionIdFromTO = promotionId;
+    }
+
+    get promotionIdFromTO() {
+        return this._promotionIdFromTO;
     }
 
     public reset() {
         this.finishPromotion = null;
         this.isDirectlyOpen = false;
         this.shouldSkipGiftCode = false;
-        this.extraFreeSpinsBonusInGame = false;
-        this.isTransitionEffectActive = false;
-        this.isAnnouncementDetailsActive = false;
-        this.freeSpinsUsedUp = false;
+        this.extraFSBonusInGame = false;
+        this.activeTransitionEffect = false;
+        this.activeDetailPromo = false;
     }
 
     /** ========== PROMOTION FLOW ========== */
-    setPromotionInfoFromSso(rawData: any, isDirectly = false) {
-        this.promotionInfoFromSso = this.normalizePromotionData(rawData);
+    setPromotionData(rawData: any, isDirectly = false) {
+        this.promotionData = this.normalizePromotionData(rawData);
         this.isDirectlyOpen = isDirectly;
         this.handlePromotionDisplay();
     }
 
     private normalizePromotionData(data: any): { promotion: StandardPromotionInfo; gameOfferPromotion?: any[] } {
         const rawPromo = data?.promotion;
-        const currentGameOfferPromotion =
-            data?.gameOfferPromotion !== undefined ? data.gameOfferPromotion : this.previousGameOfferPromotion;
-        this.previousGameOfferPromotion = currentGameOfferPromotion;
+        const currentGameOfferPromotion = data?.gameOfferPromotion !== undefined ? data.gameOfferPromotion : this.previousGameOffered;
+        this.previousGameOffered = currentGameOfferPromotion;
         return {
             promotion: {
                 promotionId: rawPromo?.promotionId,
@@ -150,21 +157,21 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         };
     }
 
-    public getNormalizedPromotionInfo() {
-        return this.promotionInfoFromSso;
+    public getPromo() {
+        return this.promotionData;
     }
 
     public handlePromotionDisplay() {
         try {
-            if (this.isTransitionEffectActive || !this.hasValidPromotion()) {
+            if (this.activeTransitionEffect || !this.hasPromo()) {
                 return;
             }
-            if (this.shouldSkipPromotionDueToSettings()) {
+            if (this.shouldSkipPromo()) {
                 return;
             }
 
             if (this.isDirectlyOpen) {
-                this.handleDirectOpenFlow();
+                this.handleDirectOpen();
                 return;
             }
 
@@ -176,14 +183,14 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             sentryLogger.log(`handlePromotionDisplay error: ${error.message}`);
         }
     }
-    private hasValidPromotion(): boolean {
-        return !!this.promotionInfoFromSso?.promotion?.promotionId;
+    private hasPromo(): boolean {
+        return !!this.promotionData?.promotion?.promotionId;
     }
 
-    private shouldSkipPromotionDueToSettings(): boolean {
+    private shouldSkipPromo(): boolean {
         const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
-        const isGiftCode = this.promotionInfoFromSso?.promotion?.isGiftCode === true;
+        const isGiftCode = this.promotionData?.promotion?.isGiftCode === true;
         if (dontShow || (isGiftCode && !this.isDirectlyOpen)) {
             return true;
         }
@@ -191,8 +198,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         return isSC1;
     }
 
-    private handleDirectOpenFlow() {
-        const promotion = this.promotionInfoFromSso?.promotion;
+    private handleDirectOpen() {
+        const promotion = this.promotionData?.promotion;
         const isGiftCode = promotion?.isGiftCode === true;
         const isClaimed = promotion?.isClaimed === true;
         const remaining = promotion?.remainingBonusItems;
@@ -212,7 +219,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL);
         }
     }
-    onCloseFreeSpinsPromotionPopup() {
+    closePromoPopup() {
         sessionManager.setCheckedFreeSpinsPromotionFirstSso(true);
     }
 
@@ -223,17 +230,15 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     getGameOffered() {
-        return this.promotionInfoFromSso?.gameOfferPromotion?.length > 0
-            ? this.promotionInfoFromSso.gameOfferPromotion
-            : this.fallbackGameOffers;
+        return this.promotionData?.gameOfferPromotion?.length > 0 ? this.promotionData.gameOfferPromotion : this.fallbackGameOffers;
     }
 
     /** ========== URL HELPERS ========== */
-    getFreeSpinsPromotionUrl() {
-        const promotionId = this.promotionInfoFromSso?.promotion?.promotionId;
+    getPromoUrl() {
+        const promotionId = this.promotionData?.promotion?.promotionId || this.promotionIdFromTO;
         const gameOffers = this.getGameOffered();
         const queryString = this.getQueryString(promotionId, gameOffers);
-        const endpoint = this.isAnnouncementDetailsActive ? endpointConstants.announcementDetails : endpointConstants.bannerPromotion;
+        const endpoint = this.activeDetailPromo ? endpointConstants.announcementDetails : endpointConstants.bannerPromotion;
         return `${buildPromotionSiteUrl()}/${endpoint}?${queryString}`;
     }
 

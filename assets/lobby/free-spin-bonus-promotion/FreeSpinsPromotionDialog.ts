@@ -44,7 +44,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     }
     async start() {
         const isDirect = freeSpinsPromotionHandler.isDirectlyOpen;
-        const isAnnouncementDetailsActive = freeSpinsPromotionHandler.getIsAnnouncementDetailsActive();
+        const isAnnouncementDetailsActive = freeSpinsPromotionHandler.activeDetailPromo;
 
         this.updateUIVisibility(isDirect, isAnnouncementDetailsActive);
 
@@ -111,7 +111,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         }
         super.closeDialog(enableSound);
         LobbyDialogManager.getInstance().onCloseDialog();
-        FreeSpinsPromotionHandler.getInstance().onCloseFreeSpinsPromotionPopup();
+        FreeSpinsPromotionHandler.getInstance().closePromoPopup();
     }
 
     playGameNow() {
@@ -119,14 +119,12 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {
-            const canvas = cc.find("Canvas");
-            const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
-
-            if (giftPopup) {
-                giftPopup.destroy();
+            if (freeSpinsPromotionHandler.giftCodeNode?.isValid) {
+                freeSpinsPromotionHandler.giftCodeNode.destroy();
+                freeSpinsPromotionHandler.giftCodeNode = null;
             }
         } else {
-            freeSpinsPromotionHandler.setShouldSkipGiftCode(true);
+            freeSpinsPromotionHandler.shouldSkipGiftCode = true;
         }
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
         const gameId = freeSpinsPromotionHandler.getGameId();

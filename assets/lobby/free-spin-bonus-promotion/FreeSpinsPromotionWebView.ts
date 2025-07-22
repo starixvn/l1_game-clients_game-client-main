@@ -38,7 +38,7 @@ export default class FreeSpinsPromotionWebView extends LoadWebView {
         this.hideWebView();
         this.webView._impl.setVisible(true);
 
-        const url = freeSpinsPromotionHandler.getFreeSpinsPromotionUrl();
+        const url = freeSpinsPromotionHandler.getPromoUrl();
         this.webView && (this.webView.url = url);
     }
 

@@ -144,7 +144,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     onClickInfoIcon() {
-        freeSpinsPromotionHandler.setIsAnnouncementDetailsActive(true);
+        freeSpinsPromotionHandler.activeDetailPromo = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }
 

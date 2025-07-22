@@ -13,16 +13,14 @@ export default class PromotionDetailsPanel extends cc.Component {
     private readonly DEFAULT_LINES = 25;
 
     private totalWin = 0;
-    private promotionActive = false;
     private betLevel = 0;
-    private promotionFSB = 0;
     private fsbConsumedThisRound = false;
     private hasServerFinishPromotion = false;
 
     public markServerConfirmedEnd() {
         this.hasServerFinishPromotion = true;
         if (!this.fsbConsumedThisRound) {
-            this.tryShowPromotionEndedPopupIfFinished();
+            this.tryShowEndedPopup();
         }
     }
 
@@ -32,54 +30,47 @@ export default class PromotionDetailsPanel extends cc.Component {
         }
 
         const { betLevel = 0, remainingBonusItems = 0, totalWin = 0 } = promotionInfo.promotion;
-    
+
         this.betLevel = betLevel;
-        this.promotionFSB = remainingBonusItems;
+        freeSpinsPromotionHandler.currentSpinCount = remainingBonusItems;
         this.totalWin = Number(totalWin);
-        this.promotionActive = true;
-    
+
         this.labelBetLevel.string = betLevel.toString();
         this.labelFSB.string = remainingBonusItems.toString();
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
-    
-        this.updateTotalBetLabel();
+
+        this.updateTotalBet();
         this.node.active = true;
-    
-        freeSpinsPromotionHandler.setFreeSpinsUsedUp(remainingBonusItems === 0);
-    
+
         if (remainingBonusItems > 0 && isAutoSpin) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION);
         }
     }
-    
 
-    tryConsumePromotionFSB() {
-        if (this.promotionActive && this.promotionFSB > 0 && !this.fsbConsumedThisRound) {
-            this.promotionFSB--;
+    tryConsumeFSB() {
+        if (freeSpinsPromotionHandler.currentSpinCount > 0 && !this.fsbConsumedThisRound) {
+            freeSpinsPromotionHandler.currentSpinCount--;
             this.fsbConsumedThisRound = true;
-            this.labelFSB.string = this.promotionFSB.toString();
-            if (this.promotionFSB === 0) {
-                freeSpinsPromotionHandler.setFreeSpinsUsedUp(true);
-            }
+            this.labelFSB.string = freeSpinsPromotionHandler.currentSpinCount.toString();
         }
     }
 
-    revertLastPromotionFSB() {
+    revertLastFSB() {
         if (this.fsbConsumedThisRound) {
-            this.promotionFSB++;
+            freeSpinsPromotionHandler.currentSpinCount++;
             this.fsbConsumedThisRound = false;
-            this.labelFSB.string = this.promotionFSB.toString();
+            this.labelFSB.string = freeSpinsPromotionHandler.currentSpinCount.toString();
         }
     }
 
-    commitPromotionFSB() {
+    commitFSB() {
         if (this.fsbConsumedThisRound) {
             this.fsbConsumedThisRound = false;
         }
     }
 
     addWinAmount(amount: number) {
-        if (!this.promotionActive || amount <= 0) {
+        if (freeSpinsPromotionHandler.currentSpinCount < 0 || amount <= 0) {
             return;
         }
 
@@ -87,11 +78,11 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
     }
 
-    public isPromotionStillActive(): boolean {
-        return this.promotionActive && !this.hasServerFinishPromotion;
+    public isStillActive(): boolean {
+        return freeSpinsPromotionHandler.currentSpinCount >= 0 && !this.hasServerFinishPromotion;
     }
 
-    updateTotalBetLabel() {
+    updateTotalBet() {
         const totalBet = this.betLevel * this.DEFAULT_LINES;
         this.labelTotalBet.string = totalBet.toString();
     }
@@ -100,19 +91,19 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.node.active = false;
     }
 
-    public tryShowPromotionEndedPopupIfFinished() {
+    public tryShowEndedPopup() {
         if (this.hasServerFinishPromotion) {
             this.hidePanel();
-            this.showPromotionEndedPopup();
+            this.showEndedPopup();
         }
     }
 
-    showPromotionEndedPopup() {
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, freeSpinsPromotionHandler.getFinishPromotion());
+    showEndedPopup() {
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, freeSpinsPromotionHandler.finishPromotion);
     }
 
     onClickInfoIcon() {
-        freeSpinsPromotionHandler.setIsAnnouncementDetailsActive(true);
+        freeSpinsPromotionHandler.activeDetailPromo = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }
 }

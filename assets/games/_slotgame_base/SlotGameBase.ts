@@ -739,7 +739,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         };
         this.waitingSpinResult = true;
         if (hasPromotion) {
-            this.freeSpinsBonusHandler?.promotionPanel?.tryConsumePromotionFSB();
+            this.freeSpinsBonusHandler?.promotionPanel?.tryConsumeFSB();
         }
         if (!isFreeSpin) {
             this.consumeAutoSpinCount();

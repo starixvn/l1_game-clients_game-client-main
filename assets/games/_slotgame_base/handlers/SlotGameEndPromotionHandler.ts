@@ -17,7 +17,7 @@ export default class SlotGameEndPromotionHandler implements DataHandler {
     }
 
     private processFinishPromotion(finishPromotion: any): void {
-        freeSpinsPromotionHandler.setFinishPromotion(finishPromotion);
+        freeSpinsPromotionHandler.finishPromotion = finishPromotion;
 
         const promotionPanel = this.main.freeSpinsBonusHandler?.promotionPanel;
         if (promotionPanel) {
@@ -28,9 +28,9 @@ export default class SlotGameEndPromotionHandler implements DataHandler {
     }
 
     private processTurnOverRequired(promotionTOProgress: any): void {
-        turnOverRequiredHandler.setPromotionTOProgress(promotionTOProgress);
-
-        const hasFinishPromotion = freeSpinsPromotionHandler.getFinishPromotion();
+        turnOverRequiredHandler.toProgress = promotionTOProgress;
+        freeSpinsPromotionHandler.promotionIdFromTO = promotionTOProgress?.promotionId;
+        const hasFinishPromotion = freeSpinsPromotionHandler.finishPromotion;
         if (!hasFinishPromotion) {
             turnOverRequiredHandler.displayTurnOverRequired();
         }

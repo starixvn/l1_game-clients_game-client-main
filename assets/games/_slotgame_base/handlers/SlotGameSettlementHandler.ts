@@ -46,7 +46,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
     handleApiError(data: any) {
         const error = data.apiError;
         const gameId = error.gameTypeId;
-        this.main?.freeSpinsBonusHandler?.promotionPanel?.revertLastPromotionFSB?.();
+        this.main?.freeSpinsBonusHandler?.promotionPanel?.revertLastFSB?.();
         if (gameId === this.main.gameId && this.main.waitingSpinResult && !data.endBet) {
             this.main.cacheApiError = error;
         } else {
@@ -117,7 +117,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.main.setTotalFreeSpins(totalOfFreeSpins);
         this.handlePromotionFSBUpdate(betWin, freeSpins.count);
         if (totalOfFreeSpins === 0) {
-            freeSpinsPromotionHandler.setExtraFreeSpinsBonusInGame(false);
+            freeSpinsPromotionHandler.extraFSBonusInGame = false;
         }
 
         const needWaitEffect = bigWin || freeSpins.count > 0 || betByFreeSpin || this.main.holdActionButton.isAutoAction;
@@ -133,7 +133,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
     private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
         const handler = this.main?.freeSpinsBonusHandler?.promotionPanel;
-        const isExtra = this.main?.freeSpinsBonusHandler?.isExtraFreeSpinsBonusInGame();
+        const isExtra = this.main?.freeSpinsBonusHandler?.isExtraFSBonusInGame();
     
         if (!handler || (!handler.fsbConsumedThisRound && !isExtra)) {
             return;
@@ -141,7 +141,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         
         handler.addWinAmount(betWin);
         if (freeSpinsCount === 0 && this.main.totalFreeSpins === 0) {
-            handler.commitPromotionFSB();
+            handler.commitFSB();
         }
     }
 
@@ -223,7 +223,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
                 this.finishAnimationResult();
                 this.checkSpinNextRound(freeSpins);
-                this.main?.freeSpinsBonusHandler?.promotionPanel?.tryShowPromotionEndedPopupIfFinished?.();
+                this.main?.freeSpinsBonusHandler?.promotionPanel?.tryShowEndedPopup?.();
             })
             .start();
     }

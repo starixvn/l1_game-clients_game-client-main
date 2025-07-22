@@ -1,6 +1,6 @@
 import { Socket } from "socket.io-client";
 import GameUtils from "../../common/GameUtils";
-import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 
@@ -173,9 +173,10 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     }
 
     private destroySelf() {
-        const canvas = cc.find("Canvas");
-        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
-        giftPopup?.destroy();
+        if (freeSpinsPromotionHandler.giftCodeNode?.isValid) {
+            freeSpinsPromotionHandler.giftCodeNode.destroy();
+            freeSpinsPromotionHandler.giftCodeNode = null;
+        }
         this.onCloseClicked();
     }
 

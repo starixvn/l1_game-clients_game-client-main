@@ -1,5 +1,4 @@
 import { i18n } from "../../ClientModules";
-import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
@@ -23,12 +22,11 @@ export default class PromotionEndedPopup extends cc.Component {
         }
 
         const { totalWin } = finishPromotion;
-        const canvas = cc.find("Canvas");
-        const giftPopup = GameUtils.findNodeByNameRecursive(canvas, "GiftCodePopup");
-
-        if (giftPopup) {
-            giftPopup.destroy();
+        if (freeSpinsPromotionHandler.giftCodeNode?.isValid) {
+            freeSpinsPromotionHandler.giftCodeNode.destroy();
+            freeSpinsPromotionHandler.giftCodeNode = null;
         }
+
         PromotionEndedPopup.hasShown = true;
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
 
@@ -37,7 +35,7 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     private setupContent(totalWin: number) {
-        const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
+        const isUsedUp = freeSpinsPromotionHandler.currentSpinCount === 0;
 
         let titleKey = "";
         let mainMessageKey = "";
@@ -65,10 +63,10 @@ export default class PromotionEndedPopup extends cc.Component {
 
     private onCloseClicked() {
         const totalWin = Number(this.labelTotalWin.string.replace(/,/g, ""));
-        const isUsedUp = freeSpinsPromotionHandler.getFreeSpinsUsedUp();
-        freeSpinsPromotionHandler.setFinishPromotion(null);
+        const isUsedUp = freeSpinsPromotionHandler.currentSpinCount === 0;
+        freeSpinsPromotionHandler.finishPromotion = null;
         if (totalWin > 0 && isUsedUp) {
-            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, turnOverRequiredHandler.getPromotionTOProgress());
+            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, turnOverRequiredHandler.toProgress);
         }
         cc.tween(this.node)
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
@@ -80,6 +78,6 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     onDestroy() {
-        freeSpinsPromotionHandler.setFinishPromotion(null);
+        freeSpinsPromotionHandler.finishPromotion = null;
     }
 }

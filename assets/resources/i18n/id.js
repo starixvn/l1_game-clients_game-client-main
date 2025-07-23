@@ -176,7 +176,7 @@ const data = {
         winningNotificationOn: 'Notifikasi kemenangan beruntun "AKTIF"',
         winningNotificationOff: 'Notifikasi kemenangan beruntun "MATI"',
         voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi.",
-        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
+        Claim_expired_error_message: "Bonus kedaluwarsa. Tidak lagi tersedia. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Merah",
@@ -678,7 +678,7 @@ const data = {
         total_win: "Total Menang",
         free_spins: "Free Spins",
         bet_level: "Level Taruhan",
-        TO_requirement_claim: "Claim Now!",
+        TO_requirement_claim: "Klaim Sekarang",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
         TO_requirement_state2_message: "Almost There!",

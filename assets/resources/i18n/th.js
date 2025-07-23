@@ -182,7 +182,7 @@ const data = {
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
         voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
-        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
+        Claim_expired_error_message: "โบนัสหมดอายุ ไม่สามารถใช้งานได้อีกต่อไป (%{errorCode})"
     },
     ui: {
         choice_red2: "2 แดง",
@@ -666,7 +666,7 @@ const data = {
         total_win: "ยอดชนะรวม",
         free_spins: "Free Spins",
         bet_level: "ระดับเดิมพัน",
-        TO_requirement_claim: "Claim Now!",
+        TO_requirement_claim: "รับเลย",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
         TO_requirement_state2_message: "Almost There!",

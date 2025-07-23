@@ -137,7 +137,7 @@ export default class StandardSlotGame extends SlotGameBase {
         uiManager.emitterListener(InternalEvents.SLOT_PLAY_SOUND, (type: ClassicSlotSound) => this.playSound(type), this);
         uiManager.emitterListener(InternalEvents.CLICK_HAMBURGER_MENU, () => this.hideStakeContrainer(), this);
         this.freeSpinsBonusHandler.registerEvents();
-        this.freeSpinsBonusHandler.initFreeSpinsPromotionMessage();
+        this.freeSpinsBonusHandler.initializePromotionMessage();
     }
 
     onDestroy() {

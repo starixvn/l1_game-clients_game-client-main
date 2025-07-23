@@ -160,7 +160,7 @@ const data = {
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
         voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
-        Claim_expired_error_message: "The Bonus is expired. No longer available. (%{errorCode})"
+        Claim_expired_error_message: "奖金已过期，不再有效。 (%{errorCode})"
     },
     ui: {
         choice_red2: "2 红",
@@ -622,7 +622,7 @@ const data = {
     },
     FreeSpinBonus: {
         FSB_pending_freespin_msg: "请在开始免费旋转奖励之前，先将未完成的免费旋转完成。",
-        gift_code_message: "兑换您的免费旋转奖励。",
+        gift_code_message: "领取您的免费旋转奖励。",
         Invalide_gift_code_error_message: "礼品码无效。请检查您的代码并重试。",
         gift_code_error_message: "请输入您的礼品码。",
         Unexpected_gift_code_error_message: "发生意外错误。请稍后再试。",
@@ -637,7 +637,7 @@ const data = {
         total_win: "总奖金",
         free_spins: "Free Spins",
         bet_level: "投注等级",
-        TO_requirement_claim: "Claim Now!",
+        TO_requirement_claim: "立即领取",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
         TO_requirement_state2_message: "Almost There!",
@@ -659,9 +659,9 @@ const data = {
         FSB_ends_in: "结束于",
         FSB_hours: "小时",
         FSB_mins: "分钟",
-        Claim_promotion_message: "Great Performance!",
-        Claim_promotion_message_1: "You have successfully earned",
-        Claim_promotion_message_2: "Well Play!"
+        Claim_promotion_message: "表现出色！",
+        Claim_promotion_message_1: "您已成功获得",
+        Claim_promotion_message_2: "玩得精彩！"
     }
 };
 

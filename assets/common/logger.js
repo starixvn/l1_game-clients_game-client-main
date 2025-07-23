@@ -29,7 +29,9 @@ export const sentryLogger = {
                     /^.*Cannot read properties.*(?:user|setAvatar|onSet|setLoadingVisibility).*$/gm,
                     /^.*not an object.*(?:openGame|openNewSocket|gameName|language|this.percent|this.pagination|remoteBundle).*$/gm,
                     /^.*Node is not valid!.*$/gm,
-                    /^.*SENTRY IGNORE ERRORS:*$/gm
+                    /^.*SENTRY IGNORE ERRORS:*$/gm,
+                    "Max wait reached",
+                    /^.*Max wait reached*$/gm
                 ]
             });
             sentryLogger.loaded = true;

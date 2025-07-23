@@ -103,7 +103,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCodeRedeemPopup() {
-        if (this.game?.isSpinnedAction) {
+        if (this.game?.isSpinnedAction || this.game?.stillAutoSpin()) {
             return;
         }
         const transition = await this.playGiftCodeTransitionEffect();

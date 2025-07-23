@@ -8,6 +8,7 @@ import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { TurnOverRequiredEvents } from "./TurnOverRequiredHandler";
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { appManager } from "../../managers/AppManager";
+import DraggableItem from "../../common/draggable-layout/view-models/DraggableItem";
 
 const { ccclass, property } = cc._decorator;
 
@@ -34,6 +35,17 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     onLoad() {
         this.schedule(this.updateTimer, 1);
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, (data) => this.updateBonusWallet(data), this);
+        this.dragTurnOverRequired();
+    }
+    dragTurnOverRequired() {
+        const draggableItem = this.getComponent(DraggableItem);
+        if (draggableItem) {
+            draggableItem.touchCallback.end = (isClicked) => {
+                if (isClicked) {
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
+                }
+            };
+        }
     }
 
     init(socket: Socket, gameName: string, promotionTOProgress: any) {
@@ -139,11 +151,12 @@ export default class TurnOverRequiredPanel extends BaseComponent {
             claimBtnCtrl.setClaimable(false);
             claimBtnCtrl.stopClaimButtonPulse();
         }
-
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
         this.socket.emit("claim-bonus-win");
     }
 
     onClickInfoIcon() {
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
         freeSpinsPromotionHandler.activeDetailPromo = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }

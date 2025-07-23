@@ -1,3 +1,4 @@
+import DraggableItem from "../../common/draggable-layout/view-models/DraggableItem";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
@@ -21,6 +22,20 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.hasServerFinishPromotion = true;
         if (!this.fsbConsumedThisRound) {
             this.tryShowEndedPopup();
+        }
+    }
+    protected onLoad(): void {
+      this.dragDetailPanel();
+    }
+
+    dragDetailPanel() {
+        const draggableItem = this.getComponent(DraggableItem);
+        if (draggableItem) {
+            draggableItem.touchCallback.end = (isClicked) => {
+                if (isClicked) {
+                    uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
+                }
+            };
         }
     }
 
@@ -103,6 +118,7 @@ export default class PromotionDetailsPanel extends cc.Component {
     }
 
     onClickInfoIcon() {
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
         freeSpinsPromotionHandler.activeDetailPromo = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
     }

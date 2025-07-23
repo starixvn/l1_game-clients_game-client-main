@@ -12,7 +12,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
     public isMessageContentShown = false;
-    
+
     public promotionPanel = null;
 
     constructor(game: any) {
@@ -67,6 +67,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         );
 
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_BALANCE_BONUS, () => this.updateBalanceBonus(), this.game);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.COLLAPSE_MENU, () => this.game?.expandableMenu?.collapseMenu(), this.game);
     }
 
     updateBalanceBonus() {
@@ -97,12 +98,18 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCode() {
-        await this.showFreeSpinsPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH, (node) => {
-            freeSpinsPromotionHandler.giftCodeNode = node;
-        });
+        await this.showFreeSpinsPromotionPanel(
+            "GiftCodePopup",
+            "free-spins-promotion/views/gift-code",
+            this.DEFAULT_POPUP_PARENT_PATH,
+            (node) => {
+                freeSpinsPromotionHandler.giftCodeNode = node;
+            }
+        );
     }
 
     async showGiftCodeRedeemPopup() {
+        this.game?.expandableMenu?.collapseMenu();
         if (this.game?.isSpinnedAction || this.game?.stillAutoSpin()) {
             return;
         }

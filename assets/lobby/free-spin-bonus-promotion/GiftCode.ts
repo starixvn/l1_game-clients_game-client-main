@@ -1,6 +1,6 @@
+import DraggableItem from "../../common/draggable-layout/view-models/DraggableItem";
 import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
-import Draggable from "./Draggable";
 
 const { ccclass, property } = cc._decorator;
 
@@ -10,20 +10,18 @@ export default class GiftCode extends cc.Component {
     icon: cc.Node = null;
     private isProcessing = false;
     onEnable() {
-        this.setDefaultPosition();
-        const draggable = this.getComponent(Draggable);
-        if (draggable) {
-            draggable.onClickCallback = this.onClickGiftCode.bind(this);
+        this.dragGiftCode();
+    }
+    dragGiftCode() {
+        const draggableItem = this.getComponent(DraggableItem);
+        if (draggableItem) {
+            draggableItem.touchCallback.end = (isClicked) => {
+                if (isClicked) {
+                    this.onClickGiftCode();
+                }
+            };
         }
     }
-
-    setDefaultPosition() {
-        const winSize = cc.winSize;
-        const x = -winSize.width / 2 + this.node.width / 2 + 20;
-        const y = 0;
-        this.node.setPosition(x, y);
-    }
-
     onClickGiftCode() {
         if (this.isProcessing) {
             return;

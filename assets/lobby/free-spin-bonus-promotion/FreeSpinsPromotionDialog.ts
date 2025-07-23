@@ -1,15 +1,12 @@
+import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../analytics/AnalyticsManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
-import { StorageManager } from "../../managers/StorageManager";
-import FreeSpinsPromotionHandler, {
-    FreeSpinsPromotionEvents,
-    freeSpinsPromotionHandler
-} from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
-import AnalyticsManager, { TrackingEvent, TrackingAction } from "../../analytics/AnalyticsManager";
+import * as sessionManager from "../../common/auth/SessionManager";
+import GameUtils from "../../common/GameUtils";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
-import * as sessionManager from "../../common/auth/SessionManager";
-import GameUtils from "../../common/GameUtils";
+import { StorageManager } from "../../managers/StorageManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -111,7 +108,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         }
         super.closeDialog(enableSound);
         LobbyDialogManager.getInstance().onCloseDialog();
-        FreeSpinsPromotionHandler.getInstance().closePromoPopup();
+        freeSpinsPromotionHandler.closePromoPopup();
     }
 
     playGameNow() {

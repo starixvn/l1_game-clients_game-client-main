@@ -7,6 +7,7 @@ import ExpandableMenu from "../../common/expandable-menu/view-models/ExpandableM
 import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import HoverItemBase from "../../common/HoverItemBase";
+import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBase";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -19,6 +20,9 @@ import FeatureSlotGameBase from "./FeatureSlotGameBase";
 import SlotGameBaseNoticeHandler from "./handlers/SlotGameBaseNoticeHandler";
 import SlotGameBetHandler from "./handlers/SlotGameBetHandler";
 import SlotGameBonusHandler from "./handlers/SlotGameBonusHandler";
+import SlotGameEndPromotionHandler from "./handlers/SlotGameEndPromotionHandler";
+import SlotGameFreeSpinsBonusHandler from "./handlers/SlotGameFreeSpinsBonusHandler";
+import SlotGameFreeSpinsHandler from "./handlers/SlotGameFreeSpinsHandler";
 import SlotGameIngameHandler from "./handlers/SlotGameIngameHandler";
 import SlotGameJackpotHandler from "./handlers/SlotGameJackpotHandler";
 import SlotGameSettlementHandler from "./handlers/SlotGameSettlementHandler";
@@ -30,10 +34,6 @@ import { SlotNotification } from "./SlotGameBottomMessage";
 import SlotGameHistory from "./SlotGameHistory";
 import SlotGameTopWinner from "./SlotGameTopWinner";
 import SlotGameUserSettings from "./SlotGameUserSettings";
-import SlotGameFreeSpinsHandler from "./handlers/SlotGameFreeSpinsHandler";
-import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
-import SlotGameEndPromotionHandler from "./handlers/SlotGameEndPromotionHandler";
-import SlotGameFreeSpinsBonusHandler from "./handlers/SlotGameFreeSpinsBonusHandler";
 export interface LineData {
     payline: number;
     positions: number[];

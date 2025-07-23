@@ -133,12 +133,12 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
     private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
         const handler = this.main?.freeSpinsBonusHandler?.promotionPanel;
-        const isExtra = this.main?.freeSpinsBonusHandler?.isExtraFSBonusInGame();
-    
+        const isExtra = freeSpinsPromotionHandler.extraFSBonusInGame;
+
         if (!handler || (!handler.fsbConsumedThisRound && !isExtra)) {
             return;
         }
-        
+
         handler.addWinAmount(betWin);
         if (freeSpinsCount === 0 && this.main.totalFreeSpins === 0) {
             handler.commitFSB();

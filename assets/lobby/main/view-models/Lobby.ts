@@ -16,8 +16,10 @@ import LuckyWheelIcon from "../../../games/lucky-wheel/view-models/LuckyWheelIco
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
+import LobbyDialogManager from "../../../managers/LobbyDialogManager";
 import MiniPanel from "../../../mini-games-panel/view-models/MiniPanel";
 import CategoryList from "../../category/view-models/CategoryList";
+import { freeSpinsPromotionHandler } from "../../free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import NewsContent from "../../news/NewsContent";
 import PromotionNotificationsHandler from "../../promotions/PromotionNotificationsHandler";
 import PromotionTournamentHandler from "../../promotions/PromotionTournamentHandler";
@@ -28,10 +30,8 @@ import ButtonArrow from "./ButtonArrow";
 import ButtonsLobby from "./ButtonsLobby";
 import Header from "./Header";
 import LobbyCenter from "./LobbyCenter";
-import { themeResourceLoader } from "./theme/ResourceLoader";
 import LobbyManager from "./LobbyManager";
-import FreeSpinsPromotionHandler from "../../free-spin-bonus-promotion/FreeSpinsPromotionHandler";
-import LobbyDialogManager from "../../../managers/LobbyDialogManager";
+import { themeResourceLoader } from "./theme/ResourceLoader";
 
 const socketIOController = appContainer.get(SocketIOController);
 const sentryLogger = logger();
@@ -108,7 +108,7 @@ export default class Lobby extends cc.Component {
         document.cookie = "redT=1702;path=/";
         this.trackOnLoadEvents();
 
-        FreeSpinsPromotionHandler.getInstance().reset();
+        freeSpinsPromotionHandler.reset();
         appManager.currentScene = this;
         uiManager.isPauseLoadingIcons = false;
         this.initGameUIEvents();
@@ -331,7 +331,7 @@ export default class Lobby extends cc.Component {
             this.showSignName();
         } else {
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-            FreeSpinsPromotionHandler.getInstance().handlePromotionDisplay();
+            freeSpinsPromotionHandler.handlePromotionDisplay();
         }
     }
 
@@ -601,7 +601,7 @@ export default class Lobby extends cc.Component {
             this.handleUserData(response.user);
             this.serviceAuthorized(response.authorized);
             PromotionTournamentHandler.getInstance().checkTournamentPromotionsBeforeSignIn();
-            FreeSpinsPromotionHandler.getInstance().handlePromotionDisplay();
+            freeSpinsPromotionHandler.handlePromotionDisplay();
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

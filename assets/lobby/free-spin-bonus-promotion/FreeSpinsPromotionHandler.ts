@@ -1,11 +1,11 @@
-import { StorageManager } from "../../managers/StorageManager";
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
-import configs = require("../../configs/Configs");
 import { uiManager } from "../../managers/GameUIManager";
+import { StorageManager } from "../../managers/StorageManager";
+import configs = require("../../configs/Configs");
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",

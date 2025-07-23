@@ -1,4 +1,4 @@
-import FreeSpinsPromotionHandler from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase from "../SlotGameBase";
 
@@ -23,7 +23,7 @@ export default class SlotGameIngameHandler implements DataHandler {
             this.main.stakeButton && (this.main.stakeButton.interactable = false);
             this.main.lineButtonStatus(false);
             this.main.autoSpinToggle && (this.main.autoSpinToggle.interactable = false);
-            FreeSpinsPromotionHandler.getInstance().extraFSBonusInGame = !!promotionId?.trim();
+            freeSpinsPromotionHandler.extraFSBonusInGame = !!promotionId?.trim();
         }
     }
 }

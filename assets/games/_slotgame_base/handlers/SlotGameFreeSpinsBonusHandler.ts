@@ -1,12 +1,18 @@
 import GameUtils from "../../../common/GameUtils";
 import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
+import ClaimBonusNotificationPopup from "../../../lobby/free-spin-bonus-promotion/ClaimBonusNotificationPopup";
 import FreeSpinsPromotionHandler, {
     FreeSpinsPromotionEvents,
     freeSpinsPromotionHandler
 } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import GiftCodeRedeemPopup from "../../../lobby/free-spin-bonus-promotion/GiftCodeRedeemPopup";
+import PromotionDetailsPanel from "../../../lobby/free-spin-bonus-promotion/PromotionDetailsPanel";
+import PromotionEndedPopup from "../../../lobby/free-spin-bonus-promotion/PromotionEndedPopup";
+import { TurnOverRequiredEvents } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
+import TurnOverRequiredPanel from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredPanel";
 import { uiManager } from "../../../managers/GameUIManager";
 import { ClassicSlotSound } from "../ClassicSlotSound";
-import { TurnOverRequiredEvents } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
+import FreeSpinsPromotionMessage from "../FreeSpinsPromotionMessage";
 
 export default class SlotGameFreeSpinsBonusHandler {
     private readonly game: any;
@@ -76,14 +82,10 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async openClaimBonusNotificationPopup(claimBonus: any) {
-        await this.addPromotionToDialog(
-            "ClaimBonusNotificationPopup",
-            "free-spins-promotion/views/claim-bonus-notification",
-            (node) => {
-                const popupComp = node.getComponent("ClaimBonusNotificationPopup");
-                popupComp.show(claimBonus);
-            }
-        );
+        await this.addPromotionToDialog("ClaimBonusNotificationPopup", "free-spins-promotion/views/claim-bonus-notification", (node) => {
+            const popupComp = node.getComponent(ClaimBonusNotificationPopup);
+            popupComp.show(claimBonus);
+        });
     }
 
     async showTurnOverRequiredPanel(promotionTOProgress: any) {
@@ -92,7 +94,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             "free-spins-promotion/views/turn-over-required-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
-                const popupComp = node.getComponent("TurnOverRequiredPanel");
+                const popupComp = node.getComponent(TurnOverRequiredPanel);
                 popupComp.init(this.game?.socket, this.game?.gameName, promotionTOProgress);
             }
         );
@@ -122,7 +124,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async openEndedPopup(finishPromotion: any) {
         await this.addPromotionToDialog("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
-            const popupComp = node.getComponent("PromotionEndedPopup");
+            const popupComp = node.getComponent(PromotionEndedPopup);
             popupComp?.show?.(finishPromotion);
             this.isMessageContentShown = false;
         });
@@ -152,7 +154,7 @@ export default class SlotGameFreeSpinsBonusHandler {
                 if (isAutoSpin) {
                     this.animatePopupAppearance(node);
                 }
-                const panelComp = node.getComponent("PromotionDetailsPanel");
+                const panelComp = node.getComponent(PromotionDetailsPanel);
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
                 this.promotionPanel = panelComp;
             }
@@ -181,7 +183,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     async initializePromotionMessage() {
         const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
         if (existing) {
-            this.game.freeSpinsPromotionMessage = existing.getComponent("FreeSpinsPromotionMessage");
+            this.game.freeSpinsPromotionMessage = existing.getComponent(FreeSpinsPromotionMessage);
             return;
         }
 
@@ -190,7 +192,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         node.active = false;
         node.name = "FreeSpinsPromotionMessage";
         node.parent = cc.find("Canvas");
-        this.game.freeSpinsPromotionMessage = node.getComponent("FreeSpinsPromotionMessage");
+        this.game.freeSpinsPromotionMessage = node.getComponent(FreeSpinsPromotionMessage);
     }
 
     async playGiftCodeTransitionEffect() {
@@ -222,7 +224,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     async showGiftCodePopup() {
         await this.addPromotionToDialog("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem", (node) => {
-            const popupComp = node.getComponent("GiftCodeRedeemPopup");
+            const popupComp = node.getComponent(GiftCodeRedeemPopup);
             popupComp.init(this.game?.socket, this.game?.gameName);
         });
     }

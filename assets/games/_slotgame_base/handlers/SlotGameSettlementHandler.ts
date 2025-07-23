@@ -117,7 +117,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.main.setTotalFreeSpins(totalOfFreeSpins);
         this.handlePromotionFSBUpdate(betWin, freeSpins.count);
         if (totalOfFreeSpins === 0) {
-            freeSpinsPromotionHandler.extraFSBonusInGame = false;
+            freeSpinsPromotionHandler.resumedFSBonus = false;
         }
 
         const needWaitEffect = bigWin || freeSpins.count > 0 || betByFreeSpin || this.main.holdActionButton.isAutoAction;
@@ -133,7 +133,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
     private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
         const handler = this.main?.freeSpinsBonusHandler?.promotionPanel;
-        const isExtra = freeSpinsPromotionHandler.extraFSBonusInGame;
+        const isExtra = freeSpinsPromotionHandler.resumedFSBonus;
 
         if (!handler || (!handler.fsbConsumedThisRound && !isExtra)) {
             return;

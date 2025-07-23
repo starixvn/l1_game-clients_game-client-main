@@ -41,12 +41,12 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     public isDirectlyOpen = false;
     private _skipGiftCode = false;
     private _finishPromotion: any = null;
-    private _extraFSBonusInGame = false;
     private _activeTransitionEffect = false;
     private _activeDetailPromo = false;
     private _currentSpinCount = 0;
     private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
+    public resumedFSBonus = false;
     public giftCodeNode = null;
 
     public static getInstance(): FreeSpinsPromotionHandler {
@@ -104,13 +104,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this._skipGiftCode = skip;
     }
 
-    set extraFSBonusInGame(extraFSBonusInGame: boolean) {
-        this._extraFSBonusInGame = extraFSBonusInGame;
-    }
-
-    get extraFSBonusInGame() {
-        return this._extraFSBonusInGame;
-    }
     set finishPromotion(promotion: any) {
         this._finishPromotion = promotion;
     }
@@ -131,7 +124,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.finishPromotion = null;
         this.isDirectlyOpen = false;
         this.shouldSkipGiftCode = false;
-        this.extraFSBonusInGame = false;
+        this.resumedFSBonus = false;
         this.activeTransitionEffect = false;
         this.activeDetailPromo = false;
     }

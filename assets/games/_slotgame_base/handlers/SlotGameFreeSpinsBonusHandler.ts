@@ -23,7 +23,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     isPromotionActive(): boolean {
-        return (this.promotionPanel?.isStillActive?.() ?? false) && !freeSpinsPromotionHandler.extraFSBonusInGame;
+        return (this.promotionPanel?.isStillActive?.() ?? false) && !freeSpinsPromotionHandler.resumedFSBonus;
     }
 
     tryAutoSpinDuringFSB = () => {
@@ -154,7 +154,7 @@ export default class SlotGameFreeSpinsBonusHandler {
         );
     }
     private shouldDisplayMessage(): boolean {
-        return this.game.isFreeSpin() && !freeSpinsPromotionHandler.extraFSBonusInGame;
+        return this.game.isFreeSpin() && !freeSpinsPromotionHandler.resumedFSBonus;
     }
 
     private displayFreeSpinMessage(): void {

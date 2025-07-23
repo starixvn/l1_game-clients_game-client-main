@@ -33,7 +33,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
     private _bgTween: cc.Tween<cc.Node> = null;
-    private _skippedGiftCodeManually = false;
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
         const isChecked = toggle.isChecked;
@@ -112,7 +111,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     }
 
     playGameNow() {
-        this._skippedGiftCodeManually = true;
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {
@@ -121,7 +119,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
                 freeSpinsPromotionHandler.giftCodeNode = null;
             }
         } else {
-            freeSpinsPromotionHandler.shouldSkipGiftCode = true;
+            freeSpinsPromotionHandler.skipGiftCode = true;
         }
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
         const gameId = freeSpinsPromotionHandler.getGameId();

@@ -100,10 +100,12 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this._activeTransitionEffect = isActive;
     }
 
-    set shouldSkipGiftCode(skip: boolean) {
+    set skipGiftCode(skip: boolean) {
         this._skipGiftCode = skip;
     }
-
+    get skipGiftCode() {
+        return this._skipGiftCode;
+    }
     set finishPromotion(promotion: any) {
         this._finishPromotion = promotion;
     }
@@ -123,7 +125,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     public reset() {
         this.finishPromotion = null;
         this.isDirectlyOpen = false;
-        this.shouldSkipGiftCode = false;
+        this.skipGiftCode = false;
         this.resumedFSBonus = false;
         this.activeTransitionEffect = false;
         this.activeDetailPromo = false;
@@ -185,7 +187,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
         const isGiftCode = this.promotionData?.promotion?.isGiftCode === true;
-        if (dontShow || (isGiftCode && !this.isDirectlyOpen)) {
+        if (dontShow && !isGiftCode) {
             return true;
         }
 
@@ -199,8 +201,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         const remaining = promotion?.remainingBonusItems;
         const initial = promotion?.initialBonusItem;
 
-        if (this.shouldSkipGiftCode) {
-            this.shouldSkipGiftCode = false;
+        if (this.skipGiftCode) {
+            this.skipGiftCode = false;
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_DETAILS_PANEL, true);
             return;
         }

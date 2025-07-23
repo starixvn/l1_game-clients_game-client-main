@@ -9,6 +9,7 @@ import {
     isGatewayGame,
     isMiniGameByGameId
 } from "../../configs/GameConfigurations";
+import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -183,6 +184,7 @@ export default class Splash extends cc.Component {
             appManager.authorized = true;
             userManager.updateUser(response.user);
             this.serviceAuthorized(response.authorized);
+            freeSpinsPromotionHandler.setPromotionData(response.promotionInfo);
         } else {
             const errorCode = response.errorCode;
             const text = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode });

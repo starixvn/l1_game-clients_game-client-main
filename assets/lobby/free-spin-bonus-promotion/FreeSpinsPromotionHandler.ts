@@ -22,25 +22,38 @@ const endpointConstants = {
     bannerPromotion: "banner-promotions",
     announcementDetails: "announcement-detail"
 };
-
+interface GameOfferPromotion {
+    gameId: number;
+    name: string;
+}
 interface StandardPromotionInfo {
     promotionId: string;
     isGiftCode?: boolean;
     isClaimed?: boolean;
     remainingBonusItems?: number;
     initialBonusItem?: number;
-    [key: string]: any;
+    betLevel?: number;
+    isActive?: boolean;
+    totalWin?: number;
+}
+
+interface PromotionData {
+    promotion: StandardPromotionInfo;
+    gameOfferPromotion?: GameOfferPromotion[];
+}
+
+interface FinishPromotion {
+    endPromotion: boolean;
+    totalWin: number;
 }
 
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
-    private promotionData: any = null;
-
-    private previousGameOffered?: any[];
+    private promotionData: PromotionData | null;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
     public isDirectlyOpen = false;
     private _skipGiftCode = false;
-    private _finishPromotion: any = null;
+    private _finishPromotion: FinishPromotion | null;
     private _activeTransitionEffect = false;
     private _activeDetailPromo = false;
     private _currentSpinCount = 0;
@@ -106,7 +119,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     get skipGiftCode() {
         return this._skipGiftCode;
     }
-    set finishPromotion(promotion: any) {
+    set finishPromotion(promotion: FinishPromotion | null) {
         this._finishPromotion = promotion;
     }
 
@@ -132,24 +145,15 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     /** ========== PROMOTION FLOW ========== */
-    setPromotionData(rawData: any, isDirectly = false) {
+    setPromotionData(rawData: PromotionData | null, isDirectly = false) {
         this.promotionData = this.normalizePromotionData(rawData);
         this.isDirectlyOpen = isDirectly;
-        this.handlePromotionDisplay();
     }
 
-    private normalizePromotionData(data: any): { promotion: StandardPromotionInfo; gameOfferPromotion?: any[] } {
-        const rawPromo = data?.promotion;
-        const currentGameOfferPromotion = data?.gameOfferPromotion !== undefined ? data.gameOfferPromotion : this.previousGameOffered;
-        this.previousGameOffered = currentGameOfferPromotion;
+    private normalizePromotionData(data: PromotionData | null): PromotionData {
         return {
-            promotion: {
-                promotionId: rawPromo?.promotionId,
-                isGiftCode: rawPromo?.isGiftCode === true,
-                isClaimed: rawPromo?.isClaimed === true,
-                ...rawPromo
-            },
-            gameOfferPromotion: currentGameOfferPromotion
+            promotion: data?.promotion,
+            gameOfferPromotion: data?.gameOfferPromotion || []
         };
     }
 
@@ -196,8 +200,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     private handleDirectOpen() {
         const promotion = this.promotionData?.promotion;
-        const isGiftCode = promotion?.isGiftCode === true;
-        const isClaimed = promotion?.isClaimed === true;
+        const isGiftCode = promotion?.isGiftCode;
+        const isClaimed = promotion?.isClaimed;
         const remaining = promotion?.remainingBonusItems;
         const initial = promotion?.initialBonusItem;
 

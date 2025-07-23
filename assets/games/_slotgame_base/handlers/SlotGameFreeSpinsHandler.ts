@@ -13,6 +13,7 @@ export default class SlotGameFreeSpinsHandler implements DataHandler {
         }
         if (rawPromotion) {
             freeSpinsPromotionHandler.setPromotionData({ promotion: rawPromotion }, true);
+            freeSpinsPromotionHandler.handlePromotionDisplay();
             const betLevel = rawPromotion.betLevel;
 
             if (typeof betLevel === "number") {

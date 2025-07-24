@@ -74,7 +74,8 @@ class AppManager {
 
     init() {
         this.urlParams = new URLSearchParams(window.location.search);
-        this.ssoGameId = +this.urlParams.get("gameId");
+        this.urlParams.has("token") && sessionManager.removeInRoomGameId();
+        this.ssoGameId = this.urlParams.has("token") ? +this.urlParams.get("gameId") : undefined;
         cc.log("AppManager init ", this.ssoGameId);
         sentryLogger.start();
         this.initLanguage();

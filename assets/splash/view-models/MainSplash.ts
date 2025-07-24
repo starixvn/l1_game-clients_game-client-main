@@ -198,11 +198,10 @@ export default class MainSplash extends cc.Component {
     async loadToLobbyOrDirectGame() {
         try {
             this.updateProgress(0);
+            const latestGameId = sessionManager.getInRoomGameId() || appManager.directGameId;
+            const gameId = appManager.ssoGameId ?? latestGameId;
 
-            const ssoGameRoomId = appManager.ssoGameId && !isMiniGameByGameId(appManager.ssoGameId) ? appManager.ssoGameId : 0;
-            const gameId = sessionManager.getInRoomGameId() || appManager.directGameId || ssoGameRoomId;
-
-            if (gameId > 0) {
+            if (gameId > 0 && !isMiniGameByGameId(gameId)) {
                 cc.log("Main Splash : loadGameDirectly ", gameId);
                 await this.loadGameDirectly(gameId);
                 appManager.clearSSOGameId();

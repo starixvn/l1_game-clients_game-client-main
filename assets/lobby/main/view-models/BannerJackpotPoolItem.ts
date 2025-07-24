@@ -39,8 +39,7 @@ export default class BannerJackpotPoolItem extends BannerJackpot {
     protected async getRemoteGameIcon(gameId: number) {
         try {
             const texture = await GameUtils.loadRemoteGameResource<cc.Texture2D>(gameId, `icon/icon-game-small.webp`);
-            const spriteFrame = new cc.SpriteFrame(texture);
-            return spriteFrame;
+            return new cc.SpriteFrame(texture);
         } catch (e) {
             return null;
         }

@@ -38,8 +38,6 @@ export default class GiftCode extends cc.Component {
             return;
         }
         this.isProcessing = true;
-
-        this.isProcessing = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP);
 
         this.scheduleOnce(() => {

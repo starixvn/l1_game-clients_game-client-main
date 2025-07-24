@@ -16,14 +16,14 @@ export default class SlotGameFreeSpinsBonusHandler {
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
     public isMessageContentShown = false;
 
-    public promotionPanel = null;
+    public promotionPanel: PromotionDetailsPanel = null;
 
     constructor(game: any) {
         this.game = game;
     }
 
     isPromotionActive(): boolean {
-        return (this.promotionPanel?.isStillActive?.() ?? false) && !freeSpinsPromotionHandler.resumedFSBonus;
+        return (this.promotionPanel?.isStillActive() ?? false) && !freeSpinsPromotionHandler.resumedFSBonus;
     }
 
     tryAutoSpinDuringFSB = () => {

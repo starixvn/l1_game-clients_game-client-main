@@ -15,8 +15,8 @@ export default class PromotionDetailsPanel extends cc.Component {
 
     private totalWin = 0;
     private betLevel = 0;
-    private fsbConsumedThisRound = false;
     private hasServerFinishPromotion = false;
+    public fsbConsumedThisRound = false;
 
     public markServerConfirmedEnd() {
         this.hasServerFinishPromotion = true;
@@ -25,7 +25,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         }
     }
     protected onLoad(): void {
-      this.dragDetailPanel();
+        this.dragDetailPanel();
     }
 
     dragDetailPanel() {

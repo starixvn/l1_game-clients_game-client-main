@@ -2250,14 +2250,14 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 1,
       "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -572.112,
+        -515.761,
         226.7,
         0,
         0,
@@ -2502,6 +2502,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": null,
     "mainFrame": null,
     "gameName": null,
@@ -2515,6 +2516,10 @@
       "__id__": 7
     },
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "tabContainer": null,
     "layerCloseDropDown": {
       "__id__": 68

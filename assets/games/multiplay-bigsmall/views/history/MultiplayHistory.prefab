@@ -1674,14 +1674,14 @@
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 1,
       "y": 0.5
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -523.121,
+        -426.595,
         225,
         0,
         0,
@@ -1807,7 +1807,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": -10,
+      "width": 0,
       "height": 50
     },
     "_anchorPoint": {
@@ -1819,7 +1819,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -456.76,
+        -417.958,
         225,
         0,
         0,
@@ -1882,7 +1882,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": -10,
+      "width": 0,
       "height": 50
     },
     "_resize": 1,
@@ -1961,6 +1961,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": null,
     "mainFrame": null,
     "gameName": null,
@@ -1974,6 +1975,10 @@
       "__id__": 7
     },
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "tabContainer": null,
     "layerCloseDropDown": {
       "__id__": 48

@@ -9,6 +9,13 @@ export default class GiftCode extends cc.Component {
     @property(cc.Node)
     icon: cc.Node = null;
     private isProcessing = false;
+    
+    onLoad() {
+        uiManager.emitter.on(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE, () => {
+            this.node.destroy();
+        });
+    }
+
     onEnable() {
         this.dragGiftCode();
     }

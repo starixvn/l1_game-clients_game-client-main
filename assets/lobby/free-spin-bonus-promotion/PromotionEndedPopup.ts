@@ -1,6 +1,6 @@
 import { i18n } from "../../ClientModules";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
-import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { freeSpinsPromotionHandler, FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import { TurnOverRequiredEvents, turnOverRequiredHandler } from "./TurnOverRequiredHandler";
 
@@ -22,10 +22,7 @@ export default class PromotionEndedPopup extends cc.Component {
         }
 
         const { totalWin } = finishPromotion;
-        if (freeSpinsPromotionHandler.giftCodeNode?.isValid) {
-            freeSpinsPromotionHandler.giftCodeNode.destroy();
-            freeSpinsPromotionHandler.giftCodeNode = null;
-        }
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
 
         PromotionEndedPopup.hasShown = true;
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);

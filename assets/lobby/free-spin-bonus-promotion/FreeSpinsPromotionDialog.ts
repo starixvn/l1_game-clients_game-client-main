@@ -114,10 +114,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
         if (freeSpinsPromotionHandler.isDirectlyOpen) {
-            if (freeSpinsPromotionHandler.giftCodeNode?.isValid) {
-                freeSpinsPromotionHandler.giftCodeNode.destroy();
-                freeSpinsPromotionHandler.giftCodeNode = null;
-            }
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
         } else {
             freeSpinsPromotionHandler.skipGiftCode = true;
         }

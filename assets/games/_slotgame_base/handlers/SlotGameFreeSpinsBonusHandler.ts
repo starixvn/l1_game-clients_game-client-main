@@ -98,14 +98,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async openGiftCodeIcon() {
-        await this.displayPromotionPanel(
-            "GiftCodePopup",
-            "free-spins-promotion/views/gift-code",
-            this.DEFAULT_POPUP_PARENT_PATH,
-            (node) => {
-                freeSpinsPromotionHandler.giftCodeNode = node;
-            }
-        );
+        await this.displayPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
     }
 
     async openRedeemPopup() {

@@ -15,7 +15,8 @@ export const FreeSpinsPromotionEvents = {
     SPIN_ON_FSB_PROMOTION: "SPIN_ON_FSB_PROMOTION",
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
     OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT",
-    COLLAPSE_MENU: "COLLAPSE_MENU"
+    COLLAPSE_MENU: "COLLAPSE_MENU",
+    DESTROY_GIFT_CODE_NODE: "DESTROY_GIFT_CODE_NODE"
 };
 
 const endpointConstants = {
@@ -60,7 +61,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
     public promotionData: PromotionData | null;
     public resumedFSBonus = false;
-    public giftCodeNode = null;
 
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {

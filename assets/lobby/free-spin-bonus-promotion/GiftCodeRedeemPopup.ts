@@ -5,7 +5,12 @@ import { uiManager } from "../../managers/GameUIManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 
 const { ccclass, property } = cc._decorator;
-
+interface RedeemGiftCodeResponse {
+    redeemResult: number;
+    redemptionNotice?: {
+      errorCode?: string;
+    };
+  }
 @ccclass
 export default class GiftCodeRedeemPopup extends CommonDialog {
     @property(cc.EditBox)
@@ -27,12 +32,11 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     private readonly _originalY = 0;
     private gameName: string;
     protected socket: Socket;
-    private boundReceiveData: (data: any) => void;
+  
     init(socket: Socket, gameName: string) {
         this.socket = socket;
         this.gameName = gameName;
-        this.boundReceiveData = this.receivedData.bind(this);
-        this.socket.on(this.gameName, this.boundReceiveData);
+        this.socket && this.socket.on(this.gameName, this.receivedData.bind(this));
     }
 
     showDialog() {
@@ -61,7 +65,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         return this.node && this.node.isValid;
     }
 
-    receivedData(data: any) {
+    receivedData(data: RedeemGiftCodeResponse) {
         if (!this.isAlive()) {
             return;
         }
@@ -94,13 +98,16 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
             .start();
     }
 
+    onDestroy() {
+        this.socket.off(this.gameName, this.receivedData.bind(this));
+    }
+
     onDisable() {
         this.redeemButton.node.off("click", this.onRedeemClicked, this);
         this.closeButton.node.off("click", this.onCloseClicked, this);
         this.inputBox.node.off("editing-did-began", this.onEditBoxFocus, this);
         this.inputBox.node.off("editing-did-ended", this.onInputFinalized, this);
         cc.Tween.stopAllByTarget(this.redeemButton.node);
-        this.socket?.off(this.gameName, this.boundReceiveData);
     }
 
     onInputFinalized(editBox: cc.EditBox) {

@@ -16,14 +16,8 @@ export default class SlotGameFreeSpinsBonusHandler {
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
     public isMessageContentShown = false;
 
-    public promotionPanel: PromotionDetailsPanel = null;
-
     constructor(game: any) {
         this.game = game;
-    }
-
-    isPromotionActive(): boolean {
-        return (this.promotionPanel?.isStillActive() ?? false) && !freeSpinsPromotionHandler.resumedFSBonus;
     }
 
     tryAutoSpinDuringFSB = () => {
@@ -48,7 +42,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
         uiManager.emitterListener(
             FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
-            (finishPromotion) => this.openEndedPopup(finishPromotion),
+            () => this.openEndedPopup(),
             this.game
         );
 
@@ -60,7 +54,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
         uiManager.emitterListener(
             TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED,
-            (promotionTOProgress) => this.showTurnOverRequiredPanel(promotionTOProgress),
+            () => this.showTurnOverRequiredPanel(),
             this.game
         );
 
@@ -78,21 +72,21 @@ export default class SlotGameFreeSpinsBonusHandler {
         this.game?.updateUserBalance();
     }
 
-    async openClaimBonusNotificationPopup(claimBonus: any) {
+    async openClaimBonusNotificationPopup(claimBonus: number) {
         await this.addPromotionToDialog("ClaimBonusNotificationPopup", "free-spins-promotion/views/claim-bonus-notification", (node) => {
             const popupComp = node.getComponent(ClaimBonusNotificationPopup);
             popupComp.show(claimBonus);
         });
     }
 
-    async showTurnOverRequiredPanel(promotionTOProgress: any) {
+    async showTurnOverRequiredPanel() {
         await this.displayPromotionPanel(
             "TurnOverRequiredPanel",
             "free-spins-promotion/views/turn-over-required-panel",
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
                 const popupComp = node.getComponent(TurnOverRequiredPanel);
-                popupComp.init(this.game?.socket, this.game?.gameName, promotionTOProgress);
+                popupComp.init(this.game?.socket, this.game?.gameName);
             }
         );
     }
@@ -112,10 +106,10 @@ export default class SlotGameFreeSpinsBonusHandler {
         }
     }
 
-    async openEndedPopup(finishPromotion: any) {
+    async openEndedPopup() {
         await this.addPromotionToDialog("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
             const popupComp = node.getComponent(PromotionEndedPopup);
-            popupComp?.show?.(finishPromotion);
+            popupComp?.show?.();
             this.isMessageContentShown = false;
         });
     }
@@ -142,7 +136,6 @@ export default class SlotGameFreeSpinsBonusHandler {
                 }
                 const panelComp = node.getComponent(PromotionDetailsPanel);
                 panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
-                this.promotionPanel = panelComp;
             }
         );
     }

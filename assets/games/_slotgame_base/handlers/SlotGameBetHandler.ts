@@ -1,3 +1,4 @@
+import { freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import GameBaseBetHandler from "../../_base/handlers/GameBaseBetHandler";
 import SlotGameBase from "../SlotGameBase";
 
@@ -17,7 +18,7 @@ export default class SlotGameBetHandler extends GameBaseBetHandler {
                 this.main.activeButtons();
                 this.main.showProcessingWarning(false);
                 this.main.isSpinnedAction = false;
-                this.main?.freeSpinsBonusHandler?.promotionPanel?.revertLastFSB?.();
+                freeSpinsPromotionHandler.revertLastFSB();
             }
             this.main.spinButton.showTextSpinInFreeSpin(false);
         }

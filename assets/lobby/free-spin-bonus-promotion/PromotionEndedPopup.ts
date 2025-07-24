@@ -2,7 +2,7 @@ import { i18n } from "../../ClientModules";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import { freeSpinsPromotionHandler, FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
-import { TurnOverRequiredEvents, turnOverRequiredHandler } from "./TurnOverRequiredHandler";
+import { TurnOverRequiredEvents } from "./TurnOverRequiredHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -14,32 +14,27 @@ export default class PromotionEndedPopup extends cc.Component {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Button) closeButton: cc.Button = null;
 
-    private static hasShown = false;
-
-    public show(finishPromotion: any) {
-        if (!finishPromotion || PromotionEndedPopup.hasShown || !finishPromotion.endPromotion) {
+    public show() {
+        if (!freeSpinsPromotionHandler.finishPromotion?.endPromotion) {
             return;
         }
 
-        const { totalWin } = finishPromotion;
+        const { totalWin } = freeSpinsPromotionHandler.finishPromotion;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
-
-        PromotionEndedPopup.hasShown = true;
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
-
         this.node.active = true;
         this.setupContent(totalWin);
     }
 
     private setupContent(totalWin: number) {
-        const isUsedUp = freeSpinsPromotionHandler.currentSpinCount === 0;
+        const hasUsedAllBonusSpins = freeSpinsPromotionHandler.currentSpinCount === 0;
 
         let titleKey = "";
         let mainMessageKey = "";
         let subMessageKey = "";
 
         if (totalWin > 0) {
-            if (isUsedUp) {
+            if (hasUsedAllBonusSpins) {
                 titleKey = "FreeSpinBonus.FSB_notification_para1a";
                 mainMessageKey = "FreeSpinBonus.FSB_end_notification";
                 subMessageKey = "FreeSpinBonus.FSB_end_notification_message";
@@ -59,17 +54,13 @@ export default class PromotionEndedPopup extends cc.Component {
     }
 
     private onCloseClicked() {
-        const totalWin = Number(this.labelTotalWin.string.replace(/,/g, ""));
-        const isUsedUp = freeSpinsPromotionHandler.currentSpinCount === 0;
-        freeSpinsPromotionHandler.finishPromotion = null;
-        if (totalWin > 0 && isUsedUp) {
-            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, turnOverRequiredHandler.toProgress);
+        if (freeSpinsPromotionHandler.isEligibleForTurnOverPanel()) {
+            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED);
         }
         cc.tween(this.node)
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
             .call(() => {
                 this.node.active = false;
-                PromotionEndedPopup.hasShown = false;
             })
             .start();
     }

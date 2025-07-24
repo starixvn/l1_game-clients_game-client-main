@@ -7,7 +7,7 @@ import ExpandableMenu from "../../common/expandable-menu/view-models/ExpandableM
 import GameUtils from "../../common/GameUtils";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
 import HoverItemBase from "../../common/HoverItemBase";
-import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import JackpotPoolInfoBase from "../../lobby/main/view-models/JackpotPoolInfoBase";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
@@ -714,7 +714,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         if (this.betChoices?.length === 0 || this.isAnimatingResult || this.isReceivedUMData || !this.isReadyBet()) {
             return success;
         }
-        const hasPromotion = this.freeSpinsBonusHandler.isPromotionActive();
+        const hasPromotion = freeSpinsPromotionHandler.isPromotionInProgress();
         const balanceAvailable = this.isFreeSpin() || hasPromotion || this.checkAvailableBalance();
         if (!balanceAvailable) {
             this.resetStateButtons();
@@ -739,7 +739,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         };
         this.waitingSpinResult = true;
         if (hasPromotion) {
-            this.freeSpinsBonusHandler?.promotionPanel?.tryConsumeFSB();
+            freeSpinsPromotionHandler.tryConsumeFSB();
         }
         if (!isFreeSpin) {
             this.consumeAutoSpinCount();
@@ -763,7 +763,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     updateModeSpinButton(isFreeSpin: boolean) {
-        if (isFreeSpin || this.freeSpinsBonusHandler?.isPromotionActive()) {
+        if (isFreeSpin || freeSpinsPromotionHandler.isPromotionInProgress()) {
             this.setTotalBetLabel("0");
             this.spinButton.showFreeSpinMode();
             return;
@@ -802,7 +802,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     }
 
     activeButtons() {
-        const isFreeSpin = this.isFreeSpin() || this.freeSpinsBonusHandler?.isPromotionActive();
+        const isFreeSpin = this.isFreeSpin() || freeSpinsPromotionHandler.isPromotionInProgress();
         const isAutoSpinMode = this.isAutoSpinMode();
         const notAutoSpinByKeySpaceOrHold = !this.holdActionButton.isAutoAction;
 
@@ -1123,7 +1123,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         //compare with onAutoSpinOff()
         this.autoSpinToggle.isChecked = false;
         this.setAutoSpinCount(0);
-        const isFreeSpin = this.isFreeSpin() || this.freeSpinsBonusHandler.isPromotionActive();
+        const isFreeSpin = this.isFreeSpin() || freeSpinsPromotionHandler.isPromotionInProgress();
         this.updateModeSpinButton(isFreeSpin);
         this.activeButtons();
         if (isFreeSpin) {

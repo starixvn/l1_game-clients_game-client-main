@@ -2,11 +2,11 @@ import NotificationService from "../../common/auth/NotificationService";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
 import { uiManager } from "../../managers/GameUIManager";
 
-interface ITurnOverRequired {
+export interface ITurnOverRequired {
     win: number;
     totalTO: number;
     minTO: number;
-    expire: string;
+    expire?: string;
     progress: number;
 }
 
@@ -24,7 +24,7 @@ export const TurnOverRequiredDataKey = {
 export default class TurnOverRequiredHandler extends EventEmitterBase {
     private static instance: TurnOverRequiredHandler;
     public events = {};
-    private _toProgress: any = null;
+    private _toProgress: ITurnOverRequired = null;
     private readonly turnOverRequiredDataKey = [TurnOverRequiredDataKey.PROMOTION_TO_PROGRESS];
 
     public static getInstance(): TurnOverRequiredHandler {
@@ -35,7 +35,7 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
         return this.instance;
     }
 
-    set toProgress(promotionTOProgress: any) {
+    set toProgress(promotionTOProgress: ITurnOverRequired) {
         this._toProgress = promotionTOProgress;
     }
 
@@ -43,7 +43,7 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
         return this._toProgress;
     }
 
-    emitEvent(eventName: string, data: any) {
+    emitEvent(eventName: string, data: ITurnOverRequired) {
         NotificationService.getInstance().emitEvent(eventName, data);
     }
 
@@ -69,7 +69,7 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
         NotificationService.getInstance().addDataObserver(dataType, dataKey, callback);
     }
 
-    onReceivedTOProgressData(data: any) {
+    onReceivedTOProgressData(data: ITurnOverRequired) {
         const oldData = this.toProgress;
         const isChanged = !oldData || oldData.totalTO !== data.totalTO || oldData.win !== data.win || oldData.progress !== data.progress;
 
@@ -85,9 +85,7 @@ export default class TurnOverRequiredHandler extends EventEmitterBase {
     }
 
     displayTurnOverRequired() {
-        if (this.toProgress) {
-            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, this.toProgress);
-        }
+        uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED);
     }
 }
 

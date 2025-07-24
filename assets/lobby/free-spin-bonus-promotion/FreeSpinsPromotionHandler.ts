@@ -16,7 +16,10 @@ export const FreeSpinsPromotionEvents = {
     OPEN_PROMOTION_ENDED_POPUP: "OPEN_PROMOTION_ENDED_POPUP",
     OPEN_REDEEM_TRANSITION_EFFECT: "OPEN_REDEEM_TRANSITION_EFFECT",
     COLLAPSE_MENU: "COLLAPSE_MENU",
-    DESTROY_GIFT_CODE_NODE: "DESTROY_GIFT_CODE_NODE"
+    DESTROY_GIFT_CODE_NODE: "DESTROY_GIFT_CODE_NODE",
+    CLOSE_PROMOTION_DETAILS_PANEL: "CLOSE_PROMOTION_DETAILS_PANEL",
+    UPDATE_FSB_COUNT: "UPDATE_FSB_COUNT",
+    UPDATE_TOTAL_WIN: "UPDATE_TOTAL_WIN"
 };
 
 const endpointConstants = {
@@ -56,12 +59,14 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private _finishPromotion: FinishPromotion;
     private _activeTransitionEffect = false;
     private _activeDetailPromo = false;
-    private _currentSpinCount = 0;
+    private _currentSpinCount: number;
     private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
     public promotionData: PromotionData;
     public resumedFSBonus = false;
-
+    public hasServerFinishPromotion = false;
+    public fsbConsumedThisRound = false;
+    
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
             this.instance = new FreeSpinsPromotionHandler();
@@ -260,6 +265,62 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         }
 
         return searchParams.toString();
+    }
+
+    public isPromotionInProgress(): boolean {
+        return this.currentSpinCount >= 0 && !this.hasServerFinishPromotion && !this.resumedFSBonus;
+    }
+
+    public markServerConfirmedEnd() {
+        this.hasServerFinishPromotion = true;
+        if (!this.fsbConsumedThisRound) {
+            this.tryShowEndedPopup();
+        }
+    }
+
+    public tryShowEndedPopup() {
+        if (this.hasServerFinishPromotion) {
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_PROMOTION_DETAILS_PANEL);
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, this.finishPromotion);
+        }
+    }
+
+    tryConsumeFSB() {
+        if (this.currentSpinCount > 0 && !this.fsbConsumedThisRound) {
+            this.currentSpinCount--;
+            this.fsbConsumedThisRound = true;
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.UPDATE_FSB_COUNT, this.currentSpinCount);
+        }
+    }
+
+    revertLastFSB() {
+        if (this.fsbConsumedThisRound) {
+            this.currentSpinCount++;
+            this.fsbConsumedThisRound = false;
+            uiManager.emitter.emit(FreeSpinsPromotionEvents.UPDATE_FSB_COUNT, this.currentSpinCount);
+        }
+    }
+
+    commitFSB() {
+        if (this.fsbConsumedThisRound) {
+            this.fsbConsumedThisRound = false;
+        }
+    }
+
+    updateTotalWin(amount: number) {
+        if (this.currentSpinCount < 0 || amount <= 0) {
+            return;
+        }
+
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.UPDATE_TOTAL_WIN, amount);
+    }
+
+    shouldSkipUpdateTotalWin() {
+        return !this.fsbConsumedThisRound && !this.resumedFSBonus;
+    }
+
+    isEligibleForTurnOverPanel(){
+        return this.finishPromotion?.totalWin > 0 && this.currentSpinCount === 0;
     }
 }
 

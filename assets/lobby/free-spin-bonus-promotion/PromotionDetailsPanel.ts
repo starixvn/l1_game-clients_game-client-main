@@ -15,17 +15,30 @@ export default class PromotionDetailsPanel extends cc.Component {
 
     private totalWin = 0;
     private betLevel = 0;
-    private hasServerFinishPromotion = false;
-    public fsbConsumedThisRound = false;
 
-    public markServerConfirmedEnd() {
-        this.hasServerFinishPromotion = true;
-        if (!this.fsbConsumedThisRound) {
-            this.tryShowEndedPopup();
-        }
-    }
     protected onLoad(): void {
         this.dragDetailPanel();
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.CLOSE_PROMOTION_DETAILS_PANEL,
+            () => {
+                this.hidePanel();
+            },
+            this
+        );
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.UPDATE_FSB_COUNT,
+            (count: number) => {
+                this.updateFSBCount(count);
+            },
+            this
+        );
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.UPDATE_TOTAL_WIN,
+            (amount: number) => {
+                this.updateTotalWin(amount);
+            },
+            this
+        );
     }
 
     dragDetailPanel() {
@@ -62,39 +75,9 @@ export default class PromotionDetailsPanel extends cc.Component {
         }
     }
 
-    tryConsumeFSB() {
-        if (freeSpinsPromotionHandler.currentSpinCount > 0 && !this.fsbConsumedThisRound) {
-            freeSpinsPromotionHandler.currentSpinCount--;
-            this.fsbConsumedThisRound = true;
-            this.labelFSB.string = freeSpinsPromotionHandler.currentSpinCount.toString();
-        }
-    }
-
-    revertLastFSB() {
-        if (this.fsbConsumedThisRound) {
-            freeSpinsPromotionHandler.currentSpinCount++;
-            this.fsbConsumedThisRound = false;
-            this.labelFSB.string = freeSpinsPromotionHandler.currentSpinCount.toString();
-        }
-    }
-
-    commitFSB() {
-        if (this.fsbConsumedThisRound) {
-            this.fsbConsumedThisRound = false;
-        }
-    }
-
-    addWinAmount(amount: number) {
-        if (freeSpinsPromotionHandler.currentSpinCount < 0 || amount <= 0) {
-            return;
-        }
-
+    updateTotalWin(amount: number) {
         this.totalWin += amount;
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
-    }
-
-    public isStillActive(): boolean {
-        return freeSpinsPromotionHandler.currentSpinCount >= 0 && !this.hasServerFinishPromotion;
     }
 
     updateTotalBet() {
@@ -106,20 +89,17 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.node.active = false;
     }
 
-    public tryShowEndedPopup() {
-        if (this.hasServerFinishPromotion) {
-            this.hidePanel();
-            this.showEndedPopup();
-        }
-    }
-
-    showEndedPopup() {
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, freeSpinsPromotionHandler.finishPromotion);
-    }
-
     onClickInfoIcon() {
         uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
         freeSpinsPromotionHandler.activeDetailPromo = true;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+    }
+
+    onDestroy() {
+        uiManager.removeListenersWithTarget(this);
+    }
+
+    updateFSBCount(count: number) {
+        this.labelFSB.string = count.toString();
     }
 }

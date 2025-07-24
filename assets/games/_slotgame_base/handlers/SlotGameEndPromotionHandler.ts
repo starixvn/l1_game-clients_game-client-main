@@ -1,7 +1,6 @@
 import SlotGameBase from "../SlotGameBase";
 import DataHandler from "../../_base/handlers/DataHandler";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
-import { uiManager } from "../../../managers/GameUIManager";
+import { freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { turnOverRequiredHandler } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 export default class SlotGameEndPromotionHandler implements DataHandler {
     constructor(protected readonly main: SlotGameBase) {}
@@ -18,13 +17,7 @@ export default class SlotGameEndPromotionHandler implements DataHandler {
 
     private processFinishPromotion(finishPromotion: any): void {
         freeSpinsPromotionHandler.finishPromotion = finishPromotion;
-
-        const promotionPanel = this.main.freeSpinsBonusHandler?.promotionPanel;
-        if (promotionPanel) {
-            promotionPanel.markServerConfirmedEnd();
-        } else {
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, finishPromotion);
-        }
+        freeSpinsPromotionHandler.markServerConfirmedEnd();
     }
 
     private processTurnOverRequired(promotionTOProgress: any): void {

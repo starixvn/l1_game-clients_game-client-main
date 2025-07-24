@@ -5,12 +5,16 @@ import BaseComponent from "../../common/BaseComponent";
 import { i18n } from "../../ClientModules";
 import SimpleClaimButton from "./SimpleClaimButton";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
-import { TurnOverRequiredEvents } from "./TurnOverRequiredHandler";
+import { ITurnOverRequired, TurnOverRequiredEvents, turnOverRequiredHandler } from "./TurnOverRequiredHandler";
 import NoticeUtil from "../../common/utils/NoticeUtil";
 import { appManager } from "../../managers/AppManager";
 import DraggableItem from "../../common/draggable-layout/view-models/DraggableItem";
 
 const { ccclass, property } = cc._decorator;
+interface ClaimBonusResponse {
+    errorCode?: string;
+    claimedAmount?: number;
+}
 
 @ccclass
 export default class TurnOverRequiredPanel extends BaseComponent {
@@ -30,7 +34,6 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     private endTime = 0;
     private gameName: string;
     protected socket: Socket;
-    private boundReceiveData: (data: any) => void;
 
     onLoad() {
         this.schedule(this.updateTimer, 1);
@@ -48,15 +51,14 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         }
     }
 
-    init(socket: Socket, gameName: string, promotionTOProgress: any) {
+    init(socket: Socket, gameName: string) {
         this.socket = socket;
         this.gameName = gameName;
-        this.boundReceiveData = this.receivedData.bind(this);
-        this.socket.on(this.gameName, this.boundReceiveData);
-        this.updateBonusWallet(promotionTOProgress);
+        this.socket && this.socket.on(this.gameName, this.receivedData.bind(this));
+        this.updateBonusWallet(turnOverRequiredHandler.toProgress);
     }
 
-    public updateBonusWallet(data: { win: number; totalTO: number; minTO: number; progress: number; expire: string }) {
+    public updateBonusWallet(data: ITurnOverRequired) {
         this.totalWinAmount = data?.win;
         this.totalTurnover = data?.totalTO;
         this.minRequiredTurnover = data?.minTO;
@@ -67,7 +69,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         this.updateTimer();
     }
 
-    receivedData(data: any) {
+    receivedData(data: ClaimBonusResponse) {
         if (!this.isAlive()) {
             return;
         }
@@ -162,7 +164,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     onDestroy() {
-        this.socket?.off(this.gameName, this.boundReceiveData);
+        this.socket.on(this.gameName, this.receivedData.bind(this));
         uiManager.removeListenersWithTarget(this);
     }
 

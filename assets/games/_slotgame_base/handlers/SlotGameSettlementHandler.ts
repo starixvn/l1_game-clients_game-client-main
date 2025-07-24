@@ -46,7 +46,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
     handleApiError(data: any) {
         const error = data.apiError;
         const gameId = error.gameTypeId;
-        this.main?.freeSpinsBonusHandler?.promotionPanel?.revertLastFSB?.();
+        freeSpinsPromotionHandler.revertLastFSB();
         if (gameId === this.main.gameId && this.main.waitingSpinResult && !data.endBet) {
             this.main.cacheApiError = error;
         } else {
@@ -132,16 +132,13 @@ export default class SlotGameSettlementHandler implements DataHandler {
     }
 
     private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
-        const promottionPanel = this.main?.freeSpinsBonusHandler?.promotionPanel;
-        const resumedFSBonus = freeSpinsPromotionHandler.resumedFSBonus;
-
-        if (!promottionPanel || (!promottionPanel.fsbConsumedThisRound && !resumedFSBonus)) {
+        if (freeSpinsPromotionHandler.shouldSkipUpdateTotalWin()) {
             return;
         }
 
-        promottionPanel.addWinAmount(betWin);
+        freeSpinsPromotionHandler.updateTotalWin(betWin);
         if (freeSpinsCount === 0 && this.main.totalFreeSpins === 0) {
-            promottionPanel.commitFSB();
+            freeSpinsPromotionHandler.commitFSB();
         }
     }
 
@@ -223,7 +220,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
                 this.finishAnimationResult();
                 this.checkSpinNextRound(freeSpins);
-                this.main?.freeSpinsBonusHandler?.promotionPanel?.tryShowEndedPopup?.();
+                freeSpinsPromotionHandler.tryShowEndedPopup();
             })
             .start();
     }
@@ -233,7 +230,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.main.showMessageDisplay(SlotNotification.SETTLED);
         this.main.waitingSpinResult = false;
         if (!this.main.gotApiError()) {
-            const isPromotionFSB = this.main?.freeSpinsBonusHandler?.isPromotionActive();
+            const isPromotionFSB = freeSpinsPromotionHandler.isPromotionInProgress();
             const isAutoSpinMode = this.main.isAutoSpinMode();
             const stillAutoSpin = this.main.stillAutoSpin();
             const autoSpin = isPromotionFSB || (isAutoSpinMode && stillAutoSpin);

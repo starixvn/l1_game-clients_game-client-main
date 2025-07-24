@@ -24,7 +24,7 @@ const micrositeGameIdKey = "microsite_game_id";
 const clearStorageMicroSiteKey = "clear_storage_microsite";
 const checkedTournamentPromotionFirstSso = "checked_tournament_promotion_first_sso";
 const checkedFreeSpinsPromotionFirstSso = "checked_free_spins_promotion_first_sso";
-const LANGUAGE_MAPPING = {
+const LOCALE_MAPPING = {
     "en-US": "en",
     "en-GB": "en",
     "en-UK": "en",
@@ -157,7 +157,11 @@ export function storeSessionData(data) {
 }
 
 export function getLanguage(locale) {
-    return LANGUAGE_MAPPING[locale] || "en";
+    const localeMapping = {
+        ...LOCALE_MAPPING,
+        ...globalThis?.localeMapping
+    };
+    return localeMapping[locale] || "en";
 }
 
 export function getLocale() {

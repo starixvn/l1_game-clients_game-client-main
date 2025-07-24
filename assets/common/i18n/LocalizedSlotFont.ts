@@ -7,12 +7,31 @@ const { ccclass, menu } = cc._decorator;
 export default class LocalizedSlotFont extends LocalizedFont {
     initData() {
         this.fontBases = {
-            vi: "Kodchasan-Regular",
-            id: "Kodchasan-Regular",
-            en: "Kodchasan-Regular",
-            th: "NotoSerifThai-Regular",
-            zh_cn: "NotoSerifZHCN-Regular",
-            zh_tw: "NotoSerifZHTW-Regular"
+            vi: {
+                name: "Kodchasan-Regular",
+                loadRemote: false
+            },
+            id: {
+                name: "Kodchasan-Regular",
+                loadRemote: false
+            },
+            en: {
+                name: "Kodchasan-Regular",
+                loadRemote: false
+            },
+            th: {
+                name: "NotoSerifThai-Regular",
+                loadRemote: false
+            },
+            zh_cn: {
+                name: "NotoSerifZHCN-Regular",
+                loadRemote: false
+            },
+            zh_tw: {
+                name: "NotoSerifZHTW-Regular",
+                loadRemote: false
+            },
+            ...globalThis?.fontMapping?.slot
         };
     }
 }

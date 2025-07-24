@@ -7,12 +7,31 @@ const { ccclass, menu } = cc._decorator;
 export default class LocalizedNotoSansFontBold extends LocalizedFont {
     initData() {
         this.fontBases = {
-            vi: "NotoSans-Bold",
-            id: "NotoSans-Bold",
-            en: "NotoSans-Bold",
-            th: "NotoSerifThai-Bold",
-            zh_cn: "NotoSerifZHCN-Bold",
-            zh_tw: "NotoSerifZHTW-Bold"
+            vi: {
+                name: "NotoSans-Bold",
+                loadRemote: false
+            },
+            id: {
+                name: "NotoSans-Bold",
+                loadRemote: false
+            },
+            en: {
+                name: "NotoSans-Bold",
+                loadRemote: false
+            },
+            th: {
+                name: "NotoSerifThai-Bold",
+                loadRemote: false
+            },
+            zh_cn: {
+                name: "NotoSerifZHCN-Bold",
+                loadRemote: false
+            },
+            zh_tw: {
+                name: "NotoSerifZHTW-Bold",
+                loadRemote: false
+            },
+            ...globalThis?.fontMapping?.notoSansBold
         };
     }
 }

@@ -1,11 +1,13 @@
 import ColorAssembler2D from "../../../assets/common/ColorAssembler2D";
+import GameUtils from "../GameUtils";
 const { ccclass, property, menu } = cc._decorator;
 
 const LanguageFont = cc.Class({
     name: "LanguageFont",
     properties: {
         language: "",
-        name: ""
+        name: "",
+        loadRemote: false
     }
 });
 
@@ -31,19 +33,38 @@ export default class LocalizedFont extends cc.Component {
 
     initData() {
         this.fontBases = {
-            vi: "NotoSerif-Regular",
-            id: "NotoSerif-Regular",
-            en: "NotoSerif-Regular",
-            th: "NotoSerifThai-Regular",
-            zh_cn: "NotoSerifZHCN-Regular",
-            zh_tw: "NotoSerifZHTW-Regular"
+            vi: {
+                name: "NotoSerif-Regular",
+                loadRemote: false
+            },
+            id: {
+                name: "NotoSerif-Regular",
+                loadRemote: false
+            },
+            en: {
+                name: "NotoSerif-Regular",
+                loadRemote: false
+            },
+            th: {
+                name: "NotoSerifThai-Regular",
+                loadRemote: false
+            },
+            zh_cn: {
+                name: "NotoSerifZHCN-Regular",
+                loadRemote: false
+            },
+            zh_tw: {
+                name: "NotoSerifZHTW-Regular",
+                loadRemote: false
+            },
+            ...globalThis?.fontMapping?.regular
         };
     }
 
     updateFont() {
-        const name = this.getFontNameByLanguage();
+        const font = this.getFontNameByLanguage();
         if (this.label) {
-            this.loadFont(name).then((font) => {
+            this.loadFont(font.name, font.loadRemote).then((font) => {
                 if (this.label && this.label.isValid) {
                     this.label.font = font;
                     this.enableCacheMode && this.handleCacheMode();
@@ -72,10 +93,18 @@ export default class LocalizedFont extends cc.Component {
     getFontNameByLanguage(): any {
         const lang = window.i18n.curLang;
         const overrideFonts = this.overrideFonts.find((data) => data.language === lang);
-        return overrideFonts?.name || this.fontBases[lang] || this.fontBases["en"];
+        const overrideFont = overrideFonts !== undefined ? overrideFonts : this.fontBases[lang];
+        return overrideFont || this.fontBases["en"];
     }
 
-    loadFont(name: string) {
+    loadFont(name: string, loadRemote: boolean) {
+        if (loadRemote) {
+            return new Promise<cc.Font>((resolve, reject) => {
+                GameUtils.loadRemoteFromSharedResource<cc.Font>(`localization/fonts/${name}`).then((font) => {
+                    resolve(font);
+                });
+            });
+        }
         return new Promise<cc.Font>((resolve, reject) => {
             cc.resources.load<cc.Font>(`fonts/${name}`, cc.Font, (err, font) => {
                 resolve(font);

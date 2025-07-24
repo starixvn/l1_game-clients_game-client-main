@@ -1,7 +1,7 @@
 import { DevTools, Tolgee } from "@tolgee/web";
 import * as fs from "fs";
 
-const gameId = 80;
+const gameId = 103;
 interface Config {
     namespaces: string[];
     gameNameFolder: string;

@@ -51,15 +51,15 @@ interface FinishPromotion {
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
-    public isDirectlyOpen = false;
+    public receivedPromotionInGame = false;
     private _skipGiftCode = false;
-    private _finishPromotion: FinishPromotion | null;
+    private _finishPromotion: FinishPromotion;
     private _activeTransitionEffect = false;
     private _activeDetailPromo = false;
     private _currentSpinCount = 0;
     private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
-    public promotionData: PromotionData | null;
+    public promotionData: PromotionData;
     public resumedFSBonus = false;
 
     public static getInstance(): FreeSpinsPromotionHandler {
@@ -119,7 +119,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     get skipGiftCode() {
         return this._skipGiftCode;
     }
-    set finishPromotion(promotion: FinishPromotion | null) {
+    set finishPromotion(promotion: FinishPromotion) {
         this._finishPromotion = promotion;
     }
 
@@ -137,24 +137,18 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     public reset() {
         this.finishPromotion = null;
-        this.isDirectlyOpen = false;
+        this.receivedPromotionInGame = false;
         this.skipGiftCode = false;
         this.resumedFSBonus = false;
         this.activeTransitionEffect = false;
         this.activeDetailPromo = false;
+        this.promotionData = null;
     }
 
     /** ========== PROMOTION FLOW ========== */
-    setPromotionData(rawData: PromotionData | null, isDirectly = false) {
-        this.promotionData = this.normalizePromotionData(rawData);
-        this.isDirectlyOpen = isDirectly;
-    }
-
-    private normalizePromotionData(data: PromotionData | null): PromotionData {
-        return {
-            promotion: data?.promotion,
-            gameOfferPromotion: data?.gameOfferPromotion || []
-        };
+    setPromotionData(rawData: PromotionData, isDirectly = false) {
+        this.promotionData = rawData;
+        this.receivedPromotionInGame = isDirectly;
     }
 
     public handlePromotionDisplay() {
@@ -166,7 +160,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
                 return;
             }
 
-            if (this.isDirectlyOpen) {
+            if (this.receivedPromotionInGame) {
                 this.handleDirectOpen();
                 return;
             }
@@ -181,7 +175,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     private hasPromo(): boolean {
-        return !!this.promotionData?.promotion?.promotionId;
+        return !!this.promotionData?.promotion;
     }
 
     private shouldSkipPromo(): boolean {

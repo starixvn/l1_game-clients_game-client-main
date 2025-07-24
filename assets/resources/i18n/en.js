@@ -660,7 +660,7 @@ const data = {
         total_win: "Total Win",
         free_spins: "Free Spins",
         bet_level: "Bet Level",
-        TO_requirement_claim: "Claim Now!",
+        TO_requirement_claim: "Claim Now",
         TO_requirement_state1_message: "Hurry Up!",
         TO_requirement_state1_message1: "Play Now to Claim",
         TO_requirement_state2_message: "Almost There!",

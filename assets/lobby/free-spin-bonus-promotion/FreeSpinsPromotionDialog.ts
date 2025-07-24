@@ -39,7 +39,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });
     }
     async start() {
-        const isDirect = freeSpinsPromotionHandler.isDirectlyOpen;
+        const isDirect = freeSpinsPromotionHandler.receivedPromotionInGame;
         const isAnnouncementDetailsActive = freeSpinsPromotionHandler.activeDetailPromo;
 
         this.updateUIVisibility(isDirect, isAnnouncementDetailsActive);
@@ -69,7 +69,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
             this._bgTween = cc.tween(this.background).to(1, { opacity: 150 }, { easing: "sineOut" }).start();
         }
-        if (!freeSpinsPromotionHandler.isDirectlyOpen) {
+        if (!freeSpinsPromotionHandler.receivedPromotionInGame) {
             this.time = 0.4;
         }
     }
@@ -113,7 +113,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     playGameNow() {
         LobbyDialogManager.getInstance().clearQueue();
         this.closeDialog();
-        if (freeSpinsPromotionHandler.isDirectlyOpen) {
+        if (freeSpinsPromotionHandler.receivedPromotionInGame) {
             uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
         } else {
             freeSpinsPromotionHandler.skipGiftCode = true;

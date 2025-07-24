@@ -18,6 +18,7 @@ import StandardSlotBonusDialog from "./StandardSlotBonusDialog";
 import { StandardSlotGameConfigs } from "./StandardSlotGameConfigs";
 import StandardSlotGameHistory from "./StandardSlotGameHistory";
 import SymbolPreview from "./SymbolPreview";
+import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -142,6 +143,7 @@ export default class StandardSlotGame extends SlotGameBase {
 
     onDestroy() {
         uiManager.removeListenersWithTarget(this);
+        freeSpinsPromotionHandler.reset();
         super.onDestroy();
     }
 

@@ -20,7 +20,6 @@ import {
 import GameBase from "./GameBase";
 import { GameBasePlayerHandler } from "./handlers/GameBasePlayerHandler";
 import RoomPlayer from "./view-models/RoomPlayer";
-import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 
 const { ccclass, property } = cc._decorator;
 
@@ -141,7 +140,6 @@ export default class WebSocketTableGameBase extends GameBase {
         if (this.isOwnGameMusicBackground) {
             MusicPlayer.getInstance().handleIncreaseVolume();
         }
-        freeSpinsPromotionHandler.setPromotionData(null);
         this.closeGame();
     }
 

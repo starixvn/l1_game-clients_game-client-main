@@ -133,7 +133,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             return;
         }
 
-        const promotionInfo = freeSpinsPromotionHandler.getPromo();
+        const promotionInfo = freeSpinsPromotionHandler.promotionData;
         if (!promotionInfo?.promotion?.isClaimed) {
             return;
         }

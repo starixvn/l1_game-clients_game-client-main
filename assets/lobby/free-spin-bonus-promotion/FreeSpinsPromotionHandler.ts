@@ -49,7 +49,6 @@ interface FinishPromotion {
 
 export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private static instance: FreeSpinsPromotionHandler;
-    private promotionData: PromotionData | null;
     private readonly storageKey = "free-spins-promotion-dont-show-again";
     public isDirectlyOpen = false;
     private _skipGiftCode = false;
@@ -59,6 +58,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private _currentSpinCount = 0;
     private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
+    public promotionData: PromotionData | null;
     public resumedFSBonus = false;
     public giftCodeNode = null;
 
@@ -157,10 +157,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         };
     }
 
-    public getPromo() {
-        return this.promotionData;
-    }
-
     public handlePromotionDisplay() {
         try {
             if (this.activeTransitionEffect || !this.hasPromo()) {
@@ -183,6 +179,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
             sentryLogger.log(`handlePromotionDisplay error: ${error.message}`);
         }
     }
+
     private hasPromo(): boolean {
         return !!this.promotionData?.promotion?.promotionId;
     }
@@ -190,7 +187,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private shouldSkipPromo(): boolean {
         const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
-        const isGiftCode = this.promotionData?.promotion?.isGiftCode === true;
+        const isGiftCode = this.promotionData?.promotion?.isGiftCode;
         if (dontShow && !isGiftCode) {
             return true;
         }

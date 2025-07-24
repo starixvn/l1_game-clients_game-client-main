@@ -181,7 +181,6 @@ export function clearQueryStringOnUrl() {
 
 export function signOut() {
     redirectToTimeOutPage();
-    sessionManager.removeSession();
 }
 
 function redirectToTimeOutPage() {

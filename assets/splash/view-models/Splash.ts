@@ -106,8 +106,20 @@ export default class Splash extends cc.Component {
             return this.enableMicrositeGameIframe(micrositeGameId);
         }
 
+        if (this.isReloadFromGatewayLobby()) {
+            return;
+        }
+
         // Default: load to lobby or direct game
         this.loadToLobbyOrDirectGame();
+    }
+
+    isReloadFromGatewayLobby() {
+        const latestGameId = +SessionManager.getInRoomGameId() || appManager.directGameId;
+        if (isGatewayGame(latestGameId) && this.handleGatewayGame(latestGameId)) {
+            return true;
+        }
+        return false;
     }
 
     handleOpenDummyRoom(isSSOToGame) {

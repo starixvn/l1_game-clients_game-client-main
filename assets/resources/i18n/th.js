@@ -653,7 +653,7 @@ const data = {
         FSB_pending_freespin_msg: "กรุณาหมุนฟรีที่ค้างอยู่ให้เสร็จสิ้นก่อนที่เริ่มโบนัสหมุนฟรีสปินใหม่",
         gift_code_message: "แลกฟรีสปินของคุณ",
         Invalide_gift_code_error_message: "รหัสของขวัญไม่ถูกต้อง\n กรุณาตรวจสอบรหัสของคุณแล้วลองใหม่อีกครั้ง",
-        gift_code_error_message: "กรุณาป้อนรหัสของขวัญของคุณ",
+        gift_code_error_message: "กรุณาใส่รหัสของขวัญของคุณ",
         Unexpected_gift_code_error_message: "เกิดข้อผิดพลาดที่ไม่คาดคิด\n โปรดลองอีกครั้งในภายหลัง",
         gift_code_redeem: "แลกรับ",
         gift_code: "รหัส\nของขวัญ",

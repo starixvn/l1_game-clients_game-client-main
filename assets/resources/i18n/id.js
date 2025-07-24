@@ -680,7 +680,7 @@ const data = {
         bet_level: "Level Taruhan",
         TO_requirement_claim: "Klaim Sekarang",
         TO_requirement_state1_message: "Cepat!",
-        TO_requirement_state1_message1: "Mainkan Sekarang untuk Klaim",
+        TO_requirement_state1_message1: "Main dan Klaim",
         TO_requirement_state2_message: "Hampir Selesai!",
         TO_requirement_state2_message1: "Bonus Anda Menanti",
         TO_requirement_state3_message: "Sedikit lagi!",

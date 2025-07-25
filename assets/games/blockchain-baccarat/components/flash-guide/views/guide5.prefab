@@ -315,7 +315,7 @@
     "_alignFlags": 45,
     "_left": 231.47500000000002,
     "_right": 226.47500000000002,
-    "_top": 15.300000000000036,
+    "_top": 15.300000000000043,
     "_bottom": 535.3,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
@@ -446,6 +446,10 @@
     "_enabled": true,
     "gameId": 48,
     "nameImage": "slide_5_info",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -3132,22 +3136,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 89
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "087021c5-6853-4983-940f-65be24736195"
-    },
-    "prefix": "slide_5_stamp",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -3162,9 +3150,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "c43937e9-1168-46a1-afd1-f4b4ac6a79e0"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -3176,9 +3161,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "087021c5-6853-4983-940f-65be24736195"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 89
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "slide_5_stamp",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -3477,7 +3476,7 @@
     "_id": ""
   },
   {
-    "__type__": "c68bdsr1Z1BtpWLCav5lw0q",
+    "__type__": "6a734NQldZG7oRdtn/DEYVY",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -3492,13 +3491,6 @@
     "keys": [
       "blockchainBaccarat.note"
     ],
-    "stampEn": {
-      "__uuid__": "c43937e9-1168-46a1-afd1-f4b4ac6a79e0"
-    },
-    "stampVi": null,
-    "stampSprite": {
-      "__id__": 91
-    },
     "_id": ""
   },
   {

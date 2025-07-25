@@ -6212,11 +6212,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "902e39c8-7d7c-4a51-a308-69b0c251ce4b"
-    },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -6226,9 +6223,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -6248,19 +6243,19 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 115
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "scoreboard_verticle_title",
-    "defaultLocalized": "en",
+    "gameId": 48,
+    "nameImage": "scoreboard_verticle_title",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -6403,7 +6398,7 @@
       "ctor": "Float64Array",
       "array": [
         -335.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -6513,7 +6508,7 @@
       "ctor": "Float64Array",
       "array": [
         -202.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -6623,7 +6618,7 @@
       "ctor": "Float64Array",
       "array": [
         -69.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -6733,7 +6728,7 @@
       "ctor": "Float64Array",
       "array": [
         62,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -6843,7 +6838,7 @@
       "ctor": "Float64Array",
       "array": [
         195.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -6953,7 +6948,7 @@
       "ctor": "Float64Array",
       "array": [
         329.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -7063,7 +7058,7 @@
       "ctor": "Float64Array",
       "array": [
         454.5,
-        -4,
+        -4.5,
         0,
         0,
         0,
@@ -7148,11 +7143,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "d1a23cd7-b8e3-4f42-8a36-278532015f70"
-    },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -7162,25 +7154,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 172
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "titleScoreboard",
-    "defaultLocalized": "en",
+    "gameId": 48,
+    "nameImage": "title_scoreboard",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {

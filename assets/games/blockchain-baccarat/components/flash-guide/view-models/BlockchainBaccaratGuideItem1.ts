@@ -14,7 +14,8 @@ export default class BlockchainBaccaratGuideItem1 extends BlockchainBaccaratGuid
     private setPositionArrow() {
         let position;
         this.arrow.opacity = 0;
-        if (window.i18n.curLang !== "vi") {
+        const longLanguage = ["ja", "vi"];
+        if (!longLanguage.includes(window.i18n.curLang)) {
             position = new cc.Vec2(-320, this.arrow.y);
             this.arrow.position = position;
             this.arrow.runAction(

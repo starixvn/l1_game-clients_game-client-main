@@ -567,7 +567,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 211.5,
+      "width": 502.88,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -619,8 +619,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Phiên Trước:",
-    "_N$string": "Phiên Trước:",
+    "_string": "blockchainBaccarat.last_round",
+    "_N$string": "blockchainBaccarat.last_round",
     "_fontSize": 32,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -693,8 +693,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 92,
-      "height": 21
+      "width": 79,
+      "height": 18
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -712,8 +712,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.55,
+        0.55,
         1
       ]
     },
@@ -731,22 +731,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 18
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "lastround_player",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -761,9 +745,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "cae95769-b192-4408-92db-e53577e5a8c6"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -775,9 +756,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 18
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "player",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -788,7 +783,7 @@
     "asset": {
       "__uuid__": "65ded272-13a1-424f-be73-13644214e428"
     },
-    "fileId": "feEPHoNx5FbL4aoSVVOuvs",
+    "fileId": "68emyl/4JDQIkLV+OptZUE",
     "sync": false
   },
   {
@@ -821,8 +816,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84,
-      "height": 21
+      "width": 151,
+      "height": 28
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -840,8 +835,8 @@
         0,
         0,
         1,
-        1,
-        1,
+        0.55,
+        0.55,
         1
       ]
     },
@@ -859,22 +854,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 22
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "lastround_banker",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -889,9 +868,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "a22ff2d5-5a07-4ed4-b2c4-c623b622e749"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -903,9 +880,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 22
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "banker",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -916,7 +907,7 @@
     "asset": {
       "__uuid__": "65ded272-13a1-424f-be73-13644214e428"
     },
-    "fileId": "e5Lwh4pgJMpqYHu+zN+0+3",
+    "fileId": "b0hswNo8hEfoDyA/5uCV9v",
     "sync": false
   },
   {

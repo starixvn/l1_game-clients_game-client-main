@@ -1791,8 +1791,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48,
-      "height": 24
+      "width": 49,
+      "height": 34
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1829,22 +1829,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 46
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "big",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -1859,9 +1843,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "e5735c64-d49e-4349-9a25-8a470f8bffc5"
-    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -1873,9 +1854,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 46
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "big",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -1916,7 +1911,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 70,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -4199,8 +4194,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 92,
-      "height": 24
+      "width": 97,
+      "height": 34
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4237,22 +4232,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 111
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "small",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -4267,9 +4246,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "53174746-345f-484c-a67e-c3c61e45a467"
-    },
     "_type": 0,
     "_sizeMode": 2,
     "_fillType": 0,
@@ -4281,9 +4257,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": false,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 111
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "small",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -4324,7 +4314,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 56,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -6620,7 +6610,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 63,
+      "width": 64,
       "height": 30
     },
     "_anchorPoint": {
@@ -6658,22 +6648,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 176
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "tie",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -6688,9 +6662,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "6e239868-af7b-463a-9a69-aa8fa23f3940"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -6702,9 +6673,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 176
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "tie",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -6745,7 +6730,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 35,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -9315,7 +9300,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 152,
+      "width": 151,
       "height": 30
     },
     "_anchorPoint": {
@@ -9353,22 +9338,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 249
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "banker",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -9383,9 +9352,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "ea92925e-f0cc-4d2d-a1f4-46f22d851662"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -9397,9 +9363,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 249
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "banker",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -9440,7 +9420,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 69.5,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -12112,9 +12092,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "43a7d4e2-e8cc-419f-958f-a0edb2c18849"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -12126,25 +12103,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 322
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "player",
-    "defaultLocalized": "en",
+    "gameId": 48,
+    "nameImage": "player",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -12185,7 +12160,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 70,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -14820,22 +14795,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 395
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "playerPair",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -14850,9 +14809,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "03fd1ea0-f9d7-4e78-93fd-7ef730de4394"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -14864,9 +14820,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 395
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "player_pair",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -14907,7 +14877,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.5,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {
@@ -17213,22 +17183,6 @@
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 460
-    },
-    "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
-    },
-    "prefix": "bankerPair",
-    "defaultLocalized": "en",
-    "_id": ""
-  },
-  {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
@@ -17243,9 +17197,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "b56070df-642e-4334-af65-dbc69c0b5046"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -17257,9 +17208,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "dbe3299f-2012-4d6a-b647-01467f614c96"
+    "_atlas": null,
+    "_id": ""
+  },
+  {
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 460
     },
+    "_enabled": true,
+    "gameId": 48,
+    "nameImage": "banker_pair",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -17300,7 +17265,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.5,
+      "width": 0,
       "height": 24
     },
     "_anchorPoint": {

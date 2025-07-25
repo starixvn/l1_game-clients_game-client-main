@@ -306,7 +306,7 @@ const data = {
         bust: "バースト",
         stand: "スタンド",
         bet_double: "ダブル",
-        blackjack_pay: "ペイアウトは%{odds}対1",
+        blackjack_pay: "配当 1:%{odds}",
         min: "最小",
         max: "最大値",
         clear2: "クリア",

@@ -1,16 +1,9 @@
-import { Socket } from "socket.io-client";
 import GameUtils from "../../common/GameUtils";
-import { FreeSpinsPromotionEvents } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
 
 const { ccclass, property } = cc._decorator;
-interface RedeemGiftCodeResponse {
-    redeemResult: number;
-    redemptionNotice?: {
-      errorCode?: string;
-    };
-  }
 @ccclass
 export default class GiftCodeRedeemPopup extends CommonDialog {
     @property(cc.EditBox)
@@ -30,13 +23,18 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
 
     private _debounceTimer: any = null;
     private readonly _originalY = 0;
-    private gameName: string;
-    protected socket: Socket;
-  
-    init(socket: Socket, gameName: string) {
-        this.socket = socket;
-        this.gameName = gameName;
-        this.socket && this.socket.on(this.gameName, this.receivedData.bind(this));
+
+    onLoad() {
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.REDEEM_GIFT_CODE_ERROR,
+            (redemptionNotice) => this.onRedeemError(redemptionNotice),
+            this
+        );
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT,
+            () => this.destroySelf(),
+            this
+        );
     }
 
     showDialog() {
@@ -65,21 +63,13 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         return this.node && this.node.isValid;
     }
 
-    receivedData(data: RedeemGiftCodeResponse) {
-        if (!this.isAlive()) {
-            return;
-        }
-        if (data.redeemResult === 1) {
-            this.destroySelf();
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT);
-        } else if (data.redeemResult === -1) {
-            this.redeemButton.interactable = true;
-            this.startRedeemButtonPulse();
-            const notice = data.redemptionNotice;
-            if (notice?.errorCode) {
-                const fallback = this.mapErrorCodeToMessageKey(notice.errorCode);
-                this.showErrorMessage(fallback);
-            }
+    onRedeemError(redemptionNotice: { errorCode: string }) {
+        console.log("onRedeemError", redemptionNotice);
+        this.redeemButton.interactable = true;
+        this.startRedeemButtonPulse();
+        if (redemptionNotice?.errorCode) {
+            const fallback = this.mapErrorCodeToMessageKey(redemptionNotice.errorCode);
+            this.showErrorMessage(fallback);
         }
     }
 
@@ -96,10 +86,6 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
                     .to(0.3, { scale: 1.0 }, { easing: "sineInOut" })
             )
             .start();
-    }
-
-    onDestroy() {
-        this.socket.off(this.gameName, this.receivedData.bind(this));
     }
 
     onDisable() {
@@ -149,7 +135,7 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         this.errorLabel.node.active = false;
         cc.Tween.stopAllByTarget(this.redeemButton.node);
         this.redeemButton.node.scale = 1.2;
-        this.socket?.connected && this.socket.emit("redeem", { giftCode: giftCode });
+        freeSpinsPromotionHandler.redeemGiftCode(giftCode);
     }
 
     onCloseClicked() {
@@ -182,6 +168,10 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
     private destroySelf() {
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
         this.onCloseClicked();
+    }
+
+    onDestroy() {
+        uiManager.removeListenersWithTarget(this);
     }
 
     private mapErrorCodeToMessageKey(errorCode: string): string {

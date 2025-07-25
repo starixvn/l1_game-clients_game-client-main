@@ -20,9 +20,8 @@ import FeatureSlotGameBase from "./FeatureSlotGameBase";
 import SlotGameBaseNoticeHandler from "./handlers/SlotGameBaseNoticeHandler";
 import SlotGameBetHandler from "./handlers/SlotGameBetHandler";
 import SlotGameBonusHandler from "./handlers/SlotGameBonusHandler";
-import SlotGameEndPromotionHandler from "./handlers/SlotGameEndPromotionHandler";
-import SlotGameFreeSpinsBonusHandler from "./handlers/SlotGameFreeSpinsBonusHandler";
-import SlotGameFreeSpinsHandler from "./handlers/SlotGameFreeSpinsHandler";
+import SlotGameFreeSpinBonusPromotionHandler from "./handlers/SlotGameFreeSpinBonusPromotionHandler";
+import SlotGameFreeSpinsBonusUIManager from "./SlotGameFreeSpinsBonusUIManager";
 import SlotGameIngameHandler from "./handlers/SlotGameIngameHandler";
 import SlotGameJackpotHandler from "./handlers/SlotGameJackpotHandler";
 import SlotGameSettlementHandler from "./handlers/SlotGameSettlementHandler";
@@ -138,8 +137,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     protected settlementHandler: SlotGameSettlementHandler;
     protected jackpotHandler: SlotGameJackpotHandler;
     protected bonusHandler: SlotGameBonusHandler;
-    protected freeSpinsHandler: SlotGameFreeSpinsHandler;
-    protected endPromotionHandler: SlotGameEndPromotionHandler;
+    protected freeSpinBonsPromotionHandler: SlotGameFreeSpinBonusPromotionHandler;
     protected jackpotPoolValue = -1;
     public slotGameConfigs: SlotGameBaseConfigs;
     public settleTween: cc.Tween;
@@ -167,7 +165,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
     isSpinnedAction = false;
 
     protected promotionBetLevel: number | null = null;
-    public freeSpinsBonusHandler: SlotGameFreeSpinsBonusHandler;
+    public freeSpinBonusUIManager: SlotGameFreeSpinsBonusUIManager;
 
     public get jackpotEnabled() {
         return this._jackpotEnabled;
@@ -206,8 +204,8 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.initDefaultBetChoices();
         this.userBalanceOriginalScale = this.userProfile.userBalance.node.scale;
         this.winningBetOriginalScale = this.winningBet.node.scale;
-        this.freeSpinsBonusHandler = new SlotGameFreeSpinsBonusHandler(this);
-        uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.freeSpinsBonusHandler.tryAutoSpinDuringFSB, this);
+        this.freeSpinBonusUIManager = new SlotGameFreeSpinsBonusUIManager(this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.SPIN_ON_FSB_PROMOTION, this.freeSpinBonusUIManager.tryAutoSpinDuringFSB, this);
     }
 
     initSlotBoard() {
@@ -377,8 +375,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
         this.jackpotHandler = new SlotGameJackpotHandler(this);
         this.bonusHandler = new SlotGameBonusHandler(this);
         this.betHandler = new SlotGameBetHandler(this);
-        this.freeSpinsHandler = new SlotGameFreeSpinsHandler(this);
-        this.endPromotionHandler = new SlotGameEndPromotionHandler(this);
+        this.freeSpinBonsPromotionHandler = new SlotGameFreeSpinBonusPromotionHandler(this);
 
         this.addHandlers(
             this.umHandler,
@@ -391,8 +388,7 @@ export default class SlotGameBase extends FeatureSlotGameBase {
             this.settlementHandler,
             this.jackpotHandler,
             this.bonusHandler,
-            this.freeSpinsHandler,
-            this.endPromotionHandler
+            this.freeSpinBonsPromotionHandler
         );
     }
 

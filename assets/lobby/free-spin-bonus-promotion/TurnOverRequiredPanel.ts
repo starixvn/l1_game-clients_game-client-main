@@ -1,4 +1,3 @@
-import { Socket } from "socket.io-client";
 import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import { uiManager } from "../../managers/GameUIManager";
 import BaseComponent from "../../common/BaseComponent";
@@ -11,10 +10,6 @@ import { appManager } from "../../managers/AppManager";
 import DraggableItem from "../../common/draggable-layout/view-models/DraggableItem";
 
 const { ccclass, property } = cc._decorator;
-interface ClaimBonusResponse {
-    errorCode?: string;
-    claimedAmount?: number;
-}
 
 @ccclass
 export default class TurnOverRequiredPanel extends BaseComponent {
@@ -32,14 +27,36 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     private minRequiredTurnover = 0;
     private progressPercentage = 0;
     private endTime = 0;
-    private gameName: string;
-    protected socket: Socket;
 
     onLoad() {
         this.schedule(this.updateTimer, 1);
         uiManager.emitterListener(TurnOverRequiredEvents.UPDATE_TURN_OVER_REQUIRED, (data) => this.updateBonusWallet(data), this);
         this.dragTurnOverRequired();
+        uiManager.emitterListener(FreeSpinsPromotionEvents.EXPIRE_CLAIM_BONUS, () => this.hidePanel(), this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.SHOW_NOTICE_ERROR, (errorCode) => this.showNoticeError(errorCode), this);
+        uiManager.emitterListener(
+            FreeSpinsPromotionEvents.CLAIMED_BONUS_SUCCESS,
+            (claimedAmount) => this.showClaimBonusNotification(claimedAmount),
+            this
+        );
     }
+
+    showNoticeError(errorCode: string) {
+        const message = NoticeUtil.getLocalizedErrorMessage(errorCode, { errorCode: errorCode });
+        const noticeData = { text: message };
+        appManager.currentScene?.showNotice(noticeData);
+        const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
+        if (claimBtnCtrl) {
+            claimBtnCtrl.setClaimable(this.progressPercentage >= 100);
+            claimBtnCtrl.startClaimButtonPulse();
+        }
+    }
+
+    showClaimBonusNotification(claimedAmount: number) {
+        this.hidePanel();
+        uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, claimedAmount);
+    }
+
     dragTurnOverRequired() {
         const draggableItem = this.getComponent(DraggableItem);
         if (draggableItem) {
@@ -51,10 +68,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
         }
     }
 
-    init(socket: Socket, gameName: string) {
-        this.socket = socket;
-        this.gameName = gameName;
-        this.socket && this.socket.on(this.gameName, this.receivedData.bind(this));
+    initData() {
         this.updateBonusWallet(turnOverRequiredHandler.toProgress);
     }
 
@@ -67,31 +81,6 @@ export default class TurnOverRequiredPanel extends BaseComponent {
 
         this.updateProgressUI();
         this.updateTimer();
-    }
-
-    receivedData(data: ClaimBonusResponse) {
-        if (!this.isAlive()) {
-            return;
-        }
-        const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
-        if (data.errorCode) {
-            if (data.errorCode === "SB3023") {
-                this.hidePanel();
-            }
-            const message = NoticeUtil.getLocalizedErrorMessage(data.errorCode, { errorCode: data.errorCode });
-            const noticeData = { text: message };
-            appManager.currentScene?.showNotice(noticeData);
-            if (claimBtnCtrl) {
-                claimBtnCtrl.setClaimable(this.progressPercentage >= 100);
-                claimBtnCtrl.startClaimButtonPulse();
-            }
-            return;
-        }
-        const { claimedAmount } = data;
-        if (claimedAmount) {
-            this.hidePanel();
-            uiManager.emitter.emit(TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION, claimedAmount);
-        }
     }
 
     public updateTotalWinAndTurnover(totalWin: number, turnover: number) {
@@ -145,16 +134,13 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     public onClickClaim() {
-        if (!this.socket?.connected) {
-            return;
-        }
         const claimBtnCtrl = this.claimButton.getComponent(SimpleClaimButton);
         if (claimBtnCtrl) {
             claimBtnCtrl.setClaimable(false);
             claimBtnCtrl.stopClaimButtonPulse();
         }
         uiManager.emitter.emit(FreeSpinsPromotionEvents.COLLAPSE_MENU);
-        this.socket.emit("claim-bonus-win");
+        freeSpinsPromotionHandler.claimBonusWin();
     }
 
     onClickInfoIcon() {
@@ -164,7 +150,6 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     onDestroy() {
-        this.socket.on(this.gameName, this.receivedData.bind(this));
         uiManager.removeListenersWithTarget(this);
     }
 

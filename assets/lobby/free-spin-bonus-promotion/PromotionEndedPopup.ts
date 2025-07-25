@@ -13,12 +13,12 @@ export default class PromotionEndedPopup extends cc.Component {
     @property(cc.Label) labelSubMessage: cc.Label = null;
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Button) closeButton: cc.Button = null;
-
+    private static hasShown = false;
     public show() {
-        if (!freeSpinsPromotionHandler.finishPromotion?.endPromotion) {
+        if (PromotionEndedPopup.hasShown || !freeSpinsPromotionHandler.finishPromotion?.endPromotion) {
             return;
         }
-
+        PromotionEndedPopup.hasShown = true;
         const { totalWin } = freeSpinsPromotionHandler.finishPromotion;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
@@ -61,6 +61,7 @@ export default class PromotionEndedPopup extends cc.Component {
             .to(0.4, { scale: 0, opacity: 0 }, { easing: "backIn" })
             .call(() => {
                 this.node.active = false;
+                PromotionEndedPopup.hasShown = false;
             })
             .start();
     }

@@ -1,17 +1,16 @@
-import GameUtils from "../../../common/GameUtils";
-import GiftCodeSkeleton from "../../../common/GiftCodeSkeleton";
-import ClaimBonusNotificationPopup from "../../../lobby/free-spin-bonus-promotion/ClaimBonusNotificationPopup";
-import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
-import GiftCodeRedeemPopup from "../../../lobby/free-spin-bonus-promotion/GiftCodeRedeemPopup";
-import PromotionDetailsPanel from "../../../lobby/free-spin-bonus-promotion/PromotionDetailsPanel";
-import PromotionEndedPopup from "../../../lobby/free-spin-bonus-promotion/PromotionEndedPopup";
-import { TurnOverRequiredEvents } from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
-import TurnOverRequiredPanel from "../../../lobby/free-spin-bonus-promotion/TurnOverRequiredPanel";
-import { uiManager } from "../../../managers/GameUIManager";
-import { ClassicSlotSound } from "../ClassicSlotSound";
-import FreeSpinsPromotionMessage from "../FreeSpinsPromotionMessage";
+import GameUtils from "../../common/GameUtils";
+import GiftCodeSkeleton from "../../common/GiftCodeSkeleton";
+import ClaimBonusNotificationPopup from "../../lobby/free-spin-bonus-promotion/ClaimBonusNotificationPopup";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import PromotionDetailsPanel from "../../lobby/free-spin-bonus-promotion/PromotionDetailsPanel";
+import PromotionEndedPopup from "../../lobby/free-spin-bonus-promotion/PromotionEndedPopup";
+import { TurnOverRequiredEvents } from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
+import TurnOverRequiredPanel from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredPanel";
+import { uiManager } from "../../managers/GameUIManager";
+import { ClassicSlotSound } from "./ClassicSlotSound";
+import FreeSpinsPromotionMessage from "./FreeSpinsPromotionMessage";
 
-export default class SlotGameFreeSpinsBonusHandler {
+export default class SlotGameFreeSpinsBonusUIManager {
     private readonly game: any;
     private readonly DEFAULT_POPUP_PARENT_PATH = "Canvas/main/BoardGroup/other/number_col_left";
     public isMessageContentShown = false;
@@ -30,6 +29,7 @@ export default class SlotGameFreeSpinsBonusHandler {
 
     registerEvents() {
         freeSpinsPromotionHandler.setFallbackGameOffers({ name: this.game?.gameName, gameId: this.game?.gameId });
+        freeSpinsPromotionHandler.initSocket(this.game?.socket);
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE, () => this.openGiftCodeIcon(), this.game);
 
         uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_GIFT_CODE_REDEEM_POPUP, () => this.openRedeemPopup(), this.game);
@@ -40,11 +40,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
 
-        uiManager.emitterListener(
-            FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP,
-            () => this.openEndedPopup(),
-            this.game
-        );
+        uiManager.emitterListener(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP, () => this.openEndedPopup(), this.game);
 
         uiManager.emitterListener(
             FreeSpinsPromotionEvents.OPEN_REDEEM_TRANSITION_EFFECT,
@@ -52,11 +48,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.game
         );
 
-        uiManager.emitterListener(
-            TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED,
-            () => this.showTurnOverRequiredPanel(),
-            this.game
-        );
+        uiManager.emitterListener(TurnOverRequiredEvents.OPEN_TURN_OVER_REQUIRED, () => this.showTurnOverRequiredPanel(), this.game);
 
         uiManager.emitterListener(
             TurnOverRequiredEvents.OPEN_CLAIM_BONUS_NOTIFICATION,
@@ -86,7 +78,7 @@ export default class SlotGameFreeSpinsBonusHandler {
             this.DEFAULT_POPUP_PARENT_PATH,
             (node) => {
                 const popupComp = node.getComponent(TurnOverRequiredPanel);
-                popupComp.init(this.game?.socket, this.game?.gameName);
+                popupComp.initData();
             }
         );
     }
@@ -202,10 +194,7 @@ export default class SlotGameFreeSpinsBonusHandler {
     }
 
     async showGiftCodePopup() {
-        await this.addPromotionToDialog("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem", (node) => {
-            const popupComp = node.getComponent(GiftCodeRedeemPopup);
-            popupComp.init(this.game?.socket, this.game?.gameName);
-        });
+        await this.addPromotionToDialog("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
     }
 
     public async displayPromotionPanel(

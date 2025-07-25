@@ -6,6 +6,7 @@ import EncryptUtils from "../../common/utils/EncryptUtils";
 import { uiManager } from "../../managers/GameUIManager";
 import { StorageManager } from "../../managers/StorageManager";
 import configs = require("../../configs/Configs");
+import { Socket } from "socket.io-client";
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",
@@ -19,7 +20,11 @@ export const FreeSpinsPromotionEvents = {
     DESTROY_GIFT_CODE_NODE: "DESTROY_GIFT_CODE_NODE",
     CLOSE_PROMOTION_DETAILS_PANEL: "CLOSE_PROMOTION_DETAILS_PANEL",
     UPDATE_FSB_COUNT: "UPDATE_FSB_COUNT",
-    UPDATE_TOTAL_WIN: "UPDATE_TOTAL_WIN"
+    UPDATE_TOTAL_WIN: "UPDATE_TOTAL_WIN",
+    EXPIRE_CLAIM_BONUS: "EXPIRE_CLAIM_BONUS",
+    SHOW_NOTICE_ERROR: "SHOW_NOTICE_ERROR",
+    CLAIMED_BONUS_SUCCESS: "CLAIMED_BONUS_SUCCESS",
+    REDEEM_GIFT_CODE_ERROR: "REDEEM_GIFT_CODE_ERROR"
 };
 
 const endpointConstants = {
@@ -66,7 +71,12 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     public resumedFSBonus = false;
     public hasServerFinishPromotion = false;
     public fsbConsumedThisRound = false;
-    
+    protected socket: Socket;
+
+    initSocket(socket: Socket) {
+        this.socket = socket;
+    }
+
     public static getInstance(): FreeSpinsPromotionHandler {
         if (!this.instance) {
             this.instance = new FreeSpinsPromotionHandler();
@@ -148,6 +158,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.activeTransitionEffect = false;
         this.activeDetailPromo = false;
         this.promotionData = null;
+        this.hasServerFinishPromotion = false;
+        this.fsbConsumedThisRound = false;
     }
 
     /** ========== PROMOTION FLOW ========== */
@@ -321,6 +333,18 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     isEligibleForTurnOverPanel(){
         return this.finishPromotion?.totalWin > 0 && this.currentSpinCount === 0;
+    }
+
+    claimBonusWin() {
+        if (this.socket) {
+            this.socket.emit("claim-bonus-win");
+        }
+    }
+
+    redeemGiftCode(giftCode: string) {
+        if (this.socket) {
+            this.socket.emit("redeem", { giftCode: giftCode });
+        }
     }
 }
 

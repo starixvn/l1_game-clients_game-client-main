@@ -1,5 +1,5 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
-export const phrases = {"gameNames": {124: "哪吒の反乱"}};
+export const phrases = {"gameNames": {124: "Ne Zha's Rebellion"}};
 
 reloadLanguageData("ja", phrases);

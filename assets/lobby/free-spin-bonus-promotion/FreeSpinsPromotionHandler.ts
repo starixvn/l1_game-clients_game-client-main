@@ -68,7 +68,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     private _promotionIdFromTO = "";
     private readonly fallbackGameOffers: { name: string; gameId: number }[] = [];
     public promotionData: PromotionData;
-    public resumedFSBonus = false;
+    public resumedFSBPromotion = false;
     public hasServerFinishPromotion = false;
     public fsbConsumedThisRound = false;
     protected socket: Socket;
@@ -154,7 +154,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.finishPromotion = null;
         this.receivedPromotionInGame = false;
         this.skipGiftCode = false;
-        this.resumedFSBonus = false;
+        this.resumedFSBPromotion = false;
         this.activeTransitionEffect = false;
         this.activeDetailPromo = false;
         this.promotionData = null;
@@ -281,7 +281,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     public isPromotionInProgress(): boolean {
-        return this.currentSpinCount >= 0 && !this.hasServerFinishPromotion && !this.resumedFSBonus;
+        return this.currentSpinCount >= 0 && !this.hasServerFinishPromotion && !this.resumedFSBPromotion;
     }
 
     public markServerConfirmedEnd() {
@@ -320,8 +320,8 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         }
     }
 
-    shouldSkipUpdateTotalWin() {
-        return !this.fsbConsumedThisRound && !this.resumedFSBonus;
+    isUpdateTotalWin() {
+        return this.fsbConsumedThisRound || this.resumedFSBPromotion;
     }
 
     isEligibleForTurnOverPanel() {

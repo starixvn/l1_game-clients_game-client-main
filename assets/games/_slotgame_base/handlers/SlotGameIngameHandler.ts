@@ -23,7 +23,7 @@ export default class SlotGameIngameHandler implements DataHandler {
             this.main.stakeButton && (this.main.stakeButton.interactable = false);
             this.main.lineButtonStatus(false);
             this.main.autoSpinToggle && (this.main.autoSpinToggle.interactable = false);
-            freeSpinsPromotionHandler.resumedFSBonus = !!promotionId?.trim();
+            freeSpinsPromotionHandler.resumedFSBPromotion = !!promotionId?.trim();
         }
     }
 }

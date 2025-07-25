@@ -135,7 +135,7 @@ export default class SlotGameFreeSpinsBonusUIManager {
         );
     }
     private shouldDisplayMessage(): boolean {
-        return this.game.isFreeSpin() && !freeSpinsPromotionHandler.resumedFSBonus;
+        return this.game.isFreeSpin() && !freeSpinsPromotionHandler.resumedFSBPromotion;
     }
 
     private displayFreeSpinMessage(): void {

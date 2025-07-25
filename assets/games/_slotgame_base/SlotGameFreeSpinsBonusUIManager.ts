@@ -119,8 +119,8 @@ export default class SlotGameFreeSpinsBonusUIManager {
         if (!promotionInfo?.promotion?.isClaimed) {
             return;
         }
-        const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 900 : 0;
-        await this.delay(delayTime);
+        const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 0.9 : 0;
+        await GameUtils.delayTime(delayTime);
         await this.displayPromotionPanel(
             "PromotionDetailsPanel",
             "free-spins-promotion/views/promotion-details-panel",
@@ -143,9 +143,6 @@ export default class SlotGameFreeSpinsBonusUIManager {
             this.isMessageContentShown = true;
             this.game.freeSpinsPromotionMessage?.showMessageContent();
         }
-    }
-    private delay(ms: number): Promise<void> {
-        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
     private animatePopupAppearance(node: cc.Node): void {

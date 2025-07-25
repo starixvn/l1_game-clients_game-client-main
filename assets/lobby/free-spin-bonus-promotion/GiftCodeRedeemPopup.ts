@@ -59,12 +59,8 @@ export default class GiftCodeRedeemPopup extends CommonDialog {
         this.inputBox.node.on("editing-did-ended", this.onInputFinalized, this);
         this.startRedeemButtonPulse();
     }
-    public isAlive(): boolean {
-        return this.node && this.node.isValid;
-    }
 
     onRedeemError(redemptionNotice: { errorCode: string }) {
-        console.log("onRedeemError", redemptionNotice);
         this.redeemButton.interactable = true;
         this.startRedeemButtonPulse();
         if (redemptionNotice?.errorCode) {

@@ -106,7 +106,6 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
             StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: true });
         }
         super.closeDialog(enableSound);
-        LobbyDialogManager.getInstance().onCloseDialog();
         freeSpinsPromotionHandler.closePromoPopup();
     }
 

@@ -99,6 +99,9 @@ export default class SlotGameFreeSpinsBonusUIManager {
     }
 
     async openEndedPopup() {
+        if (PromotionEndedPopup.hasShown) {
+            return;
+        }
         await this.addPromotionToDialog("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
             const popupComp = node.getComponent(PromotionEndedPopup);
             popupComp?.show?.();

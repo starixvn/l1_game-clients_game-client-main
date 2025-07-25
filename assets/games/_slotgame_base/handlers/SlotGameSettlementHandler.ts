@@ -1,5 +1,6 @@
 import GameUtils from "../../../common/GameUtils";
-import { freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../../managers/GameUIManager";
 import DataHandler from "../../_base/handlers/DataHandler";
 import SlotGameBase, { LineData } from "../SlotGameBase";
 import { SlotNotification } from "../SlotGameBottomMessage";
@@ -115,7 +116,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
         }
 
         this.main.setTotalFreeSpins(totalOfFreeSpins);
-        this.handlePromotionFSBUpdate(betWin, freeSpins.count);
+        this.handlePromotionFSBUpdate(betWin);
         if (totalOfFreeSpins === 0) {
             freeSpinsPromotionHandler.resumedFSBonus = false;
         }
@@ -131,13 +132,13 @@ export default class SlotGameSettlementHandler implements DataHandler {
         this.handlePayline(jackpot, betWin, winningLines, bigWin, freeSpins);
     }
 
-    private handlePromotionFSBUpdate(betWin: number, freeSpinsCount: number) {
+    private handlePromotionFSBUpdate(betWin: number) {
         if (freeSpinsPromotionHandler.shouldSkipUpdateTotalWin()) {
             return;
         }
 
-        freeSpinsPromotionHandler.updateTotalWin(betWin);
-        if (freeSpinsCount === 0 && this.main.totalFreeSpins === 0) {
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.UPDATE_TOTAL_WIN, betWin);
+        if (this.main.totalFreeSpins === 0) {
             freeSpinsPromotionHandler.commitFSB();
         }
     }

@@ -13,11 +13,8 @@ export default class PromotionEndedPopup extends cc.Component {
     @property(cc.Label) labelSubMessage: cc.Label = null;
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Button) closeButton: cc.Button = null;
-    private static hasShown = false;
+    public static hasShown = false;
     public show() {
-        if (PromotionEndedPopup.hasShown || !freeSpinsPromotionHandler.finishPromotion?.endPromotion) {
-            return;
-        }
         PromotionEndedPopup.hasShown = true;
         const { totalWin } = freeSpinsPromotionHandler.finishPromotion;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);

@@ -199,7 +199,7 @@ export default class MainSplash extends cc.Component {
         try {
             this.updateProgress(0);
             const latestGameId = sessionManager.getInRoomGameId() || appManager.directGameId;
-            const gameId = appManager.ssoGameId ?? latestGameId;
+            const gameId = appManager.ssoGameId > 0 ? appManager.ssoGameId : latestGameId;
 
             if (gameId > 0 && !isMiniGameByGameId(gameId)) {
                 cc.log("Main Splash : loadGameDirectly ", gameId);

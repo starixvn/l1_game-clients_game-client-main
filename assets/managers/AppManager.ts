@@ -9,9 +9,10 @@ import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
 import EncryptUtils from "../common/utils/EncryptUtils";
 import UrlParamsService from "../common/utils/UrlParamsService";
+import { freeSpinsPromotionHandler } from "../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { turnOverRequiredHandler } from "../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 import { getLobbyConfigs } from "../lobby/main/view-models/LobbyManager";
 import { lobbyResourceManager } from "../lobby/main/view-models/LobbyResourceManager";
-import { freeSpinsPromotionHandler } from "../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
 import PromotionNotificationsHandler from "../lobby/promotions/PromotionNotificationsHandler";
 import { Promotions } from "../lobby/promotions/Promotions";
 import { delayTime } from "../utils";
@@ -20,7 +21,6 @@ import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
 import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
-import { turnOverRequiredHandler } from "../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 
 const sentryLogger = logger();
 enum GameId {
@@ -75,8 +75,11 @@ class AppManager {
 
     init() {
         this.urlParams = new URLSearchParams(window.location.search);
-        this.urlParams.has("token") && sessionManager.removeInRoomGameId();
-        this.ssoGameId = this.urlParams.has("token") ? +this.urlParams.get("gameId") : undefined;
+        const ssoGameId = this.urlParams.get("gameId") ?? GameId.UNKNOWN;
+        if (this.urlParams.has("token") && +ssoGameId > 0) {
+            sessionManager.removeInRoomGameId();
+            this.ssoGameId = +ssoGameId;
+        }
         cc.log("AppManager init ", this.ssoGameId);
         sentryLogger.start();
         this.initLanguage();

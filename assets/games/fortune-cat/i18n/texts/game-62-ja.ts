@@ -1,5 +1,5 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
-export const phrases = {"gameNames": {62: "招き猫"}};
+export const phrases = { "gameNames": { 62: "Fortune Cat" } };
 
 reloadLanguageData("ja", phrases);

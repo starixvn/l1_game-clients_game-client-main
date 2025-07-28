@@ -514,6 +514,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -560,7 +561,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 140,
       "height": 52.92
     },
     "_anchorPoint": {
@@ -654,6 +655,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -794,6 +796,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -934,6 +937,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1074,6 +1078,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1214,6 +1219,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1354,6 +1360,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1494,6 +1501,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1634,6 +1642,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1777,6 +1786,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -1964,6 +1974,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -2124,6 +2135,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -2264,6 +2276,7 @@
     },
     "_enabled": true,
     "overrideFonts": [],
+    "enableCacheMode": false,
     "_id": ""
   },
   {
@@ -2473,6 +2486,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": null,
     "mainFrame": null,
     "gameName": null,
@@ -2486,6 +2500,10 @@
       "__id__": 7
     },
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "animalSprites": [
       {
         "__uuid__": "a202124c-2093-40c7-beb5-b9a58545659f"

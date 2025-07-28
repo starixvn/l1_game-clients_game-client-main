@@ -65,74 +65,91 @@ export default class SlotGameFreeSpinsBonusUIManager {
     }
 
     async openClaimBonusNotificationPopup(claimBonus: number) {
-        await this.addPromotionToDialog("ClaimBonusNotificationPopup", "free-spins-promotion/views/claim-bonus-notification", (node) => {
-            const popupComp = node.getComponent(ClaimBonusNotificationPopup);
-            popupComp.show(claimBonus);
-        });
+        try {
+            await this.addPromotionToDialog(
+                "ClaimBonusNotificationPopup",
+                "free-spins-promotion/views/claim-bonus-notification",
+                (node) => {
+                    const popupComp = node.getComponent(ClaimBonusNotificationPopup);
+                    popupComp.show(claimBonus);
+                }
+            );
+        } catch {}
     }
 
     async showTurnOverRequiredPanel() {
-        await this.displayPromotionPanel(
-            "TurnOverRequiredPanel",
-            "free-spins-promotion/views/turn-over-required-panel",
-            this.DEFAULT_POPUP_PARENT_PATH,
-            (node) => {
-                const popupComp = node.getComponent(TurnOverRequiredPanel);
-                popupComp.initData();
-            }
-        );
+        try {
+            await this.displayPromotionPanel(
+                "TurnOverRequiredPanel",
+                "free-spins-promotion/views/turn-over-required-panel",
+                this.DEFAULT_POPUP_PARENT_PATH,
+                (node) => {
+                    const popupComp = node.getComponent(TurnOverRequiredPanel);
+                    popupComp.initData();
+                }
+            );
+        } catch {}
     }
 
     async openGiftCodeIcon() {
-        await this.displayPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
+        try {
+            await this.displayPromotionPanel("GiftCodePopup", "free-spins-promotion/views/gift-code", this.DEFAULT_POPUP_PARENT_PATH);
+        } catch {}
     }
 
     async openRedeemPopup() {
-        this.game?.expandableMenu?.collapseMenu();
-        if (this.game?.isSpinnedAction || this.game?.stillAutoSpin()) {
-            return;
-        }
-        const transition = await this.playGiftCodeTransitionEffect();
-        if (cc.isValid(transition)) {
-            transition.destroy();
-        }
+        try {
+            this.game?.expandableMenu?.collapseMenu();
+            if (this.game?.isSpinnedAction || this.game?.stillAutoSpin()) {
+                return;
+            }
+
+            const transition = await this.playGiftCodeTransitionEffect();
+            if (cc.isValid(transition)) {
+                transition.destroy();
+            }
+        } catch {}
     }
 
     async openEndedPopup() {
-        if (PromotionEndedPopup.hasShown) {
-            return;
-        }
-        await this.addPromotionToDialog("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
-            const popupComp = node.getComponent(PromotionEndedPopup);
-            popupComp?.show?.();
-            this.isMessageContentShown = false;
-        });
+        try {
+            if (PromotionEndedPopup.hasShown) {
+                return;
+            }
+            await this.addPromotionToDialog("PromotionEndedPopup", "free-spins-promotion/views/promotion-ended-popup", (node) => {
+                const popupComp = node.getComponent(PromotionEndedPopup);
+                popupComp?.show?.();
+                this.isMessageContentShown = false;
+            });
+        } catch {}
     }
 
     async openPromotionDetailsPanel(isAutoSpin: boolean, triggerAfterFreeSpinInGame = false) {
-        if (this.shouldDisplayMessage()) {
-            this.displayFreeSpinMessage();
-            return;
-        }
-
-        const promotionInfo = freeSpinsPromotionHandler.promotionData;
-        if (!promotionInfo?.promotion?.isClaimed) {
-            return;
-        }
-        const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 0.9 : 0;
-        await GameUtils.delayTime(delayTime);
-        await this.displayPromotionPanel(
-            "PromotionDetailsPanel",
-            "free-spins-promotion/views/promotion-details-panel",
-            this.DEFAULT_POPUP_PARENT_PATH,
-            (node) => {
-                if (isAutoSpin) {
-                    this.animatePopupAppearance(node);
-                }
-                const panelComp = node.getComponent(PromotionDetailsPanel);
-                panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
+        try {
+            if (this.shouldDisplayMessage()) {
+                this.displayFreeSpinMessage();
+                return;
             }
-        );
+
+            const promotionInfo = freeSpinsPromotionHandler.promotionData;
+            if (!promotionInfo?.promotion?.isClaimed) {
+                return;
+            }
+            const delayTime = triggerAfterFreeSpinInGame ? 0 : isAutoSpin ? 0.9 : 0;
+            await GameUtils.delayTime(delayTime);
+            await this.displayPromotionPanel(
+                "PromotionDetailsPanel",
+                "free-spins-promotion/views/promotion-details-panel",
+                this.DEFAULT_POPUP_PARENT_PATH,
+                (node) => {
+                    if (isAutoSpin) {
+                        this.animatePopupAppearance(node);
+                    }
+                    const panelComp = node.getComponent(PromotionDetailsPanel);
+                    panelComp?.initPromotion?.(promotionInfo, isAutoSpin);
+                }
+            );
+        } catch {}
     }
     private shouldDisplayMessage(): boolean {
         return this.game.isFreeSpin() && !freeSpinsPromotionHandler.resumedFSBPromotion;
@@ -155,49 +172,57 @@ export default class SlotGameFreeSpinsBonusUIManager {
     }
 
     async initializePromotionMessage() {
-        const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
-        if (existing) {
-            this.game.freeSpinsPromotionMessage = existing.getComponent(FreeSpinsPromotionMessage);
-            return;
-        }
+        try {
+            const existing = cc.find("Canvas/FreeSpinsPromotionMessage");
+            if (existing) {
+                this.game.freeSpinsPromotionMessage = existing.getComponent(FreeSpinsPromotionMessage);
+                return;
+            }
 
-        const prefab = await GameUtils.loadResource("free-spins-promotion/views/free-spins-promotion-message");
-        const node = cc.instantiate(prefab);
-        node.active = false;
-        node.name = "FreeSpinsPromotionMessage";
-        node.parent = cc.find("Canvas");
-        this.game.freeSpinsPromotionMessage = node.getComponent(FreeSpinsPromotionMessage);
+            const prefab = await GameUtils.loadResource("free-spins-promotion/views/free-spins-promotion-message");
+            const node = cc.instantiate(prefab);
+            node.active = false;
+            node.name = "FreeSpinsPromotionMessage";
+            node.parent = cc.find("Canvas");
+            this.game.freeSpinsPromotionMessage = node.getComponent(FreeSpinsPromotionMessage);
+        } catch {}
     }
 
     async playGiftCodeTransitionEffect() {
-        const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-gift-code-transition");
-        if (!effectPrefab) {
-            return null;
-        }
-        this.game.playSound?.(ClassicSlotSound.TRANSITION);
-        const effect = cc.instantiate(effectPrefab);
-        const callbackAnim = effect.getComponent(GiftCodeSkeleton);
-        callbackAnim.onShowPopup = () => this.showGiftCodePopup();
-        await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
-        return effect;
+        try {
+            const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-gift-code-transition");
+            if (!effectPrefab) {
+                return null;
+            }
+            this.game.playSound?.(ClassicSlotSound.TRANSITION);
+            const effect = cc.instantiate(effectPrefab);
+            const callbackAnim = effect.getComponent(GiftCodeSkeleton);
+            callbackAnim.onShowPopup = () => this.showGiftCodePopup();
+            await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
+            return effect;
+        } catch {}
     }
 
     async playRedeemTransitionEffect() {
-        const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-redeem-transition");
-        if (!effectPrefab) {
-            return null;
-        }
-        this.game.playSound?.(ClassicSlotSound.TRANSITION);
-        const effect = cc.instantiate(effectPrefab);
-        const callbackAnim = effect.getComponent(GiftCodeSkeleton);
-        callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
-        await GameUtils.asyncExecute(this.game?.node ?? cc.find("Canvas"), this.game.showEffect(effect));
-        freeSpinsPromotionHandler.activeTransitionEffect = false;
-        return effect;
+        try {
+            const effectPrefab = await GameUtils.loadResource("free-spins-promotion/views/effect-redeem-transition");
+            if (!effectPrefab) {
+                return null;
+            }
+            this.game.playSound?.(ClassicSlotSound.TRANSITION);
+            const effect = cc.instantiate(effectPrefab);
+            const callbackAnim = effect.getComponent(GiftCodeSkeleton);
+            callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
+            await GameUtils.asyncExecute(this.game?.node ?? cc.find("Canvas"), this.game.showEffect(effect));
+            freeSpinsPromotionHandler.activeTransitionEffect = false;
+            return effect;
+        } catch {}
     }
 
     async showGiftCodePopup() {
-        await this.addPromotionToDialog("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
+        try {
+            await this.addPromotionToDialog("GiftCodeRedeemPopup", "free-spins-promotion/views/gift-code-redeem");
+        } catch {}
     }
 
     public async displayPromotionPanel(
@@ -206,44 +231,46 @@ export default class SlotGameFreeSpinsBonusUIManager {
         alignToNodePath: string | null = null,
         afterLoadCallback?: (node: cc.Node) => void
     ) {
-        const refNode = alignToNodePath ? cc.find(alignToNodePath) : null;
+        try {
+            const refNode = alignToNodePath ? cc.find(alignToNodePath) : null;
 
-        if (alignToNodePath && !refNode) {
-            cc.warn(`[UI] Không tìm thấy node tại path: ${alignToNodePath}`);
-            return;
-        }
-        const parent = alignToNodePath ? cc.find("Canvas/main") : cc.find("Canvas");
-        if (!parent) {
-            cc.error("[UI] Không tìm thấy parent hợp lệ (Canvas hoặc Canvas/main).");
-            return;
-        }
+            if (alignToNodePath && !refNode) {
+                cc.log(`[UI] Không tìm thấy node tại path: ${alignToNodePath}`);
+                return;
+            }
+            const parent = alignToNodePath ? cc.find("Canvas/main") : cc.find("Canvas");
+            if (!parent) {
+                cc.log("[UI] Không tìm thấy parent hợp lệ (Canvas hoặc Canvas/main).");
+                return;
+            }
 
-        if (parent.getChildByName(name)) {
-            console.log(`[UI] Popup "${name}" đã tồn tại`);
-            return;
-        }
-        const prefab = await GameUtils.loadResource(path);
-        const node = cc.instantiate(prefab);
-        node.name = name;
-        node.parent = parent;
-        const indexBelowOverlay = 3;
-        node.setSiblingIndex(parent.children.length - indexBelowOverlay);
-        if (refNode) {
-            const refBox = refNode.getBoundingBoxToWorld();
-            const panelBox = node.getBoundingBoxToWorld();
+            if (parent.getChildByName(name)) {
+                cc.log(`[UI] Panel ${name} đã tồn tại trong parent.`);
+                return;
+            }
+            const prefab = await GameUtils.loadResource(path);
+            const node = cc.instantiate(prefab);
+            node.name = name;
+            node.parent = parent;
+            const indexBelowOverlay = 3;
+            node.setSiblingIndex(parent.children.length - indexBelowOverlay);
+            if (refNode) {
+                const refBox = refNode.getBoundingBoxToWorld();
+                const panelBox = node.getBoundingBoxToWorld();
 
-            const panelWidth = panelBox.width;
-            const spacingFromRef = -20; // khoảng cách giữa refNode và panel
-            const worldTargetX = refBox.xMin - spacingFromRef - panelWidth / 2;
-            const worldTargetY = refBox.yMin + refBox.height / 2;
+                const panelWidth = panelBox.width;
+                const spacingFromRef = -20; // khoảng cách giữa refNode và panel
+                const worldTargetX = refBox.xMin - spacingFromRef - panelWidth / 2;
+                const worldTargetY = refBox.yMin + refBox.height / 2;
 
-            const localPos = parent.convertToNodeSpaceAR(cc.v2(worldTargetX, worldTargetY));
-            node.setPosition(localPos);
-        } else {
-            node.setPosition(0, 0);
-        }
+                const localPos = parent.convertToNodeSpaceAR(cc.v2(worldTargetX, worldTargetY));
+                node.setPosition(localPos);
+            } else {
+                node.setPosition(0, 0);
+            }
 
-        afterLoadCallback?.(node);
+            afterLoadCallback?.(node);
+        } catch {}
     }
 
     public async addPromotionToDialog(name: string, path: string, afterLoadCallback?: (node: cc.Node) => void) {
@@ -269,8 +296,6 @@ export default class SlotGameFreeSpinsBonusUIManager {
             this.game.currentMiniPanel.addDialog(node);
 
             afterLoadCallback?.(node);
-        } catch (error) {
-            console.error(`Error loading FreeSpinsPromotionPopup: ${error}`);
-        }
+        } catch {}
     }
 }

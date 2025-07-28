@@ -200,7 +200,9 @@ export default class SlotGameFreeSpinsBonusUIManager {
             callbackAnim.onShowPopup = () => this.showGiftCodePopup();
             await GameUtils.asyncExecute(this.game.node, this.game.showEffect(effect));
             return effect;
-        } catch {}
+        } catch {
+            return null;
+        }
     }
 
     async playRedeemTransitionEffect() {
@@ -216,7 +218,9 @@ export default class SlotGameFreeSpinsBonusUIManager {
             await GameUtils.asyncExecute(this.game?.node ?? cc.find("Canvas"), this.game.showEffect(effect));
             freeSpinsPromotionHandler.activeTransitionEffect = false;
             return effect;
-        } catch {}
+        } catch {
+            return null;
+        }
     }
 
     async showGiftCodePopup() {

@@ -232,7 +232,7 @@ export const phrases = {
         win: "勝利",
         you_reach_max_win: "最大勝利額に達しました"
     },
-    lobbyNames: { 77: "チャイニーズブラックジャック" },
+    lobbyNames: { 77: "チャイニーズ \nブラックジャック" },
     gameNames: { 77: "チャイニーズブラックジャック" }
 };
 

@@ -138,9 +138,12 @@ export default class SlotGameFreeSpinsBonusUIManager {
         return this.game.isFreeSpin() && !freeSpinsPromotionHandler.resumedFSBPromotion;
     }
 
-    private displayFreeSpinMessage(): void {
+    private async displayFreeSpinMessage(): Promise<void> {
         if (!this.isMessageContentShown) {
             this.isMessageContentShown = true;
+            if (!this.game.freeSpinsPromotionMessage) {
+                await this.initializePromotionMessage();
+            }
             this.game.freeSpinsPromotionMessage?.showMessageContent();
         }
     }

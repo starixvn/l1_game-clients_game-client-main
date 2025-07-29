@@ -40,6 +40,7 @@ export default class LocalizedFontSize extends cc.Component {
     getFontSizeByLanguage(): any {
         const lang = window.i18n.curLang;
         const overrideSize = this.overrideSizes.find((data) => data.language === lang);
-        return overrideSize?.size || this.fontBases[lang] || this.fontBases["en"];
+        const enOverrideSize = this.overrideSizes.find((data) => data.language === "en");
+        return overrideSize?.size || enOverrideSize?.size || this.fontBases[lang] || this.fontBases["en"];
     }
 }

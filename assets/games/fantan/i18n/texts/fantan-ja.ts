@@ -2,7 +2,7 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     gameNames: {
-        60: "ファンタン"
+        60: "Fan Tan"
     },
     fantan: {
         chun123: "1 2 3 Chun",
@@ -14,7 +14,7 @@ export const phrases = {
         fan2: "2 Fan",
         fan3: "3 Fan",
         fan4: "4 Fan",
-        "gameNames.60": "ファンタン",
+        "gameNames.60": "Fan Tan",
         kwok12: "1 2 Kwok",
         kwok23: "2 3 Kwok",
         kwok34: "3 4 Kwok",

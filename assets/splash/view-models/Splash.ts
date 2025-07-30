@@ -221,10 +221,10 @@ export default class Splash extends cc.Component {
             SessionManager.storeOperator(operator);
         }
 
-        if (gameId) {
+        if (appManager.isNewSSO) {
             SessionManager.clearStorageMicroSite(true);
-            SessionManager.storeMicrositeGameId(gameId);
         }
+        SessionManager.storeMicrositeGameId(gameId);
         const iframe = cc.instantiate(this.prfMicrositeGame);
         this.nodeMicrositeGame.addChild(iframe);
     }

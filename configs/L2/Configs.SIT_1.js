@@ -18,5 +18,5 @@ window.envConfig = {
     SGConnectSubDomain: "l2-connect-sit",
     AppDownloadSubDomain: "",
     clientSubDomain: "l2client",
-    subPromotionDomain: "l2sitpromotion"
+    subPromotionDomain: "l2promotion"
 };

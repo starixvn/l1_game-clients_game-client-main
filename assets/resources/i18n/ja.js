@@ -47,24 +47,24 @@ const data = {
         networkError: "ネットワークエラーです。 (%{errorCode})",
         userInsufficientFund: "お客様のアカウントに残高が不足しています。(%{errorCode})",
         limitBetExceeded:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットの配置に失敗しました！ご利用のベット上限を超えています。もう一度お試しください。(%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットの配置に失敗しました！ご利用のベット上限を超えています。もう一度お試しください。(%{errorCode})",
         playerNotPermittedPlay:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nゲームは無効になっています。詳細については上位者にお問い合わせください。ありがとうございます。(%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nゲームは無効になっています。詳細については上位者にお問い合わせください。ありがとうございます。(%{errorCode})",
         winLimitHit:
-            "ゲーム %{gameName} （#%{gameRoundId}）\\n\\nベットに失敗しました！勝利上限に達しました。担当者にお問い合わせください。ありがとうございます。（%{errorCode}）",
+            "ゲーム %{gameName} （#%{gameRoundId}）\n\nベットに失敗しました！勝利上限に達しました。担当者にお問い合わせください。ありがとうございます。（%{errorCode}）",
         loseLimitHit:
-            "ゲーム %{gameName}（#%{gameRoundId}）\\n\\nベットに失敗しました！損失制限に達しました。上位ユーザーにお問い合わせください。ありがとうございます。（%{errorCode}）",
+            "ゲーム %{gameName}（#%{gameRoundId}）\n\nベットに失敗しました！損失制限に達しました。上位ユーザーにお問い合わせください。ありがとうございます。（%{errorCode}）",
         limitBetUpdated:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットに失敗しました！ベット制限が更新されました。もう一度お試しください。 (%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットに失敗しました！ベット制限が更新されました。もう一度お試しください。 (%{errorCode})",
         limitBetNotDefined:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットの配置に失敗しました！このゲームのベット上限が設定されていません。お手数ですが、上位の担当者にご連絡ください。ありがとうございます。（%{errorCode}）",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットの配置に失敗しました！このゲームのベット上限が設定されていません。お手数ですが、上位の担当者にご連絡ください。ありがとうございます。（%{errorCode}）",
         accountSuspended:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットの配置に失敗しました！アカウントが停止されています。詳細についてはアップラインにお問い合わせください。ありがとうございます。(%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットの配置に失敗しました！アカウントが停止されています。詳細についてはアップラインにお問い合わせください。ありがとうございます。(%{errorCode})",
         unavailableGame:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nただいまゲームはご利用いただけません。詳細についてはカスタマーサポートまでお問い合わせください。ありがとうございます。 (%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nただいまゲームはご利用いただけません。詳細についてはカスタマーサポートまでお問い合わせください。ありがとうございます。 (%{errorCode})",
         errorOccurred: "エラーが発生しました。詳細についてはCSDにお問い合わせください。（%{errorCode}）",
         errorOccurredFull:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nエラーが発生しました。詳細についてはカスタマーサービスまでお問い合わせください。 (%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nエラーが発生しました。詳細についてはカスタマーサービスまでお問い合わせください。 (%{errorCode})",
         sessionTimeout:
             "セッションの有効期限が切れたか、まだログインしていません。現在のウィンドウを閉じて、再度ログインをお試しください。",
         playOnOtherDevice: "お客様のアカウントは、別のブラウザまたはデバイスで[game]をプレイするために使用されています。",
@@ -79,9 +79,9 @@ const data = {
         nickNameDistance: "ニックネームは3文字以上14文字以下でなければなりません。",
         nickNameCharacter: "ニックネームにはスペース、記号、英語以外の文字を含めることはできません。",
         existNickName: "ニックネームはすでに使用されています。別のものをお試しください。",
-        placeBetFailed: "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットできませんでした！（エラーコード：%{errorCode}）",
+        placeBetFailed: "ゲーム %{gameName} (#%{gameRoundId})\n\nベットできませんでした！（エラーコード：%{errorCode}）",
         endGameFailed:
-            "ゲーム %{gameName} ( #%{gameRoundId} )\\n\\nエラーが発生しました。詳細についてはCSDにお問い合わせください。( %{errorCode} )",
+            "ゲーム %{gameName} ( #%{gameRoundId} )\n\nエラーが発生しました。詳細についてはCSDにお問い合わせください。( %{errorCode} )",
         getBalanceFailed: "アカウント残高を更新できません。 (%{errorCode})",
         enterPortalFailed: "エラーが発生しました。詳細についてはCSDにお問い合わせください。(%{errorCode})",
         jackpotProcessing: "データを処理中です。ジャックポットの当選金額が数分以内にあなたのアカウントに追加されます。",
@@ -138,24 +138,24 @@ const data = {
             "アカウントは閉鎖されました。セッションは10秒後に終了します。詳細についてはカスタマーサポートまでお問い合わせください。（エラーコード：%{errorCode}）",
         disabledGame: "ゲームはメンテナンス中です。10分後に再度お越しください。",
         errorOccurredPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットの配置に失敗しました！エラーが発生しました。詳細についてはカスタマーサポートまでお問い合わせください。 (エラーコード：%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットの配置に失敗しました！エラーが発生しました。詳細についてはカスタマーサポートまでお問い合わせください。 (エラーコード：%{errorCode})",
         sessionTimeoutPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\r\\n\\r\\nベットの配置に失敗しました！セッションの有効期限が切れているか、まだログインしていません。現在のウィンドウを閉じてから再度ログインをお試しください。",
+            "ゲーム %{gameName} (#%{gameRoundId})\r\n\r\nベットの配置に失敗しました！セッションの有効期限が切れているか、まだログインしていません。現在のウィンドウを閉じてから再度ログインをお試しください。",
         loginFailedPlaceBet:
             "ゲーム %{gameName} (#%{gameRoundId})\r\n\r\nベットに失敗しました！ログイン名またはパスワードが正しくありません。",
         accountLockedPlaceBet:
-            "ゲーム %{gameName}（#%{gameRoundId}）\\r\\n\\r\\nベットの配置に失敗しました！アカウントは閉鎖されています。詳細については、アップラインにお問い合わせください。ありがとうございます。",
+            "ゲーム %{gameName}（#%{gameRoundId}）\r\n\r\nベットの配置に失敗しました！アカウントは閉鎖されています。詳細については、アップラインにお問い合わせください。ありがとうございます。",
         accountNotExistPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットの配置に失敗しました！エラーが発生しました。詳細についてはカスタマーサービスまでお問い合わせください。ありがとうございます。 (%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットの配置に失敗しました！エラーが発生しました。詳細についてはカスタマーサービスまでお問い合わせください。ありがとうございます。 (%{errorCode})",
         ipRestrictedPlaceBet:
-            "ゲーム %{gameName} (ラウンド #%{gameRoundId})\\n\\nベットに失敗しました！お使いのIPアドレスは制限されています。(%{errorCode})",
+            "ゲーム %{gameName} (ラウンド #%{gameRoundId})\n\nベットに失敗しました！お使いのIPアドレスは制限されています。(%{errorCode})",
         accountBlacklistedPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットに失敗しました！アカウントは閉鎖されています。詳細はカスタマーサポートまでお問い合わせください。 (%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットに失敗しました！アカウントは閉鎖されています。詳細はカスタマーサポートまでお問い合わせください。 (%{errorCode})",
         userNotFoundPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\n\\nベットに失敗しました！ユーザーが見つかりませんでした。 (%{errorCode})",
-        sysMaintenancePlaceBet: "ゲーム %{gameName}（#%{gameRoundId}）\\r\\n\\r\\nベットに失敗しました。現在メンテナンス中です。",
+            "ゲーム %{gameName} (#%{gameRoundId})\n\nベットに失敗しました！ユーザーが見つかりませんでした。 (%{errorCode})",
+        sysMaintenancePlaceBet: "ゲーム %{gameName}（#%{gameRoundId}）\r\n\r\nベットに失敗しました。現在メンテナンス中です。",
         networkErrorPlaceBet:
-            "ゲーム %{gameName} (#%{gameRoundId})\\r\\n\\r\\nベットの配置に失敗しました！ネットワークエラーです。(%{errorCode})",
+            "ゲーム %{gameName} (#%{gameRoundId})\r\n\r\nベットの配置に失敗しました！ネットワークエラーです。(%{errorCode})",
         noGameOffer:
             "お客様のアカウントはこのゲームポータルでサポートされていません。お手数ですが、上司（upline）にお問い合わせください。ありがとうございます。",
         sessionTimeout_break:
@@ -285,7 +285,7 @@ const data = {
         player_win: "プレイヤー勝利！",
         choice_banker: "バンカー",
         choice_player: "プレイヤー",
-        result_player_banker: "結果\\n（プレイヤー | バンカー）",
+        result_player_banker: "結果\n（プレイヤー | バンカー）",
         type_bet_number: "特定の数字",
         total_score: "合計ポイント",
         lose_any_triple: "ゾロ目が出ると負け",

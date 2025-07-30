@@ -1,6 +1,5 @@
 import axios from "axios";
 import i18n from "i18n/runtime-scripts/LanguageData";
-import EncryptUtils from "../../common/utils/EncryptUtils";
 import configs from "../../configs/Configs";
 import { appManager } from "../../managers/AppManager";
 import { uiManager } from "../../managers/GameUIManager";
@@ -12,11 +11,11 @@ import { buildUrlWithPath } from "../helpers/UrlHelper";
 import logger from "../logger";
 import { userManager } from "../user/UserManager";
 import NoticeUtil from "../utils/NoticeUtil";
+import UrlParamsService from "../utils/UrlParamsService";
 import NotificationService from "./NotificationService";
 import * as SGConnectAPI from "./SGConnectAPI";
 import * as sessionManager from "./SessionManager";
 import UserService from "./UserService";
-import UrlParamsService from "../utils/UrlParamsService";
 
 const sentryLogger = logger();
 const sessionExpiredTimeoutMinutes = 19.8;
@@ -122,7 +121,6 @@ function checkSignOut(urlParams, session) {
 }
 
 function checkHasToken(urlParams, onSuccessFunc) {
-    window.isSSO = true;
     window.appType = getAppType(urlParams);
     UserService.getInstance()
         .auth.sso(urlParams.get("token"), getAppType(urlParams))
@@ -136,10 +134,7 @@ function checkHasToken(urlParams, onSuccessFunc) {
                 window.authData.time = new Date();
 
                 sessionManager.storeSessionData(response);
-                sessionManager.removeDirectMode();
-                sessionManager.removeMicrositeGameId();
-                sessionManager.removeCheckedTournamentPromotionFirstSso();
-                sessionManager.removeCheckedFreeSpinsPromotionFirstSso();
+                
                 clearQueryStringOnUrl();
                 onSuccessFunc();
             } else {

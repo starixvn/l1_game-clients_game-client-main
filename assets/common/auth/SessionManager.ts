@@ -212,6 +212,5 @@ export function removeCheckedFreeSpinsPromotionFirstSso() {
 declare global {
     export interface Window {
         authData: Session;
-        isSSO: boolean;
     }
 }

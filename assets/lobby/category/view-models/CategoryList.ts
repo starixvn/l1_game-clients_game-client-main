@@ -1,7 +1,9 @@
 import { lazyInject } from "../../../Application";
+import LobbyUtils from "../../../common/LobbyUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
+import { StorageKeys } from "../../../managers/StorageKeys";
 import { StorageManager } from "../../../managers/StorageManager";
 import CategoryItem from "../../main/view-models/CategoryItem";
 import LobbyManager from "../../main/view-models/LobbyManager";
@@ -76,7 +78,7 @@ export default class CategoryList extends cc.Component {
     }
 
     public activeCategoryFromStorage(): number {
-        const storage = StorageManager.get("current_game_category");
+        const storage = StorageManager.get(StorageKeys.CATEGORY_STORAGE_KEY);
         let category = 0;
         if (storage) {
             category = parseInt(storage) || 0;

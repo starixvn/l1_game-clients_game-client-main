@@ -3,9 +3,11 @@ import AudioManager from "../../../common/audio/AudioManager";
 import * as SessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { FormationHandler } from "../../../common/i18n/FormationHandler";
+import LobbyUtils from "../../../common/LobbyUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
+import { StorageKeys } from "../../../managers/StorageKeys";
 import { StorageManager } from "../../../managers/StorageManager";
 import GameIconMenu from "./GameIconMenu";
 import LobbyManager from "./LobbyManager";
@@ -266,11 +268,11 @@ export default class LobbyMenu extends GameIconMenu {
     }
 
     saveCategory() {
-        StorageManager.set("current_game_category", this.currentCategory);
+        StorageManager.set(StorageKeys.CATEGORY_STORAGE_KEY, this.currentCategory);
     }
 
     loadCategory() {
-        const category = StorageManager.get("current_game_category");
+        const category = StorageManager.get(StorageKeys.CATEGORY_STORAGE_KEY);
         if (category) {
             this.currentCategory = parseInt(category) || 0;
         }

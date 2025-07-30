@@ -10,6 +10,7 @@ import { uiManager } from "../managers/GameUIManager";
 import { StorageManager } from "../managers/StorageManager";
 import GameUtils from "./GameUtils";
 import { userManager } from "./user/UserManager";
+import { StorageKeys } from "../managers/StorageKeys";
 
 export const MICRO_GAMES_NOT_OFFER_BANNER = [9, 48, 49, 50];
 export enum BannerType {
@@ -50,7 +51,7 @@ export default class LobbyUtils {
     }
 
     public static async loadGameIcon(gameId: number, systemPath = ""): Promise<cc.Prefab> {
-        const category = StorageManager.get("current_game_category") ?? 0;
+        const category = StorageManager.get(StorageKeys.CATEGORY_STORAGE_KEY) ?? 0;
         const gameConfiguration = getGameConfiguration(gameId);
         const gameSetting = LobbyManager.getInstance().getGame(gameId, category);
 

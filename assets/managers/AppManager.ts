@@ -19,6 +19,7 @@ import { delayTime } from "../utils";
 import { uiManager } from "./GameUIManager";
 import { InternalEvents } from "./InternalEvents";
 import { jackpotManager } from "./JackpotManager";
+import { StorageKeys } from "./StorageKeys";
 import { StorageManager } from "./StorageManager";
 import { UrlInfo } from "./UrlInfo";
 
@@ -68,6 +69,7 @@ class AppManager {
     ssoGameId = GameId.UNKNOWN;
     didSsoLobby = false;
     autoOpenLuckyWheel = true;
+    isNewSSO = false;
 
     get autoGenerateNickname() {
         return this.isDirectMode || this.isAppMode || this.isPFF;
@@ -75,17 +77,36 @@ class AppManager {
 
     init() {
         this.urlParams = new URLSearchParams(window.location.search);
-        const ssoGameId = this.urlParams.get("gameId") ?? GameId.UNKNOWN;
-        if (this.urlParams.has("token") && +ssoGameId > 0) {
-            sessionManager.removeInRoomGameId();
-            this.ssoGameId = +ssoGameId;
-        }
-        cc.log("AppManager init ", this.ssoGameId);
+        this.processURLParams();
         sentryLogger.start();
         this.initLanguage();
         this.storeOperator();
         AudioManager.getInstance().init();
         this.initShowHideAppEvent();
+    }
+
+    processURLParams() {
+        const ssoGameId = this.urlParams.get("gameId") ?? GameId.UNKNOWN;
+        if (this.urlParams.has("token")) {
+            const token = this.urlParams.get("token");
+            const lastToken = StorageManager.get("last_token");
+
+            this.isNewSSO = token !== lastToken;
+            StorageManager.set("last_token", token);
+
+            if (this.isNewSSO && +ssoGameId > 0) {
+                sessionManager.removeInRoomGameId();
+                sessionManager.removeMicrositeGameId();
+                this.ssoGameId = +ssoGameId;
+            }
+
+            if (this.isNewSSO) {
+                StorageManager.remove(StorageKeys.CATEGORY_STORAGE_KEY);
+                sessionManager.removeDirectMode();
+                sessionManager.removeCheckedTournamentPromotionFirstSso();
+                sessionManager.removeCheckedFreeSpinsPromotionFirstSso();
+            }
+        }
     }
 
     clearSSOGameId() {
@@ -190,7 +211,7 @@ class AppManager {
     }
 
     private async handleCurrencyGroup() {
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = this.urlParams;
         let currencyGroup: string;
         if (urlParams.has("cg")) {
             currencyGroup = urlParams.get("cg");

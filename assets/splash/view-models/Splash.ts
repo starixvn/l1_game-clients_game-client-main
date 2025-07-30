@@ -85,7 +85,7 @@ export default class Splash extends cc.Component {
         }
 
         // Handle SSO game launch
-        const isSSOGameLaunch = urlParams.has("token") && urlParams.has("gameId") && gameId !== 0;
+        const isSSOGameLaunch = appManager.isNewSSO && urlParams.has("gameId") && gameId !== 0;
         if (isSSOGameLaunch) {
             if (isGatewayGame(gameId) && this.handleGatewayGame(gameId)) {
                 return;
@@ -104,7 +104,7 @@ export default class Splash extends cc.Component {
 
         // Handle reload from micro-site game
         const micrositeGameId = +SessionManager.getMicrositeGameId();
-        if (!urlParams.has("token") && micrositeGameId > 0) {
+        if (!appManager.isNewSSO && micrositeGameId > 0) {
             await this.enableMicrositeGameIframe(micrositeGameId);
             return;
         }

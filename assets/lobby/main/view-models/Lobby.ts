@@ -98,7 +98,6 @@ export default class Lobby extends cc.Component {
     onDestroy() {
         appManager.miniPanel = null;
         appManager.currentScene = null;
-        window.isSSO = false;
         PromotionNotificationsHandler.getInstance().setJoinGameId(0);
         this.removeGameUIEvent();
         LobbyDialogManager.getInstance().clearQueue();
@@ -404,7 +403,7 @@ export default class Lobby extends cc.Component {
         this.categoryListComp?.activeBgNewOnCategory();
 
         this.lobbyCenterComp?.initLobbyMenu();
-        const category = !window.isSSO ? this.categoryListComp.activeCategoryFromStorage() : 0;
+        const category = this.categoryListComp.activeCategoryFromStorage();
         this.lobbyCenterComp?.setMenuCategory(category);
         this.lobbyCenterComp?.initBanners(loadAllBanners);
 

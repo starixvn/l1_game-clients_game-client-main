@@ -221,8 +221,7 @@ export default class Splash extends cc.Component {
             SessionManager.storeOperator(operator);
         }
 
-        if (urlParams.has("gameId")) {
-            const gameId = +urlParams.get("gameId");
+        if (gameId) {
             SessionManager.clearStorageMicroSite(true);
             SessionManager.storeMicrositeGameId(gameId);
         }

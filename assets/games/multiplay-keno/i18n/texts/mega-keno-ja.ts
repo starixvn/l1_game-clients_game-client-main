@@ -1,5 +1,14 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
-export const phrases = {"gameNames": {14: "ミニキノ", 15: "ミニキノ2", 16: "キノイースト", 17: "キノ・ウェスト", 18: "キノ サウス", 19: "キノ ノース", 52: "メガケノ", 53: "メガケノ２"}, "lobbyNames": {52: "メガケノ"}, "megaKeno": {"intro": "「メガケノ - マルチプレイ」は、8つのテーブル（メガケノ、メガケノ2、ミニキノ、ミニキノ2、キノ ノース、キノ サウス、キノ・ウェスト、キノイースト）を同時にプレイできる新機能を備えたRNGゲームで、様々なエキサイティングな体験をお届けします。", "RNGKeno80Balls": "RNG Keno（80ボール）", "RNGKeno40Balls": "RNG Keno (40ボール)"}};
+export const phrases = {"gameNames": {
+    52: "Mega Keno",
+    53: "Mega Keno 2",
+    14: "Keno Mini",
+    15: "Keno Mini 2",
+    16: "Keno East",
+    17: "Keno West",
+    18: "Keno South",
+    19: "Keno North"
+}, "lobbyNames": {52: "Mega Keno"}, "megaKeno": {"intro": "「Mega Keno - マルチプレイ」は、8つのテーブル（Mega Keno, Mega Keno 2, Keno Mini, Keno Mini 2, Keno North, Keno South, Keno West, Keno East）を同時にプレイできる新機能を備えたRNGゲームで、様々なエキサイティングな体験をお届けします。", "RNGKeno80Balls": "RNG Keno（80ボール）", "RNGKeno40Balls": "RNG Keno (40ボール)"}};
 
 reloadLanguageData("ja", phrases);

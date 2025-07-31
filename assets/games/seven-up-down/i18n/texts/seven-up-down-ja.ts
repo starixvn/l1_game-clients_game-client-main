@@ -2,7 +2,7 @@ import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
     "7Up7Down": {
-        "7_win": "7勝",
+        "7_win": "７勝ち",
         "down_win": "ダウンが勝ち",
         "game_icon_name": "7アップ7ダウン",
         "game_name": "7アップ7ダウン",
@@ -47,10 +47,10 @@ export const phrases = {
         "enter_your_name": "ニックネームを入力してください。",
         "even_win": "偶数勝利",
         "from": "から",
-        "game_category_new_releases": "最新リリース",
+        "game_category_new_releases": "新作",
         "game_category_ph_1": "全ゲーム",
         "game_category_ph_2": "ピノイ・スペシャル",
-        "game_category_ph_3": "スロットゲーム",
+        "game_category_ph_3": "スロット",
         "game_category_ph_4": "カードゲーム",
         "game_category_ph_5": "カジュアルゲーム",
         "game_category_ph_6": "ロト",

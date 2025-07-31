@@ -12,6 +12,17 @@ export const phrases = {
         glossary_up: "アップ",
         up_win: "アップが勝ち"
     },
+    "SevenUpDown": {
+        "7_win": "７勝ち",
+        down_win: "ダウンが勝ち",
+        game_icon_name: "7アップ7ダウン",
+        game_name: "7アップ7ダウン",
+        glossary_7: "7",
+        glossary_down: "ダウン",
+        glossary_multiplier: "マルチプライヤー",
+        glossary_up: "アップ",
+        up_win: "アップが勝ち"
+    },
     Common: {
         all: "全て",
         back: "戻る",

@@ -184,11 +184,11 @@ const data = {
         voidTicketMessage: "技術的な問題により、ベットは無効になりました。もう一度ゲームをお試しください。"
     },
     ui: {
-        choice_red2: "赤2つ",
+        choice_red2: "赤2",
         choice_red3: "赤3",
         choice_red4: "赤4",
-        choice_white3: "赤1つ",
-        choice_white4: "白4つ",
+        choice_white3: "赤1",
+        choice_white4: "白4",
         choice_crab: "蟹",
         choice_fish: "魚",
         choice_gourd: "瓢箪",
@@ -364,14 +364,14 @@ const data = {
         choice_banker_odd: "バンカー - 奇数",
         choice_banker_red3: "バンカー - 赤3",
         choice_banker_red4: "バンカー - 赤4",
-        choice_banker_white3: "バンカー - 赤1つ",
-        choice_banker_white4: "バンカー - 白4つ",
+        choice_banker_white3: "バンカー - 赤1",
+        choice_banker_white4: "バンカー - 白4",
         choice_player_even: "プレイヤー - 偶数",
         choice_player_odd: "プレイヤー - 奇数",
         choice_player_red3: "プレイヤー - 赤3",
         choice_player_red4: "プレイヤー - 赤4",
-        choice_player_white3: "プレイヤー - 赤1つ",
-        choice_player_white4: "プレーヤー - 白4つ",
+        choice_player_white3: "プレイヤー - 赤1",
+        choice_player_white4: "プレーヤー - 白4",
         sum_oe: "合計偶数/奇数",
         sum_war: "戦争",
         total_even: "合計偶数",
@@ -481,7 +481,7 @@ const data = {
         first: "- 新規および既存のすべてのプレイヤーは、本プロモーションに参加し、より大きな賞金を獲得するチャンスがあります。\n- 当選金額は、プロモーションの規定および支払い条件に従って支払われます。\n- プロモーションは、当社が定める期間に適用されます。プロモーション終了後、オッズは元の設定に戻されます。\n- 当社は、本プロモーションに関する参加条件の変更、またはプロモーションの変更、中止、一時停止、日程変更をいつでも行う権利を留保します。\n- 本プロモーションに関連して生じるいかなる紛争も、当社の判断により解決されます。"
     },
     holdEmPoker: {
-        ante: "アンティ",
+        ante: "ANTE",
         aa: "AA",
         royalFlush: "ロイヤルフラッシュ",
         straightFlush: "ストレートフラッシュ",
@@ -539,11 +539,11 @@ const data = {
         river: "リバー",
         turn: "ターン",
         call: "コール",
-        ante: "アンティ",
+        ante: "ANTE",
         clear: "クリア",
         straightOrHigher: "ストレート以上",
         lowerThanStraight: "スリーカード以下",
-        leftTableOddTitle: "アンティ",
+        leftTableOddTitle: "ANTE",
         check: "チェック",
         push: "プッシュ",
         betTurn: "ベットターン",
@@ -648,4 +648,5 @@ const data = {
         pf_verification_para_4: "最終結果を計算"
     }
 };
+
 Object.assign(window.i18n.languages.ja, data);

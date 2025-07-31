@@ -69,9 +69,10 @@ tg.on("initialLoad", async () => {
         namespaces.forEach((ns) => {
             tg.getAllRecords().forEach((record) => {
                 if (record.namespace == ns) {
-                    languages[languageId][ns] = {};
+                    const temp = ns === "7Up7Down" ? "SevenUpDown" : ns;
+                    languages[languageId][temp] = {};
                     record.data.forEach((value, key) => {
-                        languages[languageId][ns][key] = value as string;
+                        languages[languageId][temp][key] = value as string;
 
                         if (key == "game_name") {
                             remoteNames.gameNames[gameId] = value as string;

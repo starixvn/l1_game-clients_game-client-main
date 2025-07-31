@@ -1,7 +1,7 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
 export const phrases = {
-    "7Up7Down": {
+    "SevenUpDown": {
         "7_win": "7 MENANG",
         "down_win": "TURUN MENANG",
         "game_icon_name": "7 NAIK 7 TURUN",

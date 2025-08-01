@@ -9,6 +9,7 @@ export const phrases = {
         "glossary_7": "7",
         "glossary_down": "ダウン",
         "glossary_multiplier": "マルチプライヤー",
+        "glossary_seven": "7",
         "glossary_up": "アップ",
         "up_win": "アップが勝ち"
     },

@@ -9,6 +9,7 @@ export const phrases = {
         "glossary_7": "7",
         "glossary_down": "Turun",
         "glossary_multiplier": "Pengali",
+        "glossary_seven": "7",
         "glossary_up": "Naik",
         "up_win": "NAIK MENANG"
     },

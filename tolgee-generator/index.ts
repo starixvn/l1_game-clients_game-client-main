@@ -66,8 +66,9 @@ tg.on("initialLoad", async () => {
 
         await tg.changeLanguage(languageId);
         languages[languageId] = {};
-        namespaces.forEach((ns) => {
-            tg.getAllRecords().forEach((record) => {
+        await namespaces.forEach(async (ns) => {
+            const t = await tg.getAllRecords();
+            t.forEach((record) => {
                 if (record.namespace == ns) {
                     const temp = ns === "7Up7Down" ? "SevenUpDown" : ns;
                     languages[languageId][temp] = {};

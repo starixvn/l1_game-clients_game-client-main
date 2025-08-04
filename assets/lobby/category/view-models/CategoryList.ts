@@ -1,5 +1,4 @@
 import { lazyInject } from "../../../Application";
-import LobbyUtils from "../../../common/LobbyUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";

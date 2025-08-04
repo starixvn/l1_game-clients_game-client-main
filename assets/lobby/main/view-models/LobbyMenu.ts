@@ -3,7 +3,6 @@ import AudioManager from "../../../common/audio/AudioManager";
 import * as SessionManager from "../../../common/auth/SessionManager";
 import GameUtils from "../../../common/GameUtils";
 import { FormationHandler } from "../../../common/i18n/FormationHandler";
-import LobbyUtils from "../../../common/LobbyUtils";
 import { userManager } from "../../../common/user/UserManager";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";

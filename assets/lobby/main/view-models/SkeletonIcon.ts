@@ -27,7 +27,43 @@ export interface RemoteIconConfig {
     labelGameType?: GameNotificationConfig;
     extra?: any;
 }
+interface GameFontSizeConfig {
+    gameId: number;
+    languages: {
+        [language: string]: number;
+    };
+    defaultFontSize?: number;
+}
 
+const GAME_FONTSIZE_CONFIGS: GameFontSizeConfig[] = [
+    {
+        gameId: 70, // Transformers
+        languages: {
+            "id-ID": 23,
+        },
+        defaultFontSize: 24
+    },
+    {
+        gameId: 50, // Big Small City
+        languages: {
+            "es-ES": 20,
+        },
+        defaultFontSize: 24
+    },
+];
+
+export function getGameFontSize(gameId: number, language: string): number {
+    const fontSizeConfig = GAME_FONTSIZE_CONFIGS.find(config => config.gameId === gameId);
+
+    if (fontSizeConfig.languages[language]) {
+        return fontSizeConfig.languages[language];
+    }
+
+    if (fontSizeConfig.defaultFontSize) {
+        return fontSizeConfig.defaultFontSize;
+    }
+
+}
 @ccclass
 export default class SkeletonIcon extends cc.Component {
     @property(cc.Label)
@@ -64,16 +100,11 @@ export default class SkeletonIcon extends cc.Component {
     protected readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
 
     setGameName(text: string, gameId: number, formatGameName: FormationHandler) {
-        const transformersGameId = 70;
-        const transformersLabelFontSize = 23;
         this.gameName.node.active = true;
         this.gameName.string = StringUtil.formatText(text, formatGameName);
+
         const language = getLocale();
-        if (gameId === transformersGameId) {
-            if (language === "en-US" || language === "id-ID") {
-                this.gameName.fontSize = transformersLabelFontSize;
-            }
-        }
+        this.gameName.fontSize = getGameFontSize(gameId, language);
     }
     static listGameWithoutHide = [];
 

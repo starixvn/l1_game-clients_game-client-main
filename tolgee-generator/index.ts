@@ -1,7 +1,7 @@
 import { DevTools, Tolgee } from "@tolgee/web";
 import * as fs from "fs";
 
-const gameId = 103;
+const gameId = 60;
 interface Config {
     namespaces: string[];
     gameNameFolder: string;
@@ -30,7 +30,7 @@ const gameNameFolder = configFromFile.gameNameFolder;
 const namespaces = [...configFromFile.namespaces];
 const pathToGame = `./assets/games/${gameNameFolder}`;
 const languageFolder = `${pathToGame}/i18n/texts/${gameNameFolder}-`;
-const languageCodes = ["en", "id", "th", "vi", "zh_cn", "zh_tw", "ja"];
+const languageCodes = ["en", "id", "th", "vi", "zh_cn", "zh_tw", "ja", "es"];
 const tg = Tolgee().use(DevTools()).init({
     defaultLanguage: "en",
     availableLanguages: languageCodes,

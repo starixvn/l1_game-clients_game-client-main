@@ -32,7 +32,6 @@ interface GameFontSizeConfig {
     languages: {
         [language: string]: number;
     };
-    defaultFontSize?: number;
 }
 
 const GAME_FONTSIZE_CONFIGS: GameFontSizeConfig[] = [
@@ -41,28 +40,20 @@ const GAME_FONTSIZE_CONFIGS: GameFontSizeConfig[] = [
         languages: {
             "id-ID": 23,
         },
-        defaultFontSize: 24
     },
     {
         gameId: 50, // Big Small City
         languages: {
             "es-ES": 20,
         },
-        defaultFontSize: 24
     },
 ];
 
-export function getGameFontSize(gameId: number, language: string): number {
-    const fontSizeConfig = GAME_FONTSIZE_CONFIGS.find(config => config.gameId === gameId);
+export function getGameFontSize(gameId: number, language: string, fallbackDefault = 24): number {
+    const config = GAME_FONTSIZE_CONFIGS.find(cfg => cfg.gameId === gameId);
+    if (!config) return fallbackDefault;
 
-    if (fontSizeConfig.languages[language]) {
-        return fontSizeConfig.languages[language];
-    }
-
-    if (fontSizeConfig.defaultFontSize) {
-        return fontSizeConfig.defaultFontSize;
-    }
-
+    return config.languages[language] ?? fallbackDefault;
 }
 @ccclass
 export default class SkeletonIcon extends cc.Component {
@@ -93,8 +84,13 @@ export default class SkeletonIcon extends cc.Component {
     @lazyInject(SplashConfig)
     protected readonly splashConfig: SplashConfig;
 
+    private defaultFontSize: number;
+
     protected onLoad(): void {
         this.gameName.node.active = false;
+
+        const nodeName = this.node.name?.toLowerCase();
+        this.defaultFontSize = nodeName?.includes("small") ? 16 : 24;
     }
 
     protected readonly micrositeIconCache: SkeletonCache = uiManager.remoteIconCache;
@@ -104,7 +100,7 @@ export default class SkeletonIcon extends cc.Component {
         this.gameName.string = StringUtil.formatText(text, formatGameName);
 
         const language = getLocale();
-        this.gameName.fontSize = getGameFontSize(gameId, language);
+        this.gameName.fontSize = getGameFontSize(gameId, language, this.defaultFontSize);
     }
     static listGameWithoutHide = [];
 

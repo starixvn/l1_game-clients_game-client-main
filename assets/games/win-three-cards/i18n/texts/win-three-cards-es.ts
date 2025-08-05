@@ -1,0 +1,5 @@
+import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
+
+export const phrases = {"gameNames": {61: "Gana Tres Cartas"}, "lobbyNames": {61: "Gana Tres Cartas"}, "winThreeCards": {"dragon": "Dragón", "phoenix": "Fénix", "result": "Resultado (Dragón | Fénix)", "killer235": "235", "threeOfAKind": "Trío", "straightFlush": "Escalera de Color", "flush": "Color", "straight": "Escalera", "onePair": "Pareja", "highCard": "Carta Alta", "pair8Plus": "Pareja 8 Más", "dragon_win": "DRAGÓN GANA", "phoenix_win": "Victoria Fénix", "pair8PlusInfo": "Pareja de 9 a Pareja de Ases, Escalera, Color, Escalera de Color, Trío", "handInfo": "Trío > Escalera de Color > Color > Escalera > Pareja > Carta Alta", "tie": "Empate", "pair8PlusSta": "Pareja de 8 o superior:", "dragonSta": "Dragón:", "phoenixSta": "Fénix:", "dragonShort": "D", "phoenixShort": "P"}};
+
+reloadLanguageData("es", phrases);

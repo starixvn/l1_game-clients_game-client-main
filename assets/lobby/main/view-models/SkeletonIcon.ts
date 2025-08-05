@@ -51,7 +51,9 @@ const GAME_FONTSIZE_CONFIGS: GameFontSizeConfig[] = [
 
 export function getGameFontSize(gameId: number, language: string, fallbackDefault = 24): number {
     const config = GAME_FONTSIZE_CONFIGS.find(cfg => cfg.gameId === gameId);
-    if (!config) return fallbackDefault;
+    if (!config) {
+        return fallbackDefault;
+    }
 
     return config.languages[language] ?? fallbackDefault;
 }

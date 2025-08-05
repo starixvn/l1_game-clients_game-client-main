@@ -56,7 +56,7 @@ function bindTranslate(languageCode = "ja") {
 
 export const phrases = ${customStringify(restructureTranslations[namespace])};
 
-reloadLanguageData("ja", phrases);`);
+reloadLanguageData("${languageCode}", phrases);`);
     }
 }
 

@@ -8,7 +8,8 @@ const waitingMessages = {
     th: ["หากคุณเข้าชมครั้งแรก อาจใช้เวลาในการดาวน์โหลดสักครู่", "กำลังตรวจสอบและกำลังดาวน์โหลดเกมของการอัพเดทล่าสุด"],
     zh_cn: ["如果这是您第一次访问，下载可能需要一段时间。", "正在检查和下载最新的更新包..."],
     zh_tw: ["如果這是您第一次訪問，下載可能需要一段時間。", "正在檢查和下載最新的更新包..."],
-    ja: ["初回アクセス時はダウンロードに時間がかかる場合があります", "最新のアップデートを確認・ダウンロード中…"]
+    ja: ["初回アクセス時はダウンロードに時間がかかる場合があります", "最新のアップデートを確認・ダウンロード中…"],
+    es: ["Si es tu primera visita, la descarga puede tardar un poco", "Comprobando y descargando la última actualización..."]
 };
 
 function initGameEngine() {
@@ -102,7 +103,8 @@ function getLanguageURLparams(locale) {
         "id-ID": "id",
         "zh-CN": "zh_cn",
         "zh-TW": "zh_tw",
-        "ja-JP": "ja"
+        "ja-JP": "ja",
+        ...globalThis?.localeMapping
     };
     return dict[locale] || "en";
 }

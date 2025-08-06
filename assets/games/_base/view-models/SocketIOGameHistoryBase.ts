@@ -106,6 +106,10 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
         this.historyFrame.updateTitleSize(node.width + this.WIDTH_SIGN);
     }
 
+    getFontSize() {
+        return 36;
+    }
+
     start() {
         if (this.gameId !== 0) {
             this.setGameName();
@@ -113,7 +117,7 @@ export default abstract class SocketIOGameHistoryBase extends BaseComponent {
 
         if (!this.isSlotGame) {
             const header = this.wrapperContent.children[0];
-            GameUtils.setFontSizeLabelsInNode(header, true, 36, this.headerTitleColor);
+            GameUtils.setFontSizeLabelsInNode(header, true, this.getFontSize(), this.headerTitleColor);
         }
     }
 

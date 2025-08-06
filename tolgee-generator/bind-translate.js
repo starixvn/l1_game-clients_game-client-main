@@ -13,7 +13,9 @@ function customStringify(obj) {
                 .replace(/"/g, '\\"')
                 .replace(/\n/g, '\\n')
                 .replace(/\r/g, '\\r')
-                .replace(/\t/g, '\\t');
+                .replace(/\t/g, '\\t')
+                .replace(/\\\\n/g, '\\n');
+
             formattedValue = `"${escapedValue}"`;
         } else if (typeof value === 'object' && value !== null) {
             formattedValue = customStringify(value);
@@ -52,11 +54,14 @@ function bindTranslate(languageCode = "ja") {
             }
         }
         filename = filename.replace("en.ts", `${languageCode}.ts`);
-        fs.writeFileSync(path.join(dirPath, filename), `import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
+        const content = restructureTranslations[namespace];
+        const script = `import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
-export const phrases = ${customStringify(restructureTranslations[namespace])};
+export const phrases = {0};
 
-reloadLanguageData("${languageCode}", phrases);`);
+reloadLanguageData("${languageCode}", phrases);`
+        const newContent = script.replace("{0}", customStringify(content));
+        fs.writeFileSync(path.join(dirPath, filename), newContent);
     }
 }
 

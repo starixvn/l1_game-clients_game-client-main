@@ -148,7 +148,19 @@ export function removeSession() {
 }
 
 export function getSession(): Session {
-    return StorageManager.get(getSessionKey()) ?? {};
+    const storage = StorageManager.get(getSessionKey());
+
+    const session = {} as Session;
+    if (storage) {
+        const keys = ["username", "language", "ss", "time", "isAuthenticated", "system"];
+        for (const key of keys) {
+            if (storage[key]) {
+                session[key] = storage[key];
+            }
+        }
+        return session;
+    }
+    return session;
 }
 
 export function storeSessionData(data) {

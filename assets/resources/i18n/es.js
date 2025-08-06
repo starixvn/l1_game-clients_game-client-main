@@ -7,7 +7,7 @@ const data = {
         1: "Grande o Pequeño",
         2: "Se Die",
         3: "Pez Camarón\nCangrejo",
-        4: "Turbo Grande Pequeño",
+        4: "Turbo\nGrande Pequeño",
         5: "Par/Impar",
         6: "Turbo Par Impar",
         7: "Dragón Tigre",

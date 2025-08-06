@@ -1,5 +1,5 @@
 import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
 
-export const phrases = {"gameNames": {29: "Cuatro Bestias Sagradas"}};
+export const phrases = {"gameNames": {29: "Four Guardians"}};
 
 reloadLanguageData("es", phrases);

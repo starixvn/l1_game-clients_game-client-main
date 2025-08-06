@@ -426,7 +426,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 77,
+      "width": 63,
       "height": 16
     },
     "_anchorPoint": {
@@ -478,9 +478,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "61f04bff-4418-4b56-9f13-62bf5b94e7d0"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -492,25 +489,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "25920a65-32bc-46df-a967-920401decb17"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 8
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "25920a65-32bc-46df-a967-920401decb17"
-    },
-    "prefix": "text-tail",
-    "defaultLocalized": "",
+    "gameId": 80,
+    "nameImage": "text-tail",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -554,7 +549,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 83,
+      "width": 74,
       "height": 16
     },
     "_anchorPoint": {
@@ -606,9 +601,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "79921cbd-c981-4d77-a3a7-c899f19b2be0"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -620,25 +612,23 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "25920a65-32bc-46df-a967-920401decb17"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
-    "__type__": "e07eb7ZtCFH5IdBzWDXvE12",
+    "__type__": "0bde3O9bClKXIxG+2F+cIaH",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 12
     },
     "_enabled": true,
-    "spriteFrameSet": [],
-    "atlas": {
-      "__uuid__": "25920a65-32bc-46df-a967-920401decb17"
-    },
-    "prefix": "text-head",
-    "defaultLocalized": "",
+    "gameId": 80,
+    "nameImage": "text-head",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {

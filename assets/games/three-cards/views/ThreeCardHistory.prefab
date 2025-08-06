@@ -399,8 +399,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
-      "height": 70
+      "width": 68.75,
+      "height": 37.8
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -451,8 +451,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.time",
-    "_N$string": "Ui.time",
+    "_string": "Tiempo",
+    "_N$string": "Tiempo",
     "_fontSize": 18,
     "_lineHeight": 30,
     "_enableWrapText": true,
@@ -467,7 +467,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -540,8 +540,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
-      "height": 70
+      "width": 58.23,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -605,8 +605,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.round",
-    "_N$string": "Ui.round",
+    "_string": "Ronda",
+    "_N$string": "Ronda",
     "_fontSize": 18,
     "_lineHeight": 20,
     "_enableWrapText": true,
@@ -621,7 +621,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -681,8 +681,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 166.467,
-      "height": 70
+      "width": 90.91,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -746,8 +746,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.result",
-    "_N$string": "Ui.result",
+    "_string": "Resultado",
+    "_N$string": "Resultado",
     "_fontSize": 18,
     "_lineHeight": 20,
     "_enableWrapText": true,
@@ -762,7 +762,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -822,8 +822,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 400,
-      "height": 90
+      "width": 203.15,
+      "height": 45.36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -887,8 +887,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.choice_win",
-    "_N$string": "Ui.choice_win",
+    "_string": "Opciones De Ganancia",
+    "_N$string": "Opciones De Ganancia",
     "_fontSize": 18,
     "_lineHeight": 36,
     "_enableWrapText": true,
@@ -903,7 +903,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -963,8 +963,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 240,
-      "height": 90
+      "width": 74.29,
+      "height": 45.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1028,8 +1028,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.totalstake_break",
-    "_N$string": "Ui.totalstake_break",
+    "_string": "Apuesta\nTotal",
+    "_N$string": "Apuesta\nTotal",
     "_fontSize": 18,
     "_lineHeight": 20,
     "_enableWrapText": true,
@@ -1044,7 +1044,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1104,8 +1104,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
-      "height": 70
+      "width": 56.83,
+      "height": 25.2
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1169,8 +1169,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.win",
-    "_N$string": "Ui.win",
+    "_string": "Ganar",
+    "_N$string": "Ganar",
     "_fontSize": 18,
     "_lineHeight": 20,
     "_enableWrapText": true,
@@ -1185,7 +1185,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 0,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1438,6 +1438,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": null,
     "mainFrame": null,
     "gameName": null,
@@ -1451,6 +1452,10 @@
       "__id__": 7
     },
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "ticketDetailPrefab": {
       "__uuid__": "40daa8bf-cb0e-4e3a-b725-a1bb99fb98f2"
     },

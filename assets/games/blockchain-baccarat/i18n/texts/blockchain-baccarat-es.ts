@@ -40,9 +40,9 @@ export const phrases = {
         guide2Step3: "Inalterable",
         guide2Step4: "Protegido con el algoritmo SHA-256",
         guide3Title: "¿Cómo se aplica Blockchain en el Baccarat?",
-        guide3Key1: "<color=#ff6060>Clave Privada</c>\n<color=#08ef95>Número de Serie\n(Índice de la tarjeta 001)</color>",
+        guide3Key1: "<color=#ff6060>Clave Privada</c>\n<color=#08ef95>N.º de serie\n(Índice de carta 001)</color>",
         guide3Key2:
-            "<color=#ff6060>Clave Privada:</c> {Card Value}_{Time}_{<color=#08ef95>Número de Serie (carta índice 001)</color>}_{UUID}\n<color=#08ef95>Número de Serie (carta índice 002)</color>",
+            "<color=#ff6060>Clave Privada:</c> {Card Value}_{Time}_{<color=#08ef95>N.º de serie (Índice de carta 001)</color>}_{UUID}\n<color=#08ef95>N.º de serie (Índice de carta 002)</color>",
         guide3Content:
             "El Baccarat Blockchain utiliza 8 barajas de cartas (52 cartas por baraja), un total de 416 cartas. Cada carta se considera un bloque, y la siguiente contendrá la información encriptada de la anterior para formar una secuencia inmutable de 416 cartas.",
         guide4Title: "Cifrado de Datos",

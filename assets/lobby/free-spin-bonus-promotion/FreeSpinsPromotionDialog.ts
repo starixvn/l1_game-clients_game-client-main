@@ -34,6 +34,11 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     private readonly TRACKING_OBJECT_NAME = "Free spins promotion";
     private _bgTween: cc.Tween<cc.Node> = null;
 
+    onLoad() {
+        super.onLoad();
+        uiManager.emitterListener(FreeSpinsPromotionEvents.CLOSE_BANNER_PROMOTION, () => this.closeDialog(), this);
+    }
+
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
         const isChecked = toggle.isChecked;
         StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });

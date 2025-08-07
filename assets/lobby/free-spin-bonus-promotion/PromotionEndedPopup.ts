@@ -21,6 +21,7 @@ export default class PromotionEndedPopup extends cc.Component {
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
         this.node.active = true;
         this.setupContent(totalWin);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_BANNER_PROMOTION);
     }
 
     private setupContent(totalWin: number) {

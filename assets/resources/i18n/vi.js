@@ -196,6 +196,7 @@ const data = {
         single: "Đơn",
         double: "Đôi",
         any_triple: "Bộ Ba Bất Kỳ",
+        any_triple_break: "Bộ Ba Bất Kỳ",
         payout: "Trả Thưởng",
         hot_number: "Số Hay Trúng",
         cold_number: "Số Ít Trúng",

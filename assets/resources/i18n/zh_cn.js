@@ -180,6 +180,7 @@ const data = {
         single: "单",
         double: "双倍",
         any_triple: "任何三重",
+        any_triple_break: "任何三重",
         payout: "支付",
         hot_number: "热门号码",
         cold_number: "冷门号码",

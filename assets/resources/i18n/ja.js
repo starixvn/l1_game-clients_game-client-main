@@ -201,6 +201,7 @@ const data = {
         single: "シングル",
         double: "ダブル",
         any_triple: "任意のゾロ目",
+        any_triple_break: "任意のゾロ目",
         payout: "ペイアウト",
         hot_number: "ホットナンバー",
         cold_number: "コールドナンバー",

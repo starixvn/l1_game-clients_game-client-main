@@ -193,6 +193,7 @@ const data = {
         single: "Single",
         double: "Double",
         any_triple: "Any Triple",
+        any_triple_break: "Any Triple",
         payout: "Payout",
         hot_number: "Hot Numbers",
         cold_number: "Cold Numbers",

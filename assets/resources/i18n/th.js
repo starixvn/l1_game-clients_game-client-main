@@ -202,6 +202,7 @@ const data = {
         single: "เดี่ยว",
         double: "สองเท่า",
         any_triple: "ตองใดๆ",
+        any_triple_break: "ตองใดๆ",
         payout: "จ่ายออก",
         hot_number: "เบอร์ร้อน",
         cold_number: "เบอร์เย็น",

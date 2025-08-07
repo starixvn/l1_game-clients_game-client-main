@@ -1752,7 +1752,7 @@
     "_string": "TREASUREISLAND.COINVALUE",
     "_N$string": "TREASUREISLAND.COINVALUE",
     "_fontSize": 22,
-    "_lineHeight": 40,
+    "_lineHeight": 28,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "0763b17c-4af5-4b06-aaf9-9ab41eb64775"
@@ -6561,6 +6561,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": {
       "__id__": 175
     },
@@ -6576,6 +6577,10 @@
     },
     "wrapperContent": null,
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "ticketDetailPrefab": {
       "__uuid__": "d68745f0-b82a-4410-943b-cfdbba987d27"
     },

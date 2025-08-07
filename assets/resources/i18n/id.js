@@ -196,7 +196,7 @@ const data = {
         single: "Single",
         double: "Dobel",
         any_triple: "Tripel apa saja",
-        any_triple_break: "Tripel apa saja",
+        any_triple_break: "Tripel\napa saja",
         payout: "Pembayaran",
         hot_number: "Nomor Panas",
         cold_number: "Nomor Dingin",

@@ -332,7 +332,7 @@ const data = {
         prize_third: "Tercero",
         placing_bet: "Haga sus apuestas",
         no_more_bet: "¡No va más!",
-        title_special: "Resultado del Premio Especial de la ronda anterior",
+        title_special: "Premio Mayor del sorteo anterior",
         lottery_others_notice: "El resultado final se calcula en base a los dos últimos dígitos del Premio Especial.",
         choice_big: "Grande",
         choice_small: "Pequeño",

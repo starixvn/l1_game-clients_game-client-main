@@ -151,7 +151,7 @@ const data = {
         "FromSettleToSpin3": "¡PRUEBA EL MODO TURBO!",
         "copyMD5Failed": "La función de copiar no está disponible temporalmente.",
         "topMessage1": "LOS SÍMBOLOS PAGAN EN CUALQUIER LUGAR DE LA PANTALLA",
-        "topMessage2a": "Pedir",
+        "topMessage2a": "Acierta",
         "topMessage2b": "PARA MULTIPLICAR LA GANANCIA EN CASCADA",
         "topMessage3": "GANA HASTA %{maxWin}X TU APUESTA",
         "winTumbleMsg": "¡FELICIDADES!",

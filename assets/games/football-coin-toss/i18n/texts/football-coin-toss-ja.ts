@@ -102,7 +102,7 @@ export const phrases = {
         "hot": "ホット",
         "invalid_bet": "無効なベットです",
         "invalid_deal_hands": "ハンド数が無効です",
-        "invalid_free_spin": "無効なフリースピン",
+        "invalid_free_spin": "無効なFree Spin",
         "invalid_hand_id": "無効なハンドIDです",
         "invalid_position": "無効なポジションです",
         "invalid_stake_level": "無効なステークレベルです",

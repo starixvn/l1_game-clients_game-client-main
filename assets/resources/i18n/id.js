@@ -606,7 +606,9 @@ const data = {
         bigWinTextNotify: "Tekan dimana saja untuk melanjutkan",
         reachMaxWin: "Anda mencapai Maksimal Menang",
         warningTrialMode: "Main Nyata,\nMenang Nyata",
-        multiplier_preview_odds: "Bonus Pengganda akan berlaku untuk Kemenangan Tumble."
+        multiplier_preview_odds: "Bonus Pengganda akan berlaku untuk Kemenangan Tumble.",
+        betLevelShorten: "Tingkat Taruhan",
+        coinValueShorten: "Nilai Koin"
     },
     toolbarGuide: {
         fullscreen: "PENGALAMAN LAYAR PENUH",

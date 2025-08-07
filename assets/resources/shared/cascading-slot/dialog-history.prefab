@@ -1203,8 +1203,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 292.26,
-      "height": 75.6
+      "width": 393.92,
+      "height": 30.24
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1255,10 +1255,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "CASCADINGSLOT.BETLEVEL",
-    "_N$string": "CASCADINGSLOT.BETLEVEL",
+    "_string": "CASCADINGSLOT.BETLEVELSHORTEN",
+    "_N$string": "CASCADINGSLOT.BETLEVELSHORTEN",
     "_fontSize": 20,
-    "_lineHeight": 60,
+    "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "e9b99dd8-651b-466e-bac6-5f2d5f7df90a"
@@ -1283,7 +1283,7 @@
       "__id__": 32
     },
     "_enabled": true,
-    "_dataId": "cascadingSlot.betLevel",
+    "_dataId": "cascadingSlot.betLevelShorten",
     "format": 1,
     "suffix": "",
     "_id": ""
@@ -1344,8 +1344,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 305.62,
-      "height": 75.6
+      "width": 407.28,
+      "height": 30.24
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1396,10 +1396,10 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "CASCADINGSLOT.COINVALUE",
-    "_N$string": "CASCADINGSLOT.COINVALUE",
+    "_string": "CASCADINGSLOT.COINVALUESHORTEN",
+    "_N$string": "CASCADINGSLOT.COINVALUESHORTEN",
     "_fontSize": 20,
-    "_lineHeight": 60,
+    "_lineHeight": 24,
     "_enableWrapText": true,
     "_N$file": {
       "__uuid__": "e9b99dd8-651b-466e-bac6-5f2d5f7df90a"
@@ -1424,7 +1424,7 @@
       "__id__": 37
     },
     "_enabled": true,
-    "_dataId": "cascadingSlot.coinValue",
+    "_dataId": "cascadingSlot.coinValueShorten",
     "format": 1,
     "suffix": "",
     "_id": ""
@@ -6583,6 +6583,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": {
       "__id__": 172
     },
@@ -6598,6 +6599,10 @@
     },
     "wrapperContent": null,
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "ticketDetailPrefab": {
       "__uuid__": "4220f034-367e-414b-a0fb-eee82e5333b4"
     },

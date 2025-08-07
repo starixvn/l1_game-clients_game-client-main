@@ -593,7 +593,9 @@ const data = {
         bigWinTextNotify: "どこでもタップして続行",
         reachMaxWin: "最大配当を獲得！",
         warningTrialMode: "リアルマネーでプレイ、リアルマネーを獲得！",
-        multiplier_preview_odds: "タンブル勝利にはマルチプライヤーボーナスが適用されます。"
+        multiplier_preview_odds: "タンブル勝利にはマルチプライヤーボーナスが適用されます。",
+        betLevelShorten: "ベットレベル",
+        coinValueShorten: "コインバリュー"
     },
     toolbarGuide: {
         fullscreen: "フルスクリーン体験",

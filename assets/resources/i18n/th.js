@@ -596,7 +596,9 @@ const data = {
         bigWinTextNotify: "กดที่ใดก็ได้เพื่อเดิมพันต่อ",
         reachMaxWin: "คุณถึงยอดชนะสูงสุด",
         warningTrialMode: "เล่นจริง\nชนะจริง",
-        multiplier_preview_odds: " โบนัสตัวคูณจะใช้\nสำหรับ Tumble Win"
+        multiplier_preview_odds: " โบนัสตัวคูณจะใช้\nสำหรับ Tumble Win",
+        betLevelShorten: "ระดับการเดิมพัน",
+        coinValueShorten: "มูลค่าเหรียญ"
     },
     toolbarGuide: {
         fullscreen: "โหมดเต็มหน้าจอ",

@@ -590,7 +590,9 @@ const data = {
         bigWinTextNotify: "Bấm Vào Vị Trí Bất Kỳ Để Tiếp Tục",
         reachMaxWin: "Bạn Đã Đạt Mức Tiền Thắng Tối Đa",
         warningTrialMode: "Chơi Thật,\nThắng Thật",
-        multiplier_preview_odds: "Biểu tượng số nhân sẽ được áp dụng khi có kết quả thắng."
+        multiplier_preview_odds: "Biểu tượng số nhân sẽ được áp dụng khi có kết quả thắng.",
+        betLevelShorten: "Mức Cược",
+        coinValueShorten: "Giá trị xu"
     },
     toolbarGuide: {
         fullscreen: "CHẾ ĐỘ TOÀN MÀN HÌNH",

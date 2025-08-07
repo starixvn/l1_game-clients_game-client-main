@@ -570,7 +570,9 @@ const data = {
         bigWinTextNotify: "按任意位置繼續",
         reachMaxWin: "您達到了最大勝利",
         warningTrialMode: "真玩，\n贏真錢",
-        multiplier_preview_odds: "乘數獎金將適用於翻滾獲勝。"
+        multiplier_preview_odds: "乘數獎金將適用於翻滾獲勝。",
+        betLevelShorten: "賭注級別",
+        coinValueShorten: "硬幣價值"
     },
     toolbarGuide: {
         fullscreen: "全屏體驗",

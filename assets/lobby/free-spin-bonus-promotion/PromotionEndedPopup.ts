@@ -27,28 +27,35 @@ export default class PromotionEndedPopup extends cc.Component {
     private setupContent(totalWin: number) {
         const hasUsedAllBonusSpins = freeSpinsPromotionHandler.currentSpinCount === 0;
 
-        let titleKey = "";
-        let mainMessageKey = "";
-        let subMessageKey = "";
-
-        if (totalWin > 0) {
-            if (hasUsedAllBonusSpins) {
-                titleKey = "FreeSpinBonus.FSB_notification_para1a";
-                mainMessageKey = "FreeSpinBonus.FSB_end_notification";
-                subMessageKey = "FreeSpinBonus.FSB_end_notification_message";
-            } else {
-                titleKey = "FreeSpinBonus.FSB_end_notification_unusedFS";
-                mainMessageKey = "FreeSpinBonus.FSB_end_notification_unusedFS_message";
-                subMessageKey = "FreeSpinBonus.FSB_end_notification_unusedFS_message1";
+        const keyMap = {
+            win_allUsed: {
+                title: "FreeSpinBonus.FSB_notification_para1a",
+                main: "FreeSpinBonus.FSB_end_notification",
+                sub: "FreeSpinBonus.FSB_end_notification_message"
+            },
+            win_withRemaining: {
+                title: "FreeSpinBonus.FSB_end_notification_unusedFS",
+                main: "FreeSpinBonus.FSB_end_notification_unusedFS_message",
+                sub: "FreeSpinBonus.FSB_end_notification_unusedFS_message1"
+            },
+            zero_allUsed: {
+                title: "FreeSpinBonus.FSB_end_notification_zero_win",
+                main: "",
+                sub: "FreeSpinBonus.FSB_end_notification_zero_win_message"
+            },
+            zero_withRemaining: {
+                title: "FreeSpinBonus.FSB_end_notification_unusedFS",
+                main: "FreeSpinBonus.FSB_end_notification_unusedFS_message",
+                sub: "FreeSpinBonus.FSB_end_notification_unusedFS_message1"
             }
-        } else {
-            titleKey = "FreeSpinBonus.FSB_end_notification_zero_win";
-            subMessageKey = "FreeSpinBonus.FSB_end_notification_zero_win_message";
-        }
+        };
 
-        this.labelTitle.string = i18n.t(titleKey).toUpperCase();
-        this.labelMainMessage.string = mainMessageKey ? i18n.t(mainMessageKey) : "";
-        this.labelSubMessage.string = subMessageKey ? i18n.t(subMessageKey) : "";
+        const conditionKey = `${totalWin > 0 ? "win" : "zero"}_${hasUsedAllBonusSpins ? "allUsed" : "withRemaining "}`;
+        const { title, main, sub } = keyMap[conditionKey];
+
+        this.labelTitle.string = i18n.t(title).toUpperCase();
+        this.labelMainMessage.string = main ? i18n.t(main) : "";
+        this.labelSubMessage.string = sub ? i18n.t(sub) : "";
     }
 
     private onCloseClicked() {

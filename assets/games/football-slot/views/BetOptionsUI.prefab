@@ -17820,9 +17820,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "6c6d9585-2437-4b53-bc7a-a1ba654a0ed4"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -17847,6 +17844,10 @@
     "_enabled": true,
     "gameId": 79,
     "nameImage": "item_big",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -18243,7 +18244,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 107.44,
+      "width": 0,
       "height": 40
     },
     "_anchorPoint": {
@@ -23868,9 +23869,6 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "6f84368a-9171-4db6-80bc-439e77be0b3e"
-    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -23881,7 +23879,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_atlas": null,
     "_id": ""
   },
@@ -23895,6 +23893,10 @@
     "_enabled": true,
     "gameId": 79,
     "nameImage": "item_small",
+    "enableCustomizePath": false,
+    "customizePath": "",
+    "isLoadShareResource": false,
+    "prefix": "images",
     "_id": ""
   },
   {
@@ -24071,7 +24073,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 107.44,
+      "width": 0,
       "height": 40
     },
     "_anchorPoint": {

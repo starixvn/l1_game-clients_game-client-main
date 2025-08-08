@@ -2468,7 +2468,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 160,
+      "width": 150,
       "height": 97.8
     },
     "_anchorPoint": {
@@ -3054,6 +3054,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "provablyFairVerifyComponent": null,
     "pagination": null,
     "mainFrame": null,
     "gameName": null,
@@ -3067,6 +3068,10 @@
       "__id__": 7
     },
     "scrollView": null,
+    "customResultPrefab": null,
+    "enablePF": false,
+    "verify": null,
+    "itemGroupPrefab": null,
     "_id": ""
   },
   {

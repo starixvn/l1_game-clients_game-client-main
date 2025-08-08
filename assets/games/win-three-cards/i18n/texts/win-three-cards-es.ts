@@ -17,7 +17,7 @@ export const phrases = {
         pair8PlusInfo: "Pareja de 9 a Pareja de Ases, Escalera, Color, Escalera de Color, Trío",
         pair8PlusSta: "Pareja de 8 +:",
         phoenix: "Fénix",
-        phoenixShort: "P",
+        phoenixShort: "F",
         phoenixSta: "Fénix:",
         phoenix_win: "Victoria Fénix",
         result: "Resultado (Dragón | Fénix)",

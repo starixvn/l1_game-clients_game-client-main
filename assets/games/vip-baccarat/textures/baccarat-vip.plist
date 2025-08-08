@@ -394,6 +394,21 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
+            <key>dot_history_player_es.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{954,629},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
             <key>dot_history_player_id.png</key>
             <dict>
                 <key>aliases</key>
@@ -435,7 +450,7 @@
                 <key>spriteSourceSize</key>
                 <string>{21,21}</string>
                 <key>textureRect</key>
-                <string>{{954,629},{21,21}}</string>
+                <string>{{977,645},{21,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -450,7 +465,7 @@
                 <key>spriteSourceSize</key>
                 <string>{21,21}</string>
                 <key>textureRect</key>
-                <string>{{977,645},{21,21}}</string>
+                <string>{{1000,645},{21,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -465,7 +480,7 @@
                 <key>spriteSourceSize</key>
                 <string>{21,21}</string>
                 <key>textureRect</key>
-                <string>{{1000,645},{21,21}}</string>
+                <string>{{931,652},{21,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -480,41 +495,11 @@
                 <key>spriteSourceSize</key>
                 <string>{21,21}</string>
                 <key>textureRect</key>
-                <string>{{1000,645},{21,21}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>dot_history_tie_id.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{21,21}</string>
-                <key>spriteSourceSize</key>
-                <string>{21,21}</string>
-                <key>textureRect</key>
                 <string>{{931,652},{21,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>dot_history_tie_th.png</key>
-            <dict>
-                <key>aliases</key>
-                <array/>
-                <key>spriteOffset</key>
-                <string>{0,0}</string>
-                <key>spriteSize</key>
-                <string>{21,21}</string>
-                <key>spriteSourceSize</key>
-                <string>{21,21}</string>
-                <key>textureRect</key>
-                <string>{{1000,645},{21,21}}</string>
-                <key>textureRotated</key>
-                <false/>
-            </dict>
-            <key>dot_history_tie_zh_cn.png</key>
+            <key>dot_history_tie_es.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -529,7 +514,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>dot_history_tie_zh_tw.png</key>
+            <key>dot_history_tie_id.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -541,6 +526,51 @@
                 <string>{21,21}</string>
                 <key>textureRect</key>
                 <string>{{977,668},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>dot_history_tie_th.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{931,652},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>dot_history_tie_zh_cn.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{1000,668},{21,21}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>dot_history_tie_zh_tw.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{21,21}</string>
+                <key>spriteSourceSize</key>
+                <string>{21,21}</string>
+                <key>textureRect</key>
+                <string>{{931,691},{21,21}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -948,7 +978,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b0105a29beae270e5a4c14718c228665:a399afd45ac4ec7994370e36f7cc28a1:0354047a2935497a3e8222d45e898058$</string>
+            <string>$TexturePacker:SmartUpdate:8c7d5ce8e48518ec162b43251d54a5d6:a1cf0762f20464931e096c7458d6c6f9:0354047a2935497a3e8222d45e898058$</string>
             <key>textureFileName</key>
             <string>baccarat-vip.png</string>
         </dict>

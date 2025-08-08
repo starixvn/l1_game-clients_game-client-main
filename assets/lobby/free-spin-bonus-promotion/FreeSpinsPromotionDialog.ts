@@ -36,7 +36,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
     onLoad() {
         super.onLoad();
-        uiManager.emitterListener(FreeSpinsPromotionEvents.CLOSE_BANNER_PROMOTION, () => this.closeDialog(), this);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.REQUEST_CLOSE_FREE_SPINS_PROMOTION, this.closeDialog.bind(this), this);
     }
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
@@ -103,6 +103,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
     protected onDestroy(): void {
         LobbyDialogManager.getInstance().onCloseDialog();
+        uiManager.removeListenersWithTarget(this);
     }
 
     closeDialog(enableSound = true) {
@@ -110,6 +111,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
         if (isChecked) {
             StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: true });
         }
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_FREE_SPINS_PROMOTION);
         super.closeDialog(enableSound);
         freeSpinsPromotionHandler.closePromoPopup();
     }

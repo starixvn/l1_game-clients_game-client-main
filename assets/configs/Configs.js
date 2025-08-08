@@ -5,7 +5,7 @@ const defaultConfig = {
         localhost: "lumigame.com",
         "10.5.10.31": "lumigame.com"
     },
-    subDomain: "l2-proxy",
+    subDomain: "l2-proxy2",
     env: "",
     sentry: {
         env: "DEV",

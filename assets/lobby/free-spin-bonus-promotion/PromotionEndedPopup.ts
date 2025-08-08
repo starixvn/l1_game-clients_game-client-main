@@ -18,10 +18,10 @@ export default class PromotionEndedPopup extends cc.Component {
         PromotionEndedPopup.hasShown = true;
         const { totalWin } = freeSpinsPromotionHandler.finishPromotion;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
+        uiManager.emitter.emit(FreeSpinsPromotionEvents.REQUEST_CLOSE_FREE_SPINS_PROMOTION);
         this.labelTotalWin.string = numberWithCommas(totalWin, 2);
         this.node.active = true;
         this.setupContent(totalWin);
-        uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_BANNER_PROMOTION);
     }
 
     private setupContent(totalWin: number) {
@@ -50,7 +50,7 @@ export default class PromotionEndedPopup extends cc.Component {
             }
         };
 
-        const conditionKey = `${totalWin > 0 ? "win" : "zero"}_${hasUsedAllBonusSpins ? "allUsed" : "withRemaining "}`;
+        const conditionKey = `${totalWin > 0 ? "win" : "zero"}_${hasUsedAllBonusSpins ? "allUsed" : "withRemaining"}`;
         const { title, main, sub } = keyMap[conditionKey];
 
         this.labelTitle.string = i18n.t(title).toUpperCase();

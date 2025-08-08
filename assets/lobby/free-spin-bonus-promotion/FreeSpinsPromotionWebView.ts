@@ -1,8 +1,7 @@
 import LoadWebView from "../../common/LoadWebView";
-import { freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby/free-spin-bonus-promotion/FreeSpinsPromotionHandler";
+import { uiManager } from "../../managers/GameUIManager";
 import FreeSpinsPromotionDialog from "./FreeSpinsPromotionDialog";
-
-const CLOSE_FREE_SPINS_PROMOTION_EVENT = "closeFreeSpinsPromotionPopup";
 
 const { ccclass, property } = cc._decorator;
 @ccclass
@@ -12,26 +11,16 @@ export default class FreeSpinsPromotionWebView extends LoadWebView {
 
     onLoad(): void {
         this.loadFreeSpinsPromotionSite();
-        if (this.freeSpinsPromotionDialog) {
-            this.freeSpinsPromotionDialog.addOnDidHide(() => {
-                this.node.destroy();
-            });
-        }
-
-        window.addEventListener("message", this.handleEvent, false);
+        uiManager.emitterListener(FreeSpinsPromotionEvents.CLOSE_FREE_SPINS_PROMOTION, this.handleCloseFreeSpinsPromotion.bind(this), this);
 
         super.onLoad();
     }
 
-    protected onDestroy(): void {
-        window.removeEventListener("message", this.handleEvent);
+    handleCloseFreeSpinsPromotion() {
+        this.freeSpinsPromotionDialog?.addOnDidHide?.(() => {
+            this.node.destroy();
+        });
     }
-
-    handleEvent = async ({ data }: { data: string }) => {
-        if (data === CLOSE_FREE_SPINS_PROMOTION_EVENT) {
-            this.freeSpinsPromotionDialog.closeDialog();
-        }
-    };
 
     loadFreeSpinsPromotionSite() {
         this.showLoading();
@@ -43,5 +32,9 @@ export default class FreeSpinsPromotionWebView extends LoadWebView {
     showWebView() {
         this.webView._impl.setVisible(true);
         this.webView.setOpacity(255);
+    }
+
+    onDestroy() {
+        uiManager.removeListenersWithTarget(this);
     }
 }

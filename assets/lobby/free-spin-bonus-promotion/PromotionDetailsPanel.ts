@@ -9,7 +9,6 @@ const { ccclass, property } = cc._decorator;
 export default class PromotionDetailsPanel extends cc.Component {
     @property(cc.Label) labelTotalWin: cc.Label = null;
     @property(cc.Label) labelFSB: cc.Label = null;
-    @property(cc.Label) labelBetLevel: cc.Label = null;
     @property(cc.Label) labelTotalBet: cc.Label = null;
     private readonly DEFAULT_LINES = 25;
 
@@ -63,7 +62,6 @@ export default class PromotionDetailsPanel extends cc.Component {
         freeSpinsPromotionHandler.currentSpinCount = remainingBonusItems;
         this.totalWin = Number(totalWin);
 
-        this.labelBetLevel.string = betLevel.toString();
         this.labelFSB.string = remainingBonusItems.toString();
         this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
 

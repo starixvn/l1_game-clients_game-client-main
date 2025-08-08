@@ -1,6 +1,7 @@
 import AudioManager from "../../../../common/audio/AudioManager";
 import SocketIOGameHistoryBase from "../../../_base/view-models/SocketIOGameHistoryBase";
 import SevenUpDownHistoryItem from "./SevenUpDownHistoryItem";
+import { getLocale } from "../../../../common/auth/SessionManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -25,7 +26,7 @@ export default class SevenUpDownBetHistory extends SocketIOGameHistoryBase {
             this.socket.emit("betDetails", {
                 roundId: betLog.roundId,
                 mode: "dark",
-                language: window.i18n.curLang,
+                language: getLocale(),
                 timeZoneOffset: -new Date().getTimezoneOffset() / 60
             });
     }

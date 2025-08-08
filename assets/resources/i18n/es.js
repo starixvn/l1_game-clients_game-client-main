@@ -548,7 +548,7 @@ const data = {
         leftTableOddTitle: "Ante",
         check: "Pasar",
         push: "Empate",
-        betTurn: "Apostar Turn",
+        betTurn: "Apostar\n Turn",
         betRiver: "Apostar River",
         swap: "Cambiar cartas",
         hold: "Mantener Cartas",

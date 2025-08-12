@@ -19,7 +19,7 @@ export default class PromotionEndedPopup extends cc.Component {
         const { totalWin } = freeSpinsPromotionHandler.finishPromotion;
         uiManager.emitter.emit(FreeSpinsPromotionEvents.DESTROY_GIFT_CODE_NODE);
         uiManager.emitter.emit(FreeSpinsPromotionEvents.REQUEST_CLOSE_FREE_SPINS_PROMOTION);
-        this.labelTotalWin.string = numberWithCommas(totalWin, 2);
+        this.labelTotalWin.string = numberWithCommas(totalWin, 2, false);
         this.node.active = true;
         this.setupContent(totalWin);
     }

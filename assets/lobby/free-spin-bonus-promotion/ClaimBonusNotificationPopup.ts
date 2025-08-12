@@ -13,7 +13,7 @@ export default class ClaimBonusNotificationPopup extends cc.Component {
             return;
         }
 
-        this.labelTotalWin.string = numberWithCommas(claimedAmount, 2);
+        this.labelTotalWin.string = numberWithCommas(claimedAmount, 2, false);
         this.node.active = true;
     }
 

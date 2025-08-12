@@ -63,7 +63,7 @@ export default class PromotionDetailsPanel extends cc.Component {
         this.totalWin = Number(totalWin);
 
         this.labelFSB.string = remainingBonusItems.toString();
-        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
+        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2, false);
 
         this.updateTotalBet();
         this.node.active = true;
@@ -75,12 +75,12 @@ export default class PromotionDetailsPanel extends cc.Component {
 
     updateTotalWin(amount: number) {
         this.totalWin += amount;
-        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2);
+        this.labelTotalWin.string = numberWithCommas(this.totalWin, 2, false);
     }
 
     updateTotalBet() {
         const totalBet = this.betLevel * this.DEFAULT_LINES;
-        this.labelTotalBet.string = totalBet.toString();
+        this.labelTotalBet.string = numberWithCommas(totalBet, 2, false);
     }
 
     hidePanel() {

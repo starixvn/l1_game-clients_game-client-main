@@ -90,7 +90,7 @@ export default class TurnOverRequiredPanel extends BaseComponent {
     }
 
     private updateProgressUI() {
-        this.labelTotalWin.string = numberWithCommas(this.totalWinAmount, 2);
+        this.labelTotalWin.string = numberWithCommas(this.totalWinAmount, 2, false);
 
         const formattedTotalTO = numberWithCommas(this.totalTurnover, 2);
         const formattedMinRequiredTO = numberWithCommas(this.minRequiredTurnover, 2);

@@ -104,7 +104,7 @@ function getLanguageURLparams(locale) {
         "zh-CN": "zh_cn",
         "zh-TW": "zh_tw",
         "ja-JP": "ja",
-        ...globalThis?.localeMapping
+        ...(globalThis.localeMapping || {})
     };
     return dict[locale] || "en";
 }
@@ -260,8 +260,32 @@ class RandomWaitingMessage {
 }
 
 updateSplashLogo();
-updateLocalizedImages();
-window.randomWaitingMessage = new RandomWaitingMessage();
 initGameEngine();
 initGA();
 addGATrackingButton();
+
+function initializeSplash() {
+    updateLocalizedImages();
+    window.randomWaitingMessage = new RandomWaitingMessage();
+}
+
+if (globalThis.localeMapping) {
+    initializeSplash();
+} else {
+    globalThis.addEventListener(
+        "localeMappingLoaded",
+        () => {
+            initializeSplash();
+        },
+        {
+            once: true
+        }
+    );
+
+    setTimeout(() => {
+        if (!globalThis.localeMapping) {
+            console.log("localeMapping not loaded within timeout, using default locale");
+            globalThis.dispatchEvent(new Event("localeMappingLoaded"));
+        }
+    }, 2000);
+}

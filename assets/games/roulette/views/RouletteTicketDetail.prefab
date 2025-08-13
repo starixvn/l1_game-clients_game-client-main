@@ -320,7 +320,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 319.15,
+      "width": 309.75,
       "height": 100
     },
     "_anchorPoint": {
@@ -391,7 +391,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 86.26,
+      "width": 65.13,
       "height": 100
     },
     "_anchorPoint": {
@@ -403,7 +403,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        43.129999999999995,
+        32.565,
         0,
         0,
         0,
@@ -458,7 +458,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 81.26,
+      "width": 60.13,
       "height": 45.36
     },
     "_anchorPoint": {
@@ -470,7 +470,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        38.13,
+        27.565000000000005,
         0,
         0,
         0,
@@ -523,8 +523,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.round:",
-    "_N$string": "Ui.round:",
+    "_string": "Ronda:",
+    "_N$string": "Ronda:",
     "_fontSize": 18,
     "_lineHeight": 36,
     "_enableWrapText": true,
@@ -593,7 +593,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        43.13,
+        32.565000000000005,
         -1,
         0,
         0,
@@ -674,7 +674,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 86.26,
+      "width": 65.13,
       "height": 100
     },
     "_resize": 1,
@@ -741,7 +741,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 82.89,
+      "width": 94.62,
       "height": 100
     },
     "_anchorPoint": {
@@ -753,7 +753,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        277.705,
+        262.44,
         0,
         0,
         0,
@@ -808,7 +808,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 77.89,
+      "width": 89.62,
       "height": 45.36
     },
     "_anchorPoint": {
@@ -820,7 +820,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        36.445,
+        42.31,
         7.105427357601002e-15,
         0,
         0,
@@ -873,8 +873,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Ui.result:",
-    "_N$string": "Ui.result:",
+    "_string": "Resultado:",
+    "_N$string": "Resultado:",
     "_fontSize": 18,
     "_lineHeight": 36,
     "_enableWrapText": true,
@@ -943,7 +943,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        41.445,
+        47.31,
         0,
         0,
         0,
@@ -1024,7 +1024,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 82.89,
+      "width": 94.62,
       "height": 100
     },
     "_resize": 1,
@@ -1067,7 +1067,7 @@
     "_enabled": true,
     "_layoutSize": {
       "__type__": "cc.Size",
-      "width": 319.15,
+      "width": 309.75,
       "height": 100
     },
     "_resize": 1,
@@ -1414,7 +1414,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 73.81,
+      "width": 73.51,
       "height": 30.24
     },
     "_anchorPoint": {
@@ -1479,8 +1479,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "UI.TIME",
-    "_N$string": "UI.TIME",
+    "_string": "TIEMPO",
+    "_N$string": "TIEMPO",
     "_fontSize": 18,
     "_lineHeight": 24,
     "_enableWrapText": true,
@@ -1555,7 +1555,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 109.01,
+      "width": 164.18,
       "height": 30.24
     },
     "_anchorPoint": {
@@ -1607,8 +1607,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "UI.BETTYPE",
-    "_N$string": "UI.BETTYPE",
+    "_string": "TIPO DE APUESTA",
+    "_N$string": "TIPO DE APUESTA",
     "_fontSize": 18,
     "_lineHeight": 24,
     "_enableWrapText": true,
@@ -1696,8 +1696,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 133.11,
-      "height": 30.24
+      "width": 224.99,
+      "height": 54.239999999999995
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1748,8 +1748,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "UI.BETCHOICE",
-    "_N$string": "UI.BETCHOICE",
+    "_string": "SELECCIÓN DE APUESTA",
+    "_N$string": "SELECCIÓN DE APUESTA",
     "_fontSize": 18,
     "_lineHeight": 24,
     "_enableWrapText": true,
@@ -1761,10 +1761,10 @@
     "_batchAsBitmap": false,
     "_styleFlags": 0,
     "_underlineHeight": 0,
-    "_N$horizontalAlign": 0,
+    "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
+    "_N$overflow": 3,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -1837,7 +1837,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 85.32,
+      "width": 84.65,
       "height": 30.24
     },
     "_anchorPoint": {
@@ -1889,8 +1889,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "UI.STAKE",
-    "_N$string": "UI.STAKE",
+    "_string": "APUESTA",
+    "_N$string": "APUESTA",
     "_fontSize": 18,
     "_lineHeight": 24,
     "_enableWrapText": true,

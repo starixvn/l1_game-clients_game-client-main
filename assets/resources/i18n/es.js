@@ -549,7 +549,7 @@ const data = {
         check: "Pasar",
         push: "Empate",
         betTurn: "Apostar\n Turn",
-        betRiver: "Apostar River",
+        betRiver: "Apostar\n River",
         swap: "Cambiar cartas",
         hold: "Mantener Cartas",
         swapCardOn: "Intercambiar Cartas Activado",

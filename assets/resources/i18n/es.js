@@ -581,7 +581,7 @@ const data = {
         trialMode: "Modo Demo",
         betMultiplierX: "Multiplicador de Apuesta\n20x",
         betLevel: "Nivel de Apuesta",
-        coinValue: "Valor de\nMoneda",
+        coinValue: "Valor de Moneda",
         congratulation: "Felicitaciones",
         youWinFreeSpin: "Ganaste",
         multiplier: "Multiplicador",

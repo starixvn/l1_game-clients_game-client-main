@@ -38,6 +38,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2"
     },
+    lobbyNames: {
+        26: "Bầu Cua VIP",
+        3: "Bầu Cua",
+        4: "Tài Xỉu Siêu Tốc"
+    },
     messages: {
         accountNotExist: "Đã xảy ra lỗi. Vui lòng liên hệ bộ phận CSKH để biết chi tiết, cảm ơn bạn. (%{errorCode})",
         ipRestricted: "Địa chỉ IP này bị chặn. (%{errorCode})",

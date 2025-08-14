@@ -47,6 +47,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2"
     },
+    lobbyNames: {
+        26: "VIP ปลา กุ้ง ปู",
+        3: "น้ำเต้าปูปลา",
+        4: "เกมเร็ว ใหญ่/เล็ก"
+    },
     messages: {
         accountNotExist: "เกิดข้อผิดพลาด กรุณาติดต่อแอดมินสำหรับรายละเอียดเพิ่มเติม ขอบคุณค่ะ (%{errorCode})",
         ipRestricted: "ที่อยู่ IP ของคุณถูกจำกัด (%{errorCode})",

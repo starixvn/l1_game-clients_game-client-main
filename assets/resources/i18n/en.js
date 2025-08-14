@@ -37,6 +37,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2"
     },
+    lobbyNames: {
+        26: "VIP Fish Prawn Crab",
+        3: "Fish Prawn Crab",
+        4: "Turbo Big Small"
+    },
     messages: {
         accountNotExist: "An error has occurred. Please contact CSD for details, thank you. (%{errorCode})",
         ipRestricted: "Your IP address is restricted. (%{errorCode})",

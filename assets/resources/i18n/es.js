@@ -6,8 +6,8 @@ const data = {
     gameNames: {
         1: "Grande o Pequeño",
         2: "Se Die",
-        3: "Pez Camarón\nCangrejo",
-        4: "Turbo\nGrande Pequeño",
+        3: "Pez Camarón Cangrejo",
+        4: "Turbo Grande Pequeño",
         5: "Par/Impar",
         6: "Turbo Par Impar",
         7: "Dragón Tigre",
@@ -21,7 +21,7 @@ const data = {
         23: "Blackjack",
         24: "Se Die Especial",
         25: "Sic Bo",
-        26: "VIP Pez Camarón\nCangrejo",
+        26: "VIP Pez Camarón Cangrejo",
         27: "Baccarat VIP",
         28: "Se Die Duelo",
         29: "Four Guardians",
@@ -36,6 +36,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2",
         "-1": "Rueda de la Suerte"
+    },
+    lobbyNames: {
+        26: "VIP Pez Camarón\nCangrejo",
+        3: "Pez Camarón\nCangrejo",
+        4: "Turbo\nGrande Pequeño"
     },
     messages: {
         accountNotExist:

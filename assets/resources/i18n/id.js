@@ -40,6 +40,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2"
     },
+    lobbyNames: {
+        26: "VIP Ikan Udang Kepiting",
+        3: "Ikan Udang Kepiting",
+        4: "Besar Kecil Turbo"
+    },
     messages: {
         accountNotExist: "Sebuah kesalahan telah terjadi. Silakan hubungi CSD untuk lebih lanjut, terima kasih. (%{errorCode})",
         ipRestricted: "Alamat IP Anda dibatasi. (%{errorCode})",

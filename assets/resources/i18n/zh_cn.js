@@ -37,6 +37,11 @@ const data = {
         52: "Mega Keno",
         53: "Mega Keno 2"
     },
+    lobbyNames: {
+        26: "VIP 鱼虾蟹",
+        3: "鱼虾蟹",
+        4: "快速大小"
+    },
     messages: {
         accountNotExist: "发生了错误。 详情请联系CSD，谢谢。(%{errorCode})",
         ipRestricted: "您的 IP 地址受到限制。(%{errorCode})",

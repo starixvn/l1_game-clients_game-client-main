@@ -22,7 +22,7 @@ async function get(path: string) {
     return data;
 }
 
-async function getAllLanguages(projectId = 5): Promise<{
+async function getAllLanguagesFromTolgee(projectId = 5): Promise<{
     _embedded: {
         languages: {
             tag: string;
@@ -70,39 +70,6 @@ async function exportDataFromTolgee(path: string) {
 
 function unzipFile(zipFile: string) {
     execSync(`powershell Expand-Archive -Path ${zipFile} -DestinationPath ./tolgee-generator/game-client`);
-}
-
-function getAllKeyFromCommon(languageTag: string) {
-    const files = readFileSync(`./assets/resources/i18n/${languageTag}.js`, "utf-8");
-    const regex = /const\s+data\s*=\s*({[\s\S]*?});/;
-    const match = files.match(regex);
-    if (!match) {
-        throw new Error("No matches found");
-    }
-
-    const objectContent = match[1];
-    try {
-        const data = new Function(`return ${objectContent}`)();
-        return data;
-    } catch (error) {
-        throw new Error(`Failed to parse object: ${error.message}`);
-    }
-}
-
-function writeFileCommon(languageTag: string, data: Record<string, Record<string, any>>) {
-    let fileContent = `if (!window.i18n) window.i18n = {};
-if (!window.i18n.languages) window.i18n.languages = {};
-if (!window.i18n.languages.${languageTag}) window.i18n.languages.${languageTag} = {};
-
-const data = ${JSON.stringify(data, null, 4)};
-
-Object.assign(window.i18n.languages.${languageTag}, data);`;
-
-    fileContent = fileContent.replace(/"(\d+)"(?=\s*:\s*".*?")/g, "$1");
-    fileContent = fileContent.replace(/\\\\n/g, "\\n");
-    fileContent = fileContent.replace(/\\\\r/g, "\\r");
-
-    writeFileSync(`./assets/resources/i18n/${languageTag}.js`, fileContent);
 }
 
 function flatternTranslations(
@@ -167,16 +134,17 @@ function getTranslationsFromCache() {
     return translations;
 }
 
-async function getNewTranslations(languages: {
-    _embedded: {
-        languages: {
-            tag: string;
-        }[];
-    };
-}) {
+async function getTranslations(
+    languages: {
+        tag: string;
+    }[]
+) {
+    if (existsSync("./tolgee-generator/cache/translations.json")) {
+        return JSON.parse(readFileSync("./tolgee-generator/cache/translations.json", "utf-8"));
+    }
     const rawTranslations = await getAllTranslations(
         5,
-        languages._embedded.languages.map((language) => language.tag)
+        languages.map((language) => language.tag)
     );
 
     let cursor = rawTranslations.nextCursor;
@@ -184,7 +152,7 @@ async function getNewTranslations(languages: {
     while (keys.length < rawTranslations.page.totalElements) {
         const rawTranslations = await getAllTranslations(
             5,
-            languages._embedded.languages.map((language) => language.tag),
+            languages.map((language) => language.tag),
             cursor
         );
         keys = [...keys, ...rawTranslations._embedded.keys];
@@ -195,61 +163,19 @@ async function getNewTranslations(languages: {
     return translations;
 }
 
-async function bindDataForCommon() {
-    const mappingKey = JSON.parse(readFileSync("./tolgee-generator/mapping-key/common.json", "utf-8"));
-    const languages = await getAllLanguages();
-    const rawTranslations = getTranslationsFromCache();
-    const translations = Object.keys(rawTranslations).length > 0 ? rawTranslations : await getNewTranslations(languages);
-
-    for (const language of languages._embedded.languages) {
-        const result = {};
-        let keyFromCommon = {};
-        try {
-            keyFromCommon = getAllKeyFromCommon(language.tag);
-        } catch (error) {
-            keyFromCommon = getAllKeyFromCommon("en");
-        }
-        for (const namespace of Object.keys(keyFromCommon)) {
-            const value = keyFromCommon[namespace];
-            if (typeof value === "string") {
-                console.log(`Error: ${namespace} is not a string`);
-                continue;
-            }
-            result[namespace] = {};
-            for (const [key, _] of Object.entries(value)) {
-                const keyName = mappingKey[namespace]?.[key];
-                if (!keyName) {
-                    console.log(`Missing mapping key: ${key} in ${namespace}`);
-                    result[namespace][key] = keyFromCommon[namespace][key];
-                    continue;
-                }
-                const translation = translations[keyName]?.[language.tag];
-                if (!translation) {
-                    console.log(`Missing translation: ${keyName} of ${namespace} in ${language.tag} `);
-                    result[namespace][key] = keyFromCommon[namespace][key];
-                    continue;
-                }
-                result[namespace][key] = translation;
-            }
-        }
-        writeFileCommon(language.tag, result);
+async function getAllLanguages(): Promise<{
+    _embedded: {
+        languages: {
+            tag: string;
+        }[];
+    };
+}> {
+    if (existsSync("./tolgee-generator/cache/languages.json")) {
+        return JSON.parse(readFileSync("./tolgee-generator/cache/languages.json", "utf-8"));
     }
+    const languages = await getAllLanguagesFromTolgee();
+    writeFileSync("./tolgee-generator/cache/languages.json", JSON.stringify(languages, null, 4));
+    return languages;
 }
 
-bindDataForCommon();
-
-// const ZIP_FILE = "./tolgee-generator/game-client.zip";
-// const UNZIP_FOLDER = "./tolgee-generator/game-client";
-
-// async function main() {
-//     await exportDataFromTolgee(ZIP_FILE);
-//     unzipFile(ZIP_FILE);
-//     const translations = collectTranslations(UNZIP_FOLDER);
-//     deleteFolder(UNZIP_FOLDER);
-//     deleteFile(ZIP_FILE);
-//     //deleteFile("./tolgee-generator/translations.json");
-//     //const translations = JSON.parse(readFileSync("./tolgee-generator/translations.json", "utf-8"));
-//     bindDataForCommon(translations);
-// }
-
-// main();
+export { getAllLanguages, getTranslations };

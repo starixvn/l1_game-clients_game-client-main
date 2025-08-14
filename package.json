@@ -12,7 +12,8 @@
         "build": "javascript-obfuscator ./build --output ./build --exclude cocos2d-js-min",
         "obfuscator-config-file": "node ./configs/config-obfuscator.js",
         "generate-tolgee-data": "ts-node ./tolgee-generator/index.ts",
-        "tolgee": "ts-node ./tolgee-generator/bind-data-from-tolgee.ts"
+        "tolgee-common": "ts-node ./tolgee-generator/bind-data-for-common.ts",
+        "tolgee-all": "ts-node ./tolgee-generator/bind-data-for-all.ts"
     },
     "author": "",
     "license": "ISC",

@@ -1,0 +1,113 @@
+{
+    "_embedded": {
+        "languages": [
+            {
+                "id": 1000047001,
+                "name": "English",
+                "tag": "en",
+                "originalName": "English",
+                "flagEmoji": "🇬🇧",
+                "base": true
+            },
+            {
+                "id": 1009195006,
+                "name": "Spanish",
+                "tag": "es",
+                "originalName": "español",
+                "flagEmoji": "🇪🇸",
+                "base": false
+            },
+            {
+                "id": 1001279002,
+                "name": "Filipino (Philippines)",
+                "tag": "fil_ph",
+                "originalName": "Filipino (Pilipinas)",
+                "flagEmoji": "🇵🇭",
+                "base": false
+            },
+            {
+                "id": 1000047009,
+                "name": "Indonesian",
+                "tag": "id",
+                "originalName": "Indonesia",
+                "flagEmoji": "🇮🇩",
+                "base": false
+            },
+            {
+                "id": 1009195005,
+                "name": "Japanese",
+                "tag": "ja",
+                "originalName": "日本語",
+                "flagEmoji": "🇯🇵",
+                "base": false
+            },
+            {
+                "id": 1010423023,
+                "name": "Korean",
+                "tag": "ko",
+                "originalName": "한국어",
+                "flagEmoji": "🇰🇷",
+                "base": false
+            },
+            {
+                "id": 1010423019,
+                "name": "Portuguese (Brazil)",
+                "tag": "pt_br",
+                "originalName": "português (Brasil)",
+                "flagEmoji": "🇧🇷",
+                "base": false
+            },
+            {
+                "id": 1000047002,
+                "name": "Thai",
+                "tag": "th",
+                "originalName": "ไทย",
+                "flagEmoji": "🇹🇭",
+                "base": false
+            },
+            {
+                "id": 1010423016,
+                "name": "Turkish (Turkey)",
+                "tag": "tr",
+                "originalName": "Türkçe (Türkiye)",
+                "flagEmoji": "🇹🇷",
+                "base": false
+            },
+            {
+                "id": 1000047010,
+                "name": "Vietnamese",
+                "tag": "vi",
+                "originalName": "Tiếng Việt",
+                "flagEmoji": "🇻🇳",
+                "base": false
+            },
+            {
+                "id": 1000047011,
+                "name": "Simplified Chinese",
+                "tag": "zh_cn",
+                "originalName": "简体中文",
+                "flagEmoji": "🇸🇬",
+                "base": false
+            },
+            {
+                "id": 1000047012,
+                "name": "Traditional Chinese",
+                "tag": "zh_tw",
+                "originalName": "繁體中文",
+                "flagEmoji": "🇸🇬",
+                "base": false
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "https://tolgee.sabagame.com/v2/projects/5/languages?page=0&size=1000"
+        }
+    },
+    "page": {
+        "size": 1000,
+        "totalElements": 12,
+        "totalPages": 1,
+        "number": 0
+    }
+}

@@ -29,7 +29,7 @@ async function bindDataForAll() {
                     }
                     result[namespace] = {};
                     for (const [key, _] of Object.entries(value)) {
-                        const keyName = mappingKey[namespace]?.[key];
+                        const keyName = mappingKey[`${namespace}.${key}`];
                         if (!keyName) {
                             console.log(`Missing mapping key: ${key} in ${namespace} in ${language.tag} in ${game}`);
                             result[namespace][key] = parsedData[namespace][key];

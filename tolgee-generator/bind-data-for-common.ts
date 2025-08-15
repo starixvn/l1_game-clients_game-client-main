@@ -42,8 +42,4 @@ async function bindDataForCommon() {
     }
 }
 
-function main() {
-    bindDataForCommon();
-}
-
-main();
+bindDataForCommon();

@@ -68,10 +68,6 @@ async function exportDataFromTolgee(path: string) {
     writeFileSync(path, new Uint8Array(zipBuffer));
 }
 
-function unzipFile(zipFile: string) {
-    execSync(`powershell Expand-Archive -Path ${zipFile} -DestinationPath ./tolgee-generator/game-client`);
-}
-
 function flatternTranslations(
     translations: {
         keyNamespace: string;
@@ -86,52 +82,6 @@ function flatternTranslations(
         );
     }
     return data;
-}
-
-function collectTranslations(path: string) {
-    const namespaces = readdirSync(path);
-    const filter = namespaces.filter((namespace) => !namespace.includes(".json"));
-    let result = {};
-    for (const namespace of filter) {
-        const files = readdirSync(`${path}/${namespace}`);
-        result = {
-            ...result,
-            ...accumulateFromFolder(files, path, namespace)
-        };
-    }
-    //writeFileSync("./tolgee-generator/translations.json", JSON.stringify(result, null, 4));
-    return result;
-}
-
-function accumulateFromFolder(files: string[], path: string, namespace: string) {
-    const result = {};
-    for (const languageFile of files) {
-        const data = JSON.parse(readFileSync(`${path}/${namespace}/${languageFile}`, "utf-8"));
-        const languageTag = languageFile.replace(".json", "");
-        for (const key of Object.keys(data)) {
-            result[`${namespace}.${key}`] = {
-                ...(result[`${namespace}.${key}`] || {}),
-                [languageTag]: data[key]
-            };
-        }
-    }
-    return result;
-}
-
-function deleteFolder(path: string) {
-    execSync(`powershell Remove-Item -Path ${path} -Recurse -Force`);
-}
-
-function deleteFile(path: string) {
-    execSync(`powershell Remove-Item -Path ${path} -Force`);
-}
-
-function getTranslationsFromCache() {
-    if (!existsSync("./tolgee-generator/cache/translations.json")) {
-        return {};
-    }
-    const translations = JSON.parse(readFileSync("./tolgee-generator/cache/translations.json", "utf-8"));
-    return translations;
 }
 
 async function getTranslations(

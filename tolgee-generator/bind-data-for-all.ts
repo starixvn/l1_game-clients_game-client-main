@@ -31,13 +31,13 @@ async function bindDataForAll() {
                     for (const [key, _] of Object.entries(value)) {
                         const keyName = mappingKey[namespace]?.[key];
                         if (!keyName) {
-                            console.log(`Missing mapping key: ${key} in ${namespace}`);
+                            console.log(`Missing mapping key: ${key} in ${namespace} in ${language.tag} in ${game}`);
                             result[namespace][key] = parsedData[namespace][key];
                             continue;
                         }
                         const translation = translations[keyName]?.[language.tag];
                         if (!translation) {
-                            console.log(`Missing translation: ${keyName} of ${namespace} in ${language.tag} `);
+                            console.log(`Missing translation: ${keyName} of ${namespace} in ${language.tag} in ${game}`);
                             result[namespace][key] = parsedData[namespace][key];
                             continue;
                         }

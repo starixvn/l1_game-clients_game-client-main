@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { getAllLanguages, getTranslations } from "./tolgee-utils";
 import { getAllKeyFromCommon, writeFileCommon } from "./io-utils";
 
@@ -6,10 +6,12 @@ async function bindDataForCommon() {
     const mappingKey = JSON.parse(readFileSync("./tolgee-generator/mapping-key/common.json", "utf-8"));
     const languages = await getAllLanguages();
     const translations = await getTranslations(languages._embedded.languages);
-
+    const missingMapping = {};
+    const missingTranslation = {};
     for (const language of languages._embedded.languages) {
         const result = {};
         let keyFromCommon = {};
+
         try {
             keyFromCommon = getAllKeyFromCommon(language.tag);
         } catch (error) {
@@ -25,13 +27,15 @@ async function bindDataForCommon() {
             for (const [key, _] of Object.entries(value)) {
                 const keyName = mappingKey[namespace]?.[key];
                 if (!keyName) {
-                    console.log(`Missing mapping key: ${key} in ${namespace}`);
+                    missingMapping[namespace] = missingMapping[namespace] || {};
+                    missingMapping[namespace][key] = "";
                     result[namespace][key] = keyFromCommon[namespace][key];
                     continue;
                 }
                 const translation = translations[keyName]?.[language.tag];
                 if (!translation) {
-                    console.log(`Missing translation: ${keyName} of ${namespace} in ${language.tag} `);
+                    missingTranslation[keyName] = missingTranslation[keyName] || {};
+                    missingTranslation[keyName][language.tag] = "";
                     result[namespace][key] = keyFromCommon[namespace][key];
                     continue;
                 }
@@ -40,6 +44,9 @@ async function bindDataForCommon() {
         }
         writeFileCommon(language.tag, result);
     }
+
+    writeFileSync("./missing-mapping-common.json", JSON.stringify(missingMapping, null, 4));
+    writeFileSync("./missing-translation-common.json", JSON.stringify(missingTranslation, null, 4));
 }
 
 bindDataForCommon();

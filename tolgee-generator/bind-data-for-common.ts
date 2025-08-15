@@ -45,8 +45,12 @@ async function bindDataForCommon() {
         writeFileCommon(language.tag, result);
     }
 
-    writeFileSync("./missing-mapping-common.json", JSON.stringify(missingMapping, null, 4));
-    writeFileSync("./missing-translation-common.json", JSON.stringify(missingTranslation, null, 4));
+    if (Object.keys(missingMapping).length > 0) {
+        writeFileSync("./missing-mapping-common.json", JSON.stringify(missingMapping, null, 4));
+    }
+    if (Object.keys(missingTranslation).length > 0) {
+        writeFileSync("./missing-translation-common.json", JSON.stringify(missingTranslation, null, 4));
+    }
 }
 
 bindDataForCommon();

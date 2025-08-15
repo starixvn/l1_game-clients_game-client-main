@@ -78,7 +78,7 @@ function flatternTranslations(
     const data = {};
     for (const key of translations) {
         data[`${key.keyNamespace}.${key.keyName}`] = Object.fromEntries(
-            Object.entries(key.translations).map(([key, value]) => [key, value.text])
+            Object.entries(key.translations).map(([key, value]) => [key, value?.text || ""])
         );
     }
     return data;

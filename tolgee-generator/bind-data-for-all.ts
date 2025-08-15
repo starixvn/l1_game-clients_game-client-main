@@ -1,7 +1,7 @@
 import { join } from "path";
 import { findFiles, parseLanguageData, writeFileForGame } from "./io-utils";
 import { getAllLanguages, getTranslations } from "./tolgee-utils";
-import { existsSync, readdirSync, readFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 
 async function bindDataForAll() {
     const languages = await getAllLanguages();
@@ -9,6 +9,8 @@ async function bindDataForAll() {
     const games = readdirSync(gamesDir);
     const translations = await getTranslations(languages._embedded.languages);
     const mappingKeyAllGame = JSON.parse(readFileSync("./tolgee-generator/mapping-key/all-game-v2.json", "utf-8"));
+    const missingMapping = {};
+    const missingTranslation = {};
     for (const game of games) {
         const mappingKey = mappingKeyAllGame[game];
         if (existsSync(join(gamesDir, game, "i18n", "texts"))) {
@@ -31,13 +33,16 @@ async function bindDataForAll() {
                     for (const [key, _] of Object.entries(value)) {
                         const keyName = mappingKey[`${namespace}.${key}`];
                         if (!keyName) {
-                            console.log(`Missing mapping key: ${key} in ${namespace} in ${language.tag} in ${game}`);
+                            missingMapping[game] = missingMapping[game] || {};
+                            missingMapping[game][namespace] = missingMapping[game][namespace] || {};
+                            missingMapping[game][namespace][key] = "";
                             result[namespace][key] = parsedData[namespace][key];
                             continue;
                         }
                         const translation = translations[keyName]?.[language.tag];
                         if (!translation) {
-                            console.log(`Missing translation: ${keyName} of ${namespace} in ${language.tag} in ${game}`);
+                            missingTranslation[keyName] = missingTranslation[keyName] || {};
+                            missingTranslation[keyName][language.tag] = "";
                             result[namespace][key] = parsedData[namespace][key];
                             continue;
                         }
@@ -47,6 +52,13 @@ async function bindDataForAll() {
                 writeFileForGame(language.tag, languageFileName, result);
             }
         }
+    }
+
+    if (Object.keys(missingMapping).length > 0) {
+        writeFileSync("./missing-mapping-all.json", JSON.stringify(missingMapping, null, 4));
+    }
+    if (Object.keys(missingTranslation).length > 0) {
+        writeFileSync("./missing-translation-all.json", JSON.stringify(missingTranslation, null, 4));
     }
 }
 

@@ -13,7 +13,8 @@
         "obfuscator-config-file": "node ./configs/config-obfuscator.js",
         "generate-tolgee-data": "ts-node ./tolgee-generator/index.ts",
         "tolgee-common": "ts-node ./tolgee-generator/bind-data-for-common.ts",
-        "tolgee-all": "ts-node ./tolgee-generator/bind-data-for-all.ts"
+        "tolgee-all": "ts-node ./tolgee-generator/bind-data-for-all.ts",
+        "tolgee-get-translation": "ts-node ./tolgee-generator/get-translation-from-tolgee.ts"
     },
     "author": "",
     "license": "ISC",

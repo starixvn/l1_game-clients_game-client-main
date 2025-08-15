@@ -1,5 +1,4 @@
-import { execSync } from "child_process";
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 
 const TOLGEE_API = "https://tolgee.sabagame.com";
 const TOLGEE_TOKEN = "tgpak_gvpw45brha2xg3btoztxeytunvudc5dbn5twqodtonztc";
@@ -84,13 +83,15 @@ function flatternTranslations(
     return data;
 }
 
+const TRANSLATIONS_CACHE_PATH = "./tolgee-generator/cache/translations.json";
+
 async function getTranslations(
     languages: {
         tag: string;
     }[]
 ) {
-    if (existsSync("./tolgee-generator/cache/translations.json")) {
-        return JSON.parse(readFileSync("./tolgee-generator/cache/translations.json", "utf-8"));
+    if (existsSync(TRANSLATIONS_CACHE_PATH)) {
+        return JSON.parse(readFileSync(TRANSLATIONS_CACHE_PATH, "utf-8"));
     }
     const rawTranslations = await getAllTranslations(
         5,
@@ -109,9 +110,11 @@ async function getTranslations(
         cursor = rawTranslations.nextCursor;
     }
     const translations = flatternTranslations(keys);
-    writeFileSync("./tolgee-generator/cache/translations.json", JSON.stringify(translations, null, 4));
+    writeFileSync(TRANSLATIONS_CACHE_PATH, JSON.stringify(translations, null, 4));
     return translations;
 }
+
+const LANGUAGES_CACHE_PATH = "./tolgee-generator/cache/languages.json";
 
 async function getAllLanguages(): Promise<{
     _embedded: {
@@ -120,11 +123,11 @@ async function getAllLanguages(): Promise<{
         }[];
     };
 }> {
-    if (existsSync("./tolgee-generator/cache/languages.json")) {
-        return JSON.parse(readFileSync("./tolgee-generator/cache/languages.json", "utf-8"));
+    if (existsSync(LANGUAGES_CACHE_PATH)) {
+        return JSON.parse(readFileSync(LANGUAGES_CACHE_PATH, "utf-8"));
     }
     const languages = await getAllLanguagesFromTolgee();
-    writeFileSync("./tolgee-generator/cache/languages.json", JSON.stringify(languages, null, 4));
+    writeFileSync(LANGUAGES_CACHE_PATH, JSON.stringify(languages, null, 4));
     return languages;
 }
 

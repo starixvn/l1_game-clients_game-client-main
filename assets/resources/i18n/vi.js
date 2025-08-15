@@ -181,7 +181,7 @@ const data = {
         winningNotificationOn: "Bật thông báo cầu thuận lợi",
         winningNotificationOff: "Tắt thông báo cầu thuận lợi",
         voidTicketMessage: "Cược của bạn đã bị hủy vì lý do kỹ thuật. Vui lòng thử lại game.",
-        Claim_expired_error_message: "Thời gian nhận thưởng đã hết. (%{errorCode})"
+        message_error_claim_expired: "Thời gian nhận thưởng đã hết. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Đỏ",

@@ -181,7 +181,7 @@ const data = {
         winningNotificationOn: 'Notifikasi kemenangan beruntun "AKTIF"',
         winningNotificationOff: 'Notifikasi kemenangan beruntun "MATI"',
         voidTicketMessage: "Taruhan dibatalkan karena masalah teknis. Silakan coba permainan lagi.",
-        Claim_expired_error_message: "Bonus berakhir. Tidak lagi tersedia. (%{errorCode})"
+        message_error_claim_expired: "Bonus berakhir. Tidak lagi tersedia. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Merah",

@@ -165,7 +165,7 @@ const data = {
         winningNotificationOn: "连胜通知“开”",
         winningNotificationOff: "连胜通知“关”",
         voidTicketMessage: "由于技术问题，该投注无效。请再次尝试游戏。",
-        Claim_expired_error_message: "奖金已过期，不再有效。 (%{errorCode})"
+        message_error_claim_expired: "奖金已过期，不再有效。 (%{errorCode})"
     },
     ui: {
         choice_red2: "2 红",

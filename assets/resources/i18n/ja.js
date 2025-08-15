@@ -186,7 +186,8 @@ const data = {
         winTumbleMsg: "おめでとうございます！",
         winningNotificationOn: "連勝通知「オン」",
         winningNotificationOff: "勝利連続通知「オフ」",
-        voidTicketMessage: "技術的な問題により、ベットは無効になりました。もう一度ゲームをお試しください。"
+        voidTicketMessage: "技術的な問題により、ベットは無効になりました。もう一度ゲームをお試しください。",
+        message_error_claim_expired: "ボーナスは期限切れです。利用できなくなりました。(%{errorCode})"
     },
     ui: {
         choice_red2: "赤2",

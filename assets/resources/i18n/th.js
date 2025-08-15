@@ -187,7 +187,7 @@ const data = {
         winningNotificationOn: "การแจ้งเตือนแถวที่ชนะ “เปิด”",
         winningNotificationOff: "การแจ้งเตือนแถวที่ชนะ “ปิด”",
         voidTicketMessage: "การเดิมพันถือเป็นโมฆะเนื่องจากปัญหาทางเทคนิค โปรดลองอีกครั้ง",
-        Claim_expired_error_message: "โบนัสหมดอายุ ไม่สามารถใช้งานได้อีกต่อไป (%{errorCode})"
+        message_error_claim_expired: "โบนัสหมดอายุ ไม่สามารถใช้งานได้อีกต่อไป (%{errorCode})"
     },
     ui: {
         choice_red2: "2 แดง",

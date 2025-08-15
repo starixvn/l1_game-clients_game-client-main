@@ -186,7 +186,7 @@ const data = {
         winningNotificationOn: "Notificación de racha ganadora ACTIVADA",
         winningNotificationOff: "Notificaciones de racha ganadora desactivadas",
         voidTicketMessage: "La apuesta fue anulada por un problema técnico. Por favor, inténtelo de nuevo.",
-        Claim_expired_error_message: "La Bonificación ha expirado. Ya no está disponible. (%{errorCode})"
+        message_error_claim_expired: "La Bonificación ha expirado. Ya no está disponible. (%{errorCode})"
     },
     ui: {
         choice_red2: "2 Rojos",

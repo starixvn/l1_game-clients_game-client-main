@@ -94,7 +94,7 @@ const ErrorCodeDictionary = {
     SB1943: "openedJackpot",
     SB3017: "errorOccurred",
     SB3018: "errorOccurred",
-    SB3023: "Claim_expired_error_message"
+    SB3023: "message_error_claim_expired"
 };
 
 export const CommonErrorCodeList = [

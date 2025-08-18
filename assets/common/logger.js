@@ -1,52 +1,58 @@
 import * as configs from "../configs/Configs";
 
+const DefaultIgnoreErrors = [
+    "fullscreen error",
+    "exitFullscreen",
+    "start the audio device",
+    "zaloJSV2",
+    "socket disconnect",
+    "UnhandledRejectionhttps",
+    "cocos2d-js-min",
+    "cocos-creator",
+    "timeout",
+    "WebGLRenderingContext",
+    "websocket error",
+    "undefined is not an object (evaluating 'cc.RedT.user')",
+    /^.*Cannot read properties.*(?:user|setAvatar|onSet|setLoadingVisibility).*$/gm,
+    /^.*not an object.*(?:openGame|openNewSocket|gameName|language|this.percent|this.pagination|remoteBundle).*$/gm,
+    /^.*Node is not valid!.*$/gm,
+    /^.*SENTRY IGNORE ERRORS:*$/gm,
+    "Max wait reached",
+    /^.*Max wait reached*$/gm
+];
 export const sentryLogger = {
-    sentryUrl: null,
+    dsn: null,
+    ignoreErrors: [],
     loaded: false,
     ignoreErrorsPrefix: "SENTRY IGNORE ERRORS:",
     isEnabled: () => {
-        return sentryLogger.sentryUrl != null && document && document.head;
+        return sentryLogger.dsn != null && document && document.head;
     },
     loadScript: () => {
         if (window.Sentry && !sentryLogger.loaded) {
             window.Sentry.init({
-                dsn: configs.sentry.url,
-                environment: configs.sentry.env,
+                dsn: sentryLogger.dsn,
+                environment: configs.env,
                 maxValueLength: 5000,
-                ignoreErrors: [
-                    "fullscreen error",
-                    "exitFullscreen",
-                    "start the audio device",
-                    "zaloJSV2",
-                    "socket disconnect",
-                    "UnhandledRejectionhttps",
-                    "cocos2d-js-min",
-                    "cocos-creator",
-                    "timeout",
-                    "WebGLRenderingContext",
-                    "websocket error",
-                    "undefined is not an object (evaluating 'cc.RedT.user')",
-                    /^.*Cannot read properties.*(?:user|setAvatar|onSet|setLoadingVisibility).*$/gm,
-                    /^.*not an object.*(?:openGame|openNewSocket|gameName|language|this.percent|this.pagination|remoteBundle).*$/gm,
-                    /^.*Node is not valid!.*$/gm,
-                    /^.*SENTRY IGNORE ERRORS:*$/gm,
-                    "Max wait reached",
-                    /^.*Max wait reached*$/gm
-                ]
+                ignoreErrors: sentryLogger.ignoreErrors
             });
             sentryLogger.loaded = true;
         }
     },
     start: () => {
         try {
-            sentryLogger.sentryUrl = configs.sentry.url;
+            sentryLogger.dsn = configs.sentry.url;
+            sentryLogger.ignoreErrors = configs.sentry.ignoreErrors.length > 0 ? configs.sentry.ignoreErrors : DefaultIgnoreErrors;
+
+            const browserUrl = configs.sentry.browserUrl;
+            const urlHash = configs.sentry.urlHash;
 
             if (sentryLogger.isEnabled() && document.head && !document.getElementById("sentry-logger")) {
                 const sentryScript = document.createElement("script");
 
                 sentryScript.setAttribute("id", "sentry-logger");
-                sentryScript.setAttribute("src", "https://browser.sentry-cdn.com/5.15.0/bundle.min.js");
-                sentryScript.setAttribute("integrity", "sha384-+ysfQckQvwCB5SppH41IScIz/Iynt2pePnJNMl+D7ZOzDJ+VYhQEuwB0pA60IDM0");
+                sentryScript.setAttribute("src", browserUrl);
+                sentryScript.setAttribute("integrity", urlHash);
                 sentryScript.setAttribute("crossorigin", "anonymous");
                 sentryScript.onload = () => {
                     sentryLogger.loadScript();

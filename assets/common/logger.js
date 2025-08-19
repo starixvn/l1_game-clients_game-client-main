@@ -32,7 +32,7 @@ export const sentryLogger = {
         if (window.Sentry && !sentryLogger.loaded) {
             window.Sentry.init({
                 dsn: sentryLogger.dsn,
-                environment: configs.env,
+                environment: configs.sentry.env,
                 maxValueLength: 5000,
                 ignoreErrors: sentryLogger.ignoreErrors
             });
@@ -41,7 +41,7 @@ export const sentryLogger = {
     },
     start: () => {
         try {
-            sentryLogger.dsn = configs.sentry.url;
+            sentryLogger.dsn = configs.sentry.dsn;
             sentryLogger.ignoreErrors = configs.sentry.ignoreErrors.length > 0 ? configs.sentry.ignoreErrors : DefaultIgnoreErrors;
 
             const browserUrl = configs.sentry.browserUrl;

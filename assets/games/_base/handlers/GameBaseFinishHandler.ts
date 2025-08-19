@@ -9,7 +9,7 @@ export default class GameBaseFinishHandler implements DataHandler {
         return 3;
     }
 
-    constructor(protected readonly main: IGameBase, protected readonly playResultAnimationTime: number = 0) {}
+    constructor(protected readonly main: IGameBase, protected readonly playResultAnimationTime = 0) { }
 
     handle(data: any) {
         if (data.finish) {

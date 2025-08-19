@@ -5,7 +5,7 @@ import GameLogControlBase from "./GameLogControlBase";
 const { ccclass, property } = cc._decorator;
 
 export class DragonScoreBoardItemData {
-    constructor(public key: number, public isTie: boolean = false, public tieCount: number = 0, public isFirstTie = false) {}
+    constructor(public key: number, public isTie = false, public tieCount = 0, public isFirstTie = false) { }
 }
 
 @ccclass

@@ -62,7 +62,7 @@ export default class FreeBetGameBase extends MultiOrientationGame {
     }
 
     updateDisplayScoinUI(scoins) {
-        if (this.gameConfigs && this.gameConfigs.enableFreeBet) {
+        if (this.gameConfigs && this.gameConfigs.enableFreeBet  && this.enabledFreeBet) {
             this.userScoinWallet.balance.string = numberWithCommas(scoins);
 
             if (!this.isFocusScoin && scoins > 0) {

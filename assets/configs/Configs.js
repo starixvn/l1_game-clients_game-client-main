@@ -6,7 +6,7 @@ const defaultConfig = {
         "10.5.10.31": "lumigame.com"
     },
     subDomain: "l2-proxy",
-    env: "LOCAL",
+    env: "DEV",
     sentry: {
         dsn: "https://9c999f9b51e3b4543cb160b946b5bcbe@sentry-k8s.lumigame.com/30",
         browserUrl: "https://browser.sentry-cdn.com/10.5.0/bundle.min.js",

@@ -2,12 +2,12 @@ import { io, ManagerOptions, Socket, SocketOptions } from "socket.io-client";
 import * as MsgpackParser from "socket.io-msgpack-parser";
 
 import { enableMsgpackParserOnNotification } from "../../configs/Configs";
+import { TurnOverRequiredDataKey } from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 import { JackpotDataKey, JackpotEvents } from "../../managers/JackpotEvents";
 import { RoundTimerEvents } from "../../mini-games-panel/view-models/RoundTimerEvents";
 import GameUtils from "../GameUtils";
 import { buildUrl, getEnvironment } from "../helpers/UrlHelper";
 import { sentryLogger } from "../logger";
-import { TurnOverRequiredDataKey } from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 
 export default class NotificationService {
     public static getInstance(): NotificationService {
@@ -129,7 +129,7 @@ export default class NotificationService {
 
             this.socket.emit(eventName, data);
         } catch (error) {
-            sentryLogger.logError(error);
+            sentryLogger.log(`Can not call Notification emit event  ${eventName}, socket connected :${this.socket?.connected}`);
         }
     }
 

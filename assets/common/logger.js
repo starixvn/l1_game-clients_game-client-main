@@ -34,7 +34,14 @@ export const sentryLogger = {
                 dsn: sentryLogger.dsn,
                 environment: configs.sentry.env,
                 maxValueLength: 5000,
-                ignoreErrors: sentryLogger.ignoreErrors
+                ignoreErrors: sentryLogger.ignoreErrors,
+                beforeSend: (event, hint) => {
+                    // Modify the event here
+                    if (event.message && event.message.includes("Bundle")) {
+                        hint.attachments = [{ data: window.gameConfigurations }];
+                    }
+                    return event;
+                }
             });
             sentryLogger.loaded = true;
         }

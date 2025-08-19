@@ -4,8 +4,11 @@ window.envConfig = {
     subDomain: "l1uatproxy",
     env: "uat",
     sentry: {
-        url: "https://08d902b128ea45b6a11639833224f481@scsentry.sgamesuat.com/25",
-        env: "UAT"
+        env: "UAT",
+        dsn: "https://08ed9d9a76415a01ba8df0bfa8f07472@sentry-kl.sgamesuat.com/27",
+        browserUrl: "https://browser.sentry-cdn.com/10.5.0/bundle.min.js",
+        urlHash: "sha384-SAsRvjfAFRX3iwi3MG6ToeZNJVpHcRXKcITfFVLQipWK3uQ8SakuVmHDoSR3YNmJ",
+        ignoreErrors: []
     },
     gameAnalytics: {
         clientId: "093146669bf12df12eeedd2d57ddb469",

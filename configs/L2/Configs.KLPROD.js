@@ -5,8 +5,11 @@ window.envConfig = {
     subDomain: "proxy",
     env: "",
     sentry: {
-        url: "https://eb5f1c92d1da4cb6a059fa40c1276a9d@sentry.sabagame.com/48",
-        env: "PRO"
+        env: "PRO",
+        dsn: "https://5f45aef6bd203f27b92df734c98d2402@sentrysc.starixplay.com/26",
+        browserUrl: "https://browser.sentry-cdn.com/10.5.0/bundle.min.js",
+        urlHash: "sha384-SAsRvjfAFRX3iwi3MG6ToeZNJVpHcRXKcITfFVLQipWK3uQ8SakuVmHDoSR3YNmJ",
+        ignoreErrors: []
     },
     subGuideDomain: "guides",
     gatewaySubDomain: "gw",

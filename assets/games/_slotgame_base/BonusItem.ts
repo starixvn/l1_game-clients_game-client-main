@@ -14,7 +14,7 @@ export default class BonusItem extends cc.Component {
 
     open(value: number) {
         this.openChestAnimation && this.openChestAnimation.play();
-
+        ///test
         if (value > 0) {
             this.value.string = numberWithCommas(value, 2);
         }

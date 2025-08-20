@@ -12,6 +12,9 @@ export default class CustomOperatorSprite extends cc.Component {
 
     onLoad() {
         const operator = sessionManager.getOperator();
+        if (operator === null) {
+            return;
+        }
         const component = this.node.getComponent(cc.Sprite);
         component.spriteFrame =
             this.atlas.getSpriteFrame(`${this.spriteName}-${operator?.toUpperCase()}`);

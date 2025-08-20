@@ -1,5 +1,4 @@
 import * as sessionManager from "./auth/SessionManager";
-import configs = require("../configs/Configs");
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -11,7 +10,11 @@ export default class SystemNameNode extends cc.Component {
         TIP88: ""
     } as const;
     onLoad() {
-        const operator = sessionManager.getOperator().toUpperCase();
-        this.node.getComponent(cc.Label).string = this.OPERATOR_NAMES[operator] || "";
+        const operator = sessionManager.getOperator();
+        if (operator === null) {
+            return;
+        }
+        const operatorStr = operator.toUpperCase();
+        this.node.getComponent(cc.Label).string = this.OPERATOR_NAMES[operatorStr] || "";
     }
 }

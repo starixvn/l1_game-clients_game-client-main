@@ -92,7 +92,7 @@ export default class GatewayGameItem extends cc.Component {
             if (this.labelGameName.string === "") {
                 this.labelGameName.string = `Game___${gameId}`;
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
     setReceiveEvents(receivedEvents: string[]) {
@@ -113,7 +113,7 @@ export default class GatewayGameItem extends cc.Component {
         if (this.serviceName !== "") {
             data["serviceName"] = this.serviceName;
         }
-        this.socket.emit("signIn", data);
+        this.socket?.emit("signIn", data);
     }
 
     initGameData(durations: Durations) {

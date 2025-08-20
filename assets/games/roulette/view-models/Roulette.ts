@@ -106,13 +106,15 @@ export default class Roulette extends SocketIOTableGameBase {
 
         sessionManager.storeInRoomGameId(RouletteId); // fix bug hide the back-to-lobby button when SSO direct (ref = d_direct) to game.
         this.initMain().then(() => {
-            this.initBetBoard();
-            super.onLoad();
-            this.updateTotalBetLabel();
-            this.updateBetStatus(true);
-            this.schedule(this.updateBetStatus, 0.3, cc.macro.REPEAT_FOREVER, 1);
-            this.joinGame();
-            this.rouletteMain.board.betChips = this.betChips;
+            try {
+                this.initBetBoard();
+                super.onLoad();
+                this.updateTotalBetLabel();
+                this.updateBetStatus(true);
+                this.schedule(this.updateBetStatus, 0.3, cc.macro.REPEAT_FOREVER, 1);
+                this.joinGame();
+                this.rouletteMain.board.betChips = this.betChips;
+            } catch (error) { }
         });
     }
 
@@ -185,43 +187,45 @@ export default class Roulette extends SocketIOTableGameBase {
     }
 
     async initMain() {
-        const node = await this.loadResource("RouletteMain", this.mainContainer);
-        this.rouletteMain = node.getComponent(RouletteMain);
-        this.rouletteMain.rearrangeIndexCallback = (type: number) => {
-            this.rearrangeIndex(type);
-            if (type === 1) {
-                //quickBet
-                this.leftControls.collapseMenu();
-            }
-        };
-        this.timeWaitLabel = this.rouletteMain.timeWaitLabel;
-        this.timeWaitNode = this.rouletteMain.timeWaitNode;
-        this.animatedTime = this.rouletteMain.animatedTime;
+        try {
+            const node = await this.loadResource("RouletteMain", this.mainContainer);
+            this.rouletteMain = node.getComponent(RouletteMain);
+            this.rouletteMain.rearrangeIndexCallback = (type: number) => {
+                this.rearrangeIndex(type);
+                if (type === 1) {
+                    //quickBet
+                    this.leftControls.collapseMenu();
+                }
+            };
+            this.timeWaitLabel = this.rouletteMain.timeWaitLabel;
+            this.timeWaitNode = this.rouletteMain.timeWaitNode;
+            this.animatedTime = this.rouletteMain.animatedTime;
 
-        const bottomControlsNode = await this.loadResource("BottomControls", this.bottomContainer);
-        this.bottomControls = bottomControlsNode.getComponent(BottomControls);
-        this.bottomControls.doubleButton.node.on("click", this.onPressedDouble, this);
-        this.bottomControls.clearButton.node.on("click", this.onPressedClear, this);
-        this.bottomControls.rebetButton.node.on("click", this.onPressedRebet, this);
-        this.bottomControls.confirmButton.node.on("click", this.onPressedConfirm, this);
-        this.bottomControls.undoButton.node.on("click", this.onPressedUndo, this);
+            const bottomControlsNode = await this.loadResource("BottomControls", this.bottomContainer);
+            this.bottomControls = bottomControlsNode.getComponent(BottomControls);
+            this.bottomControls.doubleButton.node.on("click", this.onPressedDouble, this);
+            this.bottomControls.clearButton.node.on("click", this.onPressedClear, this);
+            this.bottomControls.rebetButton.node.on("click", this.onPressedRebet, this);
+            this.bottomControls.confirmButton.node.on("click", this.onPressedConfirm, this);
+            this.bottomControls.undoButton.node.on("click", this.onPressedUndo, this);
 
-        this.betChipsContainer = this.bottomControls.betChipsContainer;
-        this.doubleButton = this.bottomControls.doubleButton;
-        this.clearButton = this.bottomControls.clearButton;
-        this.rebetButton = this.bottomControls.rebetButton;
-        this.confirmButton = this.bottomControls.confirmButton;
-        this.confirmGlow = this.bottomControls.confirmGlow;
-        this.undoButton = this.bottomControls.undoButton;
+            this.betChipsContainer = this.bottomControls.betChipsContainer;
+            this.doubleButton = this.bottomControls.doubleButton;
+            this.clearButton = this.bottomControls.clearButton;
+            this.rebetButton = this.bottomControls.rebetButton;
+            this.confirmButton = this.bottomControls.confirmButton;
+            this.confirmGlow = this.bottomControls.confirmGlow;
+            this.undoButton = this.bottomControls.undoButton;
 
-        const topControlsNode = await this.loadResource("TopControls", this.topContainer);
-        this.topControls = topControlsNode.getComponent(TopControls);
-        this.players = this.topControls.players;
-        this.otherPlayers = this.topControls.otherPlayers;
+            const topControlsNode = await this.loadResource("TopControls", this.topContainer);
+            this.topControls = topControlsNode.getComponent(TopControls);
+            this.players = this.topControls.players;
+            this.otherPlayers = this.topControls.otherPlayers;
 
-        const leftControlsNode = await this.loadResource("LeftControls", this.leftContainer);
-        this.leftControls = leftControlsNode.getComponent(LeftControls);
-        this.initIngameMenuFromLeftControl();
+            const leftControlsNode = await this.loadResource("LeftControls", this.leftContainer);
+            this.leftControls = leftControlsNode.getComponent(LeftControls);
+            this.initIngameMenuFromLeftControl();
+        } catch (err) { }
     }
 
     private initIngameMenuFromLeftControl() {
@@ -475,8 +479,8 @@ export default class Roulette extends SocketIOTableGameBase {
         const text = isMultiChoices
             ? i18n.t("messages.maxBetOfAnyChoiceReached")
             : i18n.t("messages.maxBetForChoiceNotice", {
-                  maxBet: numberWithCommas(Math.min(this.gameConfigs.maxBetPerChoices[type], maxBet))
-              });
+                maxBet: numberWithCommas(Math.min(this.gameConfigs.maxBetPerChoices[type], maxBet))
+            });
         if (betChoices[type][key] > this.gameConfigs.maxBetPerChoices[type]) {
             this.showMiniWarning(text);
             return true;

@@ -37,8 +37,15 @@ export const sentryLogger = {
                 ignoreErrors: sentryLogger.ignoreErrors,
                 beforeSend: (event, hint) => {
                     // Modify the event here
-                    if (event.message && event.message.toLowerCase().includes("bundle")) {
-                        hint.attachments = [{ data: window.gameConfigurations }];
+                    const isBundleError = event?.exception?.values.some(e => {
+                        const value = e.value.toLowerCase();
+                        return value.includes("bundle");
+                    });
+                    if (isBundleError) {
+                        hint.attachments = [{
+                            filename: "game-configurations.json",
+                            data: JSON.stringify(window.gameConfigurations ?? {})
+                        }];
                     }
                     return event;
                 }

@@ -254,18 +254,21 @@ export default class SkeletonIcon extends cc.Component {
         if (this.gameContent.children.length > 0) {
             return;
         }
-        const gameConfiguration = getGameConfiguration(id);
-        const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
-        if (this.gameContent.children.length > 0) {
-            cc.log(`game id ${id} ---- load DUPLICATE --------------`);
-            return;
-        }
-        if (gameNode) {
-            this.hideSkeleton();
-            this.gameContent?.addChild(gameNode);
-            this.newTag && (this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex));
-            this.setGameTypeLabel(id);
-        }
+        try {
+
+            const gameConfiguration = getGameConfiguration(id);
+            const gameNode = GameUtils.isMicroSite(gameConfiguration) ? await this.createRemoteIconNode(id) : await this.createIconNode(id);
+            if (this.gameContent.children.length > 0) {
+                cc.log(`game id ${id} ---- load DUPLICATE --------------`);
+                return;
+            }
+            if (gameNode) {
+                this.hideSkeleton();
+                this.gameContent?.addChild(gameNode);
+                this.newTag && (this.newTag.active = this.lobbyMenuConfig.isNewGame(id, categoryIndex));
+                this.setGameTypeLabel(id);
+            }
+        } catch (error) { }
     }
 
     protected updateNewTag(id: number, categoryIndex: number): void {

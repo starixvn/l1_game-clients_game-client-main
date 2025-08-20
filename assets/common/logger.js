@@ -88,6 +88,7 @@ export const sentryLogger = {
 
     setUser: (user) => {
         if (sentryLogger.isEnabled() && user) {
+            sentryLogger.loadScript();
             const setUserInfo = () => {
                 try {
                     if (window.Sentry) {
@@ -108,6 +109,7 @@ export const sentryLogger = {
 
     setTag: (tag) => {
         if (sentryLogger.isEnabled() && tag) {
+            sentryLogger.loadScript();
             try {
                 window.Sentry &&
                     window.Sentry.configureScope(function (scope) {

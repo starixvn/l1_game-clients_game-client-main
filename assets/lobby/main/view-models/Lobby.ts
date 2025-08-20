@@ -137,7 +137,7 @@ export default class Lobby extends cc.Component {
 
             const backgroundUI = cc.instantiate(this.backgroundUIPrefab);
             backgroundUI && this.backgroundUIContainer?.addChild(backgroundUI);
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadHeader() {
@@ -152,7 +152,7 @@ export default class Lobby extends cc.Component {
                 this.headerContainer?.addChild(header);
                 this.onLoadLobby();
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadMarquee() {
@@ -166,7 +166,7 @@ export default class Lobby extends cc.Component {
                 this.newsContentsComp = marquee?.getComponent(NewsContent);
                 this.marqueeContainer?.addChild(marquee);
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadLobbyCenterContainer() {
@@ -183,7 +183,7 @@ export default class Lobby extends cc.Component {
 
                 this.lobbyCenterContainer?.addChild(lobbyCenter);
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadButtonArrow() {
@@ -201,7 +201,7 @@ export default class Lobby extends cc.Component {
                 });
                 this.buttonArrowContainer?.addChild(buttonArrow);
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadButtons() {
@@ -217,7 +217,7 @@ export default class Lobby extends cc.Component {
                 compButtonsLobby.initClickEven(compButtonsLobby.settingMenu, this.node, "Lobby", "openSettingMenu");
                 this.buttonsContainer.addChild(buttons);
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async loadPrefabByThemeCategoryContainer() {
@@ -235,7 +235,7 @@ export default class Lobby extends cc.Component {
                 this.categoryContainer.addChild(categoryContainer);
                 this.categoryListComp?.loadCategory();
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     async openSettingMenu() {
@@ -254,10 +254,10 @@ export default class Lobby extends cc.Component {
 
                     const dialog = cc.instantiate(this.logoutPrefab);
                     this.miniPanel.addDialog(dialog);
-                } catch (err) {}
+                } catch (err) { }
             });
             this.miniPanel.addDialog(settingMenu);
-        } catch (err) {}
+        } catch (err) { }
     }
 
     private trackOnLoadEvents() {
@@ -292,7 +292,7 @@ export default class Lobby extends cc.Component {
                 ).toLocaleString()}. Total loading time in splash screen: ${totalLoadPageTimeInSeconds}`
             );
             window["dontWritePageLoadingTimeLog"] = true;
-        } catch {}
+        } catch { }
     }
 
     initGameUIEvents() {
@@ -463,26 +463,28 @@ export default class Lobby extends cc.Component {
     }
 
     loadUserData(data: any) {
-        if (void 0 !== data.red && this.headerComp && this.headerComp.userRed) {
-            this.headerComp.setBalance(this.formatUserCurrency(data.red, data.currency, data.isDisplayPlayerCurrency));
-        }
+        try {
+            if (void 0 !== data.red && this.headerComp && this.headerComp.userRed) {
+                this.headerComp.setBalance(this.formatUserCurrency(data.red, data.currency, data.isDisplayPlayerCurrency));
+            }
 
-        if (void 0 !== data.avatarId) {
-            this.headerComp.setAvatar(data.avatarId);
-        }
+            if (void 0 !== data.avatarId) {
+                this.headerComp.setAvatar(data.avatarId);
+            }
 
-        if (data.ss) {
-            sessionManager.storeSessionData(data.ss);
-        }
+            if (data.ss) {
+                sessionManager.storeSessionData(data.ss);
+            }
 
-        if (void 0 !== data.name) {
-            this.headerComp.setUserName(data.name);
-            sentryLogger.setCharacterName(data.name);
-        }
+            if (void 0 !== data.name) {
+                this.headerComp.setUserName(data.name);
+                sentryLogger.setCharacterName(data.name);
+            }
 
-        if (data.availSpins || data.scoins) {
-            this.headerComp.showScoins(data.scoins);
-        }
+            if (data.availSpins || data.scoins) {
+                this.headerComp.showScoins(data.scoins);
+            }
+        } catch (error) { }
     }
 
     signOut() {
@@ -558,7 +560,7 @@ export default class Lobby extends cc.Component {
                     this.luckyWheelIcon.init(this.miniPanel);
                 }
             }
-        } catch (e) {}
+        } catch (e) { }
     }
 
     async openLuckyWheel() {
@@ -572,7 +574,7 @@ export default class Lobby extends cc.Component {
                 }
             }
             this.showCenterBanner();
-        } catch (e) {}
+        } catch (e) { }
     }
 
     async showSignName() {
@@ -588,7 +590,7 @@ export default class Lobby extends cc.Component {
                     this.signName.init(this.handleSignName.bind(this));
                     this.miniPanel.addDialog(node);
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
     }
 

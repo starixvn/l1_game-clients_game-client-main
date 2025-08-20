@@ -145,8 +145,10 @@ export default class Splash extends cc.Component {
     }
 
     loadToLobbyOrDirectGame() {
-        const mainSplash = this.nodeMainSplash.getComponent(MainSplash);
-        mainSplash.loadToLobbyOrDirectGame();
+        try {
+            const mainSplash = this.nodeMainSplash.getComponent(MainSplash);
+            mainSplash.loadToLobbyOrDirectGame();
+        } catch (error) { }
     }
 
     private async handleBackFromMicrositeGame() {

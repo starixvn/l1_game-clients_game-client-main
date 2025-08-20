@@ -54,9 +54,7 @@ export default class CenterBannerContainer extends cc.Component {
                 }
                 this.showBanners(banners);
             }
-        } catch (error) {
-            this.handleBannerLoadError(error);
-        }
+        } catch (error) { }
     }
 
     private isBannersEmpty(banners: BannerItemData[]): boolean {
@@ -76,10 +74,6 @@ export default class CenterBannerContainer extends cc.Component {
 
     private getPreviouslyShowedBanners(): any {
         return StorageManager.get(STORAGE_KEYS.SHOWED_CENTER_BANNERS);
-    }
-
-    private handleBannerLoadError(error: any): void {
-        console.error("Failed to load center banners:", error);
     }
 
     private parseBannersToObject(banners: BannerItemData[]) {

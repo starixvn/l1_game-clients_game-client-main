@@ -1,3 +1,4 @@
+import AudioUtils from "../../common/AudioUtils";
 import GameUtils from "../../common/GameUtils";
 import GiftCodeSkeleton from "../../common/GiftCodeSkeleton";
 import ClaimBonusNotificationPopup from "../../lobby/free-spin-bonus-promotion/ClaimBonusNotificationPopup";
@@ -7,8 +8,8 @@ import PromotionEndedPopup from "../../lobby/free-spin-bonus-promotion/Promotion
 import { TurnOverRequiredEvents } from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredHandler";
 import TurnOverRequiredPanel from "../../lobby/free-spin-bonus-promotion/TurnOverRequiredPanel";
 import { uiManager } from "../../managers/GameUIManager";
-import { ClassicSlotSound } from "./ClassicSlotSound";
 import FreeSpinsPromotionMessage from "./FreeSpinsPromotionMessage";
+import AudioManager from "../../common/audio/AudioManager";
 
 export default class SlotGameFreeSpinsBonusUIManager {
     private readonly game: any;
@@ -66,6 +67,7 @@ export default class SlotGameFreeSpinsBonusUIManager {
 
     async openClaimBonusNotificationPopup(claimBonus: number) {
         try {
+            this.playFSBPromotionAudio();
             await this.addPromotionToDialog(
                 "ClaimBonusNotificationPopup",
                 "free-spins-promotion/views/claim-bonus-notification",
@@ -194,7 +196,7 @@ export default class SlotGameFreeSpinsBonusUIManager {
             if (!effectPrefab) {
                 return null;
             }
-            this.game.playSound?.(ClassicSlotSound.TRANSITION);
+
             const effect = cc.instantiate(effectPrefab);
             const callbackAnim = effect.getComponent(GiftCodeSkeleton);
             callbackAnim.onShowPopup = () => this.showGiftCodePopup();
@@ -211,7 +213,7 @@ export default class SlotGameFreeSpinsBonusUIManager {
             if (!effectPrefab) {
                 return null;
             }
-            this.game.playSound?.(ClassicSlotSound.TRANSITION);
+            this.playFSBPromotionAudio();
             const effect = cc.instantiate(effectPrefab);
             const callbackAnim = effect.getComponent(GiftCodeSkeleton);
             callbackAnim.onShowPopup = () => uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_FREE_SPINS_PROMOTION);
@@ -301,5 +303,10 @@ export default class SlotGameFreeSpinsBonusUIManager {
 
             afterLoadCallback?.(node);
         } catch {}
+    }
+
+    async playFSBPromotionAudio() {
+        const effectAudio = await AudioUtils.getAudioClip("", `shared/sounds/fsb-promotion`);
+        AudioManager.getInstance().playSFX(effectAudio);
     }
 }

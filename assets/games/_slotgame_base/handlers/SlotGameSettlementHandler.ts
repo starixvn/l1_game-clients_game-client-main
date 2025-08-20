@@ -7,7 +7,7 @@ import { SlotNotification } from "../SlotGameBottomMessage";
 
 export default class SlotGameSettlementHandler implements DataHandler {
     private receivedJackpot = false;
-    constructor(protected readonly main: SlotGameBase) {}
+    constructor(protected readonly main: SlotGameBase) { }
 
     async handle(data: any) {
         if (data.apiError) {
@@ -36,7 +36,7 @@ export default class SlotGameSettlementHandler implements DataHandler {
 
         if (data.finish) {
             if (this.main.isSpinnedAction) {
-                await this.handleFinish(data.finish);
+                await this.handleFinish(data.finish).catch(() => { });
                 this.main.isFinishedRound = true;
                 this.main.isSpinnedAction = false;
                 this.receivedJackpot = false;

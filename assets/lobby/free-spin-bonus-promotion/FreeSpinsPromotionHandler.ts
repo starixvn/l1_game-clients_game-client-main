@@ -170,6 +170,13 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
         this.promotionData = rawData;
         this.receivedPromotionInGame = isDirectly;
     }
+    isPromotionConsumed(promotion?: StandardPromotionInfo): boolean {
+        if (!promotion) {
+            return false;
+        }
+        const { isClaimed, remainingBonusItems, initialBonusItem } = promotion;
+        return isClaimed && remainingBonusItems < initialBonusItem;
+    }
 
     public handlePromotionDisplay() {
         try {
@@ -295,7 +302,6 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     public tryShowEndedPopup() {
         if (this.hasServerFinishPromotion) {
-            uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_PROMOTION_DETAILS_PANEL);
             uiManager.emitter.emit(FreeSpinsPromotionEvents.OPEN_PROMOTION_ENDED_POPUP);
         }
     }

@@ -19,7 +19,8 @@ if (CC_EDITOR) {
 }
 
 function loadLanguageData(language) {
-    return window.i18n.languages[language];
+    const langs = window.i18n?.languages || {};
+    return langs[language] || langs["en"];
 }
 
 function initPolyglot(data) {

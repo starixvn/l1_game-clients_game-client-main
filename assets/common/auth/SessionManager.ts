@@ -106,6 +106,7 @@ function getInRoomGameIdStorage() {
 }
 
 export function storeInRoomGameId(gameId) {
+    console.log("--------------------- storeInRoomGameId", gameId);
     console.trace("--------------------- storeInRoomGameId", gameId);
     const session = getSession();
     const ss = session.ss;

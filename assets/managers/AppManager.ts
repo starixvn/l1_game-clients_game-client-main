@@ -87,14 +87,14 @@ class AppManager {
 
     processURLParams() {
         const ssoGameId = this.urlParams.get("gameId") ?? GameId.UNKNOWN;
+        const currentGameId = sessionManager.getInRoomGameId();
+        console.log("--------------------- processURLParams", ssoGameId, currentGameId);
         if (this.urlParams.has("token")) {
             const token = this.urlParams.get("token");
             const lastToken = StorageManager.get("last_token");
 
             this.isNewSSO = token !== lastToken;
             StorageManager.set("last_token", token);
-
-            const currentGameId = sessionManager.getInRoomGameId();
 
             if (+ssoGameId > 0 && currentGameId === -1) {
                 sessionManager.removeInRoomGameId();

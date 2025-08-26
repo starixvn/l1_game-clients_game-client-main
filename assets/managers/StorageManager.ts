@@ -9,15 +9,15 @@ function isString(value: any): value is string {
     return typeof value === "string";
 }
 
-class LocalStorage implements Storage {
+class SessionStorage implements Storage {
     remove(name: string) {
-        localStorage?.removeItem(name);
+        sessionStorage?.removeItem(name);
     }
 
     get(name: string) {
         let storage;
         try {
-            storage = localStorage.getItem(name);
+            storage = sessionStorage.getItem(name);
             if (storage === "") {
                 return null;
             }
@@ -29,14 +29,14 @@ class LocalStorage implements Storage {
 
     set(name: string, value: any) {
         const valueFormat: string = isString(value) ? value : JSON.stringify(value);
-        localStorage?.setItem(name, valueFormat);
+        sessionStorage?.setItem(name, valueFormat);
     }
 
     isAvailable() {
         const test = "test";
         try {
-            localStorage.setItem(test, test);
-            localStorage.removeItem(test);
+            sessionStorage.setItem(test, test);
+            sessionStorage.removeItem(test);
             return true;
         } catch (e) {
             console.log("Browser not support Local Storage");
@@ -79,7 +79,7 @@ class StorageManager {
 
     private static get storage() {
         if (!this._storage) {
-            const storages = [new LocalStorage(), new Memory()];
+            const storages = [new SessionStorage(), new Memory()];
             this._storage = storages.filter((storage) => storage.isAvailable())[0];
         }
         return this._storage;
@@ -99,4 +99,3 @@ class StorageManager {
 }
 
 export { StorageManager };
-

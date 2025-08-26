@@ -112,8 +112,8 @@ function getLanguageURLparams(locale) {
 function getCurrentLanguage() {
     let language = "vi";
     try {
-        if (localStorage.getItem("current_language")) {
-            language = localStorage.getItem("current_language");
+        if (sessionStorage.getItem("current_language")) {
+            language = sessionStorage.getItem("current_language");
         }
     } catch (e) {}
     const urlParams = new URLSearchParams(window.location.search);
@@ -127,8 +127,8 @@ function getCurrentLanguage() {
 function getOperator() {
     let operator = "";
     try {
-        if (localStorage.getItem("current_operator")) {
-            operator = localStorage.getItem("current_operator");
+        if (sessionStorage.getItem("current_operator")) {
+            operator = sessionStorage.getItem("current_operator");
         }
     } catch (e) {}
     const urlParams = new URLSearchParams(window.location.search);

@@ -49,7 +49,7 @@ export default class PromotionAnnouncementItem extends cc.Component {
     async onClickJoinGame(gameId: number) {
         const currentGameId = sessionManager?.getInRoomGameId();
         this.node.emit(PromotionAnnouncementItemEvent.CLOSE_PROMOTIONS);
-        if (gameId.toString() === currentGameId) {
+        if (gameId.toString() === currentGameId.toString()) {
             return;
         }
         const joinGameHelper = new JoinGameHelper();

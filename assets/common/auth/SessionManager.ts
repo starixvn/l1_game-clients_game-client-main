@@ -148,9 +148,9 @@ export function getInRoomGameId(checkValid = true) {
         if (data.ss && session.ss && data.ss === session.ss) {
             return data.gameId;
         }
-        return 0;
+        return -1;
     } else {
-        return data?.gameId || 0;
+        return data?.gameId || -1;
     }
 }
 

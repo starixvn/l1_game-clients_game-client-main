@@ -137,7 +137,7 @@ export default class Lobby extends cc.Component {
 
             const backgroundUI = cc.instantiate(this.backgroundUIPrefab);
             backgroundUI && this.backgroundUIContainer?.addChild(backgroundUI);
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadHeader() {
@@ -152,7 +152,7 @@ export default class Lobby extends cc.Component {
                 this.headerContainer?.addChild(header);
                 this.onLoadLobby();
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadMarquee() {
@@ -166,7 +166,7 @@ export default class Lobby extends cc.Component {
                 this.newsContentsComp = marquee?.getComponent(NewsContent);
                 this.marqueeContainer?.addChild(marquee);
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadLobbyCenterContainer() {
@@ -183,7 +183,7 @@ export default class Lobby extends cc.Component {
 
                 this.lobbyCenterContainer?.addChild(lobbyCenter);
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadButtonArrow() {
@@ -201,7 +201,7 @@ export default class Lobby extends cc.Component {
                 });
                 this.buttonArrowContainer?.addChild(buttonArrow);
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadButtons() {
@@ -217,7 +217,7 @@ export default class Lobby extends cc.Component {
                 compButtonsLobby.initClickEven(compButtonsLobby.settingMenu, this.node, "Lobby", "openSettingMenu");
                 this.buttonsContainer.addChild(buttons);
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async loadPrefabByThemeCategoryContainer() {
@@ -235,7 +235,7 @@ export default class Lobby extends cc.Component {
                 this.categoryContainer.addChild(categoryContainer);
                 this.categoryListComp?.loadCategory();
             }
-        } catch (err) { }
+        } catch (err) {}
     }
 
     async openSettingMenu() {
@@ -254,10 +254,10 @@ export default class Lobby extends cc.Component {
 
                     const dialog = cc.instantiate(this.logoutPrefab);
                     this.miniPanel.addDialog(dialog);
-                } catch (err) { }
+                } catch (err) {}
             });
             this.miniPanel.addDialog(settingMenu);
-        } catch (err) { }
+        } catch (err) {}
     }
 
     private trackOnLoadEvents() {
@@ -292,7 +292,7 @@ export default class Lobby extends cc.Component {
                 ).toLocaleString()}. Total loading time in splash screen: ${totalLoadPageTimeInSeconds}`
             );
             window["dontWritePageLoadingTimeLog"] = true;
-        } catch { }
+        } catch {}
     }
 
     initGameUIEvents() {
@@ -361,7 +361,7 @@ export default class Lobby extends cc.Component {
             }
         }
 
-        if (sessionManager.getInRoomGameId()) {
+        if (sessionManager.getInRoomGameId() > -1) {
             cc.log("Lobby onSignIn - reload game room");
             this.loadLobby(false);
             this.reloadCurrentRoomGame();
@@ -484,7 +484,7 @@ export default class Lobby extends cc.Component {
             if (data.availSpins || data.scoins) {
                 this.headerComp.showScoins(data.scoins);
             }
-        } catch (error) { }
+        } catch (error) {}
     }
 
     signOut() {
@@ -516,7 +516,7 @@ export default class Lobby extends cc.Component {
 
     reloadCurrentRoomGame() {
         const inRoomGameId = sessionManager.getInRoomGameId();
-        if (inRoomGameId) {
+        if (inRoomGameId > -1) {
             GameUtils.openGame(+inRoomGameId, this.miniPanel, null, true);
         }
     }
@@ -560,7 +560,7 @@ export default class Lobby extends cc.Component {
                     this.luckyWheelIcon.init(this.miniPanel);
                 }
             }
-        } catch (e) { }
+        } catch (e) {}
     }
 
     async openLuckyWheel() {
@@ -574,7 +574,7 @@ export default class Lobby extends cc.Component {
                 }
             }
             this.showCenterBanner();
-        } catch (e) { }
+        } catch (e) {}
     }
 
     async showSignName() {
@@ -590,7 +590,7 @@ export default class Lobby extends cc.Component {
                     this.signName.init(this.handleSignName.bind(this));
                     this.miniPanel.addDialog(node);
                 }
-            } catch (err) { }
+            } catch (err) {}
         }
     }
 

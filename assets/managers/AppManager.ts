@@ -94,7 +94,9 @@ class AppManager {
             this.isNewSSO = token !== lastToken;
             StorageManager.set("last_token", token);
 
-            if (this.isNewSSO && +ssoGameId > 0) {
+            const currentGameId = sessionManager.getInRoomGameId();
+
+            if (+ssoGameId > 0 && currentGameId === -1) {
                 sessionManager.removeInRoomGameId();
                 sessionManager.removeMicrositeGameId();
                 this.ssoGameId = +ssoGameId;

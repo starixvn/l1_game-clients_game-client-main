@@ -1,4 +1,4 @@
-import { StorageManager } from "../../managers/StorageManager";
+import { PermanentStorage } from "../../managers/StorageManager";
 import AnimationUtils from "../utils/AnimationUtils";
 
 export default class AudioManager {
@@ -96,8 +96,8 @@ export default class AudioManager {
     }
 
     initDefaultStorage() {
-        this.musicEnabled = StorageManager.get(this.MusicStorageKey) ?? true;
-        this.sfxEnabled = StorageManager.get(this.SFXStorageKey) ?? true;
+        this.musicEnabled = PermanentStorage.get(this.MusicStorageKey) ?? true;
+        this.sfxEnabled = PermanentStorage.get(this.SFXStorageKey) ?? true;
     }
 
     addMusicChanged(key: string, observer: (changed: boolean) => void) {
@@ -134,20 +134,20 @@ export default class AudioManager {
     }
 
     get musicEnabled(): boolean {
-        return StorageManager.get(this.MusicStorageKey);
+        return PermanentStorage.get(this.MusicStorageKey);
     }
 
     set musicEnabled(value: boolean) {
-        StorageManager.set(this.MusicStorageKey, value);
+        PermanentStorage.set(this.MusicStorageKey, value);
         this.onMusicChanged(value);
     }
 
     get sfxEnabled(): boolean {
-        return StorageManager.get(this.SFXStorageKey);
+        return PermanentStorage.get(this.SFXStorageKey);
     }
 
     set sfxEnabled(value: boolean) {
-        StorageManager.set(this.SFXStorageKey, value);
+        PermanentStorage.set(this.SFXStorageKey, value);
         this.onSfxChanged(value);
         if (!value) {
             this.stopAllSFX();

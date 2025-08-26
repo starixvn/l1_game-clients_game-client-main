@@ -3,7 +3,7 @@ import * as i18n from "i18n/runtime-scripts/LanguageData";
 import { lazyInject } from "../Application";
 import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame, isMicroSite } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
-import { StorageManager } from "../managers/StorageManager";
+import { PermanentStorage, StorageManager } from "../managers/StorageManager";
 import SocketIOController from "../SocketIOController";
 import AudioManager from "./audio/AudioManager";
 import MusicPlayer from "./audio/MusicPlayer";
@@ -200,7 +200,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
     private handleLoadStorage(data: MicrositeGameParams) {
         const { key } = data.loadStorage;
-        cc.log("microsite load storage ", key);
+        console.log("microsite load storage ", key);
         this.postMessageToMicrosite({
             loadStorage: {
                 key: StorageManager.get(key)
@@ -262,8 +262,8 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     private handleChangeAudio(data: MicrositeGameParams) {
-        data.musicEnable !== undefined && StorageManager.set(this.MusicStorageKey, data.musicEnable);
-        data.sfxEnable !== undefined && StorageManager.set(this.SFXStorageKey, data.sfxEnable);
+        data.musicEnable !== undefined && PermanentStorage.set(this.MusicStorageKey, data.musicEnable);
+        data.sfxEnable !== undefined && PermanentStorage.set(this.SFXStorageKey, data.sfxEnable);
     }
 
     private handleOperator() {

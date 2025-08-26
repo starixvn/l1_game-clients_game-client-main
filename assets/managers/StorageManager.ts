@@ -1,4 +1,4 @@
-interface Storage {
+interface IStorage {
     remove: (name: string) => void;
     get: (name: string) => any;
     set: (name: string, value: any, expiresDay?: number) => void;
@@ -9,15 +9,17 @@ function isString(value: any): value is string {
     return typeof value === "string";
 }
 
-class SessionStorage implements Storage {
+class BrowserStorage implements IStorage {
+    constructor(private readonly storage: Storage) {}
+
     remove(name: string) {
-        sessionStorage?.removeItem(name);
+        this.storage?.removeItem(name);
     }
 
     get(name: string) {
         let storage;
         try {
-            storage = sessionStorage.getItem(name);
+            storage = this.storage?.getItem(name);
             if (storage === "") {
                 return null;
             }
@@ -29,14 +31,14 @@ class SessionStorage implements Storage {
 
     set(name: string, value: any) {
         const valueFormat: string = isString(value) ? value : JSON.stringify(value);
-        sessionStorage?.setItem(name, valueFormat);
+        this.storage?.setItem(name, valueFormat);
     }
 
     isAvailable() {
         const test = "test";
         try {
-            sessionStorage.setItem(test, test);
-            sessionStorage.removeItem(test);
+            this.storage.setItem(test, test);
+            this.storage.removeItem(test);
             return true;
         } catch (e) {
             console.log("Browser not support Local Storage");
@@ -51,7 +53,7 @@ declare global {
     }
 }
 
-class Memory implements Storage {
+class Memory implements IStorage {
     localMemory: any;
     constructor() {
         window.localMemory = {};
@@ -74,12 +76,12 @@ class Memory implements Storage {
     }
 }
 
-class StorageManager {
-    private static _storage: Storage;
+export class StorageManager {
+    private static _storage: IStorage;
 
     private static get storage() {
         if (!this._storage) {
-            const storages = [new SessionStorage(), new Memory()];
+            const storages = [new BrowserStorage(sessionStorage), new Memory()];
             this._storage = storages.filter((storage) => storage.isAvailable())[0];
         }
         return this._storage;
@@ -98,4 +100,26 @@ class StorageManager {
     }
 }
 
-export { StorageManager };
+export class PermanentStorage {
+    private static _storage: IStorage;
+
+    private static get storage() {
+        if (!this._storage) {
+            const storages = [new BrowserStorage(localStorage), new Memory()];
+            this._storage = storages.filter((storage) => storage.isAvailable())[0];
+        }
+        return this._storage;
+    }
+
+    static get(name: string) {
+        return this.storage.get(name);
+    }
+
+    static set(name: string, value: any) {
+        this.storage.set(name, value);
+    }
+
+    static remove(name: string) {
+        this.storage.remove(name);
+    }
+}

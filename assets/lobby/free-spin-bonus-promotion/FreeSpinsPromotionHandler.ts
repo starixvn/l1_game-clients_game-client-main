@@ -1,12 +1,13 @@
+import { Socket } from "socket.io-client";
 import * as sessionManager from "../../common/auth/SessionManager";
 import EventEmitterBase from "../../common/emitter/EventEmitterBase";
+import GameUtils from "../../common/GameUtils";
 import { buildPromotionSiteUrl } from "../../common/helpers/UrlHelper";
 import { sentryLogger } from "../../common/logger";
 import EncryptUtils from "../../common/utils/EncryptUtils";
 import { uiManager } from "../../managers/GameUIManager";
 import { StorageManager } from "../../managers/StorageManager";
 import configs = require("../../configs/Configs");
-import { Socket } from "socket.io-client";
 
 export const FreeSpinsPromotionEvents = {
     OPEN_FREE_SPINS_PROMOTION: "OPEN_FREE_SPINS_PROMOTION",
@@ -88,7 +89,15 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
 
     /** ========== CONFIGS / STATE ========== */
     getStorageKey() {
-        return this.storageKey;
+        return GameUtils.keyStorageWithUserID(this.storageKey);
+    }
+
+    setDontShowAgain(isChecked: boolean) {
+        StorageManager.set(this.getStorageKey(), { dontShowAgain: isChecked });
+    }
+
+    getDontShowAgain() {
+        return StorageManager.get(this.getStorageKey())?.dontShowAgain;
     }
 
     public getFallbackGameOffers() {
@@ -206,7 +215,7 @@ export default class FreeSpinsPromotionHandler extends EventEmitterBase {
     }
 
     private shouldSkipPromo(): boolean {
-        const dontShow = StorageManager.get(this.storageKey)?.dontShowAgain;
+        const dontShow = this.getDontShowAgain();
         const isSC1 = configs.systemType.toUpperCase() === "SC1";
         const isGiftCode = this.promotionData?.promotion?.isGiftCode;
         if (dontShow && !isGiftCode) {

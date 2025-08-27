@@ -6,7 +6,6 @@ import { FreeSpinsPromotionEvents, freeSpinsPromotionHandler } from "../../lobby
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
-import { StorageManager } from "../../managers/StorageManager";
 
 const { ccclass, property } = cc._decorator;
 
@@ -41,7 +40,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
 
     onChangeToggleDontShowAgain(toggle: cc.Toggle) {
         const isChecked = toggle.isChecked;
-        StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: isChecked });
+        freeSpinsPromotionHandler.setDontShowAgain(isChecked);
     }
     async start() {
         const isDirect = freeSpinsPromotionHandler.receivedPromotionInGame;
@@ -88,10 +87,8 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     }
 
     private restoreDontShowToggle() {
-        const storage = StorageManager.get(freeSpinsPromotionHandler.getStorageKey());
-        if (storage && typeof storage.dontShowAgain === "boolean") {
-            this.dontShowAgainToggle.isChecked = storage.dontShowAgain;
-        }
+        const dontShowAgain = freeSpinsPromotionHandler.getDontShowAgain();
+        this.dontShowAgainToggle.isChecked = dontShowAgain;
     }
 
     async setGameName() {
@@ -109,7 +106,7 @@ export default class FreeSpinsPromotionDialog extends CommonDialog {
     closeDialog(enableSound = true) {
         const isChecked = this.dontShowAgainToggle?.isChecked;
         if (isChecked) {
-            StorageManager.set(freeSpinsPromotionHandler.getStorageKey(), { dontShowAgain: true });
+            freeSpinsPromotionHandler.setDontShowAgain(true);
         }
         uiManager.emitter.emit(FreeSpinsPromotionEvents.CLOSE_FREE_SPINS_PROMOTION);
         super.closeDialog(enableSound);

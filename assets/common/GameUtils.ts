@@ -250,15 +250,19 @@ export default class GameUtils {
     }
 
     static setStorageGame(key, gameId, data) {
-        StorageManager.set(`${key}_${gameId}`, data);
+        StorageManager.set(GameUtils.keyStorageGame(key, gameId), data);
+    }
+
+    private static keyStorageGame(key: any, gameId: any): string {
+        return `${key}_${gameId}_${userManager?.UID}`;
     }
 
     static getStorageGame(key, gameId) {
-        return StorageManager.get(`${key}_${gameId}`) ?? {};
+        return StorageManager.get(GameUtils.keyStorageGame(key, gameId)) ?? {};
     }
 
     static clearGameSetting(gameId) {
-        StorageManager.remove(`UserSetting_game_${gameId}`);
+        StorageManager.remove(GameUtils.keyStorageGame(`UserSetting_game`, gameId));
     }
 
     /**

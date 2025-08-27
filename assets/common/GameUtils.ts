@@ -257,6 +257,10 @@ export default class GameUtils {
         return `${key}_${gameId}_${userManager?.UID}`;
     }
 
+    static keyStorageWithUserID(key: any): string {
+        return `${key}_${userManager?.UID}`;
+    }
+
     static getStorageGame(key, gameId) {
         return StorageManager.get(GameUtils.keyStorageGame(key, gameId)) ?? {};
     }

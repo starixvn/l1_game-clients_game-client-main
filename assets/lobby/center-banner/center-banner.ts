@@ -1,6 +1,7 @@
 import { Banner } from "sc-user-service-client/dist/lobby";
 import AnalyticsManager, { TrackingAction, TrackingEvent } from "../../analytics/AnalyticsManager";
 import CommonDialog from "../../common/_base/view-models/CommonDialog";
+import GameUtils from "../../common/GameUtils";
 import { uiManager } from "../../managers/GameUIManager";
 import { InternalEvents } from "../../managers/InternalEvents";
 import LobbyDialogManager from "../../managers/LobbyDialogManager";
@@ -70,7 +71,8 @@ export default class CenterBanner extends cc.Component {
 
     private updateDontShowAgain() {
         const isChecked = this.toggleDontShowAgain.isChecked;
-        StorageManager.set(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN, isChecked);
+        const key = GameUtils.keyStorageWithUserID(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN);
+        StorageManager.set(key, isChecked);
     }
 
     closeBanner() {

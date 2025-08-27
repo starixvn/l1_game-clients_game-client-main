@@ -25,7 +25,10 @@ export default class CenterBannerContainer extends cc.Component {
     @lazyInject(LobbyMenuConfig)
     private readonly lobbyMenuConfig: LobbyMenuConfig;
 
-    doNotShowedCenterBannerAgain = StorageManager.get(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN) ?? false;
+    get doNotShowedCenterBannerAgain() {
+        const key = GameUtils.keyStorageWithUserID(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN);
+        return StorageManager.get(key) ?? false;
+    }
 
     onLoad() {
         uiManager.emitterListener(
@@ -50,11 +53,12 @@ export default class CenterBannerContainer extends cc.Component {
             const hasNewBannerToShow = this.hasNewBannersToShow(banners);
             if (!this.doNotShowedCenterBannerAgain || hasNewBannerToShow) {
                 if (hasNewBannerToShow) {
-                    StorageManager.set(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN, false);
+                    const key = GameUtils.keyStorageWithUserID(STORAGE_KEYS.DO_NOT_SHOW_CENTER_BANNER_AGAIN);
+                    StorageManager.set(key, false);
                 }
                 this.showBanners(banners);
             }
-        } catch (error) { }
+        } catch (error) {}
     }
 
     private isBannersEmpty(banners: BannerItemData[]): boolean {

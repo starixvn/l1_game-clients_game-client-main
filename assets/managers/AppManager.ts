@@ -97,16 +97,14 @@ class AppManager {
             if (this.isNewSSO) {
                 sessionManager.removeInRoomGameId();
                 sessionManager.removeMicrositeGameId();
-                if (+ssoGameId > 0) {
-                    this.ssoGameId = +ssoGameId;
-                }
-            }
-
-            if (this.isNewSSO) {
                 StorageManager.remove(StorageKeys.CATEGORY_STORAGE_KEY);
                 sessionManager.removeDirectMode();
                 sessionManager.removeCheckedTournamentPromotionFirstSso();
                 sessionManager.removeCheckedFreeSpinsPromotionFirstSso();
+
+                if (+ssoGameId > 0) {
+                    this.ssoGameId = +ssoGameId;
+                }
             }
         }
     }

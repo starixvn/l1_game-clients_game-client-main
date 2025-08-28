@@ -254,11 +254,11 @@ export default class GameUtils {
     }
 
     private static keyStorageGame(key: any, gameId: any): string {
-        return `${key}_${gameId}_${userManager?.UID}`;
+        return this.keyStorageWithUserID(`${key}_${gameId}`);
     }
 
     static keyStorageWithUserID(key: any): string {
-        return `${key}_${userManager?.UID}`;
+        return `${key}_${userManager?.UID}_${userManager?.currencyGroup}`;
     }
 
     static getStorageGame(key, gameId) {

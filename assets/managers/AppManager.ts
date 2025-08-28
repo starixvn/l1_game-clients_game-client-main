@@ -4,6 +4,7 @@ import NotificationService from "../common/auth/NotificationService";
 import * as sessionManager from "../common/auth/SessionManager";
 import { getCacheLanguage, getLanguage, setLanguage } from "../common/auth/SessionManager";
 import UserService from "../common/auth/UserService";
+import GameUtils from "../common/GameUtils";
 import logger from "../common/logger";
 import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
@@ -104,6 +105,7 @@ class AppManager {
 
                 if (+ssoGameId > 0) {
                     this.ssoGameId = +ssoGameId;
+                    GameUtils.clearGameSetting(this.ssoGameId);
                 }
             }
         }

@@ -4,6 +4,7 @@ import NotificationService from "../common/auth/NotificationService";
 import * as sessionManager from "../common/auth/SessionManager";
 import { getCacheLanguage, getLanguage, setLanguage } from "../common/auth/SessionManager";
 import UserService from "../common/auth/UserService";
+import GameUtils from "../common/GameUtils";
 import logger from "../common/logger";
 import NameGenerator from "../common/name-generator/NameGenerator";
 import { userManager } from "../common/user/UserManager";
@@ -94,17 +95,17 @@ class AppManager {
             this.isNewSSO = token !== lastToken;
             StorageManager.set("last_token", token);
 
-            if (this.isNewSSO && +ssoGameId > 0) {
+            if (this.isNewSSO) {
                 sessionManager.removeInRoomGameId();
                 sessionManager.removeMicrositeGameId();
-                this.ssoGameId = +ssoGameId;
-            }
-
-            if (this.isNewSSO) {
                 StorageManager.remove(StorageKeys.CATEGORY_STORAGE_KEY);
                 sessionManager.removeDirectMode();
                 sessionManager.removeCheckedTournamentPromotionFirstSso();
                 sessionManager.removeCheckedFreeSpinsPromotionFirstSso();
+                if (+ssoGameId > 0) {
+                    this.ssoGameId = +ssoGameId;
+                    GameUtils.clearGameSetting(this.ssoGameId);
+                }
             }
         }
     }

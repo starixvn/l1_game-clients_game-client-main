@@ -105,7 +105,6 @@ class AppManager {
 
                 if (+ssoGameId > 0) {
                     this.ssoGameId = +ssoGameId;
-                    GameUtils.clearGameSetting(this.ssoGameId);
                 }
             }
         }
@@ -209,6 +208,9 @@ class AppManager {
         }
         this.loadDirectModeInfo();
         this.authorized = await this.authorizeByUserService();
+        if (this.ssoGameId > 0) {
+            GameUtils.clearGameSetting(this.ssoGameId)
+        }
         await this.initNotificationService();
     }
 

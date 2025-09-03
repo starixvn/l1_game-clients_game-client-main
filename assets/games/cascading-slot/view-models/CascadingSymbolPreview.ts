@@ -1,4 +1,4 @@
-import { numberWithCommas, roundUpWithCommas } from "../../../common/helpers/NumberHelper";
+import { roundUpWithCommas } from "../../../common/helpers/NumberHelper";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import SymbolPreview, { SymbolPreviewType } from "../../_slotgame_base/SymbolPreview";

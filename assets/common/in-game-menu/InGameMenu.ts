@@ -1,5 +1,6 @@
 import AudioManager from "../audio/AudioManager";
 import ExpandableMenu from "../expandable-menu/view-models/ExpandableMenu";
+import DirectModeVisibility, { NodeType } from "../other-lobby/DirectModeVisibility";
 
 const { ccclass, property } = cc._decorator;
 export enum InGameMenuEvents {
@@ -20,12 +21,28 @@ export default class InGameMenu extends cc.Component {
     @property(ExpandableMenu)
     expandableMenu: ExpandableMenu = null;
 
+    onLoad() {
+        this.addComponentDirectModeVisibility();
+    }
+
+    addComponentDirectModeVisibility() {
+        const buttons = this.node.getComponentsInChildren(cc.Button);
+        buttons.forEach(button => {
+            if (button.node.name.includes("lobby")) {
+                if (button.getComponent(DirectModeVisibility)) {
+                    return;
+                }
+                button.addComponent(DirectModeVisibility).type = NodeType.Lobby;
+            }
+        });
+    }
+
     protected doCommons() {
         AudioManager.getInstance().playClick();
         this.expandableMenu && this.expandableMenu.collapseMenu();
     }
 
-    collapseMenu(animated: boolean) {}
+    collapseMenu(animated: boolean) { }
 
     onClickOpenHistory() {
         this.doCommons();

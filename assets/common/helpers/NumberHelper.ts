@@ -4,10 +4,13 @@ const formatCommasReg = /\B(?=(\d{3})+(?!\d))/g;
 const numberWithCommas = (number, toFixed = 1, noZeroSuffix = true) => {
     if (number) {
         let trimZeroNumber;
+        const inputNumber = +number;
+        const multiplier = Math.pow(10, toFixed);
+        const roundedNumber = Math.round(inputNumber * multiplier) / multiplier;
         if (noZeroSuffix) {
-            trimZeroNumber = `${+(+number).toFixed(toFixed)}`;
+            trimZeroNumber = `${+(roundedNumber).toFixed(toFixed)}`;
         } else {
-            trimZeroNumber = (+number).toFixed(toFixed);
+            trimZeroNumber = (roundedNumber).toFixed(toFixed);
         }
         return trimZeroNumber.replace(formatCommasReg, ",");
     }
@@ -119,4 +122,5 @@ const roundUpWithCommas = (number, toFixed = 2, noZeroSuffix = true) => {
     return "0";
 };
 
-export { numberWithCommas, getOnlyNumberInString, numberPad, numberTo, zeroPad, nFormatter, truncateFixedDecimals, roundUpWithCommas };
+export { getOnlyNumberInString, nFormatter, numberPad, numberTo, numberWithCommas, roundUpWithCommas, truncateFixedDecimals, zeroPad };
+

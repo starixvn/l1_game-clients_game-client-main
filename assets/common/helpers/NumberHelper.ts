@@ -102,5 +102,21 @@ export function formatUserCurrency(balance, currency, isCash) {
 export const formatOdds = (value: number | string | undefined) => {
     return userManager.fractionalOddsFormat ? `${numberWithCommas(+value - 1, 2)}:1` : `1:${value}`;
 };
+const roundUpWithCommas = (number, toFixed = 2, noZeroSuffix = true) => {
+    if (number) {
+        const factor = Math.pow(10, toFixed);
+        const roundedNumber = Math.ceil(number * factor) / factor;
 
-export { numberWithCommas, getOnlyNumberInString, numberPad, numberTo, zeroPad, nFormatter, truncateFixedDecimals };
+        let trimZeroNumber;
+        if (noZeroSuffix) {
+            trimZeroNumber = `${+(roundedNumber).toFixed(toFixed)}`;
+        } else {
+            trimZeroNumber = (roundedNumber).toFixed(toFixed);
+        }
+        return trimZeroNumber.replace(formatCommasReg, ",");
+    }
+
+    return "0";
+};
+
+export { numberWithCommas, getOnlyNumberInString, numberPad, numberTo, zeroPad, nFormatter, truncateFixedDecimals, roundUpWithCommas };

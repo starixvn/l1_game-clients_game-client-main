@@ -1,4 +1,4 @@
-import { numberWithCommas } from "../../../common/helpers/NumberHelper";
+import { numberWithCommas, roundUpWithCommas } from "../../../common/helpers/NumberHelper";
 import { uiManager } from "../../../managers/GameUIManager";
 import { InternalEvents } from "../../../managers/InternalEvents";
 import SymbolPreview, { SymbolPreviewType } from "../../_slotgame_base/SymbolPreview";
@@ -69,10 +69,10 @@ export default class CascadingSymbolPreview extends SymbolPreview {
             if (symbolItem.index === SCATTER_SYMBOL) {
                 show = index < freespin.length && freespin[index].odds > 0;
                 const count = freespin[index].count >= 6 ? `≥${freespin[index].count}` : `${freespin[index].count}`;
-                values = [count, `${freespin[index].odds}`];
+                values = [count, `${roundUpWithCommas(freespin[index].odds, 2)}`];
             } else {
                 show = index < odds.length && odds[index].odds > 0;
-                values = [`${odds[index].from}-${odds[index].to}`, `${numberWithCommas(odds[index].odds * coinValue * betLevel, 3)}`];
+                values = [`${odds[index].from}-${odds[index].to}`, `${roundUpWithCommas(odds[index].odds * coinValue * betLevel, 2)}`];
             }
 
             if (!show) {

@@ -28,6 +28,13 @@ iframe {
     overflow-x: hidden;
 }
 
+iframe.microsite-iframe {
+    width: 100% !important;
+    height: 100% !important;
+    transform: rotate(180deg) !important;
+    transform-origin: none !important;
+}
+
 body {
     position: absolute;
     top: 0;

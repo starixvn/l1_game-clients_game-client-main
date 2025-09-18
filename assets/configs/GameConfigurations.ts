@@ -22,6 +22,7 @@ export interface GameConfiguration {
     gateway?: {
         id: number;
     };
+    isPortraitGame?: boolean;
 }
 
 declare global {

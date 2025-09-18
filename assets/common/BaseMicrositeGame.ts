@@ -82,11 +82,15 @@ export default class BaseMicrositeGame extends cc.Component {
         this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();
+        const isPortraitGame = StorageManager.get(`isPortraitGame`);
         window.addEventListener("message", this.handleEventFromMicrosite);
         this.webview?.node.on(
             WebviewEventType.LOADING,
             () => {
                 this.webview._impl._iframe.id = "microsite";
+                if (isPortraitGame && GameUtils.isPhone()) {
+                    this.webview._impl._iframe.style.transform = "rotate(180deg)";
+                }
             },
             this
         );

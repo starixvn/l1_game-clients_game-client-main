@@ -228,6 +228,8 @@ export default class BaseMicrositeGame extends cc.Component {
     protected async handleBackToLobby(data: MicrositeGameParams) {
         const currentGameId = this.gameId;
         SessionManager.removeMicrositeGameId();
+        // Clear isPortraitGame when exiting microsite game
+        StorageManager.remove(`isPortraitGame`);
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
 

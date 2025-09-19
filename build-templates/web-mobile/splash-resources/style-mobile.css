@@ -31,6 +31,10 @@ iframe {
 iframe.microsite-iframe {
     width: 100% !important;
     height: 100% !important;
+    transform: none !important;   
+}
+
+iframe.microsite-iframe-portrait {
     transform: rotate(180deg) !important;
     transform-origin: center center !important;
 }

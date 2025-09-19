@@ -493,10 +493,8 @@ export default class GameUtils {
             return;
         }
         if (GameUtils.isMicroSite(gameConfiguration)) {
-            const isPortraitGame = gameConfiguration?.isPortraitGame;
-            if (isPortraitGame) {
-                StorageManager.set(`isPortraitGame`, isPortraitGame);
-            }
+            const isPortraitGame = gameConfiguration?.isPortraitGame ?? false;
+            StorageManager.set(`isPortraitGame`, isPortraitGame);
             this.openGameMicrosite(gameId, loading);
             return;
         }

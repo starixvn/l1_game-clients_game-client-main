@@ -638,6 +638,32 @@ export default class GameUtils {
             });
         });
     }
+    public static async loadAvatarFromUrl(url: string): Promise<cc.SpriteFrame | null> {
+        try {
+            await fetch(url, { method: "HEAD", mode: "cors" });
+
+            const texture = await new Promise<cc.Texture2D>((resolve, reject) => {
+                cc.assetManager.loadRemote<cc.Texture2D>(url, (err, tex) => {
+                    if (err || !tex) {
+                        reject(err || new Error("Invalid texture"));
+                    } else {
+                        resolve(tex);
+                    }
+                });
+            });
+
+            return new cc.SpriteFrame(texture);
+        } catch (error) {
+            cc.log(`Cannot load from URL: ${url}`, error);
+            try {
+                const data = await this.loadRemoteFromSharedResource<cc.Texture2D>("avatars/default.png", true);
+                return data ? new cc.SpriteFrame(data) : null;
+            } catch (e) {
+                cc.log("Cannot load default avatar", e);
+                return null;
+            }
+        }
+    }
 
     public static getGameNameString(gameId): string {
         if (!gameId) {

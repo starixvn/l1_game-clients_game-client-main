@@ -9,6 +9,7 @@ export interface ISettings {
 }
 
 export class UserData {
+
     constructor(
         public UID = 0,
         public apiError = "",
@@ -30,6 +31,8 @@ export class UserData {
         public disableJackpotGames = true,
         public multiplier = 0,
         public currencyCode = "",
-        public currencyGroup = ""
+        public currencyGroup = "",
+        public playerNickname = "",
+        public playerAvatarUrl = ""
     ) {}
 }

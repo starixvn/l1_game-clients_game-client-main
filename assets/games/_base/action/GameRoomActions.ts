@@ -35,29 +35,27 @@ export const handleMusicWhenJoinGame = (game: any) => async () => {
     }
 };
 
-export const loadUserData = (game: any) => (user: any) => {
-    if (!user) {
+export const loadUserData = (game: any) => async (user: any) => {
+    if (!user || !game.isAlive()) {
         return;
     }
-
-    if (!game.isAlive()) {
-        return;
+    
+    const name = user.playerNickname && user.playerNickname.trim().length > 0 ? user.playerNickname : user.name;
+    if (name) {
+        game.userProfile?.setUserName(name);
     }
 
-    if (void 0 !== user.name) {
-        game.userProfile && game.userProfile.setUserName(user.name);
+    if (user.red != null) {
+        game.userProfile?.setUserBalance(truncateFixedDecimals(user.red, 2));
     }
 
-    if (void 0 !== user.red) {
-        game.userProfile && game.userProfile.setUserBalance(truncateFixedDecimals(user.red, 2));
-    }
-
-    if (void 0 !== user.avatarId) {
-        GameUtils.getAvatarSprite(user.avatarId).then((frame) => {
-            if (game?.node && frame) {
-                game.userProfile && game.userProfile.setUserAvatar(frame);
-            }
-        });
+    try {
+        const frame = await (user.playerAvatarUrl?.trim()
+            ? GameUtils.loadAvatarFromUrl(user.playerAvatarUrl)
+            : GameUtils.getAvatarSprite(user.avatarId ?? 1));
+        frame && game.userProfile?.setUserAvatar(frame);
+    } catch (e) {
+        cc.log("Cannot load avatar", e);
     }
 };
 

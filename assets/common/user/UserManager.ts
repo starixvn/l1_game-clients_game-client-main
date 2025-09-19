@@ -21,6 +21,13 @@ export default class UserManager {
         return this._data.name;
     }
 
+    get playerNickname() {
+        return this._data.playerNickname;
+    }
+    get playerAvatarUrl() {
+        return this._data.playerAvatarUrl;
+    }
+
     get balance() {
         return this._data.red;
     }
@@ -94,15 +101,25 @@ export default class UserManager {
     }
 
     public updateUser(userData: any) {
-        Object.keys(userData).forEach((name: string) => {
+        const incoming = userData?.user ?? userData ?? {};
+
+        // Nếu dữ liệu mới không có thì thêm lại từ _data cũ
+        if (!("playerNickname" in incoming)) {
+            incoming.playerNickname = this._data.playerNickname;
+        }
+        if (!("playerAvatarUrl" in incoming)) {
+            incoming.playerAvatarUrl = this._data.playerAvatarUrl;
+        }
+
+        Object.keys(incoming).forEach((name: string) => {
             if (name === "offerGames") {
-                this.parseOfferGames(userData);
+                this.parseOfferGames(incoming);
                 return;
             }
-            this._data[name] = userData?.[name];
+            this._data[name] = incoming[name];
         });
 
-        appManager.currentScene?.loadUserData(userData);
+        appManager.currentScene?.loadUserData(incoming);
     }
 
     private parseOfferGames(data) {

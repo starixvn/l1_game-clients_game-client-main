@@ -146,7 +146,7 @@ function updateLocalizedImages() {
         SP: "SP",
         VG: "VG",
         SG: "SG",
-        TIP88: "TIP88"
+        TIP88: "TIP88",
     };
 
     let title, favicon;
@@ -207,6 +207,7 @@ function updatePoweredBy(language) {
 
 function getCSSClassName(operator) {
     const operators = {
+        "12C": "_12c",
         TIP88: "_tip88",
         SP: "_sabaplay",
         VG: "_Vgaming",

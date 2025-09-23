@@ -51,6 +51,9 @@ export default class MainSplash extends cc.Component {
     sloganTip88: cc.Node = null;
 
     @property(cc.Node)
+    slogan12C: cc.Node = null;
+
+    @property(cc.Node)
     noticeContainer: cc.Node = null;
 
     @lazyInject(LobbyMenuConfig)
@@ -73,7 +76,7 @@ export default class MainSplash extends cc.Component {
     }
 
     private deactivateAllSlogans(): void {
-        const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88"];
+        const slogans = ["sloganSC1", "sloganSC2", "sloganSabaPlay", "sloganOtherVG", "sloganOtherSG", "sloganTip88", "slogan12C"];
 
         for (const slogan of slogans) {
             this.setSloganActiveState(slogan, false);
@@ -91,7 +94,8 @@ export default class MainSplash extends cc.Component {
             [OperatorAlias.SG]: "sloganSC1",
             [OperatorAlias.VG]: "sloganSC2",
             [OperatorAlias.SP]: "sloganSabaPlay",
-            [OperatorAlias.TIP88]: "sloganTip88"
+            [OperatorAlias.TIP88]: "sloganTip88",
+            [OperatorAlias["12C"]]: "slogan12C"
         };
 
         const slogan = sloganMapping[operator];

@@ -208,6 +208,16 @@ p.footer {
     height: var(--logo-height);
 }
 
+.splash_12c {
+    position: absolute;
+    --logo-height: calc(var(--vh, 1vh) * 24.04);
+    top: calc(var(--vh, 1vh) * 25.9);
+    background: url(./logo_12c.webp?v=1) no-repeat center;
+    background-size: auto var(--logo-height);
+    width: 100%;
+    height: var(--logo-height);
+}
+
 .splash_other_sc2 {
     position: absolute;
     --logo-height: calc(var(--vh, 1vh) * 30.53);
@@ -482,6 +492,11 @@ p.footer {
         top: 54.83vw;
         background-size: auto 6.1vw;
         height: 6.1vw;
+    }
+
+    .splash_12c {
+        top: 25.9vw;
+        --logo-height: auto 24.06vw;
     }
 
     .splash_powered {

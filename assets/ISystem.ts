@@ -11,5 +11,6 @@ export enum OperatorAlias {
     SP = "SP",
     VG = "VG",
     SG = "SG",
-    TIP88 = "TIP88"
+    TIP88 = "TIP88",
+    "12C" = "12C"
 }

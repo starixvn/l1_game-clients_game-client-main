@@ -82,24 +82,30 @@ export default class BaseMicrositeGame extends cc.Component {
         this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();
-        const isPortraitGame = StorageManager.get(`isPortraitGame`);
+        this.initCssForIframe();
+
         window.addEventListener("message", this.handleEventFromMicrosite);
         this.webview?.node.on(
             WebviewEventType.LOADING,
             () => {
                 this.webview._impl._iframe.id = "microsite";
-                const className = "microsite-iframe-portrait";
-                if (isPortraitGame && GameUtils.isPhone()) {
-                    this.webview._impl._iframe.style.transform = "rotate(180deg)";
-                    !this.webview?._impl?._iframe?.classList?.contains(className) &&
-                        this.webview?._impl?._iframe?.classList?.add(className);
-                } else {
-                    this.webview._impl._iframe.style.transform = "none";
-                    this.webview?._impl?._iframe?.classList?.remove(className);
-                }
             },
             this
         );
+    }
+
+    private initCssForIframe() {
+        const isPortraitGame = StorageManager.get(`isPortraitGame`);
+        const iframePortrait = "microsite-iframe-portrait";
+        const style = this.webview._impl._iframe.style;
+        const classList = this.webview?._impl?._iframe?.classList;
+        if (isPortraitGame && GameUtils.isPhone()) {
+            style.transform = "rotate(180deg)";
+            !classList?.contains(iframePortrait) && classList?.add(iframePortrait);
+        }
+
+        const iframeClass = "microsite-iframe";
+        !classList?.contains(iframeClass) && classList?.add(iframeClass);
     }
 
     setCanvasVisibilty(active: boolean) {
@@ -140,8 +146,6 @@ export default class BaseMicrositeGame extends cc.Component {
             this.setCanvasVisibilty(false);
             this.handleUserGesturePage();
             this.handleClearStorage();
-            const className = "microsite-iframe";
-            !this.webview?._impl?._iframe?.classList?.contains(className) && this.webview?._impl?._iframe?.classList?.add(className);
 
             return;
         }

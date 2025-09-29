@@ -493,8 +493,6 @@ export default class GameUtils {
             return;
         }
         if (GameUtils.isMicroSite(gameConfiguration)) {
-            const isPortraitGame = gameConfiguration?.isPortraitGame ?? false;
-            StorageManager.set(`isPortraitGame`, isPortraitGame);
             this.openGameMicrosite(gameId, loading);
             return;
         }
@@ -804,7 +802,7 @@ export default class GameUtils {
 
     public static waitUntil = async (condition, interval = 1000, maxWait = 10000) => {
         const startTime = new Date().getTime();
-        for (;;) {
+        for (; ;) {
             try {
                 if (await condition()) {
                     return true;

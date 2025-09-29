@@ -131,6 +131,11 @@ export function isMicroSite(gameId: number) {
     return !!gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
 }
 
+export function isMicrositePortrait(gameId: number) {
+    const gameConfiguration = getGameConfiguration(gameId);
+    return !!gameConfiguration?.isMicrosite && !!gameConfiguration?.isPortraitGame;
+}
+
 export function getAllGameConfigurations() {
     if (CC_EDITOR) {
         return [];

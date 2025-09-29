@@ -10,7 +10,6 @@ import { getGameConfiguration, isGatewayGame } from "../../../configs/GameConfig
 import LobbyMenuConfig from "../../../lobby/main/view-models/LobbyMenuConfig";
 import { appManager } from "../../../managers/AppManager";
 import { uiManager } from "../../../managers/GameUIManager";
-import { StorageManager } from "../../../managers/StorageManager";
 import SplashConfig from "../../../splash/view-models/SplashConfig";
 
 export const loadMiniPanel = (game: any) => () => {
@@ -116,8 +115,8 @@ const handleGoToOtherScene = (game: any, isDirectMode: boolean, isGameShow: bool
         const loading = game?.loading?.getComponent(Loading);
         const onProgress = loading
             ? (completed, total) => {
-                  loading.onProgress(completed, total);
-              }
+                loading.onProgress(completed, total);
+            }
             : null;
         LobbyUtils.gotoLobbyScene(onProgress, lobbyMenuConfig, splashConfig);
     }
@@ -128,9 +127,6 @@ export const closeGame = (game: any) => () => {
         return;
     }
     game.closingGameRoom = true;
-
-    // Clear isPortraitGame when closing game
-    StorageManager.remove(`isPortraitGame`);
 
     if (game.loading) {
         game.loading.active = true;

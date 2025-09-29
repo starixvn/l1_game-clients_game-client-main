@@ -1,7 +1,7 @@
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lazyInject } from "../Application";
-import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame, isMicroSite } from "../configs/GameConfigurations";
+import { getGameConfiguration, initialize as initGameConfiguration, isGatewayGame, isMicroSite, isMicrositePortrait } from "../configs/GameConfigurations";
 import { appManager } from "../managers/AppManager";
 import { StorageManager } from "../managers/StorageManager";
 import SocketIOController from "../SocketIOController";
@@ -95,11 +95,11 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     private initCssForIframe() {
-        const isPortraitGame = StorageManager.get(`isPortraitGame`);
+        const micrositePortrait = isMicrositePortrait(this.gameId);
         const iframePortrait = "microsite-iframe-portrait";
         const style = this.webview._impl._iframe.style;
         const classList = this.webview?._impl?._iframe?.classList;
-        if (isPortraitGame && GameUtils.isPhone()) {
+        if (micrositePortrait && GameUtils.isPhone()) {
             style.transform = "rotate(180deg)";
             !classList?.contains(iframePortrait) && classList?.add(iframePortrait);
         }
@@ -238,8 +238,6 @@ export default class BaseMicrositeGame extends cc.Component {
     protected async handleBackToLobby(data: MicrositeGameParams) {
         const currentGameId = this.gameId;
         SessionManager.removeMicrositeGameId();
-        // Clear isPortraitGame when exiting microsite game
-        StorageManager.remove(`isPortraitGame`);
         await this.updateSession(data);
         AudioManager.getInstance().initDefaultStorage();
 

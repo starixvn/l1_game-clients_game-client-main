@@ -82,13 +82,13 @@ export default class BaseMicrositeGame extends cc.Component {
         this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();
-        this.initCssForIframe();
 
         window.addEventListener("message", this.handleEventFromMicrosite);
         this.webview?.node.on(
             WebviewEventType.LOADING,
             () => {
                 this.webview._impl._iframe.id = "microsite";
+                this.initCssForIframe();
             },
             this
         );

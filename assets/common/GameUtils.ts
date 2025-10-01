@@ -640,10 +640,10 @@ export default class GameUtils {
     }
     public static async loadAvatarFromUrl(url: string): Promise<cc.SpriteFrame | null> {
         try {
-            await fetch(url, { method: "HEAD", mode: "cors" });
-
+            const preflight = await fetch(url, { method: "HEAD", mode: "cors" });
+            const ext = preflight.headers.get("content-type")?.split("/")?.[1] ?? "png";
             const texture = await new Promise<cc.Texture2D>((resolve, reject) => {
-                cc.assetManager.loadRemote<cc.Texture2D>(url, (err, tex) => {
+                cc.assetManager.loadRemote<cc.Texture2D>(url, { ext: `.${ext}`, }, (err, tex) => {
                     if (err || !tex) {
                         reject(err || new Error("Invalid texture"));
                     } else {

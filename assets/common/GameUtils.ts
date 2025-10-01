@@ -237,16 +237,35 @@ export default class GameUtils {
         return values;
     }
 
-    private static calcChipValue(list, total) {
-        const values = {};
-        let chipTotal = total;
-        list.forEach((value) => {
-            const count = Math.floor(chipTotal / value);
-            values[value] = count;
-            chipTotal = chipTotal % value;
-        });
+    private static calcChipValue(list: number[], total: number) {
+        // Try each chip value as the starting point to find optimal solution
+        let bestResult = { values: {}, chipTotal: total };
+        const sortedList = [...list].sort((a, b) => b - a);
 
-        return { values, chipTotal };
+        // Try starting with each denomination
+        for (let i = 0; i < sortedList.length; i++) {
+            const values = {};
+            let remainingTotal = total;
+
+            // Try remaining denominations in order
+            for (let j = i; j < sortedList.length; j++) {
+                const value = sortedList[j];
+                if (remainingTotal >= value) {
+                    const count = Math.floor(remainingTotal / value);
+                    if (count > 0) {
+                        values[value] = count;
+                        remainingTotal = remainingTotal % value;
+                    }
+                }
+            }
+
+            // If this solution has less remainder, use it
+            if (remainingTotal < bestResult.chipTotal) {
+                bestResult = { values, chipTotal: remainingTotal };
+            }
+        }
+
+        return bestResult;
     }
 
     static setStorageGame(key, gameId, data) {

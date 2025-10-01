@@ -35,6 +35,7 @@ import BlackJackFinishHandler from "./handlers/BlackJackFinishHandler";
 import BlackJackIngameHandler from "./handlers/BlackJackIngameHandler";
 import DealHandler from "./handlers/DealHandler";
 import IngameActionHandler from "./handlers/IngameActionHandler";
+import _ = require("lodash");
 
 const { ccclass, property } = cc._decorator;
 
@@ -324,25 +325,31 @@ export default class BlackJack extends SocketIOTableGameBase {
                     this.gameStatus === BlackJackActionType.START_ROUND && (handPlace.clearBetButton.active = true);
                     this.updateTotalBetLabel();
                     const stackObj = GameUtils.isChipStack(handPlace.getBetAmount(), this.betChips, nodeTmp);
-
                     if (stackObj.isStack) {
                         const chipTotal = stackObj.chipTotal;
                         const nodeArr = [];
                         const values = stackObj.chipValues;
-                        const keys = Object.keys(values).sort((a, b) => +b - +a);
+                        const keys = Object.keys(values).map(value => +value).sort((a, b) => +b - +a);
                         keys.forEach((chip) => {
                             const count = values[chip];
                             for (let i = 0; i < count; i++) {
                                 nodeArr.push(chip);
                             }
                         });
-                        for (let i = 0; i < nodeTmp.childrenCount; i++) {
+                        const childrenCount = nodeTmp.childrenCount;
+                        for (let i = 0; i < childrenCount; i++) {
                             const chipCurr = nodeTmp.children[i];
-                            if (i < chipTotal) {
+                            const value = nodeArr[i];
+                            if (i < chipTotal && value > 0) {
                                 const chipView = chipCurr.getComponent(ChipView);
-                                chipView.setColor(this.chipConfig.getChipColor(nodeArr[i]));
-                                chipView.setValue(nodeArr[i]);
+                                chipView.setColor(this.chipConfig.getChipColor(value));
+                                chipView.setValue(value);
                             } else {
+                                if (value === 0) {
+                                    const chipLow = this.betChips.createLowValueChip();
+                                    chipLow.position = chipCurr.position;
+                                    nodeTmp.addChild(chipLow);
+                                }
                                 chipCurr.destroy();
                             }
                         }

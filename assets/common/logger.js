@@ -37,15 +37,17 @@ export const sentryLogger = {
                 ignoreErrors: sentryLogger.ignoreErrors,
                 beforeSend: (event, hint) => {
                     // Modify the event here
-                    const isBundleError = event?.exception?.values.some(e => {
+                    const isBundleError = event?.exception?.values.some((e) => {
                         const value = e.value.toLowerCase();
                         return value.includes("bundle");
                     });
                     if (isBundleError) {
-                        hint.attachments = [{
-                            filename: "game-configurations.json",
-                            data: JSON.stringify(window.gameConfigurations ?? {})
-                        }];
+                        hint.attachments = [
+                            {
+                                filename: "game-configurations.json",
+                                data: JSON.stringify(window.gameConfigurations ?? {})
+                            }
+                        ];
                     }
                     return event;
                 }
@@ -99,9 +101,7 @@ export const sentryLogger = {
             const setUserInfo = () => {
                 try {
                     if (window.Sentry) {
-                        window.Sentry.configureScope(function (scope) {
-                            scope.setUser(user);
-                        });
+                        window.Sentry.getCurrentScope()?.setUser(user);
                     } else {
                         setTimeout(setUserInfo, 1000);
                     }
@@ -118,10 +118,7 @@ export const sentryLogger = {
         if (sentryLogger.isEnabled() && tag) {
             sentryLogger.loadScript();
             try {
-                window.Sentry &&
-                    window.Sentry.configureScope(function (scope) {
-                        scope.setTag(tag.id, tag.value);
-                    });
+                window.Sentry && window.Sentry.getCurrentScope()?.setTag(tag.id, tag.value);
             } catch (ex) {
                 console.log(ex);
             }

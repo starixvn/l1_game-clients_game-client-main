@@ -19,5 +19,8 @@ window.envConfig = {
     enableMsgpackParserOnNotification: false,
     enableMsgpackParserAllGames: false,
     SGConnectSubDomain: "l1-connectsite3",
-    AppDownloadSubDomain: ""
+    AppDownloadSubDomain: "",
+    openReplay: {
+        projectKey: "OibHwfsksT3kcgEk57xA"
+    }
 };

@@ -17,5 +17,9 @@ window.envConfig = {
     enableMsgpackParserOnNotification: false,
     SGConnectSubDomain: "l2-connect",
     AppDownloadSubDomain: "",
-    subPromotionDomain: "l2-promotion"
+    subPromotionDomain: "l2-promotion",
+    openReplay: {
+        projectKey: "G23SscSi4ivPFNNnyhVm",
+        ingestPoint: "https://replay.lumigame.com/ingest"
+    }
 };

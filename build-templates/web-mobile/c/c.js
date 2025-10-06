@@ -17,7 +17,11 @@ window.envConfig = {
     },
     guideDomain: "https://l2-guide.lumigame.com",
     enableMsgpackParserAllGames: false,
-    enableMsgpackParserOnNotification: false
+    enableMsgpackParserOnNotification: false,
+    openReplay: {
+        projectKey: "OibHwfsksT3kcgEk57xA",
+        ingestPoint: "https://replay.lumigame.com/ingest"
+    }
 };
 
 console.error("Wrong mapping config, please check your deployment");

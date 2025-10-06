@@ -20,5 +20,9 @@ window.envConfig = {
     enableMsgpackParserOnNotification: true,
     SGConnectSubDomain: "l1uatconnectsite",
     AppDownloadSubDomain: "https://l1sitdownload.sgamesuat.com",
-    clientSubDomain: "l1uatclient"
+    clientSubDomain: "l1uatclient",
+    openReplay: {
+        projectKey: "OibHwfsksT3kcgEk57xA",
+        ingestPoint: "https://replay.lumigame.com/ingest"
+    }
 };

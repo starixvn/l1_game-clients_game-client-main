@@ -134,7 +134,7 @@ function checkHasToken(urlParams, onSuccessFunc) {
                 window.authData.time = new Date();
 
                 sessionManager.storeSessionData(response);
-                
+
                 clearQueryStringOnUrl();
                 onSuccessFunc();
             } else {
@@ -164,6 +164,26 @@ export function setAuthorizeInfo(session) {
     window.authData = session;
     getChipSetting();
     sentryLogger.setUser(session);
+
+    // Set OpenReplay user ID and metadata if OpenReplay is available
+    if (window.OpenReplay && window.OpenReplay.setUserID && session.username) {
+        window.OpenReplay.setUserID(session.username);
+
+        // Set environment metadata from config
+        if (configs) {
+            if (configs.env) {
+                window.OpenReplay.setMetadata("environment", configs.env);
+            }
+            if (configs.systemType) {
+                window.OpenReplay.setMetadata("systemType", configs.systemType);
+            }
+        }
+
+        // Set session metadata from SSOResponse
+        if (session && session.ss) {
+            window.OpenReplay.setMetadata("ss", session.ss);
+        }
+    }
 }
 
 export function clearQueryStringOnUrl() {

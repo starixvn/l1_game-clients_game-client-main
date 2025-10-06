@@ -18,5 +18,9 @@ window.envConfig = {
     SGConnectSubDomain: "l2-connect-uat",
     AppDownloadSubDomain: "",
     clientSubDomain: "l2uatclient",
-    subPromotionDomain: "l2uatpromotion"
+    subPromotionDomain: "l2uatpromotion",
+    openReplay: {
+        projectKey: "OibHwfsksT3kcgEk57xA",
+        ingestPoint: "https://replay.lumigame.com/ingest"
+    }
 };

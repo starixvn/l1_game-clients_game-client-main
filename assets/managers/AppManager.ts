@@ -44,6 +44,29 @@ export interface ISessionParams {
     isUserGesture: boolean;
 }
 
+interface IUser {
+    red?: number;
+    currency?: string;
+
+    name?: string;
+    currencyGroup?: string;
+    disableJackpotGames?: boolean;
+    disableMiniPanel?: boolean;
+    multiplier?: number;
+    fractionalOddsFormat?: boolean;
+    avatarId?: number;
+    currencyCode?: string;
+    rate?: number;
+}
+
+interface IAuthorizeResponse {
+    authorized?: boolean;
+    user?: IUser;
+    promotionInfo?: any;
+    autoGenerateNickname?: boolean;
+    isSuccessful?: boolean;
+}
+
 class AppManager {
     GAME_IS_SHOWED = true;
     font = {
@@ -209,7 +232,7 @@ class AppManager {
         this.loadDirectModeInfo();
         this.authorized = await this.authorizeByUserService();
         if (this.ssoGameId > 0) {
-            GameUtils.clearGameSetting(this.ssoGameId)
+            GameUtils.clearGameSetting(this.ssoGameId);
         }
         await this.initNotificationService();
     }
@@ -305,20 +328,49 @@ class AppManager {
         return this.handleAuthorizedResponse(response);
     }
 
-    private async handleAuthorizedResponse(response) {
+    private async handleAuthorizedResponse(response: IAuthorizeResponse) {
         if (!response.authorized && (this.autoGenerateNickname || response.autoGenerateNickname)) {
             return this.autoGenerateName();
         }
         response.promotionInfo && freeSpinsPromotionHandler.setPromotionData(response.promotionInfo);
         response.user && userManager.updateUser(response.user);
+
+        // Set OpenReplay metadata for player info after successful authorization
+        if (response.authorized) {
+            this.setOpenReplayPlayerMetadata(response);
+        }
+
         return response.authorized;
+    }
+
+    private setOpenReplayPlayerMetadata(response: IAuthorizeResponse) {
+        try {
+            // Check if OpenReplay is available at runtime
+            if (typeof window !== "undefined" && (window as any).OpenReplay && (window as any).OpenReplay.setMetadata) {
+                if (response.user) {
+                    const filteredUser: Partial<IUser> = {};
+                    Object.keys(response.user).forEach((key) => {
+                        if (response.user[key] !== undefined && key !== "enabledGameIds" && key !== "offerGames") {
+                            filteredUser[key] = response.user[key];
+                        }
+                    });
+
+                    // Set player info and ss as separate metadata
+                    (window as any).OpenReplay.setMetadata("playerInfo", JSON.stringify(filteredUser));
+                    (window as any).OpenReplay.setMetadata("ss", window.authData?.ss);
+                }
+            }
+        } catch (error) {
+            // Silently handle OpenReplay errors to not break the authorization flow
+            console.warn("OpenReplay metadata setting failed:", error);
+        }
     }
 
     async authorizeByUserService(retryCount = 1) {
         cc.log("Try authorizeByUserService ", retryCount);
         try {
             const { ss, username } = window.authData;
-            const response: any = await UserService.getInstance().auth.authorize(ss, username);
+            const response = (await UserService.getInstance().auth.authorize(ss, username)) as IAuthorizeResponse;
             if (authManager.checkUM(response)) {
                 return false;
             }

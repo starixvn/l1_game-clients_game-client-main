@@ -99,7 +99,7 @@ export default class BaseMicrositeGame extends cc.Component {
         const iframePortrait = "microsite-iframe-portrait";
         const style = this.webview._impl._iframe.style;
         const classList = this.webview?._impl?._iframe?.classList;
-        if (micrositePortrait && GameUtils.isPhone()) {
+        if (micrositePortrait && cc.sys.isMobile) {
             style.transform = "rotate(180deg)";
             !classList?.contains(iframePortrait) && classList?.add(iframePortrait);
         }

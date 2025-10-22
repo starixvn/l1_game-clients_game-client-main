@@ -1,6 +1,7 @@
 import GameUtils from "../../common/GameUtils";
 import { shortenName } from "../../common/helpers/NicknameHelper";
 import { numberWithCommas } from "../../common/helpers/NumberHelper";
+import { getGameConfiguration } from "../../configs/GameConfigurations";
 import { uiManager } from "../../managers/GameUIManager";
 
 const { ccclass, property } = cc._decorator;
@@ -30,9 +31,14 @@ export default class JackpotWinner extends cc.Component {
         uiManager.removeListenersWithTarget(this);
     }
 
-    setData(data: any) {
+    async setData(data: any) {
         this.username.string = shortenName(data.winnerName);
         this.amount.string = numberWithCommas(GameUtils.getValueByCurrency(data.amount), 2);
-        this.gameName.string = GameUtils.getGameNameString(data.gameId);
+        const gameConfiguration = getGameConfiguration(data.gameId);
+        const isMicrosite = GameUtils.isMicroSite(gameConfiguration);
+
+        this.gameName.string = isMicrosite
+            ? await GameUtils.getRemoteDisplayGameName(data.gameId)
+            : GameUtils.getGameNameString(data.gameId);
     }
 }

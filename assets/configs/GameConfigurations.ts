@@ -23,6 +23,7 @@ export interface GameConfiguration {
         id: number;
     };
     isPortraitGame?: boolean;
+    portrait?: number;
 }
 
 declare global {
@@ -131,9 +132,16 @@ export function isMicroSite(gameId: number) {
     return !!gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
 }
 
-export function isMicrositePortrait(gameId: number) {
+export function isMicrositePortrait(gameId: number): { isPortrait: boolean, version?: number } {
     const gameConfiguration = getGameConfiguration(gameId);
-    return !!gameConfiguration?.isMicrosite && !!gameConfiguration?.isPortraitGame;
+    const isPortrait = !!gameConfiguration?.isMicrosite &&
+        (!!gameConfiguration?.isPortraitGame || !!gameConfiguration?.portrait);
+
+    if (!isPortrait) {
+        return { isPortrait };
+    }
+
+    return { isPortrait, version: gameConfiguration?.portrait ?? 1 };
 }
 
 export function getAllGameConfigurations() {

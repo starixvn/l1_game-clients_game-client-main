@@ -95,13 +95,14 @@ export default class BaseMicrositeGame extends cc.Component {
     }
 
     private initCssForIframe() {
-        const micrositePortrait = isMicrositePortrait(this.gameId);
+        const { isPortrait, version } = isMicrositePortrait(this.gameId);
         const iframePortrait = "microsite-iframe-portrait";
-        const style = this.webview._impl._iframe.style;
         const classList = this.webview?._impl?._iframe?.classList;
-        if (micrositePortrait && cc.sys.isMobile) {
-            style.transform = "rotate(180deg)";
-            !classList?.contains(iframePortrait) && classList?.add(iframePortrait);
+        if (isPortrait && cc.sys.isMobile) {
+            const isIpad = GameUtils.isIpad();
+            if (!isIpad || version === 1) {
+                !classList?.contains(iframePortrait) && classList?.add(iframePortrait);
+            }
         }
 
         const iframeClass = "microsite-iframe";

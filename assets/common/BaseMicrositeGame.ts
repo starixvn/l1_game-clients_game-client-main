@@ -79,6 +79,7 @@ export default class BaseMicrositeGame extends cc.Component {
 
     protected gameId = 0;
     protected onLoad(): void {
+        SessionManager.removeInRoomGameId();
         this.gameId = SessionManager.getMicrositeGameId();
         this.stopMainAction();
         this.loadMicrositeGame();

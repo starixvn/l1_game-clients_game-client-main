@@ -1,5 +1,0 @@
-import { reloadLanguageData } from "../../../../common/i18n/CustomLanguageData";
-
-export const phrases = {"gameNames": {47: "Isla del Tesoro"}, "treasureIsland": {"tumpleWin": "Ganancia en cascada", "totalWin": "Ganar", "turboMode": "Modo Turbo", "trialMode": "Modo Demo", "betMultiplierX": "Multiplicador de Apuesta\n20x", "betLevel": "Nivel de Apuesta", "coinValue": "Valor de Moneda", "congratulation": "Felicitaciones", "youWinFreeSpin": "Ganaste", "multiplier": "Multiplicador", "totalMultiplier": "Multiplicador Total", "no": "No.", "resultBoard": "Resultado del giro", "symbolAndNumber": "Símbolos Ganadores", "winAmount": "Ganancia", "trialModeText": "Estás en el Modo de Prueba", "freeSpin": "Free Spins", "extraFreeSpin": "Free Spin Adicional", "autoSpinLeft": "Giros automáticos restantes", "bigWinTextNotify": "Pulsa en cualquier lugar para continuar", "reachMaxWin": "¡Alcanzaste la Ganancia Máxima!", "warningTrialMode": "Juega de verdad,\nGana de verdad"}};
-
-reloadLanguageData("es", phrases);

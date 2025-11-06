@@ -3,8 +3,10 @@ import { BundleManager } from "bundle-management";
 import * as i18n from "i18n/runtime-scripts/LanguageData";
 
 import { lodash } from "../ClientModules";
+import AudioManager from "./audio/AudioManager";
 import * as SessionManager from "../common/auth/SessionManager";
 import { GameConfiguration, getGameConfiguration, isGatewayGame, isUsingRemoteBundle } from "../configs/GameConfigurations";
+import EncryptUtils from "./utils/EncryptUtils";
 import IGameBase from "../games/_base/IGameBase";
 import PromotionTournamentHandler from "../lobby/promotions/PromotionTournamentHandler";
 import { appManager } from "../managers/AppManager";
@@ -37,6 +39,7 @@ declare global {
 
 export default class GameUtils {
     static versionsCache = {};
+    static errorMessageMicrosite = "An error occurred in openGameMicrosite:";
 
     public static addFlyingText(parent: cc.Node, win: boolean, value: number, duration = 1, startY = 0, destY = 100) {
         const temp = new cc.Node().addComponent(cc.Label);
@@ -335,14 +338,10 @@ export default class GameUtils {
                 await this.loadScene(gameId, sceneName);
             } else {
                 loading?.setLoadingVisibility(false);
-                const data = {
-                    text: i18n.t("messages.lostGameConnection", { gameName: await this.getDisplayGameName(gameId) }),
-                    isInfo: false
-                };
-                uiManager.emitter.emit(InternalEvents.LOST_CONNECTION, data);
+                this.emitLostConnection(gameId);
             }
         } catch (error) {
-            cc.error("An error occurred in openGameMicrosite:", error);
+            cc.error(this.errorMessageMicrosite, error);
         }
     }
 
@@ -462,14 +461,10 @@ export default class GameUtils {
                 await BundleManager.getInstance().loadBundle(`${gameId}`);
                 await this.loadScene(gameId, sceneName);
             } else {
-                const data = {
-                    text: i18n.t("messages.lostGameConnection", { gameName: await this.getDisplayGameName(gameId) }),
-                    isInfo: false
-                };
-                uiManager.emitter.emit(InternalEvents.LOST_CONNECTION, data);
+                this.emitLostConnection(gameId);
             }
         } catch (error) {
-            cc.error("An error occurred in openGameMicrosite:", error);
+            cc.error(this.errorMessageMicrosite, error);
         }
     }
 
@@ -492,6 +487,12 @@ export default class GameUtils {
             this.openSocketGatewayGame(mainId, miniPanel?.socketIOController);
             return;
         }
+
+        if (GameUtils.isOpenRedirectSite(gameConfiguration)) {
+            this.openRedirectSite(gameId, loading);
+            return;
+        }
+
         if (GameUtils.isMicroSite(gameConfiguration)) {
             this.openGameMicrosite(gameId, loading);
             return;
@@ -1014,6 +1015,10 @@ export default class GameUtils {
         return !!gameConfiguration?.isMicrosite && !gameConfiguration?.mini;
     };
 
+    public static readonly isOpenRedirectSite = (gameConfiguration: GameConfiguration) => {
+        return !!gameConfiguration?.isOpenRedirectSite;
+    };
+
     public static getTruthyRoundId = (main: IGameBase, data) => {
         return data?.remainingTime > main.config.betTime ? data.roundId - 1 : data.roundId;
     };
@@ -1083,5 +1088,64 @@ export default class GameUtils {
                 hideTimer();
             })
             .start();
+    }
+
+    public static async openRedirectSite(gameId: number, loading: Loading = null) {
+        try {
+            const available = await this.healthCheckMicrositeGame(gameId);
+            if (available) {
+                const url = buildMicrositeGameUrl(gameId);
+                const queryString = this.getSiteQueryString();
+                window.location.href = `${url}${queryString}`;
+            } else {
+                loading?.setLoadingVisibility(false);
+                this.emitLostConnection(gameId);
+            }
+        } catch (error) {
+            cc.error(this.errorMessageMicrosite, error);
+        } 
+    }
+
+    public static getSiteQueryString(): string {
+        const auData = SessionManager.getSession();
+        if (!auData.ss) {
+            return "";
+        }
+        const directMode = SessionManager.getDirectMode();
+        const operator = SessionManager.getOperator();
+        const audio = AudioManager.getInstance();
+        const validDirectMode = appManager.isDirectMode;
+
+        const params = {
+            ss: auData.ss,
+            uname: auData.username,
+            lang: auData.language,
+            appType: auData.system,
+            ref: validDirectMode ? directMode?.ref : "",
+            rurl:
+                validDirectMode && appManager.checkDirectModeRefData(directMode?.ref)
+                    ? directMode?.returnUrl
+                    : EncryptUtils.base64Encode(window.location.href),
+            purl: EncryptUtils.base64Encode(window.location.href),
+            musicEnable: audio.musicEnabled,
+            sfxEnable: audio.sfxEnabled,
+            isUserGesture: audio.isUserGesture,
+            op: operator,
+            isStandalone: false
+        };
+
+        const searchParams = new URLSearchParams();
+        Object.keys(params).forEach((key) => params[key] !== undefined && searchParams.append(key, params[key]));
+        const encodedQueryString = EncryptUtils.base64Encode(searchParams.toString());
+        return `?params=${encodedQueryString}`;
+    }  
+
+    private static async emitLostConnection(gameId: number) {
+        const data = {
+            text: i18n.t("messages.lostGameConnection", { gameName: await this.getDisplayGameName(gameId) }),
+            isInfo: false
+        };
+        
+        uiManager.emitter.emit(InternalEvents.LOST_CONNECTION, data);
     }
 }

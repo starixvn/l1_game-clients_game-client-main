@@ -18,6 +18,7 @@ export interface GameConfiguration {
         dependsOn: string[];
     };
     isMicrosite?: boolean;
+    isOpenRedirectSite?: boolean;
     bannerType?: string;
     gateway?: {
         id: number;

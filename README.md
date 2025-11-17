@@ -10,7 +10,7 @@ Simply add the following property to the Config.js file of the environment you w
 }
 ```
 
-With GameId is the Id of game you want to enable msgpack parser, example: 
+With GameId is the Id of game you want to enable msgpack parser, example:
 
 ```
 {

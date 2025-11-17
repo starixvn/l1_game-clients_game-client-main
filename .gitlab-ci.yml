@@ -27,6 +27,8 @@ bundle-verification:
     script:
         - node ./test_bundle/bundle_verification.js
     rules:
+        - if: $IMAGE_EXISTS_IN_REGISTRY == "true"
+          when: never
         - if: $CI_COMMIT_TAG =~ /^deploy- */ && $DEPLOY_BY == "rocketor"
           when: always
         - when: never
